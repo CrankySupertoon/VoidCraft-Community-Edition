@@ -1,6 +1,6 @@
 package Tamaized.Voidcraft.vadeMecum.contents.documentation.blocks.ritual;
 
-import Tamaized.Voidcraft.voidCraft;
+import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.capabilities.vadeMecum.IVadeMecumCapability;
 import Tamaized.Voidcraft.vadeMecum.IVadeMecumPage;
 import Tamaized.Voidcraft.vadeMecum.IVadeMecumPageProvider;
@@ -14,17 +14,17 @@ public class VadeMecumPageListRitualBlock implements IVadeMecumPageProvider {
 
 	public IVadeMecumPage[] getPageList(IVadeMecumCapability cap) {
 		return new IVadeMecumPage[] {
-				new VadeMecumPage(new ItemStack(voidCraft.blocks.ritualBlock).getDisplayName(), voidCraft.modid+".VadeMecum.docs.desc.ritualBlock"),
+				new VadeMecumPage(new ItemStack(VoidCraft.blocks.ritualBlock).getDisplayName(), VoidCraft.modid+".VadeMecum.docs.desc.ritualBlock"),
 				new VadeMecumPageCrafting(new VadeMecumCraftingNormal("recipe.normal", new ItemStack[] {
 						new ItemStack(Blocks.STONEBRICK),
 						new ItemStack(Blocks.STONEBRICK),
 						new ItemStack(Blocks.STONEBRICK),
 						new ItemStack(Blocks.STONEBRICK),
-						new ItemStack(voidCraft.items.voidcrystal),
+						new ItemStack(VoidCraft.items.voidcrystal),
 						new ItemStack(Blocks.STONEBRICK),
 						new ItemStack(Blocks.STONEBRICK),
 						new ItemStack(Blocks.STONEBRICK),
-						new ItemStack(Blocks.STONEBRICK) }, new ItemStack(voidCraft.blocks.ritualBlock, 8)))
+						new ItemStack(Blocks.STONEBRICK) }, new ItemStack(VoidCraft.blocks.ritualBlock, 8)))
 				};
 	}
 

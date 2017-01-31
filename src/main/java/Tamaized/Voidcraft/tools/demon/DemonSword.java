@@ -1,12 +1,13 @@
 package Tamaized.Voidcraft.tools.demon;
 
+import Tamaized.TamModized.tools.TamSword;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
-import Tamaized.TamModized.tools.TamSword;
-import Tamaized.Voidcraft.voidCraft;
+import net.minecraft.util.DamageSource;
 
 public class DemonSword extends TamSword {
 
@@ -21,7 +22,7 @@ public class DemonSword extends TamSword {
 		par2EntityLivingBase.addPotionEffect(new PotionEffect(Potion.getPotionFromResourceLocation("blindness"), 20 * 20)); // Blind
 		par2EntityLivingBase.addPotionEffect(new PotionEffect(Potion.getPotionFromResourceLocation("poison"), 20 * 20)); // Poison
 		par2EntityLivingBase.addPotionEffect(new PotionEffect(Potion.getPotionFromResourceLocation("wither"), 20 * 20)); // Wither
-		par2EntityLivingBase.setFire(100); // Fire
+		par2EntityLivingBase.setFire(15); // Fire
 		return true;
 	}
 }

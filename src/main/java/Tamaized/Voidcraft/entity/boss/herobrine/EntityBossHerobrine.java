@@ -1,33 +1,33 @@
 package Tamaized.Voidcraft.entity.boss.herobrine;
 
+import java.io.DataOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 
-import javax.annotation.Nullable;
-
+import Tamaized.Voidcraft.entity.EntityVoidBoss;
+import Tamaized.Voidcraft.sound.VoidSoundEvents;
+import Tamaized.Voidcraft.xiaCastle.logic.battle.herobrine.HerobrineBattleHandler;
+import Tamaized.Voidcraft.xiaCastle.logic.battle.herobrine.phases.EntityAIHerobrinePhase1;
+import Tamaized.Voidcraft.xiaCastle.logic.battle.herobrine.phases.EntityAIHerobrinePhase2;
+import Tamaized.Voidcraft.xiaCastle.logic.battle.herobrine.phases.EntityAIHerobrinePhase3;
+import io.netty.buffer.ByteBufInputStream;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
-import Tamaized.Voidcraft.entity.EntityVoidBoss;
-import Tamaized.Voidcraft.sound.VoidSoundEvents;
-import Tamaized.Voidcraft.xiaCastle.logic.battle.IBattleHandler;
-import Tamaized.Voidcraft.xiaCastle.logic.battle.herobrine.phases.EntityAIHerobrinePhase1;
-import Tamaized.Voidcraft.xiaCastle.logic.battle.herobrine.phases.EntityAIHerobrinePhase2;
-import Tamaized.Voidcraft.xiaCastle.logic.battle.herobrine.phases.EntityAIHerobrinePhase3;
 
-public class EntityBossHerobrine extends EntityVoidBoss {
+public class EntityBossHerobrine extends EntityVoidBoss<HerobrineBattleHandler> {
 
 	public EntityBossHerobrine(World par1World) {
 		super(par1World);
 		this.setInvul(true);
 	}
 
-	public EntityBossHerobrine(World world, IBattleHandler handler) {
+	public EntityBossHerobrine(World world, HerobrineBattleHandler handler) {
 		super(world, handler, false);
 		this.setInvul(true);
 	}
@@ -41,11 +41,16 @@ public class EntityBossHerobrine extends EntityVoidBoss {
 	protected void triggerOnDamage(int phase, DamageSource source, float amount) {
 		if (phase == 2) getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).getAttributeValue() + 0.025D);
 	}
+	
+	@Override
+	protected void deathHook() {
+		
+	}
 
 	@Override
-	public boolean processInteract(EntityPlayer player, EnumHand hand, @Nullable ItemStack stack) {
+	public boolean processInteract(EntityPlayer player, EnumHand hand) {
 		// start();
-		return super.processInteract(player, hand, stack);
+		return super.processInteract(player, hand);
 	}
 
 	@Override
@@ -144,6 +149,16 @@ public class EntityBossHerobrine extends EntityVoidBoss {
 	@Override
 	protected int maxPhases() {
 		return 3;
+	}
+
+	@Override
+	protected void encodePacketData(DataOutputStream stream) throws IOException {
+		
+	}
+
+	@Override
+	protected void decodePacketData(ByteBufInputStream stream) throws IOException {
+		
 	}
 
 }

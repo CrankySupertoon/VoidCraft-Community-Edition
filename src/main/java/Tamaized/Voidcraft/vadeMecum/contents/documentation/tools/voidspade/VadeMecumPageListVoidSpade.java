@@ -1,6 +1,6 @@
 package Tamaized.Voidcraft.vadeMecum.contents.documentation.tools.voidspade;
 
-import Tamaized.Voidcraft.voidCraft;
+import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.capabilities.vadeMecum.IVadeMecumCapability;
 import Tamaized.Voidcraft.vadeMecum.IVadeMecumPage;
 import Tamaized.Voidcraft.vadeMecum.IVadeMecumPageProvider;
@@ -14,16 +14,16 @@ public class VadeMecumPageListVoidSpade implements IVadeMecumPageProvider {
 
 	public IVadeMecumPage[] getPageList(IVadeMecumCapability cap) {
 		return new IVadeMecumPage[] {
-				new VadeMecumPageCrafting(new VadeMecumCraftingNormal(new ItemStack(voidCraft.tools.voidSpade).getDisplayName(), new ItemStack[] {
-						null,
-						new ItemStack(voidCraft.items.voidcrystal),
-						null,
-						null,
+				new VadeMecumPageCrafting(new VadeMecumCraftingNormal(new ItemStack(VoidCraft.tools.voidSpade).getDisplayName(), new ItemStack[] {
+						ItemStack.EMPTY,
+						new ItemStack(VoidCraft.items.voidcrystal),
+						ItemStack.EMPTY,
+						ItemStack.EMPTY,
 						new ItemStack(Blocks.OBSIDIAN),
-						null,
-						null,
+						ItemStack.EMPTY,
+						ItemStack.EMPTY,
 						new ItemStack(Items.DIAMOND),
-						null }, new ItemStack(voidCraft.tools.voidSpade))) };
+						ItemStack.EMPTY }, new ItemStack(VoidCraft.tools.voidSpade))) };
 	}
 
 }

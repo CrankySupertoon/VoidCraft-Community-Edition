@@ -1,6 +1,6 @@
 package Tamaized.Voidcraft.vadeMecum.contents.documentation.items.dusts;
 
-import Tamaized.Voidcraft.voidCraft;
+import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.capabilities.vadeMecum.IVadeMecumCapability;
 import Tamaized.Voidcraft.vadeMecum.IVadeMecumPage;
 import Tamaized.Voidcraft.vadeMecum.IVadeMecumPageProvider;
@@ -15,11 +15,11 @@ public class VadeMecumPageListVoidDusts implements IVadeMecumPageProvider {
 
 	public IVadeMecumPage[] getPageList(IVadeMecumCapability cap) {
 		return new IVadeMecumPage[] {
-				new VadeMecumPage(voidCraft.modid+".VadeMecum.docs.title.voidDusts", voidCraft.modid+".VadeMecum.docs.desc.voidDusts"),
-				new VadeMecumPageCrafting(new VadeMecumCraftingMacerator(voidCraft.modid+".VadeMecum.recipe.macerator", new ItemStack(Blocks.IRON_ORE), new ItemStack(voidCraft.items.ironDust, 4))),
-				new VadeMecumPageCrafting(new VadeMecumCraftingMacerator(voidCraft.modid+".VadeMecum.recipe.macerator", new ItemStack(Items.DIAMOND), new ItemStack(voidCraft.items.diamondDust))),
-				new VadeMecumPageCrafting(new VadeMecumCraftingMacerator(voidCraft.modid+".VadeMecum.recipe.macerator", new ItemStack(Blocks.COAL_ORE), new ItemStack(voidCraft.items.coalDust, 8))),
-				new VadeMecumPageCrafting(new VadeMecumCraftingMacerator(voidCraft.modid+".VadeMecum.recipe.macerator", new ItemStack(Items.COAL), new ItemStack(voidCraft.items.coalDust, 4))) };
+				new VadeMecumPage(VoidCraft.modid+".VadeMecum.docs.title.voidDusts", VoidCraft.modid+".VadeMecum.docs.desc.voidDusts"),
+				new VadeMecumPageCrafting(new VadeMecumCraftingMacerator(VoidCraft.modid+".VadeMecum.recipe.macerator", new ItemStack(Blocks.IRON_ORE), new ItemStack(VoidCraft.items.ironDust, 4))),
+				new VadeMecumPageCrafting(new VadeMecumCraftingMacerator(VoidCraft.modid+".VadeMecum.recipe.macerator", new ItemStack(Items.DIAMOND), new ItemStack(VoidCraft.items.diamondDust))),
+				new VadeMecumPageCrafting(new VadeMecumCraftingMacerator(VoidCraft.modid+".VadeMecum.recipe.macerator", new ItemStack(Blocks.COAL_ORE), new ItemStack(VoidCraft.items.coalDust, 8))),
+				new VadeMecumPageCrafting(new VadeMecumCraftingMacerator(VoidCraft.modid+".VadeMecum.recipe.macerator", new ItemStack(Items.COAL), new ItemStack(VoidCraft.items.coalDust, 4))) };
 	}
 
 }

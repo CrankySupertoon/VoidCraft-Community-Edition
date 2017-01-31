@@ -1,6 +1,6 @@
 package Tamaized.Voidcraft.vadeMecum.contents.documentation.tools.realityTeleporter;
 
-import Tamaized.Voidcraft.voidCraft;
+import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.capabilities.vadeMecum.IVadeMecumCapability;
 import Tamaized.Voidcraft.vadeMecum.IVadeMecumPage;
 import Tamaized.Voidcraft.vadeMecum.IVadeMecumPageProvider;
@@ -13,18 +13,18 @@ public class VadeMecumPageListRealityTeleporter implements IVadeMecumPageProvide
 
 	public IVadeMecumPage[] getPageList(IVadeMecumCapability cap) {
 		return new IVadeMecumPage[] {
-				new VadeMecumPage(new ItemStack(voidCraft.items.realityTeleporter).getDisplayName(), voidCraft.modid+".VadeMecum.docs.desc.realityTeleporter.pg1"),
-				new VadeMecumPage("", voidCraft.modid+".VadeMecum.docs.desc.realityTeleporter.pg2"),
-				new VadeMecumPageCrafting(new VadeMecumCraftingNormal(voidCraft.modid+".VadeMecum.recipe.normal", new ItemStack[] {
-						new ItemStack(voidCraft.items.burnBone),
-						new ItemStack(voidCraft.items.emeraldDust),
-						new ItemStack(voidCraft.blocks.voidicCharger),
-						new ItemStack(voidCraft.items.MoltenvoidChain),
-						new ItemStack(voidCraft.blocks.realityHole),
-						new ItemStack(voidCraft.items.MoltenvoidChain),
-						new ItemStack(voidCraft.items.burnBone),
-						new ItemStack(voidCraft.items.MoltenvoidChain),
-						new ItemStack(voidCraft.items.burnBone) }, new ItemStack(voidCraft.items.realityTeleporter)))};
+				new VadeMecumPage(new ItemStack(VoidCraft.items.realityTeleporter).getDisplayName(), VoidCraft.modid+".VadeMecum.docs.desc.realityTeleporter.pg1"),
+				new VadeMecumPage("", VoidCraft.modid+".VadeMecum.docs.desc.realityTeleporter.pg2"),
+				new VadeMecumPageCrafting(new VadeMecumCraftingNormal(VoidCraft.modid+".VadeMecum.recipe.normal", new ItemStack[] {
+						new ItemStack(VoidCraft.items.burnBone),
+						new ItemStack(VoidCraft.items.emeraldDust),
+						new ItemStack(VoidCraft.blocks.voidicCharger),
+						new ItemStack(VoidCraft.items.MoltenvoidChain),
+						new ItemStack(VoidCraft.blocks.realityHole),
+						new ItemStack(VoidCraft.items.MoltenvoidChain),
+						new ItemStack(VoidCraft.items.burnBone),
+						new ItemStack(VoidCraft.items.MoltenvoidChain),
+						new ItemStack(VoidCraft.items.burnBone) }, new ItemStack(VoidCraft.items.realityTeleporter)))};
 	}
 
 }

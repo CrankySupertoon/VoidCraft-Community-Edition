@@ -17,7 +17,7 @@ public class TileEntityVoidicPowerCable extends TileEntityVoidicPower {
 
 	@Override
 	public void onUpdate() {
-		VoidicPowerHandler.sendToSurrounding(this, worldObj, pos);
+		VoidicPowerHandler.sendToSurrounding(this, world, pos);
 	}
 
 	@Override

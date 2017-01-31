@@ -1,21 +1,16 @@
 package Tamaized.Voidcraft.world.dim.Xia;
 
-import java.awt.Dimension;
 import java.util.Random;
 
-import Tamaized.Voidcraft.voidCraft;
-import Tamaized.Voidcraft.blocks.tileentity.TileEntityXiaCastle;
+import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.world.SchematicLoader;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.server.MinecraftServer;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.Teleporter;
 import net.minecraft.world.WorldProvider;
 import net.minecraft.world.WorldServer;
-import net.minecraftforge.common.DimensionManager;
 
 public class TeleporterXia extends Teleporter {
 
@@ -23,8 +18,6 @@ public class TeleporterXia extends Teleporter {
 
 	private final WorldServer worldServerInstance;
 	private final Random random;
-
-	private BlockPos tePos = new BlockPos(52, 55, 4);
 
 	public TeleporterXia(WorldServer par1WorldServer) {
 		super(par1WorldServer);
@@ -35,24 +28,26 @@ public class TeleporterXia extends Teleporter {
 
 	@Override
 	public void placeInPortal(Entity entityIn, float rotationYaw) {
-		if (entityIn.dimension == 0) {
+		if (entityIn.dimension != VoidCraft.config.getDimensionIDxia()) {
 			BlockPos bedPos = entityIn instanceof EntityPlayer && ((EntityPlayer) entityIn).getBedLocation(0) != null ? ((EntityPlayer) entityIn).getBedLocation(0) : worldServerInstance.getSpawnPoint();
+			while(!worldServerInstance.isAirBlock(bedPos)){
+				bedPos = bedPos.up();
+			}
 			entityIn.setLocationAndAngles((double) bedPos.getX(), (double) bedPos.getY(), (double) bedPos.getZ(), entityIn.rotationYaw, entityIn.rotationPitch);
 			return;
 		}
-		if (entityIn instanceof EntityPlayer) ((EntityPlayer) entityIn).addStat(voidCraft.achievements.voidCraftAchMainLine_6, 1);
+		if (entityIn instanceof EntityPlayer) ((EntityPlayer) entityIn).addStat(VoidCraft.achievements.tooFar, 1);
 		entityIn.setPositionAndUpdate(52.5, 62, 4.5);
 		if (!isActive(entityIn)) makePortal(entityIn);
 		entityIn.setPositionAndUpdate(52.5, 62, 4.5);
 	}
 
 	public boolean isActive(Entity e) {
-		TileEntity te = /*DimensionManager.getWorld(voidCraft.config.getDimensionIDxia())*/worldServerInstance.getTileEntity(tePos);
-		if (te instanceof TileEntityXiaCastle) {
-			TileEntityXiaCastle castleLogic = ((TileEntityXiaCastle) te);
-			castleLogic.validateInstance();
-			System.out.println(castleLogic.isActive());
-			return castleLogic.isActive();
+		WorldProvider wp = worldServerInstance.provider;
+		if (wp instanceof WorldProviderXia) {
+			WorldProviderXia xiaProvider = ((WorldProviderXia) wp);
+			xiaProvider.getXiaCastleHandler().validateInstance();
+			return xiaProvider.getXiaCastleHandler().isActive();
 		}
 		return false;
 	}
@@ -61,22 +56,15 @@ public class TeleporterXia extends Teleporter {
 	public boolean makePortal(Entity e) {
 		byte b0 = 16;
 		double d0 = -1.0D;
-		int i = MathHelper.floor_double(e.posX);
-		int j = MathHelper.floor_double(e.posY);
-		int k = MathHelper.floor_double(e.posZ);
+		int i = MathHelper.floor(e.posX);
+		int j = MathHelper.floor(e.posY);
+		int k = MathHelper.floor(e.posZ);
 
-		if (e.dimension == voidCraft.config.getDimensionIDxia()) {
+		if (e.dimension == VoidCraft.config.getDimensionIDxia()) {
 			// doStructure(sut, worldServerInstance, new BlockPos(-11, 59, -4));
 			// worldServerInstance.setBlockState(new BlockPos(0, 0, 58), voidCraft.blocks.xiaBlock.getDefaultState());
 			SchematicLoader loader = new SchematicLoader();
-			SchematicLoader.buildSchematic("xiaCastle_new_2.schematic", loader, worldServerInstance, new BlockPos(0, 60, 0));
-			worldServerInstance.setBlockState(tePos, voidCraft.blocks.xiaBlock.getDefaultState());
-			TileEntity te = worldServerInstance.getTileEntity(tePos);
-			if (te instanceof TileEntityXiaCastle) {
-				TileEntityXiaCastle castleLogic = ((TileEntityXiaCastle) te);
-				castleLogic.validateInstance();
-				if (!castleLogic.isActive()) castleLogic.start();
-			}
+			SchematicLoader.buildSchematic("xiacastle_new_2.schematic", loader, worldServerInstance, new BlockPos(0, 60, 0));
 		}
 
 		return true;

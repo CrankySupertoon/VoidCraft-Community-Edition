@@ -1,7 +1,7 @@
 package Tamaized.Voidcraft.machina.tileentity;
 
 import Tamaized.TamModized.tileentity.TamTileEntityInventory;
-import Tamaized.Voidcraft.voidCraft;
+import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.machina.addons.VoidTank;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -62,14 +62,14 @@ public class TileEntityHeimdall extends TamTileEntityInventory implements IFluid
 	public int getMaxEnergyStored() {
 		return maxForgeEnergy;
 	}
-	
-	public void setEnergyAmount(int a){
+
+	public void setEnergyAmount(int a) {
 		forgeEnergy = a;
 	}
 
 	@Override
 	public void readNBT(NBTTagCompound nbt) {
-		if (tank.getFluid() != null) tank.setFluid(new FluidStack(voidCraft.fluids.voidFluid, nbt.getInteger("fluidAmount")));
+		if (tank.getFluid() != null) tank.setFluid(new FluidStack(VoidCraft.fluids.voidFluid, nbt.getInteger("fluidAmount")));
 	}
 
 	@Override
@@ -80,37 +80,37 @@ public class TileEntityHeimdall extends TamTileEntityInventory implements IFluid
 
 	@Override
 	public void onUpdate() {
-		if (!worldObj.isRemote) {
+		if (!world.isRemote) {
 
 			// Fill A Bucket
 			if (tank.getFluidAmount() >= 1000) {
-				if (slots[SLOT_BUCKET] != null && slots[SLOT_BUCKET].getItem() == Items.BUCKET) {
-					tank.drain(new FluidStack(voidCraft.fluids.voidFluid, 1000), true);
-					slots[SLOT_BUCKET] = voidCraft.fluids.getBucket();
+				if (!slots[SLOT_BUCKET].isEmpty() && slots[SLOT_BUCKET].getItem() == Items.BUCKET) {
+					tank.drain(new FluidStack(VoidCraft.fluids.voidFluid, 1000), true);
+					slots[SLOT_BUCKET] = VoidCraft.fluids.voidBucket.getBucket();
 				}
 			}
 
 			// Check for quartz dust and handle
-			if (forgeEnergy + quartzAmount < maxForgeEnergy && slots[SLOT_INPUT] != null && slots[SLOT_INPUT].getItem() == voidCraft.items.quartzDust) {
-				if (slots[SLOT_INPUT].stackSize > 1) slots[SLOT_INPUT].stackSize--;
-				else slots[SLOT_INPUT] = null;
+			if (forgeEnergy + quartzAmount < maxForgeEnergy && !slots[SLOT_INPUT].isEmpty() && slots[SLOT_INPUT].getItem() == VoidCraft.items.quartzDust) {
+				if (slots[SLOT_INPUT].getCount() > 1) slots[SLOT_INPUT].shrink(1);
+				else slots[SLOT_INPUT] = ItemStack.EMPTY;
 				forgeEnergy += quartzAmount;
 			}
 
 			// Convert Power to Fluid
 			if (forgeEnergy >= 5 && getFluidAmount() < getMaxFluidAmount()) {
 				forgeEnergy -= 5;
-				fill(new FluidStack(voidCraft.fluids.voidFluid, 5), true);
+				fill(new FluidStack(VoidCraft.fluids.voidFluid, 5), true);
 			}
 
 			// Check if Void Machina is nearby; if so give it fluid
 			if (tank.getFluidAmount() > 0) {
 				for (EnumFacing face : EnumFacing.VALUES) {
-					TileEntity te = worldObj.getTileEntity(getPos().offset(face));
+					TileEntity te = world.getTileEntity(getPos().offset(face));
 					if (te instanceof IFluidHandler) {
 						IFluidHandler fte = ((IFluidHandler) te);
-						if (fte.fill(new FluidStack(voidCraft.fluids.voidFluid, 1), true) > 0) {
-							drain(new FluidStack(voidCraft.fluids.voidFluid, 1), true);
+						if (fte.fill(new FluidStack(VoidCraft.fluids.voidFluid, 1), true) > 0) {
+							drain(new FluidStack(VoidCraft.fluids.voidFluid, 1), true);
 						}
 					}
 				}
@@ -121,7 +121,7 @@ public class TileEntityHeimdall extends TamTileEntityInventory implements IFluid
 
 	@Override
 	public boolean isItemValidForSlot(int slot, ItemStack itemstack) {
-		return slot == SLOT_INPUT ? itemstack.getItem() == Items.BUCKET : slot == SLOT_BUCKET ? itemstack.getItem() == voidCraft.items.quartzDust : false;
+		return slot == SLOT_BUCKET ? itemstack.getItem() == Items.BUCKET : slot == SLOT_INPUT ? itemstack.getItem() == VoidCraft.items.quartzDust : false;
 	}
 
 	@Override
@@ -130,13 +130,8 @@ public class TileEntityHeimdall extends TamTileEntityInventory implements IFluid
 	}
 
 	@Override
-	protected boolean canExtractSlot(int slot) {
-		return slot == SLOT_BUCKET ? slots[SLOT_BUCKET] != null ? slots[SLOT_BUCKET].isItemEqual(voidCraft.fluids.getBucket()) : false : false;
-	}
-
-	@Override
-	protected boolean canInsertSlot(int slot) {
-		return true;
+	protected boolean canExtractSlot(int i, ItemStack stack) {
+		return i == SLOT_BUCKET ? !slots[SLOT_BUCKET].isEmpty() ? slots[SLOT_BUCKET].isItemEqual(VoidCraft.fluids.voidBucket.getBucket()) : false : false;
 	}
 
 	@Override
@@ -183,6 +178,13 @@ public class TileEntityHeimdall extends TamTileEntityInventory implements IFluid
 	}
 
 	public void setFluidAmount(int amount) {
-		tank.setFluid(new FluidStack(voidCraft.fluids.voidFluid, amount > tank.getCapacity() ? tank.getCapacity() : amount));
+		tank.setFluid(new FluidStack(VoidCraft.fluids.voidFluid, amount > tank.getCapacity() ? tank.getCapacity() : amount));
+	}
+
+	@Override
+	public boolean isEmpty() {
+		for (ItemStack stack : slots)
+			if (!stack.isEmpty()) return false;
+		return true;
 	}
 }

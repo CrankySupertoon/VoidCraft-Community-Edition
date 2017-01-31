@@ -1,6 +1,6 @@
 package Tamaized.Voidcraft.vadeMecum.contents.documentation.weapons.archangelicsword;
 
-import Tamaized.Voidcraft.voidCraft;
+import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.capabilities.vadeMecum.IVadeMecumCapability;
 import Tamaized.Voidcraft.vadeMecum.IVadeMecumPage;
 import Tamaized.Voidcraft.vadeMecum.IVadeMecumPageProvider;
@@ -13,17 +13,17 @@ public class VadeMecumPageListArchSword implements IVadeMecumPageProvider {
 
 	public IVadeMecumPage[] getPageList(IVadeMecumCapability cap) {
 		return new IVadeMecumPage[] {
-				new VadeMecumPage(new ItemStack(voidCraft.tools.archSword).getDisplayName(), voidCraft.modid+".VadeMecum.docs.desc.archSword"),
-				new VadeMecumPageCrafting(new VadeMecumCraftingNormal(voidCraft.modid+".VadeMecum.recipe.normal", new ItemStack[] {
-						new ItemStack(voidCraft.items.MoltenvoidChain),
-						new ItemStack(voidCraft.items.MoltenvoidChain),
-						new ItemStack(voidCraft.items.MoltenvoidChain),
-						new ItemStack(voidCraft.tools.chainSword),
-						new ItemStack(voidCraft.tools.angelicSword),
-						new ItemStack(voidCraft.tools.moltenSword),
-						new ItemStack(voidCraft.items.MoltenvoidChain),
-						new ItemStack(voidCraft.items.MoltenvoidChain),
-						new ItemStack(voidCraft.items.MoltenvoidChain) }, new ItemStack(voidCraft.tools.archSword))) };
+				new VadeMecumPage(new ItemStack(VoidCraft.tools.archSword).getDisplayName(), VoidCraft.modid+".VadeMecum.docs.desc.archSword"),
+				new VadeMecumPageCrafting(new VadeMecumCraftingNormal(VoidCraft.modid+".VadeMecum.recipe.normal", new ItemStack[] {
+						new ItemStack(VoidCraft.items.MoltenvoidChain),
+						new ItemStack(VoidCraft.items.MoltenvoidChain),
+						new ItemStack(VoidCraft.items.MoltenvoidChain),
+						new ItemStack(VoidCraft.tools.chainSword),
+						new ItemStack(VoidCraft.tools.angelicSword),
+						new ItemStack(VoidCraft.tools.moltenSword),
+						new ItemStack(VoidCraft.items.MoltenvoidChain),
+						new ItemStack(VoidCraft.items.MoltenvoidChain),
+						new ItemStack(VoidCraft.items.MoltenvoidChain) }, new ItemStack(VoidCraft.tools.archSword))) };
 	}
 
 }

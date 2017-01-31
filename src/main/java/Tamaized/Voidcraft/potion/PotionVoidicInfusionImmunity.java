@@ -1,6 +1,6 @@
 package Tamaized.Voidcraft.potion;
 
-import Tamaized.Voidcraft.voidCraft;
+import Tamaized.Voidcraft.VoidCraft;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.attributes.AbstractAttributeMap;
 import net.minecraft.potion.Potion;
@@ -16,8 +16,8 @@ public class PotionVoidicInfusionImmunity extends Potion {
 
 	public PotionVoidicInfusionImmunity(String name) {
 		super(false, 0x7700FF);
-		iconTexture = new ResourceLocation(voidCraft.modid, "textures/potions/" + name + ".png");
-		setRegistryName(voidCraft.modid, name);
+		iconTexture = new ResourceLocation(VoidCraft.modid, "textures/potions/" + name + ".png");
+		setRegistryName(VoidCraft.modid, name);
 		setPotionName("effect." + getRegistryName().toString());
 		GameRegistry.register(this);
 	}

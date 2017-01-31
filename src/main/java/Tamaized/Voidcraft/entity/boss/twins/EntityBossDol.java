@@ -1,31 +1,32 @@
 package Tamaized.Voidcraft.entity.boss.twins;
 
+import java.io.DataOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 
-import javax.annotation.Nullable;
-
-import net.minecraft.entity.ai.EntityAILookIdle;
+import Tamaized.Voidcraft.entity.EntityVoidBoss;
+import Tamaized.Voidcraft.sound.VoidSoundEvents;
+import Tamaized.Voidcraft.xiaCastle.logic.battle.IBattleHandler;
+import Tamaized.Voidcraft.xiaCastle.logic.battle.twins.TwinsBattleHandler;
+import io.netty.buffer.ByteBufInputStream;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
-import Tamaized.Voidcraft.entity.EntityVoidBoss;
-import Tamaized.Voidcraft.sound.VoidSoundEvents;
-import Tamaized.Voidcraft.xiaCastle.logic.battle.IBattleHandler;
 
-public class EntityBossDol extends EntityVoidBoss {
+public class EntityBossDol extends EntityVoidBoss<TwinsBattleHandler> {
 
 	public EntityBossDol(World par1World) {
 		super(par1World);
 		this.setInvul(true);
 	}
 
-	public EntityBossDol(World world, IBattleHandler handler) {
+	public EntityBossDol(World world, TwinsBattleHandler handler) {
 		super(world, handler, true);
 		this.setInvul(true);
 	}
@@ -40,11 +41,16 @@ public class EntityBossDol extends EntityVoidBoss {
 	protected void triggerOnDamage(int phase, DamageSource source, float amount) {
 
 	}
+	
+	@Override
+	protected void deathHook() {
+		
+	}
 
 	@Override
-	public boolean processInteract(EntityPlayer player, EnumHand hand, @Nullable ItemStack stack) {
+	public boolean processInteract(EntityPlayer player, EnumHand hand) {
 		// start();
-		return super.processInteract(player, hand, stack);
+		return super.processInteract(player, hand);
 	}
 
 	@Override
@@ -112,6 +118,16 @@ public class EntityBossDol extends EntityVoidBoss {
 	@Override
 	public ITextComponent getDisplayName() {
 		return new TextComponentString("Dol");
+	}
+
+	@Override
+	protected void encodePacketData(DataOutputStream stream) throws IOException {
+		
+	}
+
+	@Override
+	protected void decodePacketData(ByteBufInputStream stream) throws IOException {
+		
 	}
 
 }

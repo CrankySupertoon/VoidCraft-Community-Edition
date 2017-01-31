@@ -1,6 +1,6 @@
 package Tamaized.Voidcraft.capabilities.voidicPower;
 
-import Tamaized.Voidcraft.voidCraft;
+import Tamaized.Voidcraft.VoidCraft;
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
@@ -12,7 +12,7 @@ import net.minecraftforge.fml.relauncher.Side;
 public class VoidicPowerCapabilityStorage implements IStorage<IVoidicPowerCapability> {
 
 	public VoidicPowerCapabilityStorage() {
-		voidCraft.logger.info("VoidicPowerCapabilityStorage Registered");
+		VoidCraft.instance.logger.info("VoidicPowerCapabilityStorage Registered");
 	}
 
 	@Override

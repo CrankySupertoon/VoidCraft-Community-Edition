@@ -1,2 +1,0 @@
- - Tamaized: Vade Mecum Documentation text is no longer hardcoded but is instead stored in the lang file
- - Tamaized: Boss Bar render is no longer a placeholder

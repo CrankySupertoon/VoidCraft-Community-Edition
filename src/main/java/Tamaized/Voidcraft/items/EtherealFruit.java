@@ -3,7 +3,7 @@ package Tamaized.Voidcraft.items;
 import java.util.List;
 
 import Tamaized.TamModized.items.TamItemFood;
-import Tamaized.Voidcraft.voidCraft;
+import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.blocks.tileentity.TileEntityFakeBedrockFarmland;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
@@ -28,7 +28,7 @@ public class EtherealFruit extends TamItemFood {
 		if (!worldIn.isRemote) {
 			switch (alteration) {
 				case NORMAL:
-					e.addPotionEffect(new PotionEffect(voidCraft.potions.voidicInfusionImmunity, 20 * 90));
+					e.addPotionEffect(new PotionEffect(VoidCraft.potions.voidicInfusionImmunity, 20 * 90));
 					break;
 				case REDSTONE:
 					e.addPotionEffect(new PotionEffect(MobEffects.STRENGTH, 20 * 90, 2));

@@ -2,7 +2,7 @@ package Tamaized.Voidcraft.capabilities.elytraFlying;
 
 import java.util.ArrayList;
 
-import Tamaized.Voidcraft.voidCraft;
+import Tamaized.Voidcraft.VoidCraft;
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
@@ -12,7 +12,7 @@ import net.minecraftforge.common.capabilities.Capability.IStorage;
 public class ElytraFlyingCapabilityStorage implements IStorage<IElytraFlyingCapability> {
 
 	public ElytraFlyingCapabilityStorage() {
-		voidCraft.logger.info("ElytraFlyingCapabilityStorage Registered");
+		VoidCraft.instance.logger.info("ElytraFlyingCapabilityStorage Registered");
 	}
 
 	@Override

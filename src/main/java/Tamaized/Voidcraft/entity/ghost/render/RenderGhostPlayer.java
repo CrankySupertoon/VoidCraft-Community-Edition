@@ -2,22 +2,30 @@ package Tamaized.Voidcraft.entity.ghost.render;
 
 import java.util.Random;
 
+import org.lwjgl.util.glu.Sphere;
+
+import Tamaized.Voidcraft.VoidCraft;
+import Tamaized.Voidcraft.entity.ghost.EntityGhostPlayerBase;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.model.ModelBiped.ArmPose;
 import net.minecraft.client.model.ModelPlayer;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.VertexBuffer;
 import net.minecraft.client.renderer.entity.RenderLiving;
+import net.minecraft.client.renderer.entity.RenderManager;
+import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.EnumHandSide;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import Tamaized.Voidcraft.voidCraft;
-import Tamaized.Voidcraft.entity.ghost.EntityGhostPlayerBase;
 
 @SideOnly(Side.CLIENT)
 public class RenderGhostPlayer<T extends EntityGhostPlayerBase> extends RenderLiving<T> {
+
+	private static final ResourceLocation TEXTURE_RUNE = new ResourceLocation(VoidCraft.modid, "textures/entity/rune.png");
 
 	private final boolean playerModel;
 
@@ -25,8 +33,8 @@ public class RenderGhostPlayer<T extends EntityGhostPlayerBase> extends RenderLi
 		POS, NEG, STILL
 	}
 
-	public RenderGhostPlayer(ModelBiped model) {
-		super(Minecraft.getMinecraft().getRenderManager(), model, 0.5F);
+	public RenderGhostPlayer(RenderManager manager, ModelBiped model) {
+		super(manager, model, 0.5F);
 		playerModel = model instanceof ModelPlayer;
 	}
 
@@ -40,12 +48,31 @@ public class RenderGhostPlayer<T extends EntityGhostPlayerBase> extends RenderLi
 		GlStateManager.pushMatrix();
 		GlStateManager.pushAttrib();
 		ModelBiped model = (ModelBiped) getMainModel();
+		{
+			if (entity.isInteractable()) renderInteractable(entity, model);
+			GlStateManager.pushMatrix();
+			{
+				GlStateManager.translate(x, y + 2F, z);
+				if (entity.hasRuneState()) renderRuneState(entity, model);
+			}
+			GlStateManager.popMatrix();
+		}
 		GlStateManager.color(1.0f, 1.0f, 1.0f, 0.5f);
+		super.doRender(entity, x, y, z, yaw, partialTicks); // Entity texture is bound here, we're free to bind whatever we want before this and not care
+		model.leftArmPose = ArmPose.EMPTY;
+		GlStateManager.color(1.0f, 1.0f, 1.0f, 1.0f);
+		GlStateManager.popAttrib();
+		GlStateManager.popMatrix();
+		GlStateManager.disableBlendProfile(GlStateManager.Profile.PLAYER_SKIN);
+		this.renderLabel(entity, x, y, z);
+	}
+
+	private void renderInteractable(T entity, ModelBiped model) {
 		if (entity.isRunning()) {
 			model.leftArmPose = ArmPose.BOW_AND_ARROW;
 			DirectionState stateX = DirectionState.STILL;
 			DirectionState stateZ = DirectionState.STILL;
-			switch ((int) entity.renderYawOffset+180) {
+			switch ((int) entity.renderYawOffset + 180) {
 				case 0:
 					stateZ = DirectionState.NEG;
 					break;
@@ -67,18 +94,43 @@ public class RenderGhostPlayer<T extends EntityGhostPlayerBase> extends RenderLi
 			double dxPos2 = stateX == DirectionState.NEG ? 0D : stateX == DirectionState.POS ? 1D : 0.5D;
 			double dzPos2 = stateZ == DirectionState.NEG ? 0D : stateZ == DirectionState.POS ? 1D : 0.5D;
 			Random rand = new Random();
-			dxPos = dxPos+(rand.nextFloat()-0.5);
-			dyPos = dyPos+(rand.nextFloat()-0.5);
-			dzPos = dzPos+(rand.nextFloat()-0.5);
-			entity.worldObj.spawnParticle(EnumParticleTypes.ENCHANTMENT_TABLE, entity.getPosition().getX()+dxPos, entity.getPosition().getY()+dyPos+2, entity.getPosition().getZ()+dzPos, -dxPos+dxPos2, -dyPos-0.5, -dzPos+dzPos2);
+			dxPos = dxPos + (rand.nextFloat() - 0.5);
+			dyPos = dyPos + (rand.nextFloat() - 0.5);
+			dzPos = dzPos + (rand.nextFloat() - 0.5);
+			entity.world.spawnParticle(EnumParticleTypes.ENCHANTMENT_TABLE, entity.getPosition().getX() + dxPos, entity.getPosition().getY() + dyPos + 2, entity.getPosition().getZ() + dzPos, -dxPos + dxPos2, -dyPos - 0.5, -dzPos + dzPos2);
 		}
-		super.doRender(entity, x, y, z, yaw, partialTicks);
-		model.leftArmPose = ArmPose.EMPTY;
-		GlStateManager.color(1.0f, 1.0f, 1.0f, 1.0f);
-		GlStateManager.popAttrib();
+	}
+
+	private void renderRuneState(T entity, ModelBiped model) {
+		model.leftArmPose = ArmPose.BOW_AND_ARROW;
+		GlStateManager.color((119F * entity.getRuneStatePerc()) / 255F, 0.0F, entity.getRuneStatePerc(), 1.0F);
+		GlStateManager.pushMatrix();
+		{
+			GlStateManager.rotate(-entity.rotationYawHead + 180, 0, 1, 0);
+			GlStateManager.rotate(30, 1, 0, 0);
+			GlStateManager.rotate(entity.getRuneRotationForRender(), 0, 0, 1);
+			GlStateManager.disableLighting();
+			GlStateManager.disableCull();
+			drawRune();
+			GlStateManager.enableCull();
+			GlStateManager.enableLighting();
+		}
 		GlStateManager.popMatrix();
-		GlStateManager.disableBlendProfile(GlStateManager.Profile.PLAYER_SKIN);
-		this.renderLabel(entity, x, y, z);
+	}
+
+	private void drawRune() {
+		bindTexture(TEXTURE_RUNE);
+		Tessellator tess = Tessellator.getInstance();
+		VertexBuffer vertexbuffer = tess.getBuffer();
+		vertexbuffer.begin(7, DefaultVertexFormats.POSITION_TEX);
+		double x = 2.0D;
+		double y = 2.205D;
+		double z = -1.0D;
+		vertexbuffer.pos(x - 4.0D, y, z).tex(0.0D, 1.0D).endVertex();
+		vertexbuffer.pos(x, y, z).tex(1.0D, 1.0D).endVertex();
+		vertexbuffer.pos(x, y - 4.0D, z).tex(1.0D, 0.0D).endVertex();
+		vertexbuffer.pos(x - 4.0D, y - 4.0D, z).tex(0.0D, 0.0D).endVertex();
+		tess.draw();
 	}
 
 	protected void renderLabel(T yourentityLiving, double par2, double par4, double par6) {
@@ -128,6 +180,6 @@ public class RenderGhostPlayer<T extends EntityGhostPlayerBase> extends RenderLi
 
 	@Override
 	protected ResourceLocation getEntityTexture(T entity) {
-		return voidCraft.skinHandler.getSkinResource(entity.getAlias());
+		return VoidCraft.skinHandler.getSkinResource(entity.getAlias());
 	}
 }

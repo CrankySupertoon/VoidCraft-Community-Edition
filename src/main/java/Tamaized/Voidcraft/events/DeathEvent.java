@@ -13,9 +13,9 @@ public class DeathEvent {
 		EntityLivingBase target = e.getEntityLiving();
 		DamageSource source = e.getSource();
 		if(target != null && !(target instanceof EntityMobSpectreChain) && source != null && source.getEntity() != null && source.getEntity() instanceof EntityMobSpectreChain){
-			EntityMobSpectreChain newSpawn = new EntityMobSpectreChain(target.worldObj);
+			EntityMobSpectreChain newSpawn = new EntityMobSpectreChain(target.world);
 			newSpawn.setLocationAndAngles(target.posX, target.posY, target.posZ, target.rotationYaw, target.rotationPitch);
-			target.worldObj.spawnEntityInWorld(newSpawn);
+			target.world.spawnEntity(newSpawn);
 		}
 	}
 

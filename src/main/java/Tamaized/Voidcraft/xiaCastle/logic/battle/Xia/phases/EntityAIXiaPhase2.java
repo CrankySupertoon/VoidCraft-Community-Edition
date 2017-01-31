@@ -1,7 +1,6 @@
 package Tamaized.Voidcraft.xiaCastle.logic.battle.Xia.phases;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Random;
 
 import Tamaized.Voidcraft.entity.boss.xia.EntityBossXia;
@@ -12,10 +11,10 @@ import Tamaized.Voidcraft.xiaCastle.logic.battle.Xia.phases.actions.XiaPhase2Act
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.EntityMoveHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
@@ -26,8 +25,7 @@ public class EntityAIXiaPhase2<T extends EntityBossXia> extends EntityVoidNPCAIB
 
 	private XiaPhase2ActionSword actionSword;
 
-	private final Random rand = new Random();
-	private ArrayList<Double[]> teleportLocations;
+	private AxisAlignedBB teleportationBox = new AxisAlignedBB(-18, 0, -25, 18, 5, 6);
 	private boolean isTeleporting = false;
 
 	private Action currAction = Action.IDLE;
@@ -44,16 +42,17 @@ public class EntityAIXiaPhase2<T extends EntityBossXia> extends EntityVoidNPCAIB
 
 	@Override
 	protected void updateClosest() {
+
 	}
-	
+
 	@Override
-	public void Init() {
-		super.Init();
-		teleportLocations = new ArrayList<Double[]>();
-		teleportLocations.add(new Double[] { 0.0D, -0.5D, 0.0D });
-		teleportLocations.add(new Double[] { 0.0D, -7.0D, -12.0D });
-		teleportLocations.add(new Double[] { 16.0D, -13.0D, -12.0D });
-		teleportLocations.add(new Double[] { -16.0D, -13.0D, -12.0D });
+	protected void preInit() {
+
+	}
+
+	@Override
+	public void postInit() {
+		teleportationBox = new AxisAlignedBB(-18, 0, -25, 18, 5, 6);
 	}
 
 	@Override
@@ -69,13 +68,13 @@ public class EntityAIXiaPhase2<T extends EntityBossXia> extends EntityVoidNPCAIB
 				if (getEntity().posZ >= ezMin && getEntity().posZ <= ezMax && getEntity().posX >= exMin && getEntity().posX <= exMax) {
 					closestEntity.attackEntityFrom(DamageSource.causeMobDamage(getEntity()), 60);
 					ItemStack stack = getEntity().getHeldItem(EnumHand.MAIN_HAND);
-					if (stack != null && closestEntity instanceof EntityLivingBase) stack.getItem().hitEntity(stack, (EntityLivingBase) closestEntity, getEntity());
+					if (!stack.isEmpty() && closestEntity instanceof EntityLivingBase) stack.getItem().hitEntity(stack, (EntityLivingBase) closestEntity, getEntity());
 					getEntity().swingArm(EnumHand.MAIN_HAND);
 					doTeleport();
 					currAction = Action.IDLE;
 				}
 			case IDLE:
-				if (tick % (20*2) == 0) {
+				if (tick % (20 * 2) == 0) {
 					watchNewAndTeleport();
 					// switch (world.rand.nextInt(1)) {
 					// case 0:
@@ -176,7 +175,7 @@ public class EntityAIXiaPhase2<T extends EntityBossXia> extends EntityVoidNPCAIB
 
 	@Override
 	public void readPacket(IVoidBossAIPacket packet) {
-		if (packet instanceof XiaTookDamagePacket){
+		if (packet instanceof XiaTookDamagePacket) {
 			doTeleport();
 			currAction = Action.IDLE;
 		}
@@ -211,7 +210,7 @@ public class EntityAIXiaPhase2<T extends EntityBossXia> extends EntityVoidNPCAIB
 	private void watchNew() {
 		ArrayList<Entity> list = new ArrayList<Entity>();
 		for (Class c : watchedClass) {
-			list.addAll(getEntity().worldObj.getEntitiesWithinAABB(c, getEntity().getEntityBoundingBox().expand((double) maxDistanceForPlayer, 30.0D, (double) maxDistanceForPlayer)));
+			list.addAll(getEntity().world.getEntitiesWithinAABB(c, getEntity().getEntityBoundingBox().expand((double) maxDistanceForPlayer, 30.0D, (double) maxDistanceForPlayer)));
 		}
 		Random rand = world.rand;
 		closestEntity = list.size() > 0 ? list.get(rand.nextInt(list.size())) : null;
@@ -224,8 +223,13 @@ public class EntityAIXiaPhase2<T extends EntityBossXia> extends EntityVoidNPCAIB
 	}
 
 	private Double[] getNextTeleportLocation() {
-		int i = rand.nextInt(teleportLocations.size());
-		Double[] loc = teleportLocations.get(i > 0 ? i : 0);
+		Double[] loc = { 0.0D, 0.0D, 0.0D };
+		loc[0] = (world.rand.nextDouble() * (teleportationBox.maxX - teleportationBox.minX)) + teleportationBox.minX;
+		loc[1] = teleportationBox.maxY;
+		loc[2] = (world.rand.nextDouble() * (teleportationBox.maxZ - teleportationBox.minZ)) + teleportationBox.minZ;
+		while (world.isAirBlock(new BlockPos(getPosition().xCoord + loc[0], getPosition().yCoord + loc[1], getPosition().zCoord + loc[2]))) {
+			loc[1] -= 1.0D;
+		}
 		return loc;
 	}
 

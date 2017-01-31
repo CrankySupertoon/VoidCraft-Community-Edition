@@ -2,7 +2,7 @@ package Tamaized.Voidcraft.world.dim.TheVoid;
 
 import java.util.Random;
 
-import Tamaized.Voidcraft.voidCraft;
+import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.blocks.BlockPortalVoid;
 import it.unimi.dsi.fastutil.longs.Long2ObjectMap;
 import it.unimi.dsi.fastutil.longs.Long2ObjectOpenHashMap;
@@ -40,7 +40,7 @@ public class TeleporterVoid extends Teleporter {
 	 */
 	@Override
 	public void placeInPortal(Entity entity, float rotationYaw) {
-		if (entity instanceof EntityPlayer) ((EntityPlayer) entity).addStat(voidCraft.achievements.voidCraftAchMainLine_2, 1);
+		if (entity instanceof EntityPlayer) ((EntityPlayer) entity).addStat(VoidCraft.achievements.enterVoid, 1);
 
 		if (!this.placeInExistingPortal(entity, rotationYaw)) {
 			this.makePortal(entity);
@@ -52,8 +52,8 @@ public class TeleporterVoid extends Teleporter {
 	public boolean placeInExistingPortal(Entity entity, float rotationYaw) {
 		int i = 128;
 		double d0 = -1.0D;
-		int j = MathHelper.floor_double(entity.posX);
-		int k = MathHelper.floor_double(entity.posZ);
+		int j = MathHelper.floor(entity.posX);
+		int k = MathHelper.floor(entity.posZ);
 		boolean flag = true;
 		BlockPos blockpos = BlockPos.ORIGIN;
 		long l = ChunkPos.asLong(j, k);
@@ -73,8 +73,8 @@ public class TeleporterVoid extends Teleporter {
 					for (BlockPos blockpos1 = blockpos3.add(i1, this.worldServerInstance.getActualHeight() - 1 - blockpos3.getY(), j1); blockpos1.getY() >= 0; blockpos1 = blockpos2) {
 						blockpos2 = blockpos1.down();
 
-						if (this.worldServerInstance.getBlockState(blockpos1).getBlock() == voidCraft.blocks.blockPortalVoid) {
-							while (this.worldServerInstance.getBlockState(blockpos2 = blockpos1.down()).getBlock() == voidCraft.blocks.blockPortalVoid) {
+						if (this.worldServerInstance.getBlockState(blockpos1).getBlock() == VoidCraft.blocks.blockPortalVoid) {
+							while (this.worldServerInstance.getBlockState(blockpos2 = blockpos1.down()).getBlock() == VoidCraft.blocks.blockPortalVoid) {
 								blockpos1 = blockpos2;
 							}
 							// blockpos = blockpos1;
@@ -101,7 +101,7 @@ public class TeleporterVoid extends Teleporter {
 			int zP = 0;
 			int xP = 0;
 			double origYd6 = d6;
-			BlockPattern.PatternHelper blockpattern$patternhelper = ((BlockPortalVoid) voidCraft.blocks.blockPortalVoid).createPatternHelper(this.worldServerInstance, blockpos);
+			BlockPattern.PatternHelper blockpattern$patternhelper = ((BlockPortalVoid) VoidCraft.blocks.blockPortalVoid).createPatternHelper(this.worldServerInstance, blockpos);
 			boolean flag1 = blockpattern$patternhelper.getForwards().rotateY().getAxisDirection() == EnumFacing.AxisDirection.NEGATIVE;
 			double d2 = blockpattern$patternhelper.getForwards().getAxis() == EnumFacing.Axis.X ? (double) blockpattern$patternhelper.getFrontTopLeft().getZ() : (double) blockpattern$patternhelper.getFrontTopLeft().getX();
 
@@ -173,9 +173,9 @@ public class TeleporterVoid extends Teleporter {
 	public boolean makePortal(Entity entityIn) {
 		int i = 16;
 		double d0 = -1.0D;
-		int j = MathHelper.floor_double(entityIn.posX);
-		int k = MathHelper.floor_double(entityIn.posY);
-		int l = MathHelper.floor_double(entityIn.posZ);
+		int j = MathHelper.floor(entityIn.posX);
+		int k = MathHelper.floor(entityIn.posY);
+		int l = MathHelper.floor(entityIn.posZ);
 		int i1 = j;
 		int j1 = k;
 		int k1 = l;
@@ -293,7 +293,7 @@ public class TeleporterVoid extends Teleporter {
 		}
 
 		if (d0 < 0.0D) {
-			j1 = MathHelper.clamp_int(j1, 70, this.worldServerInstance.getActualHeight() - 10);
+			j1 = MathHelper.clamp(j1, 70, this.worldServerInstance.getActualHeight() - 10);
 			k2 = j1;
 
 			for (int j7 = -1; j7 <= 1; ++j7) {
@@ -303,13 +303,13 @@ public class TeleporterVoid extends Teleporter {
 						int k10 = k2 + k8;
 						int k11 = k6 + (l7 - 1) * i3 - j7 * l6;
 						boolean flag = k8 < 0;
-						this.worldServerInstance.setBlockState(new BlockPos(k9, k10, k11), flag ? voidCraft.blocks.blockVoidcrystal.getDefaultState() : Blocks.AIR.getDefaultState());
+						this.worldServerInstance.setBlockState(new BlockPos(k9, k10, k11), flag ? VoidCraft.blocks.blockVoidcrystal.getDefaultState() : Blocks.AIR.getDefaultState());
 					}
 				}
 			}
 		}
 
-		IBlockState iblockstate = voidCraft.blocks.blockPortalVoid.getDefaultState().withProperty(BlockPortal.AXIS, l6 != 0 ? EnumFacing.Axis.X : EnumFacing.Axis.Z);
+		IBlockState iblockstate = VoidCraft.blocks.blockPortalVoid.getDefaultState().withProperty(BlockPortal.AXIS, l6 != 0 ? EnumFacing.Axis.X : EnumFacing.Axis.Z);
 
 		for (int i8 = 0; i8 < 4; ++i8) {
 			for (int l8 = 0; l8 < 4; ++l8) {
@@ -318,7 +318,7 @@ public class TeleporterVoid extends Teleporter {
 					int l11 = k2 + l9;
 					int k12 = k6 + (l8 - 1) * i3;
 					boolean flag1 = l8 == 0 || l8 == 3 || l9 == -1 || l9 == 3;
-					this.worldServerInstance.setBlockState(new BlockPos(l10, l11, k12), flag1 ? voidCraft.blocks.blockVoidcrystal.getDefaultState() : iblockstate, 2);
+					this.worldServerInstance.setBlockState(new BlockPos(l10, l11, k12), flag1 ? VoidCraft.blocks.blockVoidcrystal.getDefaultState() : iblockstate, 2);
 				}
 			}
 
@@ -328,7 +328,7 @@ public class TeleporterVoid extends Teleporter {
 					int i12 = k2 + i10;
 					int l12 = k6 + (i9 - 1) * i3;
 					BlockPos blockpos = new BlockPos(i11, i12, l12);
-					this.worldServerInstance.notifyNeighborsOfStateChange(blockpos, this.worldServerInstance.getBlockState(blockpos).getBlock());
+					this.worldServerInstance.notifyNeighborsOfStateChange(blockpos, this.worldServerInstance.getBlockState(blockpos).getBlock(), true);
 				}
 			}
 		}
@@ -336,7 +336,7 @@ public class TeleporterVoid extends Teleporter {
 		for (int x = (l6 != 0 ? -3 : -2); x <= 2; x++) {
 			for (int z = (l6 != 0 ? -2 : -3); z <= 2; z++) {
 				BlockPos pos = new BlockPos(i6 + x, k2 - 1, k6 + z);
-				if ((worldServerInstance.isAirBlock(pos) || worldServerInstance.getBlockState(pos).getBlock() == voidCraft.blocks.realityHole) && ((l6 == 0) ? !(x == 0 && (z == -1 || z == 0)) : !(z == 0 && (x == -1 || x == 0)))) worldServerInstance.setBlockState(pos, ((z == -1 || z == ((l6 != 0) ? 1 : 0)) && (x == -1 || x == ((l6 != 0) ? 0 : 1))) ? voidCraft.blocks.blockVoidcrystal.getDefaultState() : voidCraft.blocks.blockFakeBedrock.getDefaultState());
+				if ((worldServerInstance.isAirBlock(pos) || worldServerInstance.getBlockState(pos).getBlock() == VoidCraft.blocks.realityHole) && ((l6 == 0) ? !(x == 0 && (z == -1 || z == 0)) : !(z == 0 && (x == -1 || x == 0)))) worldServerInstance.setBlockState(pos, ((z == -1 || z == ((l6 != 0) ? 1 : 0)) && (x == -1 || x == ((l6 != 0) ? 0 : 1))) ? VoidCraft.blocks.blockVoidcrystal.getDefaultState() : VoidCraft.blocks.blockFakeBedrock.getDefaultState());
 			}
 		}
 

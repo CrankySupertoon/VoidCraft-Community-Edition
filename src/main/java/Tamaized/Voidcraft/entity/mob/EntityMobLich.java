@@ -1,5 +1,11 @@
 package Tamaized.Voidcraft.entity.mob;
 
+import com.google.common.base.Predicate;
+
+import Tamaized.Voidcraft.VoidCraft;
+import Tamaized.Voidcraft.entity.EntityVoidMob;
+import Tamaized.Voidcraft.entity.mob.lich.EntityLichInferno;
+import Tamaized.Voidcraft.sound.VoidSoundEvents;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IRangedAttackMob;
@@ -17,10 +23,9 @@ import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.monster.EntityIronGolem;
 import net.minecraft.entity.monster.EntityMob;
-import net.minecraft.entity.monster.EntitySkeleton;
 import net.minecraft.entity.monster.EntitySlime;
 import net.minecraft.entity.monster.EntitySnowman;
-import net.minecraft.entity.monster.SkeletonType;
+import net.minecraft.entity.monster.EntityWitherSkeleton;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityLargeFireball;
@@ -29,14 +34,7 @@ import net.minecraft.item.Item;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-import Tamaized.Voidcraft.voidCraft;
-import Tamaized.Voidcraft.entity.EntityVoidMob;
-import Tamaized.Voidcraft.entity.mob.lich.EntityLichInferno;
-import Tamaized.Voidcraft.sound.VoidSoundEvents;
-
-import com.google.common.base.Predicate;
 
 public class EntityMobLich extends EntityVoidMob implements IRangedAttackMob {
 
@@ -61,7 +59,7 @@ public class EntityMobLich extends EntityVoidMob implements IRangedAttackMob {
 			 * Return whether the specified entity is applicable to this filter.
 			 */
 			public boolean apply(Entity p_82704_1_) {
-				if (p_82704_1_ instanceof EntitySkeleton && ((EntitySkeleton) p_82704_1_).getSkeletonType() == SkeletonType.WITHER) return false;
+				if (p_82704_1_ instanceof EntityWitherSkeleton) return false;
 				else return true;
 			}
 
@@ -109,7 +107,7 @@ public class EntityMobLich extends EntityVoidMob implements IRangedAttackMob {
 
 	@Override
 	protected Item getDropItem() {
-		return voidCraft.items.voidCloth;
+		return VoidCraft.items.voidCloth;
 	}
 
 	@Override
@@ -128,18 +126,18 @@ public class EntityMobLich extends EntityVoidMob implements IRangedAttackMob {
 		// randAttk = 0;
 
 		if (randAttk == 5) { // Call the Inferno
-			worldObj.spawnEntityInWorld(new EntityLichInferno(worldObj, getPosition(), 6));
+			world.spawnEntity(new EntityLichInferno(world, getPosition(), 6));
 		} else if (randAttk == 4) { // Call forth the Undead to my aid
 			if (target instanceof EntityMobLich) return; // Do not summon the undead if i'm fighting another lich
 			EntityMobWraith wraith;
 			EntityMobSpectreChain chain;
 			EntityMobVoidWrath wrath;
-			EntitySkeleton skelly;
+			EntityWitherSkeleton skelly;
 
-			wraith = new EntityMobWraith(worldObj);
-			chain = new EntityMobSpectreChain(worldObj);
-			wrath = new EntityMobVoidWrath(worldObj);
-			skelly = new EntitySkeleton(worldObj);
+			wraith = new EntityMobWraith(world);
+			chain = new EntityMobSpectreChain(world);
+			wrath = new EntityMobVoidWrath(world);
+			skelly = new EntityWitherSkeleton(world);
 
 			wraith.setPosition(this.posX - 2, this.posY, this.posZ - 2);
 			wraith.setAttackTarget(target);
@@ -151,25 +149,24 @@ public class EntityMobLich extends EntityVoidMob implements IRangedAttackMob {
 			wrath.setAttackTarget(target);
 
 			skelly.setPosition(this.posX + 2, this.posY, this.posZ + 2);
-			skelly.setSkeletonType(SkeletonType.WITHER);
 			skelly.setAttackTarget(target);
 
-			this.worldObj.spawnEntityInWorld(wraith);
-			this.worldObj.spawnEntityInWorld(chain);
-			this.worldObj.spawnEntityInWorld(wrath);
-			this.worldObj.spawnEntityInWorld(skelly);
+			this.world.spawnEntity(wraith);
+			this.world.spawnEntity(chain);
+			this.world.spawnEntity(wrath);
+			this.world.spawnEntity(skelly);
 
 		} else if (randAttk == 3) { // Incase Target in Stone
 			if (target instanceof EntityMobLich) return; // Don't bother if against a lich
 
-			int j = (int) MathHelper.floor_double(target.posX);
-			int k = (int) MathHelper.floor_double(target.posY);
-			int l = (int) MathHelper.floor_double(target.posZ);
+			int j = (int) MathHelper.floor(target.posX);
+			int k = (int) MathHelper.floor(target.posY);
+			int l = (int) MathHelper.floor(target.posZ);
 
 			for (int xj = -1; xj < 2; xj++) {
 				for (int yj = -1; yj < 1; yj++) {
 					for (int zj = -1; yj < 1; yj++) {
-						if (this.worldObj.isAirBlock(new BlockPos(xj, yj, zj))) this.worldObj.setBlockState(new BlockPos(xj, yj, zj), Blocks.STONE.getDefaultState(), 3);
+						if (this.world.isAirBlock(new BlockPos(xj, yj, zj))) this.world.setBlockState(new BlockPos(xj, yj, zj), Blocks.STONE.getDefaultState(), 3);
 					}
 				}
 			}
@@ -178,22 +175,22 @@ public class EntityMobLich extends EntityVoidMob implements IRangedAttackMob {
 			double y = target.posY;
 			double z = target.posZ;
 
-			EntityLightningBolt entitylightningbolt = new EntityLightningBolt(worldObj, x, y, z, false);
+			EntityLightningBolt entitylightningbolt = new EntityLightningBolt(world, x, y, z, false);
 			entitylightningbolt.setLocationAndAngles(x, y + 1 + entitylightningbolt.getYOffset(), z, target.rotationYaw, target.rotationPitch);
-			worldObj.addWeatherEffect(entitylightningbolt);
+			world.addWeatherEffect(entitylightningbolt);
 
 		} else if (randAttk == 1) { // EntityLargeFireball at Target
 			double d5 = target.posX - this.posX;
 			double d6 = target.getEntityBoundingBox().minY + (double) (target.height / 2.0F) - (this.posY + (double) (this.height / 2.0F));
 			double d7 = target.posZ - this.posZ;
-			this.worldObj.playEvent((EntityPlayer) null, 1016, new BlockPos((int) this.posX, (int) this.posY, (int) this.posZ), 0);
-			EntityLargeFireball entitylargefireball = new EntityLargeFireball(this.worldObj, this, d5, d6, d7);
+			this.world.playEvent((EntityPlayer) null, 1016, new BlockPos((int) this.posX, (int) this.posY, (int) this.posZ), 0);
+			EntityLargeFireball entitylargefireball = new EntityLargeFireball(this.world, this, d5, d6, d7);
 			double d8 = 4.0D;
 			// Vec3d vec3 = this.getLook(1.0F);
 			entitylargefireball.posX = this.posX;// + vec3.xCoord * d8;
 			entitylargefireball.posY = this.posY + (double) (this.height / 2.0F) + 0.5D;
 			entitylargefireball.posZ = this.posZ;// + vec3.zCoord * d8;
-			this.worldObj.spawnEntityInWorld(entitylargefireball);
+			this.world.spawnEntity(entitylargefireball);
 
 		} else if (randAttk == 0) { // Speak TODO
 

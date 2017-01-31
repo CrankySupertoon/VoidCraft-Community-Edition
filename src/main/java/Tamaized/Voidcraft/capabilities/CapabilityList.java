@@ -1,6 +1,7 @@
 package Tamaized.Voidcraft.capabilities;
 
 import Tamaized.Voidcraft.capabilities.elytraFlying.IElytraFlyingCapability;
+import Tamaized.Voidcraft.capabilities.starforge.IStarForgeCapability;
 import Tamaized.Voidcraft.capabilities.vadeMecum.IVadeMecumCapability;
 import Tamaized.Voidcraft.capabilities.vadeMecumItem.IVadeMecumItemCapability;
 import Tamaized.Voidcraft.capabilities.voidicInfusion.IVoidicInfusionCapability;
@@ -24,5 +25,8 @@ public class CapabilityList {
 
 	@CapabilityInject(IElytraFlyingCapability.class)
 	public static final Capability<IElytraFlyingCapability> ELYTRAFLYING = null;
+
+	@CapabilityInject(IStarForgeCapability.class)
+	public static final Capability<IStarForgeCapability> STARFORGE = null;
 
 }

@@ -125,17 +125,17 @@ public class AcidBall extends EntityArrow implements IProjectile, IEntityAdditio
 		
 		
 		if (this.prevRotationPitch == 0.0F && this.prevRotationYaw == 0.0F){
-			float f = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionZ * this.motionZ);
+			float f = MathHelper.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
 			this.prevRotationYaw = this.rotationYaw = (float)(Math.atan2(this.motionX, this.motionZ) * 180.0D / Math.PI);
 			this.prevRotationPitch = this.rotationPitch = (float)(Math.atan2(this.motionY, (double)f) * 180.0D / Math.PI);
 		}
 		
 		BlockPos blockpos = new BlockPos(this.xTile, this.yTile, this.zTile);
-		IBlockState iblockstate = this.worldObj.getBlockState(blockpos);
+		IBlockState iblockstate = this.world.getBlockState(blockpos);
 		Block block = iblockstate.getBlock();
 		
 		if(iblockstate.getMaterial() != Material.AIR){//check if hit block
-			AxisAlignedBB axisalignedbb = iblockstate.getCollisionBoundingBox(this.worldObj, blockpos);
+			AxisAlignedBB axisalignedbb = iblockstate.getCollisionBoundingBox(this.world, blockpos);
 			if (axisalignedbb != Block.NULL_AABB && axisalignedbb.offset(blockpos).isVecInside(new Vec3d(this.posX, this.posY, this.posZ))){	
 				this.inGround = true;
 			}
@@ -169,7 +169,7 @@ public class AcidBall extends EntityArrow implements IProjectile, IEntityAdditio
 			++this.ticksInAir;
 			Vec3d vec3d1 = new Vec3d(this.posX, this.posY, this.posZ);
 			Vec3d vec3d = new Vec3d(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
-			RayTraceResult raytraceresult = this.worldObj.rayTraceBlocks(vec3d1, vec3d, false, true, false);
+			RayTraceResult raytraceresult = this.world.rayTraceBlocks(vec3d1, vec3d, false, true, false);
 			vec3d1 = new Vec3d(this.posX, this.posY, this.posZ);
 			vec3d = new Vec3d(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
 			
@@ -197,14 +197,14 @@ public class AcidBall extends EntityArrow implements IProjectile, IEntityAdditio
 
 			if (this.getIsCritical()){
 				for (int k = 0; k < 4; ++k){
-					this.worldObj.spawnParticle(EnumParticleTypes.CRIT, this.posX + this.motionX * (double)k / 4.0D, this.posY + this.motionY * (double)k / 4.0D, this.posZ + this.motionZ * (double)k / 4.0D, -this.motionX, -this.motionY + 0.2D, -this.motionZ, new int[0]);
+					this.world.spawnParticle(EnumParticleTypes.CRIT, this.posX + this.motionX * (double)k / 4.0D, this.posY + this.motionY * (double)k / 4.0D, this.posZ + this.motionZ * (double)k / 4.0D, -this.motionX, -this.motionY + 0.2D, -this.motionZ, new int[0]);
 				}
 			}
 
 			this.posX += this.motionX * speed;
             this.posY += this.motionY * speed;
             this.posZ += this.motionZ * speed;
-            float f4 = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionZ * this.motionZ);
+            float f4 = MathHelper.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
             this.rotationYaw = (float)(Math.atan2(this.motionX, this.motionZ) * 180.0D / Math.PI);
 
             for (this.rotationPitch = (float)(MathHelper.atan2(this.motionY, (double)f4) * (180D / Math.PI)); this.rotationPitch - this.prevRotationPitch < -180.0F; this.prevRotationPitch -= 360.0F){
@@ -231,7 +231,7 @@ public class AcidBall extends EntityArrow implements IProjectile, IEntityAdditio
             if (this.isInWater()){
             	for (int l = 0; l < 4; ++l){
             		f4 = 0.25F;
-            		this.worldObj.spawnParticle(EnumParticleTypes.WATER_BUBBLE, this.posX - this.motionX * (double)f4, this.posY - this.motionY * (double)f4, this.posZ - this.motionZ * (double)f4, this.motionX, this.motionY, this.motionZ);
+            		this.world.spawnParticle(EnumParticleTypes.WATER_BUBBLE, this.posX - this.motionX * (double)f4, this.posY - this.motionY * (double)f4, this.posZ - this.motionZ * (double)f4, this.motionX, this.motionY, this.motionZ);
             	}
             	f1 = 0.8F;
             }
@@ -248,7 +248,7 @@ public class AcidBall extends EntityArrow implements IProjectile, IEntityAdditio
             this.doBlockCollisions();
 		}
 		
-		if(this.worldObj.isRemote) particles();
+		if(this.world.isRemote) particles();
     }
 	
 	@Override
@@ -256,8 +256,8 @@ public class AcidBall extends EntityArrow implements IProjectile, IEntityAdditio
 		Entity entity = raytraceResultIn.entityHit;
 		
 		if (entity != null){
-			float f = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionY * this.motionY + this.motionZ * this.motionZ);
-			int i = MathHelper.ceiling_double_int((double)f * this.damage);
+			float f = MathHelper.sqrt(this.motionX * this.motionX + this.motionY * this.motionY + this.motionZ * this.motionZ);
+			int i = MathHelper.ceil((double)f * this.damage);
 			
 			if (this.getIsCritical()){
 				i += this.rand.nextInt(i / 2 + 2);
@@ -273,12 +273,12 @@ public class AcidBall extends EntityArrow implements IProjectile, IEntityAdditio
 				if (entity instanceof EntityLivingBase){
 					EntityLivingBase entitylivingbase = (EntityLivingBase)entity;
 					
-					if (!this.worldObj.isRemote){
+					if (!this.world.isRemote){
 						entitylivingbase.setArrowCountInEntity(entitylivingbase.getArrowCountInEntity() + 1);
 					}
 					
 					if (this.knockbackStrength > 0){
-						float f1 = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionZ * this.motionZ);
+						float f1 = MathHelper.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
 						
 						if (f1 > 0.0F){
 							entitylivingbase.addVelocity(this.motionX * (double)this.knockbackStrength * 0.6000000238418579D / (double)f1, 0.1D, this.motionZ * (double)this.knockbackStrength * 0.6000000238418579D / (double)f1);
@@ -310,7 +310,7 @@ public class AcidBall extends EntityArrow implements IProjectile, IEntityAdditio
 				this.prevRotationYaw += 180.0F;
 				this.ticksInAir = 0;
 				
-				if (!this.worldObj.isRemote && this.motionX * this.motionX + this.motionY * this.motionY + this.motionZ * this.motionZ < 0.0010000000474974513D){
+				if (!this.world.isRemote && this.motionX * this.motionX + this.motionY * this.motionY + this.motionZ * this.motionZ < 0.0010000000474974513D){
 					if (this.pickupStatus == EntityArrow.PickupStatus.ALLOWED){
 						this.entityDropItem(this.getArrowStack(), 0.1F);
 					}
@@ -323,13 +323,13 @@ public class AcidBall extends EntityArrow implements IProjectile, IEntityAdditio
 			this.xTile = blockpos.getX();
 			this.yTile = blockpos.getY();
 			this.zTile = blockpos.getZ();
-			IBlockState iblockstate = this.worldObj.getBlockState(blockpos);
+			IBlockState iblockstate = this.world.getBlockState(blockpos);
 			this.inTile = iblockstate.getBlock();
 			this.inData = this.inTile.getMetaFromState(iblockstate);
 			this.motionX = (double)((float)(raytraceResultIn.hitVec.xCoord - this.posX));
 			this.motionY = (double)((float)(raytraceResultIn.hitVec.yCoord - this.posY));
 			this.motionZ = (double)((float)(raytraceResultIn.hitVec.zCoord - this.posZ));
-			float f2 = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionY * this.motionY + this.motionZ * this.motionZ);
+			float f2 = MathHelper.sqrt(this.motionX * this.motionX + this.motionY * this.motionY + this.motionZ * this.motionZ);
 			this.posX -= this.motionX / (double)f2 * 0.05000000074505806D;
 			this.posY -= this.motionY / (double)f2 * 0.05000000074505806D;
 			this.posZ -= this.motionZ / (double)f2 * 0.05000000074505806D;
@@ -339,7 +339,7 @@ public class AcidBall extends EntityArrow implements IProjectile, IEntityAdditio
 			this.setIsCritical(false);
 			
 			if (iblockstate.getMaterial() != Material.AIR){
-				this.inTile.onEntityCollidedWithBlock(this.worldObj, blockpos, iblockstate, this);
+				this.inTile.onEntityCollidedWithBlock(this.world, blockpos, iblockstate, this);
 			}
 		}
 	}
@@ -416,6 +416,6 @@ public class AcidBall extends EntityArrow implements IProjectile, IEntityAdditio
 
 	@Override
 	protected ItemStack getArrowStack() {
-		return null;
+		return ItemStack.EMPTY;
 	}
 }

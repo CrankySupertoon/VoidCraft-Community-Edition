@@ -3,7 +3,7 @@ package Tamaized.Voidcraft.events.client;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.client.event.ModelBakeEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import Tamaized.Voidcraft.voidCraft;
+import Tamaized.Voidcraft.VoidCraft;
 
 public class BakeEventHandler {
 	
@@ -13,10 +13,10 @@ public class BakeEventHandler {
 
     @SubscribeEvent
     public void onModelBakeEvent(ModelBakeEvent event){
-    	voidCraft.logger.info("Baking TESR Blocks");
-        event.getModelManager().getBlockModelShapes().registerBuiltInBlocks(voidCraft.blocks.Heimdall);
-        event.getModelManager().getBlockModelShapes().registerBuiltInBlocks(voidCraft.blocks.blockNoBreak);
-        event.getModelManager().getBlockModelShapes().registerBuiltInBlocks(voidCraft.blocks.voidicCharger);
+    	VoidCraft.instance.logger.info("Baking TESR Blocks");
+        event.getModelManager().getBlockModelShapes().registerBuiltInBlocks(VoidCraft.blocks.Heimdall);
+        event.getModelManager().getBlockModelShapes().registerBuiltInBlocks(VoidCraft.blocks.blockNoBreak);
+        event.getModelManager().getBlockModelShapes().registerBuiltInBlocks(VoidCraft.blocks.voidicCharger);
     }
 
 }

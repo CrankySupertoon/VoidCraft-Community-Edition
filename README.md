@@ -10,7 +10,9 @@ The easiest way to enter the void is to harvest Void Crystals from the Dimension
 After stepping through the portal, you'll be in the Void, a black abyss where only powerful ethereal spirits can survive. All other creatures will slowly die in the hostile environment, including you. However, if you can brave the Void and infuse it's ethereal essence with your tools, it could yield powerful results... 
 
 ## Downloads
-[Can be found here](https://minecraft.curseforge.com/projects/voidcraft)
+Latest: [Can be found here](https://minecraft.curseforge.com/projects/voidcraft)
+
+There are also [Legacy Builds](http://tamaized.tk/website/VoidCraft/mod/) that go as far back as Minecraft 1.6.4 (Note: This link may not always be up as it's my home webserver; Also: These are very old builds that are no longer maintained, do NOT report any bugs found as you are stuck with what you have if you use one of these builds.)
 
 ## Modpacks
 * Sure, provide a link to this github or [here](https://minecraft.curseforge.com/projects/voidcraft) or [here](http://www.minecraftforum.net/forums/mapping-and-modding/minecraft-mods/2746403-voidcraft) up to you.
@@ -21,7 +23,7 @@ After stepping through the portal, you'll be in the Void, a black abyss where on
  * Planned:
   * Aether II
   * Thaumcraft
- * 1.9.4 - 1.10.2
+ * 1.9.4 - 1.11
   * JEI
  * 1.8.9
   * None

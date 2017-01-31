@@ -2,13 +2,14 @@ package Tamaized.Voidcraft.machina;
 
 import java.util.Random;
 
-import javax.annotation.Nullable;
-
+import Tamaized.TamModized.blocks.TamBlockContainer;
+import Tamaized.Voidcraft.VoidCraft;
+import Tamaized.Voidcraft.GUI.GuiHandler;
+import Tamaized.Voidcraft.machina.tileentity.TileEntityRealityStabilizer;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
@@ -19,10 +20,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.internal.FMLNetworkHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import Tamaized.TamModized.blocks.TamBlockContainer;
-import Tamaized.Voidcraft.voidCraft;
-import Tamaized.Voidcraft.GUI.GuiHandler;
-import Tamaized.Voidcraft.machina.tileentity.TileEntityRealityStabilizer;
 
 public class RealityStabilizer extends TamBlockContainer {
 
@@ -36,8 +33,8 @@ public class RealityStabilizer extends TamBlockContainer {
 	}
 
 	@Override
-	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, @Nullable ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
-		if (!worldIn.isRemote) FMLNetworkHandler.openGui(playerIn, voidCraft.instance, GuiHandler.getTypeID(GuiHandler.Type.RealityStabilizer), worldIn, pos.getX(), pos.getY(), pos.getZ());
+	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
+		if (!worldIn.isRemote) FMLNetworkHandler.openGui(playerIn, VoidCraft.instance, GuiHandler.getTypeID(GuiHandler.Type.RealityStabilizer), worldIn, pos.getX(), pos.getY(), pos.getZ());
 		return true;
 	}
 
@@ -57,7 +54,7 @@ public class RealityStabilizer extends TamBlockContainer {
 	}
 
 	@Override
-	public boolean isVisuallyOpaque() {
+	public boolean isFullyOpaque(IBlockState state) {
 		return false;
 	}
 
@@ -67,7 +64,7 @@ public class RealityStabilizer extends TamBlockContainer {
 	 */
 	@Override
 	public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand) {
-		for(int i=0; i<2; i++){
+		for (int i = 0; i < 2; i++) {
 			double d0 = (double) ((float) pos.getX() + 0.4F + rand.nextFloat() * 0.2F);
 			double d1 = (double) ((float) pos.getY() + 0.0F + rand.nextFloat() * 0.3F);
 			double d2 = (double) ((float) pos.getZ() + 0.4F + rand.nextFloat() * 0.2F);

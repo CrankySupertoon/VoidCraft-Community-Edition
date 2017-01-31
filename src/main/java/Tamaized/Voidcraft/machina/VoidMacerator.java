@@ -2,13 +2,10 @@ package Tamaized.Voidcraft.machina;
 
 import java.util.Random;
 
-import javax.annotation.Nullable;
-
 import Tamaized.TamModized.blocks.TamBlockContainer;
-import Tamaized.Voidcraft.voidCraft;
+import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.GUI.GuiHandler;
 import Tamaized.Voidcraft.machina.tileentity.TileEntityVoidMacerator;
-import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyBool;
@@ -43,11 +40,6 @@ public class VoidMacerator extends TamBlockContainer {
 	public VoidMacerator(CreativeTabs tab, Material material, String n, float hardness) {
 		super(tab, material, n, hardness);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(ACTIVE, Boolean.valueOf(false)));
-	}
-
-	@Override
-	public void onBlockAdded(World world, BlockPos pos, IBlockState state) {
-		this.setDefaultFacing(world, pos, state);
 	}
 
 	public boolean getIsActive(IBlockState state) {
@@ -124,24 +116,24 @@ public class VoidMacerator extends TamBlockContainer {
 		}
 	}
 
-	private void setDefaultFacing(World world, BlockPos pos, IBlockState state) {
+	@Override
+	public void onBlockAdded(World world, BlockPos pos, IBlockState state) {
 		if (!world.isRemote) {
-			Block block = world.getBlockState(pos.north()).getBlock();
-			Block block1 = world.getBlockState(pos.south()).getBlock();
-			Block block2 = world.getBlockState(pos.west()).getBlock();
-			Block block3 = world.getBlockState(pos.east()).getBlock();
+			IBlockState iblockstate = world.getBlockState(pos.north());
+			IBlockState iblockstate1 = world.getBlockState(pos.south());
+			IBlockState iblockstate2 = world.getBlockState(pos.west());
+			IBlockState iblockstate3 = world.getBlockState(pos.east());
 			EnumFacing enumfacing = (EnumFacing) state.getValue(FACING);
 
-			if (enumfacing == EnumFacing.NORTH && block.isFullBlock(state) && !block1.isFullBlock(state)) {
+			if (enumfacing == EnumFacing.NORTH && iblockstate.isFullBlock() && !iblockstate1.isFullBlock()) {
 				enumfacing = EnumFacing.SOUTH;
-			} else if (enumfacing == EnumFacing.SOUTH && block1.isFullBlock(state) && !block.isFullBlock(state)) {
+			} else if (enumfacing == EnumFacing.SOUTH && iblockstate1.isFullBlock() && !iblockstate.isFullBlock()) {
 				enumfacing = EnumFacing.NORTH;
-			} else if (enumfacing == EnumFacing.WEST && block2.isFullBlock(state) && !block3.isFullBlock(state)) {
+			} else if (enumfacing == EnumFacing.WEST && iblockstate2.isFullBlock() && !iblockstate3.isFullBlock()) {
 				enumfacing = EnumFacing.EAST;
-			} else if (enumfacing == EnumFacing.EAST && block3.isFullBlock(state) && !block2.isFullBlock(state)) {
+			} else if (enumfacing == EnumFacing.EAST && iblockstate3.isFullBlock() && !iblockstate2.isFullBlock()) {
 				enumfacing = EnumFacing.WEST;
 			}
-
 			world.setBlockState(pos, state.withProperty(FACING, enumfacing).withProperty(ACTIVE, state.getValue(ACTIVE)), 2);
 		}
 	}
@@ -152,11 +144,11 @@ public class VoidMacerator extends TamBlockContainer {
 		TileEntityVoidMacerator te = (TileEntityVoidMacerator) tileentity;
 
 		if (active) {
-			worldIn.setBlockState(pos, voidCraft.blocks.voidMacerator.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)).withProperty(ACTIVE, active), 3);
-			worldIn.setBlockState(pos, voidCraft.blocks.voidMacerator.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)).withProperty(ACTIVE, active), 3);
+			worldIn.setBlockState(pos, VoidCraft.blocks.voidMacerator.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)).withProperty(ACTIVE, active), 3);
+			worldIn.setBlockState(pos, VoidCraft.blocks.voidMacerator.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)).withProperty(ACTIVE, active), 3);
 		} else {
-			worldIn.setBlockState(pos, voidCraft.blocks.voidMacerator.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)).withProperty(ACTIVE, active), 3);
-			worldIn.setBlockState(pos, voidCraft.blocks.voidMacerator.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)).withProperty(ACTIVE, active), 3);
+			worldIn.setBlockState(pos, VoidCraft.blocks.voidMacerator.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)).withProperty(ACTIVE, active), 3);
+			worldIn.setBlockState(pos, VoidCraft.blocks.voidMacerator.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)).withProperty(ACTIVE, active), 3);
 		}
 
 		if (tileentity != null) {
@@ -166,9 +158,10 @@ public class VoidMacerator extends TamBlockContainer {
 	}
 
 	@Override
-	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, @Nullable ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
+	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
+		ItemStack heldItem = player.getHeldItem(hand);
 		if (!world.isRemote) {
-			FMLNetworkHandler.openGui(player, voidCraft.instance, GuiHandler.getTypeID(GuiHandler.Type.Macerator), world, pos.getX(), pos.getY(), pos.getZ());
+			FMLNetworkHandler.openGui(player, VoidCraft.instance, GuiHandler.getTypeID(GuiHandler.Type.Macerator), world, pos.getX(), pos.getY(), pos.getZ());
 		}
 		return true;
 	}
@@ -180,29 +173,12 @@ public class VoidMacerator extends TamBlockContainer {
 
 	@Override
 	public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
-		int l = MathHelper.floor_double((double) (placer.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
-
-		if (l == 0) {
-			world.setBlockState(pos, this.getStateFromMeta(2), 2);
-		}
-
-		if (l == 1) {
-			world.setBlockState(pos, this.getStateFromMeta(5), 2);
-		}
-
-		if (l == 2) {
-			world.setBlockState(pos, this.getStateFromMeta(3), 2);
-		}
-
-		if (l == 3) {
-			world.setBlockState(pos, this.getStateFromMeta(4), 2);
-		}
-
+		world.setBlockState(pos, state.withProperty(FACING, placer.getHorizontalFacing().getOpposite()).withProperty(ACTIVE, false), 2);
 	}
 
 	@Override
 	public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
-		return new ItemStack(voidCraft.blocks.voidMacerator);
+		return new ItemStack(VoidCraft.blocks.voidMacerator);
 	}
 
 	@Override
@@ -213,19 +189,19 @@ public class VoidMacerator extends TamBlockContainer {
 			for (int i = 0; i < tileentity.getSizeInventory(); i++) {
 				ItemStack itemstack = tileentity.getStackInSlot(i);
 
-				if (itemstack != null) {
+				if (!itemstack.isEmpty()) {
 					float f = this.rand.nextFloat() * 0.8F + 0.1F;
 					float f1 = this.rand.nextFloat() * 0.8F + 0.1F;
 					float f2 = this.rand.nextFloat() * 0.8F + 0.1F;
 
-					while (itemstack.stackSize > 0) {
+					while (itemstack.getCount() > 0) {
 						int j = this.rand.nextInt(21);
 
-						if (j > itemstack.stackSize) {
-							j = itemstack.stackSize;
+						if (j > itemstack.getCount()) {
+							j = itemstack.getCount();
 						}
 
-						itemstack.stackSize -= j;
+						itemstack.shrink(j);
 
 						EntityItem item = new EntityItem(world, (double) ((float) pos.getX() + f), (double) ((float) pos.getY() + f1), (double) ((float) pos.getZ() + f2), new ItemStack(itemstack.getItem()));
 
@@ -238,7 +214,7 @@ public class VoidMacerator extends TamBlockContainer {
 						item.motionY = (double) ((float) this.rand.nextGaussian() * f3 + 0.2F);
 						item.motionZ = (double) ((float) this.rand.nextGaussian() * f3);
 
-						world.spawnEntityInWorld(item);
+						world.spawnEntity(item);
 					}
 				}
 			}

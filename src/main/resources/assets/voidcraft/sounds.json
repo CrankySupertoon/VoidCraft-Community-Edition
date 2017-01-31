@@ -6,7 +6,8 @@
   "wraith.wraithLive": {"category": "hostile","sounds": [{"name": "voidcraft:mobs/wraith/wraithLive","stream": false}]},
   "wraith.wraithHurt": {"category": "hostile","sounds": [{"name": "voidcraft:mobs/wraith/wraithHurt","stream": false}]},
   "wraith.wraithDeath": {"category": "hostile","sounds": [{"name": "voidcraft:mobs/wraith/wraithDeath","stream": false}]},
-  "wrath.breathe": {"category": "hostile","sounds": [{"name": "voidcraft:mobs/voidwrath/breathe","stream": false}]},
+  "wrath.breathe1": {"category": "hostile","sounds": [{"name": "voidcraft:mobs/voidwrath/breathe1","stream": false}]},
+  "wrath.breathe2": {"category": "hostile","sounds": [{"name": "voidcraft:mobs/voidwrath/breathe2","stream": false}]},
   "wrath.death": {"category": "hostile","sounds": [{"name": "voidcraft:mobs/voidwrath/death","stream": false}]},
   "wrath.hit": {"category": "hostile","sounds": [{"name": "voidcraft:mobs/voidwrath/hit","stream": false}]},
   

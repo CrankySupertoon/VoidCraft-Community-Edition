@@ -20,11 +20,11 @@ public class ItemStackNetworkHelper {
 	}
 
 	public static void encodeStack(ItemStack stack, DataOutputStream stream) throws IOException {
-		if (stack == null) {
+		if (stack.isEmpty()) {
 			stream.writeShort(-1);
 		} else {
 			stream.writeShort(Item.getIdFromItem(stack.getItem()));
-			stream.writeByte(stack.stackSize);
+			stream.writeByte(stack.getCount());
 			stream.writeShort(stack.getMetadata());
 			NBTTagCompound nbttagcompound = null;
 
@@ -37,7 +37,7 @@ public class ItemStackNetworkHelper {
 	}
 
 	public static ItemStack decodeStack(ByteBuf buf, ByteBufInputStream stream) throws IOException {
-		ItemStack itemstack = null;
+		ItemStack itemstack = ItemStack.EMPTY;
 		int i = stream.readShort();
 
 		if (i >= 0) {

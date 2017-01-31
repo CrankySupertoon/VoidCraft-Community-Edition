@@ -7,7 +7,7 @@ import Tamaized.TamModized.items.TamItem;
 import Tamaized.TamModized.items.TamItemSeed;
 import Tamaized.TamModized.registry.ITamModel;
 import Tamaized.TamModized.registry.ITamRegistry;
-import Tamaized.Voidcraft.voidCraft;
+import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.blocks.tileentity.TileEntityFakeBedrockFarmland;
 import Tamaized.Voidcraft.items.ChainedSkull;
 import Tamaized.Voidcraft.items.Debugger;
@@ -18,6 +18,7 @@ import Tamaized.Voidcraft.items.RealityTeleporter;
 import Tamaized.Voidcraft.items.VadeMecum;
 import Tamaized.Voidcraft.items.VoidStar;
 import Tamaized.Voidcraft.items.VoidicDrill;
+import Tamaized.Voidcraft.items.VoidicEssence;
 import Tamaized.Voidcraft.items.VoidicSuppressor;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -49,6 +50,11 @@ public class VoidCraftItems implements ITamRegistry {
 	public static ChainedSkull ChainedSkull;
 	public static TamItem voidCloth;
 	public static TamItem voidCrystalBucket;
+	public static VoidicEssence voidicEssence;
+	public static TamItem voidicPhlogiston;
+	public static TamItem voidicDragonScale;
+	public static TamItem astralEssence;
+	public static TamItem quoriFragment;
 
 	public static TamItem quartzDust;
 	public static TamItem coalDust;
@@ -85,49 +91,54 @@ public class VoidCraftItems implements ITamRegistry {
 	public void preInit() {
 		modelList = new ArrayList<ITamModel>();
 
-		vadeMecum = new VadeMecum(voidCraft.tabs.tabVoid, "vadeMecum", 1); // Don't add this to the model list as it uses an ItemMeshDefinition
+		vadeMecum = new VadeMecum(VoidCraft.tabs.tabVoid, "vadeMecum", 1); // Don't add this to the model list as it uses an ItemMeshDefinition
 
-		modelList.add(emptyObsidianFlask = new EmptyObsidianFlask(voidCraft.tabs.tabVoid, "emptyObsidianFlask", 16));
-		modelList.add(obsidianFlask = new ObsidianFlask(voidCraft.tabs.tabVoid, "obsidianFlask", 16));
-		modelList.add(ectoplasm = new TamItem(voidCraft.tabs.tabVoid, "ectoplasm", 64));
-		modelList.add(voidcrystal = new TamItem(voidCraft.tabs.tabVoid, "voidcrystal", 64));
-		modelList.add(voidChain = new TamItem(voidCraft.tabs.tabVoid, "voidChain", 64));
-		modelList.add(MoltenvoidChain = new TamItem(voidCraft.tabs.tabVoid, "MoltenvoidChain", 64));
-		modelList.add(MoltenvoidChainPart = new TamItem(voidCraft.tabs.tabVoid, "MoltenvoidChainPart", 64));
-		modelList.add(burnBone = new TamItem(voidCraft.tabs.tabVoid, "burnBone", 64));
-		modelList.add(voidStar = new VoidStar(voidCraft.tabs.tabVoid, "voidStar", 1));
-		modelList.add(ChainedSkull = new ChainedSkull(voidCraft.tabs.tabVoid, "ChainedSkull", 1));
-		modelList.add(voidCloth = new TamItem(voidCraft.tabs.tabVoid, "voidCloth", 64));
-		modelList.add(voidCrystalBucket = new TamItem(voidCraft.tabs.tabVoid, "voidCrystalBucket", 1));
-
+		modelList.add(emptyObsidianFlask = new EmptyObsidianFlask(VoidCraft.tabs.tabVoid, "emptyObsidianFlask", 16));
+		modelList.add(obsidianFlask = new ObsidianFlask(VoidCraft.tabs.tabVoid, "obsidianFlask", 16));
+		modelList.add(ectoplasm = new TamItem(VoidCraft.tabs.tabVoid, "ectoplasm", 64));
+		modelList.add(voidcrystal = new TamItem(VoidCraft.tabs.tabVoid, "voidcrystal", 64));
+		modelList.add(voidChain = new TamItem(VoidCraft.tabs.tabVoid, "voidChain", 64));
+		modelList.add(MoltenvoidChain = new TamItem(VoidCraft.tabs.tabVoid, "MoltenvoidChain", 64));
+		modelList.add(MoltenvoidChainPart = new TamItem(VoidCraft.tabs.tabVoid, "MoltenvoidChainPart", 64));
+		modelList.add(burnBone = new TamItem(VoidCraft.tabs.tabVoid, "burnBone", 64));
+		modelList.add(voidStar = new VoidStar(VoidCraft.tabs.tabVoid, "voidStar", 1));
+		modelList.add(ChainedSkull = new ChainedSkull(VoidCraft.tabs.tabVoid, "ChainedSkull", 1));
+		modelList.add(voidCloth = new TamItem(VoidCraft.tabs.tabVoid, "voidCloth", 64));
+		modelList.add(voidCrystalBucket = new TamItem(VoidCraft.tabs.tabVoid, "voidCrystalBucket", 1));
+		modelList.add(voidicEssence = new VoidicEssence(VoidCraft.tabs.tabVoid, "voidicEssence", 1));
+		modelList.add(voidicPhlogiston = new TamItem(VoidCraft.tabs.tabVoid, "voidicPhlogiston", 64));
+		modelList.add(voidicDragonScale = new TamItem(VoidCraft.tabs.tabVoid, "voidicDragonScale", 64));
+		modelList.add(astralEssence = new TamItem(VoidCraft.tabs.tabVoid, "astralEssence", 64));
+		modelList.add(quoriFragment = new TamItem(VoidCraft.tabs.tabVoid, "quoriFragment", 64));
+		
 		// dust
-		modelList.add(quartzDust = new TamItem(voidCraft.tabs.tabVoid, "quartzDust", 64));
-		modelList.add(coalDust = new TamItem(voidCraft.tabs.tabVoid, "coalDust", 64));
-		modelList.add(ironDust = new TamItem(voidCraft.tabs.tabVoid, "ironDust", 64));
-		modelList.add(goldDust = new TamItem(voidCraft.tabs.tabVoid, "goldDust", 64));
-		modelList.add(copperDust = new TamItem(voidCraft.tabs.tabVoid, "copperDust", 64));
-		modelList.add(tinDust = new TamItem(voidCraft.tabs.tabVoid, "tinDust", 64));
-		modelList.add(leadDust = new TamItem(voidCraft.tabs.tabVoid, "leadDust", 64));
-		modelList.add(lapisDust = new TamItem(voidCraft.tabs.tabVoid, "lapisDust", 64));
-		modelList.add(emeraldDust = new TamItem(voidCraft.tabs.tabVoid, "emeraldDust", 64));
-		modelList.add(diamondDust = new TamItem(voidCraft.tabs.tabVoid, "diamondDust", 64));
+		modelList.add(quartzDust = new TamItem(VoidCraft.tabs.tabVoid, "quartzDust", 64));
+		modelList.add(coalDust = new TamItem(VoidCraft.tabs.tabVoid, "coalDust", 64));
+		modelList.add(ironDust = new TamItem(VoidCraft.tabs.tabVoid, "ironDust", 64));
+		modelList.add(goldDust = new TamItem(VoidCraft.tabs.tabVoid, "goldDust", 64));
+		modelList.add(copperDust = new TamItem(VoidCraft.tabs.tabVoid, "copperDust", 64));
+		modelList.add(tinDust = new TamItem(VoidCraft.tabs.tabVoid, "tinDust", 64));
+		modelList.add(leadDust = new TamItem(VoidCraft.tabs.tabVoid, "leadDust", 64));
+		modelList.add(lapisDust = new TamItem(VoidCraft.tabs.tabVoid, "lapisDust", 64));
+		modelList.add(emeraldDust = new TamItem(VoidCraft.tabs.tabVoid, "emeraldDust", 64));
+		modelList.add(diamondDust = new TamItem(VoidCraft.tabs.tabVoid, "diamondDust", 64));
 
-		modelList.add(debugger = new Debugger(voidCraft.tabs.tabVoid, "debugger", 1));
+		modelList.add(debugger = new Debugger(VoidCraft.tabs.tabVoid, "debugger", 1));
 		// modelList.add(hookShot = new HookShot(voidCraft.tabs.tabVoid, "hookShot", 1));
 
-		modelList.add(voidicSuppressor = new VoidicSuppressor(voidCraft.tabs.tabVoid, "voidicSuppressor", 1));
-		modelList.add(voidicDrill = new VoidicDrill(voidCraft.tabs.tabVoid, "voidicDrill", 1));
-		modelList.add(realityTeleporter = new RealityTeleporter(voidCraft.tabs.tabVoid, "realityTeleporter", 1));
+		modelList.add(voidicSuppressor = new VoidicSuppressor(VoidCraft.tabs.tabVoid, "voidicSuppressor", 1));
+		modelList.add(voidicDrill = new VoidicDrill(VoidCraft.tabs.tabVoid, "voidicDrill", 1));
+		modelList.add(realityTeleporter = new RealityTeleporter(VoidCraft.tabs.tabVoid, "realityTeleporter", 1));
 
 		ArrayList<TamBlockFarmland> soilList = new ArrayList<TamBlockFarmland>();
-		soilList.add(voidCraft.blocks.blockFakeBedrockFarmland);
-		modelList.add(etherealSeed = new TamItemSeed(voidCraft.tabs.tabVoid, "etherealSeed", 64, voidCraft.blocks.etherealPlant, soilList));
-		modelList.add(etherealFruit = new EtherealFruit(TileEntityFakeBedrockFarmland.Alteration.NORMAL, voidCraft.tabs.tabVoid, "etherealFruit", 64, 2, false));
-		modelList.add(etherealFruit_redstone = new EtherealFruit(TileEntityFakeBedrockFarmland.Alteration.REDSTONE, voidCraft.tabs.tabVoid, "etherealFruit_redstone", 64, 2, false));
-		modelList.add(etherealFruit_lapis = new EtherealFruit(TileEntityFakeBedrockFarmland.Alteration.LAPIS, voidCraft.tabs.tabVoid, "etherealFruit_lapis", 64, 2, false));
-		modelList.add(etherealFruit_gold = new EtherealFruit(TileEntityFakeBedrockFarmland.Alteration.GOLD, voidCraft.tabs.tabVoid, "etherealFruit_gold", 64, 2, false));
-		modelList.add(etherealFruit_emerald = new EtherealFruit(TileEntityFakeBedrockFarmland.Alteration.EMERALD, voidCraft.tabs.tabVoid, "etherealFruit_emerald", 64, 2, false));
-		modelList.add(etherealFruit_diamond = new EtherealFruit(TileEntityFakeBedrockFarmland.Alteration.DIAMOND, voidCraft.tabs.tabVoid, "etherealFruit_diamond", 64, 2, false));
+		soilList.add(VoidCraft.blocks.blockFakeBedrockFarmland);
+		modelList.add(etherealSeed = new TamItemSeed(VoidCraft.tabs.tabVoid, "etherealSeed", 64, VoidCraft.blocks.etherealPlant, soilList));
+		modelList.add(etherealFruit = new EtherealFruit(TileEntityFakeBedrockFarmland.Alteration.NORMAL, VoidCraft.tabs.tabVoid, "etherealFruit", 64, 2, false));
+		modelList.add(etherealFruit_redstone = new EtherealFruit(TileEntityFakeBedrockFarmland.Alteration.REDSTONE, VoidCraft.tabs.tabVoid, "etherealFruit_redstone", 64, 2, false));
+		modelList.add(etherealFruit_lapis = new EtherealFruit(TileEntityFakeBedrockFarmland.Alteration.LAPIS, VoidCraft.tabs.tabVoid, "etherealFruit_lapis", 64, 2, false));
+		modelList.add(etherealFruit_gold = new EtherealFruit(TileEntityFakeBedrockFarmland.Alteration.GOLD, VoidCraft.tabs.tabVoid, "etherealFruit_gold", 64, 2, false));
+		modelList.add(etherealFruit_emerald = new EtherealFruit(TileEntityFakeBedrockFarmland.Alteration.EMERALD, VoidCraft.tabs.tabVoid, "etherealFruit_emerald", 64, 2, false));
+		modelList.add(etherealFruit_diamond = new EtherealFruit(TileEntityFakeBedrockFarmland.Alteration.DIAMOND, VoidCraft.tabs.tabVoid, "etherealFruit_diamond", 64, 2, false));
 
 		// modelList.add(record_noStrings = new VoidRecord("Approaching Nirvana - No Strings Attached", VoidSoundEvents.MusicDiscSoundEvents.No_Strings_Attached, "voidDisc1"));
 		// modelList.add(record_bleedingThrough = new VoidRecord("Haven - Bleeding Through", VoidSoundEvents.MusicDiscSoundEvents.Haven_Bleeding_Through, "voidDisc2"));
@@ -155,19 +166,19 @@ public class VoidCraftItems implements ITamRegistry {
 		OreDictionary.registerOre("dustEmerald", emeraldDust);
 		OreDictionary.registerOre("dustDiamond", diamondDust);
 
-		GameRegistry.addShapelessRecipe(new ItemStack(voidcrystal, 9), voidCraft.blocks.blockVoidcrystal);
+		GameRegistry.addShapelessRecipe(new ItemStack(voidcrystal, 9), VoidCraft.blocks.blockVoidcrystal);
 		GameRegistry.addShapelessRecipe(new ItemStack(voidCrystalBucket), voidcrystal, Items.BUCKET);
 		GameRegistry.addRecipe(new ItemStack(emptyObsidianFlask, 4), "OGO", " O ", 'O', Blocks.OBSIDIAN, 'G', Blocks.GLASS);
 		GameRegistry.addShapelessRecipe(new ItemStack(voidicSuppressor), voidcrystal, Items.COMPASS, Items.REDSTONE, voidCloth);
-		GameRegistry.addRecipe(new ItemStack(voidicDrill), "BHB", "CZC", "ESE", 'B', voidCraft.blocks.blockVoidcrystal, 'H', voidCraft.blocks.realityHole, 'C', voidCloth, 'Z', voidCraft.blocks.voidicCharger, 'E', ectoplasm, 'S', voidStar);
+		GameRegistry.addRecipe(new ItemStack(voidicDrill), "BHB", "CZC", "ESE", 'B', VoidCraft.blocks.blockVoidcrystal, 'H', VoidCraft.blocks.realityHole, 'C', voidCloth, 'Z', VoidCraft.blocks.voidicCharger, 'E', ectoplasm, 'S', voidStar);
 		GameRegistry.addRecipe(new ItemStack(MoltenvoidChain), "XYX", "YXY", "XYX", 'Y', MoltenvoidChainPart, 'X', burnBone);
 		GameRegistry.addRecipe(new ItemStack(ChainedSkull), "XYX", "YZY", "XYX", 'X', MoltenvoidChain, 'Y', burnBone, 'Z', new ItemStack(Items.SKULL, 1, 1));
 		GameRegistry.addRecipe(new ItemStack(Items.SKULL, 1, 1), "XX", "XX", 'X', burnBone);
-		GameRegistry.addRecipe(new ItemStack(realityTeleporter), "BEZ", "CHC", "BCB", 'B', burnBone, 'E', emeraldDust, 'Z', voidCraft.blocks.voidicCharger, 'C', MoltenvoidChain, 'H', voidCraft.blocks.realityHole);
+		GameRegistry.addRecipe(new ItemStack(realityTeleporter), "BEZ", "CHC", "BCB", 'B', burnBone, 'E', emeraldDust, 'Z', VoidCraft.blocks.voidicCharger, 'C', MoltenvoidChain, 'H', VoidCraft.blocks.realityHole);
 
-		GameRegistry.addSmelting(voidCraft.blocks.oreVoidcrystal, new ItemStack(voidcrystal), 0.1F);
+		GameRegistry.addSmelting(VoidCraft.blocks.oreVoidcrystal, new ItemStack(voidcrystal), 0.1F);
 		GameRegistry.addSmelting(voidChain, new ItemStack(MoltenvoidChainPart), 0.1F);
-		GameRegistry.addSmelting(voidCrystalBucket, voidCraft.fluids.getBucket(), 0.1F);
+		GameRegistry.addSmelting(voidCrystalBucket, VoidCraft.fluids.voidBucket.getBucket(), 0.1F);
 		// dust
 		GameRegistry.addSmelting(ironDust, new ItemStack(Items.IRON_INGOT), 0);
 		GameRegistry.addSmelting(goldDust, new ItemStack(Items.GOLD_INGOT), 0);
@@ -198,7 +209,7 @@ public class VoidCraftItems implements ITamRegistry {
 
 	private void addPreSmelting(Item i, String s) {
 		for (ItemStack ore : OreDictionary.getOres(s)) {
-			if (ore != null) {
+			if (!ore.isEmpty()) {
 				GameRegistry.addSmelting(i, ore, ore.getItemDamage());
 			}
 		}
@@ -211,9 +222,9 @@ public class VoidCraftItems implements ITamRegistry {
 
 	@Override
 	public String getModID() {
-		return voidCraft.modid;
+		return VoidCraft.modid;
 	}
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void clientPreInit() {
@@ -224,7 +235,7 @@ public class VoidCraftItems implements ITamRegistry {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void clientInit() {
-		//VadeMecumMeshDefinition.register();
+		// VadeMecumMeshDefinition.register();
 	}
 
 	@Override

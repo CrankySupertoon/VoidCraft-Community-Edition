@@ -4,7 +4,8 @@ import java.util.ArrayList;
 
 import Tamaized.TamModized.registry.ITamModel;
 import Tamaized.TamModized.registry.ITamRegistry;
-import Tamaized.Voidcraft.voidCraft;
+import Tamaized.Voidcraft.VoidCraft;
+import Tamaized.Voidcraft.capabilities.vadeMecum.IVadeMecumCapability;
 import Tamaized.Voidcraft.machina.addons.TERecipeInfuser;
 import Tamaized.Voidcraft.machina.addons.TERecipesAlchemy;
 import Tamaized.Voidcraft.machina.addons.TERecipesMacerator;
@@ -29,35 +30,37 @@ public class VoidCraftTERecipes implements ITamRegistry {
 
 	@Override
 	public void init() {
-		macerator.registerRecipe(macerator.new MaceratorRecipe(getOreDict(new String[] { "oreCoal" }), new ItemStack(voidCraft.items.coalDust, 8), 200));
-		macerator.registerRecipe(macerator.new MaceratorRecipe(getOreDict(new String[] { "oreQuartz" }), new ItemStack(voidCraft.items.quartzDust, 4), 200));
-		macerator.registerRecipe(macerator.new MaceratorRecipe(getOreDict(new String[] { "oreIron" }), new ItemStack(voidCraft.items.ironDust, 4), 200));
-		macerator.registerRecipe(macerator.new MaceratorRecipe(getOreDict(new String[] { "oreGold" }), new ItemStack(voidCraft.items.goldDust, 4), 200));
-		macerator.registerRecipe(macerator.new MaceratorRecipe(getOreDict(new String[] { "oreCopper" }), new ItemStack(voidCraft.items.copperDust, 4), 200));
-		macerator.registerRecipe(macerator.new MaceratorRecipe(getOreDict(new String[] { "oreTin" }), new ItemStack(voidCraft.items.tinDust, 4), 200));
-		macerator.registerRecipe(macerator.new MaceratorRecipe(getOreDict(new String[] { "oreLead" }), new ItemStack(voidCraft.items.leadDust, 4), 200));
-		macerator.registerRecipe(macerator.new MaceratorRecipe(getOreDict(new String[] { "oreLapis" }), new ItemStack(voidCraft.items.lapisDust, 8), 200));
-		macerator.registerRecipe(macerator.new MaceratorRecipe(getOreDict(new String[] { "oreEmerald" }), new ItemStack(voidCraft.items.emeraldDust, 4), 200));
-		macerator.registerRecipe(macerator.new MaceratorRecipe(getOreDict(new String[] { "oreDiamond" }), new ItemStack(voidCraft.items.diamondDust, 4), 200));
+		macerator.registerRecipe(macerator.new MaceratorRecipe(getOreDict(new String[] { "oreCoal" }), new ItemStack(VoidCraft.items.coalDust, 8), 200));
+		macerator.registerRecipe(macerator.new MaceratorRecipe(getOreDict(new String[] { "oreQuartz" }), new ItemStack(VoidCraft.items.quartzDust, 4), 200));
+		macerator.registerRecipe(macerator.new MaceratorRecipe(getOreDict(new String[] { "oreIron" }), new ItemStack(VoidCraft.items.ironDust, 4), 200));
+		macerator.registerRecipe(macerator.new MaceratorRecipe(getOreDict(new String[] { "oreGold" }), new ItemStack(VoidCraft.items.goldDust, 4), 200));
+		macerator.registerRecipe(macerator.new MaceratorRecipe(getOreDict(new String[] { "oreCopper" }), new ItemStack(VoidCraft.items.copperDust, 4), 200));
+		macerator.registerRecipe(macerator.new MaceratorRecipe(getOreDict(new String[] { "oreTin" }), new ItemStack(VoidCraft.items.tinDust, 4), 200));
+		macerator.registerRecipe(macerator.new MaceratorRecipe(getOreDict(new String[] { "oreLead" }), new ItemStack(VoidCraft.items.leadDust, 4), 200));
+		macerator.registerRecipe(macerator.new MaceratorRecipe(getOreDict(new String[] { "oreLapis" }), new ItemStack(VoidCraft.items.lapisDust, 8), 200));
+		macerator.registerRecipe(macerator.new MaceratorRecipe(getOreDict(new String[] { "oreEmerald" }), new ItemStack(VoidCraft.items.emeraldDust, 4), 200));
+		macerator.registerRecipe(macerator.new MaceratorRecipe(getOreDict(new String[] { "oreDiamond" }), new ItemStack(VoidCraft.items.diamondDust, 4), 200));
 
-		macerator.registerRecipe(macerator.new MaceratorRecipe(new ItemStack[] { new ItemStack(Items.COAL, 1) }, new ItemStack(voidCraft.items.coalDust, 4), 200));
-		macerator.registerRecipe(macerator.new MaceratorRecipe(getOreDict(new String[] { "gemQuartz" }), new ItemStack(voidCraft.items.quartzDust, 1), 200));
-		macerator.registerRecipe(macerator.new MaceratorRecipe(getOreDict(new String[] { "ingotIron" }), new ItemStack(voidCraft.items.ironDust, 1), 200));
-		macerator.registerRecipe(macerator.new MaceratorRecipe(getOreDict(new String[] { "ingotGold" }), new ItemStack(voidCraft.items.goldDust, 1), 200));
-		macerator.registerRecipe(macerator.new MaceratorRecipe(getOreDict(new String[] { "ingotCopper" }), new ItemStack(voidCraft.items.copperDust, 1), 200));
-		macerator.registerRecipe(macerator.new MaceratorRecipe(getOreDict(new String[] { "ingotTin" }), new ItemStack(voidCraft.items.tinDust, 1), 200));
-		macerator.registerRecipe(macerator.new MaceratorRecipe(getOreDict(new String[] { "ingotLead" }), new ItemStack(voidCraft.items.leadDust, 1), 200));
-		macerator.registerRecipe(macerator.new MaceratorRecipe(getOreDict(new String[] { "gemLapis" }), new ItemStack(voidCraft.items.lapisDust, 1), 200));
-		macerator.registerRecipe(macerator.new MaceratorRecipe(getOreDict(new String[] { "gemEmerald" }), new ItemStack(voidCraft.items.emeraldDust, 1), 200));
-		macerator.registerRecipe(macerator.new MaceratorRecipe(getOreDict(new String[] { "gemDiamond" }), new ItemStack(voidCraft.items.diamondDust, 1), 200));
+		macerator.registerRecipe(macerator.new MaceratorRecipe(new ItemStack[] { new ItemStack(Items.COAL, 1) }, new ItemStack(VoidCraft.items.coalDust, 4), 200));
+		macerator.registerRecipe(macerator.new MaceratorRecipe(getOreDict(new String[] { "gemQuartz" }), new ItemStack(VoidCraft.items.quartzDust, 1), 200));
+		macerator.registerRecipe(macerator.new MaceratorRecipe(getOreDict(new String[] { "ingotIron" }), new ItemStack(VoidCraft.items.ironDust, 1), 200));
+		macerator.registerRecipe(macerator.new MaceratorRecipe(getOreDict(new String[] { "ingotGold" }), new ItemStack(VoidCraft.items.goldDust, 1), 200));
+		macerator.registerRecipe(macerator.new MaceratorRecipe(getOreDict(new String[] { "ingotCopper" }), new ItemStack(VoidCraft.items.copperDust, 1), 200));
+		macerator.registerRecipe(macerator.new MaceratorRecipe(getOreDict(new String[] { "ingotTin" }), new ItemStack(VoidCraft.items.tinDust, 1), 200));
+		macerator.registerRecipe(macerator.new MaceratorRecipe(getOreDict(new String[] { "ingotLead" }), new ItemStack(VoidCraft.items.leadDust, 1), 200));
+		macerator.registerRecipe(macerator.new MaceratorRecipe(getOreDict(new String[] { "gemLapis" }), new ItemStack(VoidCraft.items.lapisDust, 1), 200));
+		macerator.registerRecipe(macerator.new MaceratorRecipe(getOreDict(new String[] { "gemEmerald" }), new ItemStack(VoidCraft.items.emeraldDust, 1), 200));
+		macerator.registerRecipe(macerator.new MaceratorRecipe(getOreDict(new String[] { "gemDiamond" }), new ItemStack(VoidCraft.items.diamondDust, 1), 200));
 
-		infuser.registerRecipe(infuser.new InfuserRecipe(new ItemStack[] { new ItemStack(Blocks.FURNACE) }, new ItemStack(voidCraft.blocks.voidMacerator), 1000));
-		infuser.registerRecipe(infuser.new InfuserRecipe(new ItemStack[] { new ItemStack(voidCraft.tools.archSword) }, new ItemStack(voidCraft.tools.demonSword), 1000));
-		infuser.registerRecipe(infuser.new InfuserRecipe(new ItemStack[] { new ItemStack(Blocks.BEACON) }, new ItemStack(voidCraft.blocks.Heimdall), 1000));
+		infuser.registerRecipe(infuser.new InfuserRecipe(new ItemStack[] { new ItemStack(Blocks.FURNACE) }, new ItemStack(VoidCraft.blocks.voidMacerator), 1000));
+		infuser.registerRecipe(infuser.new InfuserRecipe(new ItemStack[] { new ItemStack(VoidCraft.tools.archSword) }, new ItemStack(VoidCraft.tools.demonSword), 1000));
+		infuser.registerRecipe(infuser.new InfuserRecipe(new ItemStack[] { new ItemStack(Blocks.BEACON) }, new ItemStack(VoidCraft.blocks.Heimdall), 1000));
 
-		ItemStack[] voidicImmunityInputStack = new ItemStack[] { new ItemStack(voidCraft.items.etherealFruit), new ItemStack(voidCraft.items.etherealFruit_redstone), new ItemStack(voidCraft.items.etherealFruit_lapis), new ItemStack(voidCraft.items.etherealFruit_gold), new ItemStack(voidCraft.items.etherealFruit_emerald), new ItemStack(voidCraft.items.etherealFruit_diamond) };
-		ItemStack result = PotionUtils.addPotionToItemStack(new ItemStack(Items.POTIONITEM), voidCraft.potions.type_voidImmunity);
-		alchemy.registerRecipe(alchemy.new AlchemyRecipe(voidicImmunityInputStack, result, 350));
+		ItemStack[] voidicImmunityInputStack = new ItemStack[] { new ItemStack(VoidCraft.items.etherealFruit), new ItemStack(VoidCraft.items.etherealFruit_redstone), new ItemStack(VoidCraft.items.etherealFruit_lapis), new ItemStack(VoidCraft.items.etherealFruit_gold), new ItemStack(VoidCraft.items.etherealFruit_emerald), new ItemStack(VoidCraft.items.etherealFruit_diamond) };
+		ItemStack result = PotionUtils.addPotionToItemStack(new ItemStack(Items.POTIONITEM), VoidCraft.potions.type_voidImmunity);
+		alchemy.registerRecipe(alchemy.new AlchemyRecipe(null, voidicImmunityInputStack, result, 350));
+		ItemStack[] testInputStack = new ItemStack[] { new ItemStack(VoidCraft.items.diamondDust), new ItemStack(VoidCraft.items.ironDust), new ItemStack(VoidCraft.items.goldDust), new ItemStack(VoidCraft.items.emeraldDust), new ItemStack(Items.REDSTONE), new ItemStack(VoidCraft.items.lapisDust) };
+		if (VoidCraft.instance.isDevBuild) alchemy.registerRecipe(alchemy.new AlchemyRecipe(IVadeMecumCapability.Category.Flame, testInputStack, new ItemStack(VoidCraft.items.debugger), 350));
 	}
 
 	@Override
@@ -72,7 +75,7 @@ public class VoidCraftTERecipes implements ITamRegistry {
 
 	@Override
 	public String getModID() {
-		return voidCraft.modid;
+		return VoidCraft.modid;
 	}
 
 	@Override

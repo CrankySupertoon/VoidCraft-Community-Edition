@@ -3,23 +3,29 @@ package Tamaized.Voidcraft.capabilities.vadeMecum;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
+import Tamaized.Voidcraft.handlers.VadeMecumWordsOfPower;
 import io.netty.buffer.ByteBufInputStream;
+import net.minecraft.item.ItemStack;
 
 public interface IVadeMecumCapability {
 
 	public static enum Category {
-		INTRO, TOME,
+		NULL, INTRO, TOME,
 
-		Flame, FireSheath, Fireball, FireTrap, ExplosionFire, CircleOfFire,
+		// Active
+		Flame, FireSheathe, Fireball, FireTrap, ExplosionFire, RingOfFire,
 
-		Shock, ShockSheath, LitStrike, LitTrap, ExplosionLit, CircleOfLit,
+		Shock, ShockSheathe, LitStrike, LitTrap, ExplosionLit, RingOfLit,
 
-		Freeze, FrostSheath, IceSpike, FrostTrap, ExplosionFrost, CircleOfFrost,
+		Freeze, FrostSheathe, IceSpike, FrostTrap, ExplosionFrost, RingOfFrost,
 
-		AcidSpray, AcidSheath, Disint, AcidTrap, ExplosionAcid, CircleOfAcid,
+		AcidSpray, AcidSheathe, Disint, AcidTrap, ExplosionAcid, RingOfAcid,
 
-		VoidicTouch, VoidicSheath, Implosion
+		VoidicTouch, VoidicSheathe, Implosion
+
 	}
 
 	public static int getCategoryID(Category c) {
@@ -30,36 +36,31 @@ public interface IVadeMecumCapability {
 		return (id > Category.values().length || id < 0) ? null : Category.values()[id];
 	}
 
-	public static enum ActivePower {
-		Flame, FireSheath, Fireball, FireTrap, ExplosionFire, CircleOfFire,
+	public static class CategoryDataWrapper {
+		
+		private final String name;
+		private final ItemStack stack;
 
-		Shock, ShockSheath, LitStrike, LitTrap, ExplosionLit, CircleOfLit,
+		public CategoryDataWrapper(String name, ItemStack stack) {
+			this.name = name;
+			this.stack = stack;
+		}
 
-		Freeze, FrostSheath, IceSpike, FrostTrap, ExplosionFrost, CircleOfFrost,
+		public String getName() {
+			return name;
+		}
 
-		AcidSpray, AcidSheath, Disint, AcidTrap, ExplosionAcid, CircleOfAcid,
-
-		VoidicTouch, VoidicSheath, Implosion
+		public ItemStack getStack() {
+			return stack;
+		}
 	}
 
-	public static int getActivePowerID(ActivePower c) {
-		return c == null ? -1 : c.ordinal();
+	public static boolean isActivePower(Category c) {
+		return VadeMecumWordsOfPower.getCategoryData(c).getName().contains("Word:");
 	}
 
-	public static ActivePower getActivePowerFromID(int id) {
-		return (id > ActivePower.values().length || id < 0) ? null : ActivePower.values()[id];
-	}
-
-	public static enum PassivePower {
-		TEST, TESTTWO
-	}
-
-	public static int getPassivePowerID(PassivePower c) {
-		return c == null ? -1 : c.ordinal();
-	}
-
-	public static PassivePower getPassivePowerFromID(int id) {
-		return (id > PassivePower.values().length || id < 0) ? null : PassivePower.values()[id];
+	public static boolean isPassivePower(Category c) {
+		return false;
 	}
 
 	public boolean isDirty();
@@ -78,33 +79,13 @@ public interface IVadeMecumCapability {
 
 	public boolean hasCategory(Category category);
 
-	public ArrayList<ActivePower> getActivePowers();
+	public ArrayList<Category> getAvailableActivePowers();
 
-	public void setActivePowers(ArrayList<ActivePower> list);
+	public void setCurrentActive(Category power);
 
-	public void addActivePower(ActivePower power);
+	public void clearActivePower();
 
-	public void removeActivePower(ActivePower power);
-
-	public void clearActivePowers();
-
-	public boolean hasActivePower(ActivePower power);
-
-	public ArrayList<PassivePower> getPassivePowers();
-
-	public void setPassivePowers(ArrayList<PassivePower> list);
-
-	public void addPassivePower(PassivePower power);
-
-	public void removePassivePower(PassivePower power);
-
-	public void clearPassivePowers();
-
-	public boolean hasPassivePower(PassivePower power);
-
-	public void setCurrentActive(ActivePower power);
-
-	public ActivePower getCurrentActive();
+	public Category getCurrentActive();
 
 	public void setLastEntry(String e);
 

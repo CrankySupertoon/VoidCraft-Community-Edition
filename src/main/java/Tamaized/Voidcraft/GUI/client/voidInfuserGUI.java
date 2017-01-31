@@ -10,7 +10,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import org.lwjgl.opengl.GL11;
 
-import Tamaized.Voidcraft.voidCraft;
+import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.GUI.server.VoidInfuserContainer;
 import Tamaized.Voidcraft.machina.tileentity.TileEntityVoidInfuser;
 
@@ -22,7 +22,7 @@ public class voidInfuserGUI extends GuiContainer {
 	
 	public TileEntityVoidInfuser te;
 	
-	private static final ResourceLocation daTexture = new ResourceLocation(voidCraft.modid, "textures/gui/voidInfuser.png");
+	private static final ResourceLocation daTexture = new ResourceLocation(VoidCraft.modid, "textures/gui/voidInfuser.png");
 
 	public voidInfuserGUI (InventoryPlayer inventoryPlayer, TileEntityVoidInfuser tileEntity) {
 		super(new VoidInfuserContainer(inventoryPlayer, tileEntity));
@@ -54,11 +54,13 @@ public class voidInfuserGUI extends GuiContainer {
 	@Override
 	protected void drawGuiContainerForegroundLayer(int param1, int param2) {
 		String text = "Void Infuser";
-		fontRendererObj.drawString(text, xSize/2 - fontRendererObj.getStringWidth(text) / 2, ySize-260, 4210752);
-		text = te.getFluidAmount()+"";
-		fontRendererObj.drawString(text, (xSize/12 - fontRendererObj.getStringWidth(text) / 12)-1, ySize-220, 4210752);
-		text = "/3000mB";
-		fontRendererObj.drawString(text, (xSize/12 - fontRendererObj.getStringWidth(text) / 12)-5, ySize-210, 4210752);
+		fontRendererObj.drawString(text, xSize/2 - fontRendererObj.getStringWidth(text) / 2, ySize-260, 0xAAAAAA);
+		text = "Fluid:";
+		fontRendererObj.drawString(text, (xSize/2 - fontRendererObj.getStringWidth(text) / 2) - 100, ySize/2 - 65, 0x7700FF);
+		text = te.getFluidAmount()+"/";
+		fontRendererObj.drawString(text, (xSize/2 - fontRendererObj.getStringWidth(text) / 1) - 85, ySize/2 - 55, 0x7700FF);
+		text = ""+te.getMaxFluidAmount();
+		fontRendererObj.drawString(text, (xSize/2 - fontRendererObj.getStringWidth(text) / 1) - 85, ySize/2 - 45, 0x7700FF);
 	}
 
 	@Override

@@ -3,6 +3,7 @@ package Tamaized.Voidcraft.entity.boss.render;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.RenderLiving;
+import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
@@ -15,8 +16,8 @@ public class RenderCorruptedPawn<T extends EntityLiving> extends RenderLiving<T>
 	
 	private static final ResourceLocation VoidBoss_Texture = new ResourceLocation("VoidCraft:textures/entity/zVoidBoss.png");
 	
-	public RenderCorruptedPawn(ModelBase par1ModelBase, float par2){
-		super(Minecraft.getMinecraft().getRenderManager(), par1ModelBase, par2);
+	public RenderCorruptedPawn(RenderManager manager, ModelBase par1ModelBase, float par2){
+		super(manager, par1ModelBase, par2);
 	}
 	
 	/**

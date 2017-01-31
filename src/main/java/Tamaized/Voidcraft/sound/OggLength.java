@@ -2,12 +2,12 @@ package Tamaized.Voidcraft.sound;
 
 import java.io.InputStream;
 
-import Tamaized.Voidcraft.voidCraft;
+import Tamaized.Voidcraft.VoidCraft;
 
 public class OggLength {
 
 	public static int getLengthInSeconds(String filePath) throws Exception {
-		InputStream inStream = voidCraft.instance.getClass().getResourceAsStream(filePath);
+		InputStream inStream = VoidCraft.instance.getClass().getResourceAsStream(filePath);
 		long dataLength = inStream.available();
 		int duration = handleData(inStream, dataLength);
 		inStream.close();

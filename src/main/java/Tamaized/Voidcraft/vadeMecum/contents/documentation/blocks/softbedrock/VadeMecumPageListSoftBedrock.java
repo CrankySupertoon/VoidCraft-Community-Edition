@@ -1,6 +1,6 @@
 package Tamaized.Voidcraft.vadeMecum.contents.documentation.blocks.softbedrock;
 
-import Tamaized.Voidcraft.voidCraft;
+import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.capabilities.vadeMecum.IVadeMecumCapability;
 import Tamaized.Voidcraft.vadeMecum.IVadeMecumPage;
 import Tamaized.Voidcraft.vadeMecum.IVadeMecumPageProvider;
@@ -13,38 +13,38 @@ public class VadeMecumPageListSoftBedrock implements IVadeMecumPageProvider {
 
 	public IVadeMecumPage[] getPageList(IVadeMecumCapability cap) {
 		return new IVadeMecumPage[] {
-				new VadeMecumPage(new ItemStack(voidCraft.blocks.blockFakeBedrock).getDisplayName(), voidCraft.modid+".VadeMecum.docs.desc.blockFakeBedrock.pg1"),
-				new VadeMecumPage("", voidCraft.modid+".VadeMecum.docs.desc.blockFakeBedrock.pg2"),
-				new VadeMecumPageCrafting(new VadeMecumCraftingNormal(new ItemStack(voidCraft.blocks.blockFakeBedrockStairs).getDisplayName(), new ItemStack[] {
-						new ItemStack(voidCraft.blocks.blockFakeBedrock),
-						null,
-						null,
-						new ItemStack(voidCraft.blocks.blockFakeBedrock),
-						new ItemStack(voidCraft.blocks.blockFakeBedrock),
-						null,
-						new ItemStack(voidCraft.blocks.blockFakeBedrock),
-						new ItemStack(voidCraft.blocks.blockFakeBedrock),
-						new ItemStack(voidCraft.blocks.blockFakeBedrock) }, new ItemStack(voidCraft.blocks.blockFakeBedrockStairs, 6))),
-				new VadeMecumPageCrafting(new VadeMecumCraftingNormal(new ItemStack(voidCraft.blocks.blockFakeBedrockFence).getDisplayName(), new ItemStack[] {
-						null,
-						null,
-						null,
-						new ItemStack(voidCraft.blocks.blockFakeBedrock),
-						new ItemStack(voidCraft.blocks.blockFakeBedrock),
-						new ItemStack(voidCraft.blocks.blockFakeBedrock),
-						new ItemStack(voidCraft.blocks.blockFakeBedrock),
-						new ItemStack(voidCraft.blocks.blockFakeBedrock),
-						new ItemStack(voidCraft.blocks.blockFakeBedrock) }, new ItemStack(voidCraft.blocks.blockFakeBedrockFence, 6))),
-				new VadeMecumPageCrafting(new VadeMecumCraftingNormal(new ItemStack(voidCraft.blocks.blockFakeBedrockHalfSlab).getDisplayName(), new ItemStack[] {
-						null,
-						null,
-						null,
-						null,
-						null,
-						null,
-						new ItemStack(voidCraft.blocks.blockFakeBedrock),
-						new ItemStack(voidCraft.blocks.blockFakeBedrock),
-						new ItemStack(voidCraft.blocks.blockFakeBedrock) }, new ItemStack(voidCraft.blocks.blockFakeBedrockHalfSlab, 6))) };
+				new VadeMecumPage(new ItemStack(VoidCraft.blocks.blockFakeBedrock).getDisplayName(), VoidCraft.modid+".VadeMecum.docs.desc.blockFakeBedrock.pg1"),
+				new VadeMecumPage("", VoidCraft.modid+".VadeMecum.docs.desc.blockFakeBedrock.pg2"),
+				new VadeMecumPageCrafting(new VadeMecumCraftingNormal(new ItemStack(VoidCraft.blocks.blockFakeBedrockStairs).getDisplayName(), new ItemStack[] {
+						new ItemStack(VoidCraft.blocks.blockFakeBedrock),
+						ItemStack.EMPTY,
+						ItemStack.EMPTY,
+						new ItemStack(VoidCraft.blocks.blockFakeBedrock),
+						new ItemStack(VoidCraft.blocks.blockFakeBedrock),
+						ItemStack.EMPTY,
+						new ItemStack(VoidCraft.blocks.blockFakeBedrock),
+						new ItemStack(VoidCraft.blocks.blockFakeBedrock),
+						new ItemStack(VoidCraft.blocks.blockFakeBedrock) }, new ItemStack(VoidCraft.blocks.blockFakeBedrockStairs, 6))),
+				new VadeMecumPageCrafting(new VadeMecumCraftingNormal(new ItemStack(VoidCraft.blocks.blockFakeBedrockFence).getDisplayName(), new ItemStack[] {
+						ItemStack.EMPTY,
+						ItemStack.EMPTY,
+						ItemStack.EMPTY,
+						new ItemStack(VoidCraft.blocks.blockFakeBedrock),
+						new ItemStack(VoidCraft.blocks.blockFakeBedrock),
+						new ItemStack(VoidCraft.blocks.blockFakeBedrock),
+						new ItemStack(VoidCraft.blocks.blockFakeBedrock),
+						new ItemStack(VoidCraft.blocks.blockFakeBedrock),
+						new ItemStack(VoidCraft.blocks.blockFakeBedrock) }, new ItemStack(VoidCraft.blocks.blockFakeBedrockFence, 6))),
+				new VadeMecumPageCrafting(new VadeMecumCraftingNormal(new ItemStack(VoidCraft.blocks.blockFakeBedrockHalfSlab).getDisplayName(), new ItemStack[] {
+						ItemStack.EMPTY,
+						ItemStack.EMPTY,
+						ItemStack.EMPTY,
+						new ItemStack(VoidCraft.blocks.blockFakeBedrock),
+						new ItemStack(VoidCraft.blocks.blockFakeBedrock),
+						new ItemStack(VoidCraft.blocks.blockFakeBedrock),
+						ItemStack.EMPTY,
+						ItemStack.EMPTY,
+						ItemStack.EMPTY }, new ItemStack(VoidCraft.blocks.blockFakeBedrockHalfSlab, 6))) };
 	}
 
 }

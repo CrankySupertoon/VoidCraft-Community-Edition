@@ -1,5 +1,11 @@
 package Tamaized.Voidcraft.entity.mob;
 
+import com.google.common.base.Predicate;
+
+import Tamaized.Voidcraft.VoidCraft;
+import Tamaized.Voidcraft.entity.EntityVoidMob;
+import Tamaized.Voidcraft.entity.boss.herobrine.extra.EntityHerobrineCreeper;
+import Tamaized.Voidcraft.sound.VoidSoundEvents;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAttackMelee;
@@ -15,21 +21,14 @@ import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.monster.EntityIronGolem;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.monster.EntityShulker;
-import net.minecraft.entity.monster.EntitySkeleton;
 import net.minecraft.entity.monster.EntitySnowman;
+import net.minecraft.entity.monster.EntityWitherSkeleton;
 import net.minecraft.entity.monster.IMob;
-import net.minecraft.entity.monster.SkeletonType;
 import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
-import Tamaized.Voidcraft.voidCraft;
-import Tamaized.Voidcraft.entity.EntityVoidMob;
-import Tamaized.Voidcraft.entity.boss.herobrine.extra.EntityHerobrineCreeper;
-import Tamaized.Voidcraft.sound.VoidSoundEvents;
-
-import com.google.common.base.Predicate;
 
 public class EntityMobWraith extends EntityVoidMob implements IMob{
 	
@@ -55,7 +54,7 @@ public class EntityMobWraith extends EntityVoidMob implements IMob{
 			 * Return whether the specified entity is applicable to this filter.
 			 */
 			public boolean apply(Entity p_82704_1_){
-				if(p_82704_1_ instanceof EntitySkeleton && ((EntitySkeleton)p_82704_1_).getSkeletonType() == SkeletonType.WITHER) return false;
+				if(p_82704_1_ instanceof EntityWitherSkeleton) return false;
 				else if(p_82704_1_ instanceof EntityHerobrineCreeper || p_82704_1_ instanceof EntityShulker) return false;
 				else return true;
 			}
@@ -101,7 +100,7 @@ public class EntityMobWraith extends EntityVoidMob implements IMob{
 
     @Override
     protected Item getDropItem() {
-    	return voidCraft.items.ectoplasm;
+    	return VoidCraft.items.ectoplasm;
     }
     
 }

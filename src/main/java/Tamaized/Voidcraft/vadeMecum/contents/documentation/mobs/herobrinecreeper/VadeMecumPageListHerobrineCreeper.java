@@ -1,6 +1,6 @@
 package Tamaized.Voidcraft.vadeMecum.contents.documentation.mobs.herobrinecreeper;
 
-import Tamaized.Voidcraft.voidCraft;
+import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.capabilities.vadeMecum.IVadeMecumCapability;
 import Tamaized.Voidcraft.vadeMecum.IVadeMecumPage;
 import Tamaized.Voidcraft.vadeMecum.IVadeMecumPageProvider;
@@ -10,7 +10,7 @@ public class VadeMecumPageListHerobrineCreeper implements IVadeMecumPageProvider
 
 	public IVadeMecumPage[] getPageList(IVadeMecumCapability cap) {
 		return new IVadeMecumPage[] {
-				new VadeMecumPage(voidCraft.modid+".VadeMecum.docs.title.herobrindCreeper", voidCraft.modid+".VadeMecum.docs.desc.herobrindCreeper") };
+				new VadeMecumPage(VoidCraft.modid+".VadeMecum.docs.title.herobrineCreeper", VoidCraft.modid+".VadeMecum.docs.desc.herobrineCreeper") };
 	}
 
 }

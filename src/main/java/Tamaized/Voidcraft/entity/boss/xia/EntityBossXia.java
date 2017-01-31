@@ -4,94 +4,63 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import javax.annotation.Nullable;
-
-import Tamaized.Voidcraft.voidCraft;
+import Tamaized.TamModized.helper.PacketHelper;
+import Tamaized.TamModized.helper.PacketHelper.PacketWrapper;
+import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.entity.EntityVoidBoss;
 import Tamaized.Voidcraft.network.ClientPacketHandler;
 import Tamaized.Voidcraft.network.IVoidBossAIPacket;
 import Tamaized.Voidcraft.sound.VoidSoundEvents;
-import Tamaized.Voidcraft.xiaCastle.logic.battle.IBattleHandler;
+import Tamaized.Voidcraft.xiaCastle.logic.battle.Xia.XiaBattleHandler;
 import Tamaized.Voidcraft.xiaCastle.logic.battle.Xia.phases.EntityAIXiaPhase1;
 import Tamaized.Voidcraft.xiaCastle.logic.battle.Xia.phases.EntityAIXiaPhase2;
 import Tamaized.Voidcraft.xiaCastle.logic.battle.Xia.phases.EntityAIXiaPhase3;
+import io.netty.buffer.ByteBufInputStream;
 import io.netty.buffer.ByteBufOutputStream;
 import io.netty.buffer.Unpooled;
 import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketBuffer;
+import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
 import net.minecraftforge.fml.common.network.internal.FMLProxyPacket;
 
-public class EntityBossXia extends EntityVoidBoss {
-
-	/**
-	 * Degrees
-	 */
-	public float leftArmYaw = 0.0f;
-
-	/**
-	 * Degrees
-	 */
-	public float leftArmPitch = 0.0f;
-
-	/**
-	 * Degrees
-	 */
-	public float rightArmYaw = 0.0f;
-
-	/**
-	 * Degrees
-	 */
-	public float rightArmPitch = 0.0f;
+public class EntityBossXia extends EntityVoidBoss<XiaBattleHandler> {
 
 	public EntityBossXia(World par1World) {
 		super(par1World);
 		this.setInvul(true);
 	}
 
-	public EntityBossXia(World world, IBattleHandler handler) {
+	public EntityBossXia(World world, XiaBattleHandler handler) {
 		super(world, handler, false);
 		this.setInvul(true);
-	}
-
-	public void setArmRotations(float leftArmPitch, float rightArmPitch, float leftArmYaw, float rightArmYaw, boolean sendUpdates) {
-		this.leftArmYaw = leftArmYaw;
-		this.leftArmPitch = leftArmPitch;
-		this.rightArmYaw = rightArmYaw;
-		this.rightArmPitch = rightArmPitch;
-		if (sendUpdates) sendPacketUpdates();
-	}
-
-	private void sendPacketUpdates() {
-		ByteBufOutputStream bos = new ByteBufOutputStream(Unpooled.buffer());
-		DataOutputStream outputStream = new DataOutputStream(bos);
-		try {
-			outputStream.writeInt(ClientPacketHandler.getPacketTypeID(ClientPacketHandler.PacketType.XIA_ARMSTATE));
-			outputStream.writeInt(getEntityId());
-			outputStream.writeFloat(leftArmPitch);
-			outputStream.writeFloat(rightArmPitch);
-			outputStream.writeFloat(leftArmYaw);
-			outputStream.writeFloat(rightArmYaw);
-			FMLProxyPacket packet = new FMLProxyPacket(new PacketBuffer(bos.buffer()), voidCraft.networkChannelName);
-			if (voidCraft.channel != null && packet != null) voidCraft.channel.sendToAllAround(packet, new TargetPoint(worldObj.provider.getDimension(), posX, posY, posZ, 64));
-			bos.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 	}
 
 	@Override
 	protected void triggerOnDamage(int phase, DamageSource source, float amount) {
 		sendPacketToBus(new XiaTookDamagePacket());
+	}
+
+	@Override
+	protected void deathHook() {
+		world.spawnEntity(new EntityItem(world, posX, posY, posZ, new ItemStack(VoidCraft.armors.xiaHelmet)));
+		world.spawnEntity(new EntityItem(world, posX, posY, posZ, new ItemStack(VoidCraft.armors.xiaChest)));
+		world.spawnEntity(new EntityItem(world, posX, posY, posZ, new ItemStack(VoidCraft.armors.xiaLegs)));
+		world.spawnEntity(new EntityItem(world, posX, posY, posZ, new ItemStack(VoidCraft.armors.xiaBoots)));
+		for (EntityPlayer player : getHandler().getPlayers()) {
+			player.sendMessage(new TextComponentString(TextFormatting.DARK_GRAY + "[Xia] Very well.. Take my armor, you'll gain flight. Fly up through the hole and come do battle with me over the Void..."));
+		}
 	}
 
 	public class XiaTookDamagePacket implements IVoidBossAIPacket {
@@ -100,13 +69,26 @@ public class EntityBossXia extends EntityVoidBoss {
 
 	@Override
 	public void addPotionEffect(PotionEffect potioneffectIn) {
-
+		Potion pot = potioneffectIn.getPotion();
+		if (pot == VoidCraft.potions.fireSheathe || pot == VoidCraft.potions.frostSheathe || pot == VoidCraft.potions.litSheathe || pot == VoidCraft.potions.acidSheathe) super.addPotionEffect(potioneffectIn);
+		if (!world.isRemote) {
+			try {
+				PacketWrapper packet = PacketHelper.createPacket(VoidCraft.channel, VoidCraft.networkChannelName, ClientPacketHandler.getPacketTypeID(ClientPacketHandler.PacketType.SHEATHE));
+				DataOutputStream stream = packet.getStream();
+				stream.writeInt(getEntityId());
+				stream.writeInt(Potion.getIdFromPotion(pot));
+				stream.writeInt(potioneffectIn.getDuration());
+				packet.sendPacket(new TargetPoint(world.provider.getDimension(), posX, posY, posZ, 64));
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
 	@Override
-	public boolean processInteract(EntityPlayer player, EnumHand hand, @Nullable ItemStack stack) {
+	public boolean processInteract(EntityPlayer player, EnumHand hand) {
 		// start();
-		return super.processInteract(player, hand, stack);
+		return super.processInteract(player, hand);
 	}
 
 	@Override
@@ -201,5 +183,15 @@ public class EntityBossXia extends EntityVoidBoss {
 	@Override
 	protected int maxPhases() {
 		return 3;
+	}
+
+	@Override
+	protected void encodePacketData(DataOutputStream stream) throws IOException {
+
+	}
+
+	@Override
+	protected void decodePacketData(ByteBufInputStream stream) throws IOException {
+
 	}
 }

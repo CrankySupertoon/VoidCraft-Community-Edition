@@ -1,6 +1,6 @@
 package Tamaized.Voidcraft.GUI.client;
 
-import Tamaized.Voidcraft.voidCraft;
+import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.GUI.server.RealityTeleporterBlockContainer;
 import Tamaized.Voidcraft.machina.tileentity.TileEntityRealityTeleporter;
 import net.minecraft.client.Minecraft;
@@ -15,7 +15,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class RealityTeleporterBlockGUI extends GuiContainer {
 
-	private static final ResourceLocation daTexture = new ResourceLocation(voidCraft.modid, "textures/gui/voidCharger.png");
+	private static final ResourceLocation daTexture = new ResourceLocation(VoidCraft.modid, "textures/gui/voidCharger.png");
 
 	private final TileEntityRealityTeleporter te;
 

@@ -9,26 +9,24 @@ package Tamaized.Voidcraft.entity.boss.render.bossBar;
 
 import java.awt.Rectangle;
 
+import org.lwjgl.opengl.GL11;
+
+import Tamaized.Voidcraft.VoidCraft;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.VertexBuffer;
-import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 
-import org.lwjgl.opengl.GL11;
-
-import Tamaized.Voidcraft.voidCraft;
-
 public class RenderBossHeathBar {
 
-	public static final ResourceLocation whitespace = new ResourceLocation(voidCraft.modid + ":textures/gui/BossBar/WhiteSpace.png");
-	public static final ResourceLocation bar = new ResourceLocation(voidCraft.modid + ":textures/gui/BossBar/bar.png");
-	public static final ResourceLocation bg = new ResourceLocation(voidCraft.modid + ":textures/gui/BossBar/bg.png");
+	public static final ResourceLocation whitespace = new ResourceLocation(VoidCraft.modid + ":textures/gui/BossBar/WhiteSpace.png");
+	public static final ResourceLocation bar = new ResourceLocation(VoidCraft.modid + ":textures/gui/BossBar/bar.png");
+	public static final ResourceLocation bg = new ResourceLocation(VoidCraft.modid + ":textures/gui/BossBar/bg.png");
 
 	private static IVoidBossData voidBoss;
 
@@ -113,8 +111,8 @@ public class RenderBossHeathBar {
 		// GL11.glEnable(GL11.GL_BLEND);
 
 		Entity e = (Entity) voidBoss;
-		EntityPlayer p = mc.thePlayer;
-		if (e.isDead || !p.worldObj.loadedEntityList.contains(e) || pointDistanceSpace(e.posX, e.posY, e.posZ, p.posX, p.posY, p.posZ) > 32) voidBoss = null;
+		EntityPlayer p = mc.player;
+		if (e.isDead || !p.world.loadedEntityList.contains(e) || pointDistanceSpace(e.posX, e.posY, e.posZ, p.posX, p.posY, p.posZ) > 32) voidBoss = null;
 
 		if (flashTickWait <= 0) {
 			if (flashTickFlag) {

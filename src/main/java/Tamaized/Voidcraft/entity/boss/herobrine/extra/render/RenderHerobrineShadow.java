@@ -6,6 +6,7 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderLiving;
+import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
 import Tamaized.Voidcraft.entity.boss.herobrine.EntityBossHerobrine;
 import Tamaized.Voidcraft.entity.boss.herobrine.extra.EntityHerobrineShadow;
@@ -13,11 +14,11 @@ import Tamaized.Voidcraft.entity.boss.render.bossBar.RenderBossHeathBar;
 
 public class RenderHerobrineShadow<T extends EntityHerobrineShadow> extends Render<T> {
 
-	private static final ResourceLocation Herobrine_Texture = new ResourceLocation("VoidCraft:textures/entity/Herobrine.png"); // refers to:assets/yourmod/textures/entity/yourtexture.png
+	private static final ResourceLocation Herobrine_Texture = new ResourceLocation("VoidCraft:textures/entity/herobrine.png"); // refers to:assets/yourmod/textures/entity/yourtexture.png
 	protected ModelBase mainModel;
 
-	public RenderHerobrineShadow(ModelBase par1ModelBase) {
-		super(Minecraft.getMinecraft().getRenderManager());
+	public RenderHerobrineShadow(RenderManager manager, ModelBase par1ModelBase) {
+		super(manager);
 		mainModel = par1ModelBase;
 	}
 

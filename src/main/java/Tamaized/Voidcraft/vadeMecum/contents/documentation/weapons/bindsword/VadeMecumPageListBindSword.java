@@ -1,6 +1,6 @@
 package Tamaized.Voidcraft.vadeMecum.contents.documentation.weapons.bindsword;
 
-import Tamaized.Voidcraft.voidCraft;
+import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.capabilities.vadeMecum.IVadeMecumCapability;
 import Tamaized.Voidcraft.vadeMecum.IVadeMecumPage;
 import Tamaized.Voidcraft.vadeMecum.IVadeMecumPageProvider;
@@ -13,17 +13,17 @@ public class VadeMecumPageListBindSword implements IVadeMecumPageProvider {
 
 	public IVadeMecumPage[] getPageList(IVadeMecumCapability cap) {
 		return new IVadeMecumPage[] {
-				new VadeMecumPage(new ItemStack(voidCraft.tools.chainSword).getDisplayName(), voidCraft.modid+".VadeMecum.docs.desc.chainSword"),
-				new VadeMecumPageCrafting(new VadeMecumCraftingNormal(voidCraft.modid+".VadeMecum.recipe.normal", new ItemStack[] {
-						new ItemStack(voidCraft.items.voidChain),
-						new ItemStack(voidCraft.items.voidChain),
-						new ItemStack(voidCraft.items.voidChain),
-						new ItemStack(voidCraft.items.voidChain),
-						new ItemStack(voidCraft.tools.voidSword),
-						new ItemStack(voidCraft.items.voidChain),
-						new ItemStack(voidCraft.items.voidChain),
-						new ItemStack(voidCraft.items.voidChain),
-						new ItemStack(voidCraft.items.voidChain) }, new ItemStack(voidCraft.tools.chainSword))) };
+				new VadeMecumPage(new ItemStack(VoidCraft.tools.chainSword).getDisplayName(), VoidCraft.modid+".VadeMecum.docs.desc.chainSword"),
+				new VadeMecumPageCrafting(new VadeMecumCraftingNormal(VoidCraft.modid+".VadeMecum.recipe.normal", new ItemStack[] {
+						new ItemStack(VoidCraft.items.voidChain),
+						new ItemStack(VoidCraft.items.voidChain),
+						new ItemStack(VoidCraft.items.voidChain),
+						new ItemStack(VoidCraft.items.voidChain),
+						new ItemStack(VoidCraft.tools.voidSword),
+						new ItemStack(VoidCraft.items.voidChain),
+						new ItemStack(VoidCraft.items.voidChain),
+						new ItemStack(VoidCraft.items.voidChain),
+						new ItemStack(VoidCraft.items.voidChain) }, new ItemStack(VoidCraft.tools.chainSword))) };
 	}
 
 }

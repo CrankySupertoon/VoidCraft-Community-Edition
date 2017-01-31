@@ -1,10 +1,11 @@
 package Tamaized.Voidcraft.GUI;
 
-import Tamaized.Voidcraft.voidCraft;
+import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.GUI.client.HeimdallGUI;
 import Tamaized.Voidcraft.GUI.client.RealityStabilizerGUI;
 import Tamaized.Voidcraft.GUI.client.RealityTeleporterBlockGUI;
 import Tamaized.Voidcraft.GUI.client.RealityTeleporterGUI;
+import Tamaized.Voidcraft.GUI.client.StarForgeGUI;
 import Tamaized.Voidcraft.GUI.client.VoidBoxGUI;
 import Tamaized.Voidcraft.GUI.client.VoidicAlchemyGUI;
 import Tamaized.Voidcraft.GUI.client.VoidicChargerGUI;
@@ -15,12 +16,14 @@ import Tamaized.Voidcraft.GUI.server.HeimdallContainer;
 import Tamaized.Voidcraft.GUI.server.RealityStabilizerContainer;
 import Tamaized.Voidcraft.GUI.server.RealityTeleporterBlockContainer;
 import Tamaized.Voidcraft.GUI.server.RealityTeleporterContainer;
+import Tamaized.Voidcraft.GUI.server.StarForgeContainer;
 import Tamaized.Voidcraft.GUI.server.VoidBoxContainer;
 import Tamaized.Voidcraft.GUI.server.VoidInfuserContainer;
 import Tamaized.Voidcraft.GUI.server.VoidMaceratorContainer;
 import Tamaized.Voidcraft.GUI.server.VoidicAlchemyContainer;
 import Tamaized.Voidcraft.GUI.server.VoidicChargerContainer;
 import Tamaized.Voidcraft.GUI.server.VoidicPowerGenContainer;
+import Tamaized.Voidcraft.blocks.tileentity.TileEntityStarForge;
 import Tamaized.Voidcraft.machina.tileentity.TileEntityHeimdall;
 import Tamaized.Voidcraft.machina.tileentity.TileEntityRealityStabilizer;
 import Tamaized.Voidcraft.machina.tileentity.TileEntityRealityTeleporter;
@@ -40,7 +43,7 @@ import net.minecraftforge.fml.common.network.IGuiHandler;
 public class GuiHandler implements IGuiHandler {
 
 	public static enum Type {
-		NULL, Macerator, MusicBox, Infuser, Heimdall, VoidicGenerator, VoidicCharger, RealityStabilizer, RealityTeleporterBlock, VoidicAlchemy, RealityTeleporter// , VadeMecum
+		NULL, Macerator, MusicBox, Infuser, Heimdall, VoidicGenerator, VoidicCharger, RealityStabilizer, RealityTeleporterBlock, VoidicAlchemy, RealityTeleporter, StarForge// , VadeMecum
 	}
 
 	public static int getTypeID(Type type) {
@@ -78,8 +81,10 @@ public class GuiHandler implements IGuiHandler {
 			case VoidicAlchemy:
 				if (tileEntity != null && tileEntity instanceof TileEntityVoidicAlchemy) return new VoidicAlchemyContainer(player.inventory, (TileEntityVoidicAlchemy) tileEntity);
 			case RealityTeleporter:
-				if (main != null && main.getItem() == voidCraft.items.realityTeleporter) return new RealityTeleporterContainer(player.inventory, main);
-				else if (off != null && off.getItem() == voidCraft.items.realityTeleporter) return new RealityTeleporterContainer(player.inventory, off);
+				if (!main.isEmpty() && main.getItem() == VoidCraft.items.realityTeleporter) return new RealityTeleporterContainer(player.inventory, main);
+				else if (!off.isEmpty() && off.getItem() == VoidCraft.items.realityTeleporter) return new RealityTeleporterContainer(player.inventory, off);
+			case StarForge:
+				if (tileEntity != null && tileEntity instanceof TileEntityStarForge) return new StarForgeContainer(player.inventory, (TileEntityStarForge) tileEntity);
 			default:
 				return null;
 		}
@@ -112,8 +117,10 @@ public class GuiHandler implements IGuiHandler {
 			case VoidicAlchemy:
 				if (tileEntity != null && tileEntity instanceof TileEntityVoidicAlchemy) return new VoidicAlchemyGUI(player.inventory, (TileEntityVoidicAlchemy) tileEntity);
 			case RealityTeleporter:
-				if (main != null && main.getItem() == voidCraft.items.realityTeleporter) return new RealityTeleporterGUI(player.inventory, main);
-				else if (off != null && off.getItem() == voidCraft.items.realityTeleporter) return new RealityTeleporterGUI(player.inventory, off);
+				if (!main.isEmpty() && main.getItem() == VoidCraft.items.realityTeleporter) return new RealityTeleporterGUI(player.inventory, main);
+				else if (!off.isEmpty() && off.getItem() == VoidCraft.items.realityTeleporter) return new RealityTeleporterGUI(player.inventory, off);
+			case StarForge:
+				if (tileEntity != null && tileEntity instanceof TileEntityStarForge) return new StarForgeGUI(player.inventory, (TileEntityStarForge) tileEntity);
 			default:
 				return null;
 		}

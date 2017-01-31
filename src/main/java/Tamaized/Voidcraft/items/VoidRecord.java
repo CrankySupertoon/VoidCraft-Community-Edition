@@ -2,6 +2,9 @@ package Tamaized.Voidcraft.items;
 
 import java.util.List;
 
+import Tamaized.TamModized.registry.ITamModel;
+import Tamaized.Voidcraft.VoidCraft;
+import Tamaized.Voidcraft.sound.VoidSoundEvents.SoundTrack;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
@@ -16,9 +19,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import Tamaized.TamModized.registry.ITamModel;
-import Tamaized.Voidcraft.voidCraft;
-import Tamaized.Voidcraft.sound.VoidSoundEvents.SoundTrack;
 
 @Deprecated
 public class VoidRecord extends ItemRecord implements ITamModel { // TDOD: just remove this class later
@@ -37,7 +37,7 @@ public class VoidRecord extends ItemRecord implements ITamModel { // TDOD: just 
 		name = n;
 		setUnlocalizedName(name);
 		setMaxStackSize(1);
-		setCreativeTab(voidCraft.tabs.tabVoid);
+		setCreativeTab(VoidCraft.tabs.tabVoid);
 		GameRegistry.register(this.setRegistryName(getModelDir() + "/" + getName()));
 	}
 
@@ -64,7 +64,7 @@ public class VoidRecord extends ItemRecord implements ITamModel { // TDOD: just 
 	 * Callback for item usage. If the item does something special on right clicking, he will have one of those. Return True if something happen and false if it don't. This is for ITEMS, not BLOCKS
 	 */
 	@Override
-	public EnumActionResult onItemUse(ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+	public EnumActionResult onItemUse(EntityPlayer playerIn, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 		return EnumActionResult.PASS;
 	}
 

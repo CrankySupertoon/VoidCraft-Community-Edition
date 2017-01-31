@@ -1,72 +1,43 @@
 package Tamaized.Voidcraft.machina.addons;
 
-import java.util.ArrayList;
-
 import Tamaized.TamModized.tileentity.TamTileEntityRecipeList;
-import Tamaized.Voidcraft.voidCraft;
-import Tamaized.Voidcraft.machina.addons.TERecipesMacerator.MaceratorRecipe;
-import net.minecraft.item.Item;
+import Tamaized.Voidcraft.VoidCraft;
+import Tamaized.Voidcraft.capabilities.vadeMecum.IVadeMecumCapability;
 import net.minecraft.item.ItemStack;
 
 public class TERecipesAlchemy extends TamTileEntityRecipeList<TERecipesAlchemy.AlchemyRecipe> {
 
+	protected String getName() {
+		return "Alchemy";
+	}
+
 	@Override
-	public boolean registerRecipe(AlchemyRecipe recipe) {
-		if (recipe instanceof AlchemyRecipe) {
-			return super.registerRecipe(recipe);
-		} else {
-			voidCraft.logger.error("Tried to register a non-Alchemy recipe in the Alchemy Recipe List");
-			return false;
-		}
-	}
-	
-	public ArrayList<AlchemyRecipe> getList(){ // TODO: move this into TamModized
-		return recipes;
+	protected String getModID() {
+		return VoidCraft.modid;
 	}
 
-	public boolean isInput(ItemStack[] stacks) { // TODO: move this into TamModized
-		loop: for (AlchemyRecipe recipe : recipes) {
-			if (recipe.getInput().length != stacks.length) continue;
+	public ItemStack getOutput(IVadeMecumCapability cap, ItemStack[] stacks) {
+		loop: for (TERecipesAlchemy.AlchemyRecipe recipe : getList()) {
+			if (recipe.getInput().length != stacks.length || (recipe.getCategory() != null && (cap == null || !cap.hasCategory(recipe.getCategory())))) continue;
 			for (ItemStack stack : stacks) {
-				boolean flag2 = false;
 				for (ItemStack checkStack : recipe.getInput()) {
 					if (stack.getItem() == checkStack.getItem()) {
-						flag2 = true;
-						break;
+						continue loop;
 					}
 				}
-				if (!flag2) continue loop;
-			}
-			return true;
-		}
-		return false;
-	}
-
-	public ItemStack getOutput(ItemStack[] stacks) {// TODO: move this into TamModized
-		loop: for (AlchemyRecipe recipe : recipes) {
-			if (recipe.getInput().length != stacks.length) continue;
-			for (ItemStack stack : stacks) {
-				boolean flag2 = false;
-				for (ItemStack checkStack : recipe.getInput()) {
-					if (stack.getItem() == checkStack.getItem()) {
-						flag2 = true;
-						break;
-					}
-				}
-				if (!flag2) continue loop;
 			}
 			return recipe.getOutput();
 		}
-		return null;
+		return ItemStack.EMPTY;
 	}
 
-	public AlchemyRecipe getRecipe(ItemStack[] stacks) {// TODO: move this into TamModized
-		loop: for (AlchemyRecipe recipe : recipes) {
-			if (recipe.getInput().length != stacks.length) continue;
+	public TERecipesAlchemy.AlchemyRecipe getRecipe(IVadeMecumCapability cap, ItemStack[] stacks) {
+		loop: for (TERecipesAlchemy.AlchemyRecipe recipe : getList()) {
+			if (recipe.getInput().length != stacks.length || (recipe.getCategory() != null && (cap == null || !cap.hasCategory(recipe.getCategory())))) continue;
 			for (ItemStack stack : stacks) {
 				boolean flag2 = false;
 				for (ItemStack checkStack : recipe.getInput()) {
-					if (stack != null && checkStack != null && stack.getItem() == checkStack.getItem()) {
+					if (stack.getItem() == checkStack.getItem()) {
 						flag2 = true;
 						break;
 					}
@@ -78,26 +49,23 @@ public class TERecipesAlchemy extends TamTileEntityRecipeList<TERecipesAlchemy.A
 		return null;
 	}
 
-	protected String getName() {
-		return "Alchemy";
-	}
-
-	@Override
-	protected String getModID() {
-		return voidCraft.modid;
-	}
-
 	public class AlchemyRecipe extends TamTileEntityRecipeList.TamTERecipe {
 
 		private final int powerAmount;
+		private final IVadeMecumCapability.Category category;
 
-		public AlchemyRecipe(ItemStack[] input, ItemStack output, int requiredPower) {
+		public AlchemyRecipe(IVadeMecumCapability.Category cat, ItemStack[] input, ItemStack output, int requiredPower) {
 			super(input, output);
 			powerAmount = requiredPower;
+			category = cat;
 		}
 
 		public int getRequiredPower() {
 			return powerAmount;
+		}
+
+		public IVadeMecumCapability.Category getCategory() {
+			return category;
 		}
 
 	}

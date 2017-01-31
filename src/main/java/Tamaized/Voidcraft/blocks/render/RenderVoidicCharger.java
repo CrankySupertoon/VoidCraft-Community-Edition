@@ -8,14 +8,14 @@ import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 
-import Tamaized.Voidcraft.voidCraft;
+import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.blocks.model.ModelVoidicCharger;
+import Tamaized.Voidcraft.client.ClientRenderTicker;
 import Tamaized.Voidcraft.machina.tileentity.TileEntityVoidicCharger;
-import Tamaized.Voidcraft.voidicInfusion.client.ClientRenderTicker;
 
 public class RenderVoidicCharger extends TileEntitySpecialRenderer<TileEntityVoidicCharger> {
 	
-	private static final ResourceLocation texture = new ResourceLocation(voidCraft.modid, "textures/models/blocks/voidicCharger.png");
+	private static final ResourceLocation texture = new ResourceLocation(VoidCraft.modid, "textures/models/blocks/voidicCharger.png");
 	
 	private final ModelVoidicCharger model;
 	

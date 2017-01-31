@@ -30,7 +30,7 @@ import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.codec.binary.StringUtils;
 import org.apache.commons.io.FileUtils;
 
-import Tamaized.Voidcraft.voidCraft;
+import Tamaized.Voidcraft.VoidCraft;
 
 import com.google.common.io.Resources;
 import com.google.gson.stream.JsonReader;
@@ -43,9 +43,9 @@ public class SkinHandler {
 	private static final String nameUrl = "https://api.mojang.com/user/profiles/";
 	private static final String skinUrl = "http://skins.minecraft.net/MinecraftSkins/";
 	private static final String idUrl = "https://api.mojang.com/profiles/";
-	private static final String baseLoc = (System.getenv("APPDATA") == null || System.getenv("APPDATA").contains("null")) ? "./.minecraft/" : (System.getenv("APPDATA")) + "/.minecraft/" + voidCraft.modid + "/";
-	private static final String loc = baseLoc + "assets/" + voidCraft.modid + "/skins/";
-	private static final String skinZip = "/assets/" + voidCraft.modid + "/skinHandler/skins.zip";
+	private static final String baseLoc = (System.getenv("APPDATA") == null || System.getenv("APPDATA").contains("null")) ? "./.minecraft/" : (System.getenv("APPDATA")) + "/.minecraft/" + VoidCraft.modid + "/";
+	private static final String loc = baseLoc + "assets/" + VoidCraft.modid + "/skins/";
+	private static final String skinZip = "/assets/" + VoidCraft.modid + "/skinHandler/skins.zip";
 
 	// Perm
 	private Map<PlayerNameAlias, GameProfile> aliasProfile = new HashMap<PlayerNameAlias, GameProfile>();
@@ -102,15 +102,15 @@ public class SkinHandler {
 	}
 
 	public void run() {
-		voidCraft.logger.info("Running SkinHandler");
+		VoidCraft.instance.logger.info("Running SkinHandler");
 		handleResources();
 		if (isOnline()) {
-			voidCraft.logger.info("Able to Connect to Mojang Servers, validating skins");
+			VoidCraft.instance.logger.info("Able to Connect to Mojang Servers, validating skins");
 			validateNames();
 			validateSkins();
 			updateSkins();
 		} else {
-			voidCraft.logger.info("Unable to Connect to Mojang Servers, using cache");
+			VoidCraft.instance.logger.info("Unable to Connect to Mojang Servers, using cache");
 			useCacheNames();
 			cacheSkins();
 		}
@@ -130,7 +130,7 @@ public class SkinHandler {
 		File dir = new File(loc);
 		dir.mkdirs();
 		if (dir.list().length < 16) {
-			voidCraft.logger.info("Populating: " + loc);
+			VoidCraft.instance.logger.info("Populating: " + loc);
 			extractZip(getClass().getResourceAsStream(skinZip), loc);
 		}
 	}
@@ -194,7 +194,7 @@ public class SkinHandler {
 	}
 
 	private void validateNames() {
-		voidCraft.logger.info("Mapping Names to UUIDs");
+		VoidCraft.instance.logger.info("Mapping Names to UUIDs");
 		for (UUID id : aliasUUID.values()) {
 			try {
 				String theName = id.toString().replace("-", "");
@@ -225,7 +225,7 @@ public class SkinHandler {
 				json.close();
 				uuidNames.put(theName, id);
 				uuidNamesFlip.put(id, theName);
-				voidCraft.logger.info("Mapped " + theName + " -> " + id);
+				VoidCraft.instance.logger.info("Mapped " + theName + " -> " + id);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -249,7 +249,7 @@ public class SkinHandler {
 			}
 			if (file.exists()) {
 				blacklist.add(uuidNames.get(name));
-				voidCraft.logger.info(name + " was validated");
+				VoidCraft.instance.logger.info(name + " was validated");
 			}
 		}
 	}
@@ -274,7 +274,7 @@ public class SkinHandler {
 				loadCachedAlias(alias);
 				continue;
 			}
-			voidCraft.logger.info("Updating alias: " + alias);
+			VoidCraft.instance.logger.info("Updating alias: " + alias);
 			try {
 				BufferedReader reader = Resources.asCharSource(new URL(profileUrl + ("" + getUUID(alias)).replace("-", "")), StandardCharsets.UTF_8).openBufferedStream();
 
@@ -381,11 +381,11 @@ public class SkinHandler {
 					json.endObject();
 				}
 				json.close();
-				voidCraft.logger.info("Downloading skin: " + skinUrl);
+				VoidCraft.instance.logger.info("Downloading skin: " + skinUrl);
 				FileUtils.copyURLToFile(new URL(skinUrl), new File(loc + uuidNamesFlip.get(getUUID(alias)) + ".png"));
 				loadAlias(alias, profileName);
 			} catch (IOException e) {
-				voidCraft.logger.info("Request was sent too often or there was an issue with the Mojang servers, using cache for " + alias);
+				VoidCraft.instance.logger.info("Request was sent too often or there was an issue with the Mojang servers, using cache for " + alias);
 				loadCachedAlias(alias);
 			}
 		}
@@ -398,13 +398,13 @@ public class SkinHandler {
 	}
 
 	private void loadCachedAlias(PlayerNameAlias alias) {
-		voidCraft.logger.info("Loading alias cache: " + uuidNamesFlip.get(getUUID(alias)));
+		VoidCraft.instance.logger.info("Loading alias cache: " + uuidNamesFlip.get(getUUID(alias)));
 		aliasProfile.put(alias, new GameProfile(getUUID(alias), uuidNamesFlip.get(getUUID(alias))));
 		loadAliasResource(alias);
 	}
 
 	private void loadAlias(PlayerNameAlias alias, String name) {
-		voidCraft.logger.info("Loading updated alias: " + uuidNamesFlip.get(getUUID(alias)));
+		VoidCraft.instance.logger.info("Loading updated alias: " + uuidNamesFlip.get(getUUID(alias)));
 		aliasProfile.put(alias, new GameProfile(getUUID(alias), name));
 		loadAliasResource(alias);
 	}
@@ -415,7 +415,7 @@ public class SkinHandler {
 			if (FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT) {
 				net.minecraft.client.renderer.texture.DynamicTexture dt = new net.minecraft.client.renderer.texture.DynamicTexture(bimg);
 				net.minecraft.client.renderer.texture.TextureManager tm = net.minecraft.client.Minecraft.getMinecraft().getTextureManager();
-				ResourceLocation resource = tm.getDynamicTextureLocation(voidCraft.modid + ":skin_" + alias.toString(), dt);
+				ResourceLocation resource = tm.getDynamicTextureLocation(VoidCraft.modid + ":skin_" + alias.toString(), dt);
 				aliasSkin.put(alias, resource);
 			}
 			aliasBiped.put(alias, bimg.getHeight() == 32);

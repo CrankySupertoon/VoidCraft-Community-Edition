@@ -1,10 +1,10 @@
 package Tamaized.Voidcraft.xiaCastle.logic.battle.herobrine;
 
+import Tamaized.Voidcraft.entity.boss.herobrine.EntityBossHerobrine;
+import Tamaized.Voidcraft.xiaCastle.logic.battle.IBattleHandler;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import Tamaized.Voidcraft.entity.boss.herobrine.EntityBossHerobrine;
-import Tamaized.Voidcraft.xiaCastle.logic.battle.IBattleHandler;
 
 public class HerobrineBattleHandler implements IBattleHandler {
 
@@ -47,7 +47,7 @@ public class HerobrineBattleHandler implements IBattleHandler {
 		}
 		herobrine = new EntityBossHerobrine(worldObj, this);
 		herobrine.setPositionAndUpdate(pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5);
-		worldObj.spawnEntityInWorld(herobrine);
+		worldObj.spawnEntity(herobrine);
 		herobrine.start();
 		running = true;
 	}
@@ -57,8 +57,8 @@ public class HerobrineBattleHandler implements IBattleHandler {
 		if (pos == null) return;
 		readyForInput = false;
 		isDone = false;
-		if (herobrine != null){
-			if(herobrine.isDone()) isDone = true;
+		if (herobrine != null) {
+			if (herobrine.isDone()) isDone = true;
 			worldObj.removeEntity(herobrine);
 		}
 		herobrine = null;
@@ -74,12 +74,12 @@ public class HerobrineBattleHandler implements IBattleHandler {
 	public boolean isRunning() {
 		return running;
 	}
-	
+
 	@Override
 	public boolean isDone() {
 		return isDone;
 	}
-	
+
 	@Override
 	public void setDone() {
 		stop();

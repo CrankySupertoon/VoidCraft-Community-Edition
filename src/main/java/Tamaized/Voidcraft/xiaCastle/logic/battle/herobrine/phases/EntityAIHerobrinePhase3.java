@@ -4,14 +4,6 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.UUID;
 
-import net.minecraft.entity.monster.EntitySkeleton;
-import net.minecraft.entity.monster.SkeletonType;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
-import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Vec3d;
 import Tamaized.Voidcraft.entity.boss.herobrine.EntityBossHerobrine;
 import Tamaized.Voidcraft.entity.boss.herobrine.extra.EntityHerobrineCreeper;
 import Tamaized.Voidcraft.entity.boss.herobrine.extra.EntityHerobrineFireball;
@@ -23,6 +15,13 @@ import Tamaized.Voidcraft.handlers.SkinHandler;
 import Tamaized.Voidcraft.handlers.SkinHandler.PlayerNameAlias;
 import Tamaized.Voidcraft.network.IVoidBossAIPacket;
 import Tamaized.Voidcraft.xiaCastle.logic.battle.EntityVoidNPCAIBase;
+import net.minecraft.entity.monster.EntityWitherSkeleton;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.Vec3d;
 
 public class EntityAIHerobrinePhase3<T extends EntityBossHerobrine> extends EntityVoidNPCAIBase<T> {
 
@@ -44,8 +43,12 @@ public class EntityAIHerobrinePhase3<T extends EntityBossHerobrine> extends Enti
 	}
 
 	@Override
-	public void Init() {
-		super.Init();
+	protected void preInit() {
+
+	}
+
+	@Override
+	protected void postInit() {
 		loc = getEntity().getPosition().add(0, 10, 0);
 		for (int x = -10; x <= 10; x++) {
 			for (int z = -10; z <= 10; z++) {
@@ -113,28 +116,28 @@ public class EntityAIHerobrinePhase3<T extends EntityBossHerobrine> extends Enti
 		PlayerNameAlias alias = getRandomUnusedAlias(0);
 		alreadyUsed.add(SkinHandler.getUUID(alias));
 		usedLocs.add(i);
-		EntityGhostPlayerBase entity = EntityGhostPlayerBase.newInstance(world, alias);
+		EntityGhostPlayerBase entity = EntityGhostPlayerBase.newInstance(world, alias, true);
 		currGhost = entity;
 		switch (i) {
 			case 0:
 				entity.setLocationAndAngles(getBlockPosition().getX() + 8.5, getBlockPosition().getY(), getBlockPosition().getZ() + 0.5, 0, 0);
 				entity.rotationYawHead = entity.rotationYaw = entity.prevRotationYaw = entity.prevRotationYawHead = entity.prevRenderYawOffset = entity.renderYawOffset = 90;
-				world.spawnEntityInWorld(entity);
+				world.spawnEntity(entity);
 				break;
 			case 1:
 				entity.setLocationAndAngles(getBlockPosition().getX() - 7.5, getBlockPosition().getY(), getBlockPosition().getZ() + 0.5, 0, 0);
 				entity.rotationYawHead = entity.rotationYaw = entity.prevRotationYaw = entity.prevRotationYawHead = entity.prevRenderYawOffset = entity.renderYawOffset = 270;
-				world.spawnEntityInWorld(entity);
+				world.spawnEntity(entity);
 				break;
 			case 2:
 				entity.setLocationAndAngles(getBlockPosition().getX() + 0.5, getBlockPosition().getY(), getBlockPosition().getZ() + 8.5, 0, 0);
 				entity.rotationYawHead = entity.rotationYaw = entity.prevRotationYaw = entity.prevRotationYawHead = entity.prevRenderYawOffset = entity.renderYawOffset = 180;
-				world.spawnEntityInWorld(entity);
+				world.spawnEntity(entity);
 				break;
 			case 3:
 				entity.setLocationAndAngles(getBlockPosition().getX() + 0.5, getBlockPosition().getY(), getBlockPosition().getZ() - 7.5, 0, 0);
 				entity.rotationYawHead = entity.rotationYaw = entity.prevRotationYaw = entity.prevRotationYawHead = entity.prevRenderYawOffset = entity.renderYawOffset = 0;
-				world.spawnEntityInWorld(entity);
+				world.spawnEntity(entity);
 				break;
 			default:
 				break;
@@ -173,31 +176,31 @@ public class EntityAIHerobrinePhase3<T extends EntityBossHerobrine> extends Enti
 			Random rand = new Random();
 			switch (rand.nextInt(5)) {
 				case 0: // Fireball
-					getEntity().worldObj.playRecord(new BlockPos((int) getEntity().posX, (int) getEntity().posY, (int) getEntity().posZ), null);// ((EntityPlayer)null, 1008, new BlockPos((int)theWatcher.posX, (int)theWatcher.posY, (int)theWatcher.posZ), 0);
+					getEntity().world.playRecord(new BlockPos((int) getEntity().posX, (int) getEntity().posY, (int) getEntity().posZ), null);// ((EntityPlayer)null, 1008, new BlockPos((int)theWatcher.posX, (int)theWatcher.posY, (int)theWatcher.posZ), 0);
 					double d5 = closestEntity.posX - getEntity().posX;
 					double d6 = closestEntity.getEntityBoundingBox().minY + (double) (closestEntity.height / 2.0F) - (getEntity().posY + (double) (getEntity().height / 2.0F));
 					double d7 = closestEntity.posZ - getEntity().posZ;
 
-					EntityHerobrineFireball entitylargefireball = new EntityHerobrineFireball(getEntity().worldObj, getEntity(), d5, d6, d7);
+					EntityHerobrineFireball entitylargefireball = new EntityHerobrineFireball(getEntity().world, getEntity(), d5, d6, d7);
 					double d8 = 4.0D;
 					Vec3d vec3 = getEntity().getLook(1.0F);
 					entitylargefireball.posX = getEntity().posX;// + vec3.xCoord * d8;
 					entitylargefireball.posY = getEntity().posY + (double) (getEntity().height / 2.0F) + 0.5D;
 					entitylargefireball.posZ = getEntity().posZ;// + vec3.zCoord * d8;
-					getEntity().worldObj.spawnEntityInWorld(entitylargefireball);
+					getEntity().world.spawnEntity(entitylargefireball);
 					break;
 				case 1: // Spawn Creepers
 					for (int i = 0; i < 4; i++) {
-						EntityHerobrineCreeper creeper = new EntityHerobrineCreeper(getEntity().worldObj);
+						EntityHerobrineCreeper creeper = new EntityHerobrineCreeper(getEntity().world);
 						creeper.setPosition(getEntity().getPosition().getX() + rand.nextInt(18) - 8, getEntity().getPosition().getY() - 6, getEntity().getPosition().getZ() + rand.nextInt(18) - 8);
-						getEntity().worldObj.spawnEntityInWorld(creeper);
+						getEntity().world.spawnEntity(creeper);
 					}
 					break;
 				case 2: // Primed TNT
 					for (int i = 0; i < 2; i++) {
-						EntityHerobrineTNTPrimed tnt = new EntityHerobrineTNTPrimed(getEntity().worldObj);
+						EntityHerobrineTNTPrimed tnt = new EntityHerobrineTNTPrimed(getEntity().world);
 						tnt.setPosition(getEntity().getPosition().getX() + rand.nextInt(18) - 8, getEntity().getPosition().getY() - 6, getEntity().getPosition().getZ() + rand.nextInt(18) - 8);
-						getEntity().worldObj.spawnEntityInWorld(tnt);
+						getEntity().world.spawnEntity(tnt);
 					}
 					break;
 				case 3: // Shadow Clone
@@ -205,7 +208,7 @@ public class EntityAIHerobrinePhase3<T extends EntityBossHerobrine> extends Enti
 					double d62 = closestEntity.getEntityBoundingBox().minY + (double) (closestEntity.height / 2.0F) - (getEntity().posY + (double) (getEntity().height / 2.0F));
 					double d72 = closestEntity.posZ - getEntity().posZ;
 
-					EntityHerobrineShadow entityHerobrineShadow = new EntityHerobrineShadow(getEntity().worldObj, getEntity(), d52, d62, d72);
+					EntityHerobrineShadow entityHerobrineShadow = new EntityHerobrineShadow(getEntity().world, getEntity(), d52, d62, d72);
 					double d82 = 4.0D;
 					Vec3d vec32 = getEntity().getLook(1.0F);
 					entityHerobrineShadow.posX = getEntity().posX;// + vec3.xCoord * d8;
@@ -215,23 +218,22 @@ public class EntityAIHerobrinePhase3<T extends EntityBossHerobrine> extends Enti
 					entityHerobrineShadow.rotationYaw = getEntity().rotationYaw - 180;
 					entityHerobrineShadow.prevRotationYawHead = getEntity().prevRotationYawHead - 180;
 					entityHerobrineShadow.rotationYawHead = getEntity().rotationYawHead - 180;
-					getEntity().worldObj.spawnEntityInWorld(entityHerobrineShadow);
+					getEntity().world.spawnEntity(entityHerobrineShadow);
 					break;
 				case 4: // Wither Skeleton Spawns with EntityWitherSkulls from the walls
 					for (int i = 0; i < 4; i++) {
-						EntitySkeleton skele = new EntitySkeleton(getEntity().worldObj);
-						skele.setSkeletonType(SkeletonType.WITHER);
+						EntityWitherSkeleton skele = new EntityWitherSkeleton(getEntity().world);
 						skele.setPosition(getEntity().getPosition().getX() + rand.nextInt(18) - 8, getEntity().getPosition().getY() - 6, getEntity().getPosition().getZ() + rand.nextInt(18) - 8);
-						getEntity().worldObj.spawnEntityInWorld(skele);
+						getEntity().world.spawnEntity(skele);
 					}
-					EntityHerobrineWitherSkull skull1 = new EntityHerobrineWitherSkull(getEntity().worldObj, getEntity(), (watcherX - 7) - watcherX, (watcherY - 10) - watcherY, (watcherZ - 0) - watcherZ);
-					EntityHerobrineWitherSkull skull2 = new EntityHerobrineWitherSkull(getEntity().worldObj, getEntity(), (watcherX + 7) - watcherX, (watcherY - 10) - watcherY, (watcherZ - 0) - watcherZ);
-					EntityHerobrineWitherSkull skull3 = new EntityHerobrineWitherSkull(getEntity().worldObj, getEntity(), (watcherX - 0) - watcherX, (watcherY - 10) - watcherY, (watcherZ - 7) - watcherZ);
-					EntityHerobrineWitherSkull skull4 = new EntityHerobrineWitherSkull(getEntity().worldObj, getEntity(), (watcherX - 0) - watcherX, (watcherY - 10) - watcherY, (watcherZ + 7) - watcherZ);
-					getEntity().worldObj.spawnEntityInWorld(skull1);
-					getEntity().worldObj.spawnEntityInWorld(skull2);
-					getEntity().worldObj.spawnEntityInWorld(skull3);
-					getEntity().worldObj.spawnEntityInWorld(skull4);
+					EntityHerobrineWitherSkull skull1 = new EntityHerobrineWitherSkull(getEntity().world, getEntity(), (watcherX - 7) - watcherX, (watcherY - 10) - watcherY, (watcherZ - 0) - watcherZ);
+					EntityHerobrineWitherSkull skull2 = new EntityHerobrineWitherSkull(getEntity().world, getEntity(), (watcherX + 7) - watcherX, (watcherY - 10) - watcherY, (watcherZ - 0) - watcherZ);
+					EntityHerobrineWitherSkull skull3 = new EntityHerobrineWitherSkull(getEntity().world, getEntity(), (watcherX - 0) - watcherX, (watcherY - 10) - watcherY, (watcherZ - 7) - watcherZ);
+					EntityHerobrineWitherSkull skull4 = new EntityHerobrineWitherSkull(getEntity().world, getEntity(), (watcherX - 0) - watcherX, (watcherY - 10) - watcherY, (watcherZ + 7) - watcherZ);
+					getEntity().world.spawnEntity(skull1);
+					getEntity().world.spawnEntity(skull2);
+					getEntity().world.spawnEntity(skull3);
+					getEntity().world.spawnEntity(skull4);
 					break;
 				default:
 					break;

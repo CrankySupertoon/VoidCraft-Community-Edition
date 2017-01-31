@@ -1,29 +1,29 @@
 package Tamaized.Voidcraft.entity.boss.twins;
 
+import java.io.DataOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 
-import javax.annotation.Nullable;
-
+import Tamaized.Voidcraft.entity.EntityVoidBoss;
+import Tamaized.Voidcraft.sound.VoidSoundEvents;
+import Tamaized.Voidcraft.xiaCastle.logic.battle.twins.TwinsBattleHandler;
+import io.netty.buffer.ByteBufInputStream;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
-import Tamaized.Voidcraft.entity.EntityVoidBoss;
-import Tamaized.Voidcraft.sound.VoidSoundEvents;
-import Tamaized.Voidcraft.xiaCastle.logic.battle.IBattleHandler;
 
-public class EntityBossZol extends EntityVoidBoss {
+public class EntityBossZol extends EntityVoidBoss<TwinsBattleHandler> {
 
 	public EntityBossZol(World par1World) {
 		super(par1World);
 		this.setInvul(true);
 	}
 
-	public EntityBossZol(World world, IBattleHandler handler) {
+	public EntityBossZol(World world, TwinsBattleHandler handler) {
 		super(world, handler, true);
 		this.setInvul(true);
 	}
@@ -32,11 +32,16 @@ public class EntityBossZol extends EntityVoidBoss {
 	protected void triggerOnDamage(int phase, DamageSource source, float amount) {
 
 	}
+	
+	@Override
+	protected void deathHook() {
+		
+	}
 
 	@Override
-	public boolean processInteract(EntityPlayer player, EnumHand hand, @Nullable ItemStack stack) {
+	public boolean processInteract(EntityPlayer player, EnumHand hand) {
 		// start();
-		return super.processInteract(player, hand, stack);
+		return super.processInteract(player, hand);
 	}
 
 	@Override
@@ -104,6 +109,16 @@ public class EntityBossZol extends EntityVoidBoss {
 	@Override
 	public ITextComponent getDisplayName() {
 		return new TextComponentString("Zol");
+	}
+
+	@Override
+	protected void encodePacketData(DataOutputStream stream) throws IOException {
+		
+	}
+
+	@Override
+	protected void decodePacketData(ByteBufInputStream stream) throws IOException {
+		
 	}
 
 }

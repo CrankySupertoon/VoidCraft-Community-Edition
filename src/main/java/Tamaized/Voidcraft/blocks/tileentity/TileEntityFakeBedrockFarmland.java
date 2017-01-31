@@ -21,7 +21,7 @@ public class TileEntityFakeBedrockFarmland extends TamTileEntity {
 
 	public void setAlteration(Alteration alter) {
 		currAlteration = alter;
-		worldObj.markBlockRangeForRenderUpdate(getPos(), getPos());
+		world.markBlockRangeForRenderUpdate(getPos(), getPos());
 	}
 
 	public Alteration getAlteration() {

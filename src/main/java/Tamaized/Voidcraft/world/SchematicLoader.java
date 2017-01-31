@@ -5,8 +5,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.state.BlockStateBase;
-import net.minecraft.init.Blocks;
 import net.minecraft.nbt.CompressedStreamTools;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -49,7 +47,6 @@ public class SchematicLoader {
 				blocks[i] = (localBlocks[i] & 0xFF) | (extra ? ((extraBlocks[i] & 0xFF) << 8) : 0);
 			}
 
-			System.out.println("schem size:" + width + " x " + height + " x " + length);
 			NBTTagList tileentities = nbtdata.getTagList("TileEntities", 10);
 			is.close();
 
@@ -65,13 +62,11 @@ public class SchematicLoader {
 
 			return new Schematic(mappings, tileentities, width, height, length, addBlocks, blocks, data);
 		} catch (Exception e) {
-			System.out.println("I can't load schematic, because " + e.toString());
 			return null;
 		}
 	}
 
 	public static void buildSchematic(String schematicName, SchematicLoader loader, World world, BlockPos pos) {
-		System.out.println("Building...");
 		if (world == null) return;
 		int x = pos.getX();
 		int y = pos.getY();
@@ -85,7 +80,7 @@ public class SchematicLoader {
 					int meta = spring.data[i];
 					Block b = spring.getBlock(id);
 					if (id != 0 && b != null) {
-						//System.out.println(id+" : "+b+" : "+meta+" : "+(cx + x + 1)+":"+(cy + y)+":"+(cz + z + 1));
+						// System.out.println(id+" : "+b+" : "+meta+" : "+(cx + x + 1)+":"+(cy + y)+":"+(cz + z + 1));
 						world.setBlockState(new BlockPos(cx + x + 1, cy + y, cz + z + 1), b.getStateFromMeta(meta), 2);
 					} else {
 						world.setBlockToAir(new BlockPos(cx + x + 1, cy + y, cz + z + 1));
@@ -94,7 +89,6 @@ public class SchematicLoader {
 				}
 			}
 		}
-		System.out.println("FINISHED");
 	}
 
 	public class Schematic {

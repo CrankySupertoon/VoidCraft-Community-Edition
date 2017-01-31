@@ -137,11 +137,11 @@ public class VoidicPowerCable extends TamBlockContainer {
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
 		return bounds;
 	}
-
+	
 	@Override
-	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, @Nullable Entity entityIn) {
+	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean p_185477_7_) {
 		setBlockBounds(new AxisAlignedBB(PIPE_MIN_POS, PIPE_MIN_POS, PIPE_MIN_POS, PIPE_MAX_POS, PIPE_MAX_POS, PIPE_MAX_POS));
-		super.addCollisionBoxToList(state, worldIn, pos, entityBox, collidingBoxes, entityIn);
+		super.addCollisionBoxToList(state, worldIn, pos, entityBox, collidingBoxes, entityIn, p_185477_7_);
 
 		state = getActualState(state, worldIn, pos);
 
@@ -149,7 +149,7 @@ public class VoidicPowerCable extends TamBlockContainer {
 			if (isConnected(state, facing)) {
 				AxisAlignedBB axisAlignedBB = CONNECTED_BOUNDING_BOXES.get(facing.getIndex());
 				setBlockBounds(axisAlignedBB);
-				super.addCollisionBoxToList(state, worldIn, pos, entityBox, collidingBoxes, entityIn);
+				super.addCollisionBoxToList(state, worldIn, pos, entityBox, collidingBoxes, entityIn, p_185477_7_);
 			}
 		}
 

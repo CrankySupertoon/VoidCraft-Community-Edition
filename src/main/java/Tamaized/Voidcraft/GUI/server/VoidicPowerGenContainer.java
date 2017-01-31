@@ -1,5 +1,6 @@
 package Tamaized.Voidcraft.GUI.server;
 
+import Tamaized.Voidcraft.machina.tileentity.TileEntityVoidicPowerGen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.IContainerListener;
@@ -7,8 +8,6 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import Tamaized.Voidcraft.voidCraft;
-import Tamaized.Voidcraft.machina.tileentity.TileEntityVoidicPowerGen;
 
 public class VoidicPowerGenContainer extends ContainerBase {
 
@@ -20,16 +19,16 @@ public class VoidicPowerGenContainer extends ContainerBase {
 	public VoidicPowerGenContainer(InventoryPlayer inventory, TileEntityVoidicPowerGen tileEntity) {
 		te = tileEntity;
 
-		this.addSlotToContainer(new Slot(tileEntity, 0, 130, 100));
+		addSlotToContainer(new Slot(tileEntity, 0, 130, 100));
 
 		for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < 9; j++) {
-				this.addSlotToContainer(new Slot(inventory, j + i * 9 + 9, 86 + j * 18, 150 + i * 18));
+				addSlotToContainer(new Slot(inventory, j + i * 9 + 9, 86 + j * 18, 150 + i * 18));
 			}
 		}
 
 		for (int i = 0; i < 9; i++) {
-			this.addSlotToContainer(new Slot(inventory, i, 86 + i * 18, 208));
+			addSlotToContainer(new Slot(inventory, i, 86 + i * 18, 208));
 		}
 
 		addSlotToContainer(new Slot(inventory, inventory.getSizeInventory() - 1, 230, 127) {
@@ -46,15 +45,15 @@ public class VoidicPowerGenContainer extends ContainerBase {
 	public void detectAndSendChanges() {
 		super.detectAndSendChanges();
 
-		for (int i = 0; i < this.listeners.size(); ++i) {
-			IContainerListener icontainerlistener = (IContainerListener) this.listeners.get(i);
+		for (int i = 0; i < listeners.size(); ++i) {
+			IContainerListener icontainerlistener = (IContainerListener) listeners.get(i);
 
-			if (this.fluidAmount != te.getFluidAmount()) {
+			if (fluidAmount != te.getFluidAmount()) {
 				fluidAmount = te.getFluidAmount();
 				icontainerlistener.sendProgressBarUpdate(this, 0, fluidAmount);
 			}
 
-			if (this.powerAmount != te.getPowerAmount()) {
+			if (powerAmount != te.getPowerAmount()) {
 				powerAmount = te.getPowerAmount();
 				icontainerlistener.sendProgressBarUpdate(this, 1, powerAmount);
 			}
@@ -78,52 +77,59 @@ public class VoidicPowerGenContainer extends ContainerBase {
 
 	@Override
 	public ItemStack transferStackInSlot(EntityPlayer player, int hoverSlot) {
-		ItemStack itemstack = null;
-		Slot slot = (Slot) this.inventorySlots.get(hoverSlot);
+		ItemStack itemstack = ItemStack.EMPTY;
+		Slot slot = (Slot) inventorySlots.get(hoverSlot);
 
 		if (slot != null && slot.getHasStack()) {
 			ItemStack itemstack1 = slot.getStack();
 			itemstack = itemstack1.copy();
 
-			if (hoverSlot == 0) {
-				if (!this.mergeItemStack(itemstack1, 1, 37, true)) {
-					return null;
+			final int maxSlots = te.getSizeInventory();
+
+			if (hoverSlot < maxSlots) {
+				if (!mergeItemStack(itemstack1, maxSlots, maxSlots + 36, true)) {
+					return ItemStack.EMPTY;
 				}
 				slot.onSlotChange(itemstack1, itemstack);
 			} else {
-				if (!this.getSlot(0).getHasStack() && itemstack1.getItem() == voidCraft.fluids.getBucket().getItem()) {
-					if (!this.mergeItemStack(itemstack1, 0, 1, false)) {
-						return null;
+				ItemStack slotCheck = te.getStackInSlot(te.SLOT_DEFAULT);
+				if ((slotCheck.isEmpty() || (slotCheck.getCount() < slotCheck.getMaxStackSize() && slotCheck.isItemEqual(itemstack))) && te.canInsertItem(te.SLOT_DEFAULT, itemstack1, null)) {
+					if (!mergeItemStack(itemstack1, te.SLOT_DEFAULT, te.SLOT_DEFAULT + 1, false)) {
+						return ItemStack.EMPTY;
 					}
-				} else if (hoverSlot >= 1 && hoverSlot < 28) {
-					if (!this.mergeItemStack(itemstack1, 28, 37, false)) {
-						return null;
+				} else if (hoverSlot >= maxSlots && hoverSlot < maxSlots + 27) {
+					if (!mergeItemStack(itemstack1, maxSlots + 27, maxSlots + 36, false)) {
+						return ItemStack.EMPTY;
 					}
-				} else if (hoverSlot >= 28 && hoverSlot < 37) {
-					if (!this.mergeItemStack(itemstack1, 1, 28, false)) {
-						return null;
+				} else if (hoverSlot >= maxSlots + 27 && hoverSlot < maxSlots + 36) {
+					if (!mergeItemStack(itemstack1, maxSlots, maxSlots + 27, false)) {
+						return ItemStack.EMPTY;
+					}
+				} else {
+					if (!mergeItemStack(itemstack1, maxSlots, maxSlots + 36, false)) {
+						return ItemStack.EMPTY;
 					}
 				}
 			}
 
-			if (itemstack1.stackSize == 0) {
-				slot.putStack((ItemStack) null);
+			if (itemstack1.getCount() == 0) {
+				slot.putStack(ItemStack.EMPTY);
 			} else {
 				slot.onSlotChanged();
 			}
 
-			if (itemstack1.stackSize == itemstack.stackSize) {
-				return null;
+			if (itemstack1.getCount() == itemstack.getCount()) {
+				return ItemStack.EMPTY;
 			}
 
-			slot.onPickupFromSlot(player, itemstack1);
+			slot.onTake(player, itemstack1);
 		}
 		return itemstack;
 	}
 
 	@Override
 	public boolean canInteractWith(EntityPlayer playerIn) {
-		return te.isUseableByPlayer(playerIn);
+		return te.isUsableByPlayer(playerIn);
 	}
 
 }

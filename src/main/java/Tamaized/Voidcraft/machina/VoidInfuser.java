@@ -2,8 +2,10 @@ package Tamaized.Voidcraft.machina;
 
 import java.util.Random;
 
-import javax.annotation.Nullable;
-
+import Tamaized.TamModized.blocks.TamBlockContainer;
+import Tamaized.Voidcraft.VoidCraft;
+import Tamaized.Voidcraft.GUI.GuiHandler;
+import Tamaized.Voidcraft.machina.tileentity.TileEntityVoidInfuser;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
@@ -22,10 +24,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.internal.FMLNetworkHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import Tamaized.TamModized.blocks.TamBlockContainer;
-import Tamaized.Voidcraft.voidCraft;
-import Tamaized.Voidcraft.GUI.GuiHandler;
-import Tamaized.Voidcraft.machina.tileentity.TileEntityVoidInfuser;
 
 public class VoidInfuser extends TamBlockContainer {
 	private Random rand = new Random();
@@ -43,18 +41,19 @@ public class VoidInfuser extends TamBlockContainer {
 	 * Called upon block activation (right click on the block.)
 	 */
 	@Override
-	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, @Nullable ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
+	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
+		ItemStack heldItem = playerIn.getHeldItem(hand);
 		if (worldIn.isRemote) {
 			return true;
 		} else {
-			FMLNetworkHandler.openGui(playerIn, voidCraft.instance, GuiHandler.getTypeID(GuiHandler.Type.Infuser), worldIn, pos.getX(), pos.getY(), pos.getZ());
+			FMLNetworkHandler.openGui(playerIn, VoidCraft.instance, GuiHandler.getTypeID(GuiHandler.Type.Infuser), worldIn, pos.getX(), pos.getY(), pos.getZ());
 			return true;
 		}
 	}
 
 	@Override
 	public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
-		int l = MathHelper.floor_double((double) (placer.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
+		int l = MathHelper.floor((double) (placer.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
 
 		if (l == 0) {
 			world.setBlockState(pos, this.getStateFromMeta(2), 2);
@@ -75,10 +74,7 @@ public class VoidInfuser extends TamBlockContainer {
 	}
 
 	/**
-	 * Called on server worlds only when the block has been replaced by a
-	 * different block ID, or the same block with a different metadata value,
-	 * but before the new metadata value is set. Args: World, x, y, z, old block
-	 * ID, old metadata
+	 * Called on server worlds only when the block has been replaced by a different block ID, or the same block with a different metadata value, but before the new metadata value is set. Args: World, x, y, z, old block ID, old metadata
 	 */
 	@Override
 	public void breakBlock(World world, BlockPos pos, IBlockState state) {
@@ -89,19 +85,19 @@ public class VoidInfuser extends TamBlockContainer {
 			for (int i = 0; i < tileentity.getSizeInventory(); i++) {
 				ItemStack itemstack = tileentity.getStackInSlot(i);
 
-				if (itemstack != null) {
+				if (!itemstack.isEmpty()) {
 					float f = this.rand.nextFloat() * 0.8F + 0.1F;
 					float f1 = this.rand.nextFloat() * 0.8F + 0.1F;
 					float f2 = this.rand.nextFloat() * 0.8F + 0.1F;
 
-					while (itemstack.stackSize > 0) {
+					while (itemstack.getCount() > 0) {
 						int j = this.rand.nextInt(21);
 
-						if (j > itemstack.stackSize) {
-							j = itemstack.stackSize;
+						if (j > itemstack.getCount()) {
+							j = itemstack.getCount();
 						}
 
-						itemstack.stackSize -= j;
+						itemstack.shrink(j);
 
 						EntityItem item = new EntityItem(world, (double) ((float) pos.getX() + f), (double) ((float) pos.getY() + f1), (double) ((float) pos.getZ() + f2), itemstack);
 
@@ -114,7 +110,7 @@ public class VoidInfuser extends TamBlockContainer {
 						item.motionY = (double) ((float) this.rand.nextGaussian() * f3 + 0.2F);
 						item.motionZ = (double) ((float) this.rand.nextGaussian() * f3);
 
-						world.spawnEntityInWorld(item);
+						world.spawnEntity(item);
 					}
 				}
 			}

@@ -7,7 +7,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import Tamaized.TamModized.blocks.TamBlock;
-import Tamaized.Voidcraft.voidCraft;
+import Tamaized.Voidcraft.VoidCraft;
 
 public class BlockVoidcrystal extends TamBlock {
 
@@ -30,7 +30,7 @@ public class BlockVoidcrystal extends TamBlock {
 
 	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune) {
-		return voidCraft.items.voidcrystal;
+		return VoidCraft.items.voidcrystal;
 	}
 
 	public int quantityDropped(Random random) {

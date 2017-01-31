@@ -1,6 +1,6 @@
 package Tamaized.Voidcraft.client;
 
-import Tamaized.Voidcraft.voidCraft;
+import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.armor.ArmorCustomElytra;
 import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.renderer.GlStateManager;
@@ -16,33 +16,33 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class LayerCustomElytra implements LayerRenderer<AbstractClientPlayer> {
 	/** The basic Elytra texture. */
-	private static final ResourceLocation TEXTURE_ELYTRA = new ResourceLocation(voidCraft.modid, "textures/models/armor/elytra.png");
+	private static final ResourceLocation TEXTURE_ELYTRA = new ResourceLocation(VoidCraft.modid, "textures/models/armor/elytra.png");
 	/** Instance of the player renderer. */
 	private final RenderPlayer renderPlayer;
 	/** The model used by the Elytra. */
 	private final ModelCustomElytra modelElytra = new ModelCustomElytra();
 
 	public LayerCustomElytra(RenderPlayer renderPlayerIn) {
-		this.renderPlayer = renderPlayerIn;
+		renderPlayer = renderPlayerIn;
 	}
 
 	@Override
 	public void doRenderLayer(AbstractClientPlayer entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
 		ItemStack itemstack = entitylivingbaseIn.getItemStackFromSlot(EntityEquipmentSlot.CHEST);
 
-		if (itemstack != null && itemstack.getItem() instanceof ArmorCustomElytra) {
+		if (!itemstack.isEmpty() && itemstack.getItem() instanceof ArmorCustomElytra) {
 			GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 			GlStateManager.enableBlend();
 
-			this.renderPlayer.bindTexture(TEXTURE_ELYTRA);
+			renderPlayer.bindTexture(TEXTURE_ELYTRA);
 
 			GlStateManager.pushMatrix();
 			GlStateManager.translate(0.0F, 0.0F, 0.125F);
-			this.modelElytra.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale, entitylivingbaseIn);
-			this.modelElytra.render(entitylivingbaseIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
+			modelElytra.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale, entitylivingbaseIn);
+			modelElytra.render(entitylivingbaseIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
 
 			if (itemstack.isItemEnchanted()) {
-				LayerArmorBase.renderEnchantedGlint(this.renderPlayer, entitylivingbaseIn, this.modelElytra, limbSwing, limbSwingAmount, partialTicks, ageInTicks, netHeadYaw, headPitch, scale);
+				LayerArmorBase.renderEnchantedGlint(renderPlayer, entitylivingbaseIn, modelElytra, limbSwing, limbSwingAmount, partialTicks, ageInTicks, netHeadYaw, headPitch, scale);
 			}
 
 			GlStateManager.popMatrix();

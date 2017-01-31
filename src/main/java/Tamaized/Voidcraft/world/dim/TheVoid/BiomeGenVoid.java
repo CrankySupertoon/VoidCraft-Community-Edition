@@ -19,6 +19,7 @@ public class BiomeGenVoid extends Biome {
         
 		this.spawnableCreatureList.add(new SpawnListEntry(EntityMobWraith.class, 1, 0, 1));
 		this.spawnableCreatureList.add(new SpawnListEntry(EntityMobSpectreChain.class, 1, 0, 1));
+		
 		}
 	
 	@SideOnly(Side.CLIENT)

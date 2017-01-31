@@ -1,11 +1,9 @@
 package Tamaized.Voidcraft.entity.mob.lich;
 
-import Tamaized.Voidcraft.voidCraft;
+import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.blocks.FireVoid;
-import net.minecraft.block.state.BlockStateBase;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
-import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -67,9 +65,9 @@ public class EntityLichInferno extends Entity {
 				if (Math.abs(x) == currIndex || Math.abs(z) == currIndex) {
 					int y = getLowY(getPosition().add(x, 0, z), 4);
 					BlockPos pos = getPosition().add(x, y < 4 ? y - 1 : 3, z);
-					IBlockState state = worldObj.getBlockState(pos);
+					IBlockState state = world.getBlockState(pos);
 					if (state != null && state.getBlock() instanceof FireVoid) {
-						worldObj.setBlockToAir(pos);
+						world.setBlockToAir(pos);
 					}
 				}
 			}
@@ -89,14 +87,14 @@ public class EntityLichInferno extends Entity {
 
 	private int getLowY(BlockPos pos, int y) {
 		if (y < -4) return 4;
-		if (worldObj.isAirBlock(pos.add(0, y, 0))) return getLowY(pos, y - 1);
+		if (world.isAirBlock(pos.add(0, y, 0))) return getLowY(pos, y - 1);
 		else return y + 1;
 	}
 
 	private void placeFireAt(BlockPos pos) {
-		IBlockState state = worldObj.getBlockState(pos);
-		if (state == null || state.getBlock().isReplaceable(worldObj, pos)) {
-			worldObj.setBlockState(pos, voidCraft.blocks.fireVoid.getDefaultState());
+		IBlockState state = world.getBlockState(pos);
+		if (state == null || state.getBlock().isReplaceable(world, pos)) {
+			world.setBlockState(pos, VoidCraft.blocks.fireVoid.getDefaultState());
 		}
 	}
 

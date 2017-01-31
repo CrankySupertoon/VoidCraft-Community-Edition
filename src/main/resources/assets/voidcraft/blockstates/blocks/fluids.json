@@ -3,7 +3,15 @@
     "variants": {
         "void": {
             "model": "forge:fluid",
-            "custom": { "fluid": "void" }
+            "custom": { 
+				"fluid": "void"
+			}
+        },
+		"acid": {
+            "model": "forge:fluid",
+            "custom": { 
+				"fluid": "acid"
+			}
         }
     }
 }

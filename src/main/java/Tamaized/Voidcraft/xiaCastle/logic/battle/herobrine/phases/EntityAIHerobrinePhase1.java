@@ -4,18 +4,18 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.init.Blocks;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Vec3d;
-import Tamaized.Voidcraft.voidCraft;
+import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.blocks.AIBlock;
 import Tamaized.Voidcraft.blocks.tileentity.TileEntityAIBlock;
 import Tamaized.Voidcraft.entity.boss.herobrine.EntityBossHerobrine;
 import Tamaized.Voidcraft.entity.boss.herobrine.extra.EntityHerobrineFireball;
 import Tamaized.Voidcraft.network.IVoidBossAIPacket;
 import Tamaized.Voidcraft.xiaCastle.logic.battle.EntityVoidNPCAIBase;
+import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.init.Blocks;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.Vec3d;
 
 public class EntityAIHerobrinePhase1<T extends EntityBossHerobrine> extends EntityVoidNPCAIBase<T> {
 
@@ -34,11 +34,14 @@ public class EntityAIHerobrinePhase1<T extends EntityBossHerobrine> extends Enti
 	public EntityAIHerobrinePhase1(T entityMobHerobrine, ArrayList<Class> c) {
 		super(entityMobHerobrine, c);
 	}
+	
+	@Override
+	protected void preInit() {
+		
+	}
 
 	@Override
-	public void Init() {
-		super.Init();
-
+	protected void postInit() {
 		loc[0][0] = getEntity().posX + 10;
 		loc[0][1] = getEntity().posY + 10;
 		loc[0][2] = getEntity().posZ;
@@ -129,9 +132,9 @@ public class EntityAIHerobrinePhase1<T extends EntityBossHerobrine> extends Enti
 		int nY = getBlockPosition().getY();
 		int nZ = (getBlockPosition().getZ() - 8) + randZ;
 		if (world.getTileEntity(new BlockPos(nX, nY, nZ)) == null) {
-			world.setBlockState(new BlockPos(nX, nY, nZ), ((AIBlock) voidCraft.blocks.AIBlock).getDefaultState());
-			world.setBlockState(new BlockPos(nX, nY + 1, nZ), ((AIBlock) voidCraft.blocks.AIBlock).getDefaultState());
-			world.setBlockState(new BlockPos(nX, nY + 2, nZ), ((AIBlock) voidCraft.blocks.AIBlock).getDefaultState());
+			world.setBlockState(new BlockPos(nX, nY, nZ), ((AIBlock) VoidCraft.blocks.AIBlock).getDefaultState());
+			world.setBlockState(new BlockPos(nX, nY + 1, nZ), ((AIBlock) VoidCraft.blocks.AIBlock).getDefaultState());
+			world.setBlockState(new BlockPos(nX, nY + 2, nZ), ((AIBlock) VoidCraft.blocks.AIBlock).getDefaultState());
 			TileEntityAIBlock b = (TileEntityAIBlock) world.getTileEntity(new BlockPos(nX, nY, nZ));
 			b.setup(this, null);
 			((TileEntityAIBlock) world.getTileEntity(new BlockPos(nX, nY + 1, nZ))).setup(null, b);
@@ -218,17 +221,17 @@ public class EntityAIHerobrinePhase1<T extends EntityBossHerobrine> extends Enti
 
 	private void spawnFireball() {
 		if (closestEntity != null) {
-			getEntity().worldObj.playRecord(new BlockPos((int) getEntity().posX, (int) getEntity().posY, (int) getEntity().posZ), null);// ((EntityPlayer)null, 1008, new BlockPos((int)theWatcher.posX, (int)theWatcher.posY, (int)theWatcher.posZ), 0);
+			getEntity().world.playRecord(new BlockPos((int) getEntity().posX, (int) getEntity().posY, (int) getEntity().posZ), null);// ((EntityPlayer)null, 1008, new BlockPos((int)theWatcher.posX, (int)theWatcher.posY, (int)theWatcher.posZ), 0);
 			double d5 = closestEntity.posX - getEntity().posX;
 			double d6 = closestEntity.getEntityBoundingBox().minY + (double) (closestEntity.height / 2.0F) - (getEntity().posY + (double) (getEntity().height / 2.0F));
 			double d7 = closestEntity.posZ - getEntity().posZ;
-			EntityHerobrineFireball entitylargefireball = new EntityHerobrineFireball(getEntity().worldObj, getEntity(), d5, d6, d7);
+			EntityHerobrineFireball entitylargefireball = new EntityHerobrineFireball(getEntity().world, getEntity(), d5, d6, d7);
 			double d8 = 4.0D;
 			Vec3d vec3 = getEntity().getLook(1.0F);
 			entitylargefireball.posX = getEntity().posX;// + vec3.xCoord * d8;
 			entitylargefireball.posY = getEntity().posY + (double) (getEntity().height / 2.0F) + 0.5D;
 			entitylargefireball.posZ = getEntity().posZ;// + vec3.zCoord * d8;
-			getEntity().worldObj.spawnEntityInWorld(entitylargefireball);
+			getEntity().world.spawnEntity(entitylargefireball);
 		}
 	}
 

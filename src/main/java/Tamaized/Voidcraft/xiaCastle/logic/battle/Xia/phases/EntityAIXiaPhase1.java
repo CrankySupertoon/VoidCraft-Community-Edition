@@ -1,12 +1,12 @@
 package Tamaized.Voidcraft.xiaCastle.logic.battle.Xia.phases;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Random;
 
 import Tamaized.TamModized.particles.ParticleHelper;
 import Tamaized.TamModized.particles.ParticlePacketHandlerRegistry;
-import Tamaized.Voidcraft.voidCraft;
+import Tamaized.Voidcraft.VoidCraft;
+import Tamaized.Voidcraft.capabilities.CapabilityList;
+import Tamaized.Voidcraft.capabilities.voidicInfusion.IVoidicInfusionCapability;
 import Tamaized.Voidcraft.damageSources.DamageSourceVoidicInfusion;
 import Tamaized.Voidcraft.entity.boss.xia.EntityBossXia;
 import Tamaized.Voidcraft.entity.boss.xia.EntityBossXia.XiaTookDamagePacket;
@@ -14,19 +14,16 @@ import Tamaized.Voidcraft.entity.mob.lich.EntityLichInferno;
 import Tamaized.Voidcraft.network.IVoidBossAIPacket;
 import Tamaized.Voidcraft.particles.network.XiaLaserPacketHandler;
 import Tamaized.Voidcraft.particles.network.XiaLaserPacketHandler.XiaLaserParticleData;
-import Tamaized.Voidcraft.voidicInfusion.PlayerInfusionHandler;
 import Tamaized.Voidcraft.xiaCastle.logic.battle.EntityVoidNPCAIBase;
 import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 
 public class EntityAIXiaPhase1<T extends EntityBossXia> extends EntityVoidNPCAIBase<T> {
 
-	private final Random rand = new Random();
-
-	private ArrayList<Double[]> teleportLocations;
-	private Double[] currLoc = new Double[] { 0.0D, 0.0D, 0.0D };
+	private AxisAlignedBB teleportationBox = new AxisAlignedBB(-18, 0, -25, 18, 5, 6);
 
 	private int actionTick = 20 * 10;
 	private int teleportTick = 20 * 3;
@@ -40,13 +37,13 @@ public class EntityAIXiaPhase1<T extends EntityBossXia> extends EntityVoidNPCAIB
 	}
 
 	@Override
-	public void Init() {
-		super.Init();
-		teleportLocations = new ArrayList<Double[]>();
-		teleportLocations.add(currLoc = new Double[] { 0.0D, -0.5D, 0.0D });
-		teleportLocations.add(new Double[] { 0.0D, -7.0D, -12.0D });
-		teleportLocations.add(new Double[] { 16.0D, -13.0D, -12.0D });
-		teleportLocations.add(new Double[] { -16.0D, -13.0D, -12.0D });
+	protected void preInit() {
+
+	}
+
+	@Override
+	protected void postInit() {
+		teleportationBox = new AxisAlignedBB(-18, 0, -25, 18, 5, 6);
 	}
 
 	@Override
@@ -64,7 +61,7 @@ public class EntityAIXiaPhase1<T extends EntityBossXia> extends EntityVoidNPCAIB
 		}
 
 		if (tick % actionTick == 0) {
-			switch (rand.nextInt(5)) {
+			switch (world.rand.nextInt(5)) {
 				case 0:
 					getEntity().setArmRotations(180, 180, 0, 0, true);
 					resetAnimationTick = 20 * 4;
@@ -73,7 +70,7 @@ public class EntityAIXiaPhase1<T extends EntityBossXia> extends EntityVoidNPCAIB
 				case 1: // Voidic Fire (Same as Lich)
 					getEntity().setArmRotations(180, 0, 0, 0, true);
 					resetAnimationTick = 20 * 4;
-					getEntity().worldObj.spawnEntityInWorld(new EntityLichInferno(getEntity().worldObj, getEntity().getPosition(), 10, 10));
+					getEntity().world.spawnEntity(new EntityLichInferno(getEntity().world, getEntity().getPosition(), 10, 10));
 					break;
 				case 2: // Use the force luke :P some sort of choke mechanic idk
 					if (closestEntity == null) break;
@@ -95,8 +92,8 @@ public class EntityAIXiaPhase1<T extends EntityBossXia> extends EntityVoidNPCAIB
 					resetAnimationTick = 20 * 2;
 					if (closestEntity instanceof EntityPlayer) {
 						EntityPlayer player = (EntityPlayer) closestEntity;
-						PlayerInfusionHandler handler = voidCraft.infusionHandler.getPlayerInfusionHandler(player.getGameProfile().getId());
-						handler.addInfusion(handler.getMaxInfusion() - (1 + handler.getInfusion()));
+						IVoidicInfusionCapability cap = player.getCapability(CapabilityList.VOIDICINFUSION, null);
+						if (cap != null) cap.setInfusion(cap.getMaxInfusion() - 1);
 					}
 					break;
 				default:
@@ -120,8 +117,8 @@ public class EntityAIXiaPhase1<T extends EntityBossXia> extends EntityVoidNPCAIB
 	}
 
 	private void spawnLaser() {
-		XiaLaserParticleData data = ((XiaLaserPacketHandler) ParticlePacketHandlerRegistry.getHandler(voidCraft.particles.xiaTeleportHandler)).new XiaLaserParticleData(getEntity().getEntityId(), 0, -90, new float[] { 1.0f, 1.0f, 1.0f });
-		ParticleHelper.sendPacketToClients(world, voidCraft.particles.xiaTeleportHandler, new Vec3d(getEntity().posX, getEntity().posY, getEntity().posZ), 64, new ParticleHelper.ParticlePacketHelper(voidCraft.particles.xiaTeleportHandler, data));
+		XiaLaserParticleData data = ((XiaLaserPacketHandler) ParticlePacketHandlerRegistry.getHandler(VoidCraft.particles.xiaTeleportHandler)).new XiaLaserParticleData(getEntity().getEntityId(), 0, -90, new float[] { 1.0f, 1.0f, 1.0f });
+		ParticleHelper.sendPacketToClients(world, VoidCraft.particles.xiaTeleportHandler, new Vec3d(getEntity().posX, getEntity().posY, getEntity().posZ), 64, new ParticleHelper.ParticlePacketHelper(VoidCraft.particles.xiaTeleportHandler, data));
 	}
 
 	private void doTeleport() {
@@ -131,10 +128,17 @@ public class EntityAIXiaPhase1<T extends EntityBossXia> extends EntityVoidNPCAIB
 	}
 
 	private Double[] getNextTeleportLocation() {
-		int i = rand.nextInt(teleportLocations.size());
-		Double[] loc = teleportLocations.get(i > 0 ? i : 0);
-		if (Arrays.equals(loc, currLoc)) loc = getNextTeleportLocation();
-		currLoc = loc;
+		// int i = rand.nextInt(teleportLocations.size());
+		// Double[] loc = teleportLocations.get(i > 0 ? i : 0);
+		// if (Arrays.equals(loc, currLoc)) loc = getNextTeleportLocation();
+		// currLoc = loc;
+		Double[] loc = { 0.0D, 0.0D, 0.0D };
+		loc[0] = (world.rand.nextDouble() * (teleportationBox.maxX - teleportationBox.minX)) + teleportationBox.minX;
+		loc[1] = teleportationBox.maxY;
+		loc[2] = (world.rand.nextDouble() * (teleportationBox.maxZ - teleportationBox.minZ)) + teleportationBox.minZ;
+		while (world.isAirBlock(new BlockPos(getPosition().xCoord + loc[0], getPosition().yCoord + loc[1], getPosition().zCoord + loc[2]))) {
+			loc[1] -= 1.0D;
+		}
 		return loc;
 	}
 

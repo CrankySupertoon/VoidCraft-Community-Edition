@@ -1,6 +1,6 @@
 package Tamaized.Voidcraft.vadeMecum.contents.documentation.voidicinfusion;
 
-import Tamaized.Voidcraft.voidCraft;
+import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.capabilities.vadeMecum.IVadeMecumCapability;
 import Tamaized.Voidcraft.vadeMecum.IVadeMecumPage;
 import Tamaized.Voidcraft.vadeMecum.IVadeMecumPageProvider;
@@ -11,8 +11,8 @@ public class VadeMecumPageListVoidicInfusion implements IVadeMecumPageProvider {
 
 	public IVadeMecumPage[] getPageList(IVadeMecumCapability cap) {
 		return new IVadeMecumPage[] {
-				new VadeMecumPage(voidCraft.modid+".VadeMecum.docs.title.voidicInfusion", voidCraft.modid+".VadeMecum.docs.desc.voidicInfusion.pg1"),
-				new VadeMecumPage("", voidCraft.modid+".VadeMecum.docs.desc.voidicInfusion.pg2") };
+				new VadeMecumPage(VoidCraft.modid+".VadeMecum.docs.title.voidicInfusion", VoidCraft.modid+".VadeMecum.docs.desc.voidicInfusion.pg1"),
+				new VadeMecumPage("", VoidCraft.modid+".VadeMecum.docs.desc.voidicInfusion.pg2") };
 	}
 
 }

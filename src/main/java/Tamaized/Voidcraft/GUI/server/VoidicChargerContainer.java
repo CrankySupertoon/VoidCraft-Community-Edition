@@ -1,5 +1,6 @@
 package Tamaized.Voidcraft.GUI.server;
 
+import Tamaized.Voidcraft.machina.tileentity.TileEntityVoidicCharger;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.IContainerListener;
@@ -7,7 +8,6 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import Tamaized.Voidcraft.machina.tileentity.TileEntityVoidicCharger;
 
 public class VoidicChargerContainer extends ContainerBase {
 
@@ -68,52 +68,59 @@ public class VoidicChargerContainer extends ContainerBase {
 
 	@Override
 	public ItemStack transferStackInSlot(EntityPlayer player, int hoverSlot) {
-		ItemStack itemstack = null;
+		ItemStack itemstack = ItemStack.EMPTY;
 		Slot slot = (Slot) this.inventorySlots.get(hoverSlot);
 
 		if (slot != null && slot.getHasStack()) {
 			ItemStack itemstack1 = slot.getStack();
 			itemstack = itemstack1.copy();
 
-			if (hoverSlot == 0) {
-				if (!this.mergeItemStack(itemstack1, 1, 37, true)) {
-					return null;
+			final int maxSlots = te.getSizeInventory();
+
+			if (hoverSlot < maxSlots) {
+				if (!mergeItemStack(itemstack1, maxSlots, maxSlots + 36, true)) {
+					return ItemStack.EMPTY;
 				}
 				slot.onSlotChange(itemstack1, itemstack);
 			} else {
-				if (!this.getSlot(0).getHasStack()) {
-					if (!this.mergeItemStack(itemstack1, 0, 1, false)) {
-						return null;
+				ItemStack slotCheck = te.getStackInSlot(te.SLOT_DEFAULT);
+				if ((slotCheck.isEmpty() || (slotCheck.getCount() < slotCheck.getMaxStackSize() && slotCheck.isItemEqual(itemstack))) && te.canInsertItem(te.SLOT_DEFAULT, itemstack1, null)) {
+					if (!mergeItemStack(itemstack1, te.SLOT_DEFAULT, te.SLOT_DEFAULT + 1, false)) {
+						return ItemStack.EMPTY;
 					}
-				} else if (hoverSlot >= 1 && hoverSlot < 28) {
-					if (!this.mergeItemStack(itemstack1, 28, 37, false)) {
-						return null;
+				} else if (hoverSlot >= maxSlots && hoverSlot < maxSlots + 27) {
+					if (!mergeItemStack(itemstack1, maxSlots + 27, maxSlots + 36, false)) {
+						return ItemStack.EMPTY;
 					}
-				} else if (hoverSlot >= 28 && hoverSlot < 37) {
-					if (!this.mergeItemStack(itemstack1, 1, 28, false)) {
-						return null;
+				} else if (hoverSlot >= maxSlots + 27 && hoverSlot < maxSlots + 36) {
+					if (!mergeItemStack(itemstack1, maxSlots, maxSlots + 27, false)) {
+						return ItemStack.EMPTY;
+					}
+				} else {
+					if (!mergeItemStack(itemstack1, maxSlots, maxSlots + 36, false)) {
+						return ItemStack.EMPTY;
 					}
 				}
 			}
 
-			if (itemstack1.stackSize == 0) {
-				slot.putStack((ItemStack) null);
+			if (itemstack1.getCount() == 0) {
+				slot.putStack(ItemStack.EMPTY);
 			} else {
 				slot.onSlotChanged();
 			}
 
-			if (itemstack1.stackSize == itemstack.stackSize) {
-				return null;
+			if (itemstack1.getCount() == itemstack.getCount()) {
+				return ItemStack.EMPTY;
 			}
 
-			slot.onPickupFromSlot(player, itemstack1);
+			slot.onTake(player, itemstack1);
 		}
 		return itemstack;
 	}
 
 	@Override
 	public boolean canInteractWith(EntityPlayer playerIn) {
-		return te.isUseableByPlayer(playerIn);
+		return te.isUsableByPlayer(playerIn);
 	}
 
 }

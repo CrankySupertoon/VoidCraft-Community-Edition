@@ -1,6 +1,8 @@
 package Tamaized.Voidcraft.entity.boss;
 
-import net.minecraft.entity.EntityAgeable;
+import Tamaized.Voidcraft.VoidCraft;
+import Tamaized.Voidcraft.entity.boss.render.bossBar.IVoidBossData;
+import Tamaized.Voidcraft.sound.VoidSoundEvents;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAttackMelee;
 import net.minecraft.entity.ai.EntityAIBreakDoor;
@@ -25,9 +27,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
-import Tamaized.Voidcraft.voidCraft;
-import Tamaized.Voidcraft.entity.boss.render.bossBar.IVoidBossData;
-import Tamaized.Voidcraft.sound.VoidSoundEvents;
 
 
 public class EntityBossCorruptedPawn extends EntityBossCorruptedPawnBase implements IVoidBossData{
@@ -111,8 +110,8 @@ public class EntityBossCorruptedPawn extends EntityBossCorruptedPawnBase impleme
 			
 			if(this.getHealth() >= this.getMaxHealth()){
 				this.hasExploded = true;
-				this.worldObj.newExplosion(this, this.posX, this.posY + (double)this.getEyeHeight(), this.posZ, 7.0F, false, this.worldObj.getGameRules().getBoolean("mobGriefing"));
-				this.worldObj.playBroadcastSound(1013, new BlockPos((int)this.posX, (int)this.posY, (int)this.posZ), 0);
+				this.world.newExplosion(this, this.posX, this.posY + (double)this.getEyeHeight(), this.posZ, 7.0F, false, this.world.getGameRules().getBoolean("mobGriefing"));
+				this.world.playBroadcastSound(1013, new BlockPos((int)this.posX, (int)this.posY, (int)this.posZ), 0);
 				this.BeginAI();
 				this.setInvul(false);
 			}
@@ -155,7 +154,7 @@ public class EntityBossCorruptedPawn extends EntityBossCorruptedPawnBase impleme
 
     @Override
     protected Item getDropItem() {
-        return voidCraft.items.voidStar;
+        return VoidCraft.items.voidStar;
     }
 
     @Override

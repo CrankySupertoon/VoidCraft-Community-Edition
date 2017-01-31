@@ -1,6 +1,6 @@
 package Tamaized.Voidcraft.items.inventory;
 
-import Tamaized.Voidcraft.voidCraft;
+import Tamaized.Voidcraft.VoidCraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
@@ -16,22 +16,26 @@ public abstract class InventoryItem implements IInventory {
 	public InventoryItem(ItemStack stack, int slots) {
 		parent = stack;
 		inventory = new ItemStack[slots];
-		readFromNBT(parent.getSubCompound(voidCraft.modid + "_InventoryItem", true));
+		for (int index = 0; index < inventory.length; index++)
+			inventory[index] = ItemStack.EMPTY;
+		readFromNBT(parent.getOrCreateSubCompound(VoidCraft.modid + "_InventoryItem"));
 	}
 
 	public void saveData() {
-		writeToNBT(parent.getSubCompound(voidCraft.modid + "_InventoryItem", true));
+		writeToNBT(parent.getOrCreateSubCompound(VoidCraft.modid + "_InventoryItem"));
 	}
 
 	protected void readFromNBT(NBTTagCompound nbt) {
 		NBTTagList list = (NBTTagList) nbt.getTag("Items");
 		inventory = new ItemStack[getSizeInventory()];
+		for (int index = 0; index < inventory.length; index++)
+			inventory[index] = ItemStack.EMPTY;
 		if (list != null) {
 			for (int i = 0; i < list.tagCount(); i++) {
 				NBTTagCompound nbtc = (NBTTagCompound) list.getCompoundTagAt(i);
 				byte b = nbtc.getByte("Slot");
 				if (b >= 0 && b < inventory.length) {
-					inventory[b] = ItemStack.loadItemStackFromNBT(nbtc);
+					inventory[b] = new ItemStack(nbtc);
 				}
 			}
 		}
@@ -40,7 +44,7 @@ public abstract class InventoryItem implements IInventory {
 	protected NBTTagCompound writeToNBT(NBTTagCompound nbt) {
 		NBTTagList list = new NBTTagList();
 		for (int i = 0; i < inventory.length; i++) {
-			if (inventory[i] != null) {
+			if (!inventory[i].isEmpty()) {
 				NBTTagCompound nbtc = new NBTTagCompound();
 				nbtc.setByte("Slot", (byte) i);
 				inventory[i].writeToNBT(nbtc);
@@ -72,29 +76,29 @@ public abstract class InventoryItem implements IInventory {
 
 	@Override
 	public ItemStack decrStackSize(int i, int count) {
-		if (inventory[i] != null) {
+		if (!inventory[i].isEmpty()) {
 			ItemStack itemstack;
-			if (inventory[i].stackSize <= count) {
+			if (inventory[i].getCount() <= count) {
 				itemstack = inventory[i];
-				inventory[i] = null;
+				inventory[i] = ItemStack.EMPTY;
 				return itemstack;
 			} else {
 				itemstack = inventory[i].splitStack(count);
-				if (inventory[i].stackSize == 0) inventory[i] = null;
+				if (inventory[i].getCount() == 0) inventory[i] = ItemStack.EMPTY;
 				return itemstack;
 			}
 		}
-		return null;
+		return ItemStack.EMPTY;
 	}
 
 	@Override
 	public ItemStack removeStackFromSlot(int i) {
-		if (inventory[i] != null) {
+		if (!inventory[i].isEmpty()) {
 			ItemStack itemstack = inventory[i];
-			inventory[i] = null;
+			inventory[i] = ItemStack.EMPTY;
 			return itemstack;
 		}
-		return null;
+		return ItemStack.EMPTY;
 	}
 
 	@Override
@@ -111,7 +115,7 @@ public abstract class InventoryItem implements IInventory {
 	}
 
 	@Override
-	public boolean isUseableByPlayer(EntityPlayer player) {
+	public boolean isUsableByPlayer(EntityPlayer player) {
 		return true;
 	}
 

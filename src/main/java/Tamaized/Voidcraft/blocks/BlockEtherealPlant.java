@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import Tamaized.TamModized.blocks.TamBlockCrops;
-import Tamaized.Voidcraft.voidCraft;
+import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.blocks.tileentity.TileEntityFakeBedrockFarmland;
 import Tamaized.Voidcraft.items.EtherealFruit;
 import net.minecraft.block.Block;
@@ -29,7 +29,7 @@ public class BlockEtherealPlant extends TamBlockCrops {
 
 	public BlockEtherealPlant(CreativeTabs tab, String n, float hardness) {
 		super(tab, Material.PLANTS, n, hardness);
-		plantableBlocks.add(voidCraft.blocks.blockFakeBedrockFarmland);
+		plantableBlocks.add(VoidCraft.blocks.blockFakeBedrockFarmland);
 	}
 
 	@Override
@@ -44,18 +44,18 @@ public class BlockEtherealPlant extends TamBlockCrops {
 
 	@Override
 	protected boolean isCorrectLightLevel(int currentLight) {
-		//System.out.println(currentLight);
+		// System.out.println(currentLight);
 		return currentLight <= 2;
 	}
 
 	@Override
 	protected Item getSeed() {
-		return voidCraft.items.etherealSeed;
+		return VoidCraft.items.etherealSeed;
 	}
 
 	@Override
 	protected Item getCrop() {
-		return voidCraft.items.etherealFruit;
+		return VoidCraft.items.etherealFruit;
 	}
 
 	@Override
@@ -69,7 +69,7 @@ public class BlockEtherealPlant extends TamBlockCrops {
 	}
 
 	@Override
-	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
+	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
 		if (getAge(state) >= getMaxAge()) {
 			if (worldIn.isRemote) return true;
 			TileEntity tileEntity = worldIn.getTileEntity(pos.down());
@@ -83,24 +83,24 @@ public class BlockEtherealPlant extends TamBlockCrops {
 			int a = rand.nextInt(3);
 			if (a > 0) {
 				EtherealFruit fruit;
-				switch(alteration){
+				switch (alteration) {
 					case REDSTONE:
-						fruit = voidCraft.items.etherealFruit_redstone;
+						fruit = VoidCraft.items.etherealFruit_redstone;
 						break;
 					case LAPIS:
-						fruit = voidCraft.items.etherealFruit_lapis;
+						fruit = VoidCraft.items.etherealFruit_lapis;
 						break;
 					case GOLD:
-						fruit = voidCraft.items.etherealFruit_gold;
+						fruit = VoidCraft.items.etherealFruit_gold;
 						break;
 					case EMERALD:
-						fruit = voidCraft.items.etherealFruit_emerald;
+						fruit = VoidCraft.items.etherealFruit_emerald;
 						break;
 					case DIAMOND:
-						fruit = voidCraft.items.etherealFruit_diamond;
+						fruit = VoidCraft.items.etherealFruit_diamond;
 						break;
 					default:
-						fruit = voidCraft.items.etherealFruit;
+						fruit = VoidCraft.items.etherealFruit;
 						break;
 				}
 				ItemStack newStack = new ItemStack(fruit, a);

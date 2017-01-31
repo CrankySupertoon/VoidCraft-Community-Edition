@@ -1,25 +1,6 @@
 package Tamaized.Voidcraft.entity.nonliving;
 
-import io.netty.buffer.ByteBuf;
-import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.IProjectile;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.projectile.EntityFishHook;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.EnumParticleTypes;
-import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.world.World;
-import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-import Tamaized.Voidcraft.items.HookShot;
-
-public class EntityHookShot extends EntityFishHook implements IProjectile, IEntityAdditionalSpawnData  {
+public class EntityHookShot{/* extends EntityFishHook implements IProjectile, IEntityAdditionalSpawnData  {
 
 	public EntityPlayer shootingEntity;
 	private int lastItem;
@@ -37,13 +18,13 @@ public class EntityHookShot extends EntityFishHook implements IProjectile, IEnti
 	private int ticksInGround;
 	private int ticksInAir;
 	
-	public EntityHookShot(World p_i1753_1_){
-		super(p_i1753_1_);
+	public EntityHookShot(World p_i1753_1_, EntityPlayer player){
+		super(p_i1753_1_, player);
         this.setSize(0.5F, 0.5F);
     }
 	
     public EntityHookShot(World world, EntityPlayer player, float p_i1756_3_){
-        super(world);
+        super(world, player);
         this.ignoreFrustumCheck = true;
         shootingEntity = player;
         lastItem = shootingEntity.inventory.currentItem;
@@ -65,7 +46,7 @@ public class EntityHookShot extends EntityFishHook implements IProjectile, IEnti
      * Data should be added to the provided stream.
      *
      * @param buffer The packet data stream
-     */
+     *//*
     public void writeSpawnData(ByteBuf buffer){
     	if(shootingEntity == null){
     		this.setDead();
@@ -82,7 +63,7 @@ public class EntityHookShot extends EntityFishHook implements IProjectile, IEnti
      * Data should be read out of the stream in the same way as it was written.
      *
      * @param data The packet data stream
-     */
+     *//*
     public void readSpawnData(ByteBuf additionalData){
     	try{
     		Entity e = worldObj.getEntityByID(additionalData.readInt());
@@ -108,7 +89,7 @@ public class EntityHookShot extends EntityFishHook implements IProjectile, IEnti
 
 	/**
 	 * Called to update the entity's position/logic.
-	 */
+	 *//*
 	public void onUpdate() {/*
 		ticksExisted++;
 		
@@ -281,12 +262,12 @@ public class EntityHookShot extends EntityFishHook implements IProjectile, IEnti
 			this.setPosition(this.posX, this.posY, this.posZ);
             this.doBlockCollisions();
 		}
-	*/}
+	*//*}
 	
 	/**
      * Sets the position and rotation. Only difference from the other one is no bounding on the rotation. Args: posX,
      * posY, posZ, yaw, pitch
-     */
+     *//*
     @SideOnly(Side.CLIENT)
     public void setPositionAndRotation2(double p_70056_1_, double p_70056_3_, double p_70056_5_, float p_70056_7_, float p_70056_8_, int p_70056_9_)
     {
@@ -296,7 +277,7 @@ public class EntityHookShot extends EntityFishHook implements IProjectile, IEnti
 
     /**
      * Sets the velocity to the args. Args: x, y, z
-     */
+     *//*
     @SideOnly(Side.CLIENT)
     public void setVelocity(double p_70016_1_, double p_70016_3_, double p_70016_5_)
     {
@@ -318,7 +299,7 @@ public class EntityHookShot extends EntityFishHook implements IProjectile, IEnti
     
     /**
      * Called by a player entity when they collide with an entity
-     */
+     *//*
     public void onCollideWithPlayer(EntityPlayer p_70100_1_)
     {
        
@@ -331,7 +312,7 @@ public class EntityHookShot extends EntityFishHook implements IProjectile, IEnti
 
     /**
      * If returns false, the item will not inflict any damage against entities.
-     */
+     *//*
     public boolean canAttackWithItem()
     {
         return false;
@@ -355,7 +336,7 @@ public class EntityHookShot extends EntityFishHook implements IProjectile, IEnti
 
 	/**
 	 * Prevents crop trample
-	 */
+	 *//*
 	protected boolean canTriggerWalking() {
 		return false;
 	}
@@ -380,5 +361,5 @@ public class EntityHookShot extends EntityFishHook implements IProjectile, IEnti
         this.prevRotationPitch = this.rotationPitch = (float)(Math.atan2(p_70186_3_, (double)f3) * 180.0D / Math.PI);
         this.ticksInGround = 0;
     }
-
+*/
 }

@@ -10,7 +10,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import org.lwjgl.opengl.GL11;
 
-import Tamaized.Voidcraft.voidCraft;
+import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.GUI.server.HeimdallContainer;
 import Tamaized.Voidcraft.machina.tileentity.TileEntityHeimdall;
 
@@ -22,7 +22,7 @@ public class HeimdallGUI extends GuiContainer {
 
 	public TileEntityHeimdall te;
 
-	private static final ResourceLocation daTexture = new ResourceLocation(voidCraft.modid, "textures/gui/heimdall.png");
+	private static final ResourceLocation daTexture = new ResourceLocation(VoidCraft.modid, "textures/gui/heimdall.png");
 
 	public HeimdallGUI(InventoryPlayer inventoryPlayer, TileEntityHeimdall tileEntity) {
 		super(new HeimdallContainer(inventoryPlayer, tileEntity));
@@ -54,19 +54,21 @@ public class HeimdallGUI extends GuiContainer {
 	@Override
 	protected void drawGuiContainerForegroundLayer(int param1, int param2) {
 		String text = "Heimdall has opened a Gate";
-		fontRendererObj.drawString(text, xSize / 2 - fontRendererObj.getStringWidth(text) / 2, ySize - 260, 4210752);
-		
+		fontRendererObj.drawString(text, xSize / 2 - fontRendererObj.getStringWidth(text) / 2, ySize - 260, 0xAAAAAA);
+
+		text = "Fluid:";
+		fontRendererObj.drawString(text, (xSize) - 132, ySize - 230, 0x7700FF);
 		text = te.getFluidAmount() + "";
-		fontRendererObj.drawString(text, (xSize) - 132, ySize - 220, 4210752);
+		fontRendererObj.drawString(text, (xSize) - 132, ySize - 220, 0x7700FF);
 		text = "/" + te.getMaxFluidAmount() + "mb";
-		fontRendererObj.drawString(text, (xSize) - 132, ySize - 210, 4210752);
-		
+		fontRendererObj.drawString(text, (xSize) - 132, ySize - 210, 0x7700FF);
+
+		text = "Forge Energy:";
+		fontRendererObj.drawString(text, (xSize - fontRendererObj.getStringWidth(text)) - 226, ySize - 230, 0xAAAAFF);
 		text = te.getEnergyStored() + "";
-		fontRendererObj.drawString(text, ((xSize) - (fontRendererObj.getStringWidth(text))) - 226, ySize - 220, 4210752);
+		fontRendererObj.drawString(text, ((xSize) - (fontRendererObj.getStringWidth(text))) - 226, ySize - 220, 0xAAAAFF);
 		text = "/" + te.getMaxEnergyStored();
-		fontRendererObj.drawString(text, (xSize - fontRendererObj.getStringWidth(text)) - 226, ySize - 210, 4210752);
-		text = "Forge Energy";
-		fontRendererObj.drawString(text, (xSize - fontRendererObj.getStringWidth(text)) - 226, ySize - 200, 4210752);
+		fontRendererObj.drawString(text, (xSize - fontRendererObj.getStringWidth(text)) - 226, ySize - 210, 0xAAAAFF);
 	}
 
 	@Override

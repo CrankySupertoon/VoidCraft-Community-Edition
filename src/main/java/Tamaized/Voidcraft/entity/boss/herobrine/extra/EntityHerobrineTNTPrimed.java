@@ -2,6 +2,7 @@ package Tamaized.Voidcraft.entity.boss.herobrine.extra;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.MoverType;
 import net.minecraft.entity.item.EntityTNTPrimed;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
@@ -18,27 +19,27 @@ public class EntityHerobrineTNTPrimed extends Entity {
 
 	public EntityHerobrineTNTPrimed(World worldIn) {
 		super(worldIn);
-		this.fuse = 40;
-		this.preventEntitySpawning = true;
-		this.setSize(0.98F, 0.98F);
+		fuse = 40;
+		preventEntitySpawning = true;
+		setSize(0.98F, 0.98F);
 	}
 
 	public EntityHerobrineTNTPrimed(World worldIn, double x, double y, double z, EntityLivingBase igniter) {
 		this(worldIn);
-		this.setPosition(x, y, z);
+		setPosition(x, y, z);
 		float f = (float) (Math.random() * (Math.PI * 2D));
-		this.motionX = (double) (-((float) Math.sin((double) f)) * 0.02F);
-		this.motionY = 0.20000000298023224D;
-		this.motionZ = (double) (-((float) Math.cos((double) f)) * 0.02F);
-		this.setFuse(40);
-		this.prevPosX = x;
-		this.prevPosY = y;
-		this.prevPosZ = z;
-		this.tntPlacedBy = igniter;
+		motionX = (double) (-((float) Math.sin((double) f)) * 0.02F);
+		motionY = 0.20000000298023224D;
+		motionZ = (double) (-((float) Math.cos((double) f)) * 0.02F);
+		setFuse(40);
+		prevPosX = x;
+		prevPosY = y;
+		prevPosZ = z;
+		tntPlacedBy = igniter;
 	}
 
 	protected void entityInit() {
-		this.dataManager.register(FUSE, Integer.valueOf(40));
+		dataManager.register(FUSE, Integer.valueOf(40));
 	}
 
 	/**
@@ -52,70 +53,70 @@ public class EntityHerobrineTNTPrimed extends Entity {
 	 * Returns true if other Entities should be prevented from moving through this Entity.
 	 */
 	public boolean canBeCollidedWith() {
-		return !this.isDead;
+		return !isDead;
 	}
 
 	/**
 	 * Called to update the entity's position/logic.
 	 */
 	public void onUpdate() {
-		this.prevPosX = this.posX;
-		this.prevPosY = this.posY;
-		this.prevPosZ = this.posZ;
+		prevPosX = posX;
+		prevPosY = posY;
+		prevPosZ = posZ;
 
-		if (!this.hasNoGravity()) {
-			this.motionY -= 0.03999999910593033D;
+		if (!hasNoGravity()) {
+			motionY -= 0.03999999910593033D;
 		}
 
-		this.moveEntity(this.motionX, this.motionY, this.motionZ);
-		this.motionX *= 0.9800000190734863D;
-		this.motionY *= 0.9800000190734863D;
-		this.motionZ *= 0.9800000190734863D;
+		move(MoverType.SELF, motionX, motionY, motionZ);
+		motionX *= 0.9800000190734863D;
+		motionY *= 0.9800000190734863D;
+		motionZ *= 0.9800000190734863D;
 
-		if (this.onGround) {
-			this.motionX *= 0.699999988079071D;
-			this.motionZ *= 0.699999988079071D;
-			this.motionY *= -0.5D;
+		if (onGround) {
+			motionX *= 0.699999988079071D;
+			motionZ *= 0.699999988079071D;
+			motionY *= -0.5D;
 		}
 
-		--this.fuse;
+		--fuse;
 
-		if (this.fuse <= 0) {
-			this.setDead();
+		if (fuse <= 0) {
+			setDead();
 
-			if (!this.worldObj.isRemote) {
-				this.explode();
+			if (!world.isRemote) {
+				explode();
 			}
 		} else {
-			this.handleWaterMovement();
-			this.worldObj.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, this.posX, this.posY + 0.5D, this.posZ, 0.0D, 0.0D, 0.0D, new int[0]);
+			handleWaterMovement();
+			world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, posX, posY + 0.5D, posZ, 0.0D, 0.0D, 0.0D, new int[0]);
 		}
 	}
 
 	private void explode() {
 		float f = 4.0F;
-		this.worldObj.createExplosion(this, this.posX, this.posY + (double) (this.height / 16.0F), this.posZ, 8.0F, false);
+		world.createExplosion(this, posX, posY + (double) (height / 16.0F), posZ, 8.0F, false);
 	}
 
 	/**
 	 * (abstract) Protected helper method to write subclass entity data to NBT.
 	 */
 	protected void writeEntityToNBT(NBTTagCompound compound) {
-		compound.setShort("Fuse", (short) this.getFuse());
+		compound.setShort("Fuse", (short) getFuse());
 	}
 
 	/**
 	 * (abstract) Protected helper method to read subclass entity data from NBT.
 	 */
 	protected void readEntityFromNBT(NBTTagCompound compound) {
-		this.setFuse(compound.getShort("Fuse"));
+		setFuse(compound.getShort("Fuse"));
 	}
 
 	/**
 	 * returns null or the entityliving it was placed or ignited by
 	 */
 	public EntityLivingBase getTntPlacedBy() {
-		return this.tntPlacedBy;
+		return tntPlacedBy;
 	}
 
 	public float getEyeHeight() {
@@ -123,13 +124,13 @@ public class EntityHerobrineTNTPrimed extends Entity {
 	}
 
 	public void setFuse(int fuseIn) {
-		this.dataManager.set(FUSE, Integer.valueOf(fuseIn));
-		this.fuse = fuseIn;
+		dataManager.set(FUSE, Integer.valueOf(fuseIn));
+		fuse = fuseIn;
 	}
 
 	public void notifyDataManagerChange(DataParameter<?> key) {
 		if (FUSE.equals(key)) {
-			this.fuse = this.getFuseDataManager();
+			fuse = getFuseDataManager();
 		}
 	}
 
@@ -137,10 +138,10 @@ public class EntityHerobrineTNTPrimed extends Entity {
 	 * Gets the fuse from the data manager
 	 */
 	public int getFuseDataManager() {
-		return ((Integer) this.dataManager.get(FUSE)).intValue();
+		return ((Integer) dataManager.get(FUSE)).intValue();
 	}
 
 	public int getFuse() {
-		return this.fuse;
+		return fuse;
 	}
 }

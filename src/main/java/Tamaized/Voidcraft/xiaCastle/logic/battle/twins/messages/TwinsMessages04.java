@@ -15,7 +15,7 @@ import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
-import Tamaized.Voidcraft.voidCraft;
+import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.entity.boss.twins.EntityBossDol;
 import Tamaized.Voidcraft.entity.boss.twins.EntityBossZol;
 
@@ -30,18 +30,18 @@ public class TwinsMessages04 {
 			for(EntityPlayer p : worldObj.getEntitiesWithinAABB(EntityPlayer.class, new AxisAlignedBB(pos.add(-50, -50, -50), pos.add(50, 50, 50)))){
 				switch(childPhase){
 					case 0:
-						p.addChatMessage(new TextComponentTranslation(TextFormatting.AQUA+"[Zol] ..."));
+						p.sendMessage(new TextComponentTranslation(TextFormatting.AQUA+"[Zol] ..."));
 						break;
 					case 1:
-						p.addChatMessage(new TextComponentTranslation(TextFormatting.GREEN+"[Dol] How about this one?"));
+						p.sendMessage(new TextComponentTranslation(TextFormatting.GREEN+"[Dol] How about this one?"));
 						break;
 					case 2:
 						worldObj.setBlockState(pos.add(3, 0, 0), Blocks.CHEST.getDefaultState().withProperty(Blocks.CHEST.FACING, EnumFacing.WEST));
 						TileEntityChest te = (TileEntityChest) worldObj.getTileEntity(pos.add(3, 0, 0));
 						te.setInventorySlotContents(0, new ItemStack(Items.SIGN));
 						worldObj.setBlockState(pos.add(2, 0, 1), Blocks.LEVER.getDefaultState().withProperty(BlockLever.FACING, BlockLever.EnumOrientation.UP_X));
-						worldObj.setBlockState(pos.add(3, 0, 1), voidCraft.blocks.blockNoBreak.getDefaultState());
-						worldObj.setBlockState(pos.add(3, 0, -1), voidCraft.blocks.blockNoBreak.getDefaultState());
+						worldObj.setBlockState(pos.add(3, 0, 1), VoidCraft.blocks.blockNoBreak.getDefaultState());
+						worldObj.setBlockState(pos.add(3, 0, -1), VoidCraft.blocks.blockNoBreak.getDefaultState());
 						worldObj.setBlockState(pos.add(3, 1, 0), Blocks.STANDING_SIGN.getDefaultState().withProperty(BlockStandingSign.ROTATION, 4));
 						worldObj.setBlockState(pos.add(3, 1, 1), Blocks.STANDING_SIGN.getDefaultState().withProperty(BlockStandingSign.ROTATION, 4));
 						worldObj.setBlockState(pos.add(3, 1, -1), Blocks.STANDING_SIGN.getDefaultState().withProperty(BlockStandingSign.ROTATION, 4));

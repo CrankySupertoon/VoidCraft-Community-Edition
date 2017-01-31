@@ -1,11 +1,8 @@
 package Tamaized.Voidcraft.entity.boss.herobrine.extra;
 
-import Tamaized.Voidcraft.blocks.AIBlock;
-import Tamaized.Voidcraft.blocks.tileentity.TileEntityAIBlock;
-import net.minecraft.block.Block;
-import net.minecraft.entity.Entity;
+import Tamaized.Voidcraft.entity.EntityVoidBoss;
+import Tamaized.Voidcraft.entity.boss.herobrine.EntityBossHerobrine;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
@@ -23,7 +20,7 @@ public class EntityHerobrineShadow extends EntityHerobrineFireball {
 
 	public EntityHerobrineShadow(World p_i1767_1_) {
 		super(p_i1767_1_);
-		this.rotationYawHead = this.rotationYaw;
+		rotationYawHead = rotationYaw;
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -38,10 +35,10 @@ public class EntityHerobrineShadow extends EntityHerobrineFireball {
 	@Override
 	public void onEntityUpdate() {
 		super.onEntityUpdate();
-		this.prevRenderYawOffset = this.renderYawOffset;
-		this.prevRotationYawHead = this.rotationYawHead;
-		this.prevRotationYaw = this.rotationYaw;
-		this.prevRotationPitch = this.rotationPitch;
+		prevRenderYawOffset = renderYawOffset;
+		prevRotationYawHead = rotationYawHead;
+		prevRotationYaw = rotationYaw;
+		prevRotationPitch = rotationPitch;
 	}
 
 	@Override
@@ -54,13 +51,13 @@ public class EntityHerobrineShadow extends EntityHerobrineFireball {
 	 */
 	@Override
 	protected void onImpact(RayTraceResult p_70227_1_) {
-		if (!this.worldObj.isRemote) {
+		if (!world.isRemote && !(p_70227_1_.entityHit != null && p_70227_1_.entityHit instanceof EntityVoidBoss)) {
 			if (p_70227_1_.entityHit != null) {
-				p_70227_1_.entityHit.attackEntityFrom(DamageSource.magic, 15.0F);
+				p_70227_1_.entityHit.attackEntityFrom(DamageSource.MAGIC, 15.0F);
 			} else if (p_70227_1_.typeOfHit == RayTraceResult.Type.BLOCK) {
 
 			}
-			this.setDead();
+			setDead();
 		}
 	}
 

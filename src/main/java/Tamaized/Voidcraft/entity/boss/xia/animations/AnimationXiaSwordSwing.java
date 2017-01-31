@@ -1,5 +1,6 @@
 package Tamaized.Voidcraft.entity.boss.xia.animations;
 
+import Tamaized.Voidcraft.entity.EntityVoidNPC.ArmRotation;
 import Tamaized.Voidcraft.entity.boss.xia.EntityBossXia;
 import Tamaized.Voidcraft.entity.client.animation.IAnimation;
 import net.minecraft.client.renderer.GlStateManager;
@@ -35,9 +36,9 @@ public class AnimationXiaSwordSwing implements IAnimation<EntityBossXia> {
 		currRotation--;
 		xia.setArmRotations(0, 90, 0, currRotation, false);
 
-		double xCoord = vecOriginal.xCoord + swordLength * -Math.cos(Math.toRadians(xia.rightArmYaw)) * Math.sin(Math.toRadians(90));
-		double zCoord = vecOriginal.zCoord + swordLength * -Math.sin(Math.toRadians(xia.rightArmYaw)) * Math.sin(Math.toRadians(90));
-		double yCoord = vecOriginal.yCoord + swordLength * Math.cos(Math.toRadians(xia.rightArmPitch));
+		double xCoord = vecOriginal.xCoord + swordLength * -Math.cos(Math.toRadians(xia.getArmRotation(ArmRotation.RightYaw))) * Math.sin(Math.toRadians(90));
+		double zCoord = vecOriginal.zCoord + swordLength * -Math.sin(Math.toRadians(xia.getArmRotation(ArmRotation.RightYaw))) * Math.sin(Math.toRadians(90));
+		double yCoord = vecOriginal.yCoord + swordLength * Math.cos(Math.toRadians(xia.getArmRotation(ArmRotation.RightPitch)));
 		vecResult = new Vec3d(xCoord, yCoord, zCoord);
 
 		if (currRotation <= -90) return true;
@@ -63,9 +64,9 @@ public class AnimationXiaSwordSwing implements IAnimation<EntityBossXia> {
 	@SideOnly(Side.CLIENT)
 	public void render(EntityBossXia xia) {
 
-		double xAngle = -Math.cos(Math.toRadians(90.0D + xia.rightArmYaw)) * Math.sin(xia.rightArmPitch);
+		double xAngle = -Math.cos(Math.toRadians(90.0D + xia.getArmRotation(ArmRotation.RightYaw))) * Math.sin(xia.getArmRotation(ArmRotation.RightPitch));
 		double yAngle = 1;// Math.sin(xia.rightArmPitch);
-		double zAngle = -Math.sin(Math.toRadians(90.0D + xia.rightArmYaw)) * Math.sin(xia.rightArmPitch);
+		double zAngle = -Math.sin(Math.toRadians(90.0D + xia.getArmRotation(ArmRotation.RightYaw))) * Math.sin(xia.getArmRotation(ArmRotation.RightPitch));
 
 		GlStateManager.pushAttrib();
 		{

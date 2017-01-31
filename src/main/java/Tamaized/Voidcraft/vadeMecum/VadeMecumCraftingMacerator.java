@@ -1,6 +1,6 @@
 package Tamaized.Voidcraft.vadeMecum;
 
-import Tamaized.Voidcraft.voidCraft;
+import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.GUI.client.VadeMecumGUI;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.GlStateManager;
@@ -12,7 +12,7 @@ import net.minecraft.util.text.TextFormatting;
 
 public class VadeMecumCraftingMacerator implements IVadeMecumCrafting {
 
-	private static final ResourceLocation TEXTURE = new ResourceLocation(voidCraft.modid, "textures/gui/VadeMecum/Crafting_Macerator.png");
+	private static final ResourceLocation TEXTURE = new ResourceLocation(VoidCraft.modid, "textures/gui/VadeMecum/Crafting_Macerator.png");
 
 	private final String title;
 	private final ItemStack input;

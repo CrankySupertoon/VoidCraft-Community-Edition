@@ -5,7 +5,7 @@ import java.util.HashSet;
 import Tamaized.TamModized.helper.RayTraceHelper;
 import Tamaized.TamModized.particles.ParticleHelper;
 import Tamaized.TamModized.particles.ParticleHelper.IParticlePacketData;
-import Tamaized.Voidcraft.voidCraft;
+import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.api.voidicpower.VoidicPowerItem;
 import Tamaized.Voidcraft.damageSources.DamageSourceVoidicInfusion;
 import net.minecraft.block.Block;
@@ -47,7 +47,7 @@ public class VoidicDrill extends VoidicPowerItem {
 	public int getMaxItemUseDuration(ItemStack stack) {
 		return 72000;
 	}
-	
+
 	@Override
 	protected boolean canBeUsed() {
 		return true;
@@ -58,7 +58,7 @@ public class VoidicDrill extends VoidicPowerItem {
 		if (!((tick % 5) == 0)) return;
 		if (!(entity instanceof EntityPlayer)) return;
 		EntityPlayer player = (EntityPlayer) entity;
-		World world = player.worldObj;
+		World world = player.world;
 		EnumHand hand = player.getActiveHand();
 		if (!world.isRemote) {
 			HashSet<Entity> exclude = new HashSet<Entity>();
@@ -96,7 +96,7 @@ public class VoidicDrill extends VoidicPowerItem {
 				}
 			}
 			VoidDrillParticleData data = new VoidDrillParticleData(ray == null ? player.getLook(1.0F).scale(10) : ray, hand == EnumHand.OFF_HAND, player.getEntityId());
-			ParticleHelper.sendPacketToClients(world, voidCraft.particles.drillRayHandler, new Vec3d(player.getPosition().getX(), player.getPosition().getY(), player.getPosition().getZ()), 64, new ParticleHelper.ParticlePacketHelper(voidCraft.particles.drillRayHandler, data));
+			ParticleHelper.sendPacketToClients(world, VoidCraft.particles.drillRayHandler, new Vec3d(player.getPosition().getX(), player.getPosition().getY(), player.getPosition().getZ()), 64, new ParticleHelper.ParticlePacketHelper(VoidCraft.particles.drillRayHandler, data));
 		}
 	}
 
@@ -130,7 +130,7 @@ public class VoidicDrill extends VoidicPowerItem {
 		Block block = state.getBlock();
 		if (!world.isRemote && block != null && !block.isAir(state, world, pos) && !(block instanceof BlockLiquid) && !(block instanceof IFluidBlock) && block.getPlayerRelativeBlockHardness(state, player, world, pos) > 0) {
 			int neededHarvestLevel = block.getHarvestLevel(state);
-			if (neededHarvestLevel > harvestLevel && (tool != null && !tool.canHarvestBlock(state))) return;
+			if (neededHarvestLevel > harvestLevel && (!tool.isEmpty() && !tool.canHarvestBlock(state))) return;
 
 			BreakEvent event = new BreakEvent(world, pos, state, player);
 			MinecraftForge.EVENT_BUS.post(event);

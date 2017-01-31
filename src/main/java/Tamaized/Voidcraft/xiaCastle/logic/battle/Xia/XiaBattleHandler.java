@@ -3,7 +3,7 @@ package Tamaized.Voidcraft.xiaCastle.logic.battle.Xia;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import Tamaized.Voidcraft.voidCraft;
+import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.capabilities.CapabilityList;
 import Tamaized.Voidcraft.entity.boss.xia.EntityBossXia;
 import Tamaized.Voidcraft.xiaCastle.logic.battle.IBattleHandler;
@@ -33,6 +33,10 @@ public class XiaBattleHandler implements IBattleHandler {
 	private ArrayList<EntityPlayer> players = new ArrayList<EntityPlayer>();
 	private EntityBossXia xia;
 
+	public ArrayList<EntityPlayer> getPlayers() {
+		return players;
+	}
+
 	@Override
 	public void update() {
 		if (worldObj != null && !worldObj.isRemote && running) {
@@ -60,7 +64,7 @@ public class XiaBattleHandler implements IBattleHandler {
 		BlockPos doorPos = new BlockPos(54, 76, 82);
 		for (int x = 0; x > -5; x--) {
 			for (int y = 0; y < 4; y++) {
-				worldObj.setBlockState(doorPos.add(x, y, 0), (x == 0 || x == -4 || y == 0 || y == 3) ? voidCraft.blocks.realityHole.getDefaultState() : voidCraft.blocks.blockNoBreak.getDefaultState());
+				worldObj.setBlockState(doorPos.add(x, y, 0), (x == 0 || x == -4 || y == 0 || y == 3) ? VoidCraft.blocks.realityHole.getDefaultState() : VoidCraft.blocks.blockNoBreak.getDefaultState());
 			}
 		}
 		phase = 0;
@@ -68,15 +72,15 @@ public class XiaBattleHandler implements IBattleHandler {
 		readyForInput = false;
 		xia = new EntityBossXia(worldObj, this);
 		xia.setPositionAndUpdate(pos.getX() + 0.5, pos.getY() + 17.5, pos.getZ() + 43.5);
-		xia.setItemStackToSlot(EntityEquipmentSlot.HEAD, new ItemStack(voidCraft.armors.xiaHelmet));
-		xia.setItemStackToSlot(EntityEquipmentSlot.CHEST, new ItemStack(voidCraft.armors.xiaChest));
-		xia.setItemStackToSlot(EntityEquipmentSlot.LEGS, new ItemStack(voidCraft.armors.xiaLegs));
-		xia.setItemStackToSlot(EntityEquipmentSlot.FEET, new ItemStack(voidCraft.armors.xiaBoots));
-		xia.setHeldItem(EnumHand.MAIN_HAND, new ItemStack(voidCraft.tools.demonSword));
-		ItemStack vade = new ItemStack(voidCraft.items.vadeMecum);
-		if(vade.hasCapability(CapabilityList.VADEMECUMITEM, null)) vade.getCapability(CapabilityList.VADEMECUMITEM, null).setBookState(true);
+		xia.setItemStackToSlot(EntityEquipmentSlot.HEAD, new ItemStack(VoidCraft.armors.xiaHelmet));
+		xia.setItemStackToSlot(EntityEquipmentSlot.CHEST, new ItemStack(VoidCraft.armors.xiaChest));
+		xia.setItemStackToSlot(EntityEquipmentSlot.LEGS, new ItemStack(VoidCraft.armors.xiaLegs));
+		xia.setItemStackToSlot(EntityEquipmentSlot.FEET, new ItemStack(VoidCraft.armors.xiaBoots));
+		xia.setHeldItem(EnumHand.MAIN_HAND, new ItemStack(VoidCraft.tools.demonSword));
+		ItemStack vade = new ItemStack(VoidCraft.items.vadeMecum);
+		if (vade.hasCapability(CapabilityList.VADEMECUMITEM, null)) vade.getCapability(CapabilityList.VADEMECUMITEM, null).setBookState(true);
 		xia.setHeldItem(EnumHand.OFF_HAND, vade);
-		worldObj.spawnEntityInWorld(xia);
+		worldObj.spawnEntity(xia);
 		checkBB = new AxisAlignedBB(pos.add(-19, -1, -3), pos.add(19, 26, 51));
 		players.addAll(worldObj.getEntitiesWithinAABB(EntityPlayer.class, checkBB));
 		xia.start();
@@ -113,7 +117,7 @@ public class XiaBattleHandler implements IBattleHandler {
 	public boolean isDone() {
 		return isDone;
 	}
-	
+
 	@Override
 	public void setDone() {
 		stop();

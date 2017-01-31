@@ -8,7 +8,7 @@ import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 
-import Tamaized.Voidcraft.voidCraft;
+import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.GUI.server.VoidMaceratorContainer;
 import Tamaized.Voidcraft.machina.tileentity.TileEntityVoidMacerator;
 
@@ -16,7 +16,7 @@ public class voidMaceratorGUI extends GuiContainer {
 
 	public TileEntityVoidMacerator te;
 
-	private static final ResourceLocation daTexture = new ResourceLocation(voidCraft.modid, "textures/gui/voidMacerator.png");
+	private static final ResourceLocation daTexture = new ResourceLocation(VoidCraft.modid, "textures/gui/voidMacerator.png");
 
 	public voidMaceratorGUI(InventoryPlayer inventoryPlayer, TileEntityVoidMacerator tileEntity) {
 		super(new VoidMaceratorContainer(inventoryPlayer, tileEntity));

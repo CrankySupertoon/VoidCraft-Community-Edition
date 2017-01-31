@@ -3,7 +3,7 @@ package Tamaized.Voidcraft.blocks;
 import java.util.Random;
 
 import Tamaized.TamModized.blocks.TamBlock;
-import Tamaized.Voidcraft.voidCraft;
+import Tamaized.Voidcraft.VoidCraft;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyBool;
@@ -42,8 +42,8 @@ public class OreVoidcrystal extends TamBlock {
 
 	@Override
 	public void onBlockAdded(World world, BlockPos pos, IBlockState state) {
-		if (world.provider.getDimension() == voidCraft.config.getDimensionIDvoid() && !state.getValue(VOID)) world.setBlockState(pos, state.withProperty(VOID, true), 2);
-		else if (world.provider.getDimension() != voidCraft.config.getDimensionIDvoid() && state.getValue(VOID)) world.setBlockState(pos, state.withProperty(VOID, false), 2);
+		if (world.provider.getDimension() == VoidCraft.config.getDimensionIDvoid() && !state.getValue(VOID)) world.setBlockState(pos, state.withProperty(VOID, true), 2);
+		else if (world.provider.getDimension() != VoidCraft.config.getDimensionIDvoid() && state.getValue(VOID)) world.setBlockState(pos, state.withProperty(VOID, false), 2);
 	}
 
 	@Override
@@ -76,7 +76,7 @@ public class OreVoidcrystal extends TamBlock {
 
 	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune) {
-		return voidCraft.items.voidcrystal;
+		return VoidCraft.items.voidcrystal;
 	}
 
 	public int quantityDropped(Random random) {

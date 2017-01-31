@@ -1,6 +1,6 @@
 package Tamaized.Voidcraft.vadeMecum.contents.documentation.blocks.voidcrystalblock;
 
-import Tamaized.Voidcraft.voidCraft;
+import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.capabilities.vadeMecum.IVadeMecumCapability;
 import Tamaized.Voidcraft.vadeMecum.IVadeMecumPage;
 import Tamaized.Voidcraft.vadeMecum.IVadeMecumPageProvider;
@@ -13,18 +13,18 @@ public class VadeMecumPageListVoidCrystalBlock implements IVadeMecumPageProvider
 
 	public IVadeMecumPage[] getPageList(IVadeMecumCapability cap) {
 		return new IVadeMecumPage[] {
-				new VadeMecumPage(new ItemStack(voidCraft.blocks.blockVoidcrystal).getDisplayName(), voidCraft.modid+".VadeMecum.docs.desc.voidCrystalBlock.pg1"),
-				new VadeMecumPage("", voidCraft.modid+".VadeMecum.docs.desc.voidCrystalBlock.pg2"),
-				new VadeMecumPageCrafting(new VadeMecumCraftingNormal(voidCraft.modid+".VadeMecum.recipe.normal", new ItemStack[] {
-						new ItemStack(voidCraft.items.voidcrystal),
-						new ItemStack(voidCraft.items.voidcrystal),
-						new ItemStack(voidCraft.items.voidcrystal),
-						new ItemStack(voidCraft.items.voidcrystal),
-						new ItemStack(voidCraft.items.voidcrystal),
-						new ItemStack(voidCraft.items.voidcrystal),
-						new ItemStack(voidCraft.items.voidcrystal),
-						new ItemStack(voidCraft.items.voidcrystal),
-						new ItemStack(voidCraft.items.voidcrystal) }, new ItemStack(voidCraft.blocks.blockVoidcrystal))) };
+				new VadeMecumPage(new ItemStack(VoidCraft.blocks.blockVoidcrystal).getDisplayName(), VoidCraft.modid+".VadeMecum.docs.desc.voidCrystalBlock.pg1"),
+				new VadeMecumPage("", VoidCraft.modid+".VadeMecum.docs.desc.voidCrystalBlock.pg2"),
+				new VadeMecumPageCrafting(new VadeMecumCraftingNormal(VoidCraft.modid+".VadeMecum.recipe.normal", new ItemStack[] {
+						new ItemStack(VoidCraft.items.voidcrystal),
+						new ItemStack(VoidCraft.items.voidcrystal),
+						new ItemStack(VoidCraft.items.voidcrystal),
+						new ItemStack(VoidCraft.items.voidcrystal),
+						new ItemStack(VoidCraft.items.voidcrystal),
+						new ItemStack(VoidCraft.items.voidcrystal),
+						new ItemStack(VoidCraft.items.voidcrystal),
+						new ItemStack(VoidCraft.items.voidcrystal),
+						new ItemStack(VoidCraft.items.voidcrystal) }, new ItemStack(VoidCraft.blocks.blockVoidcrystal))) };
 	}
 
 }

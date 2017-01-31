@@ -1,6 +1,6 @@
 package Tamaized.Voidcraft.vadeMecum.contents.documentation.items.voidicsupressor;
 
-import Tamaized.Voidcraft.voidCraft;
+import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.capabilities.vadeMecum.IVadeMecumCapability;
 import Tamaized.Voidcraft.vadeMecum.IVadeMecumPage;
 import Tamaized.Voidcraft.vadeMecum.IVadeMecumPageProvider;
@@ -14,17 +14,17 @@ public class VadeMecumPageListSuppressor implements IVadeMecumPageProvider {
 
 	public IVadeMecumPage[] getPageList(IVadeMecumCapability cap) {
 		return new IVadeMecumPage[] {
-				new VadeMecumPage(new ItemStack(voidCraft.items.voidicSuppressor).getDisplayName(), voidCraft.modid+".VadeMecum.docs.desc.voidicSuppressor"),
-				new VadeMecumPageCrafting(new VadeMecumCraftingNormal(voidCraft.modid+".VadeMecum.recipe.normal", new ItemStack[] {
-						new ItemStack(voidCraft.items.voidcrystal),
+				new VadeMecumPage(new ItemStack(VoidCraft.items.voidicSuppressor).getDisplayName(), VoidCraft.modid+".VadeMecum.docs.desc.voidicSuppressor"),
+				new VadeMecumPageCrafting(new VadeMecumCraftingNormal(VoidCraft.modid+".VadeMecum.recipe.normal", new ItemStack[] {
+						new ItemStack(VoidCraft.items.voidcrystal),
 						new ItemStack(Items.COMPASS),
-						null,
+						ItemStack.EMPTY,
 						new ItemStack(Items.REDSTONE),
-						new ItemStack(voidCraft.items.voidCloth),
-						null,
-						null,
-						null,
-						null }, new ItemStack(voidCraft.items.voidicSuppressor)))};
+						new ItemStack(VoidCraft.items.voidCloth),
+						ItemStack.EMPTY,
+						ItemStack.EMPTY,
+						ItemStack.EMPTY,
+						ItemStack.EMPTY }, new ItemStack(VoidCraft.items.voidicSuppressor)))};
 	}
 
 }

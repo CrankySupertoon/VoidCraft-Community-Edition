@@ -1,6 +1,6 @@
 package Tamaized.Voidcraft.vadeMecum.contents.documentation.machines.infusionAltar;
 
-import Tamaized.Voidcraft.voidCraft;
+import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.capabilities.vadeMecum.IVadeMecumCapability;
 import Tamaized.Voidcraft.vadeMecum.IVadeMecumPage;
 import Tamaized.Voidcraft.vadeMecum.IVadeMecumPageProvider;
@@ -14,27 +14,27 @@ public class VadeMecumPageListInfusionAltar implements IVadeMecumPageProvider {
 
 	public IVadeMecumPage[] getPageList(IVadeMecumCapability cap) {
 		return new IVadeMecumPage[] {
-				new VadeMecumPage(new ItemStack(voidCraft.blocks.voidInfuser).getDisplayName(), voidCraft.modid+".VadeMecum.docs.desc.voidInfuser"),
-				new VadeMecumPageCrafting(new VadeMecumCraftingNormal(new ItemStack(voidCraft.blocks.voidInfuserInert).getDisplayName(), new ItemStack[] {
-						new ItemStack(voidCraft.blocks.blockVoidbrick),
-						new ItemStack(voidCraft.items.voidCloth),
-						new ItemStack(voidCraft.blocks.blockVoidbrick),
-						new ItemStack(voidCraft.items.voidCloth),
+				new VadeMecumPage(new ItemStack(VoidCraft.blocks.voidInfuser).getDisplayName(), VoidCraft.modid+".VadeMecum.docs.desc.voidInfuser"),
+				new VadeMecumPageCrafting(new VadeMecumCraftingNormal(new ItemStack(VoidCraft.blocks.voidInfuserInert).getDisplayName(), new ItemStack[] {
+						new ItemStack(VoidCraft.blocks.blockVoidbrick),
+						new ItemStack(VoidCraft.items.voidCloth),
+						new ItemStack(VoidCraft.blocks.blockVoidbrick),
+						new ItemStack(VoidCraft.items.voidCloth),
 						new ItemStack(Items.CAULDRON),
-						new ItemStack(voidCraft.items.voidCloth),
-						new ItemStack(voidCraft.blocks.blockVoidbrick),
-						new ItemStack(voidCraft.items.voidCloth),
-						new ItemStack(voidCraft.blocks.blockVoidbrick) }, new ItemStack(voidCraft.blocks.voidInfuserInert, 1))),
-				new VadeMecumPageCrafting(new VadeMecumCraftingNormal(new ItemStack(voidCraft.blocks.voidInfuser).getDisplayName(), new ItemStack[] {
-						new ItemStack(voidCraft.blocks.voidInfuserInert),
-						new ItemStack(voidCraft.items.voidStar),
-						null,
-						null,
-						null,
-						null,
-						null,
-						null,
-						null }, new ItemStack(voidCraft.blocks.voidInfuser, 1))) };
+						new ItemStack(VoidCraft.items.voidCloth),
+						new ItemStack(VoidCraft.blocks.blockVoidbrick),
+						new ItemStack(VoidCraft.items.voidCloth),
+						new ItemStack(VoidCraft.blocks.blockVoidbrick) }, new ItemStack(VoidCraft.blocks.voidInfuserInert, 1))),
+				new VadeMecumPageCrafting(new VadeMecumCraftingNormal(new ItemStack(VoidCraft.blocks.voidInfuser).getDisplayName(), new ItemStack[] {
+						new ItemStack(VoidCraft.blocks.voidInfuserInert),
+						new ItemStack(VoidCraft.items.voidStar),
+						ItemStack.EMPTY,
+						ItemStack.EMPTY,
+						ItemStack.EMPTY,
+						ItemStack.EMPTY,
+						ItemStack.EMPTY,
+						ItemStack.EMPTY,
+						ItemStack.EMPTY }, new ItemStack(VoidCraft.blocks.voidInfuser, 1))) };
 	}
 
 }

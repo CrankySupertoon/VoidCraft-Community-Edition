@@ -3,23 +3,17 @@ package Tamaized.Voidcraft.capabilities.voidicPower;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
-import Tamaized.Voidcraft.voidCraft;
-import Tamaized.Voidcraft.network.ClientPacketHandler;
-import Tamaized.Voidcraft.network.ItemStackNetworkHelper;
+import Tamaized.Voidcraft.VoidCraft;
 import io.netty.buffer.ByteBufInputStream;
-import io.netty.buffer.ByteBufOutputStream;
-import io.netty.buffer.Unpooled;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.common.network.internal.FMLProxyPacket;
 
 public class VoidicPowerCapabilityHandler implements IVoidicPowerCapability {
 
-	public static final ResourceLocation ID = new ResourceLocation(voidCraft.modid, "VoidicPowerCapabilityHandler");
+	public static final ResourceLocation ID = new ResourceLocation(VoidCraft.modid, "VoidicPowerCapabilityHandler");
 
 	private int currPower = 0;
 	private int maxPower = 0;
@@ -158,24 +152,12 @@ public class VoidicPowerCapabilityHandler implements IVoidicPowerCapability {
 	}
 
 	private void sendPacketUpdates(EntityPlayerMP player, int slot, ItemStack stack, IVoidicPowerCapability cap) {
-		NBTTagCompound nbt = stack.getSubCompound(voidCraft.modid, true);
+		NBTTagCompound nbt = stack.getOrCreateSubCompound(VoidCraft.modid);
 		nbt.setInteger("currPower", cap.getCurrentPower());
 		nbt.setInteger("maxPower", cap.getMaxPower());
 		/*
-		ByteBufOutputStream bos = new ByteBufOutputStream(Unpooled.buffer());
-		DataOutputStream outputStream = new DataOutputStream(bos);
-		try {
-			outputStream.writeInt(ClientPacketHandler.getPacketTypeID(ClientPacketHandler.PacketType.VOIDICPOWERITEM));
-			outputStream.writeInt(slot);
-			ItemStackNetworkHelper.encodeStack(stack, outputStream);
-			cap.encodePacket(outputStream);
-			FMLProxyPacket packet = new FMLProxyPacket(new PacketBuffer(bos.buffer()), voidCraft.networkChannelName);
-			if (voidCraft.channel != null && packet != null) voidCraft.channel.sendTo(packet, player);
-			bos.close();
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
-		*/
+		 * ByteBufOutputStream bos = new ByteBufOutputStream(Unpooled.buffer()); DataOutputStream outputStream = new DataOutputStream(bos); try { outputStream.writeInt(ClientPacketHandler.getPacketTypeID(ClientPacketHandler.PacketType.VOIDICPOWERITEM)); outputStream.writeInt(slot); ItemStackNetworkHelper.encodeStack(stack, outputStream); cap.encodePacket(outputStream); FMLProxyPacket packet = new FMLProxyPacket(new PacketBuffer(bos.buffer()), voidCraft.networkChannelName); if (voidCraft.channel != null && packet != null) voidCraft.channel.sendTo(packet, player); bos.close(); } catch (Exception ex) { ex.printStackTrace(); }
+		 */
 	}
 
 }

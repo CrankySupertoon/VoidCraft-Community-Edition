@@ -1,15 +1,14 @@
 package Tamaized.Voidcraft.GUI.server;
 
+import Tamaized.Voidcraft.GUI.slots.SlotAdjustedMaxSize;
+import Tamaized.Voidcraft.machina.tileentity.TileEntityHeimdall;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IContainerListener;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import Tamaized.Voidcraft.GUI.slots.SlotAdjustedMaxSize;
-import Tamaized.Voidcraft.machina.tileentity.TileEntityHeimdall;
 
 public class HeimdallContainer extends ContainerBase {
 
@@ -20,8 +19,8 @@ public class HeimdallContainer extends ContainerBase {
 	public HeimdallContainer(InventoryPlayer inventory, TileEntityHeimdall tileEntity) {
 		te = tileEntity;
 
-		addSlotToContainer(new SlotAdjustedMaxSize(tileEntity, tileEntity.SLOT_BUCKET, 158, 114, 1));
 		addSlotToContainer(new Slot(tileEntity, tileEntity.SLOT_INPUT, 158, 87));
+		addSlotToContainer(new SlotAdjustedMaxSize(tileEntity, tileEntity.SLOT_BUCKET, 158, 114, 1));
 
 		for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < 9; j++) {
@@ -73,55 +72,62 @@ public class HeimdallContainer extends ContainerBase {
 
 	@Override
 	public ItemStack transferStackInSlot(EntityPlayer player, int hoverSlot) {
-		ItemStack itemstack = null;
+		ItemStack itemstack = ItemStack.EMPTY;
 		Slot slot = (Slot) inventorySlots.get(hoverSlot);
 
 		if (slot != null && slot.getHasStack()) {
 			ItemStack itemstack1 = slot.getStack();
 			itemstack = itemstack1.copy();
 
-			if (hoverSlot == te.SLOT_BUCKET || hoverSlot == te.SLOT_INPUT) {
-				if (!mergeItemStack(itemstack1, 2, 38, true)) {
-					return null;
+			final int maxSlots = te.getSizeInventory();
+
+			if (hoverSlot < maxSlots) {
+				if (!mergeItemStack(itemstack1, maxSlots, maxSlots + 36, true)) {
+					return ItemStack.EMPTY;
 				}
 				slot.onSlotChange(itemstack1, itemstack);
 			} else {
-				if (!getSlot(te.SLOT_BUCKET).getHasStack() && te.canInsertItem(te.SLOT_BUCKET, itemstack1, null)) {
-					if (!mergeItemStack(itemstack1, te.SLOT_BUCKET, te.SLOT_BUCKET + 1, false)) {
-						return null;
-					}
-				} else if (!getSlot(te.SLOT_INPUT).getHasStack() && te.canInsertItem(te.SLOT_INPUT, itemstack1, null)) {
+				ItemStack slotCheck = te.getStackInSlot(te.SLOT_INPUT);
+				if ((slotCheck.isEmpty() || (slotCheck.getCount() < slotCheck.getMaxStackSize() && slotCheck.isItemEqual(itemstack))) && te.canInsertItem(te.SLOT_INPUT, itemstack1, null)) {
 					if (!mergeItemStack(itemstack1, te.SLOT_INPUT, te.SLOT_INPUT + 1, false)) {
-						return null;
+						return ItemStack.EMPTY;
 					}
-				} else if (hoverSlot >= 2 && hoverSlot < 29) {
-					if (!mergeItemStack(itemstack1, 29, 38, false)) {
-						return null;
+				} else if (!getSlot(te.SLOT_BUCKET).getHasStack() && te.canInsertItem(te.SLOT_BUCKET, itemstack1, null)) {
+					if (!mergeItemStack(itemstack1, te.SLOT_BUCKET, te.SLOT_BUCKET + 1, false)) {
+						return ItemStack.EMPTY;
 					}
-				} else if (hoverSlot >= 29 && hoverSlot < 38) {
-					if (!mergeItemStack(itemstack1, 2, 29, false)) {
-						return null;
+				} else if (hoverSlot >= maxSlots && hoverSlot < maxSlots + 27) {
+					if (!mergeItemStack(itemstack1, maxSlots + 27, maxSlots + 36, false)) {
+						return ItemStack.EMPTY;
+					}
+				} else if (hoverSlot >= maxSlots + 27 && hoverSlot < maxSlots + 36) {
+					if (!mergeItemStack(itemstack1, maxSlots, maxSlots + 27, false)) {
+						return ItemStack.EMPTY;
+					}
+				} else {
+					if (!mergeItemStack(itemstack1, maxSlots, maxSlots + 36, false)) {
+						return ItemStack.EMPTY;
 					}
 				}
 			}
 
-			if (itemstack1.stackSize == 0) {
-				slot.putStack((ItemStack) null);
+			if (itemstack1.getCount() == 0) {
+				slot.putStack(ItemStack.EMPTY);
 			} else {
 				slot.onSlotChanged();
 			}
 
-			if (itemstack1.stackSize == itemstack.stackSize) {
-				return null;
+			if (itemstack1.getCount() == itemstack.getCount()) {
+				return ItemStack.EMPTY;
 			}
 
-			slot.onPickupFromSlot(player, itemstack1);
+			slot.onTake(player, itemstack1);
 		}
 		return itemstack;
 	}
 
 	@Override
 	public boolean canInteractWith(EntityPlayer entityplayer) {
-		return te.isUseableByPlayer(entityplayer);
+		return te.isUsableByPlayer(entityplayer);
 	}
 }

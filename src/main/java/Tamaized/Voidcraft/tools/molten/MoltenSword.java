@@ -6,7 +6,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import Tamaized.TamModized.tools.TamSword;
-import Tamaized.Voidcraft.voidCraft;
+import Tamaized.Voidcraft.VoidCraft;
 
 public class MoltenSword extends TamSword {
 
@@ -18,7 +18,7 @@ public class MoltenSword extends TamSword {
 		par1ItemStack.damageItem(1, par3EntityLivingBase);
 		par2EntityLivingBase.addPotionEffect(new PotionEffect(Potion.getPotionFromResourceLocation("nausea"), 5 * 20)); // confuse
 		par2EntityLivingBase.addPotionEffect(new PotionEffect(Potion.getPotionFromResourceLocation("weakness"), 5 * 20)); // weakness
-		par2EntityLivingBase.setFire(100);
+		par2EntityLivingBase.setFire(5);
 		return true;
 	}
 

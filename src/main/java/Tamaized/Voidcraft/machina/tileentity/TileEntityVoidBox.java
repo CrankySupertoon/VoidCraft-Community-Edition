@@ -10,7 +10,7 @@ import java.util.Map.Entry;
 import com.google.gson.stream.JsonReader;
 
 import Tamaized.TamModized.tileentity.TamTileEntityInventory;
-import Tamaized.Voidcraft.voidCraft;
+import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.sound.OggLength;
 import Tamaized.Voidcraft.sound.VanillaRecordLengths;
 import net.minecraft.entity.player.EntityPlayer;
@@ -36,7 +36,7 @@ public class TileEntityVoidBox extends TamTileEntityInventory {
 	private int songTime;
 	private boolean loop;
 	private boolean autoFill;
-	private ItemStack oldRecord;
+	private ItemStack oldRecord = ItemStack.EMPTY;
 
 	// Unused for now
 	private boolean isPowered = false;
@@ -53,7 +53,7 @@ public class TileEntityVoidBox extends TamTileEntityInventory {
 		loop = nbt.getBoolean("loop");
 		autoFill = nbt.getBoolean("autoFill");
 		int temp = nbt.getInteger("oldRecord");
-		oldRecord = temp > -1 ? new ItemStack(Item.getItemById(temp)) : null;
+		oldRecord = temp > -1 ? new ItemStack(Item.getItemById(temp)) : ItemStack.EMPTY;
 	}
 
 	@Override
@@ -63,7 +63,7 @@ public class TileEntityVoidBox extends TamTileEntityInventory {
 		nbt.setInteger("songTime", songTime);
 		nbt.setBoolean("loop", loop);
 		nbt.setBoolean("autoFill", autoFill);
-		nbt.setInteger("oldRecord", oldRecord != null ? Item.getIdFromItem(oldRecord.getItem()) : -1);
+		nbt.setInteger("oldRecord", !oldRecord.isEmpty() ? Item.getIdFromItem(oldRecord.getItem()) : -1);
 		return nbt;
 	}
 
@@ -97,7 +97,7 @@ public class TileEntityVoidBox extends TamTileEntityInventory {
 
 	private void PlayTheSound() {
 		ItemStack itemStack = slots[SLOT_CURRENT];
-		if (itemStack != null && itemStack.getItem() instanceof ItemRecord) {
+		if (!itemStack.isEmpty() && itemStack.getItem() instanceof ItemRecord) {
 			try {
 				ItemRecord theRecord = (ItemRecord) itemStack.getItem();
 				Class<? extends ItemRecord> c = ItemRecord.class;
@@ -177,38 +177,38 @@ public class TileEntityVoidBox extends TamTileEntityInventory {
 				} else {
 					songTime = songTimeLeft = 20 * VanillaRecordLengths.getLength(soundID.split("\\.")[soundID.split("\\.").length - 1]);
 				}
-				worldObj.playEvent((EntityPlayer) null, 1010, getPos(), Item.getIdFromItem(theRecord));
+				world.playEvent((EntityPlayer) null, 1010, getPos(), Item.getIdFromItem(theRecord));
 				oldRecord = slots[SLOT_CURRENT];
 				playing = true;
 				// IF YOU GOT THIS FAR, CONGRATS THIS WAS NOT FUN TO WRITE
 			} catch (Exception e) {
-				voidCraft.logger.warn("Could not play ItemRecord");
+				VoidCraft.instance.logger.warn("Could not play ItemRecord");
 				e.printStackTrace();
 				loop = false; // Prevent soft lock
 			}
 		} else {
-			voidCraft.logger.warn("NULL/NON-ITEMRECORD IN SLOT DETECTED");
+			VoidCraft.instance.logger.warn("NULL/NON-ITEMRECORD IN SLOT DETECTED");
 		}
 	}
 
 	public void PlayNextSound() {
-		if (slots[SLOT_CURRENT] == null) {
+		if (slots[SLOT_CURRENT].isEmpty()) {
 			slots[SLOT_CURRENT] = slots[SLOT_NEXT];
-			slots[SLOT_NEXT] = null;
+			slots[SLOT_NEXT] = ItemStack.EMPTY;
 			PlayTheSound();
 		}
 	}
 
 	public void StopTheSound() {
-		worldObj.playEvent((EntityPlayer) null, 1010, getPos(), 0);
+		world.playEvent((EntityPlayer) null, 1010, getPos(), 0);
 		playing = false;
 	}
 
 	public void StopTheSoundAndDeposit() {
 		StopTheSound();
-		if (slots[SLOT_CURRENT] != null && slots[SLOT_FINISH] == null) {
+		if (!slots[SLOT_CURRENT].isEmpty() && slots[SLOT_FINISH].isEmpty()) {
 			slots[SLOT_FINISH] = slots[SLOT_CURRENT];
-			slots[SLOT_CURRENT] = null;
+			slots[SLOT_CURRENT] = ItemStack.EMPTY;
 		}
 	}
 
@@ -218,31 +218,26 @@ public class TileEntityVoidBox extends TamTileEntityInventory {
 
 	@Override
 	public void onUpdate() {
-		if (!worldObj.isRemote) {
+		if (!world.isRemote) {
 			if (playing) {
 				if (songTimeLeft > 0) songTimeLeft--;
 				else StopTheSound();
-				if (slots[SLOT_CURRENT] == null || !slots[SLOT_CURRENT].equals(oldRecord)) StopTheSound();
+				if (slots[SLOT_CURRENT].isEmpty() || !slots[SLOT_CURRENT].equals(oldRecord)) StopTheSound();
 			} else {
-				if (loop && slots[SLOT_CURRENT] != null) {
+				if (loop && !slots[SLOT_CURRENT].isEmpty()) {
 					PlayTheSound();
 				}
-				if (!loop && slots[SLOT_CURRENT] != null && slots[SLOT_FINISH] == null) {
+				if (!loop && !slots[SLOT_CURRENT].isEmpty() && slots[SLOT_FINISH].isEmpty()) {
 					slots[SLOT_FINISH] = slots[SLOT_CURRENT];
-					slots[SLOT_CURRENT] = null;
+					slots[SLOT_CURRENT] = ItemStack.EMPTY;
 				}
 				if (autoFill) {
-					if (slots[SLOT_CURRENT] == null && slots[SLOT_NEXT] != null) {
+					if (slots[SLOT_CURRENT].isEmpty() && !slots[SLOT_NEXT].isEmpty()) {
 						PlayNextSound();
 					}
 				}
 			}
 		}
-	}
-
-	@Override
-	public boolean isItemValidForSlot(int i, ItemStack stack) {
-		return i == SLOT_NEXT ? stack.getItem() instanceof ItemRecord : false;
 	}
 
 	@Override
@@ -266,12 +261,13 @@ public class TileEntityVoidBox extends TamTileEntityInventory {
 	}
 
 	@Override
-	protected boolean canExtractSlot(int i) {
+	protected boolean canExtractSlot(int i, ItemStack stack) {
 		return i == SLOT_FINISH;
 	}
 
 	@Override
-	protected boolean canInsertSlot(int i) {
-		return i == SLOT_NEXT;
+	public boolean isItemValidForSlot(int i, ItemStack stack) {
+		return i == SLOT_NEXT ? stack.getItem() instanceof ItemRecord : false;
 	}
+
 }

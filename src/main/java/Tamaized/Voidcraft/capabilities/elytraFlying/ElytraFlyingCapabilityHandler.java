@@ -4,7 +4,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import Tamaized.Voidcraft.voidCraft;
+import Tamaized.Voidcraft.VoidCraft;
 import io.netty.buffer.ByteBufInputStream;
 import net.minecraft.util.ResourceLocation;
 
@@ -12,7 +12,7 @@ public class ElytraFlyingCapabilityHandler implements IElytraFlyingCapability {
 
 	private boolean markDirty = false;
 
-	public static final ResourceLocation ID = new ResourceLocation(voidCraft.modid, "ElytraFlyingCapabilityHandler");
+	public static final ResourceLocation ID = new ResourceLocation(VoidCraft.modid, "ElytraFlyingCapabilityHandler");
 	private boolean hasLoaded = false;
 	
 	private boolean isFlying = false;

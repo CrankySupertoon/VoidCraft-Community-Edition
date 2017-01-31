@@ -3,6 +3,7 @@ package Tamaized.Voidcraft.entity.boss.herobrine.render;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.RenderLiving;
+import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
@@ -17,8 +18,8 @@ public class RenderHerobrine<T extends EntityBossHerobrine> extends RenderLiving
 	
 	private static final ResourceLocation Herobrine_Texture = new ResourceLocation("VoidCraft:textures/entity/Herobrine.png");  //refers to:assets/yourmod/textures/entity/yourtexture.png
 	 
-    public RenderHerobrine(ModelBase par1ModelBase, float par2){
-        super(Minecraft.getMinecraft().getRenderManager(), par1ModelBase, par2);
+    public RenderHerobrine(RenderManager manager, ModelBase par1ModelBase, float par2){
+        super(manager, par1ModelBase, par2);
     }
 
     /**

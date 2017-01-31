@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 import Tamaized.TamModized.registry.ITamModel;
 import Tamaized.TamModized.registry.ITamRegistry;
-import Tamaized.Voidcraft.voidCraft;
-import Tamaized.Voidcraft.potion.PotionSheath;
+import Tamaized.Voidcraft.VoidCraft;
+import Tamaized.Voidcraft.potion.PotionSheathe;
 import Tamaized.Voidcraft.potion.PotionVoidImmunity;
 import Tamaized.Voidcraft.potion.PotionVoidicInfusionImmunity;
 import net.minecraft.potion.Potion;
@@ -20,10 +20,11 @@ public class VoidCraftPotions implements ITamRegistry {
 	public static Potion voidicInfusionImmunity;
 	public static Potion voidImmunity;
 
-	public static Potion fireSheath;
-	public static Potion frostSheath;
-	public static Potion litSheath;
-	public static Potion acidSheath;
+	public static Potion fireSheathe;
+	public static Potion frostSheathe;
+	public static Potion litSheathe;
+	public static Potion acidSheathe;
+	public static Potion voidSheathe;
 
 	public static PotionType type_voidImmunity;
 
@@ -33,10 +34,11 @@ public class VoidCraftPotions implements ITamRegistry {
 		voidicInfusionImmunity = new PotionVoidicInfusionImmunity("voidicInfusionImmunity");
 		voidImmunity = new PotionVoidImmunity("voidImmunity");
 		
-		fireSheath = new PotionSheath("potionSheathFire", PotionSheath.Type.Fire);
-		frostSheath = new PotionSheath("potionSheathFrost", PotionSheath.Type.Frost);
-		litSheath = new PotionSheath("potionSheathLit", PotionSheath.Type.Lit);
-		acidSheath = new PotionSheath("potionSheathAcid", PotionSheath.Type.Acid);
+		fireSheathe = new PotionSheathe("potionSheatheFire", PotionSheathe.Type.Fire);
+		frostSheathe = new PotionSheathe("potionSheatheFrost", PotionSheathe.Type.Frost);
+		litSheathe = new PotionSheathe("potionSheatheLit", PotionSheathe.Type.Lit);
+		acidSheathe = new PotionSheathe("potionSheatheAcid", PotionSheathe.Type.Acid);
+		voidSheathe = new PotionSheathe("potionSheatheVoid", PotionSheathe.Type.Void);
 
 		type_voidImmunity = new PotionType(new PotionEffect[] { new PotionEffect(voidImmunity, ((60*3)+30)*20) }).setRegistryName("voidImmunity");
 		GameRegistry.register(type_voidImmunity);
@@ -59,7 +61,7 @@ public class VoidCraftPotions implements ITamRegistry {
 
 	@Override
 	public String getModID() {
-		return voidCraft.modid;
+		return VoidCraft.modid;
 	}
 
 	@Override

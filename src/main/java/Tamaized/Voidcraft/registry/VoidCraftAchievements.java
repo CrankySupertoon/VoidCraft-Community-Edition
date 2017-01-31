@@ -6,114 +6,102 @@ import net.minecraft.stats.Achievement;
 import net.minecraftforge.common.AchievementPage;
 import Tamaized.TamModized.registry.ITamModel;
 import Tamaized.TamModized.registry.ITamRegistry;
-import Tamaized.Voidcraft.voidCraft;
+import Tamaized.Voidcraft.VoidCraft;
 
 public class VoidCraftAchievements implements ITamRegistry {
-	
-	public static Achievement voidCraftAchMainLine_1;
-	public static Achievement voidCraftAchMainLine_2;
-	public static Achievement voidCraftAchMainLine_3;
-	public static Achievement voidCraftAchMainLine_4;
-	public static Achievement voidCraftAchMainLine_5;
-	public static Achievement voidCraftAchMainLine_6;
-	public static Achievement voidCraftAchMainLine_7;
-	public static Achievement voidCraftAchMainLine_8;
-	
-	public static Achievement voidCraftAchSideLine1_1;
-	public static Achievement voidCraftAchSideLine1_2;
-	public static Achievement voidCraftAchSideLine1_3;
-	public static Achievement voidCraftAchSideLine1_4;
-	public static Achievement voidCraftAchSideLine1_5;
-	
-	public static Achievement voidCraftAchSideLine1_1_1;
-	public static Achievement voidCraftAchSideLine1_1_2;
-	public static Achievement voidCraftAchSideLine1_1_3;
-	public static Achievement voidCraftAchSideLine1_1_4;
-	
-	public static Achievement voidCraftAchSideLine2_1;
-	public static Achievement voidCraftAchSideLine2_2;
-	public static Achievement voidCraftAchSideLine2_3;
-	
-	public static Achievement voidCraftAchSideLine2_1_1;
-	public static Achievement voidCraftAchSideLine2_1_2;
-	public static Achievement voidCraftAchSideLine2_1_3;
+
+	public static Achievement voidCrystal;
+	public static Achievement enterVoid;
+	public static Achievement demonsCall;
+	public static Achievement artifact;
+	public static Achievement godsSleep;
+	public static Achievement tooFar;
+	public static Achievement Ascension;
+	public static Achievement worldsEnd;
+
+	public static Achievement betterThanDiamond;
+	public static Achievement angelicPower;
+
+	public static Achievement theChains;
+	public static Achievement thirdDegreeBurns;
+	public static Achievement Legendary;
+	public static Achievement demonicPower;
+
+	public static Achievement infuser;
+	public static Achievement macerator;
+	public static Achievement heimdall;
+
+	public static Achievement generator;
+	public static Achievement charger;
+	public static Achievement suppressor;
 
 	@Override
 	public void preInit() {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void init() {
-		voidCraftAchMainLine_1 = new Achievement("achievement.achM_1", "achM_1", 0, 0, voidCraft.items.voidcrystal, (Achievement) null);
-		voidCraftAchMainLine_1.setSpecial().initIndependentStat().registerStat();
-		voidCraftAchMainLine_2 = new Achievement("achievement.achM_2", "achM_2", 0, 3, voidCraft.blocks.blockVoidcrystal, voidCraftAchMainLine_1);
-		voidCraftAchMainLine_2.setSpecial().registerStat();
-		voidCraftAchMainLine_3 = new Achievement("achievement.achM_3", "achM_3", 0, 6, voidCraft.items.ChainedSkull, voidCraftAchMainLine_2);
-		voidCraftAchMainLine_3.registerStat();
-		voidCraftAchMainLine_4 = new Achievement("achievement.achM_4", "achM_4", 0, 9, voidCraft.items.voidStar, voidCraftAchMainLine_3);
-		voidCraftAchMainLine_4.setSpecial().registerStat();
-		voidCraftAchMainLine_5 = new Achievement("achievement.achM_5", "achM_5", 2, 9, voidCraft.blocks.blockNoBreak, voidCraftAchMainLine_4);
-		voidCraftAchMainLine_5.registerStat();
-		voidCraftAchMainLine_6 = new Achievement("achievement.achM_6", "achM_6", 4, 9, voidCraft.blocks.blockPortalXia, voidCraftAchMainLine_5);
-		voidCraftAchMainLine_6.registerStat();
-		
-		voidCraftAchSideLine1_1 = new Achievement("achievement.achS1_1", "achS1_1", 3, 0, voidCraft.tools.voidSword, voidCraftAchMainLine_1);
-		voidCraftAchSideLine1_1.registerStat();
-		voidCraftAchSideLine1_2 = new Achievement("achievement.achS1_2", "achS1_2", 6, 0, voidCraft.tools.angelicSword, voidCraftAchSideLine1_1);
-		voidCraftAchSideLine1_2.setSpecial().registerStat();
-		
-		voidCraftAchSideLine1_1_1 = new Achievement("achievement.achS1_1_1", "achS1_1_1", 6, 3, voidCraft.tools.chainSword, voidCraftAchSideLine1_1);
-		voidCraftAchSideLine1_1_1.registerStat();
-		voidCraftAchSideLine1_1_2 = new Achievement("achievement.achS1_1_2", "achS1_1_2", 6, 6, voidCraft.tools.moltenSword, voidCraftAchSideLine1_1_1);
-		voidCraftAchSideLine1_1_2.registerStat();
-		voidCraftAchSideLine1_1_3 = new Achievement("achievement.achS1_1_3", "achS1_1_3", 4, 6, voidCraft.tools.archSword, voidCraftAchSideLine1_1_2);
-		voidCraftAchSideLine1_1_3.setSpecial().registerStat();
-		voidCraftAchSideLine1_1_4 = new Achievement("achievement.achS1_1_4", "achS1_1_4", 2, 6, voidCraft.tools.demonSword, voidCraftAchSideLine1_1_3);
-		voidCraftAchSideLine1_1_4.setSpecial().registerStat();
+		voidCrystal = new Achievement("achievement.voidCrystal", "voidCrystal", 0, 0, VoidCraft.items.voidcrystal, (Achievement) null);
+		voidCrystal.setSpecial().initIndependentStat().registerStat();
+		enterVoid = new Achievement("achievement.enterVoid", "enterVoid", 0, 3, VoidCraft.blocks.blockVoidcrystal, voidCrystal);
+		enterVoid.setSpecial().registerStat();
+		demonsCall = new Achievement("achievement.demonsCall", "demonsCall", 0, 6, VoidCraft.items.ChainedSkull, enterVoid);
+		demonsCall.registerStat();
+		artifact = new Achievement("achievement.artifact", "artifact", 0, 9, VoidCraft.items.voidStar, demonsCall);
+		artifact.setSpecial().registerStat();
+		godsSleep = new Achievement("achievement.godsSleep", "godsSleep", 2, 9, VoidCraft.blocks.blockNoBreak, artifact);
+		godsSleep.registerStat();
+		tooFar = new Achievement("achievement.tooFar", "tooFar", 4, 9, VoidCraft.blocks.blockPortalXia, godsSleep);
+		tooFar.registerStat();
+		Ascension = new Achievement("achievement.Ascension", "Ascension", 6, 9, VoidCraft.armors.xiaHelmet, tooFar);
+		Ascension.setSpecial().registerStat();
+		worldsEnd = new Achievement("achievement.worldsEnd", "worldsEnd", 8, 9, VoidCraft.blocks.realityHole, Ascension);
+		worldsEnd.setSpecial().registerStat();
 
+		betterThanDiamond = new Achievement("achievement.betterThanDiamond", "betterThanDiamond", 3, 0, VoidCraft.tools.voidSword, voidCrystal);
+		betterThanDiamond.registerStat();
+		angelicPower = new Achievement("achievement.angelicPower", "angelicPower", 6, 0, VoidCraft.tools.angelicSword, betterThanDiamond);
+		angelicPower.setSpecial().registerStat();
 
-		voidCraftAchSideLine2_1 = new Achievement("achievement.achS2_1", "achS2_1", -2, 9, voidCraft.blocks.voidInfuser, voidCraftAchMainLine_4);
-		voidCraftAchSideLine2_1.registerStat();
-		voidCraftAchSideLine2_2 = new Achievement("achievement.achS2_2", "achS2_2", -2, 6, voidCraft.blocks.voidMacerator, voidCraftAchSideLine2_1);
-		voidCraftAchSideLine2_2.registerStat();
-		voidCraftAchSideLine2_3 = new Achievement("achievement.achS2_3", "achS2_3", -2, 3, voidCraft.blocks.Heimdall, voidCraftAchSideLine2_2);
-		voidCraftAchSideLine2_3.registerStat();
-		
-		voidCraftAchSideLine2_1_1 = new Achievement("achievement.achS2_1_1", "achS2_1_1", -4, 9, voidCraft.blocks.voidicGen, voidCraftAchSideLine2_1);
-		voidCraftAchSideLine2_1_1.registerStat();
-		voidCraftAchSideLine2_1_2 = new Achievement("achievement.achS2_1_2", "achS2_1_2", -4, 6, voidCraft.blocks.voidicCharger, voidCraftAchSideLine2_1_1);
-		voidCraftAchSideLine2_1_2.setSpecial().registerStat();
-		voidCraftAchSideLine2_1_3 = new Achievement("achievement.achS2_1_3", "achS2_1_3", -4, 3, voidCraft.items.voidicSuppressor, voidCraftAchSideLine2_1_2);
-		voidCraftAchSideLine2_1_3.registerStat();
+		theChains = new Achievement("achievement.theChains", "theChains", 6, 3, VoidCraft.tools.chainSword, betterThanDiamond);
+		theChains.registerStat();
+		thirdDegreeBurns = new Achievement("achievement.thirdDegreeBurns", "thirdDegreeBurns", 6, 6, VoidCraft.tools.moltenSword, theChains);
+		thirdDegreeBurns.registerStat();
+		Legendary = new Achievement("achievement.Legendary", "Legendary", 4, 6, VoidCraft.tools.archSword, thirdDegreeBurns);
+		Legendary.setSpecial().registerStat();
+		demonicPower = new Achievement("achievement.demonicPower", "demonicPower", 2, 6, VoidCraft.tools.demonSword, Legendary);
+		demonicPower.setSpecial().registerStat();
+
+		infuser = new Achievement("achievement.infuser", "infuser", -2, 9, VoidCraft.blocks.voidInfuser, artifact);
+		infuser.registerStat();
+		macerator = new Achievement("achievement.macerator", "macerator", -2, 6, VoidCraft.blocks.voidMacerator, infuser);
+		macerator.registerStat();
+		heimdall = new Achievement("achievement.heimdall", "heimdall", -2, 3, VoidCraft.blocks.Heimdall, macerator);
+		heimdall.registerStat();
+
+		generator = new Achievement("achievement.generator", "generator", -4, 9, VoidCraft.blocks.voidicGen, infuser);
+		generator.registerStat();
+		charger = new Achievement("achievement.charger", "charger", -4, 6, VoidCraft.blocks.voidicCharger, generator);
+		charger.setSpecial().registerStat();
+		suppressor = new Achievement("achievement.suppressor", "suppressor", -4, 3, VoidCraft.items.voidicSuppressor, charger);
+		suppressor.registerStat();
 	}
 
 	@Override
 	public void postInit() {
 		Achievement[] achArray = {
-				voidCraftAchMainLine_1,
-				voidCraftAchMainLine_2,
-				voidCraftAchMainLine_3,
-				voidCraftAchMainLine_4,
-				voidCraftAchMainLine_5,
-				voidCraftAchMainLine_6,
-				
-				voidCraftAchSideLine1_1,
-				voidCraftAchSideLine1_2,
-				
-				voidCraftAchSideLine1_1_1,
-				voidCraftAchSideLine1_1_2,
-				voidCraftAchSideLine1_1_3,
-				voidCraftAchSideLine1_1_4,
 
-				voidCraftAchSideLine2_1,
-				voidCraftAchSideLine2_2,
-				voidCraftAchSideLine2_3,
+				voidCrystal, enterVoid, demonsCall, artifact, godsSleep, tooFar, Ascension, worldsEnd,
 
-				voidCraftAchSideLine2_1_1,
-				voidCraftAchSideLine2_1_2,
-				voidCraftAchSideLine2_1_3
+				betterThanDiamond, angelicPower,
+
+				theChains, thirdDegreeBurns, Legendary, demonicPower,
+
+				infuser, macerator, heimdall,
+
+				generator, charger, suppressor
+
 		};
 		AchievementPage.registerAchievementPage(new AchievementPage("VoidCraft", achArray));
 	}
@@ -125,25 +113,22 @@ public class VoidCraftAchievements implements ITamRegistry {
 
 	@Override
 	public String getModID() {
-		return voidCraft.modid;
+		return VoidCraft.modid;
 	}
 
 	@Override
 	public void clientPreInit() {
-		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void clientInit() {
-		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void clientPostInit() {
-		// TODO Auto-generated method stub
-		
+
 	}
 
 }

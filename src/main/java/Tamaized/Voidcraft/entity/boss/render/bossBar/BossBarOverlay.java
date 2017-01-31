@@ -17,6 +17,7 @@ public class BossBarOverlay {
 		
 		profiler.endStartSection("bossBar");
 		RenderBossHeathBar.render(e.getResolution());
+		RenderAlternateBossBars.render(e.getResolution(), e.getPartialTicks());
 		profiler.endSection();
 	}
 

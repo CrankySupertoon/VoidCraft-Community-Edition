@@ -1,6 +1,6 @@
 package Tamaized.Voidcraft.GUI.client;
 
-import Tamaized.Voidcraft.voidCraft;
+import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.GUI.server.VoidicAlchemyContainer;
 import Tamaized.Voidcraft.machina.tileentity.TileEntityVoidicAlchemy;
 import net.minecraft.client.Minecraft;
@@ -13,7 +13,7 @@ public class VoidicAlchemyGUI extends GuiContainer {
 
 	public TileEntityVoidicAlchemy te;
 
-	private static final ResourceLocation TEXTURE = new ResourceLocation(voidCraft.modid, "textures/gui/voidicAlchemy.png");
+	private static final ResourceLocation TEXTURE = new ResourceLocation(VoidCraft.modid, "textures/gui/voidicAlchemy.png");
 
 	public VoidicAlchemyGUI(InventoryPlayer inventoryPlayer, TileEntityVoidicAlchemy tileEntity) {
 		super(new VoidicAlchemyContainer(inventoryPlayer, tileEntity));

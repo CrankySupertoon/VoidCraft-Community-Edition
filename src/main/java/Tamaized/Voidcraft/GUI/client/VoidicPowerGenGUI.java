@@ -6,7 +6,7 @@ import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
-import Tamaized.Voidcraft.voidCraft;
+import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.GUI.server.VoidicPowerGenContainer;
 import Tamaized.Voidcraft.machina.tileentity.TileEntityVoidicPowerGen;
 
@@ -14,7 +14,7 @@ public class VoidicPowerGenGUI extends GuiContainer {
 	
 	public TileEntityVoidicPowerGen te;
 	
-	private static final ResourceLocation daTexture = new ResourceLocation(voidCraft.modid, "textures/gui/voidGen.png");
+	private static final ResourceLocation daTexture = new ResourceLocation(VoidCraft.modid, "textures/gui/voidGen.png");
 	
 	public VoidicPowerGenGUI (InventoryPlayer inventoryPlayer, TileEntityVoidicPowerGen tileEntity) {
 		super(new VoidicPowerGenContainer(inventoryPlayer, tileEntity));

@@ -4,12 +4,13 @@ import java.util.ArrayList;
 
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.Biome.BiomeProperties;
+import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import Tamaized.TamModized.registry.ITamModel;
 import Tamaized.TamModized.registry.ITamRegistry;
-import Tamaized.Voidcraft.voidCraft;
+import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.world.dim.TheVoid.BiomeGenVoid;
 import Tamaized.Voidcraft.world.dim.Xia.BiomeGenXia;
 
@@ -27,12 +28,15 @@ public class VoidCraftBiomes implements ITamRegistry {
 
 		biomeVoid = new BiomeGenVoid(biomeVoidProp);
 		biomeXia = new BiomeGenXia(biomeXiaProp);
-
+		
 		biomeVoid.setRegistryName("voidcraft_biome_void");
 		biomeXia.setRegistryName("voidcraft_biome_xia");
 
 		GameRegistry.register(biomeVoid);
 		GameRegistry.register(biomeXia);
+		
+		BiomeDictionary.addTypes(biomeVoid, BiomeDictionary.Type.VOID);
+		BiomeDictionary.addTypes(biomeXia, BiomeDictionary.Type.VOID);
 	}
 
 	@Override
@@ -52,7 +56,7 @@ public class VoidCraftBiomes implements ITamRegistry {
 
 	@Override
 	public String getModID() {
-		return voidCraft.modid;
+		return VoidCraft.modid;
 	}
 
 	@Override

@@ -1,32 +1,58 @@
 package Tamaized.Voidcraft.world.dim.Xia;
 
-import Tamaized.Voidcraft.voidCraft;
+import Tamaized.Voidcraft.VoidCraft;
+import Tamaized.Voidcraft.xiaCastle.logic.XiaCastleLogicHandler;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.WorldProvider;
+import net.minecraft.world.WorldServer;
 import net.minecraft.world.biome.BiomeProviderSingle;
 import net.minecraft.world.border.WorldBorder;
 import net.minecraft.world.chunk.IChunkGenerator;
+import net.minecraftforge.client.IRenderHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class WorldProviderXia extends WorldProvider {
 
+	private static final XiaSkyRender skyRender = new XiaSkyRender();
+
+	private XiaCastleLogicHandler xiaCastleHandler;
+
 	/**
 	 * creates a new world chunk manager for WorldProvider
 	 */
 	@Override
-	protected void createBiomeProvider() {
-		this.biomeProvider = new BiomeProviderSingle(voidCraft.biomes.biomeXia);
-		this.isHellWorld = false;
+	protected void init() {
+		this.biomeProvider = new BiomeProviderSingle(VoidCraft.biomes.biomeXia);
+		this.doesWaterVaporize = false;
 		this.hasNoSky = true;
+		if (world instanceof WorldServer) {
+			xiaCastleHandler = new XiaCastleLogicHandler(world);
+			if (world.getChunkProvider() != null) xiaCastleHandler.start();
+		}
 	}
 
-	@SideOnly(Side.CLIENT)
 	@Override
+	public void onWorldUpdateEntities() {
+		super.onWorldUpdateEntities();
+		if (xiaCastleHandler != null) xiaCastleHandler.onUpdate();
+	}
+
+	public final XiaCastleLogicHandler getXiaCastleHandler() {
+		return xiaCastleHandler;
+	}
+
+	@Override
+	public IRenderHandler getSkyRenderer() {
+		return skyRender;
+	}
+
 	/**
 	 * Return Vec3D with biome specific fog color
 	 */
+	@SideOnly(Side.CLIENT)
+	@Override
 	public Vec3d getFogColor(float par1, float par2) {
 		return new Vec3d(0.0D, 0.0D, 0.0D);
 	}
@@ -49,7 +75,7 @@ public class WorldProviderXia extends WorldProvider {
 	 */
 	@Override
 	public IChunkGenerator createChunkGenerator() {
-		return new ChunkProviderXia(this.worldObj, this.worldObj.getWorldInfo().isMapFeaturesEnabled(), this.worldObj.getSeed());
+		return new ChunkProviderXia(world, world.getWorldInfo().isMapFeaturesEnabled(), world.getSeed());
 	}
 
 	/**
@@ -98,20 +124,25 @@ public class WorldProviderXia extends WorldProvider {
 		return 50;
 	}
 
+	@Override
 	public WorldBorder createWorldBorder() {
 		return new WorldBorder() {
+
+			@Override
 			public double getCenterX() {
 				return super.getCenterX() / 8.0D;
 			}
 
+			@Override
 			public double getCenterZ() {
 				return super.getCenterZ() / 8.0D;
 			}
+
 		};
 	}
 
 	@Override
 	public DimensionType getDimensionType() {
-		return DimensionType.getById(voidCraft.config.getDimensionIDxia());
+		return DimensionType.getById(VoidCraft.config.getDimensionIDxia());
 	}
 }

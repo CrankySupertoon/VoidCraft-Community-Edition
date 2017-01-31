@@ -1,6 +1,6 @@
 package Tamaized.Voidcraft.vadeMecum.contents.documentation.items.obsidianflask;
 
-import Tamaized.Voidcraft.voidCraft;
+import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.capabilities.vadeMecum.IVadeMecumCapability;
 import Tamaized.Voidcraft.vadeMecum.IVadeMecumPage;
 import Tamaized.Voidcraft.vadeMecum.IVadeMecumPageProvider;
@@ -14,18 +14,18 @@ public class VadeMecumPageListObsidianFlask implements IVadeMecumPageProvider {
 
 	public IVadeMecumPage[] getPageList(IVadeMecumCapability cap) {
 		return new IVadeMecumPage[] {
-				new VadeMecumPage(new ItemStack(voidCraft.items.emptyObsidianFlask).getDisplayName(), voidCraft.modid+".VadeMecum.docs.desc.emptyObsidianFlask.pg1"),
-				new VadeMecumPage("", voidCraft.modid+".VadeMecum.docs.desc.emptyObsidianFlask.pg2"),
-				new VadeMecumPageCrafting(new VadeMecumCraftingNormal(voidCraft.modid+".VadeMecum.recipe.normal", new ItemStack[] {
-						null,
-						null,
-						null,
+				new VadeMecumPage(new ItemStack(VoidCraft.items.emptyObsidianFlask).getDisplayName(), VoidCraft.modid+".VadeMecum.docs.desc.emptyObsidianFlask.pg1"),
+				new VadeMecumPage("", VoidCraft.modid+".VadeMecum.docs.desc.emptyObsidianFlask.pg2"),
+				new VadeMecumPageCrafting(new VadeMecumCraftingNormal(VoidCraft.modid+".VadeMecum.recipe.normal", new ItemStack[] {
+						ItemStack.EMPTY,
+						ItemStack.EMPTY,
+						ItemStack.EMPTY,
 						new ItemStack(Blocks.OBSIDIAN),
 						new ItemStack(Blocks.GLASS),
 						new ItemStack(Blocks.OBSIDIAN),
-						null,
+						ItemStack.EMPTY,
 						new ItemStack(Blocks.OBSIDIAN),
-						null }, new ItemStack(voidCraft.items.emptyObsidianFlask, 4))) };
+						ItemStack.EMPTY }, new ItemStack(VoidCraft.items.emptyObsidianFlask, 4))) };
 	}
 
 }

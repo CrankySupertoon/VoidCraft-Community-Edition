@@ -1,6 +1,6 @@
 package Tamaized.Voidcraft.sound.client;
 
-import Tamaized.Voidcraft.voidCraft;
+import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.sound.VoidSoundEvents;
 import Tamaized.Voidcraft.sound.VoidSoundEvents.SoundTrack;
 import net.minecraft.client.Minecraft;
@@ -24,12 +24,12 @@ public class BGMusic {
 	@SubscribeEvent
 	public void PlaySoundEvent(PlaySoundEvent e) {
 		// if(e.getSound().getCategory() == SoundCategory.MUSIC)DebugEvent.textL = (e.getName()+" "+e.getSound().getCategory()+" "+e.getResultSound().getSoundLocation());
-		World world = Minecraft.getMinecraft().theWorld;
-		EntityPlayerSP player = Minecraft.getMinecraft().thePlayer;
+		World world = Minecraft.getMinecraft().world;
+		EntityPlayerSP player = Minecraft.getMinecraft().player;
 		if (e.getSound().getCategory() == SoundCategory.MUSIC && world != null && world.provider != null) {
 			/*
 			 * if(world.provider.getDimension() == voidCraft.dimensionIdXia){ TODO if(Minecraft.getMinecraft().getSoundHandler().isSoundPlaying(sound)){ e.setResultSound(null); }else{ sound = PositionedSoundRecord.getMusicRecord(VoidSoundEvents.BGMusicSoundEvents.undertale_core.getTrack()); e.setResultSound(sound); } }else
-			 */if (world.provider.getDimension() == voidCraft.config.getDimensionIDvoid()) {
+			 */if (world.provider.getDimension() == VoidCraft.config.getDimensionIDvoid()) {
 				if (Minecraft.getMinecraft().getSoundHandler().isSoundPlaying(sound)) {
 					e.setResultSound(null);
 				} else {
@@ -47,10 +47,10 @@ public class BGMusic {
 	@SubscribeEvent
 	public void tick(ClientTickEvent e) {
 		if (e.phase == Phase.END) {
-			World world = Minecraft.getMinecraft().theWorld;
+			World world = Minecraft.getMinecraft().world;
 			if (world != null && world.provider != null) {
-				if (world.provider.getDimension() != voidCraft.config.getDimensionIDxia()) {
-					if (world.provider.getDimension() != voidCraft.config.getDimensionIDvoid()) {
+				if (world.provider.getDimension() != VoidCraft.config.getDimensionIDxia()) {
+					if (world.provider.getDimension() != VoidCraft.config.getDimensionIDvoid()) {
 						Minecraft.getMinecraft().getSoundHandler().stopSound(sound);
 						sound = null;
 					}

@@ -1,5 +1,7 @@
 package Tamaized.Voidcraft.entity.boss.herobrine.extra;
 
+import Tamaized.Voidcraft.entity.EntityVoidBoss;
+import Tamaized.Voidcraft.entity.boss.herobrine.EntityBossHerobrine;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.projectile.EntityWitherSkull;
 import net.minecraft.init.MobEffects;
@@ -17,33 +19,33 @@ public class EntityHerobrineWitherSkull extends EntityWitherSkull {
 
 	public EntityHerobrineWitherSkull(World worldIn, EntityLivingBase shooter, double accelX, double accelY, double accelZ) {
 		super(worldIn, shooter, accelX, accelY, accelZ);
-		this.setSize(0.3125F, 0.3125F);
+		setSize(0.3125F, 0.3125F);
 	}
 
 	/**
 	 * Called when this EntityFireball hits a block or entity.
 	 */
 	protected void onImpact(RayTraceResult result) {
-		if (!this.worldObj.isRemote) {
+		if (!world.isRemote && !(result.entityHit != null && result.entityHit instanceof EntityVoidBoss)) {
 			if (result.entityHit != null) {
-				if (this.shootingEntity != null) {
-					if (result.entityHit.attackEntityFrom(DamageSource.causeMobDamage(this.shootingEntity), 8.0F)) {
+				if (shootingEntity != null) {
+					if (result.entityHit.attackEntityFrom(DamageSource.causeMobDamage(shootingEntity), 8.0F)) {
 						if (result.entityHit.isEntityAlive()) {
-							this.applyEnchantments(this.shootingEntity, result.entityHit);
+							applyEnchantments(shootingEntity, result.entityHit);
 						} else {
-							this.shootingEntity.heal(5.0F);
+							shootingEntity.heal(5.0F);
 						}
 					}
 				} else {
-					result.entityHit.attackEntityFrom(DamageSource.magic, 8.0F);
+					result.entityHit.attackEntityFrom(DamageSource.MAGIC, 8.0F);
 				}
 
 				if (result.entityHit instanceof EntityLivingBase) {
 					int i = 0;
 
-					if (this.worldObj.getDifficulty() == EnumDifficulty.NORMAL) {
+					if (world.getDifficulty() == EnumDifficulty.NORMAL) {
 						i = 10;
-					} else if (this.worldObj.getDifficulty() == EnumDifficulty.HARD) {
+					} else if (world.getDifficulty() == EnumDifficulty.HARD) {
 						i = 40;
 					}
 
@@ -53,8 +55,8 @@ public class EntityHerobrineWitherSkull extends EntityWitherSkull {
 				}
 			}
 
-			this.worldObj.newExplosion(this, this.posX, this.posY, this.posZ, 1.0F, false, false);
-			this.setDead();
+			world.newExplosion(this, posX, posY, posZ, 1.0F, false, false);
+			setDead();
 		}
 	}
 

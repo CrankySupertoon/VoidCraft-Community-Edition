@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import Tamaized.TamModized.particles.ParticlePacketHandlerRegistry;
 import Tamaized.TamModized.registry.ITamModel;
 import Tamaized.TamModized.registry.ITamRegistry;
-import Tamaized.Voidcraft.voidCraft;
+import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.particles.VoidicDrillLaser;
 import Tamaized.Voidcraft.particles.network.VoidicDrillLaserPacketHandler;
 import Tamaized.Voidcraft.particles.network.XiaLaserPacketHandler;
@@ -38,7 +38,7 @@ public class VoidCraftParticles implements ITamRegistry {
 
 	@Override
 	public String getModID() {
-		return voidCraft.modid;
+		return VoidCraft.modid;
 	}
 
 	@Override

@@ -1,6 +1,6 @@
 package Tamaized.Voidcraft.machina.tileentity;
 
-import Tamaized.Voidcraft.voidCraft;
+import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.api.voidicpower.TileEntityVoidicPowerInventory;
 import Tamaized.Voidcraft.machina.VoidMacerator;
 import Tamaized.Voidcraft.machina.addons.TERecipesMacerator.MaceratorRecipe;
@@ -52,9 +52,9 @@ public class TileEntityVoidMacerator extends TileEntityVoidicPowerInventory {
 	@Override
 	public void onUpdate() {
 		boolean cooking = false;
-		if (lastCookingItem == null || getStackInSlot(SLOT_INPUT) == null || lastCookingItem != getStackInSlot(SLOT_INPUT).getItem()) {
+		if (lastCookingItem == null || getStackInSlot(SLOT_INPUT).isEmpty() || lastCookingItem != getStackInSlot(SLOT_INPUT).getItem()) {
 			cookingTick = 0;
-			lastCookingItem = (getStackInSlot(SLOT_INPUT) != null) ? getStackInSlot(SLOT_INPUT).getItem() : null;
+			lastCookingItem = (!getStackInSlot(SLOT_INPUT).isEmpty()) ? getStackInSlot(SLOT_INPUT).getItem() : null;
 		}
 
 		if (voidicPower > 0 && canCook()) {
@@ -62,7 +62,7 @@ public class TileEntityVoidMacerator extends TileEntityVoidicPowerInventory {
 			voidicPower--;
 		}
 
-		if (!worldObj.isRemote) {
+		if (!world.isRemote) {
 			if (cooking) {
 				cookingTick++;
 				if (cookingTick >= (finishTick = recipe.getRequiredPower())) {
@@ -72,12 +72,12 @@ public class TileEntityVoidMacerator extends TileEntityVoidicPowerInventory {
 				}
 			}
 
-			IBlockState state = worldObj.getBlockState(pos);
+			IBlockState state = world.getBlockState(pos);
 			if (state.getBlock() instanceof VoidMacerator) {
 				VoidMacerator theMacerator = (VoidMacerator) state.getBlock();
 				if (theMacerator != null) {
-					if (theMacerator.getIsActive(state) && !cooking) theMacerator.setState(false, worldObj, pos);
-					if (!theMacerator.getIsActive(state) && cooking) theMacerator.setState(true, worldObj, pos);
+					if (theMacerator.getIsActive(state) && !cooking) theMacerator.setState(false, world, pos);
+					if (!theMacerator.getIsActive(state) && cooking) theMacerator.setState(true, world, pos);
 				}
 			}
 		}
@@ -85,33 +85,28 @@ public class TileEntityVoidMacerator extends TileEntityVoidicPowerInventory {
 
 	private void bakeItem() {
 		if (canCook()) {
-			if (getStackInSlot(SLOT_OUTPUT) == null) {
+			if (getStackInSlot(SLOT_OUTPUT).isEmpty()) {
 				setInventorySlotContents(SLOT_OUTPUT, recipe.getOutput().copy());
 			} else if (getStackInSlot(SLOT_OUTPUT).isItemEqual(recipe.getOutput())) {
-				getStackInSlot(SLOT_OUTPUT).stackSize += recipe.getOutput().stackSize;
+				getStackInSlot(SLOT_OUTPUT).grow(recipe.getOutput().getCount());
 			}
 
-			getStackInSlot(SLOT_INPUT).stackSize--;
+			getStackInSlot(SLOT_INPUT).shrink(1);
 
-			if (getStackInSlot(SLOT_INPUT).stackSize <= 0) {
-				setInventorySlotContents(SLOT_INPUT, null);
+			if (getStackInSlot(SLOT_INPUT).getCount() <= 0) {
+				setInventorySlotContents(SLOT_INPUT, ItemStack.EMPTY);
 			}
 		}
 	}
 
 	private boolean canCook() {
-		if (getStackInSlot(SLOT_INPUT) == null) return false;
-		recipe = voidCraft.teRecipes.macerator.getRecipe(new ItemStack[] { getStackInSlot(SLOT_INPUT) });
+		if (getStackInSlot(SLOT_INPUT).isEmpty()) return false;
+		recipe = VoidCraft.teRecipes.macerator.getRecipe(new ItemStack[] { getStackInSlot(SLOT_INPUT) });
 		if (recipe == null) return false;
-		if (getStackInSlot(SLOT_OUTPUT) == null) return true;
+		if (getStackInSlot(SLOT_OUTPUT).isEmpty()) return true;
 		if (!getStackInSlot(SLOT_OUTPUT).isItemEqual(recipe.getOutput())) return false;
-		int result = getStackInSlot(SLOT_OUTPUT).stackSize + recipe.getOutput().stackSize;
+		int result = getStackInSlot(SLOT_OUTPUT).getCount() + recipe.getOutput().getCount();
 		return (result <= getInventoryStackLimit() && result <= recipe.getOutput().getMaxStackSize());
-	}
-
-	@Override
-	public boolean isItemValidForSlot(int i, ItemStack itemstack) {
-		return i != SLOT_OUTPUT;
 	}
 
 	@Override
@@ -150,12 +145,12 @@ public class TileEntityVoidMacerator extends TileEntityVoidicPowerInventory {
 	}
 
 	@Override
-	protected boolean canExtractSlot(int i, ItemStack stack) {
-		return i == SLOT_OUTPUT;
+	public boolean isItemValidForSlot(int i, ItemStack itemstack) {
+		return i == SLOT_INPUT;
 	}
 
 	@Override
-	protected boolean canInsertSlot(int i, ItemStack stack) {
-		return i == SLOT_INPUT;
+	protected boolean canExtractSlot(int i, ItemStack stack) {
+		return i == SLOT_OUTPUT;
 	}
 }

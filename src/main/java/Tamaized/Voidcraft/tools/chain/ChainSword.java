@@ -6,7 +6,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import Tamaized.TamModized.tools.TamSword;
-import Tamaized.Voidcraft.voidCraft;
+import Tamaized.Voidcraft.VoidCraft;
 
 public class ChainSword extends TamSword {
 

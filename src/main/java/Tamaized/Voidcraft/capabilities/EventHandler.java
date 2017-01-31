@@ -1,14 +1,12 @@
 package Tamaized.Voidcraft.capabilities;
 
-import Tamaized.Voidcraft.voidCraft;
 import Tamaized.Voidcraft.capabilities.elytraFlying.ElytraFlyingCapabilityHandler;
 import Tamaized.Voidcraft.capabilities.elytraFlying.IElytraFlyingCapability;
 import Tamaized.Voidcraft.capabilities.vadeMecum.IVadeMecumCapability;
 import Tamaized.Voidcraft.capabilities.vadeMecum.VadeMecumCapabilityHandler;
-import Tamaized.Voidcraft.capabilities.vadeMecumItem.IVadeMecumItemCapability;
-import Tamaized.Voidcraft.capabilities.vadeMecumItem.VadeMecumItemCapabilityHandler;
 import Tamaized.Voidcraft.capabilities.voidicInfusion.IVoidicInfusionCapability;
 import Tamaized.Voidcraft.capabilities.voidicInfusion.VoidicInfusionCapabilityHandler;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
@@ -22,7 +20,7 @@ public class EventHandler {
 
 	@SubscribeEvent
 	public void attachCapabilityEntity(AttachCapabilitiesEvent.Entity e) { // TODO: move capability stuff into TamModized
-		if (e.getEntity() instanceof EntityPlayer) {
+		if (e.getEntity() instanceof EntityLivingBase) {
 			e.addCapability(VoidicInfusionCapabilityHandler.ID, new ICapabilitySerializable<NBTTagCompound>() {
 
 				IVoidicInfusionCapability inst = CapabilityList.VOIDICINFUSION.getDefaultInstance();
@@ -48,6 +46,8 @@ public class EventHandler {
 				}
 
 			});
+		}
+		if (e.getEntity() instanceof EntityPlayer) {
 			e.addCapability(VadeMecumCapabilityHandler.ID, new ICapabilitySerializable<NBTTagCompound>() {
 
 				IVadeMecumCapability inst = CapabilityList.VADEMECUM.getDefaultInstance();

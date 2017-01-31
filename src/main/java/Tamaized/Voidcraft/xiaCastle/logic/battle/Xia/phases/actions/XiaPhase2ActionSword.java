@@ -3,18 +3,16 @@ package Tamaized.Voidcraft.xiaCastle.logic.battle.Xia.phases.actions;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
-import Tamaized.Voidcraft.voidCraft;
+import Tamaized.TamModized.helper.PacketHelper;
+import Tamaized.TamModized.helper.PacketHelper.PacketWrapper;
+import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.entity.boss.xia.EntityBossXia;
 import Tamaized.Voidcraft.entity.boss.xia.animations.AnimationXiaSwordSwing;
 import Tamaized.Voidcraft.entity.boss.xia.render.EntityAnimationsXia;
 import Tamaized.Voidcraft.entity.client.animation.IAnimation;
 import Tamaized.Voidcraft.network.ClientPacketHandler;
-import io.netty.buffer.ByteBufOutputStream;
-import io.netty.buffer.Unpooled;
-import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.math.Vec3d;
 import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
-import net.minecraftforge.fml.common.network.internal.FMLProxyPacket;
 
 public class XiaPhase2ActionSword {
 
@@ -65,15 +63,12 @@ public class XiaPhase2ActionSword {
 	}
 
 	private void sendPacketToClients() {
-		ByteBufOutputStream bos = new ByteBufOutputStream(Unpooled.buffer());
-		DataOutputStream outputStream = new DataOutputStream(bos);
 		try {
-			outputStream.writeInt(ClientPacketHandler.getPacketTypeID(ClientPacketHandler.PacketType.XIA_ANIMATIONS));
-			outputStream.writeInt(xia.getEntityId());
-			outputStream.writeInt(EntityAnimationsXia.getAnimationID(animation));
-			FMLProxyPacket packet = new FMLProxyPacket(new PacketBuffer(bos.buffer()), voidCraft.networkChannelName);
-			if (voidCraft.channel != null && packet != null) voidCraft.channel.sendToAllAround(packet, new TargetPoint(xia.worldObj.provider.getDimension(), xia.posX, xia.posY, xia.posZ, 64));
-			bos.close();
+			PacketWrapper packet = PacketHelper.createPacket(VoidCraft.channel, VoidCraft.networkChannelName, ClientPacketHandler.getPacketTypeID(ClientPacketHandler.PacketType.XIA_ANIMATIONS));
+			DataOutputStream stream = packet.getStream();
+			stream.writeInt(xia.getEntityId());
+			stream.writeInt(EntityAnimationsXia.getAnimationID(animation));
+			packet.sendPacket(new TargetPoint(xia.world.provider.getDimension(), xia.posX, xia.posY, xia.posZ, 64));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

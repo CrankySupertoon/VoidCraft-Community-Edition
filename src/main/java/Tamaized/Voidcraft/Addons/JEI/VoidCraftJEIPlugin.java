@@ -2,7 +2,7 @@ package Tamaized.Voidcraft.Addons.JEI;
 
 import javax.annotation.Nonnull;
 
-import Tamaized.Voidcraft.voidCraft;
+import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.Addons.JEI.alchemy.AlchemyRecipeCategory;
 import Tamaized.Voidcraft.Addons.JEI.alchemy.AlchemyRecipeHandler;
 import Tamaized.Voidcraft.Addons.JEI.alchemy.AlchemyRecipeMaker;
@@ -26,7 +26,7 @@ public class VoidCraftJEIPlugin extends BlankModPlugin {
 
 	@Override
 	public void register(@Nonnull IModRegistry registry) {
-		voidCraft.logger.info("JEI detected, loading VoidCraft JEI Plugin");
+		VoidCraft.instance.logger.info("JEI detected, loading VoidCraft JEI Plugin");
 		IIngredientRegistry itemRegistry = registry.getIngredientRegistry();
 		jeiHelpers = registry.getJeiHelpers();
 
@@ -38,9 +38,9 @@ public class VoidCraftJEIPlugin extends BlankModPlugin {
 
 		registry.addRecipeHandlers(new InfuserRecipeHandler(), new MaceratorRecipeHandler(), new AlchemyRecipeHandler());
 
-		registry.addRecipeCategoryCraftingItem(new ItemStack(voidCraft.blocks.voidInfuser), "voidcraft_JEI_recipeCategory_Infuser");
-		registry.addRecipeCategoryCraftingItem(new ItemStack(voidCraft.blocks.voidMacerator), "voidcraft_JEI_recipeCategory_Macerator");
-		registry.addRecipeCategoryCraftingItem(new ItemStack(voidCraft.blocks.voidicAlchemyTable), "voidcraft_JEI_recipeCategory_Alchemy");
+		registry.addRecipeCategoryCraftingItem(new ItemStack(VoidCraft.blocks.voidInfuser), "voidcraft_JEI_recipeCategory_Infuser");
+		registry.addRecipeCategoryCraftingItem(new ItemStack(VoidCraft.blocks.voidMacerator), "voidcraft_JEI_recipeCategory_Macerator");
+		registry.addRecipeCategoryCraftingItem(new ItemStack(VoidCraft.blocks.voidicAlchemyTable), "voidcraft_JEI_recipeCategory_Alchemy");
 
 	}
 

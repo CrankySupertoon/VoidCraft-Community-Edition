@@ -3,13 +3,13 @@ package Tamaized.Voidcraft.handlers;
 import java.util.ArrayList;
 import java.util.List;
 
+import Tamaized.Voidcraft.VoidCraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
-import Tamaized.Voidcraft.voidCraft;
 
 public class XiaFlightHandler { // Thanks to Vazkii's Botania Mod Source for this part
 
@@ -48,7 +48,7 @@ public class XiaFlightHandler { // Thanks to Vazkii's Botania Mod Source for thi
 	}
 
 	public static String playerStr(EntityPlayer player) {
-		return player.getGameProfile().getName() + ":" + player.worldObj.isRemote;
+		return player.getGameProfile().getName() + ":" + player.world.isRemote;
 	}
 
 	public static boolean shouldPlayerHaveFlight(EntityPlayer player) {
@@ -56,10 +56,10 @@ public class XiaFlightHandler { // Thanks to Vazkii's Botania Mod Source for thi
 		ItemStack chest = player.getItemStackFromSlot(EntityEquipmentSlot.CHEST);
 		ItemStack leg = player.getItemStackFromSlot(EntityEquipmentSlot.LEGS);
 		ItemStack boots = player.getItemStackFromSlot(EntityEquipmentSlot.FEET);
-		if (helm != null && helm.getItem() == voidCraft.armors.xiaHelmet) return true;
-		if (chest != null && chest.getItem() == voidCraft.armors.xiaChest) return true;
-		if (leg != null && leg.getItem() == voidCraft.armors.xiaLegs) return true;
-		if (boots != null && boots.getItem() == voidCraft.armors.xiaBoots) return true;
+		if (!helm.isEmpty() && helm.getItem() == VoidCraft.armors.xiaHelmet) return true;
+		if (!chest.isEmpty() && chest.getItem() == VoidCraft.armors.xiaChest) return true;
+		if (!leg.isEmpty() && leg.getItem() == VoidCraft.armors.xiaLegs) return true;
+		if (!boots.isEmpty() && boots.getItem() == VoidCraft.armors.xiaBoots) return true;
 		return false;
 	}
 

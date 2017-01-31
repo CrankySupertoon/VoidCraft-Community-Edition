@@ -2,7 +2,7 @@ package Tamaized.Voidcraft.machina.tileentity;
 
 import java.util.List;
 
-import Tamaized.Voidcraft.voidCraft;
+import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.api.voidicpower.TileEntityVoidicPowerInventory;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.Item;
@@ -31,11 +31,6 @@ public class TileEntityRealityTeleporter extends TileEntityVoidicPowerInventory 
 	}
 
 	@Override
-	public boolean isItemValidForSlot(int i, ItemStack stack) {
-		return i == SLOT_INPUT && stack != null && stack.getItem() == Item.getItemFromBlock(voidCraft.blocks.realityHole);
-	}
-
-	@Override
 	public String getName() {
 		return "teRealityTeleporter";
 	}
@@ -51,13 +46,13 @@ public class TileEntityRealityTeleporter extends TileEntityVoidicPowerInventory 
 	}
 
 	@Override
-	protected boolean canExtractSlot(int i, ItemStack stack) {
-		return true;
+	public boolean isItemValidForSlot(int i, ItemStack stack) {
+		return i == SLOT_INPUT && !stack.isEmpty() && stack.getItem() == Item.getItemFromBlock(VoidCraft.blocks.realityHole);
 	}
 
 	@Override
-	protected boolean canInsertSlot(int i, ItemStack stack) {
-		return i == SLOT_INPUT && stack != null && stack.getItem() == Item.getItemFromBlock(voidCraft.blocks.realityHole);
+	protected boolean canExtractSlot(int i, ItemStack stack) {
+		return true;
 	}
 
 	@Override
@@ -85,7 +80,7 @@ public class TileEntityRealityTeleporter extends TileEntityVoidicPowerInventory 
 	}
 
 	public boolean canUse() {
-		return getPowerAmount() >= getPowerUse() && getStackInSlot(SLOT_INPUT) != null && getStackInSlot(SLOT_INPUT).getItem() == Item.getItemFromBlock(voidCraft.blocks.realityHole);
+		return getPowerAmount() >= getPowerUse() && !getStackInSlot(SLOT_INPUT).isEmpty() && getStackInSlot(SLOT_INPUT).getItem() == Item.getItemFromBlock(VoidCraft.blocks.realityHole);
 	}
 
 	public void useResources() {
@@ -95,7 +90,7 @@ public class TileEntityRealityTeleporter extends TileEntityVoidicPowerInventory 
 
 	public void useLinkResources() {
 		if (link == null) return;
-		TileEntity te = worldObj.getTileEntity(link);
+		TileEntity te = world.getTileEntity(link);
 		if (te != null && te instanceof TileEntityRealityTeleporter) {
 			TileEntityRealityTeleporter teLink = (TileEntityRealityTeleporter) te;
 			teLink.useResources();
@@ -118,11 +113,11 @@ public class TileEntityRealityTeleporter extends TileEntityVoidicPowerInventory 
 
 	@Override
 	protected void onUpdate() {
-		boolean flag = worldObj.isBlockIndirectlyGettingPowered(getPos()) > 0;
+		boolean flag = world.isBlockIndirectlyGettingPowered(getPos()) > 0;
 		validateLink();
 		if (link != null) {
 			if (!isOn && flag) {
-				List<EntityLivingBase> list = worldObj.getEntitiesWithinAABB(EntityLivingBase.class, new AxisAlignedBB(getPos().up()));
+				List<EntityLivingBase> list = world.getEntitiesWithinAABB(EntityLivingBase.class, new AxisAlignedBB(getPos().up()));
 				if (!list.isEmpty() && canUse() && canTeleportToLink()) {
 					useResources();
 					useLinkResources();
@@ -147,13 +142,13 @@ public class TileEntityRealityTeleporter extends TileEntityVoidicPowerInventory 
 
 	private void validateLink() {
 		if (link == null) return;
-		TileEntity te = worldObj.getTileEntity(link);
+		TileEntity te = world.getTileEntity(link);
 		if (!(te instanceof TileEntityRealityTeleporter)) link = null;
 	}
 
 	private boolean canTeleportToLink() {
 		if (link == null) return false;
-		TileEntity te = worldObj.getTileEntity(link);
+		TileEntity te = world.getTileEntity(link);
 		if (te != null && te instanceof TileEntityRealityTeleporter) {
 			TileEntityRealityTeleporter teLink = (TileEntityRealityTeleporter) te;
 			return teLink.canUse();

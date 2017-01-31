@@ -4,10 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.mojang.realmsclient.gui.ChatFormatting;
-
 import Tamaized.TamModized.items.TamItem;
-import Tamaized.Voidcraft.voidCraft;
+import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.capabilities.CapabilityList;
 import Tamaized.Voidcraft.capabilities.voidicPower.IVoidicPowerCapability;
 import net.minecraft.creativetab.CreativeTabs;
@@ -20,6 +18,7 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
@@ -70,7 +69,7 @@ public abstract class VoidicPowerItem extends TamItem {
 
 	@Override
 	public boolean shouldCauseReequipAnimation(ItemStack oldStack, ItemStack newStack, boolean slotChanged) {
-		return slotChanged ? true : (oldStack == null || newStack == null) ? true : oldStack.getItem() != newStack.getItem();
+		return slotChanged ? true : (oldStack.isEmpty() || newStack.isEmpty()) ? true : oldStack.getItem() != newStack.getItem();
 	}
 
 	@Override
@@ -86,35 +85,35 @@ public abstract class VoidicPowerItem extends TamItem {
 					EntityPlayer player = (EntityPlayer) entity;
 					switch (itemSlot) {
 						case 0:
-							if (ItemStack.areItemStacksEqual(stack, player.inventory.armorInventory[0])) {
+							if (ItemStack.areItemStacksEqual(stack, player.inventory.armorInventory.get(0))) {
 								cap.sendUpdates(player, PLAYER_INV_SLOT_ARMOR_HELM, stack);
 								break;
-							} else if (ItemStack.areItemStacksEqual(stack, player.inventory.offHandInventory[0])) {
+							} else if (ItemStack.areItemStacksEqual(stack, player.inventory.offHandInventory.get(0))) {
 								cap.sendUpdates(player, PLAYER_INV_SLOT_OFFHAND, stack);
 								break;
 							}
 						case 1:
-							if (ItemStack.areItemStacksEqual(stack, player.inventory.armorInventory[1])) {
+							if (ItemStack.areItemStacksEqual(stack, player.inventory.armorInventory.get(1))) {
 								cap.sendUpdates(player, PLAYER_INV_SLOT_ARMOR_CHEST, stack);
 								break;
 							}
 						case 2:
-							if (ItemStack.areItemStacksEqual(stack, player.inventory.armorInventory[2])) {
+							if (ItemStack.areItemStacksEqual(stack, player.inventory.armorInventory.get(2))) {
 								cap.sendUpdates(player, PLAYER_INV_SLOT_ARMOR_LEGS, stack);
 								break;
 							}
 						case 3:
-							if (ItemStack.areItemStacksEqual(stack, player.inventory.armorInventory[3])) {
+							if (ItemStack.areItemStacksEqual(stack, player.inventory.armorInventory.get(3))) {
 								cap.sendUpdates(player, PLAYER_INV_SLOT_ARMOR_BOOTS, stack);
 								break;
 							}
 						default:
-							if (itemSlot < player.inventory.mainInventory.length && ItemStack.areItemStacksEqual(stack, player.inventory.mainInventory[itemSlot])) cap.sendUpdates(player, itemSlot, stack);
+							if (itemSlot < player.inventory.mainInventory.size() && ItemStack.areItemStacksEqual(stack, player.inventory.mainInventory.get(itemSlot))) cap.sendUpdates(player, itemSlot, stack);
 							break;
 					}
 				}
 			} else {
-				NBTTagCompound nbt = stack.getSubCompound(voidCraft.modid, true);
+				NBTTagCompound nbt = stack.getOrCreateSubCompound(VoidCraft.modid);
 				cap.setValues(nbt.getInteger("currPower"), nbt.getInteger("maxPower"));
 			}
 			if (cap.isInUse()) {
@@ -142,10 +141,18 @@ public abstract class VoidicPowerItem extends TamItem {
 
 	@Override
 	public boolean showDurabilityBar(ItemStack stack) {
-		IVoidicPowerCapability cap = stack.getCapability(CapabilityList.VOIDICPOWER, null);
-		NBTTagCompound nbt = stack.getSubCompound(voidCraft.modid, true);
-		cap.setValues(nbt.getInteger("currPower"), nbt.getInteger("maxPower"));
+		IVoidicPowerCapability cap = null;
+		if (stack.hasCapability(CapabilityList.VOIDICPOWER, null)) {
+			cap = stack.getCapability(CapabilityList.VOIDICPOWER, null);
+			NBTTagCompound nbt = stack.getOrCreateSubCompound(VoidCraft.modid);
+			cap.setValues(nbt.getInteger("currPower"), nbt.getInteger("maxPower"));
+		}
 		return cap == null ? false : getAdjustedPerc(cap) < 1.0f;
+	}
+
+	@Override
+	public int getRGBDurabilityForDisplay(ItemStack stack) {
+		return 0xe900ff;
 	}
 
 	@Override
@@ -161,7 +168,7 @@ public abstract class VoidicPowerItem extends TamItem {
 	@Override
 	public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced) {
 		IVoidicPowerCapability cap = stack.getCapability(CapabilityList.VOIDICPOWER, null);
-		if (cap != null) tooltip.add(ChatFormatting.DARK_PURPLE + "Power: " + (map.containsKey(cap) ? cap.getCurrentPower() - map.get(cap) : cap.getCurrentPower()) + "/" + cap.getMaxPower());
+		if (cap != null) tooltip.add(TextFormatting.DARK_PURPLE + "Power: " + (map.containsKey(cap) ? cap.getCurrentPower() - map.get(cap) : cap.getCurrentPower()) + "/" + cap.getMaxPower());
 	}
 
 	@Override
@@ -172,7 +179,8 @@ public abstract class VoidicPowerItem extends TamItem {
 	}
 
 	@Override
-	public ActionResult<ItemStack> onItemRightClick(ItemStack stack, World world, EntityPlayer player, EnumHand hand) {
+	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
+		ItemStack stack = player.getHeldItem(hand);
 		if (!canBeUsed()) return ActionResult.newResult(EnumActionResult.PASS, stack);
 		IVoidicPowerCapability cap = stack.getCapability(CapabilityList.VOIDICPOWER, null);
 		if (cap != null && cap.getCurrentPower() >= useAmount()) {

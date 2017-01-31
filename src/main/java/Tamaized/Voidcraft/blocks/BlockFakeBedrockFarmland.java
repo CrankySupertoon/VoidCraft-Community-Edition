@@ -3,7 +3,7 @@ package Tamaized.Voidcraft.blocks;
 import java.util.ArrayList;
 
 import Tamaized.TamModized.blocks.TamBlockFarmland;
-import Tamaized.Voidcraft.voidCraft;
+import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.blocks.tileentity.TileEntityFakeBedrockFarmland;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -28,52 +28,53 @@ public class BlockFakeBedrockFarmland extends TamBlockFarmland {
 
 	@Override
 	protected IBlockState getParentBlockState() {
-		return voidCraft.blocks.blockFakeBedrock.getDefaultState();
+		return VoidCraft.blocks.blockFakeBedrock.getDefaultState();
 	}
 
 	@Override
 	protected Block getWaterBlock() {
-		return voidCraft.fluids.voidFluidBlock;
+		return VoidCraft.fluids.voidFluidBlock;
 	}
 
 	@Override
 	public TileEntity createNewTileEntity(World worldIn, int meta) {
 		return new TileEntityFakeBedrockFarmland();
 	}
-	
+
 	@Override
 	protected void updateTiles(TileEntity oldTile, TileEntity newTile) {
-		if(oldTile != null && newTile != null && oldTile instanceof TileEntityFakeBedrockFarmland && newTile instanceof TileEntityFakeBedrockFarmland){
-			((TileEntityFakeBedrockFarmland)newTile).setAlteration(((TileEntityFakeBedrockFarmland)oldTile).getAlteration());
+		if (oldTile != null && newTile != null && oldTile instanceof TileEntityFakeBedrockFarmland && newTile instanceof TileEntityFakeBedrockFarmland) {
+			((TileEntityFakeBedrockFarmland) newTile).setAlteration(((TileEntityFakeBedrockFarmland) oldTile).getAlteration());
 		}
 	}
 
 	@Override
-	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
-		if (heldItem != null && worldIn.isAirBlock(pos.up())) {
+	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
+		ItemStack stack = playerIn.getHeldItem(hand);
+		if (!stack.isEmpty() && worldIn.isAirBlock(pos.up())) {
 			TileEntity t = worldIn.getTileEntity(pos);
 			if (!(t instanceof TileEntityFakeBedrockFarmland)) return false;
 			TileEntityFakeBedrockFarmland te = (TileEntityFakeBedrockFarmland) t;
-			if(te.getAlteration() != TileEntityFakeBedrockFarmland.Alteration.NORMAL) return false;
-			Item item = heldItem.getItem();
+			if (te.getAlteration() != TileEntityFakeBedrockFarmland.Alteration.NORMAL) return false;
+			Item item = stack.getItem();
 			if (item == Items.REDSTONE) {
-				setColor(te, TileEntityFakeBedrockFarmland.Alteration.REDSTONE, heldItem);
+				setColor(te, TileEntityFakeBedrockFarmland.Alteration.REDSTONE, stack);
 				return true;
 			}
-			if (item == voidCraft.items.lapisDust) {
-				setColor(te, TileEntityFakeBedrockFarmland.Alteration.LAPIS, heldItem);
+			if (item == VoidCraft.items.lapisDust) {
+				setColor(te, TileEntityFakeBedrockFarmland.Alteration.LAPIS, stack);
 				return true;
 			}
-			if (item == voidCraft.items.diamondDust) {
-				setColor(te, TileEntityFakeBedrockFarmland.Alteration.DIAMOND, heldItem);
+			if (item == VoidCraft.items.diamondDust) {
+				setColor(te, TileEntityFakeBedrockFarmland.Alteration.DIAMOND, stack);
 				return true;
 			}
-			if (item == voidCraft.items.emeraldDust) {
-				setColor(te, TileEntityFakeBedrockFarmland.Alteration.EMERALD, heldItem);
+			if (item == VoidCraft.items.emeraldDust) {
+				setColor(te, TileEntityFakeBedrockFarmland.Alteration.EMERALD, stack);
 				return true;
 			}
-			if (item == voidCraft.items.goldDust) {
-				setColor(te, TileEntityFakeBedrockFarmland.Alteration.GOLD, heldItem);
+			if (item == VoidCraft.items.goldDust) {
+				setColor(te, TileEntityFakeBedrockFarmland.Alteration.GOLD, stack);
 				return true;
 			}
 		}
@@ -82,14 +83,14 @@ public class BlockFakeBedrockFarmland extends TamBlockFarmland {
 
 	private static void setColor(TileEntityFakeBedrockFarmland tile, TileEntityFakeBedrockFarmland.Alteration alter, ItemStack stack) {
 		tile.setAlteration(alter);
-		stack.stackSize--;
+		stack.shrink(1);
 	}
 
 	@Override
 	protected ArrayList<IPlantable> getPlantList() {
 		ArrayList<IPlantable> list = new ArrayList<IPlantable>();
-		list.add(voidCraft.blocks.etherealPlant);
-		list.add(voidCraft.items.etherealSeed);
+		list.add(VoidCraft.blocks.etherealPlant);
+		list.add(VoidCraft.items.etherealSeed);
 		return list;
 	}
 

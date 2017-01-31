@@ -7,7 +7,7 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import Tamaized.Voidcraft.voidCraft;
+import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.GUI.server.RealityStabilizerContainer;
 import Tamaized.Voidcraft.machina.tileentity.TileEntityRealityStabilizer;
 
@@ -16,7 +16,7 @@ public class RealityStabilizerGUI extends GuiContainer {
 
 	public TileEntityRealityStabilizer te;
 
-	private static final ResourceLocation daTexture = new ResourceLocation(voidCraft.modid, "textures/gui/voidCharger.png");
+	private static final ResourceLocation daTexture = new ResourceLocation(VoidCraft.modid, "textures/gui/voidCharger.png");
 
 	public RealityStabilizerGUI(InventoryPlayer inventoryPlayer, TileEntityRealityStabilizer tileEntity) {
 		super(new RealityStabilizerContainer(inventoryPlayer, tileEntity));

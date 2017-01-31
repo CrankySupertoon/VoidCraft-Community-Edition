@@ -11,7 +11,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
-import Tamaized.Voidcraft.voidCraft;
+import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.blocks.AIBlock;
 import Tamaized.Voidcraft.blocks.tileentity.TileEntityAIBlock;
 import Tamaized.Voidcraft.entity.boss.herobrine.EntityBossHerobrine;
@@ -37,8 +37,12 @@ public class EntityAIHerobrinePhase2<T extends EntityBossHerobrine> extends Enti
 	}
 
 	@Override
-	public void Init() {
-		super.Init();
+	protected void preInit() {
+
+	}
+
+	@Override
+	protected void postInit() {
 		for (int x = -10; x <= 10; x++) {
 			for (int z = -10; z <= 10; z++) {
 				if ((x == 0 && z == 0) || Math.floor(Math.random() * 20) != 0) continue;
@@ -96,9 +100,9 @@ public class EntityAIHerobrinePhase2<T extends EntityBossHerobrine> extends Enti
 		int nY = getBlockPosition().getY();
 		int nZ = (getBlockPosition().getZ() - 8) + randZ;
 		if (world.getTileEntity(new BlockPos(nX, nY, nZ)) == null) {
-			world.setBlockState(new BlockPos(nX, nY, nZ), ((AIBlock) voidCraft.blocks.AIBlock).getDefaultState());
-			world.setBlockState(new BlockPos(nX, nY + 1, nZ), ((AIBlock) voidCraft.blocks.AIBlock).getDefaultState());
-			world.setBlockState(new BlockPos(nX, nY + 2, nZ), ((AIBlock) voidCraft.blocks.AIBlock).getDefaultState());
+			world.setBlockState(new BlockPos(nX, nY, nZ), ((AIBlock) VoidCraft.blocks.AIBlock).getDefaultState());
+			world.setBlockState(new BlockPos(nX, nY + 1, nZ), ((AIBlock) VoidCraft.blocks.AIBlock).getDefaultState());
+			world.setBlockState(new BlockPos(nX, nY + 2, nZ), ((AIBlock) VoidCraft.blocks.AIBlock).getDefaultState());
 			TileEntityAIBlock b = (TileEntityAIBlock) world.getTileEntity(new BlockPos(nX, nY, nZ));
 			b.setup(this, null);
 			((TileEntityAIBlock) world.getTileEntity(new BlockPos(nX, nY + 1, nZ))).setup(null, b);
@@ -111,10 +115,10 @@ public class EntityAIHerobrinePhase2<T extends EntityBossHerobrine> extends Enti
 	}
 
 	private void updateInPillarState() {
-		Block b = getEntity().worldObj.getBlockState(new BlockPos(MathHelper.floor_double(getEntity().posX), MathHelper.floor_double(getEntity().posY), MathHelper.floor_double(getEntity().posZ))).getBlock();
+		Block b = getEntity().world.getBlockState(new BlockPos(MathHelper.floor(getEntity().posX), MathHelper.floor(getEntity().posY), MathHelper.floor(getEntity().posZ))).getBlock();
 		if (b instanceof AIBlock) {
 			if (!inBlock) {
-				TileEntity te = ((AIBlock) b).getMyTileEntity(getEntity().worldObj, new BlockPos(MathHelper.floor_double(getEntity().posX), MathHelper.floor_double(getEntity().posY), MathHelper.floor_double(getEntity().posZ)));
+				TileEntity te = ((AIBlock) b).getMyTileEntity(getEntity().world, new BlockPos(MathHelper.floor(getEntity().posX), MathHelper.floor(getEntity().posY), MathHelper.floor(getEntity().posZ)));
 				if (te instanceof TileEntityAIBlock) {
 					((TileEntityAIBlock) te).boom();
 					inBlock = true;

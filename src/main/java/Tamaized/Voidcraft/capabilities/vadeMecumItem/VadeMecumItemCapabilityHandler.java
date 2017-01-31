@@ -4,14 +4,14 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import Tamaized.Voidcraft.voidCraft;
+import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.vadeMecum.VadeMecumEntry;
 import io.netty.buffer.ByteBufInputStream;
 import net.minecraft.util.ResourceLocation;
 
 public class VadeMecumItemCapabilityHandler implements IVadeMecumItemCapability {
 	
-	public static final ResourceLocation ID = new ResourceLocation(voidCraft.modid, "VadeMecumItemCapabilityHandler");
+	public static final ResourceLocation ID = new ResourceLocation(VoidCraft.modid, "VadeMecumItemCapabilityHandler");
 
 	private boolean markDirty = false;
 	private boolean hasLoaded = false;

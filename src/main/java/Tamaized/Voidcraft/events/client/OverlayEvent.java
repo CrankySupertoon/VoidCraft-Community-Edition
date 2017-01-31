@@ -1,6 +1,6 @@
 package Tamaized.Voidcraft.events.client;
 
-import Tamaized.Voidcraft.voidCraft;
+import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.handlers.ClientPortalDataHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
@@ -16,13 +16,13 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class OverlayEvent {
 
-	private static final String texture_void = (voidCraft.modid + ":blocks/blockPortalVoid");
-	private static final String texture_xia = (voidCraft.modid + ":blocks/blockPortalXia");
+	private static final String texture_void = (VoidCraft.modid + ":blocks/blockportalvoid");
+	private static final String texture_xia = (VoidCraft.modid + ":blocks/blockportalxia");
 
 	@SubscribeEvent
 	public void InGameOverlay(RenderGameOverlayEvent e) {
 		Minecraft mc = Minecraft.getMinecraft();
-		EntityPlayerSP player = mc.thePlayer;
+		EntityPlayerSP player = mc.player;
 
 		if (e.getType() == e.getType().PORTAL) {
 			if (ClientPortalDataHandler.active) {
@@ -45,7 +45,7 @@ public class OverlayEvent {
 			GlStateManager.color(1.0F, 1.0F, 1.0F, j);
 			mc.getTextureManager().bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
 
-			TextureAtlasSprite textureatlassprite = mc.getBlockRendererDispatcher().getBlockModelShapes().getModelManager().getTextureMap().getAtlasSprite(type == voidCraft.config.getDimensionIDxia() ? texture_xia : texture_void);
+			TextureAtlasSprite textureatlassprite = mc.getBlockRendererDispatcher().getBlockModelShapes().getModelManager().getTextureMap().getAtlasSprite(type == VoidCraft.config.getDimensionIDxia() ? texture_xia : texture_void);
 			float f = textureatlassprite.getMinU();
 			float f1 = textureatlassprite.getMinV();
 			float f2 = textureatlassprite.getMaxU();

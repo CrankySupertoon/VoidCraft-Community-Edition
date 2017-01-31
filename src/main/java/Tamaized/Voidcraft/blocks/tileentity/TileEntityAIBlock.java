@@ -1,12 +1,11 @@
 package Tamaized.Voidcraft.blocks.tileentity;
 
 import Tamaized.TamModized.tileentity.TamTileEntity;
-import Tamaized.Voidcraft.voidCraft;
+import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.blocks.AIBlock;
 import Tamaized.Voidcraft.xiaCastle.logic.battle.EntityVoidNPCAIBase;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.init.SoundEvents;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
@@ -54,7 +53,7 @@ public class TileEntityAIBlock extends TamTileEntity {
 
 	public void boom() {
 		SoundType soundType = SoundType.GLASS;
-		worldObj.playSound(null, getPos().getX(), getPos().getY(), getPos().getZ(), soundType.getBreakSound(), SoundCategory.BLOCKS, (soundType.getVolume() + 1.0F) / 2.0F, soundType.getPitch() * 0.8F);
+		world.playSound(null, getPos().getX(), getPos().getY(), getPos().getZ(), soundType.getBreakSound(), SoundCategory.BLOCKS, (soundType.getVolume() + 1.0F) / 2.0F, soundType.getPitch() * 0.8F);
 		if (ai != null) {
 			if (state < 2) state++;
 			else {
@@ -65,14 +64,14 @@ public class TileEntityAIBlock extends TamTileEntity {
 	}
 
 	public void setDead() {
-		this.worldObj.setBlockToAir(pos);
-		this.worldObj.removeTileEntity(pos);
+		this.world.setBlockToAir(pos);
+		this.world.removeTileEntity(pos);
 		dead = true;
 	}
 
 	@Override
 	public void onUpdate() {
-		if (!this.worldObj.isRemote) {
+		if (!this.world.isRemote) {
 			if (!fake) {
 				if (ai == null && parent == null) {
 					setDead();
@@ -89,7 +88,7 @@ public class TileEntityAIBlock extends TamTileEntity {
 			}
 			if (oldState != state) {
 				oldState = state;
-				worldObj.setBlockState(pos, voidCraft.blocks.AIBlock.getDefaultState().withProperty(AIBlock.STATE, state));
+				world.setBlockState(pos, VoidCraft.blocks.AIBlock.getDefaultState().withProperty(AIBlock.STATE, state));
 			}
 		}
 	}

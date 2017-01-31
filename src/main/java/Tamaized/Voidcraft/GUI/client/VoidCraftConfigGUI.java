@@ -1,6 +1,6 @@
 package Tamaized.Voidcraft.GUI.client;
 
-import Tamaized.Voidcraft.voidCraft;
+import Tamaized.Voidcraft.VoidCraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraftforge.common.config.ConfigElement;
@@ -10,7 +10,7 @@ import net.minecraftforge.fml.client.config.GuiConfig;
 public class VoidCraftConfigGUI extends GuiConfig {
 
 	public VoidCraftConfigGUI(GuiScreen parent) {
-		super(parent, new ConfigElement(voidCraft.config.getConfig().getCategory(Configuration.CATEGORY_GENERAL)).getChildElements(), voidCraft.modid, false, false, "VoidCraft Config");
+		super(parent, new ConfigElement(VoidCraft.config.getConfig().getCategory(Configuration.CATEGORY_GENERAL)).getChildElements(), VoidCraft.modid, false, false, "VoidCraft Config");
 	}
 
 	@Override

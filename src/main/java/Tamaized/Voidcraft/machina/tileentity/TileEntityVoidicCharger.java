@@ -1,17 +1,11 @@
 package Tamaized.Voidcraft.machina.tileentity;
 
-import java.util.Arrays;
-
-import Tamaized.Voidcraft.api.voidicpower.TileEntityVoidicPower;
 import Tamaized.Voidcraft.api.voidicpower.TileEntityVoidicPowerInventory;
 import Tamaized.Voidcraft.api.voidicpower.VoidicPowerItem;
 import Tamaized.Voidcraft.capabilities.CapabilityList;
 import Tamaized.Voidcraft.capabilities.voidicPower.IVoidicPowerCapability;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.EnumFacing;
 
 public class TileEntityVoidicCharger extends TileEntityVoidicPowerInventory {
@@ -59,11 +53,6 @@ public class TileEntityVoidicCharger extends TileEntityVoidicPowerInventory {
 	}
 
 	@Override
-	public boolean isItemValidForSlot(int i, ItemStack stack) {
-		return i == SLOT_DEFAULT ? stack.getItem() instanceof VoidicPowerItem : false;
-	}
-
-	@Override
 	public String getName() {
 		return null;
 	}
@@ -80,7 +69,7 @@ public class TileEntityVoidicCharger extends TileEntityVoidicPowerInventory {
 
 	@Override
 	public void onUpdate() {
-		if (voidicPower > 0 && getStackInSlot(SLOT_DEFAULT) != null && getStackInSlot(SLOT_DEFAULT).getItem() instanceof VoidicPowerItem) {
+		if (voidicPower > 0 && !getStackInSlot(SLOT_DEFAULT).isEmpty() && getStackInSlot(SLOT_DEFAULT).getItem() instanceof VoidicPowerItem) {
 			IVoidicPowerCapability cap = getStackInSlot(SLOT_DEFAULT).getCapability(CapabilityList.VOIDICPOWER, null);
 			if (cap != null && cap.getAmountPerc() < 1.0f) {
 				int amount = voidicPower >= maxPowerTransfer() ? maxPowerTransfer() : voidicPower;
@@ -93,14 +82,14 @@ public class TileEntityVoidicCharger extends TileEntityVoidicPowerInventory {
 
 	@Override
 	protected boolean canExtractSlot(int i, ItemStack stack) {
-		if(stack == null) return false;
+		if (stack.isEmpty()) return false;
 		IVoidicPowerCapability cap = getStackInSlot(SLOT_DEFAULT).getCapability(CapabilityList.VOIDICPOWER, null);
 		return cap != null && cap.getCurrentPower() == cap.getMaxPower();
 	}
 
 	@Override
-	protected boolean canInsertSlot(int i, ItemStack stack) {
-		return true;
+	public boolean isItemValidForSlot(int i, ItemStack stack) {
+		return i == SLOT_DEFAULT ? stack.getItem() instanceof VoidicPowerItem : false;
 	}
 
 }

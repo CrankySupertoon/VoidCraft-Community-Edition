@@ -1,6 +1,6 @@
 package Tamaized.Voidcraft.world.dim.TheVoid;
 
-import Tamaized.Voidcraft.voidCraft;
+import Tamaized.Voidcraft.VoidCraft;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.WorldProvider;
@@ -11,13 +11,14 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class WorldProviderVoid extends WorldProvider {
+
 	/**
 	 * creates a new world chunk manager for WorldProvider
 	 */
 	@Override
-	protected void createBiomeProvider() {
-		this.biomeProvider = new BiomeProviderSingle(voidCraft.biomes.biomeVoid);
-		this.isHellWorld = true;
+	protected void init() {
+		this.biomeProvider = new BiomeProviderSingle(VoidCraft.biomes.biomeVoid);
+		this.doesWaterVaporize = false;
 		this.hasNoSky = true;
 	}
 
@@ -48,7 +49,7 @@ public class WorldProviderVoid extends WorldProvider {
 	 */
 	@Override
 	public IChunkGenerator createChunkGenerator() {
-		return new ChunkProviderVoid(this.worldObj, this.worldObj.getWorldInfo().isMapFeaturesEnabled(), this.worldObj.getSeed());
+		return new ChunkProviderVoid(world, world.getWorldInfo().isMapFeaturesEnabled(), world.getSeed());
 	}
 
 	/**
@@ -111,6 +112,6 @@ public class WorldProviderVoid extends WorldProvider {
 
 	@Override
 	public DimensionType getDimensionType() {
-		return DimensionType.getById(voidCraft.config.getDimensionIDvoid());
+		return DimensionType.getById(VoidCraft.config.getDimensionIDvoid());
 	}
 }

@@ -1,0 +1,9 @@
+{
+    "parent": "block/orientable",
+    "textures": {
+        "top": "voidcraft:blocks/starforge",
+        "front": "voidcraft:blocks/starforge_station",
+        "side": "voidcraft:blocks/starforge",
+        "bottom": "voidcraft:blocks/starforge"
+    }
+}

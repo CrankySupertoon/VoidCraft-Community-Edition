@@ -1,7 +1,7 @@
 package Tamaized.Voidcraft.machina.tileentity;
 
 import Tamaized.TamModized.tileentity.TamTileEntityInventory;
-import Tamaized.Voidcraft.voidCraft;
+import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.machina.addons.TERecipeInfuser.InfuserRecipe;
 import Tamaized.Voidcraft.machina.addons.VoidTank;
 import net.minecraft.init.Items;
@@ -35,33 +35,33 @@ public class TileEntityVoidInfuser extends TamTileEntityInventory implements IFl
 
 	@Override
 	public void readNBT(NBTTagCompound nbt) {
-		if (tank.getFluid() != null) this.tank.setFluid(new FluidStack(voidCraft.fluids.voidFluid, nbt.getInteger("fluidAmount")));
-		this.cookingTick = nbt.getInteger("cookingTick");
+		if (tank.getFluid() != null) tank.setFluid(new FluidStack(VoidCraft.fluids.voidFluid, nbt.getInteger("fluidAmount")));
+		cookingTick = nbt.getInteger("cookingTick");
 	}
 
 	@Override
 	public NBTTagCompound writeNBT(NBTTagCompound nbt) {
 		nbt.setInteger("fluidAmount", tank.getFluidAmount());
-		nbt.setInteger("cookingTick", this.cookingTick);
+		nbt.setInteger("cookingTick", cookingTick);
 		return nbt;
 	}
 
 	@Override
 	public void onUpdate() {
 		boolean cooking = false;
-		if (lastCookingItem == null || slots[SLOT_INPUT] == null || lastCookingItem != slots[SLOT_INPUT].getItem()) {
+		if (lastCookingItem == null || slots[SLOT_INPUT].isEmpty() || lastCookingItem != slots[SLOT_INPUT].getItem()) {
 			cookingTick = 0;
-			lastCookingItem = (slots[SLOT_INPUT] != null) ? slots[SLOT_INPUT].getItem() : null;
+			lastCookingItem = (!slots[SLOT_INPUT].isEmpty()) ? slots[SLOT_INPUT].getItem() : null;
 		}
 
 		if (tank.getFluidAmount() > 0 && canCook()) {
 			cooking = true;
-			drain(new FluidStack(voidCraft.fluids.voidFluid, 1), true);
+			drain(new FluidStack(VoidCraft.fluids.voidFluid, 1), true);
 		}
 
 		if (getFluidAmount() <= getMaxFluidAmount() - 1000) {
-			if (slots[SLOT_BUCKET] != null && slots[SLOT_BUCKET].isItemEqual(voidCraft.fluids.getBucket())) {
-				fill(new FluidStack(voidCraft.fluids.voidFluid, 1000), true);
+			if (!slots[SLOT_BUCKET].isEmpty() && slots[SLOT_BUCKET].isItemEqual(VoidCraft.fluids.voidBucket.getBucket())) {
+				fill(new FluidStack(VoidCraft.fluids.voidFluid, 1000), true);
 				slots[SLOT_BUCKET] = new ItemStack(Items.BUCKET);
 			}
 		}
@@ -71,44 +71,44 @@ public class TileEntityVoidInfuser extends TamTileEntityInventory implements IFl
 			if (cookingTick >= (finishTick = recipe.getRequiredFluid())) {
 				cookingTick = 0;
 				bakeItem();
-				this.markDirty();
+				markDirty();
 			}
 		}
 	}
 
 	private void bakeItem() {
 		if (canCook()) {
-			if (this.slots[SLOT_OUTPUT] == null) {
-				this.slots[SLOT_OUTPUT] = recipe.getOutput().copy();
-			} else if (this.slots[SLOT_OUTPUT].isItemEqual(recipe.getOutput())) {
-				this.slots[SLOT_OUTPUT].stackSize += recipe.getOutput().stackSize;
+			if (slots[SLOT_OUTPUT].isEmpty()) {
+				slots[SLOT_OUTPUT] = recipe.getOutput().copy();
+			} else if (slots[SLOT_OUTPUT].isItemEqual(recipe.getOutput())) {
+				slots[SLOT_OUTPUT].grow(recipe.getOutput().getCount());
 			}
 
-			this.slots[SLOT_INPUT].stackSize--;
+			slots[SLOT_INPUT].shrink(1);
 
-			if (this.slots[SLOT_INPUT].stackSize <= 0) {
-				this.slots[SLOT_INPUT] = null;
+			if (slots[SLOT_INPUT].getCount() <= 0) {
+				slots[SLOT_INPUT] = ItemStack.EMPTY;
 			}
 		}
 	}
 
 	private boolean canCook() {
-		if (this.slots[SLOT_INPUT] == null) return false;
-		recipe = voidCraft.teRecipes.infuser.getRecipe(new ItemStack[] { slots[SLOT_INPUT] });
+		if (slots[SLOT_INPUT].isEmpty()) return false;
+		recipe = VoidCraft.teRecipes.infuser.getRecipe(new ItemStack[] { slots[SLOT_INPUT] });
 		if (recipe == null) return false;
-		if (this.slots[SLOT_OUTPUT] == null) return true;
-		if (!this.slots[SLOT_OUTPUT].isItemEqual(recipe.getOutput())) return false;
-		int result = this.slots[SLOT_OUTPUT].stackSize + recipe.getOutput().stackSize;
+		if (slots[SLOT_OUTPUT].isEmpty()) return true;
+		if (!slots[SLOT_OUTPUT].isItemEqual(recipe.getOutput())) return false;
+		int result = slots[SLOT_OUTPUT].getCount() + recipe.getOutput().getCount();
 		return (result <= getInventoryStackLimit() && result <= recipe.getOutput().getMaxStackSize());
 	}
 
 	public static boolean isItemFuel(ItemStack stack) {
-		return stack.isItemEqual(voidCraft.fluids.getBucket());
+		return stack.isItemEqual(VoidCraft.fluids.voidBucket.getBucket());
 	}
 
 	@Override
 	public boolean isItemValidForSlot(int i, ItemStack itemstack) {
-		return i != SLOT_OUTPUT ? i == SLOT_BUCKET ? isItemFuel(itemstack) : !itemstack.isItemEqual(voidCraft.fluids.getBucket()) : false;
+		return i != SLOT_OUTPUT ? i == SLOT_BUCKET ? isItemFuel(itemstack) : !itemstack.isItemEqual(VoidCraft.fluids.voidBucket.getBucket()) : false;
 	}
 
 	@Override
@@ -117,13 +117,8 @@ public class TileEntityVoidInfuser extends TamTileEntityInventory implements IFl
 	}
 
 	@Override
-	protected boolean canExtractSlot(int i) {
-		return i == SLOT_BUCKET ? slots[SLOT_BUCKET] != null ? slots[SLOT_BUCKET].isItemEqual(voidCraft.fluids.getBucket()) : false : i == SLOT_OUTPUT;
-	}
-
-	@Override
-	protected boolean canInsertSlot(int i) {
-		return i != SLOT_OUTPUT;
+	protected boolean canExtractSlot(int i, ItemStack stack) {
+		return i == SLOT_BUCKET ? !slots[SLOT_BUCKET].isEmpty() ? slots[SLOT_BUCKET].isItemEqual(VoidCraft.fluids.voidBucket.getBucket()) : false : i == SLOT_OUTPUT;
 	}
 
 	@Override
@@ -170,6 +165,6 @@ public class TileEntityVoidInfuser extends TamTileEntityInventory implements IFl
 	}
 
 	public void setFluidAmount(int amount) {
-		tank.setFluid(new FluidStack(voidCraft.fluids.voidFluid, amount > tank.getCapacity() ? tank.getCapacity() : amount));
+		tank.setFluid(new FluidStack(VoidCraft.fluids.voidFluid, amount > tank.getCapacity() ? tank.getCapacity() : amount));
 	}
 }

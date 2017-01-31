@@ -2,8 +2,10 @@ package Tamaized.Voidcraft.machina;
 
 import java.util.Random;
 
-import javax.annotation.Nullable;
-
+import Tamaized.TamModized.blocks.TamBlockContainer;
+import Tamaized.Voidcraft.VoidCraft;
+import Tamaized.Voidcraft.GUI.GuiHandler;
+import Tamaized.Voidcraft.machina.tileentity.TileEntityVoidBox;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -20,10 +22,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.internal.FMLNetworkHandler;
-import Tamaized.TamModized.blocks.TamBlockContainer;
-import Tamaized.Voidcraft.voidCraft;
-import Tamaized.Voidcraft.GUI.GuiHandler;
-import Tamaized.Voidcraft.machina.tileentity.TileEntityVoidBox;
 
 public class VoidBox extends TamBlockContainer {
 
@@ -34,9 +32,9 @@ public class VoidBox extends TamBlockContainer {
 	}
 
 	@Override
-	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, @Nullable ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
+	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
 		if (!worldIn.isRemote) {
-			FMLNetworkHandler.openGui(playerIn, voidCraft.instance, GuiHandler.getTypeID(GuiHandler.Type.MusicBox), worldIn, pos.getX(), pos.getY(), pos.getZ());
+			FMLNetworkHandler.openGui(playerIn, VoidCraft.instance, GuiHandler.getTypeID(GuiHandler.Type.MusicBox), worldIn, pos.getX(), pos.getY(), pos.getZ());
 		}
 		return true;
 	}
@@ -56,7 +54,7 @@ public class VoidBox extends TamBlockContainer {
 
 	@Override
 	public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
-		int l = MathHelper.floor_double((double) (placer.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
+		int l = MathHelper.floor((double) (placer.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
 
 		if (l == 0) {
 			world.setBlockState(pos, this.getStateFromMeta(2), 2);
@@ -87,7 +85,7 @@ public class VoidBox extends TamBlockContainer {
 				for (int i = 0; i < tileentity.SLOTS_ALL.length; i++) {
 					ItemStack itemstack = tileentity.getStackInSlot(i);
 
-					if (itemstack != null) {
+					if (!itemstack.isEmpty()) {
 						float f = this.rand.nextFloat() * 0.8F + 0.1F;
 						float f1 = this.rand.nextFloat() * 0.8F + 0.1F;
 						float f2 = this.rand.nextFloat() * 0.8F + 0.1F;
@@ -102,7 +100,7 @@ public class VoidBox extends TamBlockContainer {
 						item.motionX = (double) ((float) this.rand.nextGaussian() * f3);
 						item.motionY = (double) ((float) this.rand.nextGaussian() * f3 + 0.2F);
 						item.motionZ = (double) ((float) this.rand.nextGaussian() * f3);
-						world.spawnEntityInWorld(item);
+						world.spawnEntity(item);
 					}
 				}
 			}

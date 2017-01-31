@@ -2,17 +2,17 @@ package Tamaized.Voidcraft.handlers;
 
 import java.io.DataOutputStream;
 
-import Tamaized.Voidcraft.voidCraft;
+import Tamaized.TamModized.helper.PacketHelper;
+import Tamaized.TamModized.helper.PacketHelper.PacketWrapper;
+import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.armor.ArmorCustomElytra;
 import Tamaized.Voidcraft.capabilities.CapabilityList;
 import Tamaized.Voidcraft.network.ServerPacketHandler;
-import io.netty.buffer.ByteBufOutputStream;
-import io.netty.buffer.Unpooled;
+import net.minecraft.entity.MoverType;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
-import net.minecraft.network.PacketBuffer;
 import net.minecraft.stats.StatList;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.MathHelper;
@@ -20,7 +20,6 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.Phase;
 import net.minecraftforge.fml.common.gameevent.TickEvent.PlayerTickEvent;
-import net.minecraftforge.fml.common.network.internal.FMLProxyPacket;
 
 public class CustomElytraHandler {
 
@@ -37,12 +36,12 @@ public class CustomElytraHandler {
 		if (e.phase == Phase.END) {
 			EntityPlayer entity = e.player;
 			doElytraFlyingChecks(entity);
-			if (entity.worldObj.isRemote) {
-				net.minecraft.client.entity.EntityPlayerSP clientPlayer = net.minecraft.client.Minecraft.getMinecraft().thePlayer;
+			if (entity.world.isRemote) {
+				net.minecraft.client.entity.EntityPlayerSP clientPlayer = net.minecraft.client.Minecraft.getMinecraft().player;
 				doElytraFlyingChecks(clientPlayer);
 				if (clientPlayer.movementInput.jump && !clientPlayer.onGround && clientPlayer.motionY < 0.0D && !isElytraFlying(clientPlayer) && !clientPlayer.capabilities.isFlying) {
 					ItemStack itemstack = clientPlayer.getItemStackFromSlot(EntityEquipmentSlot.CHEST);
-					if (itemstack != null && itemstack.getItem() instanceof ArmorCustomElytra && ArmorCustomElytra.isBroken(itemstack)) {
+					if (!itemstack.isEmpty() && itemstack.getItem() instanceof ArmorCustomElytra && ArmorCustomElytra.isBroken(itemstack)) {
 						setFlying(clientPlayer, true);
 						sendPacketToServer(clientPlayer);
 						net.minecraft.client.Minecraft.getMinecraft().getSoundHandler().playSound(new net.minecraft.client.audio.ElytraSound(clientPlayer));
@@ -83,17 +82,17 @@ public class CustomElytraHandler {
 							entity.motionX *= 0.9900000095367432D;
 							entity.motionY *= 0.9800000190734863D;
 							entity.motionZ *= 0.9900000095367432D;
-							entity.moveEntity(entity.motionX, entity.motionY, entity.motionZ);
-							if (entity.isCollidedHorizontally && !entity.worldObj.isRemote) {
+							entity.move(MoverType.SELF, entity.motionX, entity.motionY, entity.motionZ);
+							if (entity.isCollidedHorizontally && !entity.world.isRemote) {
 								double d10 = Math.sqrt(entity.motionX * entity.motionX + entity.motionZ * entity.motionZ);
 								double d3 = d8 - d10;
 								float f5 = (float) (d3 * 10.0D - 3.0D);
 								if (f5 > 0.0F) {
 									entity.playSound((int) f5 > 4 ? SoundEvents.ENTITY_PLAYER_BIG_FALL : SoundEvents.ENTITY_PLAYER_SMALL_FALL, 1.0F, 1.0F);
-									entity.attackEntityFrom(DamageSource.flyIntoWall, f5);
+									entity.attackEntityFrom(DamageSource.FLY_INTO_WALL, f5);
 								}
 
-								if (entity.onGround && !entity.worldObj.isRemote) {
+								if (entity.onGround && !entity.world.isRemote) {
 									setFlying(entity, false);
 								}
 							}
@@ -105,7 +104,7 @@ public class CustomElytraHandler {
 				double p_1 = entity.posX - px;
 				double p_2 = entity.posY - py;
 				double p_3 = entity.posZ - pz;
-				int l = Math.round(MathHelper.sqrt_double(p_1 * p_1 + p_2 * p_2 + p_3 * p_3) * 100.0F);
+				int l = Math.round(MathHelper.sqrt(p_1 * p_1 + p_2 * p_2 + p_3 * p_3) * 100.0F);
 				entity.addStat(StatList.AVIATE_ONE_CM, l);
 			}
 		}
@@ -115,10 +114,10 @@ public class CustomElytraHandler {
 		if (!e.hasCapability(CapabilityList.ELYTRAFLYING, null)) return;
 		if (!e.onGround && !e.isRiding()) {
 			ItemStack itemstack = e.getItemStackFromSlot(EntityEquipmentSlot.CHEST);
-			if (itemstack != null && itemstack.getItem() instanceof ArmorCustomElytra && ArmorCustomElytra.isBroken(itemstack)) {
+			if (!itemstack.isEmpty() && itemstack.getItem() instanceof ArmorCustomElytra && ArmorCustomElytra.isBroken(itemstack)) {
 
 				int ticks = e.getCapability(CapabilityList.ELYTRAFLYING, null).getElytraTime() + 1;
-				if (!e.worldObj.isRemote && (ticks) % 20 == 0) {
+				if (!e.world.isRemote && (ticks) % 20 == 0) {
 					itemstack.damageItem(1, e);
 				}
 				e.getCapability(CapabilityList.ELYTRAFLYING, null).setElytraTime(ticks);
@@ -139,15 +138,10 @@ public class CustomElytraHandler {
 	}
 
 	private static void sendPacketToServer(EntityPlayer sender) {
-		int pktType = ServerPacketHandler.getPacketTypeID(ServerPacketHandler.PacketType.CUSTOM_ELYTRA);
-		ByteBufOutputStream bos = new ByteBufOutputStream(Unpooled.buffer());
-		DataOutputStream outputStream = new DataOutputStream(bos);
 		try {
-			outputStream.writeInt(pktType);
-			FMLProxyPacket packet = new FMLProxyPacket(new PacketBuffer(bos.buffer()), voidCraft.networkChannelName);
-			voidCraft.channel.sendToServer(packet);
-			outputStream.close();
-			bos.close();
+			PacketWrapper packet = PacketHelper.createPacket(VoidCraft.channel, VoidCraft.networkChannelName, ServerPacketHandler.getPacketTypeID(ServerPacketHandler.PacketType.CUSTOM_ELYTRA));
+			DataOutputStream stream = packet.getStream();
+			packet.sendPacketToServer();
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}

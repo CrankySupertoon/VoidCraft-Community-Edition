@@ -1,6 +1,6 @@
 package Tamaized.Voidcraft.vadeMecum.contents.documentation.machines.cable;
 
-import Tamaized.Voidcraft.voidCraft;
+import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.capabilities.vadeMecum.IVadeMecumCapability;
 import Tamaized.Voidcraft.vadeMecum.IVadeMecumPage;
 import Tamaized.Voidcraft.vadeMecum.IVadeMecumPageProvider;
@@ -14,18 +14,18 @@ public class VadeMecumPageListCable implements IVadeMecumPageProvider {
 
 	public IVadeMecumPage[] getPageList(IVadeMecumCapability cap) {
 		return new IVadeMecumPage[] {
-				new VadeMecumPage(new ItemStack(voidCraft.blocks.voidicCable).getDisplayName(), voidCraft.modid+".VadeMecum.docs.desc.voidicCable.pg1"),
-				new VadeMecumPage("", voidCraft.modid+".VadeMecum.docs.desc.voidicCable.pg2"),
-				new VadeMecumPageCrafting(new VadeMecumCraftingNormal(voidCraft.modid+".VadeMecum.recipe.normal", new ItemStack[] {
+				new VadeMecumPage(new ItemStack(VoidCraft.blocks.voidicCable).getDisplayName(), VoidCraft.modid+".VadeMecum.docs.desc.voidicCable.pg1"),
+				new VadeMecumPage("", VoidCraft.modid+".VadeMecum.docs.desc.voidicCable.pg2"),
+				new VadeMecumPageCrafting(new VadeMecumCraftingNormal(VoidCraft.modid+".VadeMecum.recipe.normal", new ItemStack[] {
 						new ItemStack(Items.REDSTONE),
 						new ItemStack(Items.REDSTONE),
 						new ItemStack(Items.REDSTONE),
 						new ItemStack(Items.REDSTONE),
-						new ItemStack(voidCraft.blocks.blockVoidcrystal),
+						new ItemStack(VoidCraft.blocks.blockVoidcrystal),
 						new ItemStack(Items.REDSTONE),
 						new ItemStack(Items.REDSTONE),
 						new ItemStack(Items.REDSTONE),
-						new ItemStack(Items.REDSTONE) }, new ItemStack(voidCraft.blocks.voidicCable, 8))) };
+						new ItemStack(Items.REDSTONE) }, new ItemStack(VoidCraft.blocks.voidicCable, 8))) };
 	}
 
 }

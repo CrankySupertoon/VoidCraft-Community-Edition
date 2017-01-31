@@ -1,6 +1,6 @@
 package Tamaized.Voidcraft.vadeMecum.contents.documentation.machines.stabilizer;
 
-import Tamaized.Voidcraft.voidCraft;
+import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.capabilities.vadeMecum.IVadeMecumCapability;
 import Tamaized.Voidcraft.vadeMecum.IVadeMecumPage;
 import Tamaized.Voidcraft.vadeMecum.IVadeMecumPageProvider;
@@ -13,17 +13,17 @@ public class VadeMecumPageListStabilizer implements IVadeMecumPageProvider {
 
 	public IVadeMecumPage[] getPageList(IVadeMecumCapability cap) {
 		return new IVadeMecumPage[] {
-				new VadeMecumPage(new ItemStack(voidCraft.blocks.realityStabilizer).getDisplayName(), voidCraft.modid+".VadeMecum.docs.desc.realityStabilizer"),
-				new VadeMecumPageCrafting(new VadeMecumCraftingNormal(voidCraft.modid+".VadeMecum.recipe.normal", new ItemStack[] {
-						new ItemStack(voidCraft.blocks.voidInfuserInert),
-						new ItemStack(voidCraft.items.diamondDust),
-						new ItemStack(voidCraft.blocks.voidInfuserInert),
-						new ItemStack(voidCraft.items.diamondDust),
-						new ItemStack(voidCraft.items.voidStar),
-						new ItemStack(voidCraft.items.diamondDust),
-						new ItemStack(voidCraft.blocks.voidInfuserInert),
-						new ItemStack(voidCraft.blocks.voidicCharger),
-						new ItemStack(voidCraft.blocks.voidInfuserInert) }, new ItemStack(voidCraft.blocks.realityStabilizer, 1))) };
+				new VadeMecumPage(new ItemStack(VoidCraft.blocks.realityStabilizer).getDisplayName(), VoidCraft.modid+".VadeMecum.docs.desc.realityStabilizer"),
+				new VadeMecumPageCrafting(new VadeMecumCraftingNormal(VoidCraft.modid+".VadeMecum.recipe.normal", new ItemStack[] {
+						new ItemStack(VoidCraft.blocks.voidInfuserInert),
+						new ItemStack(VoidCraft.items.diamondDust),
+						new ItemStack(VoidCraft.blocks.voidInfuserInert),
+						new ItemStack(VoidCraft.items.diamondDust),
+						new ItemStack(VoidCraft.items.voidStar),
+						new ItemStack(VoidCraft.items.diamondDust),
+						new ItemStack(VoidCraft.blocks.voidInfuserInert),
+						new ItemStack(VoidCraft.blocks.voidicCharger),
+						new ItemStack(VoidCraft.blocks.voidInfuserInert) }, new ItemStack(VoidCraft.blocks.realityStabilizer, 1))) };
 	}
 
 }

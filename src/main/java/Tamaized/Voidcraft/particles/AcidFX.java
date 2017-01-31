@@ -4,6 +4,7 @@ import org.lwjgl.opengl.GL11;
 
 import Tamaized.TamModized.particles.TamParticle;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.VertexBuffer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
@@ -32,15 +33,17 @@ public class AcidFX extends TamParticle {
 	}
 
 	@Override
-	public void renderParticle(VertexBuffer worldRenderer, Entity entityIn, float partialTicks, float rotationX, float rotationZ, float rotationYZ, float rotationXY, float rotationXZ) {
+	public boolean render(VertexBuffer worldRenderer, Entity entityIn, float partialTicks, float rotationX, float rotationZ, float rotationYZ, float rotationXY, float rotationXZ) {
 		Tessellator tessellator = Tessellator.getInstance();
 		VertexBuffer vertexbuffer = tessellator.getBuffer();
 		Minecraft.getMinecraft().renderEngine.bindTexture(texture);
-		GL11.glDepthMask(false);
-		GL11.glEnable(GL11.GL_BLEND);
+		//GL11.glDepthMask(false);
+		//GL11.glEnable(GL11.GL_BLEND);
 		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-		GL11.glAlphaFunc(GL11.GL_GREATER, 0.003921569F);
+		//GL11.glAlphaFunc(GL11.GL_GREATER, 0.003921569F);
 		// worldRenderer.setBrightness(getBrightnessForRender(partialTicks));
+		//GlStateManager.enableAlpha();
+		GlStateManager.enableBlend();
 		float scale = 0.1F * particleScale;
 		float x = (float) (prevPosX + (posX - prevPosX) * partialTicks - interpPosX);
 		float y = (float) (prevPosY + (posY - prevPosY) * partialTicks - interpPosY);
@@ -51,9 +54,12 @@ public class AcidFX extends TamParticle {
 		vertexbuffer.pos(x + rotationX * scale + rotationXY * scale, y + rotationZ * scale, z + rotationYZ * scale + rotationXZ * scale).tex(1, 1).color(this.particleRed, this.particleGreen, this.particleBlue, this.particleAlpha).endVertex();
 		vertexbuffer.pos(x + rotationX * scale - rotationXY * scale, y - rotationZ * scale, z + rotationYZ * scale - rotationXZ * scale).tex(0, 1).color(this.particleRed, this.particleGreen, this.particleBlue, this.particleAlpha).endVertex();
 		tessellator.draw();
-		GL11.glDisable(GL11.GL_BLEND);
-		GL11.glDepthMask(true);
-		GL11.glAlphaFunc(GL11.GL_GREATER, 0.1F);
+		//GlStateManager.disableAlpha();
+		GlStateManager.disableBlend();
+		//GL11.glDisable(GL11.GL_BLEND);
+		//GL11.glDepthMask(true);
+		//GL11.glAlphaFunc(GL11.GL_GREATER, 0.1F);
+		return false;
 	}
 
 	@Override

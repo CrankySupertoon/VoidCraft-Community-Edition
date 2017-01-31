@@ -1,6 +1,6 @@
 package Tamaized.Voidcraft.vadeMecum;
 
-import Tamaized.Voidcraft.voidCraft;
+import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.GUI.client.VadeMecumGUI;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.resources.I18n;

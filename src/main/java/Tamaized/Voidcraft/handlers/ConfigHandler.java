@@ -8,7 +8,7 @@ import java.util.stream.IntStream;
 
 import org.apache.commons.lang3.ArrayUtils;
 
-import Tamaized.Voidcraft.voidCraft;
+import Tamaized.Voidcraft.VoidCraft;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -45,7 +45,7 @@ public class ConfigHandler {
 
 	public void sync(boolean firstLoad) {
 		try {
-			if (voidCraft.isAetherLoaded) default_realityWhitelist = new int[] { 0, -1, 3 };
+			if (VoidCraft.isAetherLoaded) default_realityWhitelist = new int[] { 0, -1, 3 };
 			loadData(firstLoad);
 			cleanupFile();
 			config.save();
@@ -55,8 +55,8 @@ public class ConfigHandler {
 	}
 
 	private void loadData(boolean firstLoad) {
-		renderFirstPersonVadeMecumParticles = config.get(Configuration.CATEGORY_GENERAL, "Render First Person Particles", default_renderFirstPersonVadeMecumParticles).getBoolean();
-		renderThirdPersonVadeMecumParticles = config.get(Configuration.CATEGORY_GENERAL, "Render Third Person Particles", default_renderThirdPersonVadeMecumParticles).getBoolean();
+		//renderFirstPersonVadeMecumParticles = config.get(Configuration.CATEGORY_GENERAL, "Render First Person Particles", default_renderFirstPersonVadeMecumParticles).getBoolean();
+		renderThirdPersonVadeMecumParticles = config.get(Configuration.CATEGORY_GENERAL, "Render Vade Mecum Item Particles", default_renderThirdPersonVadeMecumParticles).getBoolean();
 		if (firstLoad) {
 			temp_dimensionIdVoid = dimensionIdVoid = config.get(Configuration.CATEGORY_GENERAL, "Void Dimension ID", default_dimensionIdVoid).getInt();
 			temp_dimensionIdXia = dimensionIdXia = config.get(Configuration.CATEGORY_GENERAL, "Xia Dimension ID", dimensionIdXia).getInt();
@@ -68,11 +68,11 @@ public class ConfigHandler {
 	}
 
 	private void cleanupFile() throws IOException {
-		voidCraft.configFile.delete();
-		voidCraft.configFile.createNewFile();
-		config = new Configuration(voidCraft.configFile);
-		config.get(Configuration.CATEGORY_GENERAL, "Render First Person Particles", default_renderFirstPersonVadeMecumParticles).set(renderFirstPersonVadeMecumParticles);
-		config.get(Configuration.CATEGORY_GENERAL, "Render Third Person Particles", default_renderThirdPersonVadeMecumParticles).set(renderThirdPersonVadeMecumParticles);
+		VoidCraft.configFile.delete();
+		VoidCraft.configFile.createNewFile();
+		config = new Configuration(VoidCraft.configFile);
+		//config.get(Configuration.CATEGORY_GENERAL, "Render First Person Particles", default_renderFirstPersonVadeMecumParticles).set(renderFirstPersonVadeMecumParticles);
+		config.get(Configuration.CATEGORY_GENERAL, "Render Vade Mecum Item Particles", default_renderThirdPersonVadeMecumParticles).set(renderThirdPersonVadeMecumParticles);
 		config.get(Configuration.CATEGORY_GENERAL, "Void Dimension ID", default_dimensionIdVoid).set(temp_dimensionIdVoid);
 		config.get(Configuration.CATEGORY_GENERAL, "Xia Dimension ID", dimensionIdXia).set(temp_dimensionIdXia);
 		config.get(Configuration.CATEGORY_GENERAL, "Reality Hole Dimension Whitelist", default_realityWhitelist, "List of Dimension IDs the Reality Hole will attempt to send you to").set(ArrayUtils.toPrimitive(realityWhitelist.toArray(new Integer[realityWhitelist.size()])));
@@ -80,7 +80,7 @@ public class ConfigHandler {
 
 	@SubscribeEvent
 	public void configChanged(ConfigChangedEvent.OnConfigChangedEvent event) {
-		if (event.getModID().equals(voidCraft.modid)) sync(false);
+		if (event.getModID().equals(VoidCraft.modid)) sync(false);
 	}
 
 	public boolean getRenderFirstPersonParticles() {

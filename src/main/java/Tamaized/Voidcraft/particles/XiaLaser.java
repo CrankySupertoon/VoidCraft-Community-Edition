@@ -30,9 +30,9 @@ public class XiaLaser extends TamParticle {
 	}
 
 	@Override
-	public void renderParticle(VertexBuffer worldRenderer, Entity entity, float partialTicks, float rotationX, float rotationZ, float rotationYZ, float rotationXY, float rotationXZ) {
-		Entity e = entity.worldObj.getEntityByID(entityID);
-		if (e == null) return;
+	public boolean render(VertexBuffer worldRenderer, Entity entity, float partialTicks, float rotationX, float rotationZ, float rotationYZ, float rotationXY, float rotationXZ) {
+		Entity e = entity.world.getEntityByID(entityID);
+		if (e == null) return false;
 		GlStateManager.alphaFunc(516, 0.1F);
 		GlStateManager.disableFog();
 		Minecraft.getMinecraft().renderEngine.bindTexture(TileEntityBeaconRenderer.TEXTURE_BEACON_BEAM);
@@ -43,10 +43,11 @@ public class XiaLaser extends TamParticle {
 		GlStateManager.translate(-distX, -distY, -distZ);
 		GlStateManager.translate(-0.5, 0, 0.5);
 		for (int i = 0; i < 20; i++) {
-			renderBeamSegment(yaw, pitch, 0, 0, 0, partialTicks, 1, entity.worldObj.getWorldTime(), i, 1, new float[] { 1.0f, 1.0f, 1.0f }, 0.2D, 0.25D);
+			renderBeamSegment(yaw, pitch, 0, 0, 0, partialTicks, 1, entity.world.getWorldTime(), i, 1, new float[] { 1.0f, 1.0f, 1.0f }, 0.2D, 0.25D);
 		}
 		GlStateManager.popMatrix();
 		GlStateManager.enableFog();
+		return false;
 	}
 
 	@Override
@@ -145,7 +146,7 @@ public class XiaLaser extends TamParticle {
 			VertexBuffer vertexbuffer = tessellator.getBuffer();
 			double d0 = worldTime + partialTicks;
 			double d1 = height < 0 ? d0 : -d0;
-			double d2 = MathHelper.frac(d1 * 0.2D - (double) MathHelper.floor_double(d1 * 0.1D));
+			double d2 = MathHelper.frac(d1 * 0.2D - (double) MathHelper.floor(d1 * 0.1D));
 			float f = colors[0];
 			float f1 = colors[1];
 			float f2 = colors[2];

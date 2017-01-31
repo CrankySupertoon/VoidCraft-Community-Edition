@@ -6,7 +6,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import Tamaized.TamModized.tools.TamSword;
-import Tamaized.Voidcraft.voidCraft;
+import Tamaized.Voidcraft.VoidCraft;
 
 public class ArchSword extends TamSword {
 
@@ -21,7 +21,7 @@ public class ArchSword extends TamSword {
 		par2EntityLivingBase.addPotionEffect(new PotionEffect(Potion.getPotionFromResourceLocation("blindness"), 10 * 20)); // Blind
 		par2EntityLivingBase.addPotionEffect(new PotionEffect(Potion.getPotionFromResourceLocation("poison"), 10 * 20)); // Poison
 		par2EntityLivingBase.addPotionEffect(new PotionEffect(Potion.getPotionFromResourceLocation("wither"), 10 * 20)); // Wither
-		par2EntityLivingBase.setFire(100); // Fire
+		par2EntityLivingBase.setFire(10); // Fire
 		return true;
 	}
 

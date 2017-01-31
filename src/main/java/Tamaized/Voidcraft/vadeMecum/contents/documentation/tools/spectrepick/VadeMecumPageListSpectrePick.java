@@ -1,6 +1,6 @@
 package Tamaized.Voidcraft.vadeMecum.contents.documentation.tools.spectrepick;
 
-import Tamaized.Voidcraft.voidCraft;
+import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.capabilities.vadeMecum.IVadeMecumCapability;
 import Tamaized.Voidcraft.vadeMecum.IVadeMecumPage;
 import Tamaized.Voidcraft.vadeMecum.IVadeMecumPageProvider;
@@ -12,16 +12,16 @@ public class VadeMecumPageListSpectrePick implements IVadeMecumPageProvider {
 
 	public IVadeMecumPage[] getPageList(IVadeMecumCapability cap) {
 		return new IVadeMecumPage[] {
-				new VadeMecumPageCrafting(new VadeMecumCraftingNormal(new ItemStack(voidCraft.tools.spectrePickaxe).getDisplayName(), new ItemStack[] {
-						new ItemStack(voidCraft.items.ectoplasm),
-						new ItemStack(voidCraft.items.ectoplasm),
-						new ItemStack(voidCraft.items.ectoplasm),
-						new ItemStack(voidCraft.items.ectoplasm),
-						new ItemStack(voidCraft.tools.voidPickaxe),
-						new ItemStack(voidCraft.items.ectoplasm),
-						new ItemStack(voidCraft.items.ectoplasm),
-						new ItemStack(voidCraft.items.ectoplasm),
-						new ItemStack(voidCraft.items.ectoplasm) }, new ItemStack(voidCraft.tools.spectrePickaxe))) };
+				new VadeMecumPageCrafting(new VadeMecumCraftingNormal(new ItemStack(VoidCraft.tools.spectrePickaxe).getDisplayName(), new ItemStack[] {
+						new ItemStack(VoidCraft.items.ectoplasm),
+						new ItemStack(VoidCraft.items.ectoplasm),
+						new ItemStack(VoidCraft.items.ectoplasm),
+						new ItemStack(VoidCraft.items.ectoplasm),
+						new ItemStack(VoidCraft.tools.voidPickaxe),
+						new ItemStack(VoidCraft.items.ectoplasm),
+						new ItemStack(VoidCraft.items.ectoplasm),
+						new ItemStack(VoidCraft.items.ectoplasm),
+						new ItemStack(VoidCraft.items.ectoplasm) }, new ItemStack(VoidCraft.tools.spectrePickaxe))) };
 	}
 
 }

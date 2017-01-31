@@ -3,7 +3,7 @@ package Tamaized.Voidcraft.armor;
 import javax.annotation.Nullable;
 
 import Tamaized.TamModized.armors.TamArmor;
-import Tamaized.Voidcraft.voidCraft;
+import Tamaized.Voidcraft.VoidCraft;
 import net.minecraft.block.BlockDispenser;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
@@ -25,10 +25,12 @@ public class ArmorCustomElytra extends TamArmor {
 		this.maxStackSize = 1;
 		this.setMaxDamage(432);
 		this.addPropertyOverride(new ResourceLocation("broken"), new IItemPropertyGetter() {
+			
 			@SideOnly(Side.CLIENT)
 			public float apply(ItemStack stack, @Nullable World worldIn, @Nullable EntityLivingBase entityIn) {
 				return ItemElytra.isBroken(stack) ? 0.0F : 1.0F;
 			}
+			
 		});
 		BlockDispenser.DISPENSE_BEHAVIOR_REGISTRY.putObject(this, ItemArmor.DISPENSER_BEHAVIOR);
 	}
@@ -41,7 +43,7 @@ public class ArmorCustomElytra extends TamArmor {
 	 * Return whether this item is repairable in an anvil.
 	 */
 	public boolean getIsRepairable(ItemStack toRepair, ItemStack repair) {
-		return repair.getItem() == voidCraft.items.voidcrystal;
+		return repair.getItem() == VoidCraft.items.voidcrystal;
 	}
 
 }

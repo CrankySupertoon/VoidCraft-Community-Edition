@@ -1,49 +1,45 @@
 package Tamaized.Voidcraft.entity.boss.xia.render;
 
-import Tamaized.Voidcraft.voidCraft;
+import Tamaized.Voidcraft.VoidCraft;
+import Tamaized.Voidcraft.entity.boss.model.ModelVoidBossOverlay;
 import Tamaized.Voidcraft.entity.boss.render.bossBar.RenderBossHeathBar;
 import Tamaized.Voidcraft.entity.boss.xia.EntityBossXia;
-import Tamaized.Voidcraft.entity.boss.xia.model.ModelXia;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.VertexBuffer;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
 import net.minecraft.client.renderer.entity.RenderLiving;
+import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.entity.layers.LayerBipedArmor;
-import net.minecraft.client.renderer.entity.layers.LayerHeldItem;
-import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHandSide;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class RenderXia<T extends EntityBossXia> extends RenderLiving<T> {
 
-	private static final ResourceLocation TEXTURE = new ResourceLocation(voidCraft.modid + ":textures/entity/Xia.png");
+	private static final ResourceLocation TEXTURE = new ResourceLocation(VoidCraft.modid + ":textures/entity/xia.png");
 
-	public RenderXia(ModelBase par1ModelBase, float par2) {
-		super(Minecraft.getMinecraft().getRenderManager(), par1ModelBase, par2);
-		this.addLayer(new LayerBipedArmor(this));
+	public RenderXia(RenderManager manager, ModelBase par1ModelBase, float par2) {
+		super(manager, par1ModelBase, par2);
+		addLayer(new LayerBipedArmor(this));
 	}
 
 	@Override
 	public void doRender(T entity, double x, double y, double z, float yaw, float ticks) {
 		GlStateManager.pushMatrix();
 		{
+			if (net.minecraftforge.common.MinecraftForge.EVENT_BUS.post(new net.minecraftforge.client.event.RenderLivingEvent.Pre(entity, this, x, y, z))) return;
 			ItemStack itemstack = entity.getHeldItemMainhand();
 			ItemStack itemstack1 = entity.getHeldItemOffhand();
 			ModelBiped.ArmPose modelbiped$armpose = ModelBiped.ArmPose.EMPTY;
 			ModelBiped.ArmPose modelbiped$armpose1 = ModelBiped.ArmPose.EMPTY;
-			if (itemstack != null) modelbiped$armpose = ModelBiped.ArmPose.ITEM;
-			if (itemstack1 != null) modelbiped$armpose1 = ModelBiped.ArmPose.ITEM;
+			if (!itemstack.isEmpty()) modelbiped$armpose = ModelBiped.ArmPose.ITEM;
+			if (!itemstack1.isEmpty()) modelbiped$armpose1 = ModelBiped.ArmPose.ITEM;
 			if (entity.getPrimaryHand() == EnumHandSide.RIGHT) {
 				getMainModel().rightArmPose = modelbiped$armpose;
 				getMainModel().leftArmPose = modelbiped$armpose1;
@@ -54,7 +50,7 @@ public class RenderXia<T extends EntityBossXia> extends RenderLiving<T> {
 			super.doRender(entity, x, y, z, yaw, ticks);
 			boolean flag = entity.getPrimaryHand() == EnumHandSide.RIGHT;
 
-			if (itemstack != null || itemstack1 != null) {
+			if (!itemstack.isEmpty() || !itemstack1.isEmpty()) {
 				GlStateManager.pushMatrix();
 
 				if (getMainModel().isChild) {
@@ -65,22 +61,23 @@ public class RenderXia<T extends EntityBossXia> extends RenderLiving<T> {
 				}
 				// EntityPlayer client = Minecraft.getMinecraft().thePlayer;
 				// GlStateManager.translate(entity.posX-client.posX, entity.posY-client.posY, entity.posZ-client.posZ);
-				GlStateManager.translate(x, y+1.5, z);
+				GlStateManager.translate(x, y + 1.5, z);
 				GlStateManager.rotate(-entity.renderYawOffset, 0, 1, 0);
 				GlStateManager.rotate(180, 1, 0, 0);
-				this.renderHeldItem(entity, itemstack, ItemCameraTransforms.TransformType.THIRD_PERSON_RIGHT_HAND, EnumHandSide.RIGHT);
-				this.renderHeldItem(entity, itemstack1, ItemCameraTransforms.TransformType.THIRD_PERSON_LEFT_HAND, EnumHandSide.LEFT);
+				renderHeldItem(entity, itemstack, ItemCameraTransforms.TransformType.THIRD_PERSON_RIGHT_HAND, EnumHandSide.RIGHT);
+				renderHeldItem(entity, itemstack1, ItemCameraTransforms.TransformType.THIRD_PERSON_LEFT_HAND, EnumHandSide.LEFT);
 				GlStateManager.popMatrix();
 			}
 			entity.renderSpecials();
-			this.renderLabel(entity, x, y, z);
+			renderLabel(entity, x, y, z);
 			RenderBossHeathBar.setCurrentBoss(entity);
 		}
+		net.minecraftforge.common.MinecraftForge.EVENT_BUS.post(new net.minecraftforge.client.event.RenderLivingEvent.Post(entity, this, x, y, z));
 		GlStateManager.popMatrix();
 	}
 
 	private void renderHeldItem(EntityLivingBase entity, ItemStack stack, ItemCameraTransforms.TransformType transform, EnumHandSide hand) {
-		if (stack != null) {
+		if (!stack.isEmpty()) {
 			GlStateManager.pushMatrix();
 
 			if (entity.isSneaking()) {
@@ -104,12 +101,12 @@ public class RenderXia<T extends EntityBossXia> extends RenderLiving<T> {
 	}
 
 	@Override
-	public ModelXia getMainModel() {
-		return (ModelXia) super.getMainModel();
+	public ModelVoidBossOverlay getMainModel() {
+		return (ModelVoidBossOverlay) super.getMainModel();
 	}
 
 	protected void renderLabel(T entity, double x, double y, double z) {
-		// y += (double)((float)this.getFontRendererFromRenderManager().FONT_HEIGHT * 1.15F * z);
-		this.renderLivingLabel(entity, entity.getDisplayName().getFormattedText(), x, y, z, 32);
+		// y += (double)((float)getFontRendererFromRenderManager().FONT_HEIGHT * 1.15F * z);
+		renderLivingLabel(entity, entity.getDisplayName().getFormattedText(), x, y, z, 32);
 	}
 }
