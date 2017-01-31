@@ -3,6 +3,7 @@ package Tamaized.Voidcraft.particles;
 import org.lwjgl.opengl.GL11;
 
 import Tamaized.TamModized.particles.TamParticle;
+import Tamaized.Voidcraft.VoidCraft;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
@@ -16,7 +17,7 @@ import net.minecraft.world.World;
 
 public class AcidFX extends TamParticle {
 
-	private static final ResourceLocation texture = new ResourceLocation("VoidCraft:textures/particle/AcidFX.png");
+	private static final ResourceLocation texture = new ResourceLocation(VoidCraft.modid, "textures/particle/acidfx.png");
 
 	public AcidFX(World par1World, double x, double y, double z) {
 		super(par1World, new Vec3d(x, y, z));

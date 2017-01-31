@@ -15,7 +15,7 @@ import net.minecraft.util.ResourceLocation;
 
 public class InfuserRecipeCategory implements IRecipeCategory {
 
-	private final ResourceLocation background = new ResourceLocation(VoidCraft.modid, "textures/gui/JEI/voidInfuser.png");
+	private final ResourceLocation background = new ResourceLocation(VoidCraft.modid, "textures/gui/JEI/voidinfuser.png");
 	private IDrawableAnimated fluidAnimation;
 	private IDrawableAnimated progressAnimation;
 

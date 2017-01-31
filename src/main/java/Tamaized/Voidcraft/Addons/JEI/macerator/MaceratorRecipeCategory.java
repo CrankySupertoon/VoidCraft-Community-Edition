@@ -15,7 +15,7 @@ import net.minecraft.util.ResourceLocation;
 
 public class MaceratorRecipeCategory implements IRecipeCategory {
 
-	private final ResourceLocation background = new ResourceLocation(VoidCraft.modid, "textures/gui/JEI/voidMacerator.png");
+	private final ResourceLocation background = new ResourceLocation(VoidCraft.modid, "textures/gui/JEI/voidmacerator.png");
 	private IDrawableAnimated fluidAnimation;
 	private IDrawableAnimated progressAnimation;
 

@@ -20,8 +20,8 @@ public class MaceratorRecipeWrapperJEI extends VoidCraftRecipeWrapperJEI<Macerat
 
 	@Override
 	public void setupSlots(IGuiIngredientGroup g) {
-		g.init(OUTPUT_SLOT, false, renderer, 146, 34 - 20, 18, 18, 0, 0);
-		g.init(INPUT_SLOT, true, renderer, 89, 33 - 20, 18, 18, 0, 0);
+		g.init(OUTPUT_SLOT, false, renderer, 146, 34 - 20, 16, 16, 0, 0);
+		g.init(INPUT_SLOT, true, renderer, 89, 33 - 20, 16, 16, 0, 0);
 
 		g.set(OUTPUT_SLOT, Arrays.asList(getOutput()));
 		g.set(INPUT_SLOT, getInputs());

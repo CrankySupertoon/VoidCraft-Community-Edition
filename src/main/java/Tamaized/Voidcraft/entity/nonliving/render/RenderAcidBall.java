@@ -2,6 +2,7 @@ package Tamaized.Voidcraft.entity.nonliving.render;
 
 import java.util.Random;
 
+import Tamaized.Voidcraft.VoidCraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.VertexBuffer;
@@ -18,7 +19,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class RenderAcidBall<T extends EntityArrow> extends Render<T> {
 
-	private static final ResourceLocation arrowTextures = new ResourceLocation("VoidCraft:textures/entity/acidball.png");
+	private static final ResourceLocation arrowTextures = new ResourceLocation(VoidCraft.modid, "textures/entity/acidball.png");
 	
 	private static final Random rand = new Random();
 

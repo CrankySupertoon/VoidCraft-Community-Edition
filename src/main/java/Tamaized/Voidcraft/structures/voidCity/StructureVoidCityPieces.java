@@ -266,7 +266,7 @@ public class StructureVoidCityPieces {
 
 		private void loadTemplate(BlockPos p_186180_1_)
         {
-            Template template = StructureEndCityPieces.field_186201_a.getTemplate((MinecraftServer)null, new ResourceLocation("endcity/" + this.pieceName));
+            Template template = StructureEndCityPieces.field_186201_a.getTemplate((MinecraftServer)null, new ResourceLocation(VoidCraft.modid, "voidcity/" + this.pieceName));
             PlacementSettings placementsettings;
 
             if (this.overwrite)

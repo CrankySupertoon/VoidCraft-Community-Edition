@@ -22,7 +22,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class RenderEtherealGuardian extends RenderLiving<EntityMobEtherealGuardian> {
 
-	private static final ResourceLocation TEXTURE = new ResourceLocation(VoidCraft.modid + ":textures/entity/etherealguardian.png");
+	private static final ResourceLocation TEXTURE = new ResourceLocation(VoidCraft.modid, "textures/entity/etherealguardian.png");
 
 	public RenderEtherealGuardian(RenderManager manager, float par2) {
 		super(manager, new ModelEtherealGuardian(), par2);

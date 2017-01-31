@@ -111,7 +111,7 @@ public class ClientProxy extends AbstractVoidCraftProxy {
 	public static VadeMecumGUI vadeMecum;
 	public static VadeMecumMainEntry vadeMecumEntryList;
 
-	private static final ResourceLocation WHITESPACE = new ResourceLocation(VoidCraft.modid + ":textures/entity/whitespace.png");
+	private static final ResourceLocation WHITESPACE = new ResourceLocation(VoidCraft.modid, "textures/entity/whitespace.png");
 
 	public static int sphereIdOutside;
 	public static int sphereIdInside;

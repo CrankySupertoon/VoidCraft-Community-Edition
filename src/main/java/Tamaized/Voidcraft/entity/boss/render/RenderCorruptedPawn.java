@@ -8,13 +8,14 @@ import net.minecraft.entity.EntityLiving;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.entity.boss.EntityBossCorruptedPawn;
 import Tamaized.Voidcraft.entity.boss.render.bossBar.RenderBossHeathBar;
 
 @SideOnly(Side.CLIENT)
 public class RenderCorruptedPawn<T extends EntityLiving> extends RenderLiving<T>{
 	
-	private static final ResourceLocation VoidBoss_Texture = new ResourceLocation("VoidCraft:textures/entity/zVoidBoss.png");
+	private static final ResourceLocation VoidBoss_Texture = new ResourceLocation(VoidCraft.modid, "textures/entity/zvoidboss.png");
 	
 	public RenderCorruptedPawn(RenderManager manager, ModelBase par1ModelBase, float par2){
 		super(manager, par1ModelBase, par2);

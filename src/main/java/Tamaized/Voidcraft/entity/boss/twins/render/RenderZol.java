@@ -1,5 +1,6 @@
 package Tamaized.Voidcraft.entity.boss.twins.render;
 
+import Tamaized.Voidcraft.VoidCraft;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.RenderLiving;
@@ -12,7 +13,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class RenderZol<T extends EntityLiving> extends RenderLiving<T> {
 
-	private static final ResourceLocation Herobrine_Texture = new ResourceLocation("VoidCraft:textures/entity/Zol.png"); // refers to:assets/yourmod/textures/entity/yourtexture.png
+	private static final ResourceLocation Herobrine_Texture = new ResourceLocation(VoidCraft.modid, "textures/entity/zol.png");
 
 	public RenderZol(RenderManager manager, ModelBase par1ModelBase, float par2) {
 		super(manager, par1ModelBase, par2);

@@ -27,7 +27,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class RenderXia2<T extends EntityBossXia2> extends RenderLiving<T> {
 
-	private static final ResourceLocation TEXTURE = new ResourceLocation(VoidCraft.modid + ":textures/entity/xiaform2.png");
+	private static final ResourceLocation TEXTURE = new ResourceLocation(VoidCraft.modid, "textures/entity/xiaform2.png");
 
 	public RenderXia2(RenderManager manager, ModelBase par1ModelBase, float par2) {
 		super(manager, par1ModelBase, par2);

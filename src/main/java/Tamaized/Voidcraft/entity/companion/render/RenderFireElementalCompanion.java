@@ -25,7 +25,7 @@ import net.minecraft.world.World;
 
 public class RenderFireElementalCompanion extends RenderLiving<EntityCompanionFireElemental> {
 
-	private static final ResourceLocation TEXTURE = new ResourceLocation(VoidCraft.modid + ":textures/entity/elemental_fire.png");
+	private static final ResourceLocation TEXTURE = new ResourceLocation(VoidCraft.modid, "textures/entity/elemental_fire.png");
 
 	public RenderFireElementalCompanion(RenderManager manager, float par2) {
 		super(manager, new ModelFireElementalCompanion(), par2);
@@ -41,14 +41,14 @@ public class RenderFireElementalCompanion extends RenderLiving<EntityCompanionFi
 			// GL11.glEnable(GL11.GL_BLEND);
 
 			GlStateManager.pushMatrix();
-			
+
 			GlStateManager.matrixMode(5890);
 			GlStateManager.loadIdentity();
 			float f = (float) entity.ticksExisted + ticks;
 			GlStateManager.rotate(90, 0, 0, 1);
 			GlStateManager.translate(0.0F, f * 0.05F, f * 0.01F);
 			GlStateManager.matrixMode(5888);
-//			GlStateManager.rotate(-90, 1, 0, 0);
+			// GlStateManager.rotate(-90, 1, 0, 0);
 
 			super.doRender(entity, x, y, z, yaw, ticks);
 

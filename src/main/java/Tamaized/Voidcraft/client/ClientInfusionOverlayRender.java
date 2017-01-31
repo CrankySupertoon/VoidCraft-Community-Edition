@@ -21,7 +21,7 @@ import net.minecraftforge.fml.common.gameevent.TickEvent.Phase;
 
 public class ClientInfusionOverlayRender {
 
-	private static ResourceLocation texture = new ResourceLocation(VoidCraft.modid, "textures/gui/voidicInfusion.png");
+	private static ResourceLocation texture = new ResourceLocation(VoidCraft.modid, "textures/gui/voidicinfusion.png");
 
 	@SubscribeEvent
 	public void InGameOverlay(RenderGameOverlayEvent e) {
