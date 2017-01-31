@@ -1,13 +1,13 @@
 package Tamaized.Voidcraft.Addons.JEI.alchemy;
 
 import Tamaized.Voidcraft.VoidCraft;
+import Tamaized.Voidcraft.Addons.JEI.ItemStackRenderer;
 import Tamaized.Voidcraft.Addons.JEI.VoidCraftRecipeWrapperJEI;
 import Tamaized.Voidcraft.capabilities.vadeMecum.IVadeMecumCapability;
 import Tamaized.Voidcraft.handlers.VadeMecumWordsOfPower;
 import Tamaized.Voidcraft.machina.addons.TERecipesAlchemy.AlchemyRecipe;
 import Tamaized.Voidcraft.machina.tileentity.TileEntityVoidicAlchemy;
 import mezz.jei.api.gui.IGuiIngredientGroup;
-import mezz.jei.plugins.vanilla.ingredients.ItemStackRenderer;
 import net.minecraft.client.Minecraft;
 
 public class AlchemyRecipeWrapperJEI extends VoidCraftRecipeWrapperJEI<AlchemyRecipe> {

@@ -3,10 +3,10 @@ package Tamaized.Voidcraft.Addons.JEI.infuser;
 import java.util.Arrays;
 
 import Tamaized.Voidcraft.VoidCraft;
+import Tamaized.Voidcraft.Addons.JEI.ItemStackRenderer;
 import Tamaized.Voidcraft.Addons.JEI.VoidCraftRecipeWrapperJEI;
 import Tamaized.Voidcraft.machina.addons.TERecipeInfuser.InfuserRecipe;
 import mezz.jei.api.gui.IGuiIngredientGroup;
-import mezz.jei.plugins.vanilla.ingredients.ItemStackRenderer;
 
 public class InfuserRecipeWrapperJEI extends VoidCraftRecipeWrapperJEI<InfuserRecipe> {
 
