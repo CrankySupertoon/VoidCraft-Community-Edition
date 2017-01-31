@@ -32,6 +32,9 @@ public class RenderHerobrineCreeper<T extends EntityHerobrineCreeper> extends Re
 		float f2 = (1.0F + f * 0.4F) * f1;
 		float f3 = (1.0F + f * 0.1F) / f1;
 		GlStateManager.scale(f2, f3, f2);
+		GlStateManager.enableBlend();
+		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+		GlStateManager.color(0.0f, 0.0f, 0.0f, 0.5f);
 	}
 
 	/**
@@ -40,9 +43,6 @@ public class RenderHerobrineCreeper<T extends EntityHerobrineCreeper> extends Re
 	public void doRender(T entity, double x, double y, double z, float entityYaw, float partialTicks) {
 		GlStateManager.pushAttrib();
 		GlStateManager.pushMatrix();
-		GlStateManager.enableBlend();
-		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-		GlStateManager.color(0.0f, 0.0f, 0.0f, 0.5f);
 		// GlStateManager.color(1.0f, 1.0f, 1.0f, 1.0f);
 		super.doRender(entity, x, y, z, entityYaw, partialTicks);
 		GlStateManager.color(1.0f, 1.0f, 1.0f, 1.0f);

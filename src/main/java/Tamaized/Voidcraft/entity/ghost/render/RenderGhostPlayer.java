@@ -2,6 +2,7 @@ package Tamaized.Voidcraft.entity.ghost.render;
 
 import java.util.Random;
 
+import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.glu.Sphere;
 
 import Tamaized.Voidcraft.VoidCraft;
@@ -57,7 +58,6 @@ public class RenderGhostPlayer<T extends EntityGhostPlayerBase> extends RenderLi
 			}
 			GlStateManager.popMatrix();
 		}
-		GlStateManager.color(1.0f, 1.0f, 1.0f, 0.5f);
 		super.doRender(entity, x, y, z, yaw, partialTicks); // Entity texture is bound here, we're free to bind whatever we want before this and not care
 		model.leftArmPose = ArmPose.EMPTY;
 		GlStateManager.color(1.0f, 1.0f, 1.0f, 1.0f);
@@ -176,6 +176,9 @@ public class RenderGhostPlayer<T extends EntityGhostPlayerBase> extends RenderLi
 	protected void preRenderCallback(T entitylivingbaseIn, float partialTickTime) {
 		float f = 0.9375F;
 		GlStateManager.scale(0.9375F, 0.9375F, 0.9375F);
+		//GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+        //GL11.glEnable(GL11.GL_BLEND);
+		GlStateManager.color(1.0f, 1.0f, 1.0f, 0.5f);
 	}
 
 	@Override
