@@ -43,9 +43,9 @@ public class BlockPortalVoid extends TamBlockPortal {
 			}
 		}
 	}
-
+	
 	@Override
-	public void neighborChanged(IBlockState state, World world, BlockPos pos, Block blockIn, BlockPos p_189540_5_) {
+	public void neighborChanged(IBlockState state, World world, BlockPos pos, Block blockIn) {
 		EnumFacing.Axis enumfacing$axis = (EnumFacing.Axis) state.getValue(AXIS);
 
 		if (enumfacing$axis == EnumFacing.Axis.X) {

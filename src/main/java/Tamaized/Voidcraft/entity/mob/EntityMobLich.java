@@ -23,9 +23,10 @@ import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.monster.EntityIronGolem;
 import net.minecraft.entity.monster.EntityMob;
+import net.minecraft.entity.monster.EntitySkeleton;
 import net.minecraft.entity.monster.EntitySlime;
 import net.minecraft.entity.monster.EntitySnowman;
-import net.minecraft.entity.monster.EntityWitherSkeleton;
+import net.minecraft.entity.monster.SkeletonType;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityLargeFireball;
@@ -59,7 +60,7 @@ public class EntityMobLich extends EntityVoidMob implements IRangedAttackMob {
 			 * Return whether the specified entity is applicable to this filter.
 			 */
 			public boolean apply(Entity p_82704_1_) {
-				if (p_82704_1_ instanceof EntityWitherSkeleton) return false;
+				if (p_82704_1_ instanceof EntitySkeleton && ((EntitySkeleton) p_82704_1_).func_189771_df() == SkeletonType.WITHER) return false;
 				else return true;
 			}
 
@@ -132,12 +133,13 @@ public class EntityMobLich extends EntityVoidMob implements IRangedAttackMob {
 			EntityMobWraith wraith;
 			EntityMobSpectreChain chain;
 			EntityMobVoidWrath wrath;
-			EntityWitherSkeleton skelly;
+			EntitySkeleton skelly;
 
 			wraith = new EntityMobWraith(world);
 			chain = new EntityMobSpectreChain(world);
 			wrath = new EntityMobVoidWrath(world);
-			skelly = new EntityWitherSkeleton(world);
+			skelly = new EntitySkeleton(world);
+			skelly.func_189768_a(SkeletonType.WITHER);
 
 			wraith.setPosition(this.posX - 2, this.posY, this.posZ - 2);
 			wraith.setAttackTarget(target);

@@ -68,7 +68,7 @@ public class EntityAIXiaPhase2<T extends EntityBossXia> extends EntityVoidNPCAIB
 				if (getEntity().posZ >= ezMin && getEntity().posZ <= ezMax && getEntity().posX >= exMin && getEntity().posX <= exMax) {
 					closestEntity.attackEntityFrom(DamageSource.causeMobDamage(getEntity()), 60);
 					ItemStack stack = getEntity().getHeldItem(EnumHand.MAIN_HAND);
-					if (!stack.isEmpty() && closestEntity instanceof EntityLivingBase) stack.getItem().hitEntity(stack, (EntityLivingBase) closestEntity, getEntity());
+					if (stack != null && closestEntity instanceof EntityLivingBase) stack.getItem().hitEntity(stack, (EntityLivingBase) closestEntity, getEntity());
 					getEntity().swingArm(EnumHand.MAIN_HAND);
 					doTeleport();
 					currAction = Action.IDLE;

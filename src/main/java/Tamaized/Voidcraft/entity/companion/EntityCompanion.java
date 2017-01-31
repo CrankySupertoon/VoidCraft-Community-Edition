@@ -11,12 +11,12 @@ import net.minecraft.entity.ai.EntityAILookIdle;
 import net.minecraft.entity.ai.EntityAIOwnerHurtByTarget;
 import net.minecraft.entity.ai.EntityAIOwnerHurtTarget;
 import net.minecraft.entity.ai.EntityAISwimming;
-import net.minecraft.entity.ai.EntityAIWanderAvoidWater;
+import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.monster.EntityCreeper;
 import net.minecraft.entity.monster.EntityGhast;
-import net.minecraft.entity.passive.AbstractHorse;
 import net.minecraft.entity.passive.EntityAnimal;
+import net.minecraft.entity.passive.EntityHorse;
 import net.minecraft.entity.passive.EntityTameable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
@@ -44,7 +44,7 @@ public abstract class EntityCompanion extends EntityTameable {
 		tasks.addTask(1, new EntityAISwimming(this));
 		tasks.addTask(5, new EntityAIAttackMelee(this, 1.0D, true));
 		tasks.addTask(6, new EntityAIFollowOwner(this, 1.0D, 10.0F, 2.0F));
-		tasks.addTask(8, new EntityAIWanderAvoidWater(this, 1.0D));
+		tasks.addTask(8, new EntityAIWander(this, 1.0D));
 		tasks.addTask(10, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
 		tasks.addTask(10, new EntityAILookIdle(this));
 		targetTasks.addTask(1, new EntityAIOwnerHurtByTarget(this));
@@ -137,17 +137,17 @@ public abstract class EntityCompanion extends EntityTameable {
 	}
 
 	@Override
-	public boolean processInteract(EntityPlayer player, EnumHand hand) {
+	public boolean processInteract(EntityPlayer player, EnumHand hand, ItemStack s) {
 		ItemStack itemstack = player.getHeldItem(hand);
 		System.out.println(isTamed() + " & " + itemstack.getItem());
 		if (isTamed()) {
-			if (!itemstack.isEmpty()) {
+			if (itemstack != null) {
 				if (itemstack.getItem() == Items.DYE) {
 					EnumDyeColor enumdyecolor = EnumDyeColor.byDyeDamage(itemstack.getMetadata());
 					if (enumdyecolor != getColor()) {
 						setColor(enumdyecolor);
 						if (!player.capabilities.isCreativeMode) {
-							itemstack.shrink(1);
+							itemstack.stackSize--;
 						}
 						return true;
 					}
@@ -155,7 +155,7 @@ public abstract class EntityCompanion extends EntityTameable {
 			}
 			return true;
 		}
-		return super.processInteract(player, hand);
+		return super.processInteract(player, hand, s);
 	}
 
 	@Override
@@ -166,7 +166,7 @@ public abstract class EntityCompanion extends EntityTameable {
 	@Override
 	public boolean shouldAttackEntity(EntityLivingBase p_142018_1_, EntityLivingBase p_142018_2_) {
 		if (!(p_142018_1_ instanceof EntityCreeper) && !(p_142018_1_ instanceof EntityGhast)) {
-			return p_142018_1_ instanceof EntityPlayer && p_142018_2_ instanceof EntityPlayer && !((EntityPlayer) p_142018_2_).canAttackPlayer((EntityPlayer) p_142018_1_) ? false : !(p_142018_1_ instanceof AbstractHorse) || !((AbstractHorse) p_142018_1_).isTame();
+			return p_142018_1_ instanceof EntityPlayer && p_142018_2_ instanceof EntityPlayer && !((EntityPlayer) p_142018_2_).canAttackPlayer((EntityPlayer) p_142018_1_) ? false : !(p_142018_1_ instanceof EntityHorse) || !((EntityHorse) p_142018_1_).isTame();
 		} else {
 			return false;
 		}

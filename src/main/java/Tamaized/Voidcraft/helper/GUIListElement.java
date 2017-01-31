@@ -1,7 +1,7 @@
 package Tamaized.Voidcraft.helper;
 
+import Tamaized.Voidcraft.helper.GUIElementList.GUIContainerWrapper;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -13,6 +13,6 @@ public abstract class GUIListElement {
 	}
 
 	@SideOnly(Side.CLIENT)
-	public abstract void draw(GuiContainer gui, Minecraft mc, int right, int top, int height, Tessellator tess);
+	public abstract void draw(GUIContainerWrapper gui, Minecraft mc, int right, int top, int height, Tessellator tess);
 
 }

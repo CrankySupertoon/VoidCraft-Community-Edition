@@ -130,7 +130,7 @@ public class VoidicDrill extends VoidicPowerItem {
 		Block block = state.getBlock();
 		if (!world.isRemote && block != null && !block.isAir(state, world, pos) && !(block instanceof BlockLiquid) && !(block instanceof IFluidBlock) && block.getPlayerRelativeBlockHardness(state, player, world, pos) > 0) {
 			int neededHarvestLevel = block.getHarvestLevel(state);
-			if (neededHarvestLevel > harvestLevel && (!tool.isEmpty() && !tool.canHarvestBlock(state))) return;
+			if (neededHarvestLevel > harvestLevel && (tool != null && !tool.canHarvestBlock(state))) return;
 
 			BreakEvent event = new BreakEvent(world, pos, state, player);
 			MinecraftForge.EVENT_BUS.post(event);

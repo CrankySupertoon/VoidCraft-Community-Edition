@@ -55,7 +55,7 @@ public class ChunkProviderXia implements IChunkGenerator {
 	}
 
 	@Override
-	public BlockPos getStrongholdGen(World worldIn, String structureName, BlockPos position, boolean p_180513_4_) {
+	public BlockPos getStrongholdGen(World worldIn, String structureName, BlockPos position) {
 		return null;
 	}
 

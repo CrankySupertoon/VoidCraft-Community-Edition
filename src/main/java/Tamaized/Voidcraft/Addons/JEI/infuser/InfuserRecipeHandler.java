@@ -25,4 +25,9 @@ public class InfuserRecipeHandler implements IRecipeHandler<InfuserRecipeWrapper
 		return recipe.isValid();
 	}
 
+	@Override
+	public String getRecipeCategoryUid() {
+		return "InfuserRecipeHandler";
+	}
+
 }

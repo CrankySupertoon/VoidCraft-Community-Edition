@@ -98,8 +98,8 @@ public class StructureVoidFortressPieces {
 		 * (abstract) Helper method to read subclass data from NBT
 		 */
 		@Override
-		protected void readStructureFromNBT(NBTTagCompound tagCompound, TemplateManager p_143011_2_) {
-			super.readStructureFromNBT(tagCompound, p_143011_2_);
+		protected void readStructureFromNBT(NBTTagCompound tagCompound) {
+			super.readStructureFromNBT(tagCompound);
 			this.chest = tagCompound.getBoolean("Chest");
 		}
 
@@ -177,8 +177,8 @@ public class StructureVoidFortressPieces {
 		 * (abstract) Helper method to read subclass data from NBT
 		 */
 		@Override
-		protected void readStructureFromNBT(NBTTagCompound tagCompound, TemplateManager p_143011_2_) {
-			super.readStructureFromNBT(tagCompound, p_143011_2_);
+		protected void readStructureFromNBT(NBTTagCompound tagCompound) {
+			super.readStructureFromNBT(tagCompound);
 			this.chest = tagCompound.getBoolean("Chest");
 		}
 
@@ -645,8 +645,8 @@ public class StructureVoidFortressPieces {
 		 * (abstract) Helper method to read subclass data from NBT
 		 */
 		@Override
-		protected void readStructureFromNBT(NBTTagCompound tagCompound, TemplateManager p_143011_2_) {
-			super.readStructureFromNBT(tagCompound, p_143011_2_);
+		protected void readStructureFromNBT(NBTTagCompound tagCompound) {
+			super.readStructureFromNBT(tagCompound);
 			this.fillSeed = tagCompound.getInteger("Seed");
 		}
 
@@ -947,12 +947,12 @@ public class StructureVoidFortressPieces {
 		protected Piece(int p_i2054_1_) {
 			super(p_i2054_1_);
 		}
-
+		
 		/**
 		 * (abstract) Helper method to read subclass data from NBT
 		 */
 		@Override
-		protected void readStructureFromNBT(NBTTagCompound tagCompound, TemplateManager p_143011_2_) {
+		protected void readStructureFromNBT(NBTTagCompound tagCompound) {
 
 		}
 
@@ -1308,8 +1308,8 @@ public class StructureVoidFortressPieces {
 		 * (abstract) Helper method to read subclass data from NBT
 		 */
 		@Override
-		protected void readStructureFromNBT(NBTTagCompound tagCompound, TemplateManager p_143011_2_) {
-			super.readStructureFromNBT(tagCompound, p_143011_2_);
+		protected void readStructureFromNBT(NBTTagCompound tagCompound) {
+			super.readStructureFromNBT(tagCompound);
 			this.hasSpawner = tagCompound.getBoolean("Mob");
 		}
 

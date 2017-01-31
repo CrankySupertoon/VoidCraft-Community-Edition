@@ -11,7 +11,8 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.monster.EntityWitherSkeleton;
+import net.minecraft.entity.monster.EntitySkeleton;
+import net.minecraft.entity.monster.SkeletonType;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.EnumFacing;
@@ -39,7 +40,7 @@ public class FireVoid extends TamBlockFire {
 
 	@Override
 	public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn) {
-		if (!worldIn.isRemote && entityIn instanceof EntityLivingBase && !(entityIn instanceof EntityVoidMob || entityIn instanceof EntityWitherSkeleton)) {
+		if (!worldIn.isRemote && entityIn instanceof EntityLivingBase && !(entityIn instanceof EntityVoidMob || (entityIn instanceof EntitySkeleton && ((EntitySkeleton) entityIn).func_189771_df() == SkeletonType.WITHER))) {
 			EntityLivingBase e = ((EntityLivingBase) entityIn);
 			e.addPotionEffect(new PotionEffect(Potion.getPotionById(9), 60, 1)); // nausea
 			e.addPotionEffect(new PotionEffect(Potion.getPotionById(20), 60, 1)); // wither

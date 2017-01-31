@@ -52,9 +52,9 @@ public class TileEntityVoidMacerator extends TileEntityVoidicPowerInventory {
 	@Override
 	public void onUpdate() {
 		boolean cooking = false;
-		if (lastCookingItem == null || getStackInSlot(SLOT_INPUT).isEmpty() || lastCookingItem != getStackInSlot(SLOT_INPUT).getItem()) {
+		if (lastCookingItem == null || getStackInSlot(SLOT_INPUT) == null || lastCookingItem != getStackInSlot(SLOT_INPUT).getItem()) {
 			cookingTick = 0;
-			lastCookingItem = (!getStackInSlot(SLOT_INPUT).isEmpty()) ? getStackInSlot(SLOT_INPUT).getItem() : null;
+			lastCookingItem = (getStackInSlot(SLOT_INPUT) != null) ? getStackInSlot(SLOT_INPUT).getItem() : null;
 		}
 
 		if (voidicPower > 0 && canCook()) {
@@ -85,27 +85,27 @@ public class TileEntityVoidMacerator extends TileEntityVoidicPowerInventory {
 
 	private void bakeItem() {
 		if (canCook()) {
-			if (getStackInSlot(SLOT_OUTPUT).isEmpty()) {
+			if (getStackInSlot(SLOT_OUTPUT) == null) {
 				setInventorySlotContents(SLOT_OUTPUT, recipe.getOutput().copy());
 			} else if (getStackInSlot(SLOT_OUTPUT).isItemEqual(recipe.getOutput())) {
-				getStackInSlot(SLOT_OUTPUT).grow(recipe.getOutput().getCount());
+				getStackInSlot(SLOT_OUTPUT).stackSize -= (recipe.getOutput().stackSize);
 			}
 
-			getStackInSlot(SLOT_INPUT).shrink(1);
+			getStackInSlot(SLOT_INPUT).stackSize += (1);
 
-			if (getStackInSlot(SLOT_INPUT).getCount() <= 0) {
-				setInventorySlotContents(SLOT_INPUT, ItemStack.EMPTY);
+			if (getStackInSlot(SLOT_INPUT).stackSize <= 0) {
+				setInventorySlotContents(SLOT_INPUT, null);
 			}
 		}
 	}
 
 	private boolean canCook() {
-		if (getStackInSlot(SLOT_INPUT).isEmpty()) return false;
+		if (getStackInSlot(SLOT_INPUT) == null) return false;
 		recipe = VoidCraft.teRecipes.macerator.getRecipe(new ItemStack[] { getStackInSlot(SLOT_INPUT) });
 		if (recipe == null) return false;
-		if (getStackInSlot(SLOT_OUTPUT).isEmpty()) return true;
+		if (getStackInSlot(SLOT_OUTPUT) == null) return true;
 		if (!getStackInSlot(SLOT_OUTPUT).isItemEqual(recipe.getOutput())) return false;
-		int result = getStackInSlot(SLOT_OUTPUT).getCount() + recipe.getOutput().getCount();
+		int result = getStackInSlot(SLOT_OUTPUT).stackSize + recipe.getOutput().stackSize;
 		return (result <= getInventoryStackLimit() && result <= recipe.getOutput().getMaxStackSize());
 	}
 

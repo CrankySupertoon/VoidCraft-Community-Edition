@@ -15,7 +15,8 @@ import Tamaized.Voidcraft.handlers.SkinHandler;
 import Tamaized.Voidcraft.handlers.SkinHandler.PlayerNameAlias;
 import Tamaized.Voidcraft.network.IVoidBossAIPacket;
 import Tamaized.Voidcraft.xiaCastle.logic.battle.EntityVoidNPCAIBase;
-import net.minecraft.entity.monster.EntityWitherSkeleton;
+import net.minecraft.entity.monster.EntitySkeleton;
+import net.minecraft.entity.monster.SkeletonType;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -222,7 +223,8 @@ public class EntityAIHerobrinePhase3<T extends EntityBossHerobrine> extends Enti
 					break;
 				case 4: // Wither Skeleton Spawns with EntityWitherSkulls from the walls
 					for (int i = 0; i < 4; i++) {
-						EntityWitherSkeleton skele = new EntityWitherSkeleton(getEntity().world);
+						EntitySkeleton skele = new EntitySkeleton(getEntity().world);
+						skele.func_189768_a(SkeletonType.WITHER);
 						skele.setPosition(getEntity().getPosition().getX() + rand.nextInt(18) - 8, getEntity().getPosition().getY() - 6, getEntity().getPosition().getZ() + rand.nextInt(18) - 8);
 						getEntity().world.spawnEntity(skele);
 					}

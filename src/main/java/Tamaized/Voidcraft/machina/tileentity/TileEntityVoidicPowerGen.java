@@ -44,7 +44,7 @@ public class TileEntityVoidicPowerGen extends TileEntityVoidicPowerInventory imp
 		int gen = genAmount * rate;
 		int use = useAmount * rate;
 		if (getFluidAmount() <= getMaxFluidAmount() - 1000) {
-			if (!getStackInSlot(SLOT_DEFAULT).isEmpty() && getStackInSlot(SLOT_DEFAULT).isItemEqual(VoidCraft.fluids.voidBucket.getBucket())) {
+			if (getStackInSlot(SLOT_DEFAULT) != null && getStackInSlot(SLOT_DEFAULT).isItemEqual(VoidCraft.fluids.voidBucket.getBucket())) {
 				fill(new FluidStack(VoidCraft.fluids.voidFluid, 1000), true);
 				setInventorySlotContents(SLOT_DEFAULT, new ItemStack(Items.BUCKET));
 			}

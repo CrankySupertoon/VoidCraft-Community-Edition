@@ -113,7 +113,7 @@ public class StarForgeBlock extends TamBlockContainer {
 	}
 
 	@Override
-	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
+	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, ItemStack s, EnumFacing side, float hitX, float hitY, float hitZ) {
 		if (!world.isRemote) {
 			FMLNetworkHandler.openGui(player, VoidCraft.instance, GuiHandler.getTypeID(GuiHandler.Type.StarForge), world, pos.getX(), pos.getY(), pos.getZ());
 		}

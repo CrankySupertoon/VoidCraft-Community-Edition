@@ -23,50 +23,50 @@ public class RitualList {
 		map = new HashMap<IVadeMecumCapability.Category, ItemStack[]>();
 		map.put(IVadeMecumCapability.Category.INTRO, new ItemStack[] {
 
-				ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY,
+				null, null, null,
 
-				ItemStack.EMPTY, new ItemStack(VoidCraft.blocks.ritualBlock), ItemStack.EMPTY,
+				null, new ItemStack(VoidCraft.blocks.ritualBlock), null,
 
-				ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY,
-
-				//////////////////////////////////////////////////////////////////////////////////////////
-
-				ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY,
-
-				ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY,
-
-				ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY,
+				null, null, null,
 
 				//////////////////////////////////////////////////////////////////////////////////////////
 
-				ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY,
+				null, null, null,
 
-				ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY,
+				null, null, null,
 
-				ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY });
+				null, null, null,
+
+				//////////////////////////////////////////////////////////////////////////////////////////
+
+				null, null, null,
+
+				null, null, null,
+
+				null, null, null });
 		map.put(IVadeMecumCapability.Category.TOME, new ItemStack[] {
 
-				ItemStack.EMPTY, new ItemStack(Blocks.MAGMA), ItemStack.EMPTY,
+				null, new ItemStack(Blocks.MAGMA), null,
 
 				new ItemStack(Blocks.COAL_BLOCK), new ItemStack(VoidCraft.blocks.ritualBlock), new ItemStack(Blocks.GLOWSTONE),
 
-				ItemStack.EMPTY, new ItemStack(Blocks.PRISMARINE, 1, 1), ItemStack.EMPTY,
+				null, new ItemStack(Blocks.PRISMARINE, 1, 1), null,
 
 				//////////////////////////////////////////////////////////////////////////////////////////
 
-				ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY,
+				null, null, null,
 
-				ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY,
+				null, null, null,
 
-				ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY,
+				null, null, null,
 
 				//////////////////////////////////////////////////////////////////////////////////////////
 
-				ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY,
+				null, null, null,
 
-				ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY,
+				null, null, null,
 
-				ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY });
+				null, null, null });
 		map.put(IVadeMecumCapability.Category.Flame, new ItemStack[] {
 
 				new ItemStack(Blocks.NETHERRACK), new ItemStack(Blocks.MAGMA), new ItemStack(Blocks.NETHERRACK),
@@ -77,65 +77,65 @@ public class RitualList {
 
 				//////////////////////////////////////////////////////////////////////////////////////////
 
-				ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY,
+				null, null, null,
 
-				ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY,
+				null, null, null,
 
-				ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY,
+				null, null, null,
 
 				//////////////////////////////////////////////////////////////////////////////////////////
 
-				ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY,
+				null, null, null,
 
-				ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY,
+				null, null, null,
 
-				ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY });
+				null, null, null });
 		map.put(IVadeMecumCapability.Category.FireSheathe, new ItemStack[] {
 
-				ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY,
+				null, null, null,
 
-				ItemStack.EMPTY, new ItemStack(Blocks.MAGMA), ItemStack.EMPTY,
+				null, new ItemStack(Blocks.MAGMA), null,
 
-				ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY,
+				null, null, null,
 
 				//////////////////////////////////////////////////////////////////////////////////////////
 
-				ItemStack.EMPTY, new ItemStack(Blocks.MAGMA), ItemStack.EMPTY,
+				null, new ItemStack(Blocks.MAGMA), null,
 
 				new ItemStack(Blocks.MAGMA), new ItemStack(VoidCraft.blocks.ritualBlock), new ItemStack(Blocks.MAGMA),
 
-				ItemStack.EMPTY, new ItemStack(Blocks.MAGMA), ItemStack.EMPTY,
+				null, new ItemStack(Blocks.MAGMA), null,
 
 				//////////////////////////////////////////////////////////////////////////////////////////
 
-				new ItemStack(Blocks.MAGMA), ItemStack.EMPTY, new ItemStack(Blocks.MAGMA),
+				new ItemStack(Blocks.MAGMA), null, new ItemStack(Blocks.MAGMA),
 
-				ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY,
+				null, null, null,
 
-				new ItemStack(Blocks.MAGMA), ItemStack.EMPTY, new ItemStack(Blocks.MAGMA) });
+				new ItemStack(Blocks.MAGMA), null, new ItemStack(Blocks.MAGMA) });
 		map.put(IVadeMecumCapability.Category.Fireball, new ItemStack[] {
 
-				ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY,
+				null, null, null,
 
-				ItemStack.EMPTY, new ItemStack(VoidCraft.blocks.ritualBlock), ItemStack.EMPTY,
+				null, new ItemStack(VoidCraft.blocks.ritualBlock), null,
 
-				ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY,
+				null, null, null,
 
 				//////////////////////////////////////////////////////////////////////////////////////////
 
-				ItemStack.EMPTY, new ItemStack(Blocks.NETHERRACK), ItemStack.EMPTY,
+				null, new ItemStack(Blocks.NETHERRACK), null,
 
 				new ItemStack(Blocks.MAGMA), new ItemStack(Blocks.TNT), new ItemStack(Blocks.MAGMA),
 
-				ItemStack.EMPTY, new ItemStack(Blocks.NETHERRACK), ItemStack.EMPTY,
+				null, new ItemStack(Blocks.NETHERRACK), null,
 
 				//////////////////////////////////////////////////////////////////////////////////////////
 
-				ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY,
+				null, null, null,
 
-				ItemStack.EMPTY, new ItemStack(Blocks.NETHERRACK), ItemStack.EMPTY,
+				null, new ItemStack(Blocks.NETHERRACK), null,
 
-				ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY, });
+				null, null, null, });
 		map.put(IVadeMecumCapability.Category.Freeze, new ItemStack[] {
 
 				new ItemStack(Blocks.ICE), new ItemStack(Blocks.SNOW), new ItemStack(Blocks.ICE),
@@ -146,42 +146,42 @@ public class RitualList {
 
 				//////////////////////////////////////////////////////////////////////////////////////////
 
-				ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY,
+				null, null, null,
 
-				ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY,
+				null, null, null,
 
-				ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY,
+				null, null, null,
 
 				//////////////////////////////////////////////////////////////////////////////////////////
 
-				ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY,
+				null, null, null,
 
-				ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY,
+				null, null, null,
 
-				ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY });
+				null, null, null });
 		map.put(IVadeMecumCapability.Category.FrostSheathe, new ItemStack[] {
 
-				ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY,
+				null, null, null,
 
-				ItemStack.EMPTY, new ItemStack(Blocks.SNOW), ItemStack.EMPTY,
+				null, new ItemStack(Blocks.SNOW), null,
 
-				ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY,
+				null, null, null,
 
 				//////////////////////////////////////////////////////////////////////////////////////////
 
-				ItemStack.EMPTY, new ItemStack(Blocks.SNOW), ItemStack.EMPTY,
+				null, new ItemStack(Blocks.SNOW), null,
 
 				new ItemStack(Blocks.SNOW), new ItemStack(VoidCraft.blocks.ritualBlock), new ItemStack(Blocks.SNOW),
 
-				ItemStack.EMPTY, new ItemStack(Blocks.SNOW), ItemStack.EMPTY,
+				null, new ItemStack(Blocks.SNOW), null,
 
 				//////////////////////////////////////////////////////////////////////////////////////////
 
-				new ItemStack(Blocks.SNOW), ItemStack.EMPTY, new ItemStack(Blocks.SNOW),
+				new ItemStack(Blocks.SNOW), null, new ItemStack(Blocks.SNOW),
 
-				ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY,
+				null, null, null,
 
-				new ItemStack(Blocks.SNOW), ItemStack.EMPTY, new ItemStack(Blocks.SNOW) });
+				new ItemStack(Blocks.SNOW), null, new ItemStack(Blocks.SNOW) });
 		map.put(IVadeMecumCapability.Category.IceSpike, new ItemStack[] {
 
 				new ItemStack(Blocks.ICE), new ItemStack(Blocks.ICE), new ItemStack(Blocks.ICE),
@@ -192,19 +192,19 @@ public class RitualList {
 
 				//////////////////////////////////////////////////////////////////////////////////////////
 
-				ItemStack.EMPTY, new ItemStack(Blocks.ICE), ItemStack.EMPTY,
+				null, new ItemStack(Blocks.ICE), null,
 
 				new ItemStack(Blocks.ICE), new ItemStack(Blocks.ICE), new ItemStack(Blocks.ICE),
 
-				ItemStack.EMPTY, new ItemStack(Blocks.ICE), ItemStack.EMPTY,
+				null, new ItemStack(Blocks.ICE), null,
 
 				//////////////////////////////////////////////////////////////////////////////////////////
 
-				ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY,
+				null, null, null,
 
-				ItemStack.EMPTY, new ItemStack(Blocks.ICE), ItemStack.EMPTY,
+				null, new ItemStack(Blocks.ICE), null,
 
-				ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY });
+				null, null, null });
 		map.put(IVadeMecumCapability.Category.Shock, new ItemStack[] {
 
 				new ItemStack(Blocks.END_BRICKS), new ItemStack(Blocks.END_STONE), new ItemStack(Blocks.END_BRICKS),
@@ -215,42 +215,42 @@ public class RitualList {
 
 				//////////////////////////////////////////////////////////////////////////////////////////
 
-				ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY,
+				null, null, null,
 
-				ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY,
+				null, null, null,
 
-				ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY,
+				null, null, null,
 
 				//////////////////////////////////////////////////////////////////////////////////////////
 
-				ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY,
+				null, null, null,
 
-				ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY,
+				null, null, null,
 
-				ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY });
+				null, null, null });
 		map.put(IVadeMecumCapability.Category.ShockSheathe, new ItemStack[] {
 
-				ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY,
+				null, null, null,
 
-				ItemStack.EMPTY, new ItemStack(Blocks.END_BRICKS), ItemStack.EMPTY,
+				null, new ItemStack(Blocks.END_BRICKS), null,
 
-				ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY,
+				null, null, null,
 
 				//////////////////////////////////////////////////////////////////////////////////////////
 
-				ItemStack.EMPTY, new ItemStack(Blocks.END_BRICKS), ItemStack.EMPTY,
+				null, new ItemStack(Blocks.END_BRICKS), null,
 
 				new ItemStack(Blocks.END_BRICKS), new ItemStack(VoidCraft.blocks.ritualBlock), new ItemStack(Blocks.END_BRICKS),
 
-				ItemStack.EMPTY, new ItemStack(Blocks.END_BRICKS), ItemStack.EMPTY,
+				null, new ItemStack(Blocks.END_BRICKS), null,
 
 				//////////////////////////////////////////////////////////////////////////////////////////
 
-				new ItemStack(Blocks.END_BRICKS), ItemStack.EMPTY, new ItemStack(Blocks.END_BRICKS),
+				new ItemStack(Blocks.END_BRICKS), null, new ItemStack(Blocks.END_BRICKS),
 
-				ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY,
+				null, null, null,
 
-				new ItemStack(Blocks.END_BRICKS), ItemStack.EMPTY, new ItemStack(Blocks.END_BRICKS) });
+				new ItemStack(Blocks.END_BRICKS), null, new ItemStack(Blocks.END_BRICKS) });
 		map.put(IVadeMecumCapability.Category.AcidSpray, new ItemStack[] {
 
 				new ItemStack(Blocks.STONE), new ItemStack(Blocks.DIRT), new ItemStack(Blocks.STONE),
@@ -261,42 +261,42 @@ public class RitualList {
 
 				//////////////////////////////////////////////////////////////////////////////////////////
 
-				ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY,
+				null, null, null,
 
-				ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY,
+				null, null, null,
 
-				ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY,
+				null, null, null,
 
 				//////////////////////////////////////////////////////////////////////////////////////////
 
-				ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY,
+				null, null, null,
 
-				ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY,
+				null, null, null,
 
-				ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY });
+				null, null, null });
 		map.put(IVadeMecumCapability.Category.AcidSheathe, new ItemStack[] {
 
-				ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY,
+				null, null, null,
 
-				ItemStack.EMPTY, new ItemStack(Blocks.STONE), ItemStack.EMPTY,
+				null, new ItemStack(Blocks.STONE), null,
 
-				ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY,
+				null, null, null,
 
 				//////////////////////////////////////////////////////////////////////////////////////////
 
-				ItemStack.EMPTY, new ItemStack(Blocks.STONE), ItemStack.EMPTY,
+				null, new ItemStack(Blocks.STONE), null,
 
 				new ItemStack(Blocks.STONE), new ItemStack(VoidCraft.blocks.ritualBlock), new ItemStack(Blocks.STONE),
 
-				ItemStack.EMPTY, new ItemStack(Blocks.STONE), ItemStack.EMPTY,
+				null, new ItemStack(Blocks.STONE), null,
 
 				//////////////////////////////////////////////////////////////////////////////////////////
 
-				new ItemStack(Blocks.STONE), ItemStack.EMPTY, new ItemStack(Blocks.STONE),
+				new ItemStack(Blocks.STONE), null, new ItemStack(Blocks.STONE),
 
-				ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY,
+				null, null, null,
 
-				new ItemStack(Blocks.STONE), ItemStack.EMPTY, new ItemStack(Blocks.STONE) });
+				new ItemStack(Blocks.STONE), null, new ItemStack(Blocks.STONE) });
 	}
 
 }

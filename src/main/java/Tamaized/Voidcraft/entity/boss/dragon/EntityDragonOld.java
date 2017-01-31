@@ -9,7 +9,6 @@ import Tamaized.Voidcraft.entity.boss.render.bossBar.RenderAlternateBossBars.IAl
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.MoverType;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.item.EntityEnderCrystal;
 import net.minecraft.entity.item.EntityXPOrb;
@@ -272,9 +271,9 @@ public class EntityDragonOld extends EntityLiving implements IEntityMultiPartOld
 				this.moveRelative(0.0F, -1.0F, f8 * (f5 * f7 + (1.0F - f7)));
 
 				if (this.slowed) {
-					this.move(MoverType.SELF, this.motionX * 0.800000011920929D, this.motionY * 0.800000011920929D, this.motionZ * 0.800000011920929D);
+					this.move(this.motionX * 0.800000011920929D, this.motionY * 0.800000011920929D, this.motionZ * 0.800000011920929D);
 				} else {
-					this.move(MoverType.SELF, this.motionX, this.motionY, this.motionZ);
+					this.move(this.motionX, this.motionY, this.motionZ);
 				}
 
 				Vec3d vec31 = new Vec3d(this.motionX, this.motionY, this.motionZ).normalize();
@@ -529,7 +528,7 @@ public class EntityDragonOld extends EntityLiving implements IEntityMultiPartOld
 			}
 		}
 
-		this.move(MoverType.SELF, 0.0D, 0.10000000149011612D, 0.0D);
+		this.move(0.0D, 0.10000000149011612D, 0.0D);
 		this.renderYawOffset = this.rotationYaw += 20.0F;
 
 		if (this.deathTicks == 200 && !this.world.isRemote) {

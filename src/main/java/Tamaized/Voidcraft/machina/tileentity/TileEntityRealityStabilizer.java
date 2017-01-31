@@ -37,7 +37,7 @@ public class TileEntityRealityStabilizer extends TileEntityVoidicPowerInventory 
 	@Override
 	public void onUpdate() {
 		if (!world.isRemote) {
-			if (getStackInSlot(SLOT_OUTPUT).isEmpty() || getStackInSlot(SLOT_OUTPUT).getCount() < getStackInSlot(SLOT_OUTPUT).getMaxStackSize()) pickupNextBlock();
+			if (getStackInSlot(SLOT_OUTPUT) == null || getStackInSlot(SLOT_OUTPUT).stackSize < getStackInSlot(SLOT_OUTPUT).getMaxStackSize()) pickupNextBlock();
 		}
 	}
 
@@ -54,15 +54,15 @@ public class TileEntityRealityStabilizer extends TileEntityVoidicPowerInventory 
 	}
 
 	private void pickupNextBlock() {
-		if (hasEnoughPower() && (getStackInSlot(SLOT_OUTPUT).isEmpty() || (getStackInSlot(SLOT_OUTPUT).getItem() == Item.getItemFromBlock(VoidCraft.blocks.realityHole) && getStackInSlot(SLOT_OUTPUT).getCount() < getStackInSlot(SLOT_OUTPUT).getMaxStackSize()))) {
+		if (hasEnoughPower() && (getStackInSlot(SLOT_OUTPUT) == null || (getStackInSlot(SLOT_OUTPUT).getItem() == Item.getItemFromBlock(VoidCraft.blocks.realityHole) && getStackInSlot(SLOT_OUTPUT).stackSize < getStackInSlot(SLOT_OUTPUT).getMaxStackSize()))) {
 			BlockPosWrapper wrapper = searchState(VoidCraft.blocks.realityHole, getPos(), 4);
 			if (wrapper.state == null) return;
 			world.setBlockToAir(wrapper.pos);
 			usePower();
-			if (getStackInSlot(SLOT_OUTPUT).isEmpty()) {
+			if (getStackInSlot(SLOT_OUTPUT) == null) {
 				setInventorySlotContents(SLOT_OUTPUT, new ItemStack(VoidCraft.blocks.realityHole));
 			} else {
-				getStackInSlot(SLOT_OUTPUT).grow(1);
+				getStackInSlot(SLOT_OUTPUT).stackSize += (1);
 			}
 		}
 	}

@@ -123,7 +123,7 @@ public class StarForgeCapabilityHandler implements IStarForgeCapability {
 	}
 
 	private void sendClientUpdates(ItemStack stack) {
-		NBTTagCompound ct = stack.getOrCreateSubCompound(VoidCraft.modid);
+		NBTTagCompound ct = stack.getSubCompound(VoidCraft.modid, true);
 		NBTTagCompound starforgeCompound = new NBTTagCompound();
 		starforgeCompound.setInteger("tier1", StarForgeEffectList.getEffectID(tier1));
 		starforgeCompound.setInteger("tier2", StarForgeEffectList.getEffectID(tier2));
@@ -132,7 +132,7 @@ public class StarForgeCapabilityHandler implements IStarForgeCapability {
 	}
 
 	private void updateClient(ItemStack stack) {
-		NBTTagCompound ct = stack.getOrCreateSubCompound(VoidCraft.modid);
+		NBTTagCompound ct = stack.getSubCompound(VoidCraft.modid, true);
 		NBTTagCompound starforgeCompound = ct.getCompoundTag("StarForge_Client");
 		setEffect(IStarForgeEffect.Tier.ONE, StarForgeEffectList.getEffect(starforgeCompound.getInteger("tier1")));
 		setEffect(IStarForgeEffect.Tier.TWO, StarForgeEffectList.getEffect(starforgeCompound.getInteger("tier2")));

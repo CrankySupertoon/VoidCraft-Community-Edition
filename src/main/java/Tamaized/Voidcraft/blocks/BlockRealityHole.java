@@ -58,9 +58,9 @@ public class BlockRealityHole extends TamBlock {
 			} else if (!(entityIn instanceof EntityVoidBoss) && !(entityIn instanceof IAlternateBoss)) entityIn.setDead();
 		}
 	}
-
+	
 	@Override
-	public AxisAlignedBB getCollisionBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
+	public AxisAlignedBB getCollisionBoundingBox(IBlockState state, World source, BlockPos pos) {
 		return NULL_AABB;
 	}
 

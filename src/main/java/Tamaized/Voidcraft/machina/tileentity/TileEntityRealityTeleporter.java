@@ -47,7 +47,7 @@ public class TileEntityRealityTeleporter extends TileEntityVoidicPowerInventory 
 
 	@Override
 	public boolean isItemValidForSlot(int i, ItemStack stack) {
-		return i == SLOT_INPUT && !stack.isEmpty() && stack.getItem() == Item.getItemFromBlock(VoidCraft.blocks.realityHole);
+		return i == SLOT_INPUT && stack != null && stack.getItem() == Item.getItemFromBlock(VoidCraft.blocks.realityHole);
 	}
 
 	@Override
@@ -80,7 +80,7 @@ public class TileEntityRealityTeleporter extends TileEntityVoidicPowerInventory 
 	}
 
 	public boolean canUse() {
-		return getPowerAmount() >= getPowerUse() && !getStackInSlot(SLOT_INPUT).isEmpty() && getStackInSlot(SLOT_INPUT).getItem() == Item.getItemFromBlock(VoidCraft.blocks.realityHole);
+		return getPowerAmount() >= getPowerUse() && getStackInSlot(SLOT_INPUT) != null && getStackInSlot(SLOT_INPUT).getItem() == Item.getItemFromBlock(VoidCraft.blocks.realityHole);
 	}
 
 	public void useResources() {
@@ -118,7 +118,7 @@ public class TileEntityRealityTeleporter extends TileEntityVoidicPowerInventory 
 		if (link != null) {
 			if (!isOn && flag) {
 				List<EntityLivingBase> list = world.getEntitiesWithinAABB(EntityLivingBase.class, new AxisAlignedBB(getPos().up()));
-				if (!list.isEmpty() && canUse() && canTeleportToLink()) {
+				if (list != null && canUse() && canTeleportToLink()) {
 					useResources();
 					useLinkResources();
 					for (EntityLivingBase e : list) {

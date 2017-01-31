@@ -21,7 +21,7 @@ public class VadeMecumSpellsGUI extends GuiContainer {
 		super(inventorySlotsIn);
 	}
 
-	private ItemStack renderStackHover = ItemStack.EMPTY;
+	private ItemStack renderStackHover = null;
 
 	private static final int BUTTON_CLOSE = 0;
 	private static final int BUTTON_BACK = 1;
@@ -102,9 +102,9 @@ public class VadeMecumSpellsGUI extends GuiContainer {
 		int i = this.guiLeft;
 		int j = this.guiTop;
 		this.drawTexturedModalRect(i, j, 0, 0, this.xSize, this.ySize);
-		if (!renderStackHover.isEmpty()) {
+		if (renderStackHover != null) {
 			renderToolTip(renderStackHover, mouseX, mouseY);
-			renderStackHover = ItemStack.EMPTY;
+			renderStackHover = null;
 		}
 	}
 
@@ -115,7 +115,7 @@ public class VadeMecumSpellsGUI extends GuiContainer {
 			itemRender.renderItemIntoGUI(stack, x, y);
 			// drawCenteredString(fontRendererObj, ""+stack.stackSize, x, y, 0xFFFFFF);
 			GlStateManager.disableDepth();
-			if (stack.getCount() > 1) drawString(fontRendererObj, "" + stack.getCount(), x + 11 - (6 * (Integer.valueOf(stack.getCount()).toString().length() - 1)), y + 9, 0xFFFFFF);
+			if (stack.stackSize > 1) drawString(fontRendererObj, "" + stack.stackSize, x + 11 - (6 * (Integer.valueOf(stack.stackSize).toString().length() - 1)), y + 9, 0xFFFFFF);
 			GlStateManager.enableDepth();
 			if (mx >= x && mx <= x + 16 && my >= y && my <= y + 16) renderStackHover = stack;
 			RenderHelper.disableStandardItemLighting();

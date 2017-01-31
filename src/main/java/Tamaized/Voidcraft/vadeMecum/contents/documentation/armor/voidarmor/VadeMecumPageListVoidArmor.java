@@ -17,14 +17,14 @@ public class VadeMecumPageListVoidArmor implements IVadeMecumPageProvider {
 						new ItemStack(VoidCraft.items.voidcrystal),
 						new ItemStack(VoidCraft.items.voidcrystal),
 						new ItemStack(VoidCraft.items.voidcrystal),
-						ItemStack.EMPTY,
+						null,
 						new ItemStack(VoidCraft.items.voidcrystal),
-						ItemStack.EMPTY,
-						ItemStack.EMPTY,
-						ItemStack.EMPTY }, new ItemStack(VoidCraft.armors.voidHelmet))),
+						null,
+						null,
+						null }, new ItemStack(VoidCraft.armors.voidHelmet))),
 				new VadeMecumPageCrafting(new VadeMecumCraftingNormal(new ItemStack(VoidCraft.armors.voidChest).getDisplayName(), new ItemStack[] {
 						new ItemStack(VoidCraft.items.voidcrystal),
-						ItemStack.EMPTY,
+						null,
 						new ItemStack(VoidCraft.items.voidcrystal),
 						new ItemStack(VoidCraft.items.voidcrystal),
 						new ItemStack(VoidCraft.items.voidcrystal),
@@ -37,21 +37,21 @@ public class VadeMecumPageListVoidArmor implements IVadeMecumPageProvider {
 						new ItemStack(VoidCraft.items.voidcrystal),
 						new ItemStack(VoidCraft.items.voidcrystal),
 						new ItemStack(VoidCraft.items.voidcrystal),
-						ItemStack.EMPTY,
+						null,
 						new ItemStack(VoidCraft.items.voidcrystal),
 						new ItemStack(VoidCraft.items.voidcrystal),
-						ItemStack.EMPTY,
+						null,
 						new ItemStack(VoidCraft.items.voidcrystal) }, new ItemStack(VoidCraft.armors.voidLegs))),
 				new VadeMecumPageCrafting(new VadeMecumCraftingNormal(new ItemStack(VoidCraft.armors.voidBoots).getDisplayName(), new ItemStack[] {
 						new ItemStack(VoidCraft.items.voidcrystal),
-						ItemStack.EMPTY,
+						null,
 						new ItemStack(VoidCraft.items.voidcrystal),
 						new ItemStack(VoidCraft.items.voidcrystal),
-						ItemStack.EMPTY,
+						null,
 						new ItemStack(VoidCraft.items.voidcrystal),
-						ItemStack.EMPTY,
-						ItemStack.EMPTY,
-						ItemStack.EMPTY }, new ItemStack(VoidCraft.armors.voidBoots)))
+						null,
+						null,
+						null }, new ItemStack(VoidCraft.armors.voidBoots)))
 				};
 	}
 

@@ -389,12 +389,12 @@ public class ChunkProviderVoid implements IChunkGenerator {
 	}
 
 	@Override
-	public BlockPos getStrongholdGen(World worldIn, String structureName, BlockPos position, boolean p_180513_4_) {
-		return null;
+	public void recreateStructures(Chunk chunkIn, int x, int z) {
+		this.genFortress.generate(this.world, x, z, (ChunkPrimer) null);
 	}
 
 	@Override
-	public void recreateStructures(Chunk chunkIn, int x, int z) {
-		this.genFortress.generate(this.world, x, z, (ChunkPrimer) null);
+	public BlockPos getStrongholdGen(World worldIn, String structureName, BlockPos position) {
+		return null;
 	}
 }

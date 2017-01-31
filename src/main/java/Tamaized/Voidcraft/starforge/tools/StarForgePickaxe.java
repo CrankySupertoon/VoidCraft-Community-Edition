@@ -89,7 +89,7 @@ public class StarForgePickaxe extends TamPickaxe implements IStarForgeTool {
 
 	@Override
 	public boolean shouldCauseReequipAnimation(ItemStack oldStack, ItemStack newStack, boolean slotChanged) {
-		return slotChanged ? true : (oldStack.isEmpty() || newStack.isEmpty()) ? true : oldStack.getItem() != newStack.getItem();
+		return slotChanged ? true : (oldStack == null || newStack == null) ? true : oldStack.getItem() != newStack.getItem();
 	}
 
 	@Override
@@ -124,14 +124,14 @@ public class StarForgePickaxe extends TamPickaxe implements IStarForgeTool {
 	}
 
 	@Override
-	public EnumActionResult onItemUse(EntityPlayer playerIn, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+	public EnumActionResult onItemUse(ItemStack s, EntityPlayer playerIn, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 		ItemStack stack = playerIn.getHeldItem(hand);
 		IStarForgeCapability cap = stack.getCapability(CapabilityList.STARFORGE, null);
 		return cap == null ? EnumActionResult.PASS : cap.onRightClickBlock(playerIn, worldIn, worldIn.getBlockState(pos), pos, facing) ? EnumActionResult.SUCCESS : EnumActionResult.PASS;
 	}
 
 	@Override
-	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand hand) {
+	public ActionResult<ItemStack> onItemRightClick(ItemStack s, World worldIn, EntityPlayer playerIn, EnumHand hand) {
 		ItemStack stack = playerIn.getHeldItem(hand);
 		IStarForgeCapability cap = stack.getCapability(CapabilityList.STARFORGE, null);
 		return cap == null ? new ActionResult(EnumActionResult.PASS, stack) : cap.onRightClick(playerIn) ? new ActionResult(EnumActionResult.SUCCESS, stack) : new ActionResult(EnumActionResult.PASS, stack);

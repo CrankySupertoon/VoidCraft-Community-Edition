@@ -14,6 +14,7 @@ import io.netty.buffer.ByteBufInputStream;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundEvent;
@@ -232,7 +233,7 @@ public class EntityGhostPlayerBase extends EntityVoidNPC implements IEntityAddit
 	}
 
 	@Override
-	public boolean processInteract(EntityPlayer player, EnumHand hand) {
+	public boolean processInteract(EntityPlayer player, EnumHand hand, ItemStack s) {
 		if (running || !canInteract) return false;
 		running = true;
 		sendPacketUpdates();

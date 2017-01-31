@@ -60,7 +60,7 @@ public class VoidBoxGUI extends GuiContainer {
 	public void updateScreen() {
 		super.updateScreen();
 
-		BtnPlay.enabled = !voidBox.getStackInSlot(voidBox.SLOT_NEXT).isEmpty() && ((voidBox.getStackInSlot(voidBox.SLOT_NEXT).getItem() instanceof ItemRecord) && voidBox.getStackInSlot(voidBox.SLOT_CURRENT).isEmpty());
+		BtnPlay.enabled = voidBox.getStackInSlot(voidBox.SLOT_NEXT) != null && ((voidBox.getStackInSlot(voidBox.SLOT_NEXT).getItem() instanceof ItemRecord) && voidBox.getStackInSlot(voidBox.SLOT_CURRENT) == null);
 		BtnStop.enabled = voidBox.isPlaying();
 
 		if (CurrColor > 102) CurrColor = 15;
@@ -116,7 +116,7 @@ public class VoidBoxGUI extends GuiContainer {
 		this.fontRendererObj.drawString("Void Music Box", this.xSize / 2 - this.fontRendererObj.getStringWidth(name) / 2, this.ySize - 260, 0x7700FF);
 		this.fontRendererObj.drawString("Currently Playing:", (this.xSize / 12 - this.fontRendererObj.getStringWidth(name) / 12) - 5, this.ySize - 240, 0xFF0000);
 
-		if (voidBox.isPlaying() && !voidBox.getStackInSlot(0).isEmpty()) {
+		if (voidBox.isPlaying() && voidBox.getStackInSlot(0) != null) {
 			int hexacolor = 0x000000;
 
 			if (CurrColor == 0) hexacolor = 0x000000;
@@ -224,7 +224,7 @@ public class VoidBoxGUI extends GuiContainer {
 			else if (CurrColor == 102) hexacolor = 0xFF0022;
 			else if (CurrColor == 103) hexacolor = 0xFF0011;
 
-			fontRendererObj.drawString(!voidBox.getStackInSlot(0).isEmpty() ? ((ItemRecord) voidBox.getStackInSlot(0).getItem()).getRecordNameLocal() : "", (xSize / 12) - 13 - (fontRendererObj.getStringWidth(name) / 12) + 102, (ySize / 12) + 54, hexacolor);
+			fontRendererObj.drawString(voidBox.getStackInSlot(0) != null ? ((ItemRecord) voidBox.getStackInSlot(0).getItem()).getRecordNameLocal() : "", (xSize / 12) - 13 - (fontRendererObj.getStringWidth(name) / 12) + 102, (ySize / 12) + 54, hexacolor);
 		}
 
 		if (voidBox.getLoopState()) fontRendererObj.drawString("Loop: On", (xSize / 12) - (fontRendererObj.getStringWidth(name) / 12) + 220, ySize - 220, 0x00FF00);

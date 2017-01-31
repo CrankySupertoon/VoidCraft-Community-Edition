@@ -41,7 +41,7 @@ public class VadeMecumGUI extends GuiScreen {
 	private VadeMecumEntry entry;
 	private VadeMecumEntry nextEntry;
 	private int pageNumber = 0;
-	private ItemStack renderStackHover = ItemStack.EMPTY;
+	private ItemStack renderStackHover = null;
 
 	private VadeMecumGUI.ArrowButton button_back;
 	private VadeMecumGUI.ArrowButton button_forward;
@@ -184,7 +184,7 @@ public class VadeMecumGUI extends GuiScreen {
 					// setEntry(ClientProxy.vadeMecumEntryList.Docs.MAIN, 0);
 					break;
 				case WordsOfPower:
-					mc.displayGuiScreen(new Tamaized.Voidcraft.GUI.client.VadeMecumSpellsGUI());
+//					mc.displayGuiScreen(new Tamaized.Voidcraft.GUI.client.VadeMecumSpellsGUI());
 					break;
 				case Credits:
 					break;
@@ -219,9 +219,9 @@ public class VadeMecumGUI extends GuiScreen {
 		if (playerStats.getCurrentActive() != null) {
 
 		}
-		if (!renderStackHover.isEmpty()) {
+		if (renderStackHover != null) {
 			renderToolTip(renderStackHover, mouseX, mouseY);
-			renderStackHover = ItemStack.EMPTY;
+			renderStackHover = null;
 		}
 	}
 
@@ -368,7 +368,7 @@ public class VadeMecumGUI extends GuiScreen {
 			itemRender.renderItemIntoGUI(stack, x, y);
 			// drawCenteredString(fontRendererObj, ""+stack.stackSize, x, y, 0xFFFFFF);
 			GlStateManager.disableDepth();
-			if (stack.getCount() > 1) drawString(fontRendererObj, "" + stack.getCount(), x + 11, y + 9, 0xFFFFFF);
+			if (stack.stackSize > 1) drawString(fontRendererObj, "" + stack.stackSize, x + 11, y + 9, 0xFFFFFF);
 			GlStateManager.enableDepth();
 			if (mx >= x && mx <= x + 16 && my >= y && my <= y + 16) renderStackHover = stack;
 			RenderHelper.disableStandardItemLighting();

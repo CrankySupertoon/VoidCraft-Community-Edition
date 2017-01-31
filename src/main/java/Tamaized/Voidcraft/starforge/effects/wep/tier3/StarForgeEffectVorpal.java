@@ -5,8 +5,8 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.monster.EntityCreeper;
 import net.minecraft.entity.monster.EntitySkeleton;
-import net.minecraft.entity.monster.EntityWitherSkeleton;
 import net.minecraft.entity.monster.EntityZombie;
+import net.minecraft.entity.monster.SkeletonType;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -52,7 +52,7 @@ public class StarForgeEffectVorpal implements IStarForgeEffect {
 				entityHit.entityDropItem(new ItemStack(Items.SKULL, 1, 4), 0.0F);
 			} else if (entityHit instanceof EntitySkeleton) {
 				entityHit.entityDropItem(new ItemStack(Items.SKULL, 1, 0), 0.0F);
-			} else if (entityHit instanceof EntityWitherSkeleton) {
+			} else if (entityHit instanceof EntitySkeleton && ((EntitySkeleton) entityHit).func_189771_df() == SkeletonType.WITHER) {
 				entityHit.entityDropItem(new ItemStack(Items.SKULL, 1, 1), 0.0F);
 			}else{
 				return;

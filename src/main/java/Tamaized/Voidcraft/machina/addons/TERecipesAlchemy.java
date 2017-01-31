@@ -28,7 +28,7 @@ public class TERecipesAlchemy extends TamTileEntityRecipeList<TERecipesAlchemy.A
 			}
 			return recipe.getOutput();
 		}
-		return ItemStack.EMPTY;
+		return null;
 	}
 
 	public TERecipesAlchemy.AlchemyRecipe getRecipe(IVadeMecumCapability cap, ItemStack[] stacks) {

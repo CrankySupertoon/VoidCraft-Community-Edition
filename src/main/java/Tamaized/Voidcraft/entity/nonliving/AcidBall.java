@@ -416,6 +416,6 @@ public class AcidBall extends EntityArrow implements IProjectile, IEntityAdditio
 
 	@Override
 	protected ItemStack getArrowStack() {
-		return ItemStack.EMPTY;
+		return null;
 	}
 }

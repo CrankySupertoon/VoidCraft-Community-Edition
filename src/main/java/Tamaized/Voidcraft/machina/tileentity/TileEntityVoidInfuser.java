@@ -49,9 +49,9 @@ public class TileEntityVoidInfuser extends TamTileEntityInventory implements IFl
 	@Override
 	public void onUpdate() {
 		boolean cooking = false;
-		if (lastCookingItem == null || slots[SLOT_INPUT].isEmpty() || lastCookingItem != slots[SLOT_INPUT].getItem()) {
+		if (lastCookingItem == null || slots[SLOT_INPUT] == null || lastCookingItem != slots[SLOT_INPUT].getItem()) {
 			cookingTick = 0;
-			lastCookingItem = (!slots[SLOT_INPUT].isEmpty()) ? slots[SLOT_INPUT].getItem() : null;
+			lastCookingItem = (slots[SLOT_INPUT] != null) ? slots[SLOT_INPUT].getItem() : null;
 		}
 
 		if (tank.getFluidAmount() > 0 && canCook()) {
@@ -60,7 +60,7 @@ public class TileEntityVoidInfuser extends TamTileEntityInventory implements IFl
 		}
 
 		if (getFluidAmount() <= getMaxFluidAmount() - 1000) {
-			if (!slots[SLOT_BUCKET].isEmpty() && slots[SLOT_BUCKET].isItemEqual(VoidCraft.fluids.voidBucket.getBucket())) {
+			if (slots[SLOT_BUCKET] != null && slots[SLOT_BUCKET].isItemEqual(VoidCraft.fluids.voidBucket.getBucket())) {
 				fill(new FluidStack(VoidCraft.fluids.voidFluid, 1000), true);
 				slots[SLOT_BUCKET] = new ItemStack(Items.BUCKET);
 			}
@@ -78,27 +78,27 @@ public class TileEntityVoidInfuser extends TamTileEntityInventory implements IFl
 
 	private void bakeItem() {
 		if (canCook()) {
-			if (slots[SLOT_OUTPUT].isEmpty()) {
+			if (slots[SLOT_OUTPUT] == null) {
 				slots[SLOT_OUTPUT] = recipe.getOutput().copy();
 			} else if (slots[SLOT_OUTPUT].isItemEqual(recipe.getOutput())) {
-				slots[SLOT_OUTPUT].grow(recipe.getOutput().getCount());
+				slots[SLOT_OUTPUT].stackSize += (recipe.getOutput().stackSize);
 			}
 
-			slots[SLOT_INPUT].shrink(1);
+			slots[SLOT_INPUT].stackSize--;
 
-			if (slots[SLOT_INPUT].getCount() <= 0) {
-				slots[SLOT_INPUT] = ItemStack.EMPTY;
+			if (slots[SLOT_INPUT].stackSize <= 0) {
+				slots[SLOT_INPUT] = null;
 			}
 		}
 	}
 
 	private boolean canCook() {
-		if (slots[SLOT_INPUT].isEmpty()) return false;
+		if (slots[SLOT_INPUT] == null) return false;
 		recipe = VoidCraft.teRecipes.infuser.getRecipe(new ItemStack[] { slots[SLOT_INPUT] });
 		if (recipe == null) return false;
-		if (slots[SLOT_OUTPUT].isEmpty()) return true;
+		if (slots[SLOT_OUTPUT] == null) return true;
 		if (!slots[SLOT_OUTPUT].isItemEqual(recipe.getOutput())) return false;
-		int result = slots[SLOT_OUTPUT].getCount() + recipe.getOutput().getCount();
+		int result = slots[SLOT_OUTPUT].stackSize + recipe.getOutput().stackSize;
 		return (result <= getInventoryStackLimit() && result <= recipe.getOutput().getMaxStackSize());
 	}
 
@@ -118,7 +118,7 @@ public class TileEntityVoidInfuser extends TamTileEntityInventory implements IFl
 
 	@Override
 	protected boolean canExtractSlot(int i, ItemStack stack) {
-		return i == SLOT_BUCKET ? !slots[SLOT_BUCKET].isEmpty() ? slots[SLOT_BUCKET].isItemEqual(VoidCraft.fluids.voidBucket.getBucket()) : false : i == SLOT_OUTPUT;
+		return i == SLOT_BUCKET ? slots[SLOT_BUCKET] != null ? slots[SLOT_BUCKET].isItemEqual(VoidCraft.fluids.voidBucket.getBucket()) : false : i == SLOT_OUTPUT;
 	}
 
 	@Override

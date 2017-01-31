@@ -39,7 +39,7 @@ public class Debugger extends TamItem {
 	 * Called when a Block is right-clicked with this Item
 	 */
 	@Override
-	public EnumActionResult onItemUse(EntityPlayer playerIn, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+	public EnumActionResult onItemUse(ItemStack s, EntityPlayer playerIn, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 		if (!worldIn.isRemote) {
 			EntityCompanionFireElemental fireElemental = new EntityCompanionFireElemental(worldIn);
 			fireElemental.setPositionAndUpdate(pos.getX(), pos.getY() + 1, pos.getZ());
@@ -64,8 +64,8 @@ public class Debugger extends TamItem {
 	}
 
 	@Override
-	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand hand) {
-		if (worldIn.isRemote) return super.onItemRightClick(worldIn, playerIn, hand);
+	public ActionResult<ItemStack> onItemRightClick(ItemStack s, World worldIn, EntityPlayer playerIn, EnumHand hand) {
+		if (worldIn.isRemote) return super.onItemRightClick(s, worldIn, playerIn, hand);
 		// EntityWitherbrine wither = new EntityWitherbrine(worldIn);
 		// wither.setPositionAndUpdate(playerIn.posX, playerIn.posY, playerIn.posZ);
 		// wither.ignite();
@@ -107,7 +107,7 @@ public class Debugger extends TamItem {
 		// playerIn.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(playerIn.getMaxHealth()+1);
 		// playerIn.addPotionEffect(new PotionEffect(MobEffects.HEALTH_BOOST, 20 * 20));
 		// playerIn.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(playerIn.getMaxHealth()-20);
-		return super.onItemRightClick(worldIn, playerIn, hand);
+		return super.onItemRightClick(s, worldIn, playerIn, hand);
 	}
 
 	@SideOnly(Side.CLIENT)

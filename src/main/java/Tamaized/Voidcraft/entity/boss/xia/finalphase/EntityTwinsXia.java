@@ -20,7 +20,6 @@ import Tamaized.Voidcraft.xiaCastle.logic.battle.Xia2.phases.EntityAIXia2Phase3;
 import io.netty.buffer.ByteBufInputStream;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.MoverType;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.Potion;
@@ -226,7 +225,7 @@ public abstract class EntityTwinsXia extends EntityVoidNPC implements IEntitySyn
 		dz = dz > moveSpeed ? moveSpeed : dz;
 		dz = dz < -moveSpeed ? -moveSpeed : dz;
 
-		move(MoverType.SELF, dx, dy, dz);
+		move(dx, dy, dz);
 	}
 
 }

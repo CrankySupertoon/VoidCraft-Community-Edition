@@ -36,7 +36,7 @@ public abstract class VoidCraftRecipeWrapperJEI<T extends TamTileEntityRecipeLis
 	}
 
 	public boolean isValid() {
-		return recipe != null && recipe.getInput().length > 0 && !recipe.getOutput().isEmpty();
+		return recipe != null && recipe.getInput().length > 0 && recipe.getOutput() != null;
 	}
 
 	public abstract void setupSlots(IGuiIngredientGroup g);

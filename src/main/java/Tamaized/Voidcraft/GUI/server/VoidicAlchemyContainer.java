@@ -83,7 +83,7 @@ public class VoidicAlchemyContainer extends ContainerBase {
 
 	@Override
 	public ItemStack transferStackInSlot(EntityPlayer player, int hoverSlot) {
-		ItemStack itemstack = ItemStack.EMPTY;
+		ItemStack itemstack = null;
 		Slot slot = (Slot) this.inventorySlots.get(hoverSlot);
 
 		if (slot != null && slot.getHasStack()) {
@@ -94,7 +94,7 @@ public class VoidicAlchemyContainer extends ContainerBase {
 
 			if (hoverSlot < maxSlots) {
 				if (!mergeItemStack(itemstack1, maxSlots, maxSlots + 36, true)) {
-					return ItemStack.EMPTY;
+					return null;
 				}
 				slot.onSlotChange(itemstack1, itemstack);
 			} else {
@@ -104,56 +104,56 @@ public class VoidicAlchemyContainer extends ContainerBase {
 				ItemStack slotCheck4 = te.getStackInSlot(te.SLOT_INPUT_4);
 				ItemStack slotCheck5 = te.getStackInSlot(te.SLOT_INPUT_5);
 				ItemStack slotCheck6 = te.getStackInSlot(te.SLOT_INPUT_6);
-				if ((slotCheck1.isEmpty() || (slotCheck1.getCount() < slotCheck1.getMaxStackSize() && slotCheck1.isItemEqual(itemstack))) && te.canInsertItem(te.SLOT_INPUT_1, itemstack1, null)) {
+				if ((slotCheck1 == null || (slotCheck1.stackSize < slotCheck1.getMaxStackSize() && slotCheck1.isItemEqual(itemstack))) && te.canInsertItem(te.SLOT_INPUT_1, itemstack1, null)) {
 					if (!mergeItemStack(itemstack1, te.SLOT_INPUT_1, te.SLOT_INPUT_1 + 1, false)) {
-						return ItemStack.EMPTY;
+						return null;
 					}
-				} else if ((slotCheck2.isEmpty() || (slotCheck2.getCount() < slotCheck2.getMaxStackSize() && slotCheck2.isItemEqual(itemstack))) && te.canInsertItem(te.SLOT_INPUT_2, itemstack1, null)) {
+				} else if ((slotCheck2 == null || (slotCheck2.stackSize < slotCheck2.getMaxStackSize() && slotCheck2.isItemEqual(itemstack))) && te.canInsertItem(te.SLOT_INPUT_2, itemstack1, null)) {
 					if (!mergeItemStack(itemstack1, te.SLOT_INPUT_2, te.SLOT_INPUT_2 + 1, false)) {
-						return ItemStack.EMPTY;
+						return null;
 					}
-				} else if ((slotCheck3.isEmpty() || (slotCheck3.getCount() < slotCheck3.getMaxStackSize() && slotCheck3.isItemEqual(itemstack))) && te.canInsertItem(te.SLOT_INPUT_3, itemstack1, null)) {
+				} else if ((slotCheck3 == null || (slotCheck3.stackSize < slotCheck3.getMaxStackSize() && slotCheck3.isItemEqual(itemstack))) && te.canInsertItem(te.SLOT_INPUT_3, itemstack1, null)) {
 					if (!mergeItemStack(itemstack1, te.SLOT_INPUT_3, te.SLOT_INPUT_3 + 1, false)) {
-						return ItemStack.EMPTY;
+						return null;
 					}
-				} else if ((slotCheck4.isEmpty() || (slotCheck4.getCount() < slotCheck4.getMaxStackSize() && slotCheck4.isItemEqual(itemstack))) && te.canInsertItem(te.SLOT_INPUT_4, itemstack1, null)) {
+				} else if ((slotCheck4 == null || (slotCheck4.stackSize < slotCheck4.getMaxStackSize() && slotCheck4.isItemEqual(itemstack))) && te.canInsertItem(te.SLOT_INPUT_4, itemstack1, null)) {
 					if (!mergeItemStack(itemstack1, te.SLOT_INPUT_4, te.SLOT_INPUT_4 + 1, false)) {
-						return ItemStack.EMPTY;
+						return null;
 					}
-				} else if ((slotCheck5.isEmpty() || (slotCheck5.getCount() < slotCheck5.getMaxStackSize() && slotCheck5.isItemEqual(itemstack))) && te.canInsertItem(te.SLOT_INPUT_5, itemstack1, null)) {
+				} else if ((slotCheck5 == null || (slotCheck5.stackSize < slotCheck5.getMaxStackSize() && slotCheck5.isItemEqual(itemstack))) && te.canInsertItem(te.SLOT_INPUT_5, itemstack1, null)) {
 					if (!mergeItemStack(itemstack1, te.SLOT_INPUT_5, te.SLOT_INPUT_5 + 1, false)) {
-						return ItemStack.EMPTY;
+						return null;
 					}
-				} else if ((slotCheck6.isEmpty() || (slotCheck6.getCount() < slotCheck6.getMaxStackSize() && slotCheck6.isItemEqual(itemstack))) && te.canInsertItem(te.SLOT_INPUT_1, itemstack1, null)) {
+				} else if ((slotCheck6 == null || (slotCheck6.stackSize < slotCheck6.getMaxStackSize() && slotCheck6.isItemEqual(itemstack))) && te.canInsertItem(te.SLOT_INPUT_1, itemstack1, null)) {
 					if (!mergeItemStack(itemstack1, te.SLOT_INPUT_6, te.SLOT_INPUT_6 + 1, false)) {
-						return ItemStack.EMPTY;
+						return null;
 					}
 				} else if (hoverSlot >= maxSlots && hoverSlot < maxSlots + 27) {
 					if (!mergeItemStack(itemstack1, maxSlots + 27, maxSlots + 36, false)) {
-						return ItemStack.EMPTY;
+						return null;
 					}
 				} else if (hoverSlot >= maxSlots + 27 && hoverSlot < maxSlots + 36) {
 					if (!mergeItemStack(itemstack1, maxSlots, maxSlots + 27, false)) {
-						return ItemStack.EMPTY;
+						return null;
 					}
 				} else {
 					if (!mergeItemStack(itemstack1, maxSlots, maxSlots + 36, false)) {
-						return ItemStack.EMPTY;
+						return null;
 					}
 				}
 			}
 
-			if (itemstack1.getCount() == 0) {
-				slot.putStack(ItemStack.EMPTY);
+			if (itemstack1.stackSize == 0) {
+				slot.putStack(null);
 			} else {
 				slot.onSlotChanged();
 			}
 
-			if (itemstack1.getCount() == itemstack.getCount()) {
-				return ItemStack.EMPTY;
+			if (itemstack1.stackSize == itemstack.stackSize) {
+				return null;
 			}
 
-			slot.onTake(player, itemstack1);
+			slot.func_82870_a(player, itemstack1);
 		}
 		return itemstack;
 	}

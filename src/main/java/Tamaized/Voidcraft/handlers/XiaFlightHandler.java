@@ -56,10 +56,10 @@ public class XiaFlightHandler { // Thanks to Vazkii's Botania Mod Source for thi
 		ItemStack chest = player.getItemStackFromSlot(EntityEquipmentSlot.CHEST);
 		ItemStack leg = player.getItemStackFromSlot(EntityEquipmentSlot.LEGS);
 		ItemStack boots = player.getItemStackFromSlot(EntityEquipmentSlot.FEET);
-		if (!helm.isEmpty() && helm.getItem() == VoidCraft.armors.xiaHelmet) return true;
-		if (!chest.isEmpty() && chest.getItem() == VoidCraft.armors.xiaChest) return true;
-		if (!leg.isEmpty() && leg.getItem() == VoidCraft.armors.xiaLegs) return true;
-		if (!boots.isEmpty() && boots.getItem() == VoidCraft.armors.xiaBoots) return true;
+		if (helm != null && helm.getItem() == VoidCraft.armors.xiaHelmet) return true;
+		if (chest != null && chest.getItem() == VoidCraft.armors.xiaChest) return true;
+		if (leg != null && leg.getItem() == VoidCraft.armors.xiaLegs) return true;
+		if (boots != null && boots.getItem() == VoidCraft.armors.xiaBoots) return true;
 		return false;
 	}
 

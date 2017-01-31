@@ -16,7 +16,7 @@ public class SlotOnlyClass extends Slot {
 	
 	@Override
 	public boolean isItemValid(ItemStack stack) {
-		return !stack.isEmpty() && clazz.isInstance(stack.getItem());
+		return stack != null && clazz.isInstance(stack.getItem());
 	}
 
 }

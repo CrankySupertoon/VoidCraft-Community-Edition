@@ -209,7 +209,7 @@ public class VoidCraftItems implements ITamRegistry {
 
 	private void addPreSmelting(Item i, String s) {
 		for (ItemStack ore : OreDictionary.getOres(s)) {
-			if (!ore.isEmpty()) {
+			if (ore != null) {
 				GameRegistry.addSmelting(i, ore, ore.getItemDamage());
 			}
 		}

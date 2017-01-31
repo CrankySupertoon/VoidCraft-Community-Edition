@@ -30,7 +30,7 @@ public class ChainedSkull extends TamItem {
 	 * Callback for item usage. If the item does something special on right clicking, he will have one of those. Return True if something happen and false if it don't. This is for ITEMS, not BLOCKS
 	 */
 	@Override
-	public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) { // TODO: clean up this mess
+	public EnumActionResult onItemUse(ItemStack s, EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) { // TODO: clean up this mess
 		ItemStack stack = player.getHeldItem(hand);
 		if (world.isRemote) {
 			return EnumActionResult.PASS;
@@ -92,7 +92,7 @@ public class ChainedSkull extends TamItem {
 				}
 				world.spawnEntity(entity);
 				player.sendMessage(new TextComponentTranslation("???: Go forth, my pawn."));
-				stack.shrink(1);
+				stack.stackSize -= (1);
 			}
 			return EnumActionResult.PASS;
 		}

@@ -25,6 +25,7 @@ import net.minecraft.world.gen.structure.MapGenStructureIO;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
 import net.minecraft.world.gen.structure.StructureComponentTemplate;
+import net.minecraft.world.gen.structure.StructureEndCityPieces;
 import net.minecraft.world.gen.structure.template.PlacementSettings;
 import net.minecraft.world.gen.structure.template.Template;
 import net.minecraft.world.gen.structure.template.TemplateManager;
@@ -260,13 +261,24 @@ public class StructureVoidCityPieces {
 			this.templatePosition = p_i47214_3_;
 			this.rotation = p_i47214_4_;
 			this.overwrite = p_i47214_5_;
-			this.loadTemplate(p_i47214_1_);
+			this.loadTemplate(p_i47214_3_);
 		}
 
-		private void loadTemplate(TemplateManager p_191085_1_) {
-			Template template = p_191085_1_.getTemplate((MinecraftServer) null, new ResourceLocation(VoidCraft.modid, "voidcity/" + this.pieceName));
-			PlacementSettings placementsettings = (this.overwrite ? StructureVoidCityPieces.OVERWRITE : StructureVoidCityPieces.INSERT).copy().setRotation(this.rotation);
-			this.setup(template, this.templatePosition, placementsettings);
+		private void loadTemplate(BlockPos p_186180_1_)
+        {
+            Template template = StructureEndCityPieces.field_186201_a.getTemplate((MinecraftServer)null, new ResourceLocation("endcity/" + this.pieceName));
+            PlacementSettings placementsettings;
+
+            if (this.overwrite)
+            {
+                placementsettings = StructureVoidCityPieces.OVERWRITE.copy().setRotation(this.rotation);
+            }
+            else
+            {
+                placementsettings = StructureVoidCityPieces.INSERT.copy().setRotation(this.rotation);
+            }
+
+            this.setup(template, p_186180_1_, placementsettings);
 		}
 
 		/**
@@ -282,12 +294,12 @@ public class StructureVoidCityPieces {
 		/**
 		 * (abstract) Helper method to read subclass data from NBT
 		 */
-		protected void readStructureFromNBT(NBTTagCompound tagCompound, TemplateManager p_143011_2_) {
-			super.readStructureFromNBT(tagCompound, p_143011_2_);
+		protected void readStructureFromNBT(NBTTagCompound tagCompound) {
+			super.readStructureFromNBT(tagCompound);
 			this.pieceName = tagCompound.getString("Template");
 			this.rotation = Rotation.valueOf(tagCompound.getString("Rot"));
 			this.overwrite = tagCompound.getBoolean("OW");
-			this.loadTemplate(p_143011_2_);
+			this.loadTemplate(templatePosition);
 		}
 
 		protected void handleDataMarker(String p_186175_1_, BlockPos p_186175_2_, World p_186175_3_, Random p_186175_4_, StructureBoundingBox p_186175_5_) {

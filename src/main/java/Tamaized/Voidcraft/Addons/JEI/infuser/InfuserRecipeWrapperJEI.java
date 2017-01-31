@@ -6,8 +6,11 @@ import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.Addons.JEI.VoidCraftRecipeWrapperJEI;
 import Tamaized.Voidcraft.machina.addons.TERecipeInfuser.InfuserRecipe;
 import mezz.jei.api.gui.IGuiIngredientGroup;
+import mezz.jei.plugins.vanilla.ingredients.ItemStackRenderer;
 
 public class InfuserRecipeWrapperJEI extends VoidCraftRecipeWrapperJEI<InfuserRecipe> {
+
+	private static final ItemStackRenderer renderer = new ItemStackRenderer();
 
 	public static final int OUTPUT_SLOT = 0;
 	public static final int FLUID_SLOT = 1;
@@ -19,9 +22,9 @@ public class InfuserRecipeWrapperJEI extends VoidCraftRecipeWrapperJEI<InfuserRe
 
 	@Override
 	public void setupSlots(IGuiIngredientGroup g) {
-		g.init(OUTPUT_SLOT, false, 146, 34);
-		g.init(FLUID_SLOT, true, 51, 33);
-		g.init(INPUT_SLOT, true, 89, 33);
+		g.init(OUTPUT_SLOT, false, renderer, 146, 34, 18, 18, 0, 0);
+		g.init(FLUID_SLOT, true, renderer, 51, 33, 18, 18, 0, 0);
+		g.init(INPUT_SLOT, true, renderer, 89, 33, 18, 18, 0, 0);
 
 		g.set(FLUID_SLOT, Arrays.asList(VoidCraft.fluids.voidBucket.getBucket()));
 		g.set(OUTPUT_SLOT, Arrays.asList(getOutput()));

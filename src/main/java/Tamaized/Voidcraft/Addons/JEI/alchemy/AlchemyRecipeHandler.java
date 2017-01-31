@@ -25,4 +25,9 @@ public class AlchemyRecipeHandler implements IRecipeHandler<AlchemyRecipeWrapper
 		return recipe.isValid();
 	}
 
+	@Override
+	public String getRecipeCategoryUid() {
+		return "AlchemyRecipeHandler";
+	}
+
 }

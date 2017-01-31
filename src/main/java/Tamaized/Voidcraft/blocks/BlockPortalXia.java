@@ -118,7 +118,7 @@ public class BlockPortalXia extends TamBlockPortal {
 	}
 
 	@Override
-	public void neighborChanged(IBlockState state, World world, BlockPos pos, Block blockIn, BlockPos p_189540_5_) {
+	public void neighborChanged(IBlockState state, World world, BlockPos pos, Block blockIn) {
 		byte b0 = 0;
 		byte b1 = 1;
 

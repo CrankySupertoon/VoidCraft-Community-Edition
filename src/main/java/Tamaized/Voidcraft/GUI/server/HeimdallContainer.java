@@ -72,7 +72,7 @@ public class HeimdallContainer extends ContainerBase {
 
 	@Override
 	public ItemStack transferStackInSlot(EntityPlayer player, int hoverSlot) {
-		ItemStack itemstack = ItemStack.EMPTY;
+		ItemStack itemstack = null;
 		Slot slot = (Slot) inventorySlots.get(hoverSlot);
 
 		if (slot != null && slot.getHasStack()) {
@@ -83,45 +83,45 @@ public class HeimdallContainer extends ContainerBase {
 
 			if (hoverSlot < maxSlots) {
 				if (!mergeItemStack(itemstack1, maxSlots, maxSlots + 36, true)) {
-					return ItemStack.EMPTY;
+					return null;
 				}
 				slot.onSlotChange(itemstack1, itemstack);
 			} else {
 				ItemStack slotCheck = te.getStackInSlot(te.SLOT_INPUT);
-				if ((slotCheck.isEmpty() || (slotCheck.getCount() < slotCheck.getMaxStackSize() && slotCheck.isItemEqual(itemstack))) && te.canInsertItem(te.SLOT_INPUT, itemstack1, null)) {
+				if ((slotCheck == null || (slotCheck.stackSize < slotCheck.getMaxStackSize() && slotCheck.isItemEqual(itemstack))) && te.canInsertItem(te.SLOT_INPUT, itemstack1, null)) {
 					if (!mergeItemStack(itemstack1, te.SLOT_INPUT, te.SLOT_INPUT + 1, false)) {
-						return ItemStack.EMPTY;
+						return null;
 					}
 				} else if (!getSlot(te.SLOT_BUCKET).getHasStack() && te.canInsertItem(te.SLOT_BUCKET, itemstack1, null)) {
 					if (!mergeItemStack(itemstack1, te.SLOT_BUCKET, te.SLOT_BUCKET + 1, false)) {
-						return ItemStack.EMPTY;
+						return null;
 					}
 				} else if (hoverSlot >= maxSlots && hoverSlot < maxSlots + 27) {
 					if (!mergeItemStack(itemstack1, maxSlots + 27, maxSlots + 36, false)) {
-						return ItemStack.EMPTY;
+						return null;
 					}
 				} else if (hoverSlot >= maxSlots + 27 && hoverSlot < maxSlots + 36) {
 					if (!mergeItemStack(itemstack1, maxSlots, maxSlots + 27, false)) {
-						return ItemStack.EMPTY;
+						return null;
 					}
 				} else {
 					if (!mergeItemStack(itemstack1, maxSlots, maxSlots + 36, false)) {
-						return ItemStack.EMPTY;
+						return null;
 					}
 				}
 			}
 
-			if (itemstack1.getCount() == 0) {
-				slot.putStack(ItemStack.EMPTY);
+			if (itemstack1.stackSize == 0) {
+				slot.putStack(null);
 			} else {
 				slot.onSlotChanged();
 			}
 
-			if (itemstack1.getCount() == itemstack.getCount()) {
-				return ItemStack.EMPTY;
+			if (itemstack1.stackSize == itemstack.stackSize) {
+				return null;
 			}
 
-			slot.onTake(player, itemstack1);
+			slot.func_82870_a(player, itemstack1);
 		}
 		return itemstack;
 	}

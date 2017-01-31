@@ -28,13 +28,13 @@ public class VadeMecumPageListInfusionAltar implements IVadeMecumPageProvider {
 				new VadeMecumPageCrafting(new VadeMecumCraftingNormal(new ItemStack(VoidCraft.blocks.voidInfuser).getDisplayName(), new ItemStack[] {
 						new ItemStack(VoidCraft.blocks.voidInfuserInert),
 						new ItemStack(VoidCraft.items.voidStar),
-						ItemStack.EMPTY,
-						ItemStack.EMPTY,
-						ItemStack.EMPTY,
-						ItemStack.EMPTY,
-						ItemStack.EMPTY,
-						ItemStack.EMPTY,
-						ItemStack.EMPTY }, new ItemStack(VoidCraft.blocks.voidInfuser, 1))) };
+						null,
+						null,
+						null,
+						null,
+						null,
+						null,
+						null }, new ItemStack(VoidCraft.blocks.voidInfuser, 1))) };
 	}
 
 }

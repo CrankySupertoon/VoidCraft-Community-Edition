@@ -69,7 +69,7 @@ public class BlockEtherealPlant extends TamBlockCrops {
 	}
 
 	@Override
-	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
+	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, ItemStack s, EnumFacing side, float hitX, float hitY, float hitZ) {
 		if (getAge(state) >= getMaxAge()) {
 			if (worldIn.isRemote) return true;
 			TileEntity tileEntity = worldIn.getTileEntity(pos.down());

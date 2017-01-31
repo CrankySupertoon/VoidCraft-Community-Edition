@@ -41,7 +41,7 @@ public class BossMusicManager {
 	 * Play the Record
 	 */
 	public static void PlayTheSound(World world, EntityVoidNPC b, ItemStack itemStack, int[] loc, boolean l) {
-		if (!itemStack.isEmpty()) {
+		if (itemStack != null) {
 			if (isPlaying) StopTheSound();
 			worldObj = world;
 			boss = b;

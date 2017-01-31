@@ -25,4 +25,9 @@ public class MaceratorRecipeHandler implements IRecipeHandler<MaceratorRecipeWra
 		return recipe.isValid();
 	}
 
+	@Override
+	public String getRecipeCategoryUid() {
+		return "MaceratorRecipeHandler";
+	}
+
 }

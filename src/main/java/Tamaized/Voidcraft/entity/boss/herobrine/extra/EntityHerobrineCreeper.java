@@ -223,9 +223,9 @@ public class EntityHerobrineCreeper extends EntityMob {
 		dataManager.set(POWERED, Boolean.valueOf(true));
 	}
 
-	protected boolean processInteract(EntityPlayer player, EnumHand hand) {
+	protected boolean processInteract(EntityPlayer player, EnumHand hand, ItemStack s) {
 		ItemStack stack = player.getHeldItem(hand);
-		if (!stack.isEmpty() && stack.getItem() == Items.FLINT_AND_STEEL) {
+		if (stack != null && stack.getItem() == Items.FLINT_AND_STEEL) {
 			world.playSound(player, posX, posY, posZ, SoundEvents.ITEM_FLINTANDSTEEL_USE, getSoundCategory(), 1.0F, rand.nextFloat() * 0.4F + 0.8F);
 			player.swingArm(hand);
 
@@ -236,7 +236,7 @@ public class EntityHerobrineCreeper extends EntityMob {
 			}
 		}
 
-		return super.processInteract(player, hand);
+		return super.processInteract(player, hand, s);
 	}
 
 	/**

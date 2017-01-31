@@ -18,15 +18,15 @@ public class PlayerRightClickEvent {
 		BlockPos pos = e.getPos();
 		ItemStack stack = e.getItemStack();
 		IBlockState state = world.getBlockState(pos);
-		if (state != null && state.getBlock() == Blocks.DRAGON_EGG && !stack.isEmpty() && stack.getItem() == VoidCraft.items.voidStar) {
-			if(!world.isRemote){
+		if (state != null && state.getBlock() == Blocks.DRAGON_EGG && stack != null && stack.getItem() == VoidCraft.items.voidStar) {
+			if (!world.isRemote) {
 				world.createExplosion(null, pos.getX(), pos.getY(), pos.getZ(), 0, true);
 				world.setBlockToAir(pos);
 				EntityVoidicDragon dragon = new EntityVoidicDragon(world);
 				dragon.setPositionAndUpdate(pos.getX(), pos.getY() + 20, pos.getZ());
 				world.createExplosion(null, pos.getX(), pos.getY() + 20, pos.getZ(), 0, true);
 				world.spawnEntity(dragon);
-				stack.shrink(1);
+				stack.stackSize -= (1);
 			}
 			e.setCanceled(true);
 		}

@@ -68,11 +68,6 @@ public class MapGenVoidCity extends MapGenStructure {
 		return new MapGenVoidCity.Start(this.world, this.worldProvider, this.rand, chunkX, chunkZ);
 	}
 
-	public BlockPos getClosestStrongholdPos(World worldIn, BlockPos pos, boolean p_180706_3_) {
-		this.world = worldIn;
-		return findNearestStructurePosBySpacing(worldIn, this, pos, 20, 11, 10387313, true, 100, p_180706_3_);
-	}
-
 	private static int getYPosForStructure(int p_191070_0_, int p_191070_1_, ChunkProviderVoid p_191070_2_) {
 		return 128;
 	}

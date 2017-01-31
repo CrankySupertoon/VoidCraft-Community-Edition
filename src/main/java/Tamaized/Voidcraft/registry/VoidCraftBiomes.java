@@ -35,8 +35,6 @@ public class VoidCraftBiomes implements ITamRegistry {
 		GameRegistry.register(biomeVoid);
 		GameRegistry.register(biomeXia);
 		
-		BiomeDictionary.addTypes(biomeVoid, BiomeDictionary.Type.VOID);
-		BiomeDictionary.addTypes(biomeXia, BiomeDictionary.Type.VOID);
 	}
 
 	@Override

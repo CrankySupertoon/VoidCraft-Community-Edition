@@ -30,7 +30,7 @@ public class LayerCustomElytra implements LayerRenderer<AbstractClientPlayer> {
 	public void doRenderLayer(AbstractClientPlayer entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
 		ItemStack itemstack = entitylivingbaseIn.getItemStackFromSlot(EntityEquipmentSlot.CHEST);
 
-		if (!itemstack.isEmpty() && itemstack.getItem() instanceof ArmorCustomElytra) {
+		if (itemstack != null && itemstack.getItem() instanceof ArmorCustomElytra) {
 			GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 			GlStateManager.enableBlend();
 

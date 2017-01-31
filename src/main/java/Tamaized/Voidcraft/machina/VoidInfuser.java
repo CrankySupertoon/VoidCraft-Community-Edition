@@ -41,7 +41,7 @@ public class VoidInfuser extends TamBlockContainer {
 	 * Called upon block activation (right click on the block.)
 	 */
 	@Override
-	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
+	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, ItemStack s, EnumFacing side, float hitX, float hitY, float hitZ) {
 		ItemStack heldItem = playerIn.getHeldItem(hand);
 		if (worldIn.isRemote) {
 			return true;
@@ -85,19 +85,19 @@ public class VoidInfuser extends TamBlockContainer {
 			for (int i = 0; i < tileentity.getSizeInventory(); i++) {
 				ItemStack itemstack = tileentity.getStackInSlot(i);
 
-				if (!itemstack.isEmpty()) {
+				if (itemstack != null) {
 					float f = this.rand.nextFloat() * 0.8F + 0.1F;
 					float f1 = this.rand.nextFloat() * 0.8F + 0.1F;
 					float f2 = this.rand.nextFloat() * 0.8F + 0.1F;
 
-					while (itemstack.getCount() > 0) {
+					while (itemstack.stackSize > 0) {
 						int j = this.rand.nextInt(21);
 
-						if (j > itemstack.getCount()) {
-							j = itemstack.getCount();
+						if (j > itemstack.stackSize) {
+							j = itemstack.stackSize;
 						}
 
-						itemstack.shrink(j);
+						itemstack.stackSize -= (j);
 
 						EntityItem item = new EntityItem(world, (double) ((float) pos.getX() + f), (double) ((float) pos.getY() + f1), (double) ((float) pos.getZ() + f2), itemstack);
 

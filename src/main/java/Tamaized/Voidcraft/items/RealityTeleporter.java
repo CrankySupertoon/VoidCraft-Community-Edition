@@ -89,41 +89,37 @@ public class RealityTeleporter extends VoidicPowerItem {
 
 			@Override
 			public boolean isItemValidForSlot(int index, ItemStack stack) {
-				return stack.isEmpty() ? false : stack.getItem() == Item.getItemFromBlock(VoidCraft.blocks.realityHole);
+				return stack == null ? false : stack.getItem() == Item.getItemFromBlock(VoidCraft.blocks.realityHole);
 			}
 
-			@Override
-			public boolean isEmpty() {
-				return stack.isEmpty();
-			}
 		};
 	}
 
 	public static void clearLink(ItemStack stack) {
-		NBTTagCompound ct = stack.getOrCreateSubCompound(VoidCraft.modid + "_LinkLoc");
+		NBTTagCompound ct = stack.getSubCompound(VoidCraft.modid + "_LinkLoc", true);
 		ct.removeTag("link");
 	}
 
 	public static boolean hasLink(ItemStack stack) {
-		NBTTagCompound ct = stack.getOrCreateSubCompound(VoidCraft.modid + "_LinkLoc");
+		NBTTagCompound ct = stack.getSubCompound(VoidCraft.modid + "_LinkLoc", true);
 		int[] loc = ct.getIntArray("link");
 		return loc.length == 3;
 	}
 
 	public static BlockPos getLink(ItemStack stack) {
 		if (!hasLink(stack)) return null;
-		NBTTagCompound ct = stack.getOrCreateSubCompound(VoidCraft.modid + "_LinkLoc");
+		NBTTagCompound ct = stack.getSubCompound(VoidCraft.modid + "_LinkLoc", true);
 		int[] loc = ct.getIntArray("link");
 		return new BlockPos(loc[0], loc[1], loc[2]);
 	}
 
 	@Override
-	public EnumActionResult onItemUse(EntityPlayer playerIn, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+	public EnumActionResult onItemUse(ItemStack s, EntityPlayer playerIn, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 		ItemStack stack = playerIn.getHeldItem(hand);
 		TileEntity te = worldIn.getTileEntity(pos);
 		if (te != null && te instanceof TileEntityRealityTeleporter) {
 			TileEntityRealityTeleporter teleporter = (TileEntityRealityTeleporter) te;
-			NBTTagCompound ct = stack.getOrCreateSubCompound(VoidCraft.modid + "_LinkLoc");
+			NBTTagCompound ct = stack.getSubCompound(VoidCraft.modid + "_LinkLoc", true);
 			int[] loc = ct.getIntArray("link");
 			if (loc.length == 3) {
 				BlockPos newPos = new BlockPos(loc[0], loc[1], loc[2]);
@@ -139,20 +135,20 @@ public class RealityTeleporter extends VoidicPowerItem {
 			}
 			return EnumActionResult.SUCCESS;
 		}
-		return super.onItemUse(playerIn, worldIn, pos, hand, facing, hitX, hitY, hitZ);
+		return super.onItemUse(s, playerIn, worldIn, pos, hand, facing, hitX, hitY, hitZ);
 	}
 
 	@Override
-	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
+	public ActionResult<ItemStack> onItemRightClick(ItemStack s, World world, EntityPlayer player, EnumHand hand) {
 		ItemStack stack = player.getHeldItem(hand);
 		if (world.isRemote) return ActionResult.newResult(EnumActionResult.PASS, stack);
 		InventoryItem inv = createInventory(stack);
 		ItemStack holes = inv.getStackInSlot(0);
 		IVoidicPowerCapability cap = stack.getCapability(CapabilityList.VOIDICPOWER, null);
-		if (!player.isSneaking() && cap != null && cap.getCurrentPower() >= useAmount() && !holes.isEmpty() && holes.getItem() == Item.getItemFromBlock(VoidCraft.blocks.realityHole)) {
+		if (!player.isSneaking() && cap != null && cap.getCurrentPower() >= useAmount() && holes != null && holes.getItem() == Item.getItemFromBlock(VoidCraft.blocks.realityHole)) {
 			activate(stack, player);
 			cap.drain(useAmount());
-			holes.shrink(1);
+			holes.stackSize -= (1);
 			inv.saveData();
 			return ActionResult.newResult(EnumActionResult.SUCCESS, stack);
 		} else {

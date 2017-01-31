@@ -61,14 +61,14 @@ public class VoidicInfusionCapabilityHandler implements IVoidicInfusionCapabilit
 		boolean flag = true;
 		ItemStack mainHand = entity.getHeldItemMainhand();
 		ItemStack offHand = entity.getHeldItemOffhand();
-		if ((!mainHand.isEmpty() && mainHand.getItem() == VoidCraft.items.voidicSuppressor)) {
+		if ((mainHand != null && mainHand.getItem() == VoidCraft.items.voidicSuppressor)) {
 			IVoidicPowerCapability cap = entity.getHeldItemMainhand().getCapability(CapabilityList.VOIDICPOWER, null);
 			if (cap != null && cap.getCurrentPower() > 0) {
 				cap.drain(1);
 				cap.sendUpdates(null, 0, entity.getHeldItemMainhand());
 				flag = false;
 			}
-		} else if (!offHand.isEmpty() && offHand.getItem() == VoidCraft.items.voidicSuppressor) {
+		} else if (offHand != null && offHand.getItem() == VoidCraft.items.voidicSuppressor) {
 			IVoidicPowerCapability cap = entity.getHeldItemOffhand().getCapability(CapabilityList.VOIDICPOWER, null);
 			if (cap != null && cap.getCurrentPower() > 0) {
 				cap.drain(1);

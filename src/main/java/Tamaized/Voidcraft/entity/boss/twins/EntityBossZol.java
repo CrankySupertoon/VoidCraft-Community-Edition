@@ -9,6 +9,7 @@ import Tamaized.Voidcraft.sound.VoidSoundEvents;
 import Tamaized.Voidcraft.xiaCastle.logic.battle.twins.TwinsBattleHandler;
 import io.netty.buffer.ByteBufInputStream;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundEvent;
@@ -39,9 +40,9 @@ public class EntityBossZol extends EntityVoidBoss<TwinsBattleHandler> {
 	}
 
 	@Override
-	public boolean processInteract(EntityPlayer player, EnumHand hand) {
+	public boolean processInteract(EntityPlayer player, EnumHand hand, ItemStack s) {
 		// start();
-		return super.processInteract(player, hand);
+		return super.processInteract(player, hand, s);
 	}
 
 	@Override

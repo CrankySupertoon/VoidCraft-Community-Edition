@@ -65,7 +65,7 @@ public class VadeMecum extends TamItem {
 	}
 
 	@Override
-	public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+	public EnumActionResult onItemUse(ItemStack s, EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 		IBlockState state = world.getBlockState(pos);
 		if (state != null) {
 			if (state.getBlock() == VoidCraft.blocks.ritualBlock) {
@@ -82,17 +82,17 @@ public class VadeMecum extends TamItem {
 				return EnumActionResult.SUCCESS;
 			}
 		}
-		return super.onItemUse(player, world, pos, hand, facing, hitX, hitY, hitZ);
+		return super.onItemUse(s, player, world, pos, hand, facing, hitX, hitY, hitZ);
 	}
 
 	@Override
-	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
+	public ActionResult<ItemStack> onItemRightClick(ItemStack s, World world, EntityPlayer player, EnumHand hand) {
 		ItemStack stack = player.getHeldItem(hand);
 		dorightClick(world, player, stack);
-		return super.onItemRightClick(world, player, hand);
+		return super.onItemRightClick(s, world, player, hand);
 	}
 
-	// @SuppressWarnings("unused")
+	@SuppressWarnings("unused")
 	private boolean dorightClick(World world, EntityPlayer player, ItemStack stack) {
 		IVadeMecumItemCapability cap = stack.getCapability(CapabilityList.VADEMECUMITEM, null);
 		if (cap == null) return false;

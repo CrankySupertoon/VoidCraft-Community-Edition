@@ -11,6 +11,7 @@ import net.minecraft.client.gui.GuiListExtended.IGuiListEntry;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.inventory.Container;
 import net.minecraft.util.StringUtils;
 import net.minecraftforge.common.ForgeVersion;
 import net.minecraftforge.common.ForgeVersion.CheckResult;
@@ -23,11 +24,11 @@ import net.minecraftforge.fml.common.LoaderState.ModState;
 public class GUIElementList extends GuiScrollingList {
 
 	private Minecraft mc;
-	private GuiContainer parent;
+	private GUIContainerWrapper parent;
 	private ArrayList<GUIListElement> list;
 	private GUIListElement selected;
 
-	public GUIElementList(GuiContainer gui, ArrayList<GUIListElement> elements, int x, int y, int listWidth, int listHeight, int slotHeight) {
+	public GUIElementList(GUIContainerWrapper gui, ArrayList<GUIListElement> elements, int x, int y, int listWidth, int listHeight, int slotHeight) {
 		super(gui.mc, listWidth, gui.height, y, listHeight, x, slotHeight, gui.width, gui.height);
 		mc = gui.mc;
 		parent = gui;
@@ -70,6 +71,30 @@ public class GUIElementList extends GuiScrollingList {
 
 	public ArrayList<GUIListElement> getElements() {
 		return list;
+	}
+
+	public static abstract class GUIContainerWrapper extends GuiContainer {
+
+		public GUIContainerWrapper(Container inventorySlotsIn) {
+			super(inventorySlotsIn);
+		}
+
+		public int getXSize() {
+			return xSize;
+		}
+
+		public int getYSize() {
+			return ySize;
+		}
+
+		public int getGuiLeft() {
+			return guiLeft;
+		}
+
+		public int getGuiTop() {
+			return guiTop;
+		}
+
 	}
 
 }

@@ -40,7 +40,7 @@ public class VadeMecumButton extends GuiButton {
 			GlStateManager.disableBlend();
 			GlStateManager.color(1F, 1F, 1F, 1F);
 			RenderHelper.enableGUIStandardItemLighting();
-			if (!stackToRender.isEmpty()) mc.getRenderItem().renderItemIntoGUI(stackToRender, xPosition, yPosition + (height / 2) - 8);
+			if (stackToRender != null) mc.getRenderItem().renderItemIntoGUI(stackToRender, xPosition, yPosition + (height / 2) - 8);
 			RenderHelper.disableStandardItemLighting();
 		}
 	}

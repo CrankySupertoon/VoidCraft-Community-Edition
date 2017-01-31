@@ -5,8 +5,9 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.monster.EntityWitherSkeleton;
+import net.minecraft.entity.monster.EntitySkeleton;
 import net.minecraft.entity.monster.IMob;
+import net.minecraft.entity.monster.SkeletonType;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
@@ -20,7 +21,6 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 
-//CLASS WAS MADE FOR TARGETTING PURPOSES (and less use of nbt)
 public abstract class EntityVoidMob extends EntityCreature implements IMob {
 
 	private boolean invulnerable = false;
@@ -55,7 +55,7 @@ public abstract class EntityVoidMob extends EntityCreature implements IMob {
 	}
 
 	protected boolean canAttack(Entity entity) {
-		if (entity instanceof EntityWitherSkeleton) return false;
+		if (entity instanceof EntitySkeleton && ((EntitySkeleton) entity).func_189771_df() == SkeletonType.WITHER) return false;
 		return true;
 	}
 
@@ -159,9 +159,9 @@ public abstract class EntityVoidMob extends EntityCreature implements IMob {
 			if (entityIn instanceof EntityPlayer) {
 				EntityPlayer entityplayer = (EntityPlayer) entityIn;
 				ItemStack itemstack = getHeldItemMainhand();
-				ItemStack itemstack1 = entityplayer.isHandActive() ? entityplayer.getActiveItemStack() : ItemStack.EMPTY;
+				ItemStack itemstack1 = entityplayer.isHandActive() ? entityplayer.getActiveItemStack() : null;
 
-				if (!itemstack.isEmpty() && !itemstack1.isEmpty() && itemstack.getItem() instanceof ItemAxe && itemstack1.getItem() == Items.SHIELD) {
+				if (itemstack != null && itemstack1 != null && itemstack.getItem() instanceof ItemAxe && itemstack1.getItem() == Items.SHIELD) {
 					float f1 = 0.25F + (float) EnchantmentHelper.getEfficiencyModifier(this) * 0.05F;
 
 					if (rand.nextFloat() < f1) {
@@ -172,7 +172,7 @@ public abstract class EntityVoidMob extends EntityCreature implements IMob {
 			}
 
 			applyEnchantments(this, entityIn);
-			if (!getHeldItemMainhand().isEmpty() && entityIn instanceof EntityLivingBase) getHeldItemMainhand().getItem().hitEntity(getHeldItemMainhand(), (EntityLivingBase) entityIn, this);
+			if (getHeldItemMainhand() != null && entityIn instanceof EntityLivingBase) getHeldItemMainhand().getItem().hitEntity(getHeldItemMainhand(), (EntityLivingBase) entityIn, this);
 		}
 
 		return flag;

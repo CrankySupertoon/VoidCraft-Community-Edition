@@ -94,7 +94,7 @@ public class StarForgeShovel extends TamSpade implements IStarForgeTool {
 
 	@Override
 	public boolean shouldCauseReequipAnimation(ItemStack oldStack, ItemStack newStack, boolean slotChanged) {
-		return slotChanged ? true : (oldStack.isEmpty() || newStack.isEmpty()) ? true : oldStack.getItem() != newStack.getItem();
+		return slotChanged ? true : (oldStack == null || newStack == null) ? true : oldStack.getItem() != newStack.getItem();
 	}
 
 	@Override
@@ -135,7 +135,7 @@ public class StarForgeShovel extends TamSpade implements IStarForgeTool {
 	}
 
 	@Override
-	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand hand) {
+	public ActionResult<ItemStack> onItemRightClick(ItemStack s, World worldIn, EntityPlayer playerIn, EnumHand hand) {
 		ItemStack stack = playerIn.getHeldItem(hand);
 		IStarForgeCapability cap = stack.getCapability(CapabilityList.STARFORGE, null);
 		return cap == null ? new ActionResult(EnumActionResult.PASS, stack) : cap.onRightClick(playerIn) ? new ActionResult(EnumActionResult.SUCCESS, stack) : new ActionResult(EnumActionResult.PASS, stack);
@@ -163,7 +163,7 @@ public class StarForgeShovel extends TamSpade implements IStarForgeTool {
 	}
 
 	@Override
-	public EnumActionResult onItemUse(EntityPlayer playerIn, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+	public EnumActionResult onItemUse(ItemStack s, EntityPlayer playerIn, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 		ItemStack itemstack = playerIn.getHeldItem(hand);
 
 		if (!playerIn.canPlayerEdit(pos.offset(facing), facing, itemstack)) {

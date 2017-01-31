@@ -24,10 +24,10 @@ public class VoidicEssence extends TamItem {
 	}
 
 	@Override
-	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
+	public ActionResult<ItemStack> onItemRightClick(ItemStack s, World world, EntityPlayer player, EnumHand hand) {
 		if (!world.isRemote) {
 			ItemStack stack = player.getHeldItem(hand);
-			NBTTagCompound nbt = stack.getOrCreateSubCompound(VoidCraft.modid);
+			NBTTagCompound nbt = stack.getSubCompound(VoidCraft.modid, true);
 			int id = nbt.getInteger("xia");
 			int phase = nbt.getInteger("phase");
 			if (id > 0) {
@@ -47,9 +47,9 @@ public class VoidicEssence extends TamItem {
 					}
 				}
 			}
-			stack.shrink(1);
+			stack.stackSize -= (1);
 		}
-		return super.onItemRightClick(world, player, hand);
+		return super.onItemRightClick(s, world, player, hand);
 	}
 
 	private PlayerNameAlias getRandomUnusedAlias(int j, List<PlayerNameAlias> list) {

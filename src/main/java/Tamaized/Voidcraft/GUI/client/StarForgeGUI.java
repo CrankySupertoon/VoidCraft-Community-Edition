@@ -12,6 +12,7 @@ import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.GUI.server.StarForgeContainer;
 import Tamaized.Voidcraft.blocks.tileentity.TileEntityStarForge;
 import Tamaized.Voidcraft.helper.GUIElementList;
+import Tamaized.Voidcraft.helper.GUIElementList.GUIContainerWrapper;
 import Tamaized.Voidcraft.helper.GUIListElement;
 import Tamaized.Voidcraft.network.ServerPacketHandler;
 import Tamaized.Voidcraft.starforge.StarForgeEffectEntry;
@@ -26,14 +27,14 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
-public class StarForgeGUI extends GuiContainer {
+public class StarForgeGUI extends GUIContainerWrapper {
 
 	private static final ResourceLocation daTexture = new ResourceLocation(VoidCraft.modid, "textures/gui/starforge.png");
 
 	public TileEntityStarForge te;
 	private GUIElementList scroll;
-	private ItemStack dirtyStack = ItemStack.EMPTY;
-	private ItemStack renderStackHover = ItemStack.EMPTY;
+	private ItemStack dirtyStack = null;
+	private ItemStack renderStackHover = null;
 
 	public int mouseX = 0;
 	public int mouseY = 0;
@@ -123,16 +124,16 @@ public class StarForgeGUI extends GuiContainer {
 				GUIListElement element = list.get(index);
 				if (element instanceof StarForgeToolEntry) {
 					StarForgeToolEntry entry = (StarForgeToolEntry) element;
-					if (te.getStackInSlot(te.SLOT_OUTPUT).isEmpty() && te.getStackInSlot(te.SLOT_INPUT_COSMICMATERIAL).getCount() >= 4 && te.getStackInSlot(te.SLOT_INPUT_QUORIFRAGMENT).getCount() >= 1) {
+					if (te.getStackInSlot(te.SLOT_OUTPUT) == null && te.getStackInSlot(te.SLOT_INPUT_COSMICMATERIAL).stackSize >= 4 && te.getStackInSlot(te.SLOT_INPUT_QUORIFRAGMENT).stackSize >= 1) {
 						enough = true;
 					}
 				} else if (element instanceof StarForgeEffectEntry) {
 					StarForgeEffectEntry entry = (StarForgeEffectEntry) element;
-					if (!te.getStackInSlot(te.SLOT_INPUT_TOOL).isEmpty() && te.getStackInSlot(te.SLOT_OUTPUT).isEmpty()) {
+					if (te.getStackInSlot(te.SLOT_INPUT_TOOL) != null && te.getStackInSlot(te.SLOT_OUTPUT) == null) {
 						boolean flag = true;
 						for (ItemStack checkStack : entry.getRecipe().getInputs()) {
 							int slot = checkStack.getItem() == Item.getItemFromBlock(VoidCraft.blocks.cosmicMaterial) ? te.SLOT_INPUT_COSMICMATERIAL : checkStack.getItem() == VoidCraft.items.voidicDragonScale ? te.SLOT_INPUT_DRAGONSCALE : checkStack.getItem() == VoidCraft.items.quoriFragment ? te.SLOT_INPUT_QUORIFRAGMENT : checkStack.getItem() == VoidCraft.items.astralEssence ? te.SLOT_INPUT_ASTRALESSENCE : te.SLOT_INPUT_VOIDICPHLOG;
-							if (te.getStackInSlot(slot).getCount() >= checkStack.getCount()) break;
+							if (te.getStackInSlot(slot).stackSize >= checkStack.stackSize) break;
 							flag = false;
 						}
 						if (flag) enough = true;
@@ -149,9 +150,9 @@ public class StarForgeGUI extends GuiContainer {
 		super.drawScreen(mouseX, mouseY, partialTicks);
 		GlStateManager.disableLighting();
 		scroll.drawScreen(mouseX, mouseY, partialTicks);
-		if (!renderStackHover.isEmpty()) {
+		if (renderStackHover != null) {
 			renderToolTip(renderStackHover, mouseX, mouseY);
-			renderStackHover = ItemStack.EMPTY;
+			renderStackHover = null;
 		}
 	}
 
@@ -184,7 +185,7 @@ public class StarForgeGUI extends GuiContainer {
 			itemRender.renderItemIntoGUI(stack, x, y);
 			// drawCenteredString(fontRendererObj, ""+stack.stackSize, x, y, 0xFFFFFF);
 			GlStateManager.disableDepth();
-			if (stack.getCount() > 0) drawString(fontRendererObj, "" + stack.getCount(), x + 11 - (6 * (Integer.valueOf(stack.getCount()).toString().length() - 1)), y + 9, 0xFFFFFF);
+			if (stack.stackSize > 0) drawString(fontRendererObj, "" + stack.stackSize, x + 11 - (6 * (Integer.valueOf(stack.stackSize).toString().length() - 1)), y + 9, 0xFFFFFF);
 			GlStateManager.enableDepth();
 			if (mx >= x && mx <= x + 16 && my >= y && my <= y + 16) renderStackHover = stack;
 			RenderHelper.disableStandardItemLighting();

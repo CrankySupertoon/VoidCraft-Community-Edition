@@ -23,7 +23,7 @@ public class VoidHoe extends TamHoe {
 	 * Called when a Block is right-clicked with this Item
 	 */
 	@Override
-	public EnumActionResult onItemUse(EntityPlayer playerIn, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+	public EnumActionResult onItemUse(ItemStack s, EntityPlayer playerIn, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 		ItemStack stack = playerIn.getHeldItem(hand);
 		if (!playerIn.canPlayerEdit(pos.offset(facing), facing, stack)) {
 			return EnumActionResult.FAIL;
@@ -38,7 +38,7 @@ public class VoidHoe extends TamHoe {
 				this.setBlock(stack, playerIn, worldIn, pos, VoidCraft.blocks.blockFakeBedrockFarmland.getDefaultState());
 				return EnumActionResult.SUCCESS;
 			}
-			return super.onItemUse(playerIn, worldIn, pos, hand, facing, hitX, hitY, hitZ);
+			return super.onItemUse(s, playerIn, worldIn, pos, hand, facing, hitX, hitY, hitZ);
 		}
 	}
 

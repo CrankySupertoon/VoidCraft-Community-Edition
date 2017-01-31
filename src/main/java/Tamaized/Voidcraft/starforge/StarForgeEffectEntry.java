@@ -1,6 +1,7 @@
 package Tamaized.Voidcraft.starforge;
 
 import Tamaized.Voidcraft.GUI.client.StarForgeGUI;
+import Tamaized.Voidcraft.helper.GUIElementList.GUIContainerWrapper;
 import Tamaized.Voidcraft.helper.GUIListElement;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -27,7 +28,7 @@ public class StarForgeEffectEntry extends GUIListElement {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void draw(GuiContainer gui, Minecraft mc, int x, int y, int height, Tessellator tess) {
+	public void draw(GUIContainerWrapper gui, Minecraft mc, int x, int y, int height, Tessellator tess) {
 		if (!(gui instanceof StarForgeGUI)) return;
 		StarForgeGUI starforgeGUI = (StarForgeGUI) gui;
 		VertexBuffer worldr = tess.getBuffer();

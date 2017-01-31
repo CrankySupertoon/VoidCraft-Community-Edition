@@ -6,6 +6,7 @@ import Tamaized.TamModized.registry.ITamModel;
 import Tamaized.TamModized.registry.ITamRegistry;
 import Tamaized.Voidcraft.VoidCraft;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 public class VoidCraftCreativeTabs implements ITamRegistry {
@@ -17,8 +18,8 @@ public class VoidCraftCreativeTabs implements ITamRegistry {
 	public void preInit() {
 		tabVoid = new CreativeTabs("tabVoid") {
 			@Override
-			public ItemStack getTabIconItem() {
-				return new ItemStack(VoidCraft.blocks.blockPortalVoid);
+			public Item getTabIconItem() {
+				return Item.getItemFromBlock(VoidCraft.blocks.blockPortalVoid);
 			}
 		};
 		/*

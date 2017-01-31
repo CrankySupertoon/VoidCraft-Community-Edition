@@ -49,11 +49,11 @@ import net.minecraft.world.World;
 public class VadeMecumWordsOfPower {
 
 	private static final Map<Category, CategoryDataWrapper> categoryMap = new HashMap<Category, CategoryDataWrapper>();
-	private static final CategoryDataWrapper NullWrapper = new CategoryDataWrapper("null", ItemStack.EMPTY);
+	private static final CategoryDataWrapper NullWrapper = new CategoryDataWrapper("null", null);
 
 	static {
-		categoryMap.put(IVadeMecumCapability.Category.INTRO, new CategoryDataWrapper("Rituals", ItemStack.EMPTY));
-		categoryMap.put(IVadeMecumCapability.Category.TOME, new CategoryDataWrapper("Words of Power", ItemStack.EMPTY));
+		categoryMap.put(IVadeMecumCapability.Category.INTRO, new CategoryDataWrapper("Rituals", null));
+		categoryMap.put(IVadeMecumCapability.Category.TOME, new CategoryDataWrapper("Words of Power", null));
 		categoryMap.put(IVadeMecumCapability.Category.Flame, new CategoryDataWrapper("Word: Flame", new ItemStack(Items.FLINT)));
 		categoryMap.put(IVadeMecumCapability.Category.FireSheathe, new CategoryDataWrapper("Word: Sheathe - Fire", new ItemStack(Items.MAGMA_CREAM)));
 		categoryMap.put(IVadeMecumCapability.Category.Fireball, new CategoryDataWrapper("Word: Fireball", new ItemStack(Items.FIRE_CHARGE)));

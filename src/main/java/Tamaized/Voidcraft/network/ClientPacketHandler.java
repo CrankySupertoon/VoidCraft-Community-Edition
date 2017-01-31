@@ -70,28 +70,28 @@ public class ClientPacketHandler {
 			case VOIDICPOWERITEM: {
 				int slot = bbis.readInt();
 				ItemStack stack = ItemStackNetworkHelper.decodeStack(parBB, bbis);
-				ItemStack checkStack = ItemStack.EMPTY;
+				ItemStack checkStack = null;
 				switch (slot) {
 					case VoidicPowerItem.PLAYER_INV_SLOT_OFFHAND:
-						checkStack = Minecraft.getMinecraft().player.inventory.offHandInventory.get(0);
+						checkStack = Minecraft.getMinecraft().player.inventory.offHandInventory[0];
 						break;
 					case VoidicPowerItem.PLAYER_INV_SLOT_ARMOR_HELM:
-						checkStack = Minecraft.getMinecraft().player.inventory.armorInventory.get(0);
+						checkStack = Minecraft.getMinecraft().player.inventory.armorInventory[0];
 						break;
 					case VoidicPowerItem.PLAYER_INV_SLOT_ARMOR_CHEST:
-						checkStack = Minecraft.getMinecraft().player.inventory.armorInventory.get(1);
+						checkStack = Minecraft.getMinecraft().player.inventory.armorInventory[1];
 						break;
 					case VoidicPowerItem.PLAYER_INV_SLOT_ARMOR_LEGS:
-						checkStack = Minecraft.getMinecraft().player.inventory.armorInventory.get(2);
+						checkStack = Minecraft.getMinecraft().player.inventory.armorInventory[2];
 						break;
 					case VoidicPowerItem.PLAYER_INV_SLOT_ARMOR_BOOTS:
-						checkStack = Minecraft.getMinecraft().player.inventory.armorInventory.get(3);
+						checkStack = Minecraft.getMinecraft().player.inventory.armorInventory[3];
 						break;
 					default:
-						checkStack = Minecraft.getMinecraft().player.inventory.mainInventory.get(slot);
+						checkStack = Minecraft.getMinecraft().player.inventory.mainInventory[slot];
 						break;
 				}
-				if (checkStack.isEmpty() || stack.isEmpty() || !ItemStack.areItemStacksEqual(checkStack, stack)) break;
+				if (checkStack == null || stack == null || !ItemStack.areItemStacksEqual(checkStack, stack)) break;
 				IVoidicPowerCapability cap = checkStack.getCapability(CapabilityList.VOIDICPOWER, null);
 				if (cap != null) {
 					cap.decodePacket(bbis);

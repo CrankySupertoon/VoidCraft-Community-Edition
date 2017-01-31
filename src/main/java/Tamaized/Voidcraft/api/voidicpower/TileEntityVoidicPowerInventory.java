@@ -18,7 +18,7 @@ public abstract class TileEntityVoidicPowerInventory extends TileEntityVoidicPow
 	public TileEntityVoidicPowerInventory(int slotAmount) {
 		slots = new ItemStack[slotAmount];
 		for (int index = 0; index < slots.length; index++)
-			slots[index] = ItemStack.EMPTY;
+			slots[index] = null;
 	}
 
 	@Override
@@ -27,13 +27,13 @@ public abstract class TileEntityVoidicPowerInventory extends TileEntityVoidicPow
 		NBTTagList list = (NBTTagList) nbt.getTag("Items");
 		slots = new ItemStack[getSizeInventory()];
 		for (int index = 0; index < slots.length; index++)
-			slots[index] = ItemStack.EMPTY;
+			slots[index] = null;
 		if (list != null) {
 			for (int i = 0; i < list.tagCount(); i++) {
 				NBTTagCompound nbtc = (NBTTagCompound) list.getCompoundTagAt(i);
 				byte b = nbtc.getByte("Slot");
 				if (b >= 0 && b < slots.length) {
-					slots[b] = new ItemStack(nbtc);
+					slots[b] = ItemStack.func_77949_a(nbtc);
 				}
 			}
 		}
@@ -44,7 +44,7 @@ public abstract class TileEntityVoidicPowerInventory extends TileEntityVoidicPow
 		super.writeToNBT(nbt);
 		NBTTagList list = new NBTTagList();
 		for (int i = 0; i < slots.length; i++) {
-			if (!slots[i].isEmpty()) {
+			if (slots[i] != null) {
 				NBTTagCompound nbtc = new NBTTagCompound();
 				nbtc.setByte("Slot", (byte) i);
 				slots[i].writeToNBT(nbtc);
@@ -67,46 +67,39 @@ public abstract class TileEntityVoidicPowerInventory extends TileEntityVoidicPow
 
 	@Override
 	public ItemStack decrStackSize(int i, int j) {
-		if (!slots[i].isEmpty()) {
+		if (slots[i] != null) {
 			ItemStack itemstack;
-			if (slots[i].getCount() <= j) {
+			if (slots[i].stackSize <= j) {
 				itemstack = slots[i];
-				slots[i] = ItemStack.EMPTY;
+				slots[i] = null;
 				return itemstack;
 			} else {
 				itemstack = slots[i].splitStack(j);
-				if (slots[i].getCount() == 0) {
-					slots[i] = ItemStack.EMPTY;
+				if (slots[i].stackSize == 0) {
+					slots[i] = null;
 				}
 				return itemstack;
 			}
 		}
-		return ItemStack.EMPTY;
+		return null;
 	}
 
 	@Override
 	public ItemStack removeStackFromSlot(int i) {
-		if (!slots[i].isEmpty()) {
+		if (slots[i] != null) {
 			ItemStack itemstack = slots[i];
-			slots[i] = ItemStack.EMPTY;
+			slots[i] = null;
 			return itemstack;
 		}
-		return ItemStack.EMPTY;
+		return null;
 	}
 
 	@Override
 	public void setInventorySlotContents(int i, ItemStack stack) {
 		slots[i] = stack;
-		if (!stack.isEmpty() && stack.getCount() > getInventoryStackLimit()) {
-			stack.setCount(getInventoryStackLimit());
+		if (stack != null && stack.stackSize > getInventoryStackLimit()) {
+			stack.stackSize = (getInventoryStackLimit());
 		}
-	}
-
-	@Override
-	public boolean isEmpty() {
-		for (ItemStack stack : slots)
-			if (!stack.isEmpty()) return false;
-		return true;
 	}
 
 	@Override
@@ -151,7 +144,7 @@ public abstract class TileEntityVoidicPowerInventory extends TileEntityVoidicPow
 	@Override
 	public void clear() {
 		for (int i = 0; i < slots.length; i++)
-			slots[i] = ItemStack.EMPTY;
+			slots[i] = null;
 	}
 
 	@Override

@@ -8,7 +8,6 @@ import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.armor.ArmorCustomElytra;
 import Tamaized.Voidcraft.capabilities.CapabilityList;
 import Tamaized.Voidcraft.network.ServerPacketHandler;
-import net.minecraft.entity.MoverType;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
@@ -41,7 +40,7 @@ public class CustomElytraHandler {
 				doElytraFlyingChecks(clientPlayer);
 				if (clientPlayer.movementInput.jump && !clientPlayer.onGround && clientPlayer.motionY < 0.0D && !isElytraFlying(clientPlayer) && !clientPlayer.capabilities.isFlying) {
 					ItemStack itemstack = clientPlayer.getItemStackFromSlot(EntityEquipmentSlot.CHEST);
-					if (!itemstack.isEmpty() && itemstack.getItem() instanceof ArmorCustomElytra && ArmorCustomElytra.isBroken(itemstack)) {
+					if (itemstack != null && itemstack.getItem() instanceof ArmorCustomElytra && ArmorCustomElytra.isBroken(itemstack)) {
 						setFlying(clientPlayer, true);
 						sendPacketToServer(clientPlayer);
 						net.minecraft.client.Minecraft.getMinecraft().getSoundHandler().playSound(new net.minecraft.client.audio.ElytraSound(clientPlayer));
@@ -82,7 +81,7 @@ public class CustomElytraHandler {
 							entity.motionX *= 0.9900000095367432D;
 							entity.motionY *= 0.9800000190734863D;
 							entity.motionZ *= 0.9900000095367432D;
-							entity.move(MoverType.SELF, entity.motionX, entity.motionY, entity.motionZ);
+							entity.move(entity.motionX, entity.motionY, entity.motionZ);
 							if (entity.isCollidedHorizontally && !entity.world.isRemote) {
 								double d10 = Math.sqrt(entity.motionX * entity.motionX + entity.motionZ * entity.motionZ);
 								double d3 = d8 - d10;
@@ -114,7 +113,7 @@ public class CustomElytraHandler {
 		if (!e.hasCapability(CapabilityList.ELYTRAFLYING, null)) return;
 		if (!e.onGround && !e.isRiding()) {
 			ItemStack itemstack = e.getItemStackFromSlot(EntityEquipmentSlot.CHEST);
-			if (!itemstack.isEmpty() && itemstack.getItem() instanceof ArmorCustomElytra && ArmorCustomElytra.isBroken(itemstack)) {
+			if (itemstack != null && itemstack.getItem() instanceof ArmorCustomElytra && ArmorCustomElytra.isBroken(itemstack)) {
 
 				int ticks = e.getCapability(CapabilityList.ELYTRAFLYING, null).getElytraTime() + 1;
 				if (!e.world.isRemote && (ticks) % 20 == 0) {

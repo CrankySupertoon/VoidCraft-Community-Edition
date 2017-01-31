@@ -38,7 +38,7 @@ public class HookShot extends TamItem {
 	public ItemStack onItemRightClick(ItemStack itemstack, World world, EntityPlayer player) {
 		/*
 		 * player.setItemInUse(itemstack, 20*4); if(world.isRemote) return itemstack; if(!HookShot.handler.containsKey(player)){ voidCraft.logger.info("Adding player ("+player.getGameProfile().getName()+") to HookShot handler"); HookShot.handler.put(player, false); } if(HookShot.handler.get(player)) return itemstack; EntityHookShot hook = new EntityHookShot(world, player, 1.6F); hook.setRangeAndSpeed(0.0F, 1.7D); world.spawnEntityInWorld(hook); HookShot.handler.put(player, true); return itemstack;
-		 */return ItemStack.EMPTY;
+		 */return null;
 	}
 
 	public void onPlayerStoppedUsing(ItemStack itemstack, World world, EntityPlayer player, int count) { // Doesnt seem to be called server side so send a packet

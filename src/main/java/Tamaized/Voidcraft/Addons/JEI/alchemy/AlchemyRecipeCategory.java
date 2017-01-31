@@ -54,15 +54,25 @@ public class AlchemyRecipeCategory implements IRecipeCategory {
 
 	@Override
 	public void setRecipe(IRecipeLayout recipeLayout, IRecipeWrapper recipeWrapper, IIngredients ingredients) {
-		if (recipeWrapper instanceof AlchemyRecipeWrapperJEI) {
-			AlchemyRecipeWrapperJEI recipe = (AlchemyRecipeWrapperJEI) recipeWrapper;
-			recipe.setupSlots(recipeLayout.getIngredientsGroup(ItemStack.class));
-		}
+		setRecipe(recipeLayout, recipeWrapper);
 	}
 
 	@Override
 	public IDrawable getIcon() {
 		return null;
+	}
+
+	@Override
+	public void drawAnimations(Minecraft minecraft) {
+		
+	}
+
+	@Override
+	public void setRecipe(IRecipeLayout recipeLayout, IRecipeWrapper recipeWrapper) {
+		if (recipeWrapper instanceof AlchemyRecipeWrapperJEI) {
+			AlchemyRecipeWrapperJEI recipe = (AlchemyRecipeWrapperJEI) recipeWrapper;
+			recipe.setupSlots(recipeLayout.getIngredientsGroup(ItemStack.class));
+		}
 	}
 
 }

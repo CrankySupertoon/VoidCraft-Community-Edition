@@ -69,7 +69,7 @@ public class TileEntityVoidicCharger extends TileEntityVoidicPowerInventory {
 
 	@Override
 	public void onUpdate() {
-		if (voidicPower > 0 && !getStackInSlot(SLOT_DEFAULT).isEmpty() && getStackInSlot(SLOT_DEFAULT).getItem() instanceof VoidicPowerItem) {
+		if (voidicPower > 0 && getStackInSlot(SLOT_DEFAULT) != null && getStackInSlot(SLOT_DEFAULT).getItem() instanceof VoidicPowerItem) {
 			IVoidicPowerCapability cap = getStackInSlot(SLOT_DEFAULT).getCapability(CapabilityList.VOIDICPOWER, null);
 			if (cap != null && cap.getAmountPerc() < 1.0f) {
 				int amount = voidicPower >= maxPowerTransfer() ? maxPowerTransfer() : voidicPower;
@@ -82,7 +82,7 @@ public class TileEntityVoidicCharger extends TileEntityVoidicPowerInventory {
 
 	@Override
 	protected boolean canExtractSlot(int i, ItemStack stack) {
-		if (stack.isEmpty()) return false;
+		if (stack == null) return false;
 		IVoidicPowerCapability cap = getStackInSlot(SLOT_DEFAULT).getCapability(CapabilityList.VOIDICPOWER, null);
 		return cap != null && cap.getCurrentPower() == cap.getMaxPower();
 	}

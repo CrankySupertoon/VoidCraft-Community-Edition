@@ -73,18 +73,18 @@ public class ServerPacketHandler {
 								GUIListElement element = list.get(index);
 								if (element instanceof StarForgeToolEntry) {
 									StarForgeToolEntry entry = (StarForgeToolEntry) element;
-									if (tile.getStackInSlot(tile.SLOT_OUTPUT).isEmpty() && tile.getStackInSlot(tile.SLOT_INPUT_COSMICMATERIAL).getCount() >= 4 && tile.getStackInSlot(tile.SLOT_INPUT_QUORIFRAGMENT).getCount() >= 1) {
-										tile.getStackInSlot(tile.SLOT_INPUT_COSMICMATERIAL).shrink(4);
-										tile.getStackInSlot(tile.SLOT_INPUT_QUORIFRAGMENT).shrink(1);
+									if (tile.getStackInSlot(tile.SLOT_OUTPUT) == null && tile.getStackInSlot(tile.SLOT_INPUT_COSMICMATERIAL).stackSize >= 4 && tile.getStackInSlot(tile.SLOT_INPUT_QUORIFRAGMENT).stackSize >= 1) {
+										tile.getStackInSlot(tile.SLOT_INPUT_COSMICMATERIAL).stackSize -= (4);
+										tile.getStackInSlot(tile.SLOT_INPUT_QUORIFRAGMENT).stackSize -= (1);
 										tile.setInventorySlotContents(tile.SLOT_OUTPUT, entry.getTool());
 									}
 								} else if (element instanceof StarForgeEffectEntry) {
 									StarForgeEffectEntry entry = (StarForgeEffectEntry) element;
-									if (!tile.getStackInSlot(tile.SLOT_INPUT_TOOL).isEmpty() && tile.getStackInSlot(tile.SLOT_OUTPUT).isEmpty()) {
+									if (tile.getStackInSlot(tile.SLOT_INPUT_TOOL) != null && tile.getStackInSlot(tile.SLOT_OUTPUT) == null) {
 										boolean flag = true;
 										for (ItemStack checkStack : entry.getRecipe().getInputs()) {
 											int slot = checkStack.getItem() == Item.getItemFromBlock(VoidCraft.blocks.cosmicMaterial) ? tile.SLOT_INPUT_COSMICMATERIAL : checkStack.getItem() == VoidCraft.items.voidicDragonScale ? tile.SLOT_INPUT_DRAGONSCALE : checkStack.getItem() == VoidCraft.items.quoriFragment ? tile.SLOT_INPUT_QUORIFRAGMENT : checkStack.getItem() == VoidCraft.items.astralEssence ? tile.SLOT_INPUT_ASTRALESSENCE : tile.SLOT_INPUT_VOIDICPHLOG;
-											if (tile.getStackInSlot(slot).getCount() >= checkStack.getCount()) break;
+											if (tile.getStackInSlot(slot).stackSize >= checkStack.stackSize) break;
 											flag = false;
 										}
 										if (flag) {
@@ -93,12 +93,12 @@ public class ServerPacketHandler {
 											if (cap != null && cap.getEffect(entry.getRecipe().getEffect().getTier()) == null) {
 												for (ItemStack checkStack : entry.getRecipe().getInputs()) {
 													int slot = checkStack.getItem() == Item.getItemFromBlock(VoidCraft.blocks.cosmicMaterial) ? tile.SLOT_INPUT_COSMICMATERIAL : checkStack.getItem() == VoidCraft.items.voidicDragonScale ? tile.SLOT_INPUT_DRAGONSCALE : checkStack.getItem() == VoidCraft.items.quoriFragment ? tile.SLOT_INPUT_QUORIFRAGMENT : checkStack.getItem() == VoidCraft.items.astralEssence ? tile.SLOT_INPUT_ASTRALESSENCE : tile.SLOT_INPUT_VOIDICPHLOG;
-													tile.getStackInSlot(slot).shrink(checkStack.getCount());
+													tile.getStackInSlot(slot).stackSize -= (checkStack.stackSize);
 												}
 												cap.addEffect(entry.getRecipe().getEffect());
 											}
 											tile.setInventorySlotContents(tile.SLOT_OUTPUT, tool);
-											tile.setInventorySlotContents(tile.SLOT_INPUT_TOOL, ItemStack.EMPTY);
+											tile.setInventorySlotContents(tile.SLOT_INPUT_TOOL, null);
 										}
 									}
 								}
@@ -108,10 +108,10 @@ public class ServerPacketHandler {
 						break;
 					case LINK_CLEAR: {
 						int slot = bbis.readInt();
-						ItemStack stack = ItemStack.EMPTY;
-						if (slot >= 0 && slot < player.inventory.mainInventory.size()) stack = player.inventory.mainInventory.get(slot);
-						else if (slot == -1) stack = player.inventory.offHandInventory.get(0);
-						if (!stack.isEmpty() && stack.getItem() == VoidCraft.items.realityTeleporter) {
+						ItemStack stack = null;
+						if (slot >= 0 && slot < player.inventory.mainInventory.length) stack = player.inventory.mainInventory[slot];
+						else if (slot == -1) stack = player.inventory.offHandInventory[0];
+						if (stack != null && stack.getItem() == VoidCraft.items.realityTeleporter) {
 							RealityTeleporter.clearLink(stack);
 						}
 					}
@@ -119,7 +119,7 @@ public class ServerPacketHandler {
 					case CUSTOM_ELYTRA: {
 						if (!player.onGround && player.motionY < 0.0D && !CustomElytraHandler.isElytraFlying(player) && !player.isInWater()) {
 							ItemStack itemstack = player.getItemStackFromSlot(EntityEquipmentSlot.CHEST);
-							if (!itemstack.isEmpty() && itemstack.getItem() instanceof ArmorCustomElytra && ArmorCustomElytra.isBroken(itemstack)) {
+							if (itemstack != null && itemstack.getItem() instanceof ArmorCustomElytra && ArmorCustomElytra.isBroken(itemstack)) {
 								CustomElytraHandler.setFlying(player, true);
 							}
 						} else {

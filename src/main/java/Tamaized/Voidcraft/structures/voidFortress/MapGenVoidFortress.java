@@ -72,9 +72,4 @@ public class MapGenVoidFortress extends MapGenStructure {
 		}
 	}
 
-	@Override
-	public BlockPos getClosestStrongholdPos(World worldIn, BlockPos pos, boolean p_180706_3_) {
-		return null;
-	}
-
 }

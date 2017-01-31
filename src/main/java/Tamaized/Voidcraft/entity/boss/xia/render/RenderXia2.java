@@ -44,8 +44,8 @@ public class RenderXia2<T extends EntityBossXia2> extends RenderLiving<T> {
 			ItemStack itemstack1 = entity.getHeldItemOffhand();
 			ModelBiped.ArmPose modelbiped$armpose = ModelBiped.ArmPose.EMPTY;
 			ModelBiped.ArmPose modelbiped$armpose1 = ModelBiped.ArmPose.EMPTY;
-			if (!itemstack.isEmpty()) modelbiped$armpose = ModelBiped.ArmPose.ITEM;
-			if (!itemstack1.isEmpty()) modelbiped$armpose1 = ModelBiped.ArmPose.ITEM;
+			if (itemstack != null) modelbiped$armpose = ModelBiped.ArmPose.ITEM;
+			if (itemstack1 != null) modelbiped$armpose1 = ModelBiped.ArmPose.ITEM;
 			if (entity.getPrimaryHand() == EnumHandSide.RIGHT) {
 				getMainModel().rightArmPose = modelbiped$armpose;
 				getMainModel().leftArmPose = modelbiped$armpose1;
@@ -56,7 +56,7 @@ public class RenderXia2<T extends EntityBossXia2> extends RenderLiving<T> {
 			super.doRender(entity, x, y, z, yaw, ticks);
 			boolean flag = entity.getPrimaryHand() == EnumHandSide.RIGHT;
 
-			if (!itemstack.isEmpty() || !itemstack1.isEmpty()) {
+			if (itemstack != null || itemstack1 != null) {
 				GlStateManager.pushMatrix();
 
 				if (getMainModel().isChild) {
@@ -93,7 +93,7 @@ public class RenderXia2<T extends EntityBossXia2> extends RenderLiving<T> {
 	}
 
 	private void renderHeldItem(EntityLivingBase entity, ItemStack stack, ItemCameraTransforms.TransformType transform, EnumHandSide hand) {
-		if (!stack.isEmpty()) {
+		if (stack != null) {
 			GlStateManager.pushMatrix();
 
 			if (entity.isSneaking()) {

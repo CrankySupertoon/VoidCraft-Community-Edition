@@ -17,25 +17,25 @@ public abstract class InventoryItem implements IInventory {
 		parent = stack;
 		inventory = new ItemStack[slots];
 		for (int index = 0; index < inventory.length; index++)
-			inventory[index] = ItemStack.EMPTY;
-		readFromNBT(parent.getOrCreateSubCompound(VoidCraft.modid + "_InventoryItem"));
+			inventory[index] = null;
+		readFromNBT(parent.getSubCompound(VoidCraft.modid + "_InventoryItem", true));
 	}
 
 	public void saveData() {
-		writeToNBT(parent.getOrCreateSubCompound(VoidCraft.modid + "_InventoryItem"));
+		writeToNBT(parent.getSubCompound(VoidCraft.modid + "_InventoryItem", true));
 	}
 
 	protected void readFromNBT(NBTTagCompound nbt) {
 		NBTTagList list = (NBTTagList) nbt.getTag("Items");
 		inventory = new ItemStack[getSizeInventory()];
 		for (int index = 0; index < inventory.length; index++)
-			inventory[index] = ItemStack.EMPTY;
+			inventory[index] = null;
 		if (list != null) {
 			for (int i = 0; i < list.tagCount(); i++) {
 				NBTTagCompound nbtc = (NBTTagCompound) list.getCompoundTagAt(i);
 				byte b = nbtc.getByte("Slot");
 				if (b >= 0 && b < inventory.length) {
-					inventory[b] = new ItemStack(nbtc);
+					inventory[b] = ItemStack.func_77949_a(nbtc);
 				}
 			}
 		}
@@ -44,7 +44,7 @@ public abstract class InventoryItem implements IInventory {
 	protected NBTTagCompound writeToNBT(NBTTagCompound nbt) {
 		NBTTagList list = new NBTTagList();
 		for (int i = 0; i < inventory.length; i++) {
-			if (!inventory[i].isEmpty()) {
+			if (inventory[i] != null) {
 				NBTTagCompound nbtc = new NBTTagCompound();
 				nbtc.setByte("Slot", (byte) i);
 				inventory[i].writeToNBT(nbtc);
@@ -76,29 +76,29 @@ public abstract class InventoryItem implements IInventory {
 
 	@Override
 	public ItemStack decrStackSize(int i, int count) {
-		if (!inventory[i].isEmpty()) {
+		if (inventory[i] != null) {
 			ItemStack itemstack;
-			if (inventory[i].getCount() <= count) {
+			if (inventory[i].stackSize <= count) {
 				itemstack = inventory[i];
-				inventory[i] = ItemStack.EMPTY;
+				inventory[i] = null;
 				return itemstack;
 			} else {
 				itemstack = inventory[i].splitStack(count);
-				if (inventory[i].getCount() == 0) inventory[i] = ItemStack.EMPTY;
+				if (inventory[i].stackSize == 0) inventory[i] = null;
 				return itemstack;
 			}
 		}
-		return ItemStack.EMPTY;
+		return null;
 	}
 
 	@Override
 	public ItemStack removeStackFromSlot(int i) {
-		if (!inventory[i].isEmpty()) {
+		if (inventory[i] != null) {
 			ItemStack itemstack = inventory[i];
-			inventory[i] = ItemStack.EMPTY;
+			inventory[i] = null;
 			return itemstack;
 		}
-		return ItemStack.EMPTY;
+		return null;
 	}
 
 	@Override

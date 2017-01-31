@@ -19,7 +19,7 @@ public class ObsidianFlask extends TamItem {
 	}
 
 	@Override
-	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand hand) {
+	public ActionResult<ItemStack> onItemRightClick(ItemStack s, World worldIn, EntityPlayer playerIn, EnumHand hand) {
 		ItemStack stack = playerIn.getHeldItem(hand);
 		if (!worldIn.isRemote) {
 			EntityObsidianFlask e = new EntityObsidianFlask(worldIn, playerIn);
@@ -28,7 +28,7 @@ public class ObsidianFlask extends TamItem {
 		}
 		worldIn.playSound((EntityPlayer) null, playerIn.posX, playerIn.posY, playerIn.posZ, SoundEvents.ENTITY_SPLASH_POTION_THROW, SoundCategory.NEUTRAL, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
 		if (!playerIn.capabilities.isCreativeMode) {
-			stack.shrink(1);
+			stack.stackSize -= (1);
 		}
 		return ActionResult.newResult(EnumActionResult.SUCCESS, stack);
 	}

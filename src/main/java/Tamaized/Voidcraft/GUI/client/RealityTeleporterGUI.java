@@ -44,14 +44,14 @@ public class RealityTeleporterGUI extends GuiContainer {
 		xSize = 347;
 		ySize = 320;
 		int temp = -2;
-		for (int i = 0; i < inventoryPlayer.mainInventory.size(); i++) {
-			if (ItemStack.areItemStacksEqual(parent, inventoryPlayer.mainInventory.get(i))) {
+		for (int i = 0; i < inventoryPlayer.mainInventory.length; i++) {
+			if (ItemStack.areItemStacksEqual(parent, inventoryPlayer.mainInventory[i])) {
 				temp = i;
 				break;
 			}
 		}
 		if (temp == -2) {
-			if (ItemStack.areItemStacksEqual(parent, inventoryPlayer.offHandInventory.get(0))) temp = -1;
+			if (ItemStack.areItemStacksEqual(parent, inventoryPlayer.offHandInventory[0])) temp = -1;
 		}
 		slotID = temp;
 	}

@@ -2,7 +2,6 @@ package Tamaized.Voidcraft.entity.boss.herobrine.extra;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.MoverType;
 import net.minecraft.entity.item.EntityTNTPrimed;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
@@ -68,7 +67,7 @@ public class EntityHerobrineTNTPrimed extends Entity {
 			motionY -= 0.03999999910593033D;
 		}
 
-		move(MoverType.SELF, motionX, motionY, motionZ);
+		move(motionX, motionY, motionZ);
 		motionX *= 0.9800000190734863D;
 		motionY *= 0.9800000190734863D;
 		motionZ *= 0.9800000190734863D;

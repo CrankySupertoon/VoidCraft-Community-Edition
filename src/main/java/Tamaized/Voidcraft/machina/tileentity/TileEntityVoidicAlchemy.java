@@ -97,7 +97,7 @@ public class TileEntityVoidicAlchemy extends TileEntityVoidicPowerInventory {
 		NBTTagCompound ownerData = nbt.getCompoundTag("ownerData");
 		ownerName = ownerData.getString("ownerName");
 		String id = ownerData.getString("ownerID");
-		ownerID = (id.isEmpty() || id.equals("null")) ? null : UUID.fromString(id);
+		ownerID = (id == null || id.equals("null")) ? null : UUID.fromString(id);
 		NBTTagCompound capData = ownerData.getCompoundTag("capData");
 		if (!capData.hasNoTags()) {
 			owner = new VadeMecumCapabilityHandler();
@@ -162,39 +162,39 @@ public class TileEntityVoidicAlchemy extends TileEntityVoidicPowerInventory {
 
 	private void doLastItemChecks() {
 		for (int i = SLOT_INPUT_1; i <= SLOT_INPUT_6; i++) {
-			if (lastItem[i] == null || getStackInSlot(i).isEmpty() || lastItem[i] != getStackInSlot(i).getItem()) {
+			if (lastItem[i] == null || getStackInSlot(i) == null || lastItem[i] != getStackInSlot(i).getItem()) {
 				cookingTick = 0;
-				lastItem[i] = (!getStackInSlot(i).isEmpty()) ? getStackInSlot(i).getItem() : null;
+				lastItem[i] = (getStackInSlot(i) != null) ? getStackInSlot(i).getItem() : null;
 			}
 		}
 	}
 
 	private boolean canCook() {
 		for (int i = SLOT_INPUT_1; i <= SLOT_INPUT_6; i++) {
-			if (getStackInSlot(i).isEmpty()) {
+			if (getStackInSlot(i) == null) {
 				return false;
 			}
 		}
 		recipe = VoidCraft.teRecipes.alchemy.getRecipe(owner, new ItemStack[] { getStackInSlot(SLOT_INPUT_1), getStackInSlot(SLOT_INPUT_2), getStackInSlot(SLOT_INPUT_3), getStackInSlot(SLOT_INPUT_4), getStackInSlot(SLOT_INPUT_5), getStackInSlot(SLOT_INPUT_6) });
 		if (recipe == null) return false;
-		if (getStackInSlot(SLOT_OUTPUT).isEmpty()) return true;
+		if (getStackInSlot(SLOT_OUTPUT) == null) return true;
 		if (!getStackInSlot(SLOT_OUTPUT).isItemEqual(recipe.getOutput())) return false;
-		int result = getStackInSlot(SLOT_OUTPUT).getCount() + recipe.getOutput().getCount();
+		int result = getStackInSlot(SLOT_OUTPUT).stackSize + recipe.getOutput().stackSize;
 		return (result <= getInventoryStackLimit() && result <= recipe.getOutput().getMaxStackSize());
 	}
 
 	private void bakeItem() {
 		if (canCook()) {
-			if (getStackInSlot(SLOT_OUTPUT).isEmpty()) {
+			if (getStackInSlot(SLOT_OUTPUT) == null) {
 				setInventorySlotContents(SLOT_OUTPUT, recipe.getOutput().copy());
 			} else if (getStackInSlot(SLOT_OUTPUT).isItemEqual(recipe.getOutput())) {
-				getStackInSlot(SLOT_OUTPUT).grow(recipe.getOutput().getCount());
+				getStackInSlot(SLOT_OUTPUT).stackSize+=(recipe.getOutput().stackSize);
 			}
 
 			for (int i = SLOT_INPUT_1; i <= SLOT_INPUT_6; i++) {
-				getStackInSlot(i).shrink(1);;
-				if (getStackInSlot(i).getCount() <= 0) {
-					setInventorySlotContents(i, ItemStack.EMPTY);
+				getStackInSlot(i).stackSize-=(1);;
+				if (getStackInSlot(i).stackSize <= 0) {
+					setInventorySlotContents(i, null);
 				}
 			}
 		}
