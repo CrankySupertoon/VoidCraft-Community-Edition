@@ -66,7 +66,7 @@ public class DamageEvent {
 		Entity e = source.getEntity();
 		if (e != null && e instanceof EntityLivingBase) {
 			EntityLivingBase living = (EntityLivingBase) e;
-			IStarForgeCapability cap = living.getHeldItemMainhand().getCapability(CapabilityList.STARFORGE, null);
+			IStarForgeCapability cap = living.getHeldItemMainhand() == null ? null : living.getHeldItemMainhand().getCapability(CapabilityList.STARFORGE, null);
 			if (cap != null) {
 				IStarForgeEffect effect = cap.getEffect(Tier.THREE);
 				if (effect != null && effect instanceof StarForgeEffectCripplingVoid) return false;
