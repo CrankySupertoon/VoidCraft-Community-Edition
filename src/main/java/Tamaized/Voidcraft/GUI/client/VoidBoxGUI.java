@@ -34,7 +34,7 @@ public class VoidBoxGUI extends GuiContainer {
 
 	private int CurrColor = 0;
 
-	private static final ResourceLocation daTexture = new ResourceLocation(VoidCraft.modid, "textures/gui/voidBox.png");
+	private static final ResourceLocation daTexture = new ResourceLocation(VoidCraft.modid, "textures/gui/voidbox.png");
 
 	public VoidBoxGUI(InventoryPlayer inventoryPlayer, TileEntityVoidBox tileEntity) {
 		super(new VoidBoxContainer(inventoryPlayer, tileEntity));

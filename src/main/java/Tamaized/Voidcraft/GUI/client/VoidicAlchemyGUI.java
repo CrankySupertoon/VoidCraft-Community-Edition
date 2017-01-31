@@ -13,7 +13,7 @@ public class VoidicAlchemyGUI extends GuiContainer {
 
 	public TileEntityVoidicAlchemy te;
 
-	private static final ResourceLocation TEXTURE = new ResourceLocation(VoidCraft.modid, "textures/gui/voidicAlchemy.png");
+	private static final ResourceLocation TEXTURE = new ResourceLocation(VoidCraft.modid, "textures/gui/voidicalchemy.png");
 
 	public VoidicAlchemyGUI(InventoryPlayer inventoryPlayer, TileEntityVoidicAlchemy tileEntity) {
 		super(new VoidicAlchemyContainer(inventoryPlayer, tileEntity));

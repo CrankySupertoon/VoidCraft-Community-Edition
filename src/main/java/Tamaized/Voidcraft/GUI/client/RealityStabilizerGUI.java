@@ -16,7 +16,7 @@ public class RealityStabilizerGUI extends GuiContainer {
 
 	public TileEntityRealityStabilizer te;
 
-	private static final ResourceLocation daTexture = new ResourceLocation(VoidCraft.modid, "textures/gui/voidCharger.png");
+	private static final ResourceLocation daTexture = new ResourceLocation(VoidCraft.modid, "textures/gui/voidcharger.png");
 
 	public RealityStabilizerGUI(InventoryPlayer inventoryPlayer, TileEntityRealityStabilizer tileEntity) {
 		super(new RealityStabilizerContainer(inventoryPlayer, tileEntity));

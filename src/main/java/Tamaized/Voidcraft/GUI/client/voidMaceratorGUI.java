@@ -16,7 +16,7 @@ public class voidMaceratorGUI extends GuiContainer {
 
 	public TileEntityVoidMacerator te;
 
-	private static final ResourceLocation daTexture = new ResourceLocation(VoidCraft.modid, "textures/gui/voidMacerator.png");
+	private static final ResourceLocation daTexture = new ResourceLocation(VoidCraft.modid, "textures/gui/voidmacerator.png");
 
 	public voidMaceratorGUI(InventoryPlayer inventoryPlayer, TileEntityVoidMacerator tileEntity) {
 		super(new VoidMaceratorContainer(inventoryPlayer, tileEntity));

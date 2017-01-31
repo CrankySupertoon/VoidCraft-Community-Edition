@@ -22,7 +22,7 @@ public class voidInfuserGUI extends GuiContainer {
 	
 	public TileEntityVoidInfuser te;
 	
-	private static final ResourceLocation daTexture = new ResourceLocation(VoidCraft.modid, "textures/gui/voidInfuser.png");
+	private static final ResourceLocation daTexture = new ResourceLocation(VoidCraft.modid, "textures/gui/voidinfuser.png");
 
 	public voidInfuserGUI (InventoryPlayer inventoryPlayer, TileEntityVoidInfuser tileEntity) {
 		super(new VoidInfuserContainer(inventoryPlayer, tileEntity));

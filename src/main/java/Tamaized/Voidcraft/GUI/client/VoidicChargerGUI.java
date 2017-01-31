@@ -14,7 +14,7 @@ public class VoidicChargerGUI extends GuiContainer {
 
 	public TileEntityVoidicCharger te;
 
-	private static final ResourceLocation daTexture = new ResourceLocation(VoidCraft.modid, "textures/gui/voidCharger.png");
+	private static final ResourceLocation daTexture = new ResourceLocation(VoidCraft.modid, "textures/gui/voidcharger.png");
 
 	public VoidicChargerGUI(InventoryPlayer inventoryPlayer, TileEntityVoidicCharger tileEntity) {
 		super(new VoidicChargerContainer(inventoryPlayer, tileEntity));

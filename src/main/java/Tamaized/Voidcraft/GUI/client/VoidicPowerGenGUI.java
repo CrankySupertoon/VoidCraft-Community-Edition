@@ -14,7 +14,7 @@ public class VoidicPowerGenGUI extends GuiContainer {
 	
 	public TileEntityVoidicPowerGen te;
 	
-	private static final ResourceLocation daTexture = new ResourceLocation(VoidCraft.modid, "textures/gui/voidGen.png");
+	private static final ResourceLocation daTexture = new ResourceLocation(VoidCraft.modid, "textures/gui/voidgen.png");
 	
 	public VoidicPowerGenGUI (InventoryPlayer inventoryPlayer, TileEntityVoidicPowerGen tileEntity) {
 		super(new VoidicPowerGenContainer(inventoryPlayer, tileEntity));
