@@ -14,7 +14,7 @@
 				"west": { "texture": "#side" },
 				"east": { "texture": "#side" }
 			},
-			"__comment": "North side"
+			"__comment": "north side"
 		}
 	]
 }

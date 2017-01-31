@@ -1,6 +1,6 @@
 {
     "parent": "block/fence_inventory",
     "textures": {
-        "texture": "voidcraft:blocks/VoidBrick"
+        "texture": "voidcraft:blocks/voidbrick"
     }
 }

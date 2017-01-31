@@ -1,6 +1,6 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "voidcraft:items/itemDustQuartz"
+        "layer0": "voidcraft:items/itemdustquartz"
     }
 }

@@ -4,7 +4,7 @@
         "textures": {
 			
 		},
-        "model": "voidcraft:iceSpike.obj"
+        "model": "voidcraft:icespike.obj"
     },
     "variants": {
         "facing": {

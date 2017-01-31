@@ -1,5 +1,5 @@
 {
-    "parent": "voidcraft:block/ritualBlock",
+    "parent": "voidcraft:block/ritualblock",
     "display": {
         "gui": {
             "rotation": [ 30, 225, 0 ],

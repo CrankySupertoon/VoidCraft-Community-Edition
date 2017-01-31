@@ -1,5 +1,5 @@
 {
-    "parent": "voidcraft:block/AIBlock_state_1",
+    "parent": "voidcraft:block/aiblock_state_1",
     "display": {
         "gui": {
             "rotation": [ 30, 225, 0 ],

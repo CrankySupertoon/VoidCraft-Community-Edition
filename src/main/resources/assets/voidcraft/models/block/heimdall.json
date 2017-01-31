@@ -1,10 +1,10 @@
 {
 	"textures": {
-		"0": "voidcraft:models/blocks/Heimdall"
+		"0": "voidcraft:models/blocks/heimdall"
 	},
 	"elements": [
         {
-            "name": "Base",
+            "name": "base",
             "from": [ 2.0, 0.0, 2.0 ], 
             "to": [ 14.0, 3.0, 14.0 ], 
             "faces": {
@@ -17,7 +17,7 @@
             }
         },
         {
-            "name": "R1",
+            "name": "r1",
             "from": [ 12.0, 3.0, 5.0 ], 
             "to": [ 14.0, 7.0, 11.0 ], 
             "faces": {
@@ -30,7 +30,7 @@
             }
         },
         {
-            "name": "R2",
+            "name": "r2",
             "from": [ 12.5, 6.8, 6.0 ], 
             "to": [ 13.5, 9.8, 10.0 ], 
             "rotation": { "origin": [ 13.0, 7.0, 8.0 ], "axis": "z", "angle": 22.5 },
@@ -44,7 +44,7 @@
             }
         },
         {
-            "name": "R3",
+            "name": "r3",
             "from": [ 11.1, 9.5, 7.0 ], 
             "to": [ 12.1, 12.5, 9.0 ], 
             "rotation": { "origin": [ 12.0, 10.0, 8.0 ], "axis": "z", "angle": 45.0 },
@@ -58,7 +58,7 @@
             }
         },
         {
-            "name": "L1",
+            "name": "l1",
             "from": [ 2.0, 3.0, 5.0 ], 
             "to": [ 4.0, 7.0, 11.0 ], 
             "faces": {
@@ -71,7 +71,7 @@
             }
         },
         {
-            "name": "L2",
+            "name": "l2",
             "from": [ 2.5, 6.8, 6.0 ], 
             "to": [ 3.5, 9.8, 10.0 ], 
             "rotation": { "origin": [ 3.0, 7.0, 8.0 ], "axis": "z", "angle": -22.5 },
@@ -85,7 +85,7 @@
             }
         },
         {
-            "name": "L3",
+            "name": "l3",
             "from": [ 3.9, 9.5, 7.0 ], 
             "to": [ 4.9, 12.5, 9.0 ], 
             "rotation": { "origin": [ 4.0, 10.0, 8.0 ], "axis": "z", "angle": -45.0 },

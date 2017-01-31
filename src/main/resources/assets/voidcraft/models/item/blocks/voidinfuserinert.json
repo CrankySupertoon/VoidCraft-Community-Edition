@@ -1,5 +1,5 @@
 {
-    "parent": "voidcraft:block/voidInfuserInert",
+    "parent": "voidcraft:block/voidinfuserinert",
     "display": {
         "gui": {
             "rotation": [ 30, 225, 0 ],

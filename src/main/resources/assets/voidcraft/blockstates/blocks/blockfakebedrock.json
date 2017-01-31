@@ -1,5 +1,5 @@
 {
     "variants": {
-        "normal": { "model": "voidcraft:blockFakeBedrock" }
+        "normal": { "model": "voidcraft:blockfakebedrock" }
     }
 }

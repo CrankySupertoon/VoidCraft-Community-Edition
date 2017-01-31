@@ -1,9 +1,9 @@
 {
     "ambientocclusion": false,
     "textures": {
-        "base": "voidcraft:blocks/machina/voidicAlchemy/alchemyBase",
-        "particle": "voidcraft:blocks/machina/voidicAlchemy/alchemyBase",
-        "top": "voidcraft:blocks/machina/voidicAlchemy/alchemyTop"
+        "base": "voidcraft:blocks/machina/voidicalchemy/alchemybase",
+        "particle": "voidcraft:blocks/machina/voidicalchemy/alchemybase",
+        "top": "voidcraft:blocks/machina/voidicalchemy/alchemytop"
     },
     "elements": [
         {

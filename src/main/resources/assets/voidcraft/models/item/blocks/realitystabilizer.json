@@ -1,5 +1,5 @@
 {
-    "parent": "voidcraft:block/realityStabilizer",
+    "parent": "voidcraft:block/realitystabilizer",
     "display": {
         "gui": {
             "rotation": [ 30, 225, 0 ],

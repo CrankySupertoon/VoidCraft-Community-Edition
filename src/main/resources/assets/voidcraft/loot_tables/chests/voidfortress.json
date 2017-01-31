@@ -1,7 +1,7 @@
 {
     "pools": [
         {
-			"name": "voidFortress",
+			"name": "voidfortress",
             "rolls": {
                 "min": 2,
                 "max": 8
@@ -51,7 +51,7 @@
                 },
                 {
                     "type": "item",
-                    "name": "voidcraft:items/voidCloth",
+                    "name": "voidcraft:items/voidcloth",
                     "weight": 15,
                     "functions": [
                         {
@@ -93,7 +93,7 @@
                 },
                 {
                     "type": "item",
-                    "name": "voidcraft:items/MoltenvoidChain",
+                    "name": "voidcraft:items/moltenvoidchain",
                     "weight": 5,
                     "functions": [
                         {

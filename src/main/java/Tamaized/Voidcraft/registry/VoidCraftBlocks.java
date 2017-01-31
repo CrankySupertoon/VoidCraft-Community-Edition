@@ -94,46 +94,46 @@ public class VoidCraftBlocks implements ITamRegistry {
 	public void preInit() {
 		modelList = new ArrayList<ITamModel>();
 
-		modelList.add(blockVoidcrystal = new BlockVoidcrystal(VoidCraft.tabs.tabVoid, Material.GLASS, "blockVoidcrystal", 7.0F));
-		modelList.add(oreVoidcrystal = new OreVoidcrystal(VoidCraft.tabs.tabVoid, Material.ROCK, "oreVoidcrystal", 3.0F));
-		modelList.add(blockFakeBedrock = new BlockFakeBedrock(VoidCraft.tabs.tabVoid, Blocks.BEDROCK.getMaterial(Blocks.BEDROCK.getDefaultState()), "blockFakeBedrock", 30.0F));
-		modelList.add(blockFakeBedrockFarmland = new BlockFakeBedrockFarmland(VoidCraft.tabs.tabVoid, Blocks.BEDROCK.getMaterial(Blocks.BEDROCK.getDefaultState()), "blockFakeBedrockFarmland", 30.0F));
-		modelList.add(blockFakeBedrockFence = new TamBlockFence(VoidCraft.tabs.tabVoid, Material.ROCK, MapColor.OBSIDIAN, "blockFakeBedrockFence"));
-		modelList.add(blockFakeBedrockStairs = new TamBlockStairs(VoidCraft.tabs.tabVoid, blockFakeBedrock.getDefaultState(), "blockFakeBedrockStairs"));
-		modelList.add(blockFakeBedrockDoubleSlab = new TamBlockSlabDouble(VoidCraft.tabs.tabVoid, Material.ROCK, "blockFakeBedrockDoubleSlab", Item.getItemFromBlock(blockFakeBedrockHalfSlab)));
-		modelList.add(blockFakeBedrockHalfSlab = new TamBlockSlabHalf(VoidCraft.tabs.tabVoid, Material.ROCK, "blockFakeBedrockHalfSlab", Item.getItemFromBlock(blockFakeBedrockHalfSlab)));
-		modelList.add(blockNoBreak = new BlockNoBreak(VoidCraft.tabs.tabVoid, Material.ROCK, "blockNoBreak", -1F));
-		modelList.add(blockVoidbrick = new TamBlock(VoidCraft.tabs.tabVoid, Material.ROCK, "blockVoidbrick", 30.0F));
-		modelList.add(blockVoidfence = new TamBlockFence(VoidCraft.tabs.tabVoid, Material.ROCK, MapColor.OBSIDIAN, "blockVoidfence"));
-		modelList.add(blockVoidstairs = new TamBlockStairs(VoidCraft.tabs.tabVoid, blockVoidbrick.getDefaultState(), "blockVoidstairs"));
-		modelList.add(blockVoidBrickDoubleSlab = new TamBlockSlabDouble(VoidCraft.tabs.tabVoid, Material.ROCK, "blockVoidBrickDoubleSlab", Item.getItemFromBlock(blockVoidBrickHalfSlab)));
-		modelList.add(blockVoidBrickHalfSlab = new TamBlockSlabHalf(VoidCraft.tabs.tabVoid, Material.ROCK, "blockVoidBrickHalfSlab", Item.getItemFromBlock(blockVoidBrickHalfSlab)));
+		modelList.add(blockVoidcrystal = new BlockVoidcrystal(VoidCraft.tabs.tabVoid, Material.GLASS, "blockvoidcrystal", 7.0F));
+		modelList.add(oreVoidcrystal = new OreVoidcrystal(VoidCraft.tabs.tabVoid, Material.ROCK, "orevoidcrystal", 3.0F));
+		modelList.add(blockFakeBedrock = new BlockFakeBedrock(VoidCraft.tabs.tabVoid, Blocks.BEDROCK.getMaterial(Blocks.BEDROCK.getDefaultState()), "blockfakebedrock", 30.0F));
+		modelList.add(blockFakeBedrockFarmland = new BlockFakeBedrockFarmland(VoidCraft.tabs.tabVoid, Blocks.BEDROCK.getMaterial(Blocks.BEDROCK.getDefaultState()), "blockfakebedrockfarmland", 30.0F));
+		modelList.add(blockFakeBedrockFence = new TamBlockFence(VoidCraft.tabs.tabVoid, Material.ROCK, MapColor.OBSIDIAN, "blockfakebedrockfence"));
+		modelList.add(blockFakeBedrockStairs = new TamBlockStairs(VoidCraft.tabs.tabVoid, blockFakeBedrock.getDefaultState(), "blockfakebedrockstairs"));
+		modelList.add(blockFakeBedrockDoubleSlab = new TamBlockSlabDouble(VoidCraft.tabs.tabVoid, Material.ROCK, "blockfakebedrockdoubleslab", Item.getItemFromBlock(blockFakeBedrockHalfSlab)));
+		modelList.add(blockFakeBedrockHalfSlab = new TamBlockSlabHalf(VoidCraft.tabs.tabVoid, Material.ROCK, "blockfakebedrockhalfslab", Item.getItemFromBlock(blockFakeBedrockHalfSlab)));
+		modelList.add(blockNoBreak = new BlockNoBreak(VoidCraft.tabs.tabVoid, Material.ROCK, "blocknobreak", -1F));
+		modelList.add(blockVoidbrick = new TamBlock(VoidCraft.tabs.tabVoid, Material.ROCK, "blockvoidbrick", 30.0F));
+		modelList.add(blockVoidfence = new TamBlockFence(VoidCraft.tabs.tabVoid, Material.ROCK, MapColor.OBSIDIAN, "blockvoidfence"));
+		modelList.add(blockVoidstairs = new TamBlockStairs(VoidCraft.tabs.tabVoid, blockVoidbrick.getDefaultState(), "blockvoidstairs"));
+		modelList.add(blockVoidBrickDoubleSlab = new TamBlockSlabDouble(VoidCraft.tabs.tabVoid, Material.ROCK, "blockvoidbrickdoubleslab", Item.getItemFromBlock(blockVoidBrickHalfSlab)));
+		modelList.add(blockVoidBrickHalfSlab = new TamBlockSlabHalf(VoidCraft.tabs.tabVoid, Material.ROCK, "blockvoidbrickhalfslab", Item.getItemFromBlock(blockVoidBrickHalfSlab)));
 		modelList.add(AIBlock = new AIBlock("AIBlock"));
-		modelList.add(realityHole = new BlockRealityHole(VoidCraft.tabs.tabVoid, Material.CLOTH, "blockRealityHole", -1F));
-		modelList.add(ritualBlock = new TamBlock(VoidCraft.tabs.tabVoid, Material.IRON, "ritualBlock", 3.0F));
+		modelList.add(realityHole = new BlockRealityHole(VoidCraft.tabs.tabVoid, Material.CLOTH, "blockrealityhole", -1F));
+		modelList.add(ritualBlock = new TamBlock(VoidCraft.tabs.tabVoid, Material.IRON, "ritualblock", 3.0F));
 		modelList.add(cosmicMaterial = new TamBlock(VoidCraft.tabs.tabVoid, Material.ROCK, "cosmicmaterial", 30.0F));
 		modelList.add(starforge = new TamBlock(VoidCraft.tabs.tabVoid, Material.IRON, "starforge", -1.0F));
 		modelList.add(starforgeStation = new StarForgeBlock(VoidCraft.tabs.tabVoid, Material.IRON, "starforgestation", -1.0F));
 
-		modelList.add(blockPortalVoid = new BlockPortalVoid(VoidCraft.tabs.tabVoid, "blockPortalVoid"));
-		modelList.add(blockPortalXia = new BlockPortalXia(VoidCraft.tabs.tabVoid, "blockPortalXia"));
-		modelList.add(fireVoid = new FireVoid(VoidCraft.tabs.tabVoid, "fireVoid"));
+		modelList.add(blockPortalVoid = new BlockPortalVoid(VoidCraft.tabs.tabVoid, "blockportalvoid"));
+		modelList.add(blockPortalXia = new BlockPortalXia(VoidCraft.tabs.tabVoid, "blockportalxia"));
+		modelList.add(fireVoid = new FireVoid(VoidCraft.tabs.tabVoid, "firevoid"));
 
-		modelList.add(voidMacerator = new VoidMacerator(VoidCraft.tabs.tabVoid, Material.ROCK, "voidMacerator", 3.5F));
-		modelList.add(Heimdall = new Heimdall(VoidCraft.tabs.tabVoid, Material.IRON, "Heimdall", 3.5F));
-		modelList.add(voidBox = new VoidBox(VoidCraft.tabs.tabVoid, Material.IRON, "voidBox", 7.0F));
-		modelList.add(voidInfuserInert = new TamBlock(VoidCraft.tabs.tabVoid, Material.IRON, "voidInfuserInert", 7.0F));
-		modelList.add(voidInfuser = new VoidInfuser(VoidCraft.tabs.tabVoid, Material.IRON, "voidInfuser", 7.0F));
-		modelList.add(voidicGen = new VoidicPowerGen(VoidCraft.tabs.tabVoid, Material.IRON, "voidicGen", 3.5f));
-		modelList.add(voidicCable = new VoidicPowerCable(VoidCraft.tabs.tabVoid, Material.CIRCUITS, "voidicCable", 1.5f));
-		modelList.add(voidicCharger = new VoidicPowerCharger(VoidCraft.tabs.tabVoid, Material.IRON, "voidicCharger", 3.5f));
-		modelList.add(realityStabilizer = new RealityStabilizer(VoidCraft.tabs.tabVoid, Material.IRON, "realityStabilizer", 3.5f));
-		modelList.add(voidicAlchemyTable = new VoidicAlchemyTable(VoidCraft.tabs.tabVoid, Material.IRON, "voidicAlchemyTable", 3.5f));
-		modelList.add(realityTeleporterBlock = new RealityTeleporterBlock(VoidCraft.tabs.tabVoid, Material.IRON, "realityTeleporterBlock", 3.5f));
+		modelList.add(voidMacerator = new VoidMacerator(VoidCraft.tabs.tabVoid, Material.ROCK, "voidmacerator", 3.5F));
+		modelList.add(Heimdall = new Heimdall(VoidCraft.tabs.tabVoid, Material.IRON, "heimdall", 3.5F));
+		modelList.add(voidBox = new VoidBox(VoidCraft.tabs.tabVoid, Material.IRON, "voidbox", 7.0F));
+		modelList.add(voidInfuserInert = new TamBlock(VoidCraft.tabs.tabVoid, Material.IRON, "voidinfuserinert", 7.0F));
+		modelList.add(voidInfuser = new VoidInfuser(VoidCraft.tabs.tabVoid, Material.IRON, "voidinfuser", 7.0F));
+		modelList.add(voidicGen = new VoidicPowerGen(VoidCraft.tabs.tabVoid, Material.IRON, "voidicgen", 3.5f));
+		modelList.add(voidicCable = new VoidicPowerCable(VoidCraft.tabs.tabVoid, Material.CIRCUITS, "voidiccable", 1.5f));
+		modelList.add(voidicCharger = new VoidicPowerCharger(VoidCraft.tabs.tabVoid, Material.IRON, "voidiccharger", 3.5f));
+		modelList.add(realityStabilizer = new RealityStabilizer(VoidCraft.tabs.tabVoid, Material.IRON, "realitystabilizer", 3.5f));
+		modelList.add(voidicAlchemyTable = new VoidicAlchemyTable(VoidCraft.tabs.tabVoid, Material.IRON, "voidicalchemytable", 3.5f));
+		modelList.add(realityTeleporterBlock = new RealityTeleporterBlock(VoidCraft.tabs.tabVoid, Material.IRON, "realityteleporterblock", 3.5f));
 
-		modelList.add(etherealPlant = new BlockEtherealPlant(VoidCraft.tabs.tabVoid, "etherealPlant", 1.0f));
+		modelList.add(etherealPlant = new BlockEtherealPlant(VoidCraft.tabs.tabVoid, "etherealplant", 1.0f));
 
-		modelList.add(iceSpike = new BlockSpellIceSpike(VoidCraft.tabs.tabVoid, Material.ICE, "blockSpellIceSpike", -1F));
+		modelList.add(iceSpike = new BlockSpellIceSpike(VoidCraft.tabs.tabVoid, Material.ICE, "blockspellicespike", -1F));
 
 		// Slabs have to be registered outside of their class
 		RegistryHelper.registerBlockSlab(blockVoidBrickHalfSlab, blockVoidBrickDoubleSlab);

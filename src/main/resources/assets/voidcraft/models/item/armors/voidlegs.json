@@ -1,6 +1,6 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "voidcraft:items/voidLegs"
+        "layer0": "voidcraft:items/voidlegs"
     }
 }

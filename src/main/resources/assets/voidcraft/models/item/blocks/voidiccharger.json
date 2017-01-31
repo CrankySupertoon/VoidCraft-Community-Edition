@@ -1,5 +1,5 @@
 {
-    "parent": "voidcraft:block/voidicCharger",
+    "parent": "voidcraft:block/voidiccharger",
     "display": {
         "gui": {
             "rotation": [ 30, 225, 0 ],

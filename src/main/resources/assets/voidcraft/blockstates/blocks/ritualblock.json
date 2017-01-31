@@ -1,5 +1,5 @@
 {
     "variants": {
-        "normal": { "model": "voidcraft:ritualBlock" }
+        "normal": { "model": "voidcraft:ritualblock" }
     }
 }

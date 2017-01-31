@@ -1,7 +1,7 @@
 {
     "textures": {
         "particle": "blocks/portal",
-        "portal": "voidcraft:blocks/blockPortalVoid"
+        "portal": "voidcraft:blocks/blockportalvoid"
     },
     "elements": [
         {   "from": [ 6, 0, 0 ],

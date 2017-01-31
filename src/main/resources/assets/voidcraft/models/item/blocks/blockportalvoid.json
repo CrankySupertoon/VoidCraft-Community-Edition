@@ -1,5 +1,5 @@
 {
-    "parent": "voidcraft:block/blockPortalVoid_NS",
+    "parent": "voidcraft:block/blockportalvoid_ns",
     "display": {
         "gui": {
             "rotation": [ 30, 225, 0 ],

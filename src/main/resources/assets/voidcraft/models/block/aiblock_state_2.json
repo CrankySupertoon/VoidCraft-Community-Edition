@@ -1,6 +1,6 @@
 {
     "parent": "block/cube_all",
     "textures": {
-        "all": "voidcraft:blocks/pillarState2"
+        "all": "voidcraft:blocks/pillarstate2"
     }
 }

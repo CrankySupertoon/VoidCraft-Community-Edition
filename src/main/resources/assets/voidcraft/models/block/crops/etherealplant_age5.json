@@ -1,6 +1,6 @@
 {
     "parent": "block/stem_growth5",
     "textures": {
-        "stem": "voidcraft:blocks/etherealPlant"
+        "stem": "voidcraft:blocks/etherealplant"
     }
 }

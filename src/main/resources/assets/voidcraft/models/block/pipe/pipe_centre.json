@@ -14,7 +14,7 @@
 				"west": { "texture": "#centre" },
 				"east": { "texture": "#centre" }
 			},
-			"__comment": "Centre cube"
+			"__comment": "centre cube"
 		}
 	]
 }

@@ -1,5 +1,5 @@
 {
-    "parent": "voidcraft:block/blockPortalXia",
+    "parent": "voidcraft:block/blockportalxia",
     "display": {
         "gui": {
             "rotation": [ 30, 225, 0 ],

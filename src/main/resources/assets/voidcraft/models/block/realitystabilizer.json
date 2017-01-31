@@ -1,10 +1,10 @@
 {
-    "__createdwith": "opl's Model Creator",
+    "__createdwith": "opl's model creator",
     "ambientocclusion": false,
     "textures": {
-        "center": "voidcraft:blocks/machina/RealityStabilizer/inner",
-        "outer": "voidcraft:blocks/machina/RealityStabilizer/outer",
-        "particle": "voidcraft:blocks/machina/RealityStabilizer/inner"
+        "center": "voidcraft:blocks/machina/realitystabilizer/inner",
+        "outer": "voidcraft:blocks/machina/realitystabilizer/outer",
+        "particle": "voidcraft:blocks/machina/realitystabilizer/inner"
     },
     "elements": [
         {

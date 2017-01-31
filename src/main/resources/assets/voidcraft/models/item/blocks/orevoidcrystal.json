@@ -1,5 +1,5 @@
 {
-    "parent": "voidcraft:block/oreVoidcrystal_norm",
+    "parent": "voidcraft:block/orevoidcrystal_norm",
     "display": {
         "gui": {
             "rotation": [ 30, 225, 0 ],

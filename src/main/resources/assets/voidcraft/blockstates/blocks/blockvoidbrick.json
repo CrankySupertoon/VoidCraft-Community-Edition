@@ -1,5 +1,5 @@
 {
     "variants": {
-        "normal": { "model": "voidcraft:blockVoidbrick" }
+        "normal": { "model": "voidcraft:blockvoidbrick" }
     }
 }

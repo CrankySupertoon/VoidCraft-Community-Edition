@@ -1,5 +1,5 @@
 {
-    "parent": "voidcraft:block/blockFakeBedrock",
+    "parent": "voidcraft:block/blockfakebedrock",
     "display": {
         "gui": {
             "rotation": [ 30, 225, 0 ],

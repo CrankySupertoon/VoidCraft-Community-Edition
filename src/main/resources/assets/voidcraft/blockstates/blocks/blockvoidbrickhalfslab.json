@@ -1,6 +1,6 @@
 {
     "variants": {
-        "half=bottom,variant=default": { "model": "voidcraft:blockVoidBrickHalfSlab" },
-        "half=top,variant=default": { "model": "voidcraft:blockVoidBrickUpperSlab" }
+        "half=bottom,variant=default": { "model": "voidcraft:blockvoidbrickhalfslab" },
+        "half=top,variant=default": { "model": "voidcraft:blockvoidbrickupperslab" }
     }
 }

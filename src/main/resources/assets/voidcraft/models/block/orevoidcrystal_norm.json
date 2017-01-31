@@ -3,6 +3,6 @@
     "textures": {
 		"particle": "blocks/end_stone",
         "base": "blocks/end_stone",
-        "overlay": "voidcraft:blocks/VoidCrystalOre"
+        "overlay": "voidcraft:blocks/voidcrystalore"
     }
 }

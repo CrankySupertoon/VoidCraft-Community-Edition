@@ -1,5 +1,5 @@
 {
     "variants": {
-        "normal": { "model": "voidcraft:nullBlock" }
+        "normal": { "model": "voidcraft:nullblock" }
     }
 }

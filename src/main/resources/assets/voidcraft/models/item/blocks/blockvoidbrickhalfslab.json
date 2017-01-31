@@ -1,5 +1,5 @@
 {
-    "parent": "voidcraft:block/blockVoidBrickHalfSlab",
+    "parent": "voidcraft:block/blockvoidbrickhalfslab",
     "display": {
         "gui": {
             "rotation": [ 30, 225, 0 ],

@@ -2,8 +2,8 @@
 	"forge_marker": 1,
 	"defaults": {
 		"textures": {
-			"centre": "voidcraft:blocks/voidicPipe",
-			"side": "voidcraft:blocks/voidicPipe"
+			"centre": "voidcraft:blocks/voidicpipe",
+			"side": "voidcraft:blocks/voidicpipe"
 		},
 		"model": "voidcraft:pipe/pipe_centre",
 		"uvlock": true

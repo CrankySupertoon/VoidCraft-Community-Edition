@@ -1,5 +1,5 @@
 {
-    "parent": "voidcraft:block/xiaBlock",
+    "parent": "voidcraft:block/xiablock",
     "display": {
         "gui": {
             "rotation": [ 30, 225, 0 ],

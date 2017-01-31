@@ -1,7 +1,7 @@
 {
     "pools": [
         {
-			"name": "voidCity",
+			"name": "voidcity",
             "rolls": {
                 "min": 1,
                 "max": 3
@@ -9,7 +9,7 @@
             "entries": [
                 {
                     "type": "item",
-                    "name": "voidcraft:items/voidCloth",
+                    "name": "voidcraft:items/voidcloth",
                     "weight": 15,
                     "functions": [
                         {
@@ -23,7 +23,7 @@
                 },
                 {
                     "type": "item",
-                    "name": "voidcraft:items/astralEssence",
+                    "name": "voidcraft:items/astralessence",
                     "weight": 5,
                     "functions": [
                         {

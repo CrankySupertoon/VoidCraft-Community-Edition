@@ -1,6 +1,6 @@
 {
     "parent": "item/handheld",
     "textures": {
-        "layer0": "voidcraft:items/voidcrystal_Sword"
+        "layer0": "voidcraft:items/voidcrystal_sword"
     }
 }

@@ -1,5 +1,5 @@
 {
-    "parent": "voidcraft:block/voidMaceratorOff",
+    "parent": "voidcraft:block/voidmaceratoroff",
     "display": {
         "gui": {
             "rotation": [ 30, 225, 0 ],

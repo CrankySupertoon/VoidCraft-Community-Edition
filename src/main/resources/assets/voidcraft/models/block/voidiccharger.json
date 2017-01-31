@@ -1,6 +1,6 @@
 {
 	"textures": {
-		"0": "voidcraft:models/blocks/voidicChargerFixedAspect"
+		"0": "voidcraft:models/blocks/voidicchargerfixedaspect"
 	},
 	"elements": [
         {
@@ -43,7 +43,7 @@
             }
         },
         {
-            "name": "BQ1",
+            "name": "bq1",
             "from": [ 10.0, 7.0, 5.0 ], 
             "to": [ 11.0, 9.0, 6.0 ], 
             "faces": {
@@ -56,7 +56,7 @@
             }
         },
         {
-            "name": "BQ2",
+            "name": "bq2",
             "from": [ 5.0, 7.0, 5.0 ], 
             "to": [ 6.0, 9.0, 6.0 ], 
             "faces": {
@@ -69,7 +69,7 @@
             }
         },
         {
-            "name": "BQ3",
+            "name": "bq3",
             "from": [ 5.0, 7.0, 10.0 ], 
             "to": [ 6.0, 9.0, 11.0 ], 
             "faces": {
@@ -82,7 +82,7 @@
             }
         },
         {
-            "name": "BQ4",
+            "name": "bq4",
             "from": [ 10.0, 7.0, 10.0 ], 
             "to": [ 11.0, 9.0, 11.0 ], 
             "faces": {

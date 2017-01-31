@@ -1,6 +1,6 @@
 {
     "parent": "builtin/generated",
     "textures": {
-        "layer0": "voidcraft:blocks/fireVoid_layer_0"
+        "layer0": "voidcraft:blocks/firevoid_layer_0"
     }
 }

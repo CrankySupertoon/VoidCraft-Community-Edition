@@ -1,7 +1,7 @@
-# Blender v2.61 (sub 0) OBJ File: 'iceSpike.blend'
+# blender v2.61 (sub 0) obj file: 'icespike.blend'
 # www.blender.org
-mtllib iceSpike.mtl
-o Cone
+mtllib icespike.mtl
+o cone
 v 0.430634 -0.131590 -0.231414
 v 0.497717 -0.100451 -0.201506
 v 0.714417 -0.126306 -0.228441
@@ -297,7 +297,7 @@ vt 1.000000 0.034630
 vt 0.999740 0.233947
 vt 0.944584 0.625447
 vt 0.934975 0.628407
-usemtl _Texture
+usemtl _texture
 s off
 f 65/1 1/2 2/3
 f 65/1 2/3 3/4

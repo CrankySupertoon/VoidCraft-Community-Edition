@@ -1,6 +1,6 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "voidcraft:items/voidHelmet"
+        "layer0": "voidcraft:items/voidhelmet"
     }
 }

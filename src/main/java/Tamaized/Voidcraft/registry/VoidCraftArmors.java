@@ -31,15 +31,15 @@ public class VoidCraftArmors implements ITamRegistry {
 	public void preInit() {
 		modelList = new ArrayList<ITamModel>();
 
-		modelList.add(voidHelmet = new TamArmor(VoidCraft.tabs.tabVoid, VoidCraft.materials.voidArmor, 0, EntityEquipmentSlot.HEAD, "void", "voidHelmet"));
-		modelList.add(voidChest = new TamArmor(VoidCraft.tabs.tabVoid, VoidCraft.materials.voidArmor, 0, EntityEquipmentSlot.CHEST, "void", "voidChest"));
-		modelList.add(voidLegs = new TamArmor(VoidCraft.tabs.tabVoid, VoidCraft.materials.voidArmor, 0, EntityEquipmentSlot.LEGS, "void", "voidLegs"));
-		modelList.add(voidBoots = new TamArmor(VoidCraft.tabs.tabVoid, VoidCraft.materials.voidArmor, 0, EntityEquipmentSlot.FEET, "void", "voidBoots"));
+		modelList.add(voidHelmet = new TamArmor(VoidCraft.tabs.tabVoid, VoidCraft.materials.voidArmor, 0, EntityEquipmentSlot.HEAD, "void", "voidhelmet"));
+		modelList.add(voidChest = new TamArmor(VoidCraft.tabs.tabVoid, VoidCraft.materials.voidArmor, 0, EntityEquipmentSlot.CHEST, "void", "voidchest"));
+		modelList.add(voidLegs = new TamArmor(VoidCraft.tabs.tabVoid, VoidCraft.materials.voidArmor, 0, EntityEquipmentSlot.LEGS, "void", "voidlegs"));
+		modelList.add(voidBoots = new TamArmor(VoidCraft.tabs.tabVoid, VoidCraft.materials.voidArmor, 0, EntityEquipmentSlot.FEET, "void", "voidboots"));
 
-		modelList.add(xiaHelmet = new XiaArmor(VoidCraft.tabs.tabVoid, VoidCraft.materials.xiaArmor, 0, EntityEquipmentSlot.HEAD, "xia", "xiaHelmet"));
-		modelList.add(xiaChest = new XiaArmor(VoidCraft.tabs.tabVoid, VoidCraft.materials.xiaArmor, 0, EntityEquipmentSlot.CHEST, "xia", "xiaChest"));
-		modelList.add(xiaLegs = new XiaArmor(VoidCraft.tabs.tabVoid, VoidCraft.materials.xiaArmor, 0, EntityEquipmentSlot.LEGS, "xia", "xiaLegs"));
-		modelList.add(xiaBoots = new XiaArmor(VoidCraft.tabs.tabVoid, VoidCraft.materials.xiaArmor, 0, EntityEquipmentSlot.FEET, "xia", "xiaBoots"));
+		modelList.add(xiaHelmet = new XiaArmor(VoidCraft.tabs.tabVoid, VoidCraft.materials.xiaArmor, 0, EntityEquipmentSlot.HEAD, "xia", "xiahelmet"));
+		modelList.add(xiaChest = new XiaArmor(VoidCraft.tabs.tabVoid, VoidCraft.materials.xiaArmor, 0, EntityEquipmentSlot.CHEST, "xia", "xiachest"));
+		modelList.add(xiaLegs = new XiaArmor(VoidCraft.tabs.tabVoid, VoidCraft.materials.xiaArmor, 0, EntityEquipmentSlot.LEGS, "xia", "xialegs"));
+		modelList.add(xiaBoots = new XiaArmor(VoidCraft.tabs.tabVoid, VoidCraft.materials.xiaArmor, 0, EntityEquipmentSlot.FEET, "xia", "xiaboots"));
 
 		//modelList.add(elytra = new ArmorCustomElytra(voidCraft.tabs.tabVoid, voidCraft.materials.voidArmor, 0, EntityEquipmentSlot.CHEST, "void", "voidElytra"));
 	}

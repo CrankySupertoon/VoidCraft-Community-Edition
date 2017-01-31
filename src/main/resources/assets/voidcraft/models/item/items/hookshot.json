@@ -1,6 +1,6 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "voidcraft:items/HookShot_uncast"
+        "layer0": "voidcraft:items/hookshot_uncast"
     }
 }

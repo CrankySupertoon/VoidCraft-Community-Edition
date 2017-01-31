@@ -1,8 +1,8 @@
 {
     "parent": "block/orientable",
     "textures": {
-		"top": "voidcraft:blocks/machina/voidBox/top",
-        "front": "voidcraft:blocks/machina/voidBox/side",
-        "side": "voidcraft:blocks/machina/voidBox/side"
+		"top": "voidcraft:blocks/machina/voidbox/top",
+        "front": "voidcraft:blocks/machina/voidbox/side",
+        "side": "voidcraft:blocks/machina/voidbox/side"
     }
 }
