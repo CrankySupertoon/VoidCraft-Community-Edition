@@ -233,7 +233,7 @@ public class TwinsSpeech {
 						messageTick = 20 * 5;
 						break;
 					case 16:
-						sendMessage(list, TextFormatting.AQUA + "We knew not his of his intentions, but before him, we were nothing.");
+						sendMessage(list, TextFormatting.AQUA + "We knew not of his intentions, but before him, we were nothing.");
 						messageTick = 20 * 5;
 						break;
 					case 17:
