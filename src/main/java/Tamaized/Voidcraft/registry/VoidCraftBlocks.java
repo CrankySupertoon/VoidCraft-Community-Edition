@@ -111,9 +111,9 @@ public class VoidCraftBlocks implements ITamRegistry {
 		modelList.add(AIBlock = new AIBlock("AIBlock"));
 		modelList.add(realityHole = new BlockRealityHole(VoidCraft.tabs.tabVoid, Material.CLOTH, "blockRealityHole", -1F));
 		modelList.add(ritualBlock = new TamBlock(VoidCraft.tabs.tabVoid, Material.IRON, "ritualBlock", 3.0F));
-		modelList.add(cosmicMaterial = new TamBlock(VoidCraft.tabs.tabVoid, Material.ROCK, "cosmicMaterial", 30.0F));
+		modelList.add(cosmicMaterial = new TamBlock(VoidCraft.tabs.tabVoid, Material.ROCK, "cosmicmaterial", 30.0F));
 		modelList.add(starforge = new TamBlock(VoidCraft.tabs.tabVoid, Material.IRON, "starforge", -1.0F));
-		modelList.add(starforgeStation = new StarForgeBlock(VoidCraft.tabs.tabVoid, Material.IRON, "starforgeStation", -1.0F));
+		modelList.add(starforgeStation = new StarForgeBlock(VoidCraft.tabs.tabVoid, Material.IRON, "starforgestation", -1.0F));
 
 		modelList.add(blockPortalVoid = new BlockPortalVoid(VoidCraft.tabs.tabVoid, "blockPortalVoid"));
 		modelList.add(blockPortalXia = new BlockPortalXia(VoidCraft.tabs.tabVoid, "blockPortalXia"));
