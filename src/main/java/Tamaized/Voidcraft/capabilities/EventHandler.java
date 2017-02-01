@@ -6,6 +6,8 @@ import Tamaized.Voidcraft.capabilities.vadeMecum.IVadeMecumCapability;
 import Tamaized.Voidcraft.capabilities.vadeMecum.VadeMecumCapabilityHandler;
 import Tamaized.Voidcraft.capabilities.voidicInfusion.IVoidicInfusionCapability;
 import Tamaized.Voidcraft.capabilities.voidicInfusion.VoidicInfusionCapabilityHandler;
+import Tamaized.Voidcraft.entity.EntityVoidMob;
+import Tamaized.Voidcraft.entity.EntityVoidNPC;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
@@ -20,7 +22,7 @@ public class EventHandler {
 
 	@SubscribeEvent
 	public void attachCapabilityEntity(AttachCapabilitiesEvent.Entity e) { // TODO: move capability stuff into TamModized
-		if (e.getEntity() instanceof EntityLivingBase) {
+		if (e.getEntity() instanceof EntityLivingBase && !(e.getEntity() instanceof EntityVoidNPC) && !(e.getEntity() instanceof EntityVoidMob)) {
 			e.addCapability(VoidicInfusionCapabilityHandler.ID, new ICapabilitySerializable<NBTTagCompound>() {
 
 				IVoidicInfusionCapability inst = CapabilityList.VOIDICINFUSION.getDefaultInstance();

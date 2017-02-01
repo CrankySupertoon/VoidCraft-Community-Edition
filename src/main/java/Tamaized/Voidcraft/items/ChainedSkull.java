@@ -52,6 +52,7 @@ public class ChainedSkull extends TamItem {
 
 			if (entity != null) {
 				entity.setCustomNameTag("Corrupted Pawn");
+				entity.ignite();
 
 				int yaw = (int) player.rotationYaw;
 

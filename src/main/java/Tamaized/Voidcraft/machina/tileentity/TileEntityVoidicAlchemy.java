@@ -97,7 +97,11 @@ public class TileEntityVoidicAlchemy extends TileEntityVoidicPowerInventory {
 		NBTTagCompound ownerData = nbt.getCompoundTag("ownerData");
 		ownerName = ownerData.getString("ownerName");
 		String id = ownerData.getString("ownerID");
-		ownerID = (id == null || id.equals("null")) ? null : UUID.fromString(id);
+		try {
+			ownerID = (id == null || id.equals("null")) ? null : UUID.fromString(id);
+		} catch (IllegalArgumentException e) {
+			ownerID = null;
+		}
 		NBTTagCompound capData = ownerData.getCompoundTag("capData");
 		if (!capData.hasNoTags()) {
 			owner = new VadeMecumCapabilityHandler();
@@ -188,11 +192,11 @@ public class TileEntityVoidicAlchemy extends TileEntityVoidicPowerInventory {
 			if (getStackInSlot(SLOT_OUTPUT) == null) {
 				setInventorySlotContents(SLOT_OUTPUT, recipe.getOutput().copy());
 			} else if (getStackInSlot(SLOT_OUTPUT).isItemEqual(recipe.getOutput())) {
-				getStackInSlot(SLOT_OUTPUT).stackSize+=(recipe.getOutput().stackSize);
+				getStackInSlot(SLOT_OUTPUT).stackSize += (recipe.getOutput().stackSize);
 			}
 
 			for (int i = SLOT_INPUT_1; i <= SLOT_INPUT_6; i++) {
-				getStackInSlot(i).stackSize-=(1);;
+				getStackInSlot(i).stackSize -= (1);;
 				if (getStackInSlot(i).stackSize <= 0) {
 					setInventorySlotContents(i, null);
 				}

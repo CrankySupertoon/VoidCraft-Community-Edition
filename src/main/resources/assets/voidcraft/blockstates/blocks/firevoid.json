@@ -6,7 +6,7 @@
                 { "model": "voidcraft:firevoid/fire_floor1" }
             ]
         },
-        {   "when": {"or": [{"north": true}, {"north": false, "east": false, "south": false, "west": false, "up": false}]},
+        {   "when": {"OR": [{"north": true}, {"north": false, "east": false, "south": false, "west": false, "up": false}]},
             "apply": [
                 { "model": "voidcraft:firevoid/fire_side0" },
                 { "model": "voidcraft:firevoid/fire_side1" },
@@ -14,7 +14,7 @@
                 { "model": "voidcraft:firevoid/fire_side_alt1" }
             ]
         },
-        {   "when": {"or": [{"east": true}, {"north": false, "east": false, "south": false, "west": false, "up": false}]},
+        {   "when": {"OR": [{"east": true}, {"north": false, "east": false, "south": false, "west": false, "up": false}]},
             "apply": [
                 { "model": "voidcraft:firevoid/fire_side0", "y": 90 },
                 { "model": "voidcraft:firevoid/fire_side1", "y": 90 },
@@ -22,7 +22,7 @@
                 { "model": "voidcraft:firevoid/fire_side_alt1", "y": 90 }
             ]
         },
-        {   "when": {"or": [{"south": true}, {"north": false, "east": false, "south": false, "west": false, "up": false}]},
+        {   "when": {"OR": [{"south": true}, {"north": false, "east": false, "south": false, "west": false, "up": false}]},
             "apply": [
                 { "model": "voidcraft:firevoid/fire_side0", "y": 180 },
                 { "model": "voidcraft:firevoid/fire_side1", "y": 180 },
@@ -30,7 +30,7 @@
                 { "model": "voidcraft:firevoid/fire_side_alt1", "y": 180 }
             ]
         },
-        {   "when": {"or": [{"west": true}, {"north": false, "east": false, "south": false, "west": false, "up": false}]},
+        {   "when": {"OR": [{"west": true}, {"north": false, "east": false, "south": false, "west": false, "up": false}]},
             "apply": [
                 { "model": "voidcraft:firevoid/fire_side0", "y": 270 },
                 { "model": "voidcraft:firevoid/fire_side1", "y": 270 },

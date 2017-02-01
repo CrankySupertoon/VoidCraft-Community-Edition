@@ -1,0 +1,7 @@
+{
+    "parent": "voidcraft:block/fire_up",
+    "textures": {
+        "particle": "voidcraft:blocks/firevoid_layer_1",
+        "fire": "voidcraft:blocks/firevoid_layer_1"
+    }
+}

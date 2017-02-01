@@ -120,26 +120,29 @@ public class StarForgeContainer extends ContainerBase {
 				}
 				slot.onSlotChange(itemstack1, itemstack);
 			} else {
+				boolean flag = true;
 				for (int slotIndex = te.SLOT_INPUT_TOOL; slotIndex <= te.SLOT_INPUT_VOIDICPHLOG; slotIndex++) {
 					ItemStack slotCheck = te.getStackInSlot(slotIndex);
 					if ((slotCheck == null || (slotCheck.stackSize < slotCheck.getMaxStackSize() && slotCheck.isItemEqual(itemstack))) && te.canInsertItem(slotIndex, itemstack1, null)) {
 						if (!mergeItemStack(itemstack1, slotIndex, slotIndex + 1, false)) {
 							return null;
 						}
+						flag = false;
 					}
 				}
-
-				if (hoverSlot >= maxSlots && hoverSlot < maxSlots + 27) {
-					if (!mergeItemStack(itemstack1, maxSlots + 27, maxSlots + 36, false)) {
-						return null;
-					}
-				} else if (hoverSlot >= maxSlots + 27 && hoverSlot < maxSlots + 36) {
-					if (!mergeItemStack(itemstack1, maxSlots, maxSlots + 27, false)) {
-						return null;
-					}
-				} else {
-					if (!mergeItemStack(itemstack1, maxSlots, maxSlots + 36, false)) {
-						return null;
+				if (flag) {
+					if (hoverSlot >= maxSlots && hoverSlot < maxSlots + 27) {
+						if (!mergeItemStack(itemstack1, maxSlots + 27, maxSlots + 36, false)) {
+							return null;
+						}
+					} else if (hoverSlot >= maxSlots + 27 && hoverSlot < maxSlots + 36) {
+						if (!mergeItemStack(itemstack1, maxSlots, maxSlots + 27, false)) {
+							return null;
+						}
+					} else {
+						if (!mergeItemStack(itemstack1, maxSlots, maxSlots + 36, false)) {
+							return null;
+						}
 					}
 				}
 			}

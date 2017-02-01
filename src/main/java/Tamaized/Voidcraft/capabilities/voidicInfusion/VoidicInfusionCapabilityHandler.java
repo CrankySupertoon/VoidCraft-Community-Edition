@@ -9,14 +9,11 @@ import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.capabilities.CapabilityList;
 import Tamaized.Voidcraft.capabilities.voidicPower.IVoidicPowerCapability;
 import Tamaized.Voidcraft.damageSources.DamageSourceVoidicInfusion;
-import Tamaized.Voidcraft.entity.EntityVoidBoss;
 import Tamaized.Voidcraft.entity.EntityVoidMob;
 import Tamaized.Voidcraft.entity.EntityVoidNPC;
 import Tamaized.Voidcraft.entity.boss.dragon.EntityDragonOld;
 import Tamaized.Voidcraft.network.ClientPacketHandler;
 import io.netty.buffer.ByteBufInputStream;
-import io.netty.buffer.ByteBufOutputStream;
-import io.netty.buffer.Unpooled;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
@@ -25,10 +22,8 @@ import net.minecraft.entity.boss.EntityDragon;
 import net.minecraft.entity.boss.EntityWither;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
-import net.minecraftforge.fml.common.network.internal.FMLProxyPacket;
 
 public class VoidicInfusionCapabilityHandler implements IVoidicInfusionCapability {
 
@@ -92,7 +87,7 @@ public class VoidicInfusionCapabilityHandler implements IVoidicInfusionCapabilit
 	}
 
 	private void doHealthChecks(EntityLivingBase living) {
-		if (!living.world.isRemote) {
+		if (!living.world.isRemote && living instanceof EntityPlayer) {
 			float i = 0;
 			for (IAttributeInstance att : living.getAttributeMap().getAllAttributes()) {
 				if (att.getAttribute() == SharedMonsterAttributes.MAX_HEALTH) {
