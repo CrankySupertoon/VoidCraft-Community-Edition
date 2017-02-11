@@ -327,7 +327,7 @@ public class VadeMecumGUI extends GuiScreen {
 
 	@SideOnly(Side.CLIENT)
 	static class OverlayButton extends GuiButton {
-		public static final ResourceLocation TEXTURE = new ResourceLocation(VoidCraft.modid, "textures/gui/vademecum/edgeButton.png");
+		public static final ResourceLocation TEXTURE = new ResourceLocation(VoidCraft.modid, "textures/gui/vademecum/edgebutton.png");
 		private final boolean isForward;
 		private final VadeMecumGUI parent;
 
