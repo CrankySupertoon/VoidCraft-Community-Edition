@@ -29,7 +29,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class VadeMecumGUI extends GuiScreen {
 
-	public static final ResourceLocation TEXTURES = new ResourceLocation(VoidCraft.modid, "textures/gui/VadeMecum/vademecum.png");
+	public static final ResourceLocation TEXTURES = new ResourceLocation(VoidCraft.modid, "textures/gui/vademecum/vademecum.png");
 
 	private int vadeW;
 	private int vadeH;
@@ -296,7 +296,7 @@ public class VadeMecumGUI extends GuiScreen {
 
 	@SideOnly(Side.CLIENT)
 	static class FullButton extends GuiButton {
-		public static final ResourceLocation TEXTURE = new ResourceLocation(VoidCraft.modid, "textures/gui/VadeMecum/button_full.png");
+		public static final ResourceLocation TEXTURE = new ResourceLocation(VoidCraft.modid, "textures/gui/vademecum/button_full.png");
 		private final VadeMecumGUI parent;
 
 		public FullButton(VadeMecumGUI gui, String text, int id, int x, int y) {
@@ -327,7 +327,7 @@ public class VadeMecumGUI extends GuiScreen {
 
 	@SideOnly(Side.CLIENT)
 	static class OverlayButton extends GuiButton {
-		public static final ResourceLocation TEXTURE = new ResourceLocation(VoidCraft.modid, "textures/gui/VadeMecum/edgeButton.png");
+		public static final ResourceLocation TEXTURE = new ResourceLocation(VoidCraft.modid, "textures/gui/vademecum/edgeButton.png");
 		private final boolean isForward;
 		private final VadeMecumGUI parent;
 

@@ -22,9 +22,9 @@ public class InfuserRecipeWrapperJEI extends VoidCraftRecipeWrapperJEI<InfuserRe
 
 	@Override
 	public void setupSlots(IGuiIngredientGroup g) {
-		g.init(OUTPUT_SLOT, false, renderer, 146, 34, 16, 16, 0, 0);
-		g.init(FLUID_SLOT, true, renderer, 51, 33, 16, 16, 0, 0);
-		g.init(INPUT_SLOT, true, renderer, 89, 33, 16, 16, 0, 0);
+		g.init(OUTPUT_SLOT, false, renderer, 147, 35, 16, 16, 0, 0);
+		g.init(FLUID_SLOT, true, renderer, 52, 34, 16, 16, 0, 0);
+		g.init(INPUT_SLOT, true, renderer, 90, 34, 16, 16, 0, 0);
 
 		g.set(FLUID_SLOT, Arrays.asList(VoidCraft.fluids.voidBucket.getBucket()));
 		g.set(OUTPUT_SLOT, Arrays.asList(getOutput()));

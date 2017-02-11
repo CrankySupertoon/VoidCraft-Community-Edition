@@ -10,7 +10,7 @@ import net.minecraft.util.text.TextFormatting;
 
 public class VadeMecumPageMultiBlock extends VadeMecumPage {
 
-	private static final ResourceLocation TEXTURE = new ResourceLocation(VoidCraft.modid, "textures/gui/VadeMecum/Ritual.png");
+	private static final ResourceLocation TEXTURE = new ResourceLocation(VoidCraft.modid, "textures/gui/vademecum/ritual.png");
 
 	private final ItemStack[] stackList;
 

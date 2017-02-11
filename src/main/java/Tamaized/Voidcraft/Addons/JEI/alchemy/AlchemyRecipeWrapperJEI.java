@@ -28,13 +28,13 @@ public class AlchemyRecipeWrapperJEI extends VoidCraftRecipeWrapperJEI<AlchemyRe
 
 	@Override
 	public void setupSlots(IGuiIngredientGroup g) {
-		g.init(TileEntityVoidicAlchemy.SLOT_OUTPUT, false, renderer, 37, 20, 16, 16, 0, 0);
-		g.init(TileEntityVoidicAlchemy.SLOT_INPUT_1, true, renderer, 13, -5, 16, 16, 0, 0);
-		g.init(TileEntityVoidicAlchemy.SLOT_INPUT_2, true, renderer, 2, 20, 16, 16, 0, 0);
-		g.init(TileEntityVoidicAlchemy.SLOT_INPUT_3, true, renderer, 13, 45, 16, 16, 0, 0);
-		g.init(TileEntityVoidicAlchemy.SLOT_INPUT_4, true, renderer, 61, -5, 16, 16, 0, 0);
-		g.init(TileEntityVoidicAlchemy.SLOT_INPUT_5, true, renderer, 72, 20, 16, 16, 0, 0);
-		g.init(TileEntityVoidicAlchemy.SLOT_INPUT_6, true, renderer, 61, 45, 16, 16, 0, 0);
+		g.init(TileEntityVoidicAlchemy.SLOT_OUTPUT, false, renderer, 38, 21, 16, 16, 0, 0);
+		g.init(TileEntityVoidicAlchemy.SLOT_INPUT_1, true, renderer, 14, -4, 16, 16, 0, 0);
+		g.init(TileEntityVoidicAlchemy.SLOT_INPUT_2, true, renderer, 3, 21, 16, 16, 0, 0);
+		g.init(TileEntityVoidicAlchemy.SLOT_INPUT_3, true, renderer, 14, 46, 16, 16, 0, 0);
+		g.init(TileEntityVoidicAlchemy.SLOT_INPUT_4, true, renderer, 62, -4, 16, 16, 0, 0);
+		g.init(TileEntityVoidicAlchemy.SLOT_INPUT_5, true, renderer, 73, 21, 16, 16, 0, 0);
+		g.init(TileEntityVoidicAlchemy.SLOT_INPUT_6, true, renderer, 62, 46, 16, 16, 0, 0);
 
 		g.set(TileEntityVoidicAlchemy.SLOT_OUTPUT, getOutput());
 

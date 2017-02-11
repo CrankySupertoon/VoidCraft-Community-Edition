@@ -12,7 +12,7 @@ import net.minecraft.util.ResourceLocation;
 
 public class VadeMecumButton extends GuiButton {
 
-	public static final ResourceLocation TEXTURES = new ResourceLocation(VoidCraft.modid, "textures/gui/VadeMecum/vadeMecumButton.png");
+	public static final ResourceLocation TEXTURES = new ResourceLocation(VoidCraft.modid, "textures/gui/vademecum/vadeMecumButton.png");
 	private final ItemStack stackToRender;
 	private final VadeMecumGUI gui;
 

@@ -17,7 +17,7 @@ import net.minecraft.util.ResourceLocation;
 
 public class AlchemyRecipeCategory implements IRecipeCategory {
 
-	private final ResourceLocation background = new ResourceLocation(VoidCraft.modid, "textures/gui/JEI/voidicalchemy.png");
+	private final ResourceLocation background = new ResourceLocation(VoidCraft.modid, "textures/gui/jei/voidicalchemy.png");
 	private IDrawableAnimated powerAnimation;
 	private IDrawableAnimated progressAnimation;
 

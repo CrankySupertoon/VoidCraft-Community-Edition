@@ -12,7 +12,7 @@ import net.minecraft.util.text.TextFormatting;
 
 public class VadeMecumCraftingAlchemy implements IVadeMecumCrafting {
 
-	private static final ResourceLocation TEXTURE = new ResourceLocation(VoidCraft.modid, "textures/gui/VadeMecum/Crafting_Alchemy.png");
+	private static final ResourceLocation TEXTURE = new ResourceLocation(VoidCraft.modid, "textures/gui/vademecum/crafting_alchemy.png");
 
 	private final String title;
 	private final ItemStack[] input;

@@ -8,13 +8,14 @@ import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
+import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.entity.boss.herobrine.EntityBossHerobrine;
 import Tamaized.Voidcraft.entity.boss.herobrine.extra.EntityHerobrineShadow;
 import Tamaized.Voidcraft.entity.boss.render.bossBar.RenderBossHeathBar;
 
 public class RenderHerobrineShadow<T extends EntityHerobrineShadow> extends Render<T> {
 
-	private static final ResourceLocation Herobrine_Texture = new ResourceLocation("VoidCraft:textures/entity/herobrine.png"); // refers to:assets/yourmod/textures/entity/yourtexture.png
+	private static final ResourceLocation Herobrine_Texture = new ResourceLocation(VoidCraft.modid, "textures/entity/herobrine.png");
 	protected ModelBase mainModel;
 
 	public RenderHerobrineShadow(RenderManager manager, ModelBase par1ModelBase) {
