@@ -19,7 +19,7 @@ repositories {
 }
 
 version = "${project.minecraftVersion}-${modVersion}${modVersionValue}"
-group= "tamaized.voidCraft"
+group= "tamaized.VoidCraft"
 archivesBaseName = "VoidCraft"
 
 sourceCompatibility = 1.8
@@ -31,7 +31,7 @@ minecraft {
     mappings = "${project.forgeMapping}"
     makeObfSourceJar = false
 	useDepAts = true
-	replaceIn 'voidCraft.java'
+	replaceIn 'VoidCraft.java'
 	replace '${version}', "${modVersion}${modVersionValue}"
 }
 
