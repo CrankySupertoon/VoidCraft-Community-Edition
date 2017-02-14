@@ -15,10 +15,8 @@ public class BossBarOverlay {
 		Minecraft mc = Minecraft.getMinecraft();
 		Profiler profiler = mc.mcProfiler;
 		
-		profiler.endStartSection("bossBar");
 		RenderBossHeathBar.render(e.getResolution());
 		RenderAlternateBossBars.render(e.getResolution(), e.getPartialTicks());
-		profiler.endSection();
 	}
 
 }
