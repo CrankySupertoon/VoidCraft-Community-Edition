@@ -138,21 +138,21 @@ public class ClientProxy extends AbstractVoidCraftProxy {
 		RenderingRegistry.registerEntityRenderingHandler(EntityMobSpectreChain.class, new IRenderFactory<EntityMobSpectreChain>() {
 			@Override
 			public Render<? super EntityMobSpectreChain> createRenderFor(RenderManager manager) {
-				return new RenderGeneric(manager, new ModelSpectreChain(), shadowSize, new ResourceLocation(VoidCraft.modid, "textures/entity/zSpectreChain.png"));
+				return new RenderGeneric(manager, new ModelSpectreChain(), shadowSize, new ResourceLocation(VoidCraft.modid, "textures/entity/zspectrechain.png"));
 			}
 		});
 
 		RenderingRegistry.registerEntityRenderingHandler(EntityMobLich.class, new IRenderFactory<EntityMobLich>() {
 			@Override
 			public Render<? super EntityMobLich> createRenderFor(RenderManager manager) {
-				return new RenderGeneric(manager, new ModelLich(), shadowSize, new ResourceLocation(VoidCraft.modid, "textures/entity/zLich.png"));
+				return new RenderGeneric(manager, new ModelLich(), shadowSize, new ResourceLocation(VoidCraft.modid, "textures/entity/zlich.png"));
 			}
 		});
 
 		RenderingRegistry.registerEntityRenderingHandler(EntityMobVoidWrath.class, new IRenderFactory<EntityMobVoidWrath>() {
 			@Override
 			public Render<? super EntityMobVoidWrath> createRenderFor(RenderManager manager) {
-				return new RenderGeneric(manager, new ModelVoidWrath(), shadowSize, new ResourceLocation(VoidCraft.modid, "textures/entity/zVoidWrath.png"));
+				return new RenderGeneric(manager, new ModelVoidWrath(), shadowSize, new ResourceLocation(VoidCraft.modid, "textures/entity/zvoidwrath.png"));
 			}
 		});
 		RenderingRegistry.registerEntityRenderingHandler(EntityBossCorruptedPawn.class, new IRenderFactory<EntityBossCorruptedPawn>() {
