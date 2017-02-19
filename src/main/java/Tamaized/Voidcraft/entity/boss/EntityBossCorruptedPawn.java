@@ -89,6 +89,11 @@ public class EntityBossCorruptedPawn extends EntityVoidMob implements IVoidBossD
 		 * // this.getNavigator().setBreakDoors(true); this.tasks.addTask(0, new EntityAISwimming(this)); this.tasks.addTask(1, new EntityAIBreakDoor(this)); this.tasks.addTask(3, new EntityAIAttackMelee(this, 1.0D, false)); this.tasks.addTask(4, new EntityAIMoveTowardsRestriction(this, 1.0D)); this.tasks.addTask(5, new EntityAIMoveThroughVillage(this, 1.0D, false)); this.tasks.addTask(6, new EntityAIWander(this, 1.0D)); this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F)); this.tasks.addTask(7, new EntityAILookIdle(this)); this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true)); this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true)); this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityVillager.class, true)); this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityGolem.class, true)); // IronGolem and Snowman extend this this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityMob.class, true)); // Normal Minecraft mobs this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityAnimal.class, true)); // Passive animals this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntitySlime.class, true)); // Slime extends living so need to add it manually
 		 */
 	}
+	
+	@Override
+	public boolean isNonBoss() {
+		return false;
+	}
 
 	class AIDoNothing extends EntityAIBase {
 		public AIDoNothing() {

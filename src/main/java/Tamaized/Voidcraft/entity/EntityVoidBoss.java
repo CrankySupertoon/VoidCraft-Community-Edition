@@ -61,6 +61,11 @@ public abstract class EntityVoidBoss<T extends IBattleHandler> extends EntityVoi
 		for (Class c : getFilters())
 			tasks.addTask(6, new EntityAIWatchClosest(this, c, 64.0F));
 	}
+	
+	@Override
+	public boolean isNonBoss() {
+		return false;
+	}
 
 	public T getHandler() {
 		return handler;

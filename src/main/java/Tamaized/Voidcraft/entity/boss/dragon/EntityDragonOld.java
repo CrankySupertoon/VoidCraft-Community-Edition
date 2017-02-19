@@ -99,6 +99,11 @@ public class EntityDragonOld extends EntityLiving implements IEntityMultiPartOld
 		super.applyEntityAttributes();
 		this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(200.0D);
 	}
+	
+	@Override
+	public boolean isNonBoss() {
+		return false;
+	}
 
 	@Override
 	protected void entityInit() {
