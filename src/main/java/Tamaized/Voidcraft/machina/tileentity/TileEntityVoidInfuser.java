@@ -68,7 +68,7 @@ public class TileEntityVoidInfuser extends TamTileEntityInventory implements IFl
 
 		if (cooking) {
 			cookingTick++;
-			if (cookingTick >= (finishTick = recipe.getRequiredFluid())) {
+			if (cookingTick >= (finishTick = getRequiredFluid())) {
 				cookingTick = 0;
 				bakeItem();
 				markDirty();
@@ -76,8 +76,20 @@ public class TileEntityVoidInfuser extends TamTileEntityInventory implements IFl
 		}
 	}
 
+	private int getRequiredFluid() {
+		ItemStack stack = slots[SLOT_INPUT];
+		return recipe == null ? (stack.getItemDamage()) : recipe.getRequiredFluid();
+	}
+
 	private void bakeItem() {
 		if (canCook()) {
+			if (recipe == null) {
+				ItemStack stack = slots[SLOT_INPUT].copy();
+				stack.setItemDamage(0);
+				slots[SLOT_OUTPUT] = stack;
+				slots[SLOT_INPUT] = null;
+				return;
+			}
 			if (slots[SLOT_OUTPUT] == null) {
 				slots[SLOT_OUTPUT] = recipe.getOutput().copy();
 			} else if (slots[SLOT_OUTPUT].isItemEqual(recipe.getOutput())) {
@@ -95,11 +107,36 @@ public class TileEntityVoidInfuser extends TamTileEntityInventory implements IFl
 	private boolean canCook() {
 		if (slots[SLOT_INPUT] == null) return false;
 		recipe = VoidCraft.teRecipes.infuser.getRecipe(new ItemStack[] { slots[SLOT_INPUT] });
-		if (recipe == null) return false;
+		if (recipe == null) return slots[SLOT_OUTPUT] == null && canRepair(slots[SLOT_INPUT]);
 		if (slots[SLOT_OUTPUT] == null) return true;
 		if (!slots[SLOT_OUTPUT].isItemEqual(recipe.getOutput())) return false;
 		int result = slots[SLOT_OUTPUT].stackSize + recipe.getOutput().stackSize;
 		return (result <= getInventoryStackLimit() && result <= recipe.getOutput().getMaxStackSize());
+	}
+
+	private boolean canRepair(ItemStack stack) {
+		Item item = stack.getItem();
+		return (item == VoidCraft.items.voidCrystalShield ||
+
+				item == VoidCraft.tools.voidAxe ||
+
+				item == VoidCraft.tools.voidPickaxe ||
+
+				item == VoidCraft.tools.voidSpade ||
+
+				item == VoidCraft.tools.voidSword ||
+
+				item == VoidCraft.tools.voidHoe ||
+
+				item == VoidCraft.armors.voidBoots ||
+
+				item == VoidCraft.armors.voidLegs ||
+
+				item == VoidCraft.armors.voidChest ||
+
+				item == VoidCraft.armors.voidHelmet) &&
+
+				(stack.getItemDamage() > 0);
 	}
 
 	public static boolean isItemFuel(ItemStack stack) {
