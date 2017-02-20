@@ -134,7 +134,6 @@ public class RenderGhostPlayer<T extends EntityGhostPlayerBase> extends RenderLi
 	}
 
 	protected void renderLabel(T yourentityLiving, double par2, double par4, double par6) {
-		// if you're less then 32 blocks x-y-z away from this entity,it will display the entity's name.
 		int distanceToEntity = 32;
 		this.renderLivingLabel(yourentityLiving, yourentityLiving.getDisplayName().getFormattedText(), par2, par4, par6, distanceToEntity);
 		par4 += (double) ((float) this.getFontRendererFromRenderManager().FONT_HEIGHT * 1.15F * par6);
@@ -174,10 +173,8 @@ public class RenderGhostPlayer<T extends EntityGhostPlayerBase> extends RenderLi
 	 */
 	@Override
 	protected void preRenderCallback(T entitylivingbaseIn, float partialTickTime) {
-		float f = 0.9375F;
-		GlStateManager.scale(0.9375F, 0.9375F, 0.9375F);
-		//GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-        //GL11.glEnable(GL11.GL_BLEND);
+		float scale = 0.9375F;
+		GlStateManager.scale(scale, scale, scale);
 		GlStateManager.color(1.0f, 1.0f, 1.0f, 0.5f);
 	}
 
