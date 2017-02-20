@@ -3,13 +3,13 @@ package Tamaized.Voidcraft.vadeMecum.contents.documentation.tools;
 import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.GUI.client.VadeMecumGUI;
 import Tamaized.Voidcraft.proxy.ClientProxy;
-import Tamaized.Voidcraft.vadeMecum.VadeMecumButton;
 import Tamaized.Voidcraft.vadeMecum.VadeMecumEntry;
 import Tamaized.Voidcraft.vadeMecum.contents.documentation.tools.realityTeleporter.VadeMecumPageListRealityTeleporter;
 import Tamaized.Voidcraft.vadeMecum.contents.documentation.tools.spectreaxe.VadeMecumPageListSpectreAxe;
 import Tamaized.Voidcraft.vadeMecum.contents.documentation.tools.spectrehoe.VadeMecumPageListSpectreHoe;
 import Tamaized.Voidcraft.vadeMecum.contents.documentation.tools.spectrepick.VadeMecumPageListSpectrePick;
 import Tamaized.Voidcraft.vadeMecum.contents.documentation.tools.spectreshovel.VadeMecumPageListSpectreShovel;
+import Tamaized.Voidcraft.vadeMecum.contents.documentation.tools.voidShield.VadeMecumPageListVoidShield;
 import Tamaized.Voidcraft.vadeMecum.contents.documentation.tools.voidaxe.VadeMecumPageListVoidAxe;
 import Tamaized.Voidcraft.vadeMecum.contents.documentation.tools.voidhoe.VadeMecumPageListVoidHoe;
 import Tamaized.Voidcraft.vadeMecum.contents.documentation.tools.voidicdrill.VadeMecumPageListVoidicDrill;
@@ -20,9 +20,9 @@ import net.minecraft.item.ItemStack;
 public class VadeMecumToolsEntry extends VadeMecumEntry {
 
 	public static enum Entry {
-		VoidPick, VoidAxe, VoidShovel, VoidHoe, SpectrePick, SpectreAxe,
+		VoidShield, VoidPick, VoidAxe, VoidShovel, VoidHoe, SpectrePick,
 
-		SpectreShovel, SpectreHoe, VoidicDrill, RealityTeleporter
+		SpectreAxe, SpectreShovel, SpectreHoe, VoidicDrill, RealityTeleporter
 	}
 
 	public static int getEntryID(Entry e) {
@@ -33,15 +33,16 @@ public class VadeMecumToolsEntry extends VadeMecumEntry {
 		return id >= Entry.values().length ? null : Entry.values()[id];
 	}
 
+	public VadeMecumEntry voidShield;
 	public VadeMecumEntry voidPick;
 	public VadeMecumEntry voidAxe;
 	public VadeMecumEntry voidShovel;
 	public VadeMecumEntry voidHoe;
 	public VadeMecumEntry spectrePick;
+
 	public VadeMecumEntry spectreAxe;
 	public VadeMecumEntry spectreShovel;
 	public VadeMecumEntry spectreHoe;
-
 	public VadeMecumEntry voidicDrill;
 	public VadeMecumEntry realityTeleporter;
 
@@ -51,13 +52,15 @@ public class VadeMecumToolsEntry extends VadeMecumEntry {
 
 	@Override
 	public void initObjects() {
+		voidShield = new VadeMecumEntry("docs_Tools_voidShield", "", this, new VadeMecumPageListVoidShield());
+
 		voidPick = new VadeMecumEntry("docs_Tools_voidPick", "", this, new VadeMecumPageListVoidPick());
 		voidAxe = new VadeMecumEntry("docs_Tools_voidAxe", "", this, new VadeMecumPageListVoidAxe());
 		voidShovel = new VadeMecumEntry("docs_Tools_voidShovel", "", this, new VadeMecumPageListVoidSpade());
 		voidHoe = new VadeMecumEntry("docs_Tools_voidHoe", "", this, new VadeMecumPageListVoidHoe());
 		spectrePick = new VadeMecumEntry("docs_Tools_spectrePick", "", this, new VadeMecumPageListSpectrePick());
-		spectreAxe = new VadeMecumEntry("docs_Tools_spectreAxe", "", this, new VadeMecumPageListSpectreAxe());
 
+		spectreAxe = new VadeMecumEntry("docs_Tools_spectreAxe", "", this, new VadeMecumPageListSpectreAxe());
 		spectreShovel = new VadeMecumEntry("docs_Tools_spectreShovel", "", this, new VadeMecumPageListSpectreShovel());
 		spectreHoe = new VadeMecumEntry("docs_Tools_spectreHoe", "", this, new VadeMecumPageListSpectreHoe());
 		voidicDrill = new VadeMecumEntry("docs_Tools_voidicDrill", "", this, new VadeMecumPageListVoidicDrill());
@@ -68,13 +71,15 @@ public class VadeMecumToolsEntry extends VadeMecumEntry {
 	public void init(VadeMecumGUI gui) {
 		initObjects();
 		clearButtons();
+
+		addButton(gui, getEntryID(Entry.VoidShield), new ItemStack(VoidCraft.items.voidCrystalShield).getDisplayName(), new ItemStack(VoidCraft.items.voidCrystalShield));
 		addButton(gui, getEntryID(Entry.VoidPick), new ItemStack(VoidCraft.tools.voidPickaxe).getDisplayName(), new ItemStack(VoidCraft.tools.voidPickaxe));
 		addButton(gui, getEntryID(Entry.VoidAxe), new ItemStack(VoidCraft.tools.voidAxe).getDisplayName(), new ItemStack(VoidCraft.tools.voidAxe));
 		addButton(gui, getEntryID(Entry.VoidShovel), new ItemStack(VoidCraft.tools.voidSpade).getDisplayName(), new ItemStack(VoidCraft.tools.voidSpade));
 		addButton(gui, getEntryID(Entry.VoidHoe), new ItemStack(VoidCraft.tools.voidHoe).getDisplayName(), new ItemStack(VoidCraft.tools.voidHoe));
 		addButton(gui, getEntryID(Entry.SpectrePick), new ItemStack(VoidCraft.tools.spectrePickaxe).getDisplayName(), new ItemStack(VoidCraft.tools.spectrePickaxe));
-		addButton(gui, getEntryID(Entry.SpectreAxe), new ItemStack(VoidCraft.tools.spectreAxe).getDisplayName(), new ItemStack(VoidCraft.tools.spectreAxe));
 
+		addButton(gui, getEntryID(Entry.SpectreAxe), new ItemStack(VoidCraft.tools.spectreAxe).getDisplayName(), new ItemStack(VoidCraft.tools.spectreAxe));
 		addButton(gui, getEntryID(Entry.SpectreShovel), new ItemStack(VoidCraft.tools.spectreSpade).getDisplayName(), new ItemStack(VoidCraft.tools.spectreSpade));
 		addButton(gui, getEntryID(Entry.SpectreHoe), new ItemStack(VoidCraft.tools.spectreHoe).getDisplayName(), new ItemStack(VoidCraft.tools.spectreHoe));
 		addButton(gui, getEntryID(Entry.VoidicDrill), new ItemStack(VoidCraft.items.voidicDrill).getDisplayName(), new ItemStack(VoidCraft.items.voidicDrill));
@@ -84,6 +89,9 @@ public class VadeMecumToolsEntry extends VadeMecumEntry {
 	@Override
 	protected void actionPerformed(VadeMecumGUI gui, int id, int mouseButton) {
 		switch (getEntryFromID(id)) {
+			case VoidShield:
+				gui.changeEntry(voidShield);
+				break;
 			case VoidPick:
 				gui.changeEntry(voidPick);
 				break;

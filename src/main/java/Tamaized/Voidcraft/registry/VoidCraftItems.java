@@ -9,6 +9,7 @@ import Tamaized.TamModized.registry.ITamModel;
 import Tamaized.TamModized.registry.ITamRegistry;
 import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.blocks.tileentity.TileEntityFakeBedrockFarmland;
+import Tamaized.Voidcraft.events.DamageEvent;
 import Tamaized.Voidcraft.items.ChainedSkull;
 import Tamaized.Voidcraft.items.Debugger;
 import Tamaized.Voidcraft.items.EmptyObsidianFlask;
@@ -16,6 +17,7 @@ import Tamaized.Voidcraft.items.EtherealFruit;
 import Tamaized.Voidcraft.items.ObsidianFlask;
 import Tamaized.Voidcraft.items.RealityTeleporter;
 import Tamaized.Voidcraft.items.VadeMecum;
+import Tamaized.Voidcraft.items.VoidCrystalShield;
 import Tamaized.Voidcraft.items.VoidStar;
 import Tamaized.Voidcraft.items.VoidicDrill;
 import Tamaized.Voidcraft.items.VoidicEssence;
@@ -74,6 +76,8 @@ public class VoidCraftItems implements ITamRegistry {
 	public static VoidicDrill voidicDrill;
 	public static RealityTeleporter realityTeleporter;
 
+	public static VoidCrystalShield voidCrystalShield;
+
 	public static TamItemSeed etherealSeed;
 	public static EtherealFruit etherealFruit;
 	public static EtherealFruit etherealFruit_redstone;
@@ -110,7 +114,7 @@ public class VoidCraftItems implements ITamRegistry {
 		modelList.add(voidicDragonScale = new TamItem(VoidCraft.tabs.tabVoid, "voidicdragonscale", 64));
 		modelList.add(astralEssence = new TamItem(VoidCraft.tabs.tabVoid, "astralessence", 64));
 		modelList.add(quoriFragment = new TamItem(VoidCraft.tabs.tabVoid, "quorifragment", 64));
-		
+
 		// dust
 		modelList.add(quartzDust = new TamItem(VoidCraft.tabs.tabVoid, "quartzdust", 64));
 		modelList.add(coalDust = new TamItem(VoidCraft.tabs.tabVoid, "coaldust", 64));
@@ -129,6 +133,9 @@ public class VoidCraftItems implements ITamRegistry {
 		modelList.add(voidicSuppressor = new VoidicSuppressor(VoidCraft.tabs.tabVoid, "voidicsuppressor", 1));
 		modelList.add(voidicDrill = new VoidicDrill(VoidCraft.tabs.tabVoid, "voidicdrill", 1));
 		modelList.add(realityTeleporter = new RealityTeleporter(VoidCraft.tabs.tabVoid, "realityteleporter", 1));
+
+		modelList.add(voidCrystalShield = new VoidCrystalShield(VoidCraft.tabs.tabVoid, "voidcrystalshield"));
+		DamageEvent.shieldRegistry.add(voidCrystalShield);
 
 		ArrayList<TamBlockFarmland> soilList = new ArrayList<TamBlockFarmland>();
 		soilList.add(VoidCraft.blocks.blockFakeBedrockFarmland);
@@ -175,6 +182,8 @@ public class VoidCraftItems implements ITamRegistry {
 		GameRegistry.addRecipe(new ItemStack(ChainedSkull), "XYX", "YZY", "XYX", 'X', MoltenvoidChain, 'Y', burnBone, 'Z', new ItemStack(Items.SKULL, 1, 1));
 		GameRegistry.addRecipe(new ItemStack(Items.SKULL, 1, 1), "XX", "XX", 'X', burnBone);
 		GameRegistry.addRecipe(new ItemStack(realityTeleporter), "BEZ", "CHC", "BCB", 'B', burnBone, 'E', emeraldDust, 'Z', VoidCraft.blocks.voidicCharger, 'C', MoltenvoidChain, 'H', VoidCraft.blocks.realityHole);
+
+		GameRegistry.addRecipe(new ItemStack(voidCrystalShield), "CCC", "CBC", " C ", 'C', voidcrystal, 'B', VoidCraft.blocks.blockVoidcrystal);
 
 		GameRegistry.addSmelting(VoidCraft.blocks.oreVoidcrystal, new ItemStack(voidcrystal), 0.1F);
 		GameRegistry.addSmelting(voidChain, new ItemStack(MoltenvoidChainPart), 0.1F);

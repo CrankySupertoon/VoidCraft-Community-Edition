@@ -1,5 +1,8 @@
 package Tamaized.Voidcraft.events;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.capabilities.CapabilityList;
 import Tamaized.Voidcraft.capabilities.starforge.IStarForgeCapability;
@@ -10,16 +13,29 @@ import Tamaized.Voidcraft.starforge.effects.IStarForgeEffect.Tier;
 import Tamaized.Voidcraft.starforge.effects.wep.tier3.StarForgeEffectCripplingVoid;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.SoundEvents;
+import net.minecraft.inventory.EntityEquipmentSlot;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.relauncher.Side;
 
 public class DamageEvent {
 
+	public static List<Item> shieldRegistry = new ArrayList<Item>(); // Move this into TamModized
+
 	@SubscribeEvent
 	public void entityDamaged(LivingAttackEvent e) {
+
+		handleShield(e);
 
 		// Vanilla Void
 		if (e.getSource().damageType.equals("outOfWorld") && e.getEntity() != null && e.getEntity() instanceof EntityLivingBase && ((EntityLivingBase) e.getEntity()).getActivePotionEffect(VoidCraft.potions.voidImmunity) != null) {
@@ -52,6 +68,41 @@ public class DamageEvent {
 			if (e.getSource() != null && isWhiteListed(e.getSource(), false) && e.getSource().getEntity() != null && e.getSource().getEntity() instanceof EntityLivingBase) {
 				EntityLivingBase attacker = (EntityLivingBase) e.getSource().getEntity();
 				SheatheHelper.onAttack(living, attacker);
+			}
+		}
+	}
+
+	private void handleShield(LivingAttackEvent e) {
+		float damage = e.getAmount();
+		ItemStack activeItemStack;
+		EntityPlayer player;
+		if (!(e.getEntityLiving() instanceof EntityPlayer)) {
+			return;
+		}
+		player = (EntityPlayer) e.getEntityLiving();
+		if (player.getActiveItemStack() == null) {
+			return;
+		}
+		activeItemStack = player.getActiveItemStack();
+
+		if (damage > 0.0F && activeItemStack != null && shieldRegistry.contains(activeItemStack.getItem())) {
+			int i = 1 + MathHelper.floor(damage);
+			activeItemStack.damageItem(i, player);
+
+			if (activeItemStack.stackSize <= 0) {
+				EnumHand enumhand = player.getActiveHand();
+				net.minecraftforge.event.ForgeEventFactory.onPlayerDestroyItem(player, activeItemStack, enumhand);
+
+				if (enumhand == EnumHand.MAIN_HAND) {
+					player.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, (ItemStack) null);
+				} else {
+					player.setItemStackToSlot(EntityEquipmentSlot.OFFHAND, (ItemStack) null);
+				}
+
+				activeItemStack = null;
+				if (FMLCommonHandler.instance().getSide() == Side.CLIENT) {
+					player.playSound(SoundEvents.ITEM_SHIELD_BREAK, 0.8F, 0.8F + player.world.rand.nextFloat() * 0.4F);
+				}
 			}
 		}
 	}

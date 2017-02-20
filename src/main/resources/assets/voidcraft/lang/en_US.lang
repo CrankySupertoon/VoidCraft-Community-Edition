@@ -44,6 +44,7 @@ item.voidicphlogiston.name=Voidic Phlogiston
 item.voidicdragonscale.name=Voidic Dragon Scale
 item.astralessence.name=Astral Essence
 item.quorifragment.name=Quori Fragment
+item.voidcrystalshield.name=Void Crystal Shield
 
 # Blocks
 tile.voidcraft:blockvoidfluid.name=Liquid Void
@@ -341,6 +342,7 @@ voidcraft.VadeMecum.docs.desc.herobrine=The Avatar of Herobrine has 2 forms. In 
 voidcraft.VadeMecum.docs.desc.twins=The Twins do not like fighting. If possible, they will resort to various puzzles or mind games against their foes instead. Though, they do have the power to strike down their foes who let their guard down trying to solve such puzzles. The Twins will not just destroy without reason, they play fair and will only destroy if the challenge is failed.
 voidcraft.VadeMecum.docs.desc.xiaBoss=Not much is known of Xia, what is known however is that he takes on two forms. The first being a humanoid form where he is susceptible to direct strikes. And his second form, which is more Djinn like. In his second form he is capable of maintaining a shield which protects him from all sources of damage. Though there are ways to bring down this protection momentarily.
 voidcraft.VadeMecum.docs.desc.voidicDragon=Summoned by using a Void Star on a Dragon Egg. This variant of The Ender Dragon has 50 more health, deals an extra 5 damage (2 and a half hearts), and will drop Voidic Dragon Scales on death.
+voidcraft.VadeMecum.docs.desc.voidShield=A Shield constructed from Crystallized Void. It has a durability of 2688.
 voidcraft.VadeMecum.docs.desc.starforge.pg1=Located in the Realm of the Gods, The Star Forge is used to forge extremely powerful Tools and Weapons. They are forged from rare materials, these being: Cosmic Material, Voidic Dragon Scales, Quori Fragments, Astral Essence, and Voidic Phlogistons. These Tools and Weapons are so strong infact that they do not become dull or break. To craft a base, you must collect at least 4 Cosmic Material and a single Quori Fragment.
 voidcraft.VadeMecum.docs.desc.starforge.pg2=It is also possible to forge effects onto these Tools and Weapons. Effects come in three tiers and once placed onto a tool or weapon, they cannot be overwritten or removed. So make your choices wisely. (Do note: More Effects may be added in the future)
 voidcraft.VadeMecum.docs.desc.starforge.effect.blindingFear=Targets are dealt with 10 seconds of Blindness each time they are hit.
