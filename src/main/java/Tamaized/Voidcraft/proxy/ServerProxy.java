@@ -2,7 +2,7 @@ package Tamaized.Voidcraft.proxy;
 
 import Tamaized.TamModized.proxy.AbstractProxy;
 
-public class ServerProxy extends AbstractVoidCraftProxy {
+public class ServerProxy extends AbstractProxy {
 
 	@Override
 	public void preRegisters() {

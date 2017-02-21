@@ -6,6 +6,7 @@ import org.apache.logging.log4j.LogManager;
 
 import Tamaized.TamModized.TamModBase;
 import Tamaized.TamModized.TamModized;
+import Tamaized.TamModized.proxy.AbstractProxy;
 import Tamaized.Voidcraft.Addons.thaumcraft.VoidCraftThaum;
 import Tamaized.Voidcraft.GUI.GuiHandler;
 import Tamaized.Voidcraft.blocks.TileEntityNoBreak;
@@ -90,7 +91,6 @@ import Tamaized.Voidcraft.machina.tileentity.TileEntityVoidicCharger;
 import Tamaized.Voidcraft.machina.tileentity.TileEntityVoidicPowerCable;
 import Tamaized.Voidcraft.machina.tileentity.TileEntityVoidicPowerGen;
 import Tamaized.Voidcraft.network.ServerPacketHandler;
-import Tamaized.Voidcraft.proxy.AbstractVoidCraftProxy;
 import Tamaized.Voidcraft.registry.VoidCraftAchievements;
 import Tamaized.Voidcraft.registry.VoidCraftArmors;
 import Tamaized.Voidcraft.registry.VoidCraftBiomes;
@@ -159,7 +159,7 @@ public class VoidCraft extends TamModBase {
 	public static final String networkChannelName = "VoidCraft";
 
 	@SidedProxy(clientSide = "Tamaized.Voidcraft.proxy.ClientProxy", serverSide = "Tamaized.Voidcraft.proxy.ServerProxy")
-	public static AbstractVoidCraftProxy proxy;
+	public static AbstractProxy proxy;
 
 	public VoidTickEvent VoidTickEvent;
 
@@ -185,7 +185,34 @@ public class VoidCraft extends TamModBase {
 	public static VoidCraftParticles particles;
 
 	@Override
+	protected AbstractProxy getProxy() {
+		return proxy;
+	}
+
+	@Override
+	public String getModID() {
+		return modid;
+	}
+
+	@Override
 	@EventHandler
+	public void FMLpreInit(FMLPreInitializationEvent event) {
+		super.FMLpreInit(event);
+	}
+
+	@Override
+	@EventHandler
+	public void FMLinit(FMLInitializationEvent event) {
+		super.FMLinit(event);
+	}
+
+	@Override
+	@EventHandler
+	public void FMLpostInit(FMLPostInitializationEvent event) {
+		super.FMLpostInit(event);
+	}
+
+	@Override
 	public void preInit(FMLPreInitializationEvent event) {
 		logger = LogManager.getLogger("VoidCraft");
 
@@ -197,8 +224,6 @@ public class VoidCraft extends TamModBase {
 
 		// Initialize Network
 		channel = NetworkRegistry.INSTANCE.newEventDrivenChannel(networkChannelName);
-
-		proxy.preRegisters();
 
 		// yo dawg, Register the Registers... i'm sorry
 		register(materials = new VoidCraftMaterials());
@@ -217,9 +242,6 @@ public class VoidCraft extends TamModBase {
 
 		// Register Sounds Events
 		VoidSoundEvents.register();
-
-		// Super here to start register stuff
-		super.preInit(event);
 
 		// API Loader
 		if (Loader.isModLoaded("Thaumcraft")) {
@@ -244,16 +266,11 @@ public class VoidCraft extends TamModBase {
 		CapabilityManager.INSTANCE.register(IStarForgeCapability.class, new StarForgeCapabilityStorage(), StarForgeCapabilityHandler.class);
 		MinecraftForge.EVENT_BUS.register(new Tamaized.Voidcraft.capabilities.EventHandler());
 
-		// Proxy Stuff
-		proxy.preInit();
 	}
 
 	@Override
-	@EventHandler
 	public void init(FMLInitializationEvent event) {
 		logger.info("Starting VoidCraft Init");
-
-		super.init(event);
 
 		// Run Skin Handler
 		skinHandler.run();
@@ -356,17 +373,11 @@ public class VoidCraft extends TamModBase {
 
 		// if(thaumcraftIntegration != null) thaumcraftIntegration.init();
 
-		// Proxy Stuff
-		proxy.init();
-
 	}
 
 	@Override
-	@EventHandler
 	public void postInit(FMLPostInitializationEvent e) {
 		logger.info("Starting VoidCraft PostInit");
-
-		super.postInit(e);
 
 		// Load Rituals
 		reloadRitualList();
@@ -374,8 +385,6 @@ public class VoidCraft extends TamModBase {
 		// Register Network
 		channel.register(new ServerPacketHandler());
 
-		// Proxy Stuff
-		proxy.postInit();
 		// if(thaumcraftIntegration != null) thaumcraftIntegration.postInit();
 
 	}
