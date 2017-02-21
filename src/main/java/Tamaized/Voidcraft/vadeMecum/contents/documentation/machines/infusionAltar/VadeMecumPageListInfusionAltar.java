@@ -14,7 +14,8 @@ public class VadeMecumPageListInfusionAltar implements IVadeMecumPageProvider {
 
 	public IVadeMecumPage[] getPageList(IVadeMecumCapability cap) {
 		return new IVadeMecumPage[] {
-				new VadeMecumPage(new ItemStack(VoidCraft.blocks.voidInfuser).getDisplayName(), VoidCraft.modid+".VadeMecum.docs.desc.voidInfuser"),
+				new VadeMecumPage(new ItemStack(VoidCraft.blocks.voidInfuser).getDisplayName(), VoidCraft.modid+".VadeMecum.docs.desc.voidInfuser.pg1"),
+				new VadeMecumPage("", VoidCraft.modid+".VadeMecum.docs.desc.voidInfuser.pg2"),
 				new VadeMecumPageCrafting(new VadeMecumCraftingNormal(new ItemStack(VoidCraft.blocks.voidInfuserInert).getDisplayName(), new ItemStack[] {
 						new ItemStack(VoidCraft.blocks.blockVoidbrick),
 						new ItemStack(VoidCraft.items.voidCloth),
