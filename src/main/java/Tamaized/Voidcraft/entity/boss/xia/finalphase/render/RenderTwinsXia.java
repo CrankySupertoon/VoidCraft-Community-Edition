@@ -25,11 +25,15 @@ public class RenderTwinsXia extends RenderLiving<EntityTwinsXia> {
 	@Override
 	public void doRender(EntityTwinsXia entity, double x, double y, double z, float entityYaw, float partialTicks) {
 		RenderAlternateBossBars.addBoss(entity.bossBarWrapper);
+		super.doRender(entity, x, y, z, entityYaw, partialTicks);
+		GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
+	}
+	
+	@Override
+	protected void preRenderCallback(EntityTwinsXia entity, float partialTickTime) {
 		float f = entity.isFrozen() ? entity.getHealthPerc() : 1.0F;
 		GlStateManager.color(f, f, f, 1.0F);
-		super.doRender(entity, x, y, z, entityYaw, partialTicks);
-		// renderLabel(entity, x, y, z);
-		GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
+		super.preRenderCallback(entity, partialTickTime);
 	}
 
 	protected void renderLabel(EntityTwinsXia entity, double par2, double par4, double par6) {
