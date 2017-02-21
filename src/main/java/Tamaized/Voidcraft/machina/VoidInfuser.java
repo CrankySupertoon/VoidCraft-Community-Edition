@@ -6,12 +6,14 @@ import Tamaized.TamModized.blocks.TamBlockContainer;
 import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.GUI.GuiHandler;
 import Tamaized.Voidcraft.machina.tileentity.TileEntityVoidInfuser;
+import Tamaized.Voidcraft.machina.tileentity.TileEntityVoidicPowerGen;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
@@ -73,59 +75,8 @@ public class VoidInfuser extends TamBlockContainer {
 
 	}
 
-	/**
-	 * Called on server worlds only when the block has been replaced by a different block ID, or the same block with a different metadata value, but before the new metadata value is set. Args: World, x, y, z, old block ID, old metadata
-	 */
 	@Override
-	public void breakBlock(World world, BlockPos pos, IBlockState state) {
-
-		TileEntityVoidInfuser tileentity = (TileEntityVoidInfuser) world.getTileEntity(pos);
-
-		if (tileentity != null) {
-			for (int i = 0; i < tileentity.getSizeInventory(); i++) {
-				ItemStack itemstack = tileentity.getStackInSlot(i);
-
-				if (itemstack != null) {
-					float f = this.rand.nextFloat() * 0.8F + 0.1F;
-					float f1 = this.rand.nextFloat() * 0.8F + 0.1F;
-					float f2 = this.rand.nextFloat() * 0.8F + 0.1F;
-
-					while (itemstack.stackSize > 0) {
-						int j = this.rand.nextInt(21);
-
-						if (j > itemstack.stackSize) {
-							j = itemstack.stackSize;
-						}
-
-						itemstack.stackSize -= (j);
-
-						EntityItem item = new EntityItem(world, (double) ((float) pos.getX() + f), (double) ((float) pos.getY() + f1), (double) ((float) pos.getZ() + f2), itemstack);
-
-						if (itemstack.hasTagCompound()) {
-							item.getEntityItem().setTagCompound((NBTTagCompound) itemstack.getTagCompound().copy());
-						}
-
-						float f3 = 0.05F;
-						item.motionX = (double) ((float) this.rand.nextGaussian() * f3);
-						item.motionY = (double) ((float) this.rand.nextGaussian() * f3 + 0.2F);
-						item.motionZ = (double) ((float) this.rand.nextGaussian() * f3);
-
-						world.spawnEntity(item);
-					}
-				}
-			}
-
-			// world.func_96440_m(x, y, z, oldBlockID);
-		}
-
-		super.breakBlock(world, pos, state);
-	}
-
 	@SideOnly(Side.CLIENT)
-	/**
-	 * A randomly called display update to be able to add particles or other items for display
-	 */
-	@Override
 	public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand) {
 		double d0 = (double) ((float) pos.getX() + 0.4F + rand.nextFloat() * 0.2F);
 		double d1 = (double) ((float) pos.getY() + 0.0F + rand.nextFloat() * 0.3F);
@@ -148,7 +99,18 @@ public class VoidInfuser extends TamBlockContainer {
 
 	@Override
 	public TileEntity createNewTileEntity(World arg0, int arg1) {
-		TileEntityVoidInfuser te = new TileEntityVoidInfuser();
-		return te;
+		return new TileEntityVoidInfuser();
+	}
+
+	@Override
+	public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
+		TileEntity tileentity = worldIn.getTileEntity(pos);
+
+		if (tileentity instanceof TileEntityVoidInfuser) {
+			InventoryHelper.dropInventoryItems(worldIn, pos, (TileEntityVoidInfuser) tileentity);
+			worldIn.updateComparatorOutputLevel(pos, this);
+		}
+
+		super.breakBlock(worldIn, pos, state);
 	}
 }

@@ -5,12 +5,14 @@ import java.util.Random;
 import Tamaized.TamModized.blocks.TamBlockContainer;
 import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.GUI.GuiHandler;
+import Tamaized.Voidcraft.machina.tileentity.TileEntityVoidBox;
 import Tamaized.Voidcraft.machina.tileentity.TileEntityVoidicAlchemy;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
@@ -83,6 +85,18 @@ public class VoidicAlchemyTable extends TamBlockContainer {
 			worldIn.spawnParticle(EnumParticleTypes.PORTAL, d0, d1, d2, 0.0D, 0.5D, 1.0D);
 			worldIn.spawnParticle(EnumParticleTypes.PORTAL, d0, d1, d2, 0.0D, 0.5D, -1.0D);
 		}
+	}
+
+	@Override
+	public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
+		TileEntity tileentity = worldIn.getTileEntity(pos);
+
+		if (tileentity instanceof TileEntityVoidicAlchemy) {
+			InventoryHelper.dropInventoryItems(worldIn, pos, (TileEntityVoidicAlchemy) tileentity);
+			worldIn.updateComparatorOutputLevel(pos, this);
+		}
+
+		super.breakBlock(worldIn, pos, state);
 	}
 
 }

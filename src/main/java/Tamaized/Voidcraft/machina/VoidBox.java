@@ -5,6 +5,7 @@ import java.util.Random;
 import Tamaized.TamModized.blocks.TamBlockContainer;
 import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.GUI.GuiHandler;
+import Tamaized.Voidcraft.machina.tileentity.TileEntityRealityTeleporter;
 import Tamaized.Voidcraft.machina.tileentity.TileEntityVoidBox;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -13,6 +14,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
@@ -81,28 +83,7 @@ public class VoidBox extends TamBlockContainer {
 
 			if (tileentity != null) {
 				tileentity.StopTheSound();
-
-				for (int i = 0; i < tileentity.SLOTS_ALL.length; i++) {
-					ItemStack itemstack = tileentity.getStackInSlot(i);
-
-					if (itemstack != null) {
-						float f = this.rand.nextFloat() * 0.8F + 0.1F;
-						float f1 = this.rand.nextFloat() * 0.8F + 0.1F;
-						float f2 = this.rand.nextFloat() * 0.8F + 0.1F;
-
-						EntityItem item = new EntityItem(world, (double) ((float) pos.getX() + f), (double) ((float) pos.getY() + f1), (double) ((float) pos.getZ() + f2), itemstack);
-
-						if (itemstack.hasTagCompound()) {
-							item.getEntityItem().setTagCompound((NBTTagCompound) itemstack.getTagCompound().copy());
-						}
-
-						float f3 = 0.05F;
-						item.motionX = (double) ((float) this.rand.nextGaussian() * f3);
-						item.motionY = (double) ((float) this.rand.nextGaussian() * f3 + 0.2F);
-						item.motionZ = (double) ((float) this.rand.nextGaussian() * f3);
-						world.spawnEntity(item);
-					}
-				}
+				InventoryHelper.dropInventoryItems(world, pos, tileentity);
 			}
 		}
 		super.breakBlock(world, pos, state);

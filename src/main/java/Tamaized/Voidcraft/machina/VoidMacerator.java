@@ -5,6 +5,7 @@ import java.util.Random;
 import Tamaized.TamModized.blocks.TamBlockContainer;
 import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.GUI.GuiHandler;
+import Tamaized.Voidcraft.machina.tileentity.TileEntityVoidInfuser;
 import Tamaized.Voidcraft.machina.tileentity.TileEntityVoidMacerator;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -16,6 +17,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
@@ -182,43 +184,14 @@ public class VoidMacerator extends TamBlockContainer {
 	}
 
 	@Override
-	public void breakBlock(World world, BlockPos pos, IBlockState state) {
-		TileEntityVoidMacerator tileentity = (TileEntityVoidMacerator) world.getTileEntity(pos);
+	public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
+		TileEntity tileentity = worldIn.getTileEntity(pos);
 
-		if (tileentity != null) {
-			for (int i = 0; i < tileentity.getSizeInventory(); i++) {
-				ItemStack itemstack = tileentity.getStackInSlot(i);
-
-				if (itemstack != null) {
-					float f = this.rand.nextFloat() * 0.8F + 0.1F;
-					float f1 = this.rand.nextFloat() * 0.8F + 0.1F;
-					float f2 = this.rand.nextFloat() * 0.8F + 0.1F;
-
-					while (itemstack.stackSize > 0) {
-						int j = this.rand.nextInt(21);
-
-						if (j > itemstack.stackSize) {
-							j = itemstack.stackSize;
-						}
-
-						itemstack.stackSize -= (j);
-
-						EntityItem item = new EntityItem(world, (double) ((float) pos.getX() + f), (double) ((float) pos.getY() + f1), (double) ((float) pos.getZ() + f2), new ItemStack(itemstack.getItem()));
-
-						if (itemstack.hasTagCompound()) {
-							item.getEntityItem().setTagCompound((NBTTagCompound) itemstack.getTagCompound().copy());
-						}
-
-						float f3 = 0.05F;
-						item.motionX = (double) ((float) this.rand.nextGaussian() * f3);
-						item.motionY = (double) ((float) this.rand.nextGaussian() * f3 + 0.2F);
-						item.motionZ = (double) ((float) this.rand.nextGaussian() * f3);
-
-						world.spawnEntity(item);
-					}
-				}
-			}
+		if (tileentity instanceof TileEntityVoidMacerator) {
+			InventoryHelper.dropInventoryItems(worldIn, pos, (TileEntityVoidMacerator) tileentity);
+			worldIn.updateComparatorOutputLevel(pos, this);
 		}
-		super.breakBlock(world, pos, state);
+
+		super.breakBlock(worldIn, pos, state);
 	}
 }

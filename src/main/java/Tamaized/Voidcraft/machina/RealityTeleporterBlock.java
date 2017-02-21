@@ -5,12 +5,14 @@ import java.util.Random;
 import Tamaized.TamModized.blocks.TamBlockContainer;
 import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.GUI.GuiHandler;
+import Tamaized.Voidcraft.machina.tileentity.TileEntityRealityStabilizer;
 import Tamaized.Voidcraft.machina.tileentity.TileEntityRealityTeleporter;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
@@ -71,6 +73,18 @@ public class RealityTeleporterBlock extends TamBlockContainer {
 			double d2 = (double) ((float) pos.getZ() + 0.4F + rand.nextFloat() * 0.2F);
 			worldIn.spawnParticle(EnumParticleTypes.PORTAL, d0, d1, d2, 0.0D, 1.5D, 0.0D);
 		}
+	}
+
+	@Override
+	public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
+		TileEntity tileentity = worldIn.getTileEntity(pos);
+
+		if (tileentity instanceof TileEntityRealityTeleporter) {
+			InventoryHelper.dropInventoryItems(worldIn, pos, (TileEntityRealityTeleporter) tileentity);
+			worldIn.updateComparatorOutputLevel(pos, this);
+		}
+
+		super.breakBlock(worldIn, pos, state);
 	}
 
 }
