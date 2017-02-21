@@ -44,7 +44,7 @@ public class VoidicInfusionCapabilityHandler implements IVoidicInfusionCapabilit
 
 	@Override
 	public void update(EntityLivingBase entity) {
-		if (entity == null || entity.world.isRemote || entity instanceof EntityVoidMob || entity instanceof EntityVoidNPC || entity instanceof EntityWither || entity instanceof EntityDragon || entity instanceof EntityDragonOld) return;
+		if (entity == null || entity instanceof EntityVoidMob || entity instanceof EntityVoidNPC || entity instanceof EntityWither || entity instanceof EntityDragon || entity instanceof EntityDragonOld) return;
 		handleInfusionGain(entity);
 		doHealthChecks(entity);
 		handleEffects(entity);
@@ -118,15 +118,18 @@ public class VoidicInfusionCapabilityHandler implements IVoidicInfusionCapabilit
 		}
 		if (entity instanceof EntityPlayer) {
 			EntityPlayer player = (EntityPlayer) entity;
-			if (canFly()) {
-				player.capabilities.allowFlying = true;
-				hasFlight = true;
-			} else {
-				if (hasFlight) {
-					player.capabilities.allowFlying = false;
-					player.capabilities.isFlying = false;
-					player.capabilities.disableDamage = false;
-					hasFlight = false;
+			if (!player.capabilities.isCreativeMode) {
+				if (canFly()) {
+					player.capabilities.allowFlying = true;
+					player.sendPlayerAbilities();
+					hasFlight = true;
+				} else {
+					if (hasFlight) {
+						player.capabilities.allowFlying = false;
+						player.capabilities.isFlying = false;
+						player.capabilities.disableDamage = false;
+						hasFlight = false;
+					}
 				}
 			}
 		}
@@ -236,7 +239,7 @@ public class VoidicInfusionCapabilityHandler implements IVoidicInfusionCapabilit
 	}
 
 	private void sendPacketUpdates(EntityLivingBase living) {
-		if (living == null) return;
+		if (living == null || living.world.isRemote) return;
 		try {
 			PacketWrapper packet = PacketHelper.createPacket(VoidCraft.channel, VoidCraft.networkChannelName, ClientPacketHandler.getPacketTypeID(ClientPacketHandler.PacketType.INFUSION_UPDATE));
 			DataOutputStream stream = packet.getStream();
@@ -248,11 +251,6 @@ public class VoidicInfusionCapabilityHandler implements IVoidicInfusionCapabilit
 			packet.sendPacket(new TargetPoint(living.dimension, living.posX, living.posY, living.posZ, 16 * 8));
 		} catch (IOException e) {
 			e.printStackTrace();
-		}
-		if (living instanceof EntityPlayer) {
-			EntityPlayer player = (EntityPlayer) living;
-			if (canFly()) player.capabilities.allowFlying = true;
-			player.sendPlayerAbilities();
 		}
 	}
 

@@ -154,7 +154,7 @@ public class XiaCastleLogicHandler {
 		BlockPos chestPos = pos.add(21, 8, 13);
 		world.setBlockState(chestPos, Blocks.CHEST.getDefaultState().withProperty(BlockChest.FACING, EnumFacing.EAST));
 		TileEntity te = world.getTileEntity(chestPos);
-		if(te instanceof TileEntityChest){
+		if (te instanceof TileEntityChest) {
 			TileEntityChest chest = (TileEntityChest) te;
 			chest.setInventorySlotContents(0, new ItemStack(VoidCraft.items.quoriFragment, i));
 		}
@@ -174,7 +174,7 @@ public class XiaCastleLogicHandler {
 		twins.setDone();
 		herobrine.setDone();
 		xia.setDone();
-		xia2.setDone();
+		// xia2.setDone();
 	}
 
 	private void setupPos() {
