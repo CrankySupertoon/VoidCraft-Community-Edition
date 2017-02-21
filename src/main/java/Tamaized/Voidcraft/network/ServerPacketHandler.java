@@ -84,7 +84,7 @@ public class ServerPacketHandler {
 										boolean flag = true;
 										for (ItemStack checkStack : entry.getRecipe().getInputs()) {
 											int slot = checkStack.getItem() == Item.getItemFromBlock(VoidCraft.blocks.cosmicMaterial) ? tile.SLOT_INPUT_COSMICMATERIAL : checkStack.getItem() == VoidCraft.items.voidicDragonScale ? tile.SLOT_INPUT_DRAGONSCALE : checkStack.getItem() == VoidCraft.items.quoriFragment ? tile.SLOT_INPUT_QUORIFRAGMENT : checkStack.getItem() == VoidCraft.items.astralEssence ? tile.SLOT_INPUT_ASTRALESSENCE : tile.SLOT_INPUT_VOIDICPHLOG;
-											if (tile.getStackInSlot(slot).stackSize >= checkStack.stackSize) break;
+											if (tile.getStackInSlot(slot).stackSize >= checkStack.stackSize) continue;
 											flag = false;
 										}
 										if (flag) {

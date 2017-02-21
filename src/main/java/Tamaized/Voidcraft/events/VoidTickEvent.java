@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.UUID;
 
 import Tamaized.Voidcraft.VoidCraft;
+import Tamaized.Voidcraft.capabilities.CapabilityList;
 import Tamaized.Voidcraft.handlers.ClientPortalDataHandler;
 import Tamaized.Voidcraft.handlers.PortalDataHandler;
 import Tamaized.Voidcraft.handlers.XiaFlightHandler;
@@ -62,9 +63,9 @@ public class VoidTickEvent {
 					player.sendMessage(new TextComponentTranslation(TextFormatting.DARK_GRAY + "You feel heavy, you can not sustain flight"));
 				}
 
-				// Teleport Player back to their spawn point if the Xia fight is done and they fall to the Void.
+				// Teleport Player back to their spawn point if the Xia fight is done or they have over 0 Xia Defeats and they fall to the Void.
 				WorldProvider provider = player.world.provider;
-				if(provider instanceof WorldProviderXia && ((WorldProviderXia)provider).getXiaCastleHandler().hasFinished() && player.posY <= 0){
+				if (provider instanceof WorldProviderXia && (((WorldProviderXia) provider).getXiaCastleHandler().hasFinished() || (player.hasCapability(CapabilityList.VOIDICINFUSION, null) && player.getCapability(CapabilityList.VOIDICINFUSION, null).getXiaDefeats() > 0)) && player.posY <= 0) {
 					forcePlayerTeleportFromXia(player);
 					player.addStat(VoidCraft.achievements.worldsEnd, 1);
 				}
@@ -147,8 +148,8 @@ public class VoidTickEvent {
 			data.put(e.player.getGameProfile().getId(), new PortalDataHandler(e.player.getGameProfile().getId(), e.player.dimension == VoidCraft.config.getDimensionIDvoid() ? 0 : e.player.dimension == VoidCraft.config.getDimensionIDxia() ? 0 : e.player.dimension));
 		}
 	}
-	
-	public void forcePlayerTeleportFromXia(EntityPlayerMP player){
+
+	public void forcePlayerTeleportFromXia(EntityPlayerMP player) {
 		PortalDataHandler j = data.get(player.getGameProfile().getId());
 		transferPlayerToDimension(player.mcServer, player, j.lastDim, new TeleportLoc(new TeleporterXia(player.mcServer.worldServerForDimension(j.lastDim))));
 	}
@@ -167,7 +168,7 @@ public class VoidTickEvent {
 			transferPlayerToDimension(player.mcServer, player, j.lastDim, new TeleportLoc(j.getTeleporter(player)));
 		}
 	}
-	
+
 	private void transferPlayerToDimension(MinecraftServer mcServer, EntityPlayerMP player, int dimId, TeleportLoc teleporter) { // Custom Made to handle teleporting to and from The End (DIM 1)
 		int j = player.dimension;
 		WorldServer worldserver = mcServer.worldServerForDimension(player.dimension);
