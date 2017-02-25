@@ -1,6 +1,7 @@
 package Tamaized.Voidcraft.GUI.client;
 
-import Tamaized.Voidcraft.capabilities.CapabilityList;
+import Tamaized.Voidcraft.VoidCraft;
+import Tamaized.Voidcraft.GUI.server.VadeMecumSpellsContainer;
 import Tamaized.Voidcraft.capabilities.vadeMecum.IVadeMecumCapability;
 import Tamaized.Voidcraft.capabilities.vadeMecum.IVadeMecumCapability.Category;
 import Tamaized.Voidcraft.handlers.VadeMecumPacketHandler;
@@ -12,14 +13,15 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderHelper;
-import net.minecraft.inventory.Container;
+import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 
 public class VadeMecumSpellsGUI extends GuiContainer {
 
-	public VadeMecumSpellsGUI(Container inventorySlotsIn) {
-		super(inventorySlotsIn);
-	}
+	private static final ResourceLocation TEXTURE = new ResourceLocation(VoidCraft.modid, "textures/gui/generic.png");
+
+	private final IVadeMecumCapability capability;
 
 	private ItemStack renderStackHover = null;
 
@@ -27,24 +29,32 @@ public class VadeMecumSpellsGUI extends GuiContainer {
 	private static final int BUTTON_BACK = 1;
 	private static final int BUTTON_SPELL = 2;
 
+	public VadeMecumSpellsGUI(InventoryPlayer inventory, IVadeMecumCapability cap) {
+		super(new VadeMecumSpellsContainer(inventory, cap));
+		capability = cap;
+	}
+
 	@Override
 	public void initGui() {
-		int margin = 20;
-		int padding = 100;
-		float workW = width - padding;
-		int loc1 = (int) (workW * .25) + margin;
-		int loc2 = (int) (workW * .75) + margin;
-		buttonList.add(new GuiButton(BUTTON_BACK, loc1, height - 25, 80, 20, "Back"));
-		buttonList.add(new GuiButton(BUTTON_CLOSE, loc2, height - 25, 80, 20, "Close"));
+		super.initGui();
 
-		int xLoc = 50;
+		ySize = 90;
+		guiLeft = (width / 2) - (xSize / 2);
+		guiTop = height - (ySize) - 5;
+
+		if (inventorySlots instanceof VadeMecumSpellsContainer) {
+			((VadeMecumSpellsContainer) inventorySlots).initSlots(guiLeft, guiTop);
+		}
+
+		buttonList.add(new GuiButton(BUTTON_BACK, 5, height - 50, 80, 20, "Back"));
+		buttonList.add(new GuiButton(BUTTON_CLOSE, 5, height - 25, 80, 20, "Close"));
+
+		int xLoc = 25;
 		int yLoc = 28;
 
-		if (mc == null || mc.player == null || !mc.player.hasCapability(CapabilityList.VADEMECUM, null)) return;
-		IVadeMecumCapability cap = mc.player.getCapability(CapabilityList.VADEMECUM, null);
 		int index = 0;
-		for (Category spell : cap.getAvailableActivePowers()) {
-			buttonList.add(new SpellButton(cap, BUTTON_SPELL, xLoc + (120 * ((int) Math.floor(index / 8))), yLoc + (25 * (index % 8)), spell));
+		for (Category spell : capability.getAvailableActivePowers()) {
+			buttonList.add(new SpellButton(capability, BUTTON_SPELL, xLoc + (135 * ((int) Math.floor(index / 5))), yLoc + (25 * (index % 5)), spell));
 			index++;
 		}
 	}
@@ -89,19 +99,20 @@ public class VadeMecumSpellsGUI extends GuiContainer {
 
 	@Override
 	protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY) {
+		int i = this.guiLeft;
+		int j = this.guiTop;
+		drawCenteredString(fontRendererObj, "Words of Power", width / 2, 15, 16777215);
+		this.mc.getTextureManager().bindTexture(TEXTURE);
+		this.drawTexturedModalRect(i, j, 0, 0, this.xSize, this.ySize);
+	}
 
+	@Override
+	protected void drawGuiContainerForegroundLayer(int param1, int param2) {
 	}
 
 	@Override
 	public void drawScreen(int mouseX, int mouseY, float partialTicks) {
-		drawDefaultBackground();
-		drawCenteredString(fontRendererObj, "Words of Power", width / 2, 15, 16777215);
 		super.drawScreen(mouseX, mouseY, partialTicks);
-		GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
-		this.mc.getTextureManager().bindTexture(INVENTORY_BACKGROUND);
-		int i = this.guiLeft;
-		int j = this.guiTop;
-		this.drawTexturedModalRect(i, j, 0, 0, this.xSize, this.ySize);
 		if (renderStackHover != null) {
 			renderToolTip(renderStackHover, mouseX, mouseY);
 			renderStackHover = null;
@@ -170,6 +181,10 @@ public class VadeMecumSpellsGUI extends GuiContainer {
 			}
 		}
 
+	}
+
+	public int getYSize() {
+		return ySize;
 	}
 
 }

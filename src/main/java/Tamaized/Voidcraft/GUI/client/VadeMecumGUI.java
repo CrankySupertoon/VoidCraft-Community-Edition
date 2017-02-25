@@ -6,9 +6,9 @@ import java.io.IOException;
 import Tamaized.TamModized.helper.PacketHelper;
 import Tamaized.TamModized.helper.PacketHelper.PacketWrapper;
 import Tamaized.Voidcraft.VoidCraft;
+import Tamaized.Voidcraft.GUI.GuiHandler;
 import Tamaized.Voidcraft.capabilities.CapabilityList;
 import Tamaized.Voidcraft.capabilities.vadeMecum.IVadeMecumCapability;
-import Tamaized.Voidcraft.handlers.VadeMecumPacketHandler;
 import Tamaized.Voidcraft.network.ServerPacketHandler;
 import Tamaized.Voidcraft.proxy.ClientProxy;
 import Tamaized.Voidcraft.vadeMecum.VadeMecumEntry;
@@ -24,6 +24,7 @@ import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.common.network.internal.FMLNetworkHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -184,7 +185,7 @@ public class VadeMecumGUI extends GuiScreen {
 					// setEntry(ClientProxy.vadeMecumEntryList.Docs.MAIN, 0);
 					break;
 				case WordsOfPower:
-//					mc.displayGuiScreen(new Tamaized.Voidcraft.GUI.client.VadeMecumSpellsGUI());
+					PacketHelper.createPacket(VoidCraft.channel, VoidCraft.networkChannelName, ServerPacketHandler.getPacketTypeID(ServerPacketHandler.PacketType.VADEMECUM_SPELLBOOK)).sendPacketToServer();
 					break;
 				case Credits:
 					break;

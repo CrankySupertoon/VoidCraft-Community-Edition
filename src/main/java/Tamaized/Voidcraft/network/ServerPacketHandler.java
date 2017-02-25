@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import Tamaized.Voidcraft.VoidCraft;
+import Tamaized.Voidcraft.GUI.GuiHandler;
 import Tamaized.Voidcraft.armor.ArmorCustomElytra;
 import Tamaized.Voidcraft.blocks.tileentity.TileEntityStarForge;
 import Tamaized.Voidcraft.capabilities.CapabilityList;
@@ -29,12 +30,13 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.network.FMLNetworkEvent.ServerCustomPacketEvent;
+import net.minecraftforge.fml.common.network.internal.FMLNetworkHandler;
 import net.minecraftforge.fml.relauncher.Side;
 
 public class ServerPacketHandler {
 
 	public static enum PacketType {
-		VOIDBOX_PLAY, VOIDBOX_STOP, VOIDBOX_LOOP, VOIDBOX_AUTO, HOOKSHOT_STOP, VADEMECUM, VADEMECUM_LASTENTRY, CUSTOM_ELYTRA, LINK_CLEAR, STARFORGE_CRAFT
+		VOIDBOX_PLAY, VOIDBOX_STOP, VOIDBOX_LOOP, VOIDBOX_AUTO, HOOKSHOT_STOP, VADEMECUM, VADEMECUM_LASTENTRY, VADEMECUM_SPELLBOOK, CUSTOM_ELYTRA, LINK_CLEAR, STARFORGE_CRAFT
 	}
 
 	public static int getPacketTypeID(PacketType type) {
@@ -134,6 +136,10 @@ public class ServerPacketHandler {
 					case VADEMECUM_LASTENTRY: {
 						IVadeMecumCapability cap = player.getCapability(CapabilityList.VADEMECUM, null);
 						if (cap != null) cap.setLastEntry(bbis.readUTF());
+					}
+						break;
+					case VADEMECUM_SPELLBOOK: {
+						FMLNetworkHandler.openGui(player, VoidCraft.instance, GuiHandler.getTypeID(GuiHandler.Type.VadeMecumSpells), player.world, player.getPosition().getX(), player.getPosition().getY(), player.getPosition().getZ());
 					}
 						break;
 					case VOIDBOX_PLAY: {

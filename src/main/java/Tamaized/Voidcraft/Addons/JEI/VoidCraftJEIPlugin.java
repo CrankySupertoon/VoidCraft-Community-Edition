@@ -41,6 +41,8 @@ public class VoidCraftJEIPlugin extends BlankModPlugin {
 		registry.addRecipeCategoryCraftingItem(new ItemStack(VoidCraft.blocks.voidInfuser), "voidcraft_JEI_recipeCategory_Infuser");
 		registry.addRecipeCategoryCraftingItem(new ItemStack(VoidCraft.blocks.voidMacerator), "voidcraft_JEI_recipeCategory_Macerator");
 		registry.addRecipeCategoryCraftingItem(new ItemStack(VoidCraft.blocks.voidicAlchemyTable), "voidcraft_JEI_recipeCategory_Alchemy");
+		
+		registry.addAdvancedGuiHandlers(new VadeMecumSpellAdvancedGuiHandler());
 
 	}
 

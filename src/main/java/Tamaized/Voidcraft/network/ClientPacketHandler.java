@@ -100,7 +100,7 @@ public class ClientPacketHandler {
 				break;
 			case VADEMECUM_UPDATE: {
 				IVadeMecumCapability vadeMecumCap = Minecraft.getMinecraft().player.getCapability(CapabilityList.VADEMECUM, null);
-				if (vadeMecumCap != null) vadeMecumCap.decodePacket(bbis);
+				if (vadeMecumCap != null) vadeMecumCap.decodePacket(parBB, bbis);
 			}
 				break;
 			case XIA_ANIMATIONS: {

@@ -1,8 +1,11 @@
 package Tamaized.Voidcraft.capabilities.vadeMecum;
 
 import java.util.ArrayList;
+import java.util.Map.Entry;
 
 import Tamaized.Voidcraft.VoidCraft;
+import Tamaized.Voidcraft.network.ItemStackNetworkHelper;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
@@ -18,6 +21,14 @@ public class VadeMecumCapabilityStorage implements IStorage<IVadeMecumCapability
 	@Override
 	public NBTBase writeNBT(Capability<IVadeMecumCapability> capability, IVadeMecumCapability instance, EnumFacing side) {
 		NBTTagCompound compound = new NBTTagCompound();
+		{
+			NBTTagCompound comp = new NBTTagCompound();
+			for (Entry<IVadeMecumCapability.Category, ItemStack> entry : instance.getComponents().entrySet()) {
+				comp.setTag(String.valueOf(IVadeMecumCapability.getCategoryID(entry.getKey())), entry.getValue().writeToNBT(new NBTTagCompound()));
+			}
+			compound.setTag("SpellComponents", comp);
+
+		}
 		ArrayList<Integer> array = new ArrayList<Integer>();
 		{
 			for (IVadeMecumCapability.Category category : instance.getObtainedCategories()) {
@@ -33,6 +44,14 @@ public class VadeMecumCapabilityStorage implements IStorage<IVadeMecumCapability
 	@Override
 	public void readNBT(Capability<IVadeMecumCapability> capability, IVadeMecumCapability instance, EnumFacing side, NBTBase nbt) {
 		NBTTagCompound compound = (NBTTagCompound) nbt;
+		{
+			NBTTagCompound spellComponents = compound.getCompoundTag("SpellComponents");
+			instance.clearComponents();
+			for (String key : spellComponents.getKeySet()) {
+				NBTTagCompound value = spellComponents.getCompoundTag(key);
+				instance.setStackSlot(IVadeMecumCapability.getCategoryFromID(Integer.valueOf(key)), ItemStack.func_77949_a(value));
+			}
+		}
 		int[] array;
 		{
 			ArrayList<IVadeMecumCapability.Category> list = new ArrayList<IVadeMecumCapability.Category>();
