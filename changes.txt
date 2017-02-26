@@ -1,3 +1,4 @@
-- Added Progress Bar information on the load screen for the Skin Handler
+- Fixed the Corrupted Pawn's AI
+ - Added Progress Bar information on the load screen for the Skin Handler
 	+ This is what the long pause from before was, we now display what exactly is going on during this.
  - Removed various deprecated code.
