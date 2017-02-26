@@ -23,6 +23,7 @@ import javax.imageio.ImageIO;
 
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.FMLCommonHandler;
+import net.minecraftforge.fml.common.ProgressManager;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -127,12 +128,17 @@ public class SkinHandler {
 	}
 
 	private void handleResources() {
+		ProgressManager.ProgressBar progressBar = ProgressManager.push("SkinHandler (Resources)", 1);
 		File dir = new File(loc);
 		dir.mkdirs();
-		if (dir.list().length < 16) {
+		if (dir.list().length < aliasUUID.size()) {
 			VoidCraft.instance.logger.info("Populating: " + loc);
+			progressBar.step("Populating: " + loc);
 			extractZip(getClass().getResourceAsStream(skinZip), loc);
+		}else{
+			progressBar.step("Already populated, Skipping");
 		}
+		ProgressManager.pop(progressBar);
 	}
 
 	public static void extractZip(InputStream loc, String dest) {
@@ -175,6 +181,8 @@ public class SkinHandler {
 	}
 
 	private void useCacheNames() {
+		ProgressManager.ProgressBar progressBar = ProgressManager.push("SkinHandler (Cache)", 2);
+		progressBar.step("Caching");
 		uuidNamesFlip.put(getUUID(PlayerNameAlias.Azanor), "azanor");
 		uuidNamesFlip.put(getUUID(PlayerNameAlias.Boni), "boni");
 		uuidNamesFlip.put(getUUID(PlayerNameAlias.Cpw11), "cpw11");
@@ -191,11 +199,15 @@ public class SkinHandler {
 		uuidNamesFlip.put(getUUID(PlayerNameAlias.TTFTCUTS), "TTFTCUTS");
 		uuidNamesFlip.put(getUUID(PlayerNameAlias.Vazkii), "Vazkii");
 		uuidNamesFlip.put(getUUID(PlayerNameAlias.XCompWiz), "XCompWiz");
+		progressBar.step("Cached");
+		ProgressManager.pop(progressBar);
 	}
 
 	private void validateNames() {
 		VoidCraft.instance.logger.info("Mapping Names to UUIDs");
+		ProgressManager.ProgressBar progressBar = ProgressManager.push("SkinHandler (Validate Names)", aliasUUID.size());
 		for (UUID id : aliasUUID.values()) {
+			progressBar.step("Mapping: " + id);
 			try {
 				String theName = id.toString().replace("-", "");
 				URL url = new URL(nameUrl + id.toString().replace("-", "") + "/names");
@@ -230,11 +242,15 @@ public class SkinHandler {
 				e.printStackTrace();
 			}
 		}
+		ProgressManager.pop(progressBar);
 	}
 
 	private void validateSkins() {
-		for (File file : new File(loc).listFiles()) {
+		File[] list = new File(loc).listFiles();
+		ProgressManager.ProgressBar progressBar = ProgressManager.push("SkinHandler (Validate Skins)", list.length);
+		for (File file : list) {
 			String name = file.getName().split("\\.")[0];
+			progressBar.step(name);
 			if (!uuidNames.containsKey(name)) {
 				file.delete();
 			}
@@ -252,6 +268,7 @@ public class SkinHandler {
 				VoidCraft.instance.logger.info(name + " was validated");
 			}
 		}
+		ProgressManager.pop(progressBar);
 	}
 
 	private int getFileSize(URL url) {
@@ -269,7 +286,9 @@ public class SkinHandler {
 	}
 
 	private void updateSkins() {
+		ProgressManager.ProgressBar progressBar = ProgressManager.push("SkinHandler (Update)", PlayerNameAlias.values().length);
 		aliasList: for (PlayerNameAlias alias : PlayerNameAlias.values()) {
+			progressBar.step("" + getUUID(alias));
 			if (blacklist.contains(getUUID(alias))) {
 				loadCachedAlias(alias);
 				continue;
@@ -389,12 +408,16 @@ public class SkinHandler {
 				loadCachedAlias(alias);
 			}
 		}
+		ProgressManager.pop(progressBar);
 	}
 
 	private void cacheSkins() {
+		ProgressManager.ProgressBar progressBar = ProgressManager.push("SkinHandler (Load Cache)", PlayerNameAlias.values().length);
 		for (PlayerNameAlias alias : PlayerNameAlias.values()) {
+			progressBar.step(uuidNamesFlip.get(getUUID(alias)));
 			loadCachedAlias(alias);
 		}
+		ProgressManager.pop(progressBar);
 	}
 
 	private void loadCachedAlias(PlayerNameAlias alias) {
