@@ -24,7 +24,7 @@ public class VadeMecumSpellsContainer extends Container {
 	}
 
 	public void initSlots(int left, int top) {
-		int xLoc = 140 - left;
+		int xLoc = 143 - left;
 		int yLoc = 30 - top;
 
 		inventorySlots.clear();
@@ -36,17 +36,20 @@ public class VadeMecumSpellsContainer extends Container {
 			index++;
 		}
 
+		int xPos = 32;
+		int yPos = 8;
+		
 		for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < 9; j++) {
-				addSlotToContainer(new Slot(inventory, j + (i * 9) + 9, 8 + j * 18, 8 + i * 18));
+				addSlotToContainer(new Slot(inventory, j + (i * 9) + 9, xPos + j * 18, yPos + i * 18));
 			}
 		}
 
 		for (int i = 0; i < 9; i++) {
-			addSlotToContainer(new Slot(inventory, i, 8 + i * 18, 66));
+			addSlotToContainer(new Slot(inventory, i, xPos + i * 18, 58 + yPos));
 		}
 
-		addSlotToContainer(new Slot(inventory, inventory.getSizeInventory() - 1, -20, 0) {
+		addSlotToContainer(new Slot(inventory, inventory.getSizeInventory() - 1, xPos-24, yPos) {
 			@SideOnly(Side.CLIENT)
 			@Override
 			public String getSlotTexture() {

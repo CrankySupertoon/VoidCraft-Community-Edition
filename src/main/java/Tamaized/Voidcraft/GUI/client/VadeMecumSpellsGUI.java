@@ -37,9 +37,10 @@ public class VadeMecumSpellsGUI extends GuiContainer {
 	@Override
 	public void initGui() {
 		super.initGui();
-
+		
+		xSize = 200;
 		ySize = 90;
-		guiLeft = (width / 2) - (xSize / 2);
+		guiLeft = (width / 2) - (xSize / 2) - (24);
 		guiTop = height - (ySize) - 5;
 
 		if (inventorySlots instanceof VadeMecumSpellsContainer) {
@@ -104,6 +105,13 @@ public class VadeMecumSpellsGUI extends GuiContainer {
 		drawCenteredString(fontRendererObj, "Words of Power", width / 2, 15, 16777215);
 		this.mc.getTextureManager().bindTexture(TEXTURE);
 		this.drawTexturedModalRect(i, j, 0, 0, this.xSize, this.ySize);
+		int xLoc = 0;
+		int yLoc = 21;
+		int index = 0;
+		for (Category spell : capability.getAvailableActivePowers()) {
+			drawTexturedModalRect(xLoc + (135 * ((int) Math.floor(index / 5))), yLoc + (25 * (index % 5)), 0, ySize, 32, 32);
+			index++;
+		}
 	}
 
 	@Override
