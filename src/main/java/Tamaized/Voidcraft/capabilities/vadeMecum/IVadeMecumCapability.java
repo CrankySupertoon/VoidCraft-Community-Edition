@@ -5,14 +5,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Map;
 
-import Tamaized.Voidcraft.capabilities.vadeMecum.IVadeMecumCapability.Category;
 import Tamaized.Voidcraft.handlers.VadeMecumWordsOfPower;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.ByteBufInputStream;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.text.ITextComponent;
 
 public interface IVadeMecumCapability {
 
@@ -41,13 +37,23 @@ public interface IVadeMecumCapability {
 	}
 
 	public static class CategoryDataWrapper {
-		
+
+		public enum Element {
+			NULL, FIRE, WATER, EARTH, AIR, VOID
+		}
+
+		private final Element element;
 		private final String name;
 		private final ItemStack stack;
 
-		public CategoryDataWrapper(String name, ItemStack stack) {
+		public CategoryDataWrapper(Element type, String name, ItemStack stack) {
+			element = type;
 			this.name = name;
 			this.stack = stack;
+		}
+
+		public Element getElement() {
+			return element;
 		}
 
 		public String getName() {
@@ -90,23 +96,28 @@ public interface IVadeMecumCapability {
 	public void clearActivePower();
 
 	public Category getCurrentActive();
+	
+	/**
+	 * Return a value from 0 to 100
+	 */
+	public int getFailureChance();
 
 	public void setLastEntry(String e);
 
 	public String getLastEntry();
-	
+
 	public Map<Category, ItemStack> getComponents();
-	
+
 	public void clearComponents();
-	
+
 	public ItemStack getStackInSlot(Category slot);
-	
+
 	public ItemStack addStackToSlot(Category slot, ItemStack stack);
-	
+
 	public void setStackSlot(Category slot, ItemStack stack);
 
 	public ItemStack decrStackSize(Category slot, int amount);
-	
+
 	public ItemStack removeStackFromSlot(Category slot);
 
 	public boolean hasLoaded();
@@ -118,5 +129,5 @@ public interface IVadeMecumCapability {
 	public void decodePacket(ByteBuf buf, ByteBufInputStream stream) throws IOException;
 
 	public void encodePacket(DataOutputStream stream) throws IOException;
-	
+
 }

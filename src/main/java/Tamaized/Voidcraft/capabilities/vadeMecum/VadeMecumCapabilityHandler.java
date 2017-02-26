@@ -110,6 +110,11 @@ public class VadeMecumCapabilityHandler implements IVadeMecumCapability {
 	public Category getCurrentActive() {
 		return currActivePower;
 	}
+	
+	@Override
+	public int getFailureChance() {
+		return 75;
+	}
 
 	@Override
 	public void setLastEntry(String e) {
