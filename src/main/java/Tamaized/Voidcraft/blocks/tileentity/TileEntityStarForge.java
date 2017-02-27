@@ -25,8 +25,7 @@ public class TileEntityStarForge extends TamTileEntityInventory {
 	public static final int SLOT_INPUT_QUORIFRAGMENT = 3;
 	public static final int SLOT_INPUT_ASTRALESSENCE = 4;
 	public static final int SLOT_INPUT_VOIDICPHLOG = 5;
-	public static final int SLOT_OUTPUT = 6;
-	public static final int[] SLOTS_ALL = new int[] { 0, 1, 2, 3, 4, 5, 6 };
+	public static final int[] SLOTS_ALL = new int[] { 0, 1, 2, 3, 4, 5 };
 
 	public TileEntityStarForge() {
 		super(7);
@@ -118,7 +117,7 @@ public class TileEntityStarForge extends TamTileEntityInventory {
 
 	@Override
 	protected boolean canExtractSlot(int i, ItemStack stack) {
-		return i == SLOT_OUTPUT;
+		return i == SLOT_INPUT_TOOL;
 	}
 
 }

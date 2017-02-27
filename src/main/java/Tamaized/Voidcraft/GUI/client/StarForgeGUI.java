@@ -11,6 +11,7 @@ import Tamaized.TamModized.helper.PacketHelper.PacketWrapper;
 import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.GUI.server.StarForgeContainer;
 import Tamaized.Voidcraft.blocks.tileentity.TileEntityStarForge;
+import Tamaized.Voidcraft.capabilities.CapabilityList;
 import Tamaized.Voidcraft.helper.GUIElementList;
 import Tamaized.Voidcraft.helper.GUIElementList.GUIContainerWrapper;
 import Tamaized.Voidcraft.helper.GUIListElement;
@@ -124,12 +125,12 @@ public class StarForgeGUI extends GUIContainerWrapper {
 				GUIListElement element = list.get(index);
 				if (element instanceof StarForgeToolEntry) {
 					StarForgeToolEntry entry = (StarForgeToolEntry) element;
-					if (te.getStackInSlot(te.SLOT_OUTPUT) == null && te.getStackInSlot(te.SLOT_INPUT_COSMICMATERIAL) != null && te.getStackInSlot(te.SLOT_INPUT_COSMICMATERIAL).stackSize >= 4 && te.getStackInSlot(te.SLOT_INPUT_QUORIFRAGMENT) != null && te.getStackInSlot(te.SLOT_INPUT_QUORIFRAGMENT).stackSize >= 1) {
+					if (te.getStackInSlot(te.SLOT_INPUT_TOOL) == null && te.getStackInSlot(te.SLOT_INPUT_COSMICMATERIAL).stackSize >= 4 && te.getStackInSlot(te.SLOT_INPUT_QUORIFRAGMENT).stackSize >= 1) {
 						enough = true;
 					}
 				} else if (element instanceof StarForgeEffectEntry) {
 					StarForgeEffectEntry entry = (StarForgeEffectEntry) element;
-					if (te.getStackInSlot(te.SLOT_INPUT_TOOL) != null && te.getStackInSlot(te.SLOT_OUTPUT) == null) {
+					if (te.getStackInSlot(te.SLOT_INPUT_TOOL) != null && te.getStackInSlot(te.SLOT_INPUT_TOOL).hasCapability(CapabilityList.STARFORGE, null)) {
 						boolean flag = true;
 						for (ItemStack checkStack : entry.getRecipe().getInputs()) {
 							int slot = checkStack.getItem() == Item.getItemFromBlock(VoidCraft.blocks.cosmicMaterial) ? te.SLOT_INPUT_COSMICMATERIAL : checkStack.getItem() == VoidCraft.items.voidicDragonScale ? te.SLOT_INPUT_DRAGONSCALE : checkStack.getItem() == VoidCraft.items.quoriFragment ? te.SLOT_INPUT_QUORIFRAGMENT : checkStack.getItem() == VoidCraft.items.astralEssence ? te.SLOT_INPUT_ASTRALESSENCE : te.SLOT_INPUT_VOIDICPHLOG;

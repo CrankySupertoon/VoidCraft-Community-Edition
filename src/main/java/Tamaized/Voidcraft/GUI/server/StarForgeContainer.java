@@ -71,8 +71,6 @@ public class StarForgeContainer extends Container {
 			}
 		});
 
-		addSlotToContainer(new SlotFurnaceOutput(inventory.player, tileEntity, te.SLOT_OUTPUT, 143, 76));
-
 		for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < 9; j++) {
 				addSlotToContainer(new Slot(inventory, j + i * 9 + 9, 18 + j * 18, 127 + i * 18));
