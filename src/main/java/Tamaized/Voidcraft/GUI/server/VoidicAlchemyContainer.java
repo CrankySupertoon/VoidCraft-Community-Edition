@@ -4,13 +4,14 @@ import Tamaized.Voidcraft.GUI.slots.SlotCantPlace;
 import Tamaized.Voidcraft.machina.tileentity.TileEntityVoidicAlchemy;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IContainerListener;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class VoidicAlchemyContainer extends ContainerBase {
+public class VoidicAlchemyContainer extends Container {
 
 	private TileEntityVoidicAlchemy te;
 

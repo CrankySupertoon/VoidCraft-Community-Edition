@@ -3,13 +3,14 @@ package Tamaized.Voidcraft.GUI.server;
 import Tamaized.Voidcraft.machina.tileentity.TileEntityVoidicCharger;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IContainerListener;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class VoidicChargerContainer extends ContainerBase {
+public class VoidicChargerContainer extends Container {
 
 	private final TileEntityVoidicCharger te;
 

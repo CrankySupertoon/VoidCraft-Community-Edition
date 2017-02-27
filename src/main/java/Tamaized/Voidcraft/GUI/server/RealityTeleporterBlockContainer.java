@@ -5,6 +5,7 @@ import Tamaized.Voidcraft.GUI.slots.SlotOnlyItem;
 import Tamaized.Voidcraft.machina.tileentity.TileEntityRealityTeleporter;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IContainerListener;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.Item;
@@ -12,7 +13,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class RealityTeleporterBlockContainer extends ContainerBase {
+public class RealityTeleporterBlockContainer extends Container {
 
 	private final TileEntityRealityTeleporter te;
 	private int amount = 0;

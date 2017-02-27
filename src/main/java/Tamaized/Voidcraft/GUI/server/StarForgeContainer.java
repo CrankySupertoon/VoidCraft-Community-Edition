@@ -8,6 +8,7 @@ import Tamaized.Voidcraft.events.client.TextureStitch;
 import Tamaized.Voidcraft.starforge.IStarForgeTool;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 import net.minecraft.inventory.SlotFurnaceOutput;
 import net.minecraft.item.Item;
@@ -15,7 +16,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class StarForgeContainer extends ContainerBase {
+public class StarForgeContainer extends Container {
 
 	private TileEntityStarForge te;
 
