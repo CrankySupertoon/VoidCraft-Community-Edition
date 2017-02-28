@@ -45,6 +45,7 @@ item.voidicdragonscale.name=Voidic Dragon Scale
 item.astralessence.name=Astral Essence
 item.quorifragment.name=Quori Fragment
 item.voidcrystalshield.name=Void Crystal Shield
+item.voidicsteel.name=Voidic Steel
 
 # Blocks
 tile.voidcraft:blockvoidfluid.name=Liquid Void
