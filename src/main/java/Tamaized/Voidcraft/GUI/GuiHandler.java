@@ -9,11 +9,11 @@ import Tamaized.Voidcraft.GUI.client.StarForgeGUI;
 import Tamaized.Voidcraft.GUI.client.VadeMecumSpellsGUI;
 import Tamaized.Voidcraft.GUI.client.VoidBlastFurnaceGUI;
 import Tamaized.Voidcraft.GUI.client.VoidBoxGUI;
+import Tamaized.Voidcraft.GUI.client.VoidInfuserGUI;
+import Tamaized.Voidcraft.GUI.client.VoidMaceratorGUI;
 import Tamaized.Voidcraft.GUI.client.VoidicAlchemyGUI;
 import Tamaized.Voidcraft.GUI.client.VoidicChargerGUI;
 import Tamaized.Voidcraft.GUI.client.VoidicPowerGenGUI;
-import Tamaized.Voidcraft.GUI.client.voidInfuserGUI;
-import Tamaized.Voidcraft.GUI.client.voidMaceratorGUI;
 import Tamaized.Voidcraft.GUI.server.HeimdallContainer;
 import Tamaized.Voidcraft.GUI.server.RealityStabilizerContainer;
 import Tamaized.Voidcraft.GUI.server.RealityTeleporterBlockContainer;
@@ -122,7 +122,7 @@ public class GuiHandler implements IGuiHandler {
 			// case VadeMecum:
 			// return new VadeMecumGUI(player);
 			case Macerator:
-				if (tileEntity != null && tileEntity instanceof TileEntityVoidMacerator) return new voidMaceratorGUI(player.inventory, (TileEntityVoidMacerator) tileEntity);
+				if (tileEntity != null && tileEntity instanceof TileEntityVoidMacerator) return new VoidMaceratorGUI(player.inventory, (TileEntityVoidMacerator) tileEntity);
 				else return null;
 			case BlastFurnace:
 				if (tileEntity != null && tileEntity instanceof TileEntityVoidBlastFurnace) return new VoidBlastFurnaceGUI(player.inventory, (TileEntityVoidBlastFurnace) tileEntity);
@@ -131,7 +131,7 @@ public class GuiHandler implements IGuiHandler {
 				if (tileEntity != null && tileEntity instanceof TileEntityVoidBox) return new VoidBoxGUI(player.inventory, (TileEntityVoidBox) tileEntity);
 				else return null;
 			case Infuser:
-				if (tileEntity != null && tileEntity instanceof TileEntityVoidInfuser) return new voidInfuserGUI(player.inventory, (TileEntityVoidInfuser) tileEntity);
+				if (tileEntity != null && tileEntity instanceof TileEntityVoidInfuser) return new VoidInfuserGUI(player.inventory, (TileEntityVoidInfuser) tileEntity);
 				else return null;
 			case Heimdall:
 				if (tileEntity != null && tileEntity instanceof TileEntityHeimdall) return new HeimdallGUI(player.inventory, (TileEntityHeimdall) tileEntity);
