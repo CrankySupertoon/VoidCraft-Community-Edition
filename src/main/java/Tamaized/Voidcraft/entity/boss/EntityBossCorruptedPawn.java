@@ -8,7 +8,10 @@ import javax.annotation.Nullable;
 import com.google.common.base.Predicate;
 
 import Tamaized.Voidcraft.VoidCraft;
+import Tamaized.Voidcraft.entity.EntityVoidBoss;
 import Tamaized.Voidcraft.entity.EntityVoidMob;
+import Tamaized.Voidcraft.entity.EntityVoidNPC;
+import Tamaized.Voidcraft.entity.boss.dragon.EntityDragonOld;
 import Tamaized.Voidcraft.entity.boss.render.bossBar.IVoidBossData;
 import Tamaized.Voidcraft.entity.boss.xia.finalphase.EntityWitherbrine;
 import Tamaized.Voidcraft.events.client.DebugEvent;
@@ -17,6 +20,7 @@ import io.netty.buffer.ByteBufInputStream;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAttackMelee;
 import net.minecraft.entity.ai.EntityAIBase;
@@ -52,7 +56,7 @@ public class EntityBossCorruptedPawn extends EntityVoidMob implements IVoidBossD
 	private static final Predicate<Entity> NOT_UNDEAD = new Predicate<Entity>() {
 		@Override
 		public boolean apply(@Nullable Entity p_apply_1_) {
-			return true;// !(p_apply_1_ instanceof EntityDragonOld) && !(p_apply_1_ instanceof EntityVoidBoss) && !(p_apply_1_ instanceof EntityVoidNPC) && p_apply_1_ instanceof EntityLivingBase && ((EntityLivingBase) p_apply_1_).getCreatureAttribute() != EnumCreatureAttribute.UNDEAD;
+			return !(p_apply_1_ instanceof EntityBossCorruptedPawn) && !(p_apply_1_ instanceof EntityDragonOld) && !(p_apply_1_ instanceof EntityVoidBoss) && !(p_apply_1_ instanceof EntityVoidNPC) && p_apply_1_ instanceof EntityLivingBase && ((EntityLivingBase) p_apply_1_).getCreatureAttribute() != EnumCreatureAttribute.UNDEAD;
 		}
 	};
 
