@@ -7,6 +7,7 @@ import Tamaized.Voidcraft.GUI.client.RealityTeleporterBlockGUI;
 import Tamaized.Voidcraft.GUI.client.RealityTeleporterGUI;
 import Tamaized.Voidcraft.GUI.client.StarForgeGUI;
 import Tamaized.Voidcraft.GUI.client.VadeMecumSpellsGUI;
+import Tamaized.Voidcraft.GUI.client.VoidBlastFurnaceGUI;
 import Tamaized.Voidcraft.GUI.client.VoidBoxGUI;
 import Tamaized.Voidcraft.GUI.client.VoidicAlchemyGUI;
 import Tamaized.Voidcraft.GUI.client.VoidicChargerGUI;
@@ -19,6 +20,7 @@ import Tamaized.Voidcraft.GUI.server.RealityTeleporterBlockContainer;
 import Tamaized.Voidcraft.GUI.server.RealityTeleporterContainer;
 import Tamaized.Voidcraft.GUI.server.StarForgeContainer;
 import Tamaized.Voidcraft.GUI.server.VadeMecumSpellsContainer;
+import Tamaized.Voidcraft.GUI.server.VoidBlastFurnaceContainer;
 import Tamaized.Voidcraft.GUI.server.VoidBoxContainer;
 import Tamaized.Voidcraft.GUI.server.VoidInfuserContainer;
 import Tamaized.Voidcraft.GUI.server.VoidMaceratorContainer;
@@ -30,6 +32,7 @@ import Tamaized.Voidcraft.capabilities.CapabilityList;
 import Tamaized.Voidcraft.machina.tileentity.TileEntityHeimdall;
 import Tamaized.Voidcraft.machina.tileentity.TileEntityRealityStabilizer;
 import Tamaized.Voidcraft.machina.tileentity.TileEntityRealityTeleporter;
+import Tamaized.Voidcraft.machina.tileentity.TileEntityVoidBlastFurnace;
 import Tamaized.Voidcraft.machina.tileentity.TileEntityVoidBox;
 import Tamaized.Voidcraft.machina.tileentity.TileEntityVoidInfuser;
 import Tamaized.Voidcraft.machina.tileentity.TileEntityVoidMacerator;
@@ -46,7 +49,7 @@ import net.minecraftforge.fml.common.network.IGuiHandler;
 public class GuiHandler implements IGuiHandler {
 
 	public static enum Type {
-		NULL, Macerator, MusicBox, Infuser, Heimdall, VoidicGenerator, VoidicCharger, RealityStabilizer, RealityTeleporterBlock, VoidicAlchemy, RealityTeleporter, StarForge, VadeMecumSpells
+		NULL, Macerator, BlastFurnace, MusicBox, Infuser, Heimdall, VoidicGenerator, VoidicCharger, RealityStabilizer, RealityTeleporterBlock, VoidicAlchemy, RealityTeleporter, StarForge, VadeMecumSpells
 	}
 
 	public static int getTypeID(Type type) {
@@ -67,6 +70,9 @@ public class GuiHandler implements IGuiHandler {
 			// return new VadeMecumContainer(player);
 			case Macerator:
 				if (tileEntity != null && tileEntity instanceof TileEntityVoidMacerator) return new VoidMaceratorContainer(player.inventory, (TileEntityVoidMacerator) tileEntity);
+				else return null;
+			case BlastFurnace:
+				if (tileEntity != null && tileEntity instanceof TileEntityVoidBlastFurnace) return new VoidBlastFurnaceContainer(player.inventory, (TileEntityVoidBlastFurnace) tileEntity);
 				else return null;
 			case MusicBox:
 				if (tileEntity != null && tileEntity instanceof TileEntityVoidBox) return new VoidBoxContainer(player.inventory, (TileEntityVoidBox) tileEntity);
@@ -117,6 +123,9 @@ public class GuiHandler implements IGuiHandler {
 			// return new VadeMecumGUI(player);
 			case Macerator:
 				if (tileEntity != null && tileEntity instanceof TileEntityVoidMacerator) return new voidMaceratorGUI(player.inventory, (TileEntityVoidMacerator) tileEntity);
+				else return null;
+			case BlastFurnace:
+				if (tileEntity != null && tileEntity instanceof TileEntityVoidBlastFurnace) return new VoidBlastFurnaceGUI(player.inventory, (TileEntityVoidBlastFurnace) tileEntity);
 				else return null;
 			case MusicBox:
 				if (tileEntity != null && tileEntity instanceof TileEntityVoidBox) return new VoidBoxGUI(player.inventory, (TileEntityVoidBox) tileEntity);

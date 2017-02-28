@@ -8,6 +8,8 @@ import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.capabilities.vadeMecum.IVadeMecumCapability;
 import Tamaized.Voidcraft.machina.addons.TERecipeInfuser;
 import Tamaized.Voidcraft.machina.addons.TERecipesAlchemy;
+import Tamaized.Voidcraft.machina.addons.TERecipesBlastFurnace;
+import Tamaized.Voidcraft.machina.addons.TERecipesBlastFurnace.BlastFurnaceRecipe;
 import Tamaized.Voidcraft.machina.addons.TERecipesMacerator;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -20,12 +22,14 @@ public class VoidCraftTERecipes implements ITamRegistry {
 	public static TERecipesMacerator macerator;
 	public static TERecipeInfuser infuser;
 	public static TERecipesAlchemy alchemy;
+	public static TERecipesBlastFurnace blastFurnace;
 
 	@Override
 	public void preInit() {
 		macerator = new TERecipesMacerator();
 		infuser = new TERecipeInfuser();
 		alchemy = new TERecipesAlchemy();
+		blastFurnace = new TERecipesBlastFurnace();
 	}
 
 	@Override
@@ -51,6 +55,8 @@ public class VoidCraftTERecipes implements ITamRegistry {
 		macerator.registerRecipe(macerator.new MaceratorRecipe(getOreDict(new String[] { "gemLapis" }), new ItemStack(VoidCraft.items.lapisDust, 1), 200));
 		macerator.registerRecipe(macerator.new MaceratorRecipe(getOreDict(new String[] { "gemEmerald" }), new ItemStack(VoidCraft.items.emeraldDust, 1), 200));
 		macerator.registerRecipe(macerator.new MaceratorRecipe(getOreDict(new String[] { "gemDiamond" }), new ItemStack(VoidCraft.items.diamondDust, 1), 200));
+
+		blastFurnace.registerRecipe(blastFurnace.new BlastFurnaceRecipe(new ItemStack[] { new ItemStack(VoidCraft.items.ironDust), new ItemStack(VoidCraft.items.coalDust) }, new ItemStack(VoidCraft.items.voidicSteel, 1), 500));
 
 		infuser.registerRecipe(infuser.new InfuserRecipe(new ItemStack[] { new ItemStack(Blocks.FURNACE) }, new ItemStack(VoidCraft.blocks.voidMacerator), 1000));
 		infuser.registerRecipe(infuser.new InfuserRecipe(new ItemStack[] { new ItemStack(VoidCraft.tools.archSword) }, new ItemStack(VoidCraft.tools.demonSword), 1000));

@@ -29,6 +29,7 @@ import Tamaized.Voidcraft.blocks.tileentity.TileEntityFakeBedrockFarmland;
 import Tamaized.Voidcraft.machina.Heimdall;
 import Tamaized.Voidcraft.machina.RealityStabilizer;
 import Tamaized.Voidcraft.machina.RealityTeleporterBlock;
+import Tamaized.Voidcraft.machina.VoidBlastFurnace;
 import Tamaized.Voidcraft.machina.VoidBox;
 import Tamaized.Voidcraft.machina.VoidInfuser;
 import Tamaized.Voidcraft.machina.VoidMacerator;
@@ -79,6 +80,7 @@ public class VoidCraftBlocks implements ITamRegistry {
 	public static RealityStabilizer realityStabilizer;
 	public static VoidicAlchemyTable voidicAlchemyTable;
 	public static RealityTeleporterBlock realityTeleporterBlock;
+	public static VoidBlastFurnace voidBlastFurnace;
 
 	public static BlockEtherealPlant etherealPlant;
 
@@ -120,6 +122,7 @@ public class VoidCraftBlocks implements ITamRegistry {
 		modelList.add(fireVoid = new FireVoid(VoidCraft.tabs.tabVoid, "firevoid"));
 
 		modelList.add(voidMacerator = new VoidMacerator(VoidCraft.tabs.tabVoid, Material.ROCK, "voidmacerator", 3.5F));
+		modelList.add(voidBlastFurnace = new VoidBlastFurnace(VoidCraft.tabs.tabVoid, Material.IRON, "voidblastfurnace", 7.0F));
 		modelList.add(Heimdall = new Heimdall(VoidCraft.tabs.tabVoid, Material.IRON, "heimdall", 3.5F));
 		modelList.add(voidBox = new VoidBox(VoidCraft.tabs.tabVoid, Material.IRON, "voidbox", 7.0F));
 		modelList.add(voidInfuserInert = new TamBlock(VoidCraft.tabs.tabVoid, Material.IRON, "voidinfuserinert", 7.0F));
