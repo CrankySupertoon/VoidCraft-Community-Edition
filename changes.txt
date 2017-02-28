@@ -1,0 +1,5 @@
+ - Corrupted Pawn once again has its proper targetting AI
+ - Some Entity Models were worked on
+  + Quite a few now have their limbs move as they move
+  + A few model parts had their positions adjusted on some entities
+  + The Void Lich got a brand new model
