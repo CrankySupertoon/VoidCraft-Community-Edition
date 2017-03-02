@@ -126,8 +126,8 @@ public class VadeMecumGUI extends GuiScreen {
 	public void handleMouseInput() throws IOException {
 		super.handleMouseInput();
 		int dwheel = Mouse.getEventDWheel();
-		if (dwheel > 0) nextPage();
-		if (dwheel < 0) prevPage();
+		if (dwheel > 0) prevPage();
+		if (dwheel < 0) nextPage();
 	}
 
 	@Override

@@ -79,7 +79,12 @@ tile.etherealplant.name=Ethereal Plant
 tile.realityteleporterblock.name=Reality Teleportation Block
 tile.cosmicmaterial.name=Cosmic Material
 tile.starforge.name=Star Forge
+<<<<<<< HEAD
 tile.starforgestation.name=Star Forge
+=======
+tile.starforgeStation.name=Star Forge
+tile.voidblastfurnace.name=Void Blast Furnace
+>>>>>>> 8e3172f... blast furnace finalized
 
 # Potion
 effect.voidcraft:voidicinfusionimmunity=Voidic Immunity
@@ -217,6 +222,7 @@ voidcraft.VadeMecum.recipe.normal=Recipe
 voidcraft.VadeMecum.recipe.furnace=Furnace Recipe
 voidcraft.VadeMecum.recipe.infusion=Infusion Recipe
 voidcraft.VadeMecum.recipe.macerator=Macerator Recipe
+voidcraft.VadeMecum.recipe.blastfurnace=Blast Furnace Recipe
 voidcraft.VadeMecum.recipe.alchemy=Alchemy Recipe
 # -- Docs
 voidcraft.VadeMecum.title.docs=Void Vade Mecum - Documentation
@@ -303,6 +309,7 @@ voidcraft.VadeMecum.docs.desc.cosmicMaterial=A very rare material that can be fo
 voidcraft.VadeMecum.docs.desc.voidInfuser.pg1=The special properties of Liquid Void are quite interesting indeed. While one can ponder what exactly makes it behave the way it does, this entry will focus more on harnessing its power. By combining Void Bricks, Void Cloth, a Cauldron, and a Void Star, one can create a machine that can change the physical properties of certain items in much the same way that you change via prolonged exposure to the Void's environment.
 voidcraft.VadeMecum.docs.desc.voidInfuser.pg2=The Infusion Altar can also repair any damaged Void Crystal Tools, Weapons, Armors, and Shields.
 voidcraft.VadeMecum.docs.desc.voidMacerator=This Machine is the product of infusing a standard Furnace with Liquid Void. It takes Voidic Power to grind an input ore into four Void Infused dusts. You can process these dusts into a regular ingot using mundane machines.
+voidcraft.VadeMecum.docs.desc.blastfurnace=A type of furnace that requires both Voidic Power and an active Void Flame to be lit under the block. This device can be used to create Voidic Steel using Void Infused Iron Dust and Void Infused Coal Dust.
 voidcraft.VadeMecum.docs.desc.Heimdall.pg1=Beacons have the curious effect of seemingly generating a powerful beam of concentrated light. Though, such power cannot possibly be generated on its own. The more logical explanation is that it creates a small gate or rift to the Nether from which it can retrieve this energy. By modifying a Beacon via Void Infusion Altar, one can attune this gate to gather energy from the Void instead. Though, unlike a Beacon, which works effectively in
 voidcraft.VadeMecum.docs.desc.Heimdall.pg2=most places with an open ceiling, the Heimdall requires fuel to keep its gate open. Since it is a modified rift to the nether recalibrated to go to the Void, it requires energy from both realms to function properly. Void Infused Quartz Dust will do the job quite nicely.
 voidcraft.VadeMecum.docs.desc.voidicGen.pg1=They say there is no such thing as nothingness, for even empty space is filled with energy. But given the vacuous nature of The Void, there are plenty of opportunities to exploit this fundamental part of quantum physics. This energy manifests itself as pools of Liquid Void, whose strange physical properties make it behave in even stranger ways. This leaves one to wonder how it can be used; one potential answer can be found in the Voidic
@@ -329,6 +336,7 @@ voidcraft.VadeMecum.docs.desc.voidStar=Very similar to the Nether Star. These ar
 voidcraft.VadeMecum.docs.desc.emptyObsidianFlask.pg1=It is actually possible to collect 'Void' from within the Overworld. You need a special type of flask to do so. Simply get yourself some Empty Obsidian Flasks, head down near bedrock, and Right Click. What do these Flasks do you may ask? Well if you toss one (via right click) they explode on contact. They do not seem to damage the world at all but they cast a purple flame that does not seem to burn. It is a cold flame. Though coming in contact with such a flame
 voidcraft.VadeMecum.docs.desc.emptyObsidianFlask.pg2=yields interesting effects such as blindness and wither.
 voidcraft.VadeMecum.docs.desc.voidCloth=For some unknown reason the only way to obtain this cloth is from taking it from a lifeless corpse of a Void Lich. Though they were already undead to begin with. Even with the cloth in your possesion you can not figure out how exactly it is made or why it has the binding properties that it does. The material proves very useful though.
+voidcraft.VadeMecum.docs.desc.voidicsteel=Created in a Void Blast Furnace using Void Infused Iron Dust and Void Infused Coal Dust, this alloy is used to create various items and machines within VoidCraft. It should be noted that this is in the Ore Dictionary (as "ingotSteel") and may work with other mods that use Steel Ingots.
 voidcraft.VadeMecum.docs.desc.voidDusts=Void Dusts are the result of using a Void Infused Macerator. Using the device with ores provides four dust. Using it with Ingots or Gems results in one. The types of dusts that can be obtained are Coal, Iron, Gold, Copper, Tin, Lead, Quartz, Emerald, Lapis, and Diamond. The non-gem based dusts can then be smelted into ingot form. This effectively allows, to an extent, quadruple ore processing.
 voidcraft.VadeMecum.docs.desc.ChainedSkull=Oddly, covering a Wither's skull in Charred Bones followed by Molten Chains transforms the skull. You do not know if it is your mind playing tricks on you or if this skull is alive... breathing... speaking to you. It wants you to place it down. It tells you that you can end the world with it, that you should.                                                 Placing down the skull will result in explosions and a boss fight, be prepared.
 voidcraft.VadeMecum.docs.desc.voidicSuppressor=One of the few items that requires Voidic Power to function. To charge this device place it in a Voidic Charger. If this device contains power, it'll use that power to anchor the holder to the material plane. This means while in your hand or offhand the Voidic Suppressor will remove any Voidic Infusion on you and prevent more from being gained.

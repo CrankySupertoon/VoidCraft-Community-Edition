@@ -59,6 +59,8 @@ public class TileEntityVoidBlastFurnace extends TileEntityVoidicPowerInventory {
 		if (voidicPower > 0 && canCook()) {
 			cooking = true;
 			voidicPower--;
+		} else {
+			cooking = false;
 		}
 
 		if (!world.isRemote) {
@@ -121,8 +123,8 @@ public class TileEntityVoidBlastFurnace extends TileEntityVoidicPowerInventory {
 		int result = getStackInSlot(SLOT_OUTPUT).stackSize + recipe.getOutput().stackSize;
 		return (result <= getInventoryStackLimit() && result <= recipe.getOutput().getMaxStackSize());
 	}
-	
-	public boolean isCooking(){
+
+	public boolean isCooking() {
 		return cooking;
 	}
 

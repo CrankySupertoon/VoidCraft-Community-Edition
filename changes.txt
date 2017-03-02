@@ -1,3 +1,5 @@
+ - Added a Void Blast Furnace along with Voidic Steel
+  + Many recipes have been changed to use Voidic Steel
  - Corrupted Pawn once again has its proper targetting AI
  - Some Entity Models were worked on
   + Quite a few now have their limbs move as they move

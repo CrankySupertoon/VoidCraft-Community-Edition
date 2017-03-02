@@ -3,9 +3,9 @@ package Tamaized.Voidcraft.vadeMecum.contents.documentation.machines;
 import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.GUI.client.VadeMecumGUI;
 import Tamaized.Voidcraft.proxy.ClientProxy;
-import Tamaized.Voidcraft.vadeMecum.VadeMecumButton;
 import Tamaized.Voidcraft.vadeMecum.VadeMecumEntry;
 import Tamaized.Voidcraft.vadeMecum.contents.documentation.machines.alchemy.VadeMecumPageListAlchemy;
+import Tamaized.Voidcraft.vadeMecum.contents.documentation.machines.blastfurnace.VadeMecumPageListBlastFurnace;
 import Tamaized.Voidcraft.vadeMecum.contents.documentation.machines.cable.VadeMecumPageListCable;
 import Tamaized.Voidcraft.vadeMecum.contents.documentation.machines.charger.VadeMecumPageListCharger;
 import Tamaized.Voidcraft.vadeMecum.contents.documentation.machines.generator.VadeMecumPageListGenerator;
@@ -20,7 +20,9 @@ import net.minecraft.item.ItemStack;
 public class VadeMecumMachinesEntry extends VadeMecumEntry {
 
 	public static enum Entry {
-		VoidInfusionAltar, VoidInfusedMacerator, Heimdall, VoidicGenerator, VoidicCable, VoidMusicBox, VoidicCharger, RealityStabilizer, AlchemyTable, Teleporter
+		VoidInfusionAltar, VoidInfusedMacerator, BlastFurnace, Heimdall, VoidicGenerator, VoidicCable, 
+		
+		VoidMusicBox, VoidicCharger, RealityStabilizer, AlchemyTable, Teleporter
 	}
 
 	public static int getEntryID(Entry e) {
@@ -33,11 +35,12 @@ public class VadeMecumMachinesEntry extends VadeMecumEntry {
 
 	public VadeMecumEntry voidInfusionAltar;
 	public VadeMecumEntry voidInfusedMacerator;
+	public VadeMecumEntry blastFurnace;
 	public VadeMecumEntry heimdall;
 	public VadeMecumEntry voidicGenerator;
 	public VadeMecumEntry voidicCable;
+	
 	public VadeMecumEntry voidMusicBox;
-
 	public VadeMecumEntry voidicCharger;
 	public VadeMecumEntry realityStabilizer;
 	public VadeMecumEntry alchemyTable;
@@ -51,11 +54,12 @@ public class VadeMecumMachinesEntry extends VadeMecumEntry {
 	public void initObjects() {
 		voidInfusionAltar = new VadeMecumEntry("docs_Machines_voidInfusionAltar", "", this, new VadeMecumPageListInfusionAltar());
 		voidInfusedMacerator = new VadeMecumEntry("docs_Machines_voidInfusedMacerator", "", this, new VadeMecumPageListMacerator());
+		blastFurnace = new VadeMecumEntry("docs_Machines_blastFurnace", "", this, new VadeMecumPageListBlastFurnace());
 		heimdall = new VadeMecumEntry("docs_Machines_heimdall", "", this, new VadeMecumPageListHeimdall());
 		voidicGenerator = new VadeMecumEntry("docs_Machines_voidicGenerator", "", this, new VadeMecumPageListGenerator());
 		voidicCable = new VadeMecumEntry("docs_Machines_voidicCable", "", this, new VadeMecumPageListCable());
+		
 		voidMusicBox = new VadeMecumEntry("docs_Machines_voidMusicBox", "", this, new VadeMecumPageListMusicBox());
-
 		voidicCharger = new VadeMecumEntry("docs_Machines_voidicCharger", "", this, new VadeMecumPageListCharger());
 		realityStabilizer = new VadeMecumEntry("docs_Machines_realityStabilizer", "", this, new VadeMecumPageListStabilizer());
 		alchemyTable = new VadeMecumEntry("docs_Machines_alchemyTable", "", this, new VadeMecumPageListAlchemy());
@@ -68,11 +72,12 @@ public class VadeMecumMachinesEntry extends VadeMecumEntry {
 		clearButtons();
 		addButton(gui, getEntryID(Entry.VoidInfusionAltar), new ItemStack(VoidCraft.blocks.voidInfuser).getDisplayName(), new ItemStack(VoidCraft.blocks.voidInfuser));
 		addButton(gui, getEntryID(Entry.VoidInfusedMacerator), new ItemStack(VoidCraft.blocks.voidMacerator).getDisplayName(), new ItemStack(VoidCraft.blocks.voidMacerator));
+		addButton(gui, getEntryID(Entry.BlastFurnace), new ItemStack(VoidCraft.blocks.voidBlastFurnace).getDisplayName(), new ItemStack(VoidCraft.blocks.voidBlastFurnace));
 		addButton(gui, getEntryID(Entry.Heimdall), new ItemStack(VoidCraft.blocks.Heimdall).getDisplayName(), new ItemStack(VoidCraft.blocks.Heimdall));
 		addButton(gui, getEntryID(Entry.VoidicGenerator), new ItemStack(VoidCraft.blocks.voidicGen).getDisplayName(), new ItemStack(VoidCraft.blocks.voidicGen));
 		addButton(gui, getEntryID(Entry.VoidicCable), new ItemStack(VoidCraft.blocks.voidicCable).getDisplayName(), new ItemStack(VoidCraft.blocks.voidicCable));
+		
 		addButton(gui, getEntryID(Entry.VoidMusicBox), new ItemStack(VoidCraft.blocks.voidBox).getDisplayName(), new ItemStack(VoidCraft.blocks.voidBox));
-
 		addButton(gui, getEntryID(Entry.VoidicCharger), new ItemStack(VoidCraft.blocks.voidicCharger).getDisplayName(), new ItemStack(VoidCraft.blocks.voidicCharger));
 		addButton(gui, getEntryID(Entry.RealityStabilizer), new ItemStack(VoidCraft.blocks.realityStabilizer).getDisplayName(), new ItemStack(VoidCraft.blocks.realityStabilizer));
 		addButton(gui, getEntryID(Entry.AlchemyTable), new ItemStack(VoidCraft.blocks.voidicAlchemyTable).getDisplayName(), new ItemStack(VoidCraft.blocks.voidicAlchemyTable));
@@ -87,6 +92,9 @@ public class VadeMecumMachinesEntry extends VadeMecumEntry {
 				break;
 			case VoidInfusedMacerator:
 				gui.changeEntry(voidInfusedMacerator);
+				break;
+			case BlastFurnace:
+				gui.changeEntry(blastFurnace);
 				break;
 			case Heimdall:
 				gui.changeEntry(heimdall);

@@ -19,7 +19,7 @@ public final class RecipeHelper {
 
 	public static IRecipe getRecipe(ItemStack output) {
 		for (IRecipe recipe : CraftingManager.getInstance().getRecipeList()) {
-			if ((recipe instanceof ShapedRecipes || recipe instanceof ShapelessRecipes) && ItemStack.areItemStacksEqual(recipe.getRecipeOutput(), output)) {
+			if ((recipe instanceof ShapedRecipes || recipe instanceof ShapelessRecipes) && ItemStack.areItemsEqual(recipe.getRecipeOutput(), output)) {
 				return recipe;
 			}
 		}
@@ -29,8 +29,8 @@ public final class RecipeHelper {
 	public static List<ItemStack> getFurnaceRecipe(ItemStack output) {
 		List<ItemStack> list = new ArrayList<ItemStack>();
 		for (Entry<ItemStack, ItemStack> entry : FurnaceRecipes.instance().getSmeltingList().entrySet()) {
-			if(ItemStack.areItemStacksEqual(entry.getValue(), output)){
-				list.add(entry.getValue());
+			if(ItemStack.areItemsEqual(entry.getValue(), output)){
+				list.add(new ItemStack(entry.getKey().getItem()));
 			}
 		}
 		return list;

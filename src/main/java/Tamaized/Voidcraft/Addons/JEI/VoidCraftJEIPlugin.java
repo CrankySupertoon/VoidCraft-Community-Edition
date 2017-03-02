@@ -6,6 +6,9 @@ import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.Addons.JEI.alchemy.AlchemyRecipeCategory;
 import Tamaized.Voidcraft.Addons.JEI.alchemy.AlchemyRecipeHandler;
 import Tamaized.Voidcraft.Addons.JEI.alchemy.AlchemyRecipeMaker;
+import Tamaized.Voidcraft.Addons.JEI.blastfurnace.BlastFurnaceRecipeCategory;
+import Tamaized.Voidcraft.Addons.JEI.blastfurnace.BlastFurnaceRecipeHandler;
+import Tamaized.Voidcraft.Addons.JEI.blastfurnace.BlastFurnaceRecipeMaker;
 import Tamaized.Voidcraft.Addons.JEI.infuser.InfuserRecipeCategory;
 import Tamaized.Voidcraft.Addons.JEI.infuser.InfuserRecipeHandler;
 import Tamaized.Voidcraft.Addons.JEI.infuser.InfuserRecipeMaker;
@@ -30,17 +33,19 @@ public class VoidCraftJEIPlugin extends BlankModPlugin {
 		IIngredientRegistry itemRegistry = registry.getIngredientRegistry();
 		jeiHelpers = registry.getJeiHelpers();
 
-		registry.addRecipeCategories(new InfuserRecipeCategory(), new MaceratorRecipeCategory(), new AlchemyRecipeCategory());
+		registry.addRecipeCategories(new InfuserRecipeCategory(), new MaceratorRecipeCategory(), new AlchemyRecipeCategory(), new BlastFurnaceRecipeCategory());
 
 		registry.addRecipes(InfuserRecipeMaker.getRecipes());
 		registry.addRecipes(MaceratorRecipeMaker.getRecipes());
 		registry.addRecipes(AlchemyRecipeMaker.getRecipes());
+		registry.addRecipes(BlastFurnaceRecipeMaker.getRecipes());
 
-		registry.addRecipeHandlers(new InfuserRecipeHandler(), new MaceratorRecipeHandler(), new AlchemyRecipeHandler());
+		registry.addRecipeHandlers(new InfuserRecipeHandler(), new MaceratorRecipeHandler(), new AlchemyRecipeHandler(), new BlastFurnaceRecipeHandler());
 
 		registry.addRecipeCategoryCraftingItem(new ItemStack(VoidCraft.blocks.voidInfuser), "voidcraft_JEI_recipeCategory_Infuser");
 		registry.addRecipeCategoryCraftingItem(new ItemStack(VoidCraft.blocks.voidMacerator), "voidcraft_JEI_recipeCategory_Macerator");
 		registry.addRecipeCategoryCraftingItem(new ItemStack(VoidCraft.blocks.voidicAlchemyTable), "voidcraft_JEI_recipeCategory_Alchemy");
+		registry.addRecipeCategoryCraftingItem(new ItemStack(VoidCraft.blocks.voidBlastFurnace), "voidcraft_JEI_recipeCategory_BlastFurnace");
 		
 		registry.addAdvancedGuiHandlers(new VadeMecumSpellAdvancedGuiHandler());
 
