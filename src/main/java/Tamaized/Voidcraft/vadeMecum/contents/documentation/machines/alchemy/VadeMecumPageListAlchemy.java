@@ -16,16 +16,7 @@ public class VadeMecumPageListAlchemy implements IVadeMecumPageProvider {
 		return new IVadeMecumPage[] {
 				new VadeMecumPage(new ItemStack(VoidCraft.blocks.voidicAlchemyTable).getDisplayName(), VoidCraft.modid+".VadeMecum.docs.desc.voidicAlchemyTable.pg1"),
 				new VadeMecumPage("", VoidCraft.modid+".VadeMecum.docs.desc.voidicAlchemyTable.pg2"),
-				new VadeMecumPageCrafting(new VadeMecumCraftingNormal(VoidCraft.modid+".VadeMecum.recipe.normal", new ItemStack[] {
-						new ItemStack(VoidCraft.blocks.blockVoidbrick),
-						new ItemStack(VoidCraft.blocks.voidicCable),
-						new ItemStack(VoidCraft.blocks.blockVoidbrick),
-						new ItemStack(VoidCraft.blocks.voidicCable),
-						new ItemStack(Items.BREWING_STAND),
-						new ItemStack(VoidCraft.blocks.voidicCable),
-						new ItemStack(VoidCraft.blocks.blockVoidbrick),
-						new ItemStack(VoidCraft.blocks.voidInfuserInert),
-						new ItemStack(VoidCraft.blocks.blockVoidbrick) }, new ItemStack(VoidCraft.blocks.voidicAlchemyTable, 1))) };
+				new VadeMecumPageCrafting(new VadeMecumCraftingNormal(VoidCraft.modid+".VadeMecum.recipe.normal", new ItemStack(VoidCraft.blocks.voidicAlchemyTable, 1))) };
 	}
 
 }

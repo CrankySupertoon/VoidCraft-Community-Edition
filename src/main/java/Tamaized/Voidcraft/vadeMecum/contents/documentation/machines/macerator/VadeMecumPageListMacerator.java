@@ -15,7 +15,7 @@ public class VadeMecumPageListMacerator implements IVadeMecumPageProvider {
 	public IVadeMecumPage[] getPageList(IVadeMecumCapability cap) {
 		return new IVadeMecumPage[] {
 				new VadeMecumPage(new ItemStack(VoidCraft.blocks.voidMacerator).getDisplayName(), VoidCraft.modid+".VadeMecum.docs.desc.voidMacerator"),
-				new VadeMecumPageCrafting(new VadeMecumCraftingInfuser(VoidCraft.modid+".VadeMecum.recipe.infusion", new ItemStack(Blocks.FURNACE), new ItemStack(VoidCraft.blocks.voidMacerator, 1))) };
+				new VadeMecumPageCrafting(new VadeMecumCraftingInfuser(VoidCraft.modid+".VadeMecum.recipe.infusion", new ItemStack(VoidCraft.blocks.voidMacerator, 1))) };
 	}
 
 }

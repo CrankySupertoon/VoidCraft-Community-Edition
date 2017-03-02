@@ -16,16 +16,7 @@ public class VadeMecumPageListCharger implements IVadeMecumPageProvider {
 		return new IVadeMecumPage[] {
 				new VadeMecumPage(new ItemStack(VoidCraft.blocks.voidicCharger).getDisplayName(), VoidCraft.modid+".VadeMecum.docs.desc.voidicCharger.pg1"),
 				new VadeMecumPage("", VoidCraft.modid+".VadeMecum.docs.desc.voidicCharger.pg2"),
-				new VadeMecumPageCrafting(new VadeMecumCraftingNormal(VoidCraft.modid+".VadeMecum.recipe.normal", new ItemStack[] {
-						new ItemStack(VoidCraft.items.diamondDust),
-						new ItemStack(VoidCraft.items.voidStar),
-						new ItemStack(VoidCraft.items.diamondDust),
-						new ItemStack(VoidCraft.items.voidCloth),
-						new ItemStack(Items.END_CRYSTAL),
-						new ItemStack(VoidCraft.items.voidCloth),
-						new ItemStack(VoidCraft.items.diamondDust),
-						new ItemStack(VoidCraft.blocks.voidicCable),
-						new ItemStack(VoidCraft.items.diamondDust) }, new ItemStack(VoidCraft.blocks.voidicCharger, 1))) };
+				new VadeMecumPageCrafting(new VadeMecumCraftingNormal(VoidCraft.modid+".VadeMecum.recipe.normal", new ItemStack(VoidCraft.blocks.voidicCharger, 1))) };
 	}
 
 }

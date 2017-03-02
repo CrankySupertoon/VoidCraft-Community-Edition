@@ -16,10 +16,10 @@ public class VadeMecumPageListVoidDusts implements IVadeMecumPageProvider {
 	public IVadeMecumPage[] getPageList(IVadeMecumCapability cap) {
 		return new IVadeMecumPage[] {
 				new VadeMecumPage(VoidCraft.modid+".VadeMecum.docs.title.voidDusts", VoidCraft.modid+".VadeMecum.docs.desc.voidDusts"),
-				new VadeMecumPageCrafting(new VadeMecumCraftingMacerator(VoidCraft.modid+".VadeMecum.recipe.macerator", new ItemStack(Blocks.IRON_ORE), new ItemStack(VoidCraft.items.ironDust, 4))),
-				new VadeMecumPageCrafting(new VadeMecumCraftingMacerator(VoidCraft.modid+".VadeMecum.recipe.macerator", new ItemStack(Items.DIAMOND), new ItemStack(VoidCraft.items.diamondDust))),
-				new VadeMecumPageCrafting(new VadeMecumCraftingMacerator(VoidCraft.modid+".VadeMecum.recipe.macerator", new ItemStack(Blocks.COAL_ORE), new ItemStack(VoidCraft.items.coalDust, 8))),
-				new VadeMecumPageCrafting(new VadeMecumCraftingMacerator(VoidCraft.modid+".VadeMecum.recipe.macerator", new ItemStack(Items.COAL), new ItemStack(VoidCraft.items.coalDust, 4))) };
+				new VadeMecumPageCrafting(new VadeMecumCraftingMacerator(VoidCraft.modid+".VadeMecum.recipe.macerator", new ItemStack(VoidCraft.items.ironDust, 4))),
+				new VadeMecumPageCrafting(new VadeMecumCraftingMacerator(VoidCraft.modid+".VadeMecum.recipe.macerator", new ItemStack(VoidCraft.items.diamondDust))),
+				new VadeMecumPageCrafting(new VadeMecumCraftingMacerator(VoidCraft.modid+".VadeMecum.recipe.macerator", new ItemStack(VoidCraft.items.coalDust, 8))),
+				new VadeMecumPageCrafting(new VadeMecumCraftingMacerator(VoidCraft.modid+".VadeMecum.recipe.macerator", new ItemStack(VoidCraft.items.coalDust, 4))) };
 	}
 
 }

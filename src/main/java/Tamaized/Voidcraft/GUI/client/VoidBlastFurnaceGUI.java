@@ -34,9 +34,9 @@ public class VoidBlastFurnaceGUI extends GuiContainer {
 		}
 
 		{
-			float scale = 26;
+			float scale = 16;
 			int k = (int) (((float) te.cookingTick / (float) te.finishTick) * scale);
-			drawTexturedModalRect(guiLeft + 188, guiTop + 100, 0, 435, k, 15);
+			drawTexturedModalRect(guiLeft + 188, guiTop + 117 - k, 0, 450 - k, 26, k);
 		}
 
 		super.updateScreen();

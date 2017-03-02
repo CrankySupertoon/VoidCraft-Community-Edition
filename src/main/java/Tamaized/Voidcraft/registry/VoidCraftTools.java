@@ -87,21 +87,20 @@ public class VoidCraftTools implements ITamRegistry {
 
 	@Override
 	public void init() {
-
 		GameRegistry.addRecipe(new ItemStack(voidPickaxe, 1), "XXX", " O ", " D ", 'X', VoidCraft.items.voidcrystal, 'O', Blocks.OBSIDIAN, 'D', Items.DIAMOND);
 		GameRegistry.addRecipe(new ItemStack(voidAxe, 1), " XX", " OX", " D ", 'X', VoidCraft.items.voidcrystal, 'O', Blocks.OBSIDIAN, 'D', Items.DIAMOND);
 		GameRegistry.addRecipe(new ItemStack(voidSpade, 1), " X ", " O ", " D ", 'X', VoidCraft.items.voidcrystal, 'O', Blocks.OBSIDIAN, 'D', Items.DIAMOND);
 		GameRegistry.addRecipe(new ItemStack(voidHoe, 1), " XX", " O ", " D ", 'X', VoidCraft.items.voidcrystal, 'O', Blocks.OBSIDIAN, 'D', Items.DIAMOND);
 		GameRegistry.addRecipe(new ItemStack(voidSword, 1), " X ", "OXO", " D ", 'X', VoidCraft.items.voidcrystal, 'O', Blocks.OBSIDIAN, 'D', Items.DIAMOND);
 		// +spectre
-		GameRegistry.addRecipe(new ItemStack(angelicSword, 1), "XXX", "XSX", "XXX", 'S', new ItemStack(voidSword, 1, VoidCraft.WILDCARD_VALUE), 'X', VoidCraft.items.ectoplasm);
-		GameRegistry.addRecipe(new ItemStack(spectrePickaxe, 1), "XXX", "XSX", "XXX", 'S', new ItemStack(voidPickaxe, 1, VoidCraft.WILDCARD_VALUE), 'X', VoidCraft.items.ectoplasm);
-		GameRegistry.addRecipe(new ItemStack(spectreAxe, 1), "XXX", "XSX", "XXX", 'S', new ItemStack(voidAxe, 1, VoidCraft.WILDCARD_VALUE), 'X', VoidCraft.items.ectoplasm);
-		GameRegistry.addRecipe(new ItemStack(spectreSpade, 1), "XXX", "XSX", "XXX", 'S', new ItemStack(voidSpade, 1, VoidCraft.WILDCARD_VALUE), 'X', VoidCraft.items.ectoplasm);
-		GameRegistry.addRecipe(new ItemStack(spectreHoe, 1), "XXX", "XSX", "XXX", 'S', new ItemStack(voidHoe, 1, VoidCraft.WILDCARD_VALUE), 'X', VoidCraft.items.ectoplasm);
+		GameRegistry.addRecipe(new ItemStack(angelicSword, 1), " X ", "XSX", " I ", 'S', new ItemStack(voidSword, 1, VoidCraft.WILDCARD_VALUE), 'X', VoidCraft.items.ectoplasm, 'I', VoidCraft.items.voidicSteel);
+		GameRegistry.addRecipe(new ItemStack(spectrePickaxe, 1), " X ", "XSX", " I ", 'S', new ItemStack(voidPickaxe, 1, VoidCraft.WILDCARD_VALUE), 'X', VoidCraft.items.ectoplasm, 'I', VoidCraft.items.voidicSteel);
+		GameRegistry.addRecipe(new ItemStack(spectreAxe, 1), " X ", "XSX", " I ", 'S', new ItemStack(voidAxe, 1, VoidCraft.WILDCARD_VALUE), 'X', VoidCraft.items.ectoplasm, 'I', VoidCraft.items.voidicSteel);
+		GameRegistry.addRecipe(new ItemStack(spectreSpade, 1), " X ", "XSX", " I ", 'S', new ItemStack(voidSpade, 1, VoidCraft.WILDCARD_VALUE), 'X', VoidCraft.items.ectoplasm, 'I', VoidCraft.items.voidicSteel);
+		GameRegistry.addRecipe(new ItemStack(spectreHoe, 1), " X ", "XSX", " I ", 'S', new ItemStack(voidHoe, 1, VoidCraft.WILDCARD_VALUE), 'X', VoidCraft.items.ectoplasm, 'I', VoidCraft.items.voidicSteel);
 		// +molten and beyond
-		GameRegistry.addRecipe(new ItemStack(moltenSword), "XXX", "XSX", "XXX", 'X', VoidCraft.items.MoltenvoidChain, 'S', new ItemStack(chainSword, 1, VoidCraft.WILDCARD_VALUE));
-		GameRegistry.addRecipe(new ItemStack(chainSword), "XXX", "XSX", "XXX", 'X', VoidCraft.items.voidChain, 'S', new ItemStack(voidSword, 1, VoidCraft.WILDCARD_VALUE));
+		GameRegistry.addRecipe(new ItemStack(moltenSword), " X ", "XSX", " I ", 'X', VoidCraft.items.MoltenvoidChain, 'S', new ItemStack(chainSword, 1, VoidCraft.WILDCARD_VALUE), 'I', VoidCraft.items.voidicSteel);
+		GameRegistry.addRecipe(new ItemStack(chainSword), " X ", "XSX", " I ", 'X', VoidCraft.items.voidChain, 'S', new ItemStack(voidSword, 1, VoidCraft.WILDCARD_VALUE), 'I', VoidCraft.items.voidicSteel);
 		GameRegistry.addRecipe(new ItemStack(archSword), "SSS", "XYZ", "SSS", 'S', VoidCraft.items.MoltenvoidChain, 'X', new ItemStack(chainSword, 1, VoidCraft.WILDCARD_VALUE), 'Y', new ItemStack(angelicSword, 1, VoidCraft.WILDCARD_VALUE), 'Z', new ItemStack(moltenSword, 1, VoidCraft.WILDCARD_VALUE));
 	}
 

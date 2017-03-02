@@ -15,46 +15,10 @@ public class VadeMecumPageListVoidBrick implements IVadeMecumPageProvider {
 		return new IVadeMecumPage[] {
 				new VadeMecumPage(new ItemStack(VoidCraft.blocks.blockVoidbrick).getDisplayName(), VoidCraft.modid+".VadeMecum.docs.desc.blockVoidbrick.pg1"),
 				new VadeMecumPage("", VoidCraft.modid+".VadeMecum.docs.desc.blockVoidbrick.pg2"),
-				new VadeMecumPageCrafting(new VadeMecumCraftingNormal(VoidCraft.modid+".VadeMecum.recipe.normal", new ItemStack[] {
-						new ItemStack(VoidCraft.blocks.blockVoidcrystal),
-						new ItemStack(VoidCraft.blocks.blockVoidcrystal),
-						null,
-						new ItemStack(VoidCraft.blocks.blockVoidcrystal),
-						new ItemStack(VoidCraft.blocks.blockVoidcrystal),
-						null,
-						null,
-						null,
-						null }, new ItemStack(VoidCraft.blocks.blockVoidbrick, 1))),
-				new VadeMecumPageCrafting(new VadeMecumCraftingNormal(new ItemStack(VoidCraft.blocks.blockVoidstairs).getDisplayName(), new ItemStack[] {
-						new ItemStack(VoidCraft.blocks.blockVoidbrick),
-						null,
-						null,
-						new ItemStack(VoidCraft.blocks.blockVoidbrick),
-						new ItemStack(VoidCraft.blocks.blockVoidbrick),
-						null,
-						new ItemStack(VoidCraft.blocks.blockVoidbrick),
-						new ItemStack(VoidCraft.blocks.blockVoidbrick),
-						new ItemStack(VoidCraft.blocks.blockVoidbrick) }, new ItemStack(VoidCraft.blocks.blockVoidstairs, 6))),
-				new VadeMecumPageCrafting(new VadeMecumCraftingNormal(new ItemStack(VoidCraft.blocks.blockVoidfence).getDisplayName(), new ItemStack[] {
-						null,
-						null,
-						null,
-						new ItemStack(VoidCraft.blocks.blockVoidbrick),
-						new ItemStack(VoidCraft.blocks.blockVoidbrick),
-						new ItemStack(VoidCraft.blocks.blockVoidbrick),
-						new ItemStack(VoidCraft.blocks.blockVoidbrick),
-						new ItemStack(VoidCraft.blocks.blockVoidbrick),
-						new ItemStack(VoidCraft.blocks.blockVoidbrick) }, new ItemStack(VoidCraft.blocks.blockVoidfence, 6))),
-				new VadeMecumPageCrafting(new VadeMecumCraftingNormal(new ItemStack(VoidCraft.blocks.blockVoidBrickHalfSlab).getDisplayName(), new ItemStack[] {
-						null,
-						null,
-						null,
-						null,
-						null,
-						null,
-						new ItemStack(VoidCraft.blocks.blockVoidbrick),
-						new ItemStack(VoidCraft.blocks.blockVoidbrick),
-						new ItemStack(VoidCraft.blocks.blockVoidbrick) }, new ItemStack(VoidCraft.blocks.blockVoidBrickHalfSlab, 6)))
+				new VadeMecumPageCrafting(new VadeMecumCraftingNormal(VoidCraft.modid+".VadeMecum.recipe.normal", new ItemStack(VoidCraft.blocks.blockVoidbrick, 1))),
+				new VadeMecumPageCrafting(new VadeMecumCraftingNormal(new ItemStack(VoidCraft.blocks.blockVoidstairs).getDisplayName(), new ItemStack(VoidCraft.blocks.blockVoidstairs, 6))),
+				new VadeMecumPageCrafting(new VadeMecumCraftingNormal(new ItemStack(VoidCraft.blocks.blockVoidfence).getDisplayName(), new ItemStack(VoidCraft.blocks.blockVoidfence, 6))),
+				new VadeMecumPageCrafting(new VadeMecumCraftingNormal(new ItemStack(VoidCraft.blocks.blockVoidBrickHalfSlab).getDisplayName(), new ItemStack(VoidCraft.blocks.blockVoidBrickHalfSlab, 6)))
 		};
 	}
 

@@ -14,16 +14,7 @@ public class VadeMecumPageListBindSword implements IVadeMecumPageProvider {
 	public IVadeMecumPage[] getPageList(IVadeMecumCapability cap) {
 		return new IVadeMecumPage[] {
 				new VadeMecumPage(new ItemStack(VoidCraft.tools.chainSword).getDisplayName(), VoidCraft.modid+".VadeMecum.docs.desc.chainSword"),
-				new VadeMecumPageCrafting(new VadeMecumCraftingNormal(VoidCraft.modid+".VadeMecum.recipe.normal", new ItemStack[] {
-						new ItemStack(VoidCraft.items.voidChain),
-						new ItemStack(VoidCraft.items.voidChain),
-						new ItemStack(VoidCraft.items.voidChain),
-						new ItemStack(VoidCraft.items.voidChain),
-						new ItemStack(VoidCraft.tools.voidSword),
-						new ItemStack(VoidCraft.items.voidChain),
-						new ItemStack(VoidCraft.items.voidChain),
-						new ItemStack(VoidCraft.items.voidChain),
-						new ItemStack(VoidCraft.items.voidChain) }, new ItemStack(VoidCraft.tools.chainSword))) };
+				new VadeMecumPageCrafting(new VadeMecumCraftingNormal(VoidCraft.modid+".VadeMecum.recipe.normal", new ItemStack(VoidCraft.tools.chainSword))) };
 	}
 
 }

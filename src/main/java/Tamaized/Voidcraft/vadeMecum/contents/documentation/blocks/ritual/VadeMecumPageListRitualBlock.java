@@ -15,16 +15,7 @@ public class VadeMecumPageListRitualBlock implements IVadeMecumPageProvider {
 	public IVadeMecumPage[] getPageList(IVadeMecumCapability cap) {
 		return new IVadeMecumPage[] {
 				new VadeMecumPage(new ItemStack(VoidCraft.blocks.ritualBlock).getDisplayName(), VoidCraft.modid+".VadeMecum.docs.desc.ritualBlock"),
-				new VadeMecumPageCrafting(new VadeMecumCraftingNormal("recipe.normal", new ItemStack[] {
-						new ItemStack(Blocks.STONEBRICK),
-						new ItemStack(Blocks.STONEBRICK),
-						new ItemStack(Blocks.STONEBRICK),
-						new ItemStack(Blocks.STONEBRICK),
-						new ItemStack(VoidCraft.items.voidcrystal),
-						new ItemStack(Blocks.STONEBRICK),
-						new ItemStack(Blocks.STONEBRICK),
-						new ItemStack(Blocks.STONEBRICK),
-						new ItemStack(Blocks.STONEBRICK) }, new ItemStack(VoidCraft.blocks.ritualBlock, 8)))
+				new VadeMecumPageCrafting(new VadeMecumCraftingNormal("recipe.normal", new ItemStack(VoidCraft.blocks.ritualBlock, 8)))
 				};
 	}
 

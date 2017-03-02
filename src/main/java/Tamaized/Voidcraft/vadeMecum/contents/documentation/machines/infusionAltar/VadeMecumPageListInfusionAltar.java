@@ -16,26 +16,8 @@ public class VadeMecumPageListInfusionAltar implements IVadeMecumPageProvider {
 		return new IVadeMecumPage[] {
 				new VadeMecumPage(new ItemStack(VoidCraft.blocks.voidInfuser).getDisplayName(), VoidCraft.modid+".VadeMecum.docs.desc.voidInfuser.pg1"),
 				new VadeMecumPage("", VoidCraft.modid+".VadeMecum.docs.desc.voidInfuser.pg2"),
-				new VadeMecumPageCrafting(new VadeMecumCraftingNormal(new ItemStack(VoidCraft.blocks.voidInfuserInert).getDisplayName(), new ItemStack[] {
-						new ItemStack(VoidCraft.blocks.blockVoidbrick),
-						new ItemStack(VoidCraft.items.voidCloth),
-						new ItemStack(VoidCraft.blocks.blockVoidbrick),
-						new ItemStack(VoidCraft.items.voidCloth),
-						new ItemStack(Items.CAULDRON),
-						new ItemStack(VoidCraft.items.voidCloth),
-						new ItemStack(VoidCraft.blocks.blockVoidbrick),
-						new ItemStack(VoidCraft.items.voidCloth),
-						new ItemStack(VoidCraft.blocks.blockVoidbrick) }, new ItemStack(VoidCraft.blocks.voidInfuserInert, 1))),
-				new VadeMecumPageCrafting(new VadeMecumCraftingNormal(new ItemStack(VoidCraft.blocks.voidInfuser).getDisplayName(), new ItemStack[] {
-						new ItemStack(VoidCraft.blocks.voidInfuserInert),
-						new ItemStack(VoidCraft.items.voidStar),
-						null,
-						null,
-						null,
-						null,
-						null,
-						null,
-						null }, new ItemStack(VoidCraft.blocks.voidInfuser, 1))) };
+				new VadeMecumPageCrafting(new VadeMecumCraftingNormal(new ItemStack(VoidCraft.blocks.voidInfuserInert).getDisplayName(), new ItemStack(VoidCraft.blocks.voidInfuserInert, 1))),
+				new VadeMecumPageCrafting(new VadeMecumCraftingNormal(new ItemStack(VoidCraft.blocks.voidInfuser).getDisplayName(), new ItemStack(VoidCraft.blocks.voidInfuser, 1))) };
 	}
 
 }

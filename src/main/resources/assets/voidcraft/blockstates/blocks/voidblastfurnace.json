@@ -1,0 +1,13 @@
+{
+    "variants": {
+		"facing=north": {
+			"model": "voidcraft:blastfurnace"
+		},"facing=south": {
+			"model": "voidcraft:blastfurnace", "y": 180
+		},"facing=west": {
+			"model": "voidcraft:blastfurnace", "y": 270
+		},"facing=east": {
+			"model": "voidcraft:blastfurnace", "y": 90
+		}
+	}
+}

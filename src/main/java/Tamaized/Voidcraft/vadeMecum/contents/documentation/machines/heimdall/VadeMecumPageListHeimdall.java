@@ -16,7 +16,7 @@ public class VadeMecumPageListHeimdall implements IVadeMecumPageProvider {
 		return new IVadeMecumPage[] {
 				new VadeMecumPage(new ItemStack(VoidCraft.blocks.Heimdall).getDisplayName(), VoidCraft.modid+".VadeMecum.docs.desc.Heimdall.pg1"),
 				new VadeMecumPage("", VoidCraft.modid+".VadeMecum.docs.desc.Heimdall.pg2"),
-				new VadeMecumPageCrafting(new VadeMecumCraftingInfuser(VoidCraft.modid+".VadeMecum.recipe.infusion", new ItemStack(Blocks.BEACON), new ItemStack(VoidCraft.blocks.Heimdall, 1))) };
+				new VadeMecumPageCrafting(new VadeMecumCraftingInfuser(VoidCraft.modid+".VadeMecum.recipe.infusion", new ItemStack(VoidCraft.blocks.Heimdall, 1))) };
 	}
 
 }

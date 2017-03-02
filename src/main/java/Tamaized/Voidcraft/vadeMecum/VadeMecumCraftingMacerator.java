@@ -18,9 +18,9 @@ public class VadeMecumCraftingMacerator implements IVadeMecumCrafting {
 	private final ItemStack input;
 	private final ItemStack output;
 
-	public VadeMecumCraftingMacerator(String title, ItemStack input, ItemStack output) {
+	public VadeMecumCraftingMacerator(String title, ItemStack output) {
 		this.title = ("" + I18n.format(title, new Object[0])).trim();
-		this.input = input;
+		input = VoidCraft.teRecipes.macerator.getInput(output);
 		this.output = output;
 	}
 

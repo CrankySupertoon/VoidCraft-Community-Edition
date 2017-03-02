@@ -18,9 +18,9 @@ public class VadeMecumCraftingInfuser implements IVadeMecumCrafting {
 	private final ItemStack input;
 	private final ItemStack output;
 
-	public VadeMecumCraftingInfuser(String title, ItemStack input, ItemStack output) {
+	public VadeMecumCraftingInfuser(String title, ItemStack output) {
 		this.title = ("" + I18n.format(title, new Object[0])).trim();
-		this.input = input;
+		input = VoidCraft.teRecipes.infuser.getInput(output);
 		this.output = output;
 	}
 

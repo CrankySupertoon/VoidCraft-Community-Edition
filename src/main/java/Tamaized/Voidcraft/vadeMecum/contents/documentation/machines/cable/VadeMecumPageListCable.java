@@ -16,16 +16,7 @@ public class VadeMecumPageListCable implements IVadeMecumPageProvider {
 		return new IVadeMecumPage[] {
 				new VadeMecumPage(new ItemStack(VoidCraft.blocks.voidicCable).getDisplayName(), VoidCraft.modid+".VadeMecum.docs.desc.voidicCable.pg1"),
 				new VadeMecumPage("", VoidCraft.modid+".VadeMecum.docs.desc.voidicCable.pg2"),
-				new VadeMecumPageCrafting(new VadeMecumCraftingNormal(VoidCraft.modid+".VadeMecum.recipe.normal", new ItemStack[] {
-						new ItemStack(Items.REDSTONE),
-						new ItemStack(Items.REDSTONE),
-						new ItemStack(Items.REDSTONE),
-						new ItemStack(Items.REDSTONE),
-						new ItemStack(VoidCraft.blocks.blockVoidcrystal),
-						new ItemStack(Items.REDSTONE),
-						new ItemStack(Items.REDSTONE),
-						new ItemStack(Items.REDSTONE),
-						new ItemStack(Items.REDSTONE) }, new ItemStack(VoidCraft.blocks.voidicCable, 8))) };
+				new VadeMecumPageCrafting(new VadeMecumCraftingNormal(VoidCraft.modid+".VadeMecum.recipe.normal", new ItemStack(VoidCraft.blocks.voidicCable, 8))) };
 	}
 
 }

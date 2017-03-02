@@ -17,16 +17,7 @@ public class VadeMecumPageListTeleporter implements IVadeMecumPageProvider {
 				new VadeMecumPage("", VoidCraft.modid+".VadeMecum.docs.desc.realityTeleporterBlock.pg2"),
 				new VadeMecumPage("", VoidCraft.modid+".VadeMecum.docs.desc.realityTeleporterBlock.pg3"),
 				new VadeMecumPage("", VoidCraft.modid+".VadeMecum.docs.desc.realityTeleporterBlock.pg4"),
-				new VadeMecumPageCrafting(new VadeMecumCraftingNormal(VoidCraft.modid+".VadeMecum.recipe.normal", new ItemStack[] {
-						new ItemStack(VoidCraft.blocks.blockVoidbrick),
-						new ItemStack(VoidCraft.items.emeraldDust),
-						new ItemStack(VoidCraft.blocks.blockVoidbrick),
-						new ItemStack(VoidCraft.items.voidCloth),
-						new ItemStack(VoidCraft.blocks.realityHole),
-						new ItemStack(VoidCraft.items.voidCloth),
-						new ItemStack(VoidCraft.blocks.blockVoidbrick),
-						new ItemStack(VoidCraft.blocks.voidicCharger),
-						new ItemStack(VoidCraft.blocks.blockVoidbrick) }, new ItemStack(VoidCraft.blocks.realityTeleporterBlock, 1))) };
+				new VadeMecumPageCrafting(new VadeMecumCraftingNormal(VoidCraft.modid+".VadeMecum.recipe.normal", new ItemStack(VoidCraft.blocks.realityTeleporterBlock, 1))) };
 	}
 
 }

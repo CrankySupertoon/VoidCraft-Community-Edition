@@ -16,16 +16,7 @@ public class VadeMecumPageListObsidianFlask implements IVadeMecumPageProvider {
 		return new IVadeMecumPage[] {
 				new VadeMecumPage(new ItemStack(VoidCraft.items.emptyObsidianFlask).getDisplayName(), VoidCraft.modid+".VadeMecum.docs.desc.emptyObsidianFlask.pg1"),
 				new VadeMecumPage("", VoidCraft.modid+".VadeMecum.docs.desc.emptyObsidianFlask.pg2"),
-				new VadeMecumPageCrafting(new VadeMecumCraftingNormal(VoidCraft.modid+".VadeMecum.recipe.normal", new ItemStack[] {
-						null,
-						null,
-						null,
-						new ItemStack(Blocks.OBSIDIAN),
-						new ItemStack(Blocks.GLASS),
-						new ItemStack(Blocks.OBSIDIAN),
-						null,
-						new ItemStack(Blocks.OBSIDIAN),
-						null }, new ItemStack(VoidCraft.items.emptyObsidianFlask, 4))) };
+				new VadeMecumPageCrafting(new VadeMecumCraftingNormal(VoidCraft.modid+".VadeMecum.recipe.normal", new ItemStack(VoidCraft.items.emptyObsidianFlask, 4))) };
 	}
 
 }

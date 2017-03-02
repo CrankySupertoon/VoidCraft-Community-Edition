@@ -14,7 +14,7 @@ public class VadeMecumPageListDemonSword implements IVadeMecumPageProvider {
 	public IVadeMecumPage[] getPageList(IVadeMecumCapability cap) {
 		return new IVadeMecumPage[] {
 				new VadeMecumPage(new ItemStack(VoidCraft.tools.demonSword).getDisplayName(), VoidCraft.modid+".VadeMecum.docs.desc.demonSword"),
-				new VadeMecumPageCrafting(new VadeMecumCraftingInfuser(VoidCraft.modid+".VadeMecum.recipe.infusion", new ItemStack(VoidCraft.tools.archSword), new ItemStack(VoidCraft.tools.demonSword))) };
+				new VadeMecumPageCrafting(new VadeMecumCraftingInfuser(VoidCraft.modid+".VadeMecum.recipe.infusion", new ItemStack(VoidCraft.tools.demonSword))) };
 	}
 
 }

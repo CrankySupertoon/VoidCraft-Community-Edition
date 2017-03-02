@@ -16,16 +16,7 @@ public class VadeMecumPageListVoidShield implements IVadeMecumPageProvider {
 	public IVadeMecumPage[] getPageList(IVadeMecumCapability cap) {
 		return new IVadeMecumPage[] {
 				new VadeMecumPage(new ItemStack(VoidCraft.items.voidCrystalShield).getDisplayName(), VoidCraft.modid+".VadeMecum.docs.desc.voidShield"),
-				new VadeMecumPageCrafting(new VadeMecumCraftingNormal(VoidCraft.modid+".VadeMecum.recipe.normal", new ItemStack[] {
-						new ItemStack(VoidCraft.items.voidcrystal),
-						new ItemStack(VoidCraft.items.voidcrystal),
-						new ItemStack(VoidCraft.items.voidcrystal),
-						new ItemStack(VoidCraft.items.voidcrystal),
-						new ItemStack(VoidCraft.blocks.blockVoidcrystal),
-						new ItemStack(VoidCraft.items.voidcrystal),
-						null,
-						new ItemStack(VoidCraft.items.voidcrystal),
-						null }, new ItemStack(VoidCraft.items.voidCrystalShield))) };
+				new VadeMecumPageCrafting(new VadeMecumCraftingNormal(VoidCraft.modid+".VadeMecum.recipe.normal", new ItemStack(VoidCraft.items.voidCrystalShield))) };
 	}
 
 }

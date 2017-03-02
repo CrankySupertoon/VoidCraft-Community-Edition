@@ -16,6 +16,13 @@ public class TERecipeInfuser extends TamTileEntityRecipeList<TERecipeInfuser.Inf
 		return VoidCraft.modid;
 	}
 
+	public ItemStack getInput(ItemStack output) {
+		for (InfuserRecipe recipe : getList()) {
+			if (ItemStack.areItemStacksEqual(recipe.getOutput(), output)) return recipe.getInput()[0];
+		}
+		return null;
+	}
+
 	public class InfuserRecipe extends TamTileEntityRecipeList.TamTERecipe {
 
 		private final int fluidAmount;

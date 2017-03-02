@@ -14,16 +14,7 @@ public class VadeMecumPageListArchSword implements IVadeMecumPageProvider {
 	public IVadeMecumPage[] getPageList(IVadeMecumCapability cap) {
 		return new IVadeMecumPage[] {
 				new VadeMecumPage(new ItemStack(VoidCraft.tools.archSword).getDisplayName(), VoidCraft.modid+".VadeMecum.docs.desc.archSword"),
-				new VadeMecumPageCrafting(new VadeMecumCraftingNormal(VoidCraft.modid+".VadeMecum.recipe.normal", new ItemStack[] {
-						new ItemStack(VoidCraft.items.MoltenvoidChain),
-						new ItemStack(VoidCraft.items.MoltenvoidChain),
-						new ItemStack(VoidCraft.items.MoltenvoidChain),
-						new ItemStack(VoidCraft.tools.chainSword),
-						new ItemStack(VoidCraft.tools.angelicSword),
-						new ItemStack(VoidCraft.tools.moltenSword),
-						new ItemStack(VoidCraft.items.MoltenvoidChain),
-						new ItemStack(VoidCraft.items.MoltenvoidChain),
-						new ItemStack(VoidCraft.items.MoltenvoidChain) }, new ItemStack(VoidCraft.tools.archSword))) };
+				new VadeMecumPageCrafting(new VadeMecumCraftingNormal(VoidCraft.modid+".VadeMecum.recipe.normal", new ItemStack(VoidCraft.tools.archSword))) };
 	}
 
 }

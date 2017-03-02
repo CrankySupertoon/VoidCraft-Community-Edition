@@ -14,16 +14,7 @@ public class VadeMecumPageListVoidPick implements IVadeMecumPageProvider {
 
 	public IVadeMecumPage[] getPageList(IVadeMecumCapability cap) {
 		return new IVadeMecumPage[] {
-				new VadeMecumPageCrafting(new VadeMecumCraftingNormal(new ItemStack(VoidCraft.tools.voidPickaxe).getDisplayName(), new ItemStack[] {
-						new ItemStack(VoidCraft.items.voidcrystal),
-						new ItemStack(VoidCraft.items.voidcrystal),
-						new ItemStack(VoidCraft.items.voidcrystal),
-						null,
-						new ItemStack(Blocks.OBSIDIAN),
-						null,
-						null,
-						new ItemStack(Items.DIAMOND),
-						null }, new ItemStack(VoidCraft.tools.voidPickaxe))) };
+				new VadeMecumPageCrafting(new VadeMecumCraftingNormal(new ItemStack(VoidCraft.tools.voidPickaxe).getDisplayName(), new ItemStack(VoidCraft.tools.voidPickaxe))) };
 	}
 
 }

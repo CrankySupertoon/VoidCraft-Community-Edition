@@ -14,16 +14,7 @@ public class VadeMecumPageListMoltenChain implements IVadeMecumPageProvider {
 	public IVadeMecumPage[] getPageList(IVadeMecumCapability cap) {
 		return new IVadeMecumPage[] {
 				new VadeMecumPage(new ItemStack(VoidCraft.items.MoltenvoidChain).getDisplayName(), VoidCraft.modid+".VadeMecum.docs.desc.MoltenvoidChain"),
-				new VadeMecumPageCrafting(new VadeMecumCraftingNormal(VoidCraft.modid+".VadeMecum.recipe.normal", new ItemStack[] {
-						new ItemStack(VoidCraft.items.burnBone),
-						new ItemStack(VoidCraft.items.MoltenvoidChainPart),
-						new ItemStack(VoidCraft.items.burnBone),
-						new ItemStack(VoidCraft.items.MoltenvoidChainPart),
-						new ItemStack(VoidCraft.items.burnBone),
-						new ItemStack(VoidCraft.items.MoltenvoidChainPart),
-						new ItemStack(VoidCraft.items.burnBone),
-						new ItemStack(VoidCraft.items.MoltenvoidChainPart),
-						new ItemStack(VoidCraft.items.burnBone) }, new ItemStack(VoidCraft.items.MoltenvoidChain)))};
+				new VadeMecumPageCrafting(new VadeMecumCraftingNormal(VoidCraft.modid+".VadeMecum.recipe.normal", new ItemStack(VoidCraft.items.MoltenvoidChain)))};
 	}
 
 }

@@ -141,10 +141,6 @@ public class VoidCraftBlocks implements ITamRegistry {
 		// Slabs have to be registered outside of their class
 		RegistryHelper.registerBlockSlab(blockVoidBrickHalfSlab, blockVoidBrickDoubleSlab);
 		RegistryHelper.registerBlockSlab(blockFakeBedrockHalfSlab, blockFakeBedrockDoubleSlab);
-		// GameRegistry.registerBlock(blockVoidBrickHalfSlab, TamItemBlockSlab.class, voidCraft.modid + ":blocks/" + ((TamBlockSlab) blockVoidBrickHalfSlab).getName(), blockVoidBrickHalfSlab, blockVoidBrickDoubleSlab, false);
-		// GameRegistry.registerBlock(blockVoidBrickDoubleSlab, TamItemBlockSlab.class, voidCraft.modid + ":blocks/" + ((TamBlockSlab) blockVoidBrickDoubleSlab).getName(), blockVoidBrickHalfSlab, blockVoidBrickDoubleSlab, false);
-		// GameRegistry.registerBlock(blockFakeBedrockHalfSlab, TamItemBlockSlab.class, voidCraft.modid + ":blocks/" + ((TamBlockSlab) blockFakeBedrockHalfSlab).getName(), blockFakeBedrockHalfSlab, blockFakeBedrockDoubleSlab, false);
-		// GameRegistry.registerBlock(blockFakeBedrockDoubleSlab, TamItemBlockSlab.class, voidCraft.modid + ":blocks/" + ((TamBlockSlab) blockFakeBedrockDoubleSlab).getName(), blockVoidBrickHalfSlab, blockFakeBedrockDoubleSlab, false);
 
 	}
 
@@ -154,6 +150,7 @@ public class VoidCraftBlocks implements ITamRegistry {
 		// GameRegistry.addRecipe(new ItemStack(ritualBlock, 8), "XXX", "XYX", "XXX", 'X', Blocks.STONEBRICK, 'Y', voidCraft.items.voidcrystal);
 		GameRegistry.addRecipe(new ItemStack(voidInfuserInert), "XYX", "YZY", "XYX", 'X', blockVoidbrick, 'Y', VoidCraft.items.voidCloth, 'Z', Items.CAULDRON);
 		GameRegistry.addShapelessRecipe(new ItemStack(voidInfuser), voidInfuserInert, VoidCraft.items.voidStar);
+		GameRegistry.addRecipe(new ItemStack(voidBlastFurnace), "CBC", "BMB", "CBC", 'C', VoidCraft.items.voidCloth, 'B', blockVoidbrick, 'M', VoidCraft.items.MoltenvoidChainPart);
 		GameRegistry.addRecipe(new ItemStack(voidBox), "XXX", "XYX", "XZX", 'X', VoidCraft.items.voidCloth, 'Y', Blocks.JUKEBOX, 'Z', VoidCraft.items.voidStar);
 		GameRegistry.addRecipe(new ItemStack(blockVoidbrick), "XX", "XX", 'X', blockVoidcrystal);
 		GameRegistry.addRecipe(new ItemStack(blockVoidstairs, 6), "X  ", "XX ", "XXX", 'X', blockVoidbrick);
@@ -167,9 +164,9 @@ public class VoidCraftBlocks implements ITamRegistry {
 		GameRegistry.addRecipe(new ItemStack(voidicCable, 8), "XXX", "XYX", "XXX", 'Y', blockVoidcrystal, 'X', Items.REDSTONE);
 		GameRegistry.addRecipe(new ItemStack(voidicGen), "XXX", "XYX", "XXX", 'Y', voidInfuser, 'X', Items.REDSTONE);
 		GameRegistry.addRecipe(new ItemStack(voidicCharger), "DSD", "CZC", "DPD", 'D', VoidCraft.items.diamondDust, 'S', VoidCraft.items.voidStar, 'C', VoidCraft.items.voidCloth, 'Z', Items.END_CRYSTAL, 'P', voidicCable);
-		GameRegistry.addRecipe(new ItemStack(realityStabilizer), "IDI", "DSD", "ICI", 'I', voidInfuserInert, 'C', voidicCharger, 'S', VoidCraft.items.voidStar, 'D', VoidCraft.items.diamondDust);
-		GameRegistry.addRecipe(new ItemStack(voidicAlchemyTable), "BCB", "CSC", "BIB", 'B', blockVoidbrick, 'C', voidicCable, 'S', Items.BREWING_STAND, 'I', voidInfuserInert);
-		GameRegistry.addRecipe(new ItemStack(realityTeleporterBlock), "BEB", "LHL", "BCB", 'B', blockVoidbrick, 'E', VoidCraft.items.emeraldDust, 'L', VoidCraft.items.voidCloth, 'H', realityHole, 'C', voidicCharger);
+		GameRegistry.addRecipe(new ItemStack(realityStabilizer), "IDI", "DSD", "ICI", 'I', VoidCraft.items.voidicSteel, 'C', voidicCharger, 'S', VoidCraft.items.voidStar, 'D', VoidCraft.items.diamondDust);
+		GameRegistry.addRecipe(new ItemStack(voidicAlchemyTable), "BCB", "CSC", "BIB", 'B', blockVoidbrick, 'C', VoidCraft.items.voidicSteel, 'S', Items.BREWING_STAND, 'I', voidInfuserInert);
+		GameRegistry.addRecipe(new ItemStack(realityTeleporterBlock), "BEB", "LHL", "BCB", 'B', VoidCraft.items.voidicSteel, 'E', VoidCraft.items.emeraldDust, 'L', VoidCraft.items.voidCloth, 'H', realityHole, 'C', voidicCharger);
 	}
 
 	@Override
@@ -189,7 +186,6 @@ public class VoidCraftBlocks implements ITamRegistry {
 
 	@Override
 	public void clientPreInit() {
-		// TODO Auto-generated method stub
 
 	}
 
@@ -216,7 +212,6 @@ public class VoidCraftBlocks implements ITamRegistry {
 
 	@Override
 	public void clientPostInit() {
-		// TODO Auto-generated method stub
 
 	}
 

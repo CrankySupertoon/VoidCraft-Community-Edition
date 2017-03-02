@@ -3,6 +3,8 @@ package Tamaized.Voidcraft.GUI.client;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
+import org.lwjgl.input.Mouse;
+
 import Tamaized.TamModized.helper.PacketHelper;
 import Tamaized.TamModized.helper.PacketHelper.PacketWrapper;
 import Tamaized.Voidcraft.VoidCraft;
@@ -121,6 +123,14 @@ public class VadeMecumGUI extends GuiScreen {
 	}
 
 	@Override
+	public void handleMouseInput() throws IOException {
+		super.handleMouseInput();
+		int dwheel = Mouse.getEventDWheel();
+		if (dwheel > 0) nextPage();
+		if (dwheel < 0) prevPage();
+	}
+
+	@Override
 	protected void keyTyped(char typedChar, int keyCode) throws IOException {
 		if (keyCode == 1 || mc.gameSettings.keyBindInventory.isActiveAndMatches(keyCode)) {
 			mc.player.closeScreen();
@@ -138,6 +148,22 @@ public class VadeMecumGUI extends GuiScreen {
 		nextEntry = e;
 		String eName = VadeMecumEntry.getEntry(e);
 		if (eName != null) sendLastEntryPacket(eName + ":" + pageNumber);
+	}
+
+	public void nextPage() {
+		if (pageNumber + 2 < entry.getPageLength(this)) {
+			pageNumber += 2;
+			if (pageNumber >= entry.getPageLength(this)) pageNumber = entry.getPageLength(this);
+			updateButtons();
+		}
+	}
+
+	public void prevPage() {
+		if (pageNumber > 0) {
+			pageNumber -= 2;
+			if (pageNumber < 0) pageNumber = 0;
+			updateButtons();
+		}
 	}
 
 	@Override
@@ -172,10 +198,10 @@ public class VadeMecumGUI extends GuiScreen {
 		if (button.enabled) {
 			switch (getButtonFromID(button.id)) {
 				case Forward:
-					pageNumber += 2;
+					nextPage();
 					break;
 				case Back:
-					pageNumber -= 2;
+					prevPage();
 					break;
 				case LargeBack:
 					entry.goBack(this);

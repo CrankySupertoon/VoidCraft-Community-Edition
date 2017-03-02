@@ -16,6 +16,13 @@ public class TERecipesMacerator extends TamTileEntityRecipeList<TERecipesMacerat
 		return VoidCraft.modid;
 	}
 
+	public ItemStack getInput(ItemStack output) {
+		for (MaceratorRecipe recipe : getList()) {
+			if (ItemStack.areItemStacksEqual(recipe.getOutput(), output)) return recipe.getInput()[0];
+		}
+		return null;
+	}
+
 	public class MaceratorRecipe extends TamTileEntityRecipeList.TamTERecipe {
 
 		private final int powerAmount;

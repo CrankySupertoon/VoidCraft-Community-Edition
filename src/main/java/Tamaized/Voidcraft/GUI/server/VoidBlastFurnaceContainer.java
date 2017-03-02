@@ -25,9 +25,9 @@ public class VoidBlastFurnaceContainer extends Container {
 	public VoidBlastFurnaceContainer(InventoryPlayer inventory, TileEntityVoidBlastFurnace tileEntity) {
 		te = tileEntity;
 
-		addSlotToContainer(new SlotOnlyItem(VoidCraft.items.ironDust, te, te.SLOT_INPUT_IRON, 168, 100));
-		addSlotToContainer(new SlotOnlyItem(VoidCraft.items.coalDust, te, te.SLOT_INPUT_COAL, 198, 100));
-		addSlotToContainer(new SlotFurnaceOutput(inventory.player, te, te.SLOT_OUTPUT, 225, 101));
+		addSlotToContainer(new SlotOnlyItem(VoidCraft.items.ironDust, te, te.SLOT_INPUT_IRON, 166, 93));
+		addSlotToContainer(new SlotOnlyItem(VoidCraft.items.coalDust, te, te.SLOT_INPUT_COAL, 166, 111));
+		addSlotToContainer(new SlotFurnaceOutput(inventory.player, te, te.SLOT_OUTPUT, 212, 101));
 
 		for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < 9; j++) {

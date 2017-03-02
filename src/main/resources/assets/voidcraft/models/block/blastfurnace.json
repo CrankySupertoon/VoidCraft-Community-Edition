@@ -1,0 +1,9 @@
+{
+    "parent": "block/orientable",
+    "textures": {
+        "top": "voidcraft:blocks/machina/blastfurnace/side",
+        "front": "voidcraft:blocks/machina/blastfurnace/front",
+        "side": "voidcraft:blocks/machina/blastfurnace/side",
+        "bottom": "voidcraft:blocks/machina/blastfurnace/side"
+    }
+}

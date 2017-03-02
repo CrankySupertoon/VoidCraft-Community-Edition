@@ -12,46 +12,10 @@ public class VadeMecumPageListVoidArmor implements IVadeMecumPageProvider {
 
 	public IVadeMecumPage[] getPageList(IVadeMecumCapability cap) {
 		return new IVadeMecumPage[] {
-				new VadeMecumPageCrafting(new VadeMecumCraftingNormal(new ItemStack(VoidCraft.armors.voidHelmet).getDisplayName(), new ItemStack[] {
-						new ItemStack(VoidCraft.items.voidcrystal),
-						new ItemStack(VoidCraft.items.voidcrystal),
-						new ItemStack(VoidCraft.items.voidcrystal),
-						new ItemStack(VoidCraft.items.voidcrystal),
-						null,
-						new ItemStack(VoidCraft.items.voidcrystal),
-						null,
-						null,
-						null }, new ItemStack(VoidCraft.armors.voidHelmet))),
-				new VadeMecumPageCrafting(new VadeMecumCraftingNormal(new ItemStack(VoidCraft.armors.voidChest).getDisplayName(), new ItemStack[] {
-						new ItemStack(VoidCraft.items.voidcrystal),
-						null,
-						new ItemStack(VoidCraft.items.voidcrystal),
-						new ItemStack(VoidCraft.items.voidcrystal),
-						new ItemStack(VoidCraft.items.voidcrystal),
-						new ItemStack(VoidCraft.items.voidcrystal),
-						new ItemStack(VoidCraft.items.voidcrystal),
-						new ItemStack(VoidCraft.items.voidcrystal),
-						new ItemStack(VoidCraft.items.voidcrystal) }, new ItemStack(VoidCraft.armors.voidChest))),
-				new VadeMecumPageCrafting(new VadeMecumCraftingNormal(new ItemStack(VoidCraft.armors.voidLegs).getDisplayName(), new ItemStack[] {
-						new ItemStack(VoidCraft.items.voidcrystal),
-						new ItemStack(VoidCraft.items.voidcrystal),
-						new ItemStack(VoidCraft.items.voidcrystal),
-						new ItemStack(VoidCraft.items.voidcrystal),
-						null,
-						new ItemStack(VoidCraft.items.voidcrystal),
-						new ItemStack(VoidCraft.items.voidcrystal),
-						null,
-						new ItemStack(VoidCraft.items.voidcrystal) }, new ItemStack(VoidCraft.armors.voidLegs))),
-				new VadeMecumPageCrafting(new VadeMecumCraftingNormal(new ItemStack(VoidCraft.armors.voidBoots).getDisplayName(), new ItemStack[] {
-						new ItemStack(VoidCraft.items.voidcrystal),
-						null,
-						new ItemStack(VoidCraft.items.voidcrystal),
-						new ItemStack(VoidCraft.items.voidcrystal),
-						null,
-						new ItemStack(VoidCraft.items.voidcrystal),
-						null,
-						null,
-						null }, new ItemStack(VoidCraft.armors.voidBoots)))
+				new VadeMecumPageCrafting(new VadeMecumCraftingNormal(new ItemStack(VoidCraft.armors.voidHelmet).getDisplayName(), new ItemStack(VoidCraft.armors.voidHelmet))),
+				new VadeMecumPageCrafting(new VadeMecumCraftingNormal(new ItemStack(VoidCraft.armors.voidChest).getDisplayName(), new ItemStack(VoidCraft.armors.voidChest))),
+				new VadeMecumPageCrafting(new VadeMecumCraftingNormal(new ItemStack(VoidCraft.armors.voidLegs).getDisplayName(), new ItemStack(VoidCraft.armors.voidLegs))),
+				new VadeMecumPageCrafting(new VadeMecumCraftingNormal(new ItemStack(VoidCraft.armors.voidBoots).getDisplayName(), new ItemStack(VoidCraft.armors.voidBoots)))
 				};
 	}
 

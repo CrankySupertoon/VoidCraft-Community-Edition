@@ -15,16 +15,7 @@ public class VadeMecumPageListVoidCrystalBlock implements IVadeMecumPageProvider
 		return new IVadeMecumPage[] {
 				new VadeMecumPage(new ItemStack(VoidCraft.blocks.blockVoidcrystal).getDisplayName(), VoidCraft.modid+".VadeMecum.docs.desc.voidCrystalBlock.pg1"),
 				new VadeMecumPage("", VoidCraft.modid+".VadeMecum.docs.desc.voidCrystalBlock.pg2"),
-				new VadeMecumPageCrafting(new VadeMecumCraftingNormal(VoidCraft.modid+".VadeMecum.recipe.normal", new ItemStack[] {
-						new ItemStack(VoidCraft.items.voidcrystal),
-						new ItemStack(VoidCraft.items.voidcrystal),
-						new ItemStack(VoidCraft.items.voidcrystal),
-						new ItemStack(VoidCraft.items.voidcrystal),
-						new ItemStack(VoidCraft.items.voidcrystal),
-						new ItemStack(VoidCraft.items.voidcrystal),
-						new ItemStack(VoidCraft.items.voidcrystal),
-						new ItemStack(VoidCraft.items.voidcrystal),
-						new ItemStack(VoidCraft.items.voidcrystal) }, new ItemStack(VoidCraft.blocks.blockVoidcrystal))) };
+				new VadeMecumPageCrafting(new VadeMecumCraftingNormal(VoidCraft.modid+".VadeMecum.recipe.normal", new ItemStack(VoidCraft.blocks.blockVoidcrystal))) };
 	}
 
 }

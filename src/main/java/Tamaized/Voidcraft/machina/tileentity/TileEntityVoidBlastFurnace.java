@@ -19,6 +19,7 @@ public class TileEntityVoidBlastFurnace extends TileEntityVoidicPowerInventory {
 	public static final int SLOT_OUTPUT = 2;
 	public static final int[] SLOTS_ALL = new int[] { SLOT_INPUT_IRON, SLOT_INPUT_COAL, SLOT_OUTPUT };
 
+	private boolean cooking = false;
 	public int cookingTick = 0;
 	public int finishTick = 0;
 	private BlastFurnaceRecipe recipe;
@@ -52,7 +53,6 @@ public class TileEntityVoidBlastFurnace extends TileEntityVoidicPowerInventory {
 
 	@Override
 	public void onUpdate() {
-		boolean cooking = false;
 
 		doLastItemChecks();
 
@@ -120,6 +120,10 @@ public class TileEntityVoidBlastFurnace extends TileEntityVoidicPowerInventory {
 		if (!getStackInSlot(SLOT_OUTPUT).isItemEqual(recipe.getOutput())) return false;
 		int result = getStackInSlot(SLOT_OUTPUT).stackSize + recipe.getOutput().stackSize;
 		return (result <= getInventoryStackLimit() && result <= recipe.getOutput().getMaxStackSize());
+	}
+	
+	public boolean isCooking(){
+		return cooking;
 	}
 
 	@Override

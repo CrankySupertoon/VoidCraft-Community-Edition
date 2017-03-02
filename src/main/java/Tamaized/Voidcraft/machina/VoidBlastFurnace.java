@@ -8,7 +8,6 @@ import Tamaized.Voidcraft.GUI.GuiHandler;
 import Tamaized.Voidcraft.machina.tileentity.TileEntityVoidBlastFurnace;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
-import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
@@ -31,39 +30,33 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class VoidBlastFurnace extends TamBlockContainer {
 
 	public static final PropertyDirection FACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
-	public static final PropertyBool ACTIVE = PropertyBool.create("active");
 
 	private Random rand = new Random();
 
 	public VoidBlastFurnace(CreativeTabs tab, Material material, String n, float hardness) {
 		super(tab, material, n, hardness);
-		setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(ACTIVE, Boolean.valueOf(false)));
-	}
-
-	public boolean getIsActive(IBlockState state) {
-		return state.getValue(ACTIVE);
+		setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
 	}
 
 	@Override
 	protected BlockStateContainer createBlockState() {
-		return new BlockStateContainer(this, new IProperty[] { FACING, ACTIVE });
+		return new BlockStateContainer(this, new IProperty[] { FACING });
 	}
 
 	@Override
 	public IBlockState getStateFromMeta(int meta) {
-		int val = meta > 5 ? meta - 6 : meta;
-		EnumFacing enumfacing = EnumFacing.getFront(val);
+		EnumFacing enumfacing = EnumFacing.getFront(meta);
 
 		if (enumfacing.getAxis() == EnumFacing.Axis.Y) {
 			enumfacing = EnumFacing.NORTH;
 		}
 
-		return getDefaultState().withProperty(FACING, enumfacing).withProperty(ACTIVE, meta > 5);
+		return getDefaultState().withProperty(FACING, enumfacing);
 	}
 
 	@SideOnly(Side.CLIENT)
 	public IBlockState getStateForEntityRender(IBlockState state) {
-		return getDefaultState().withProperty(FACING, EnumFacing.SOUTH).withProperty(ACTIVE, false);
+		return getDefaultState().withProperty(FACING, EnumFacing.SOUTH);
 	}
 
 	/**
@@ -71,15 +64,13 @@ public class VoidBlastFurnace extends TamBlockContainer {
 	 */
 	@Override
 	public int getMetaFromState(IBlockState state) {
-		int meta = ((EnumFacing) state.getValue(FACING)).getIndex();
-		if (state.getValue(ACTIVE)) meta = meta + 6;
-		return meta;
+		return ((EnumFacing) state.getValue(FACING)).getIndex();
 	}
 
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void randomDisplayTick(IBlockState state, World world, BlockPos pos, Random rand) {
-		if (state.getValue(ACTIVE)) {
+		if (world.getTileEntity(pos) instanceof TileEntityVoidBlastFurnace && ((TileEntityVoidBlastFurnace) world.getTileEntity(pos)).isCooking()) {
 			float x1 = (float) pos.getX() + 0.5F;
 			float y1 = (float) pos.getY() + rand.nextFloat();
 			float z1 = (float) pos.getZ() + 0.5F;
@@ -132,26 +123,7 @@ public class VoidBlastFurnace extends TamBlockContainer {
 			} else if (enumfacing == EnumFacing.EAST && iblockstate3.isFullBlock() && !iblockstate2.isFullBlock()) {
 				enumfacing = EnumFacing.WEST;
 			}
-			world.setBlockState(pos, state.withProperty(FACING, enumfacing).withProperty(ACTIVE, state.getValue(ACTIVE)), 2);
-		}
-	}
-
-	public static void setState(boolean active, World worldIn, BlockPos pos) {
-		IBlockState iblockstate = worldIn.getBlockState(pos);
-		TileEntity tileentity = worldIn.getTileEntity(pos);
-		TileEntityVoidBlastFurnace te = (TileEntityVoidBlastFurnace) tileentity;
-
-		if (active) {
-			worldIn.setBlockState(pos, VoidCraft.blocks.voidBlastFurnace.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)).withProperty(ACTIVE, active), 3);
-			worldIn.setBlockState(pos, VoidCraft.blocks.voidBlastFurnace.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)).withProperty(ACTIVE, active), 3);
-		} else {
-			worldIn.setBlockState(pos, VoidCraft.blocks.voidBlastFurnace.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)).withProperty(ACTIVE, active), 3);
-			worldIn.setBlockState(pos, VoidCraft.blocks.voidBlastFurnace.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)).withProperty(ACTIVE, active), 3);
-		}
-
-		if (tileentity != null) {
-			tileentity.validate();
-			worldIn.setTileEntity(pos, tileentity);
+			world.setBlockState(pos, state.withProperty(FACING, enumfacing));
 		}
 	}
 	
@@ -171,7 +143,7 @@ public class VoidBlastFurnace extends TamBlockContainer {
 
 	@Override
 	public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
-		world.setBlockState(pos, state.withProperty(FACING, placer.getHorizontalFacing().getOpposite()).withProperty(ACTIVE, false), 2);
+		world.setBlockState(pos, state.withProperty(FACING, placer.getHorizontalFacing().getOpposite()));
 	}
 
 	@Override

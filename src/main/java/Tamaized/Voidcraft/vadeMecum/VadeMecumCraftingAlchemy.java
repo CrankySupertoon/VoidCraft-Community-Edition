@@ -20,6 +20,7 @@ public class VadeMecumCraftingAlchemy implements IVadeMecumCrafting {
 
 	public VadeMecumCraftingAlchemy(String title, ItemStack[] input, ItemStack output) {
 		this.title = ("" + I18n.format(title, new Object[0])).trim();
+		input = VoidCraft.teRecipes.alchemy.getInput(output);
 		this.input = input;
 		this.output = output;
 	}

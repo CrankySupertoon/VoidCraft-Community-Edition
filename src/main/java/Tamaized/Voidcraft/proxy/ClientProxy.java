@@ -1,9 +1,5 @@
 package Tamaized.Voidcraft.proxy;
 
-import org.lwjgl.opengl.GL11;
-import org.lwjgl.util.glu.GLU;
-import org.lwjgl.util.glu.Sphere;
-
 import Tamaized.TamModized.proxy.AbstractProxy;
 import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.GUI.client.VadeMecumGUI;

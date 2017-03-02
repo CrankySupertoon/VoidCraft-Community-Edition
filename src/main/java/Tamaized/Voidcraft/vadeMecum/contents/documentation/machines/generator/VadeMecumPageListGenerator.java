@@ -16,16 +16,7 @@ public class VadeMecumPageListGenerator implements IVadeMecumPageProvider {
 		return new IVadeMecumPage[] {
 				new VadeMecumPage(new ItemStack(VoidCraft.blocks.voidicGen).getDisplayName(), VoidCraft.modid+".VadeMecum.docs.desc.voidicGen.pg1"),
 				new VadeMecumPage("", VoidCraft.modid+".VadeMecum.docs.desc.voidicGen.pg2"),
-				new VadeMecumPageCrafting(new VadeMecumCraftingNormal(VoidCraft.modid+".VadeMecum.recipe.normal", new ItemStack[] {
-						new ItemStack(Items.REDSTONE),
-						new ItemStack(Items.REDSTONE),
-						new ItemStack(Items.REDSTONE),
-						new ItemStack(Items.REDSTONE),
-						new ItemStack(VoidCraft.blocks.voidInfuser),
-						new ItemStack(Items.REDSTONE),
-						new ItemStack(Items.REDSTONE),
-						new ItemStack(Items.REDSTONE),
-						new ItemStack(Items.REDSTONE) }, new ItemStack(VoidCraft.blocks.voidicGen, 1))) };
+				new VadeMecumPageCrafting(new VadeMecumCraftingNormal(VoidCraft.modid+".VadeMecum.recipe.normal", new ItemStack(VoidCraft.blocks.voidicGen, 1))) };
 	}
 
 }
