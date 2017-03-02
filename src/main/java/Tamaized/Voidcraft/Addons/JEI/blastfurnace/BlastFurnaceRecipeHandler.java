@@ -25,4 +25,9 @@ public class BlastFurnaceRecipeHandler implements IRecipeHandler<BlastFurnaceRec
 		return recipe.isValid();
 	}
 
+	@Override
+	public String getRecipeCategoryUid() {
+		return "BlastFurnaceRecipeHandler";
+	}
+
 }

@@ -1,10 +1,15 @@
 package Tamaized.Voidcraft.entity.mob;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.google.common.base.Predicate;
 
 import Tamaized.Voidcraft.VoidCraft;
+import Tamaized.Voidcraft.capabilities.vadeMecum.IVadeMecumCapability;
 import Tamaized.Voidcraft.entity.EntityVoidMob;
 import Tamaized.Voidcraft.entity.mob.lich.EntityLichInferno;
+import Tamaized.Voidcraft.handlers.VadeMecumWordsOfPower;
 import Tamaized.Voidcraft.sound.VoidSoundEvents;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -38,6 +43,25 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 
 public class EntityMobLich extends EntityVoidMob implements IRangedAttackMob {
+
+	public static final List<IVadeMecumCapability.Category> spells = new ArrayList<IVadeMecumCapability.Category>();
+
+	static {
+		spells.add(IVadeMecumCapability.Category.Flame);
+		spells.add(IVadeMecumCapability.Category.FireSheathe);
+		spells.add(IVadeMecumCapability.Category.Fireball);
+		spells.add(IVadeMecumCapability.Category.RingOfFire);
+		spells.add(IVadeMecumCapability.Category.ShockSheathe);
+		spells.add(IVadeMecumCapability.Category.LitStrike);
+		spells.add(IVadeMecumCapability.Category.RingOfLit);
+		spells.add(IVadeMecumCapability.Category.FrostSheathe);
+		spells.add(IVadeMecumCapability.Category.IceSpike);
+		spells.add(IVadeMecumCapability.Category.RingOfFrost);
+		spells.add(IVadeMecumCapability.Category.AcidSpray);
+		spells.add(IVadeMecumCapability.Category.AcidSheathe);
+		spells.add(IVadeMecumCapability.Category.Disint);
+		spells.add(IVadeMecumCapability.Category.RingOfAcid);
+	}
 
 	public EntityMobLich(World par1World) {
 		super(par1World);
@@ -116,86 +140,85 @@ public class EntityMobLich extends EntityVoidMob implements IRangedAttackMob {
 		super.onUpdate();
 	}
 
-	// TODO: overhaul this
-	// TODO Potion like attacks using a new throwable entity.
 	@Override
 	public void attackEntityWithRangedAttack(EntityLivingBase target, float par2) {
 		if (!canAttack(target)) return;
 
-		double randAttk = Math.random() * 5;
-		randAttk = Math.round(randAttk);
+		int randAttk = world.rand.nextInt(spells.size());
+		
+		VadeMecumWordsOfPower.invoke(world, spells.get(randAttk), this, target);
+		
 		// randAttk = 0;
 
-		if (randAttk == 5) { // Call the Inferno
-			world.spawnEntity(new EntityLichInferno(world, getPosition(), 6));
-		} else if (randAttk == 4) { // Call forth the Undead to my aid
-			if (target instanceof EntityMobLich) return; // Do not summon the undead if i'm fighting another lich
-			EntityMobWraith wraith;
-			EntityMobSpectreChain chain;
-			EntityMobVoidWrath wrath;
-			EntitySkeleton skelly;
-
-			wraith = new EntityMobWraith(world);
-			chain = new EntityMobSpectreChain(world);
-			wrath = new EntityMobVoidWrath(world);
-			skelly = new EntitySkeleton(world);
-			skelly.func_189768_a(SkeletonType.WITHER);
-
-			wraith.setPosition(this.posX - 2, this.posY, this.posZ - 2);
-			wraith.setAttackTarget(target);
-
-			chain.setPosition(this.posX - 2, this.posY, this.posZ + 2);
-			chain.setAttackTarget(target);
-
-			wrath.setPosition(this.posX + 2, this.posY, this.posZ - 2);
-			wrath.setAttackTarget(target);
-
-			skelly.setPosition(this.posX + 2, this.posY, this.posZ + 2);
-			skelly.setAttackTarget(target);
-
-			this.world.spawnEntity(wraith);
-			this.world.spawnEntity(chain);
-			this.world.spawnEntity(wrath);
-			this.world.spawnEntity(skelly);
-
-		} else if (randAttk == 3) { // Incase Target in Stone
-			if (target instanceof EntityMobLich) return; // Don't bother if against a lich
-
-			int j = (int) MathHelper.floor(target.posX);
-			int k = (int) MathHelper.floor(target.posY);
-			int l = (int) MathHelper.floor(target.posZ);
-
-			for (int xj = -1; xj < 2; xj++) {
-				for (int yj = -1; yj < 1; yj++) {
-					for (int zj = -1; yj < 1; yj++) {
-						if (this.world.isAirBlock(new BlockPos(xj, yj, zj))) this.world.setBlockState(new BlockPos(xj, yj, zj), Blocks.STONE.getDefaultState(), 3);
-					}
-				}
-			}
-		} else if (randAttk == 2) { // EntityLightningBolt at Target
-			double x = target.posX;
-			double y = target.posY;
-			double z = target.posZ;
-
-			EntityLightningBolt entitylightningbolt = new EntityLightningBolt(world, x, y, z, false);
-			entitylightningbolt.setLocationAndAngles(x, y + 1 + entitylightningbolt.getYOffset(), z, target.rotationYaw, target.rotationPitch);
-			world.addWeatherEffect(entitylightningbolt);
-
-		} else if (randAttk == 1) { // EntityLargeFireball at Target
-			double d5 = target.posX - this.posX;
-			double d6 = target.getEntityBoundingBox().minY + (double) (target.height / 2.0F) - (this.posY + (double) (this.height / 2.0F));
-			double d7 = target.posZ - this.posZ;
-			this.world.playEvent((EntityPlayer) null, 1016, new BlockPos((int) this.posX, (int) this.posY, (int) this.posZ), 0);
-			EntityLargeFireball entitylargefireball = new EntityLargeFireball(this.world, this, d5, d6, d7);
-			double d8 = 4.0D;
-			// Vec3d vec3 = this.getLook(1.0F);
-			entitylargefireball.posX = this.posX;// + vec3.xCoord * d8;
-			entitylargefireball.posY = this.posY + (double) (this.height / 2.0F) + 0.5D;
-			entitylargefireball.posZ = this.posZ;// + vec3.zCoord * d8;
-			this.world.spawnEntity(entitylargefireball);
-
-		} else if (randAttk == 0) { // Speak TODO
-
-		}
+		// if (randAttk == 5) { // Call the Inferno
+		// world.spawnEntity(new EntityLichInferno(world, getPosition(), 6));
+		// } else if (randAttk == 4) { // Call forth the Undead to my aid
+		// if (target instanceof EntityMobLich) return; // Do not summon the undead if i'm fighting another lich
+		// EntityMobWraith wraith;
+		// EntityMobSpectreChain chain;
+		// EntityMobVoidWrath wrath;
+		// EntityWitherSkeleton skelly;
+		//
+		// wraith = new EntityMobWraith(world);
+		// chain = new EntityMobSpectreChain(world);
+		// wrath = new EntityMobVoidWrath(world);
+		// skelly = new EntityWitherSkeleton(world);
+		//
+		// wraith.setPosition(this.posX - 2, this.posY, this.posZ - 2);
+		// wraith.setAttackTarget(target);
+		//
+		// chain.setPosition(this.posX - 2, this.posY, this.posZ + 2);
+		// chain.setAttackTarget(target);
+		//
+		// wrath.setPosition(this.posX + 2, this.posY, this.posZ - 2);
+		// wrath.setAttackTarget(target);
+		//
+		// skelly.setPosition(this.posX + 2, this.posY, this.posZ + 2);
+		// skelly.setAttackTarget(target);
+		//
+		// this.world.spawnEntity(wraith);
+		// this.world.spawnEntity(chain);
+		// this.world.spawnEntity(wrath);
+		// this.world.spawnEntity(skelly);
+		//
+		// } else if (randAttk == 3) { // Incase Target in Stone
+		// if (target instanceof EntityMobLich) return; // Don't bother if against a lich
+		//
+		// int j = (int) MathHelper.floor(target.posX);
+		// int k = (int) MathHelper.floor(target.posY);
+		// int l = (int) MathHelper.floor(target.posZ);
+		//
+		// for (int xj = -1; xj < 2; xj++) {
+		// for (int yj = -1; yj < 1; yj++) {
+		// for (int zj = -1; yj < 1; yj++) {
+		// if (this.world.isAirBlock(new BlockPos(xj, yj, zj))) this.world.setBlockState(new BlockPos(xj, yj, zj), Blocks.STONE.getDefaultState(), 3);
+		// }
+		// }
+		// }
+		// } else if (randAttk == 2) { // EntityLightningBolt at Target
+		// double x = target.posX;
+		// double y = target.posY;
+		// double z = target.posZ;
+		//
+		// EntityLightningBolt entitylightningbolt = new EntityLightningBolt(world, x, y, z, false);
+		// entitylightningbolt.setLocationAndAngles(x, y + 1 + entitylightningbolt.getYOffset(), z, target.rotationYaw, target.rotationPitch);
+		// world.addWeatherEffect(entitylightningbolt);
+		//
+		// } else if (randAttk == 1) { // EntityLargeFireball at Target
+		// double d5 = target.posX - this.posX;
+		// double d6 = target.getEntityBoundingBox().minY + (double) (target.height / 2.0F) - (this.posY + (double) (this.height / 2.0F));
+		// double d7 = target.posZ - this.posZ;
+		// this.world.playEvent((EntityPlayer) null, 1016, new BlockPos((int) this.posX, (int) this.posY, (int) this.posZ), 0);
+		// EntityLargeFireball entitylargefireball = new EntityLargeFireball(this.world, this, d5, d6, d7);
+		// double d8 = 4.0D;
+		// // Vec3d vec3 = this.getLook(1.0F);
+		// entitylargefireball.posX = this.posX;// + vec3.xCoord * d8;
+		// entitylargefireball.posY = this.posY + (double) (this.height / 2.0F) + 0.5D;
+		// entitylargefireball.posZ = this.posZ;// + vec3.zCoord * d8;
+		// this.world.spawnEntity(entitylargefireball);
+		//
+		// } else if (randAttk == 0) { // Speak TODO
+		//
+		// }
 	}
 }
