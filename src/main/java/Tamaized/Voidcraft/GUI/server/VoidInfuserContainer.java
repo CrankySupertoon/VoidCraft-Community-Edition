@@ -92,12 +92,12 @@ public class VoidInfuserContainer extends Container {
 				slot.onSlotChange(itemstack1, itemstack);
 			} else {
 				ItemStack slotCheck = te.getStackInSlot(te.SLOT_INPUT);
-				if ((slotCheck == null || (slotCheck.stackSize < slotCheck.getMaxStackSize() && slotCheck.isItemEqual(itemstack))) && te.canInsertItem(te.SLOT_INPUT, itemstack1, null)) {
-					if (!mergeItemStack(itemstack1, te.SLOT_INPUT, te.SLOT_INPUT + 1, false)) {
+				if (!getSlot(te.SLOT_BUCKET).getHasStack() && te.canInsertItem(te.SLOT_BUCKET, itemstack1, null)) {
+					if (!mergeItemStack(itemstack1, te.SLOT_BUCKET, te.SLOT_BUCKET + 1, false)) {
 						return null;
 					}
-				} else if (!getSlot(te.SLOT_BUCKET).getHasStack() && te.canInsertItem(te.SLOT_BUCKET, itemstack1, null)) {
-					if (!mergeItemStack(itemstack1, te.SLOT_BUCKET, te.SLOT_BUCKET + 1, false)) {
+				} else if ((slotCheck == null || (slotCheck.stackSize < slotCheck.getMaxStackSize() && slotCheck.isItemEqual(itemstack))) && te.canInsertItem(te.SLOT_INPUT, itemstack1, null)) {
+					if (!mergeItemStack(itemstack1, te.SLOT_INPUT, te.SLOT_INPUT + 1, false)) {
 						return null;
 					}
 				} else if (hoverSlot >= maxSlots && hoverSlot < maxSlots + 27) {

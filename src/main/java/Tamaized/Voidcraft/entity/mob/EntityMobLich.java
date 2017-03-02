@@ -48,17 +48,13 @@ public class EntityMobLich extends EntityVoidMob implements IRangedAttackMob {
 
 	static {
 		spells.add(IVadeMecumCapability.Category.Flame);
-		spells.add(IVadeMecumCapability.Category.FireSheathe);
 		spells.add(IVadeMecumCapability.Category.Fireball);
 		spells.add(IVadeMecumCapability.Category.RingOfFire);
-		spells.add(IVadeMecumCapability.Category.ShockSheathe);
 		spells.add(IVadeMecumCapability.Category.LitStrike);
 		spells.add(IVadeMecumCapability.Category.RingOfLit);
-		spells.add(IVadeMecumCapability.Category.FrostSheathe);
 		spells.add(IVadeMecumCapability.Category.IceSpike);
 		spells.add(IVadeMecumCapability.Category.RingOfFrost);
 		spells.add(IVadeMecumCapability.Category.AcidSpray);
-		spells.add(IVadeMecumCapability.Category.AcidSheathe);
 		spells.add(IVadeMecumCapability.Category.Disint);
 		spells.add(IVadeMecumCapability.Category.RingOfAcid);
 	}

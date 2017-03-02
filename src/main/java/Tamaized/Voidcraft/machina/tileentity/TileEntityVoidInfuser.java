@@ -58,6 +58,9 @@ public class TileEntityVoidInfuser extends TamTileEntityInventory implements IFl
 			cooking = true;
 			drain(new FluidStack(VoidCraft.fluids.voidFluid, 1), true);
 		}
+		if (getStackInSlot(SLOT_BUCKET) != null && getStackInSlot(SLOT_BUCKET).getItem() == VoidCraft.items.creativeVoidBucket && getFluidAmount() != getMaxFluidAmount()) {
+			setFluidAmount(getMaxFluidAmount());
+		}
 
 		if (getFluidAmount() <= getMaxFluidAmount() - 1000) {
 			if (slots[SLOT_BUCKET] != null && slots[SLOT_BUCKET].isItemEqual(VoidCraft.fluids.voidBucket.getBucket())) {
@@ -140,7 +143,7 @@ public class TileEntityVoidInfuser extends TamTileEntityInventory implements IFl
 	}
 
 	public static boolean isItemFuel(ItemStack stack) {
-		return stack.isItemEqual(VoidCraft.fluids.voidBucket.getBucket());
+		return (stack.isItemEqual(VoidCraft.fluids.voidBucket.getBucket()) || stack.getItem() == VoidCraft.items.creativeVoidBucket);
 	}
 
 	@Override
@@ -155,7 +158,7 @@ public class TileEntityVoidInfuser extends TamTileEntityInventory implements IFl
 
 	@Override
 	protected boolean canExtractSlot(int i, ItemStack stack) {
-		return i == SLOT_BUCKET ? slots[SLOT_BUCKET] != null ? slots[SLOT_BUCKET].isItemEqual(VoidCraft.fluids.voidBucket.getBucket()) : false : i == SLOT_OUTPUT;
+		return i == SLOT_BUCKET ? slots[SLOT_BUCKET] != null ? slots[SLOT_BUCKET].getItem() == Items.BUCKET : false : i == SLOT_OUTPUT;
 	}
 
 	@Override

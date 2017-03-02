@@ -11,6 +11,7 @@ import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.blocks.tileentity.TileEntityFakeBedrockFarmland;
 import Tamaized.Voidcraft.events.DamageEvent;
 import Tamaized.Voidcraft.items.ChainedSkull;
+import Tamaized.Voidcraft.items.CreativeVoidBucket;
 import Tamaized.Voidcraft.items.Debugger;
 import Tamaized.Voidcraft.items.EmptyObsidianFlask;
 import Tamaized.Voidcraft.items.EtherealFruit;
@@ -27,6 +28,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemRecord;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.client.model.ModelDynBucket;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
@@ -72,6 +74,7 @@ public class VoidCraftItems implements ITamRegistry {
 	public static TamItem diamondDust;
 
 	public static Debugger debugger;
+	public static CreativeVoidBucket creativeVoidBucket;
 	// public static HookShot hookShot;
 
 	public static VoidicSuppressor voidicSuppressor;
@@ -132,6 +135,7 @@ public class VoidCraftItems implements ITamRegistry {
 		modelList.add(diamondDust = new TamItem(VoidCraft.tabs.tabVoid, "diamonddust", 64));
 
 		modelList.add(debugger = new Debugger(VoidCraft.tabs.tabVoid, "debugger", 1));
+		creativeVoidBucket = new CreativeVoidBucket(VoidCraft.tabs.tabVoid, "creativevoidbucket", 1);
 		// modelList.add(hookShot = new HookShot(voidCraft.tabs.tabVoid, "hookShot", 1));
 
 		modelList.add(voidicSuppressor = new VoidicSuppressor(VoidCraft.tabs.tabVoid, "voidicsuppressor", 1));
@@ -250,7 +254,7 @@ public class VoidCraftItems implements ITamRegistry {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void clientInit() {
-		// VadeMecumMeshDefinition.register();
+		net.minecraft.client.Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(creativeVoidBucket, 0, ModelDynBucket.LOCATION);
 	}
 
 	@Override

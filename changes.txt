@@ -9,3 +9,5 @@
  - Internal Vade Mecum changes
   + Displayed Recipes now reflect the actual registered recipes and are no longer hardcoded directly to the vade mecum. (This means if the recipe were to change during runtime then the vade mecum will display the changes as well)
   + You can now use the mouse wheel to flip through pages
+ - Fixed a few issues where machines would allow you to extract filled buckets instead of empty buckets
+ - Added a Creative Mode Liquid Void Bucket, this can be inserted into various machines
