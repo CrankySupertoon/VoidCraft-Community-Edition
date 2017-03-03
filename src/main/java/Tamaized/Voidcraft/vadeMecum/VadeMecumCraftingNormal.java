@@ -40,7 +40,7 @@ public class VadeMecumCraftingNormal implements IVadeMecumCrafting {
 			int size = (r.getRecipeSize() == 4 || r.getRecipeSize() == 9) ? (int) Math.sqrt(r.getRecipeSize()) : 3;
 			for (int index = 0; index <= r.getRecipeSize() - 1; index++) {
 				ItemStack stack = r.recipeItems[index];
-				if (stack.getItem() instanceof ItemBlock) {
+				if (stack != null && stack.getItem() instanceof ItemBlock) {
 					stack = new ItemStack(stack.getItem());
 				}
 				if (stack != null) gui.renderItemStack(stack, x + 15 + (40 * (index % size)), y + 50 + (40 * (index / size)), mx, my);
@@ -50,7 +50,7 @@ public class VadeMecumCraftingNormal implements IVadeMecumCrafting {
 			int size = r.getRecipeSize() > 3 ? (int) Math.sqrt(r.getRecipeSize()) : 3;
 			int index = 0;
 			for (ItemStack stack : r.recipeItems) {
-				if (stack.getItem() instanceof ItemBlock) {
+				if (stack != null && stack.getItem() instanceof ItemBlock) {
 					stack = new ItemStack(stack.getItem());
 				}
 				if (stack != null) gui.renderItemStack(stack, x + 15 + (40 * (index % size)), y + 50 + (40 * (index / size)), mx, my);
