@@ -1,7 +1,6 @@
 # Items
 item.ectoplasm.name=Ectoplasm
 item.voidcrystal.name=Void Crystal
-<<<<<<< HEAD
 item.voidburner.name=Void Crystal and Steel
 item.burnbone.name=Charred Bone
 item.voidstar.name=Void Star
@@ -9,6 +8,7 @@ item.chainedskull.name=Chained Skull
 item.voidcloth.name=Void Infused Cloth
 item.voidcrystalbucket.name=Crystal in a Bucket
 item.voidbucket.name=Liquid Void Bucket
+item.creativevoidbucket.name=Liquid Void Creative Bucket
 item.irondust.name=Void Infused Iron Dust
 item.golddust.name=Void Infused Gold Dust
 item.lapisdust.name=Void Infused Lapis Dust
@@ -19,26 +19,6 @@ item.copperdust.name=Void Infused Copper Dust
 item.tindust.name=Void Infused Tin Dust
 item.leaddust.name=Void Infused Lead Dust
 item.quartzdust.name=Void Infused Quartz Dust
-=======
-item.voidBurner.name=Void Crystal and Steel
-item.burnBone.name=Charred Bone
-item.voidStar.name=Void Star
-item.ChainedSkull.name=Chained Skull
-item.voidCloth.name=Void Infused Cloth
-item.voidCrystalBucket.name=Crystal in a Bucket
-item.voidBucket.name=Liquid Void Bucket
-item.creativevoidbucket.name=Liquid Void Creative Bucket
-item.ironDust.name=Void Infused Iron Dust
-item.goldDust.name=Void Infused Gold Dust
-item.lapisDust.name=Void Infused Lapis Dust
-item.emeraldDust.name=Void Infused Emerald Dust
-item.diamondDust.name=Void Infused Diamond Dust
-item.coalDust.name=Void Infused Coal Dust
-item.copperDust.name=Void Infused Copper Dust
-item.tinDust.name=Void Infused Tin Dust
-item.leadDust.name=Void Infused Lead Dust
-item.quartzDust.name=Void Infused Quartz Dust
->>>>>>> 0e2a554... creative void bucket
 item.debugger.name=Debug Tool
 item.voidchain.name=Void Chain
 item.moltenvoidchain.name=Molten Void Chain
@@ -100,12 +80,8 @@ tile.etherealplant.name=Ethereal Plant
 tile.realityteleporterblock.name=Reality Teleportation Block
 tile.cosmicmaterial.name=Cosmic Material
 tile.starforge.name=Star Forge
-<<<<<<< HEAD
 tile.starforgestation.name=Star Forge
-=======
-tile.starforgeStation.name=Star Forge
 tile.voidblastfurnace.name=Void Blast Furnace
->>>>>>> 8e3172f... blast furnace finalized
 
 # Potion
 effect.voidcraft:voidicinfusionimmunity=Voidic Immunity
