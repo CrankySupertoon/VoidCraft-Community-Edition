@@ -165,7 +165,7 @@ public class VadeMecumWordsOfPower {
 						break;
 					case Fireball: {
 						Vec3d vec = caster.getLookVec();
-						EntityFireball entity = new EntityLargeFireball(world, caster.posX, caster.posY + caster.eyeHeight, caster.posZ, vec.xCoord, vec.yCoord, vec.zCoord);
+						EntityFireball entity = new EntityLargeFireball(world, caster, vec.xCoord, vec.yCoord, vec.zCoord);
 						entity.shootingEntity = caster;
 						world.spawnEntity(entity);
 						useCharge = true;
@@ -416,7 +416,7 @@ public class VadeMecumWordsOfPower {
 					double d5 = target.posX - caster.posX;
 					double d6 = target.getEntityBoundingBox().minY + (double) (target.height / 2.0F) - (caster.posY + (double) (caster.height / 2.0F));
 					double d7 = target.posZ - caster.posZ;
-					EntityFireball entity = new EntityLargeFireball(world, caster.posX, caster.posY + caster.getEyeHeight(), caster.posZ, d5, d6, d7);
+					EntityFireball entity = new EntityLargeFireball(world, caster, d5, d6, d7);
 					entity.shootingEntity = caster;
 					world.spawnEntity(entity);
 				}
