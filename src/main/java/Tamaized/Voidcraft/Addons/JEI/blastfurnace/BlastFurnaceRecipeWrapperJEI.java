@@ -18,9 +18,9 @@ public class BlastFurnaceRecipeWrapperJEI extends VoidCraftRecipeWrapperJEI<Blas
 
 	@Override
 	public void setupSlots(IGuiIngredientGroup g) {
-		g.init(TileEntityVoidBlastFurnace.SLOT_OUTPUT, false, renderer, 133, 14, 16, 16, 0, 0);
-		g.init(TileEntityVoidBlastFurnace.SLOT_INPUT_IRON, true, renderer, 87, 6, 16, 16, 0, 0);
-		g.init(TileEntityVoidBlastFurnace.SLOT_INPUT_COAL, true, renderer, 87, 24, 16, 16, 0, 0);
+		g.init(TileEntityVoidBlastFurnace.SLOT_OUTPUT, false, renderer, 134, 15, 16, 16, 0, 0);
+		g.init(TileEntityVoidBlastFurnace.SLOT_INPUT_IRON, true, renderer, 88, 7, 16, 16, 0, 0);
+		g.init(TileEntityVoidBlastFurnace.SLOT_INPUT_COAL, true, renderer, 88, 25, 16, 16, 0, 0);
 
 		g.set(TileEntityVoidBlastFurnace.SLOT_OUTPUT, Arrays.asList(getOutput()));
 		g.set(TileEntityVoidBlastFurnace.SLOT_INPUT_IRON, getInputs().get(0));
