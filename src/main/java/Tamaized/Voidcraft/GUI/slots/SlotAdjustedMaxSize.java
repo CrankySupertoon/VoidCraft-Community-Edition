@@ -14,6 +14,7 @@ public class SlotAdjustedMaxSize extends Slot {
 	
 	@Override
 	public int getSlotStackLimit() {
+		System.out.println(stackSizeLimit < super.getSlotStackLimit() ? stackSizeLimit : super.getSlotStackLimit());
 		return stackSizeLimit < super.getSlotStackLimit() ? stackSizeLimit : super.getSlotStackLimit();
 	}
 

@@ -128,6 +128,96 @@ public class HeimdallContainer extends Container {
 	}
 
 	@Override
+	protected boolean mergeItemStack(ItemStack stack, int startIndex, int endIndex, boolean reverseDirection) {
+		boolean flag = false;
+		int i = startIndex;
+
+		if (reverseDirection) {
+			i = endIndex - 1;
+		}
+
+		if (stack.isStackable()) {
+			while (stack != null) {
+				if (reverseDirection) {
+					if (i < startIndex) {
+						break;
+					}
+				} else if (i >= endIndex) {
+					break;
+				}
+
+				Slot slot = (Slot) this.inventorySlots.get(i);
+				ItemStack itemstack = slot.getStack();
+
+				if (itemstack != null && itemstack.getItem() == stack.getItem() && (!stack.getHasSubtypes() || stack.getMetadata() == itemstack.getMetadata()) && ItemStack.areItemStackTagsEqual(stack, itemstack)) {
+					int j = itemstack.stackSize + stack.stackSize;
+					int maxSize = Math.min(slot.getSlotStackLimit(), stack.getMaxStackSize());
+
+					if (j <= maxSize) {
+						stack.stackSize = (0);
+						stack = null;
+						itemstack.stackSize = (j);
+						slot.onSlotChanged();
+						flag = true;
+					} else if (itemstack.stackSize < maxSize) {
+						stack.stackSize -= (maxSize - itemstack.stackSize);
+						itemstack.stackSize = (maxSize);
+						slot.onSlotChanged();
+						flag = true;
+					}
+				}
+
+				if (reverseDirection) {
+					--i;
+				} else {
+					++i;
+				}
+			}
+		}
+
+		if (stack != null) {
+			if (reverseDirection) {
+				i = endIndex - 1;
+			} else {
+				i = startIndex;
+			}
+
+			while (true) {
+				if (reverseDirection) {
+					if (i < startIndex) {
+						break;
+					}
+				} else if (i >= endIndex) {
+					break;
+				}
+
+				Slot slot1 = (Slot) this.inventorySlots.get(i);
+				ItemStack itemstack1 = slot1.getStack();
+
+				if (itemstack1 == null && slot1.isItemValid(stack)) {
+					if (stack.stackSize > slot1.getSlotStackLimit()) {
+						slot1.putStack(stack.splitStack(slot1.getSlotStackLimit()));
+					} else {
+						slot1.putStack(stack.splitStack(stack.stackSize));
+					}
+
+					slot1.onSlotChanged();
+					flag = true;
+					break;
+				}
+
+				if (reverseDirection) {
+					--i;
+				} else {
+					++i;
+				}
+			}
+		}
+
+		return flag;
+	}
+
+	@Override
 	public boolean canInteractWith(EntityPlayer entityplayer) {
 		return te.isUsableByPlayer(entityplayer);
 	}

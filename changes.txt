@@ -13,3 +13,4 @@
  - Added a Creative Mode Liquid Void Bucket, this can be inserted into various machines
  - Fixed Spawn Egg names
  - Fixed #93
+ - Fixed #95
