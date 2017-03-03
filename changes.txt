@@ -12,3 +12,4 @@
  - Fixed a few issues where machines would allow you to extract filled buckets instead of empty buckets
  - Added a Creative Mode Liquid Void Bucket, this can be inserted into various machines
  - Fixed Spawn Egg names
+ - Fixed #93

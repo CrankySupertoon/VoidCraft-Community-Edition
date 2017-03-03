@@ -77,7 +77,7 @@ public class TileEntityStarForge extends TamTileEntityInventory {
 
 	@Override
 	public void onUpdate() {
-
+		
 	}
 
 	@Override
