@@ -146,26 +146,26 @@ itemGroup.tabVoid=VoidCraft
 itemGroup.tForge=Star Forge
 
 # Entity
-entity.Wraith.name=Void Wraith
-entity.SpectreChain.name=Chained Spectre
-entity.VoidWrath.name=Void's Wrath
-entity.Lich.name=Void Lich
-entity.VoidBoss.name=Corrupted Pawn
-entity.Herobrine.name=Avatar of Herobrine
-entity.Dol.name=Dol
-entity.Zol.name=Zol
-entity.Xia.name=Xia
-entity.Xia2.name=Xia
-entity.EtherealGuardian.name=Ethereal Guardian
-entity.HerobrineCreeper.name=Herobrine's Creeper
-entity.GhostPlayer.name=Ghost
-entity.GhostBiped.name=Ghost
-entity.Witherbrine.name=Witherbrine
-entity.DragonOld.name=Ender Dragon
-entity.DragonXia.name=Ender Dragon
-entity.DolXia.name=Dol
-entity.ZolXia.name=Zol
-entity.VoidicDragon.name=Voidic Dragon
+entity.voidcraft.Wraith.name=Void Wraith
+entity.voidcraft.SpectreChain.name=Chained Spectre
+entity.voidcraft.VoidWrath.name=Void's Wrath
+entity.voidcraft.Lich.name=Void Lich
+entity.voidcraft.VoidBoss.name=Corrupted Pawn
+entity.voidcraft.Herobrine.name=Avatar of Herobrine
+entity.voidcraft.Dol.name=Dol
+entity.voidcraft.Zol.name=Zol
+entity.voidcraft.Xia.name=Xia
+entity.voidcraft.Xia2.name=Xia
+entity.voidcraft.EtherealGuardian.name=Ethereal Guardian
+entity.voidcraft.HerobrineCreeper.name=Herobrine's Creeper
+entity.voidcraft.GhostPlayer.name=Ghost
+entity.voidcraft.GhostBiped.name=Ghost
+entity.voidcraft.Witherbrine.name=Witherbrine
+entity.voidcraft.DragonOld.name=Ender Dragon
+entity.voidcraft.DragonXia.name=Ender Dragon
+entity.voidcraft.DolXia.name=Dol
+entity.voidcraft.ZolXia.name=Zol
+entity.voidcraft.VoidicDragon.name=Voidic Dragon
 
 # Achievements
 achievement.voidCrystal=Void?
