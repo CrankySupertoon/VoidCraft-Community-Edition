@@ -13,14 +13,6 @@ public interface IVoidicInfusionCapability {
 
 	public void update(EntityLivingBase player);
 	
-	public float getPreInfusionHP();
-
-	public void setPreInfusionHP(float val);
-
-	public float getPostInfusionHP();
-
-	public void setPostInfusionHP(float val);
-
 	public int getInfusion();
 
 	public void addInfusion(int amount);

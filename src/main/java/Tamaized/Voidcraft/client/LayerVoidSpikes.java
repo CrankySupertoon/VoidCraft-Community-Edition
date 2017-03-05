@@ -27,7 +27,7 @@ public class LayerVoidSpikes implements LayerRenderer {
 		GlStateManager.pushMatrix();
 		GlStateManager.pushAttrib();
 		{
-			float perc = entitylivingbaseIn.getCapability(CapabilityList.VOIDICINFUSION, null).getInfusionPerc();
+			float perc = entitylivingbaseIn.getCapability(CapabilityList.VOIDICINFUSION, null).getInfusionPerc() * 0.85F;
 			// DebugEvent.textL=""+Minecraft.getMinecraft().theWorld.getEntityByID(entitylivingbaseIn.getEntityId()).hasCapability(CapabilityList.VOIDICINFUSION, null);
 
 			GlStateManager.scale(perc + 0, perc + 0, perc + 0);

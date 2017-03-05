@@ -28,7 +28,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class ClientPacketHandler {
 
 	public static enum PacketType {
-		INFUSION_UPDATE, INFUSION_UPDATE_ALL, ENTITY_UPDATES, XIA_ANIMATIONS, SHEATHE, PLAYER_MOTION, VADEMECUM_UPDATE, VOIDICPOWERITEM, GHOSTPLAYER_UPDATES
+		INFUSION_UPDATE, INFUSION_UPDATE_ALL, ENTITY_UPDATES, XIA_ANIMATIONS, SHEATHE, PLAYER_MOTION, VADEMECUM_UPDATE, VOIDICPOWERITEM, GHOSTPLAYER_UPDATES, CLIENT_HEALTH
 	}
 
 	public static int getPacketTypeID(PacketType type) {
@@ -60,6 +60,10 @@ public class ClientPacketHandler {
 		ByteBufInputStream bbis = new ByteBufInputStream(parBB);
 		int pktType = bbis.readInt();
 		switch (getPacketTypeFromID(pktType)) {
+			case CLIENT_HEALTH: {
+				Minecraft.getMinecraft().player.setHealth(bbis.readFloat());
+			}
+				break;
 			case GHOSTPLAYER_UPDATES: {
 				Entity entity = world.getEntityByID(bbis.readInt());
 				if (entity instanceof EntityGhostPlayerBase) {

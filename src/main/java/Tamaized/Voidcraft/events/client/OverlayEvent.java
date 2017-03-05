@@ -16,8 +16,8 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class OverlayEvent {
 
-	private static final String texture_void = (VoidCraft.modid + ":blocks/blockPortalVoid");
-	private static final String texture_xia = (VoidCraft.modid + ":blocks/blockPortalXia");
+	private static final String texture_void = (VoidCraft.modid + ":blocks/blockportalvoid");
+	private static final String texture_xia = (VoidCraft.modid + ":blocks/blockportalxia");
 
 	@SubscribeEvent
 	public void InGameOverlay(RenderGameOverlayEvent e) {

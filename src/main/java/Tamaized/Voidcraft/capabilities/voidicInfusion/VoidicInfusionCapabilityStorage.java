@@ -18,7 +18,6 @@ public class VoidicInfusionCapabilityStorage implements IStorage<IVoidicInfusion
 		NBTTagCompound compound = new NBTTagCompound();
 		compound.setInteger("infusion", instance.getInfusion());
 		compound.setInteger("maxInfusion", instance.getMaxInfusion());
-		compound.setFloat("preInfusionHP", instance.getPreInfusionHP());
 		compound.setFloat("xiaDefeats", instance.getXiaDefeats());
 		return compound;
 	}
@@ -28,7 +27,6 @@ public class VoidicInfusionCapabilityStorage implements IStorage<IVoidicInfusion
 		NBTTagCompound compound = (NBTTagCompound) nbt;
 		instance.setInfusion(compound.getInteger("infusion"));
 		instance.setMaxInfusion(compound.getInteger("maxInfusion"));
-		instance.setPreInfusionHP(compound.getInteger("preInfusionHP"));
 		instance.setXiaDefeats(compound.getInteger("xiaDefeats"));
 	}
 
