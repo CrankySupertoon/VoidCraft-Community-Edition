@@ -5,17 +5,18 @@ import Tamaized.Voidcraft.GUI.client.VadeMecumGUI;
 import Tamaized.Voidcraft.capabilities.CapabilityList;
 import Tamaized.Voidcraft.capabilities.vadeMecum.IVadeMecumCapability;
 import Tamaized.Voidcraft.capabilities.vadeMecumItem.IVadeMecumItemCapability;
-import Tamaized.Voidcraft.handlers.VadeMecumPacketHandler;
 import Tamaized.Voidcraft.proxy.ClientProxy;
 import Tamaized.Voidcraft.vadeMecum.VadeMecumButton;
 import Tamaized.Voidcraft.vadeMecum.VadeMecumEntry;
+import Tamaized.Voidcraft.vadeMecum.progression.VadeMecumPacketHandler;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.text.TextFormatting;
 
 public class VadeMecumProgressionEntry extends VadeMecumEntry {
 
 	public static enum Entry {
-		RitualBlocks, RitualList, Tome
+		RitualBlocks, RitualList, Tome, Voice, VoidicControl, ImprovedCasting, Empowerment, Tolerance, TotalControl, Dreams
 	}
 
 	public static int getEntryID(Entry e) {
@@ -29,7 +30,7 @@ public class VadeMecumProgressionEntry extends VadeMecumEntry {
 	private final ItemStack activeVade;
 
 	public VadeMecumProgressionEntry() {
-		super("progressionMainEntry", "Void Vade Mecum - Progression", null, null);
+		super("progressionMainEntry", "Void Vade Mecum", null, null);
 		activeVade = new ItemStack(VoidCraft.items.vadeMecum);
 		activeVade.getCapability(CapabilityList.VADEMECUMITEM, null).setBookState(true);
 	}
@@ -38,10 +39,46 @@ public class VadeMecumProgressionEntry extends VadeMecumEntry {
 	public void init(VadeMecumGUI gui) {
 		clearButtons();
 		addButton(gui, getEntryID(Entry.RitualBlocks), "Ritual Blocks", new ItemStack(Item.getItemFromBlock(VoidCraft.blocks.ritualBlock)));
-		if (gui.getPlayerStats().getObtainedCategories().contains(IVadeMecumCapability.Category.INTRO)) {
+		if (gui.getPlayerStats().hasCategory(IVadeMecumCapability.Category.INTRO)) {
 			addButton(gui, getEntryID(Entry.RitualList), "Rituals", new ItemStack(VoidCraft.blocks.ritualBlock));
-			if (gui.getPlayerStats().getObtainedCategories().contains(IVadeMecumCapability.Category.TOME)) {
+			if (gui.getPlayerStats().hasCategory(IVadeMecumCapability.Category.TOME)) {
 				addButton(gui, getEntryID(Entry.Tome), "Words of Power", activeVade);
+			}
+		}
+		if (gui.getPlayerStats().hasCategory(IVadeMecumCapability.Category.Voice)) {
+			if (!gui.getPlayerStats().hasCategory(IVadeMecumCapability.Category.VoidicControl)) {
+				addButton(gui, getEntryID(Entry.VoidicControl), "Voidic Control", activeVade);
+			}
+			if (!gui.getPlayerStats().hasCategory(IVadeMecumCapability.Category.ImprovedCasting)) {
+				addButton(gui, getEntryID(Entry.ImprovedCasting), "Improved Casting", activeVade);
+			} else {
+				if (gui.getPlayerStats().hasCategory(IVadeMecumCapability.Category.VoidicControl)) {
+					if (!gui.getPlayerStats().hasCategory(IVadeMecumCapability.Category.Empowerment)) {
+						addButton(gui, getEntryID(Entry.Empowerment), "Empowerment", activeVade);
+					} else {
+						if (!gui.getPlayerStats().hasCategory(IVadeMecumCapability.Category.Tolerance)) {
+							addButton(gui, getEntryID(Entry.Tolerance), "Tolerance", activeVade);
+						} else {
+							if (!gui.getPlayerStats().hasCategory(IVadeMecumCapability.Category.TotalControl)) {
+								addButton(gui, getEntryID(Entry.TotalControl), "Total Control", activeVade);
+							} else {
+								if (!gui.getPlayerStats().hasCategory(IVadeMecumCapability.Category.Dreams)) {
+									addButton(gui, getEntryID(Entry.Dreams), "Dreams", activeVade);
+								}
+							}
+						}
+					}
+				}
+			}
+		} else {
+			if (gui.getPlayerStats().hasCategory(IVadeMecumCapability.Category.Flame)) {
+				if (gui.getPlayerStats().hasCategory(IVadeMecumCapability.Category.Freeze)) {
+					if (gui.getPlayerStats().hasCategory(IVadeMecumCapability.Category.AcidSpray)) {
+						if (gui.getPlayerStats().hasCategory(IVadeMecumCapability.Category.Shock)) {
+							addButton(gui, getEntryID(Entry.Voice), TextFormatting.OBFUSCATED + "" + TextFormatting.DARK_PURPLE + "The Voice", activeVade);
+						}
+					}
+				}
 			}
 		}
 	}
@@ -57,6 +94,27 @@ public class VadeMecumProgressionEntry extends VadeMecumEntry {
 				break;
 			case Tome:
 				gui.changeEntry(ClientProxy.vadeMecumEntryList.Progression.TOME);
+				break;
+			case Voice:
+				gui.changeEntry(ClientProxy.vadeMecumEntryList.Progression.VOICE);
+				break;
+			case VoidicControl:
+				gui.changeEntry(ClientProxy.vadeMecumEntryList.Progression.VOIDICCONTROL);
+				break;
+			case ImprovedCasting:
+				gui.changeEntry(ClientProxy.vadeMecumEntryList.Progression.IMPROVEDCASTING);
+				break;
+			case Empowerment:
+				gui.changeEntry(ClientProxy.vadeMecumEntryList.Progression.EMPOWERMENT);
+				break;
+			case Tolerance:
+				gui.changeEntry(ClientProxy.vadeMecumEntryList.Progression.TOLERANCE);
+				break;
+			case TotalControl:
+				gui.changeEntry(ClientProxy.vadeMecumEntryList.Progression.TOTALCONTROL);
+				break;
+			case Dreams:
+				gui.changeEntry(ClientProxy.vadeMecumEntryList.Progression.DREAMS);
 				break;
 			default:
 				gui.changeEntry(ClientProxy.vadeMecumEntryList);

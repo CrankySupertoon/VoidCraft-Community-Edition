@@ -3,9 +3,11 @@ package Tamaized.Voidcraft.capabilities.vadeMecum;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
-import Tamaized.Voidcraft.handlers.VadeMecumWordsOfPower;
+import Tamaized.Voidcraft.capabilities.vadeMecum.IVadeMecumCapability.Passive;
+import Tamaized.Voidcraft.vadeMecum.progression.VadeMecumWordsOfPower;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.ByteBufInputStream;
 import net.minecraft.item.ItemStack;
@@ -24,8 +26,12 @@ public interface IVadeMecumCapability {
 
 		AcidSpray, AcidSheathe, Disint, AcidTrap, ExplosionAcid, RingOfAcid,
 
-		VoidicTouch, VoidicSheathe, Implosion
+		VoidicTouch, VoidicSheathe, Implosion,
 
+		Invoke,
+
+		// Tasks
+		Voice, VoidicControl, ImprovedCasting, Empowerment, Tolerance, TotalControl, Dreams
 	}
 
 	public static int getCategoryID(Category c) {
@@ -34,6 +40,52 @@ public interface IVadeMecumCapability {
 
 	public static Category getCategoryFromID(int id) {
 		return (id > Category.values().length || id < 0) ? null : Category.values()[id];
+	}
+
+	public static enum Passive {
+		Anchor, Empowerment, Tolerance, Flight, Vigor
+	}
+
+	public static int getPassiveID(Passive c) {
+		return c == null ? -1 : c.ordinal();
+	}
+
+	public static Passive getPassiveFromID(int id) {
+		return (id > Passive.values().length || id < 0) ? null : Passive.values()[id];
+	}
+
+	public static String getPassiveName(Passive passive) {
+		switch (passive) {
+			case Anchor:
+				return "Voidic Anchor";
+			case Empowerment:
+				return "Empowerment";
+			case Tolerance:
+				return "Tolerance";
+			case Flight:
+				return "Voidic Flight";
+			case Vigor:
+				return "Vigor";
+			default:
+				return "null";
+		}
+	}
+
+	public default boolean canHavePassive(Passive passive) {
+		switch (passive) {
+			case Anchor:
+				return hasCategory(Category.VoidicControl);
+			case Empowerment:
+				return hasCategory(Category.Empowerment);
+			case Tolerance:
+				return hasCategory(Category.Tolerance);
+			case Flight:
+				return hasCategory(Category.TotalControl);
+			case Vigor:
+				return hasCategory(Category.Dreams);
+			default:
+				return false;
+		}
 	}
 
 	public static class CategoryDataWrapper {
@@ -69,10 +121,6 @@ public interface IVadeMecumCapability {
 		return VadeMecumWordsOfPower.getCategoryData(c).getName().contains("Word:");
 	}
 
-	public static boolean isPassivePower(Category c) {
-		return false;
-	}
-
 	public boolean isDirty();
 
 	public void resetDirty();
@@ -96,11 +144,25 @@ public interface IVadeMecumCapability {
 	public void clearActivePower();
 
 	public Category getCurrentActive();
-	
+
+	public List<Passive> getActivePassiveList();
+
+	public void addPassive(Passive ability);
+
+	public void removePassive(Passive ability);
+
+	public boolean hasPassive(Passive ability);
+
 	/**
 	 * Return a value from 0 to 100
 	 */
-	public int getFailureChance();
+	public default int getFailureChance() {
+		int chance = 75;
+		if (hasCategory(Category.Voice)) chance -= 25;
+		if (hasCategory(Category.ImprovedCasting)) chance -= 25;
+		if (hasCategory(Category.TotalControl)) chance -= 25;
+		return chance;
+	}
 
 	public void setLastEntry(String e);
 
@@ -119,6 +181,10 @@ public interface IVadeMecumCapability {
 	public ItemStack decrStackSize(Category slot, int amount);
 
 	public ItemStack removeStackFromSlot(Category slot);
+
+	public int getPage();
+
+	public void setPage(int page);
 
 	public boolean hasLoaded();
 

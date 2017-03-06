@@ -29,15 +29,23 @@ public class VadeMecumCapabilityStorage implements IStorage<IVadeMecumCapability
 			compound.setTag("SpellComponents", comp);
 
 		}
-		ArrayList<Integer> array = new ArrayList<Integer>();
 		{
+			ArrayList<Integer> array = new ArrayList<Integer>();
 			for (IVadeMecumCapability.Category category : instance.getObtainedCategories()) {
 				array.add(IVadeMecumCapability.getCategoryID(category));
 			}
 			compound.setIntArray("category", array.stream().mapToInt(i -> i).toArray());
 		}
+		{
+			ArrayList<Integer> array = new ArrayList<Integer>();
+			for (IVadeMecumCapability.Passive passive : instance.getActivePassiveList()) {
+				array.add(IVadeMecumCapability.getPassiveID(passive));
+			}
+			compound.setIntArray("passive", array.stream().mapToInt(i -> i).toArray());
+		}
 		compound.setInteger("currentActive", IVadeMecumCapability.getCategoryID(instance.getCurrentActive()));
 		compound.setString("lastEntry", instance.getLastEntry());
+		compound.setInteger("page", instance.getPage());
 		return compound;
 	}
 
@@ -52,8 +60,8 @@ public class VadeMecumCapabilityStorage implements IStorage<IVadeMecumCapability
 				instance.setStackSlot(IVadeMecumCapability.getCategoryFromID(Integer.valueOf(key)), ItemStack.func_77949_a(value));
 			}
 		}
-		int[] array;
 		{
+			int[] array;
 			ArrayList<IVadeMecumCapability.Category> list = new ArrayList<IVadeMecumCapability.Category>();
 			array = compound.getIntArray("category");
 			for (int i = 0; i < array.length; i++) {
@@ -61,8 +69,14 @@ public class VadeMecumCapabilityStorage implements IStorage<IVadeMecumCapability
 			}
 			instance.setObtainedCategories(list);
 		}
+		{
+			for (int i : compound.getIntArray("passive")) {
+				instance.addPassive(IVadeMecumCapability.getPassiveFromID(i));
+			}
+		}
 		instance.setCurrentActive(IVadeMecumCapability.getCategoryFromID(compound.getInteger("currentActive")));
 		instance.setLastEntry(compound.getString("lastEntry"));
+		instance.setPage(compound.getInteger("page"));
 		instance.setLoaded();
 	}
 

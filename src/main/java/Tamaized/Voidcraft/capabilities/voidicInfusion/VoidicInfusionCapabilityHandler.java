@@ -8,6 +8,7 @@ import Tamaized.TamModized.helper.PacketHelper;
 import Tamaized.TamModized.helper.PacketHelper.PacketWrapper;
 import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.capabilities.CapabilityList;
+import Tamaized.Voidcraft.capabilities.vadeMecum.IVadeMecumCapability;
 import Tamaized.Voidcraft.capabilities.voidicPower.IVoidicPowerCapability;
 import Tamaized.Voidcraft.damageSources.DamageSourceVoidicInfusion;
 import Tamaized.Voidcraft.entity.EntityVoidMob;
@@ -26,6 +27,7 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
 
 public class VoidicInfusionCapabilityHandler implements IVoidicInfusionCapability {
@@ -50,10 +52,28 @@ public class VoidicInfusionCapabilityHandler implements IVoidicInfusionCapabilit
 		handleEffects(entity);
 		if (tick % 20 == 0) sendPacketUpdates(entity);
 		tick++;
+		if (infusion >= 3000 && entity.hasCapability(CapabilityList.VADEMECUM, null)) {
+			IVadeMecumCapability cap = entity.getCapability(CapabilityList.VADEMECUM, null);
+			if (VoidCraft.isDevBuild) {
+				if (!cap.hasCategory(IVadeMecumCapability.Category.Voice)) {
+					if (cap.hasCategory(IVadeMecumCapability.Category.Flame)) {
+						if (cap.hasCategory(IVadeMecumCapability.Category.Freeze)) {
+							if (cap.hasCategory(IVadeMecumCapability.Category.AcidSpray)) {
+								if (cap.hasCategory(IVadeMecumCapability.Category.Shock)) {
+									cap.addCategory(IVadeMecumCapability.Category.Voice);
+									entity.sendMessage(new TextComponentString(TextFormatting.DARK_PURPLE + "[" + TextFormatting.OBFUSCATED + "Voice" + TextFormatting.RESET + "" + TextFormatting.DARK_PURPLE + "]: Your task is complete. I've added a new entry to your Vade Mecum."));
+								}
+							}
+						}
+					}
+				}
+			}
+		}
 	}
 
 	private void handleInfusionGain(EntityLivingBase entity) {
-		boolean flag = true;
+		IVadeMecumCapability vade = entity.getCapability(CapabilityList.VADEMECUM, null);
+		boolean flag = (vade == null || !vade.hasPassive(IVadeMecumCapability.Passive.Vigor));
 		ItemStack mainHand = entity.getHeldItemMainhand();
 		ItemStack offHand = entity.getHeldItemOffhand();
 		if ((mainHand != null && mainHand.getItem() == VoidCraft.items.voidicSuppressor)) {
@@ -79,11 +99,11 @@ public class VoidicInfusionCapabilityHandler implements IVoidicInfusionCapabilit
 			} else {
 				infusion++;
 			}
-			if (infusion > maxInfusion) infusion = maxInfusion;
 		} else {
-			infusion -= 5;
+			infusion -= (vade != null && vade.hasPassive(IVadeMecumCapability.Passive.Vigor) ? 10 : 5);
 			if (infusion < 0) infusion = 0;
 		}
+		if (infusion > maxInfusion) infusion = maxInfusion;
 	}
 
 	private void doHealthChecks(EntityLivingBase living) {
@@ -100,10 +120,11 @@ public class VoidicInfusionCapabilityHandler implements IVoidicInfusionCapabilit
 				}
 			}
 		}
-		float value = getInfusionPerc();
+		IVadeMecumCapability cap = living.getCapability(CapabilityList.VADEMECUM, null);
+		float value = getInfusionPerc() * ((cap == null || !VoidCraft.isDevBuild) ? 1.0F : cap.hasPassive(IVadeMecumCapability.Passive.Anchor) ? cap.hasPassive(IVadeMecumCapability.Passive.Vigor) ? 0.5F : 2.0F : 1.0F);
 		if (value == 0) return;
 		float min = 1F - (0.5F / living.getMaxHealth());
-		living.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).applyModifier(new AttributeModifier(name, -Math.min(value, min), 2));
+		living.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).applyModifier(new AttributeModifier(name, Math.min(value, min) * ((cap != null && cap.hasPassive(IVadeMecumCapability.Passive.Vigor) ? 1 : -1)), 2));
 		if (living.getHealth() > living.getMaxHealth()) {
 			if (living instanceof EntityPlayerMP) {
 				EntityPlayerMP player = (EntityPlayerMP) living;
@@ -121,33 +142,82 @@ public class VoidicInfusionCapabilityHandler implements IVoidicInfusionCapabilit
 
 	private void handleEffects(EntityLivingBase entity) {
 		if (infusion >= maxInfusion) {
-			if (entity instanceof EntityPlayer) {
-				EntityPlayer player = (EntityPlayer) entity;
-				if (!player.capabilities.isCreativeMode) {
-					entity.attackEntityFrom(new DamageSourceVoidicInfusion(), Integer.MAX_VALUE);
-				}
-			} else {
-				entity.attackEntityFrom(new DamageSourceVoidicInfusion(), Integer.MAX_VALUE);
-			}
-			return;
-		}
-		if (entity instanceof EntityPlayer) {
-			EntityPlayer player = (EntityPlayer) entity;
-			if (!player.capabilities.isCreativeMode) {
-				if (canFly()) {
-					player.capabilities.allowFlying = true;
-					player.sendPlayerAbilities();
-					hasFlight = true;
-				} else {
-					if (hasFlight) {
-						player.capabilities.allowFlying = false;
-						player.capabilities.isFlying = false;
-						player.capabilities.disableDamage = false;
-						hasFlight = false;
+			boolean kill = true;
+			if (VoidCraft.isDevBuild) {
+				if (entity.hasCapability(CapabilityList.VADEMECUM, null)) {
+					IVadeMecumCapability cap = entity.getCapability(CapabilityList.VADEMECUM, null);
+					if (cap.hasPassive(IVadeMecumCapability.Passive.Anchor)) kill = false;
+					if (cap.hasCategory(IVadeMecumCapability.Category.Voice) && !cap.hasCategory(IVadeMecumCapability.Category.VoidicControl)) {
+						kill = false;
+						infusion = 0;
+						cap.addCategory(IVadeMecumCapability.Category.VoidicControl);
+						entity.sendMessage(new TextComponentString(TextFormatting.DARK_PURPLE + "[" + TextFormatting.OBFUSCATED + "Voice" + TextFormatting.RESET + "" + TextFormatting.DARK_PURPLE + "]: Very Good."));
+					}
+					if (cap.hasCategory(IVadeMecumCapability.Category.Empowerment) && !cap.hasCategory(IVadeMecumCapability.Category.Tolerance) && entity.world.provider.getDimension() != VoidCraft.config.getDimensionIDvoid()) {
+						kill = false;
+						infusion = 0;
+						cap.addCategory(IVadeMecumCapability.Category.Tolerance);
+						entity.sendMessage(new TextComponentString(TextFormatting.DARK_PURPLE + "[" + TextFormatting.OBFUSCATED + "Voice" + TextFormatting.RESET + "" + TextFormatting.DARK_PURPLE + "]: Very Good."));
 					}
 				}
 			}
+			if (kill) {
+				if (entity instanceof EntityPlayer) {
+					EntityPlayer player = (EntityPlayer) entity;
+					if (!player.capabilities.isCreativeMode) {
+						entity.attackEntityFrom(new DamageSourceVoidicInfusion(), Integer.MAX_VALUE);
+					}
+				} else {
+					entity.attackEntityFrom(new DamageSourceVoidicInfusion(), Integer.MAX_VALUE);
+				}
+				return;
+			}
 		}
+
+		{
+			final String name = "Voidic Infusion";
+			for (IAttributeInstance att : entity.getAttributeMap().getAllAttributes()) {
+				if (att.getAttribute() == SharedMonsterAttributes.ATTACK_DAMAGE) {
+					Iterator<AttributeModifier> iter = att.getModifiers().iterator();
+					while (iter.hasNext()) {
+						AttributeModifier mod = iter.next();
+						if (mod.getName().equals(name)) {
+							att.removeModifier(mod);
+						}
+					}
+				}
+			}
+			IVadeMecumCapability cap = entity.getCapability(CapabilityList.VADEMECUM, null);
+			if (cap != null) {
+				if (cap.hasPassive(IVadeMecumCapability.Passive.Empowerment)) {
+					float value = getInfusionPerc();
+					if (value != 0) {
+						entity.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).applyModifier(new AttributeModifier(name, value, 2));
+					}
+				}
+				if (cap.hasPassive(IVadeMecumCapability.Passive.Tolerance)) maxInfusion = 12000;
+				else maxInfusion = 6000;
+
+			}
+		}
+
+		if (entity instanceof EntityPlayer) {
+			EntityPlayer player = (EntityPlayer) entity;
+			if (!player.capabilities.isCreativeMode) {
+				if (!hasFlight && canFly(entity)) {
+					player.capabilities.allowFlying = true;
+					player.sendPlayerAbilities();
+					hasFlight = true;
+				} else if (hasFlight && !canFly(entity)) {
+					player.capabilities.allowFlying = false;
+					player.capabilities.isFlying = false;
+					player.capabilities.disableDamage = false;
+					hasFlight = false;
+					player.sendPlayerAbilities();
+				}
+			}
+		}
+
 	}
 
 	@Override
@@ -181,8 +251,9 @@ public class VoidicInfusionCapabilityHandler implements IVoidicInfusionCapabilit
 	}
 
 	@Override
-	public boolean canFly() {
-		return getInfusionPerc() >= 0.75F;
+	public boolean canFly(EntityLivingBase entity) {
+		IVadeMecumCapability cap = entity.getCapability(CapabilityList.VADEMECUM, null);
+		return getInfusionPerc() >= (cap != null && cap.hasPassive(IVadeMecumCapability.Passive.Flight) ? 0.25F : 0.75F);
 	}
 
 	@Override

@@ -4,7 +4,7 @@ import java.util.List;
 
 import Tamaized.TamModized.items.TamItem;
 import Tamaized.Voidcraft.capabilities.CapabilityList;
-import Tamaized.Voidcraft.capabilities.voidicInfusion.IVoidicInfusionCapability;
+import Tamaized.Voidcraft.capabilities.vadeMecum.IVadeMecumCapability;
 import Tamaized.Voidcraft.world.SchematicLoader;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -72,11 +72,16 @@ public class Debugger extends TamItem {
 		// zol.setPositionAndUpdate(playerIn.posX, playerIn.posY + 20, playerIn.posZ);
 		// worldIn.spawnEntity(zol);
 
-		 IVoidicInfusionCapability cap = player.getCapability(CapabilityList.VOIDICINFUSION, null);
-		 cap.setInfusion(5999);
+		IVadeMecumCapability cap = player.getCapability(CapabilityList.VADEMECUM, null);
+		for (IVadeMecumCapability.Category cat : IVadeMecumCapability.Category.values()) {
+			cap.addCategory(cat);
+		}
+
+		// IVoidicInfusionCapability cap = player.getCapability(CapabilityList.VOIDICINFUSION, null);
+		// cap.setInfusion(5999);
 		// if (cap != null) cap.setXiaDefeats(0);
-		// if (worldIn.provider instanceof WorldProviderXia) ((WorldProviderXia) worldIn.provider).getXiaCastleHandler().start();
-		// if (worldIn.provider instanceof WorldProviderXia) ((WorldProviderXia) worldIn.provider).getXiaCastleHandler().debug();
+		// if (world.provider instanceof WorldProviderXia) ((WorldProviderXia) world.provider).getXiaCastleHandler().start();
+		// if (world.provider instanceof WorldProviderXia) ((WorldProviderXia) world.provider).getXiaCastleHandler().debug();
 		// FMLNetworkHandler.openGui(player, VoidCraft.instance, GuiHandler.getTypeID(GuiHandler.Type.VadeMecumSpells), world, player.getPosition().getX(), player.getPosition().getY(), player.getPosition().getZ());
 
 		// ItemStack newStack = new ItemStack(voidCraft.tools.starforgedPickaxe);

@@ -7,9 +7,11 @@ import java.util.UUID;
 
 import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.capabilities.CapabilityList;
+import Tamaized.Voidcraft.capabilities.vadeMecum.IVadeMecumCapability;
 import Tamaized.Voidcraft.handlers.ClientPortalDataHandler;
 import Tamaized.Voidcraft.handlers.PortalDataHandler;
 import Tamaized.Voidcraft.handlers.XiaFlightHandler;
+import Tamaized.Voidcraft.world.dim.TheVoid.ChunkProviderVoid;
 import Tamaized.Voidcraft.world.dim.Xia.TeleporterXia;
 import Tamaized.Voidcraft.world.dim.Xia.WorldProviderXia;
 import net.minecraft.block.Block;
@@ -22,13 +24,17 @@ import net.minecraft.network.play.server.SPacketRespawn;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.Teleporter;
+import net.minecraft.world.World;
 import net.minecraft.world.WorldProvider;
 import net.minecraft.world.WorldServer;
+import net.minecraft.world.gen.ChunkProviderServer;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
@@ -40,6 +46,35 @@ public class VoidTickEvent {
 	@SubscribeEvent
 	public void onPlayerTick(TickEvent.PlayerTickEvent e) {
 		if (e.phase == e.phase.END) return;
+		World world = e.player.world;
+
+		if (VoidCraft.isDevBuild && e.player.hasCapability(CapabilityList.VADEMECUM, null)) {
+			IVadeMecumCapability cap = e.player.getCapability(CapabilityList.VADEMECUM, null);
+
+			if (cap.hasCategory(IVadeMecumCapability.Category.VoidicControl) && cap.hasCategory(IVadeMecumCapability.Category.ImprovedCasting) && !cap.hasCategory(IVadeMecumCapability.Category.Empowerment)) {
+				if ((e.player.getHeldItem(EnumHand.MAIN_HAND) != null && e.player.getHeldItem(EnumHand.MAIN_HAND).getItem() == VoidCraft.items.voidStar) || (e.player.getHeldItem(EnumHand.OFF_HAND) != null && e.player.getHeldItem(EnumHand.OFF_HAND).getItem() == VoidCraft.items.voidStar)) {
+					cap.addCategory(IVadeMecumCapability.Category.Empowerment);
+					cap.addCategory(IVadeMecumCapability.Category.Invoke);
+				}
+			}
+
+			if (world.getChunkProvider() instanceof ChunkProviderServer) {
+				ChunkProviderServer serverProvider = (ChunkProviderServer) world.getChunkProvider();
+				if (serverProvider.chunkGenerator instanceof ChunkProviderVoid) {
+					ChunkProviderVoid provider = (ChunkProviderVoid) ((ChunkProviderServer) world.getChunkProvider()).chunkGenerator;
+					if (cap.hasCategory(IVadeMecumCapability.Category.Voice) && !cap.hasCategory(IVadeMecumCapability.Category.ImprovedCasting)) {
+						if (provider.genFortress.isPositionInStructure(world, e.player.getPosition())) {
+							cap.addCategory(IVadeMecumCapability.Category.ImprovedCasting);
+						}
+					}
+					if (cap.hasCategory(IVadeMecumCapability.Category.Tolerance) && !cap.hasCategory(IVadeMecumCapability.Category.TotalControl)) {
+						if (e.player.posY >= 187 && provider.genCity.isPositionInStructure(world, e.player.getPosition())) {
+							cap.addCategory(IVadeMecumCapability.Category.TotalControl);
+						}
+					}
+				}
+			}
+		}
 
 		if (e.player.world.provider.getDimension() == VoidCraft.config.getDimensionIDvoid()) {
 			if (e.player.getPosition().getY() >= 127) e.player.attackEntityFrom(DamageSource.OUT_OF_WORLD, 4.0F);

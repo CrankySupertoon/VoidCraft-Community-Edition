@@ -4,9 +4,9 @@ import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.Addons.JEI.ItemStackRenderer;
 import Tamaized.Voidcraft.Addons.JEI.VoidCraftRecipeWrapperJEI;
 import Tamaized.Voidcraft.capabilities.vadeMecum.IVadeMecumCapability;
-import Tamaized.Voidcraft.handlers.VadeMecumWordsOfPower;
 import Tamaized.Voidcraft.machina.addons.TERecipesAlchemy.AlchemyRecipe;
 import Tamaized.Voidcraft.machina.tileentity.TileEntityVoidicAlchemy;
+import Tamaized.Voidcraft.vadeMecum.progression.VadeMecumWordsOfPower;
 import mezz.jei.api.gui.IGuiIngredientGroup;
 import net.minecraft.client.Minecraft;
 

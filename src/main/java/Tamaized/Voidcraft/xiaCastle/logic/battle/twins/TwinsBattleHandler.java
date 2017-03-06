@@ -267,7 +267,7 @@ public class TwinsBattleHandler implements IBattleHandler {
 	public boolean isDone() {
 		return isDone;
 	}
-	
+
 	@Override
 	public void setDone() {
 		stop();

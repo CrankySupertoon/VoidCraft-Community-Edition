@@ -4,6 +4,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -24,7 +25,9 @@ public class VadeMecumCapabilityHandler implements IVadeMecumCapability {
 	private ArrayList<IVadeMecumCapability.Category> categoryList = new ArrayList<IVadeMecumCapability.Category>();
 
 	private Category currActivePower;
+	private final List<Passive> passiveList = new ArrayList<Passive>();
 	private String lastEntry = "null";
+	private int page = 0;
 
 	private Map<Category, ItemStack> spellComponents = new HashMap<Category, ItemStack>();
 
@@ -104,16 +107,38 @@ public class VadeMecumCapabilityHandler implements IVadeMecumCapability {
 	@Override
 	public void clearActivePower() {
 		currActivePower = null;
+		markDirty();
 	}
 
 	@Override
 	public Category getCurrentActive() {
 		return currActivePower;
 	}
-	
+
 	@Override
-	public int getFailureChance() {
-		return 75;
+	public List<Passive> getActivePassiveList() {
+		return passiveList;
+	}
+
+	@Override
+	public void addPassive(Passive ability) {
+		if (canHavePassive(ability)) {
+			passiveList.add(ability);
+			markDirty();
+		}
+	}
+
+	@Override
+	public void removePassive(Passive ability) {
+		if (hasPassive(ability)) {
+			passiveList.remove(ability);
+			markDirty();
+		}
+	}
+
+	@Override
+	public boolean hasPassive(Passive ability) {
+		return passiveList.contains(ability);
 	}
 
 	@Override
@@ -204,14 +229,27 @@ public class VadeMecumCapabilityHandler implements IVadeMecumCapability {
 	}
 
 	@Override
+	public int getPage() {
+		return page;
+	}
+
+	@Override
+	public void setPage(int page) {
+		this.page = page;
+		markDirty();
+	}
+
+	@Override
 	public void copyFrom(IVadeMecumCapability cap) {
 		if (cap == null) return;
 		clearComponents();
 		spellComponents.putAll(cap.getComponents());
 		setObtainedCategories(cap.getObtainedCategories());
-		setCurrentActive(cap.getCurrentActive());
+		for (IVadeMecumCapability.Passive passive : cap.getActivePassiveList())
+			addPassive(passive);
 		setCurrentActive(cap.getCurrentActive());
 		setLastEntry(cap.getLastEntry());
+		setPage(cap.getPage());
 		setLoaded();
 		markDirty();
 	}
@@ -220,16 +258,28 @@ public class VadeMecumCapabilityHandler implements IVadeMecumCapability {
 	public void decodePacket(ByteBuf buf, ByteBufInputStream stream) throws IOException {
 		setCurrentActive(IVadeMecumCapability.getCategoryFromID(stream.readInt()));
 		setLastEntry(stream.readUTF());
+		setPage(stream.readInt());
 		// Do Arrays last
-		clearCategories();
-		int l = stream.readInt();
-		for (int i = 0; i < l; i++) {
-			addCategory(IVadeMecumCapability.getCategoryFromID(stream.readInt()));
+		{
+			clearCategories();
+			int l = stream.readInt();
+			for (int i = 0; i < l; i++) {
+				addCategory(IVadeMecumCapability.getCategoryFromID(stream.readInt()));
+			}
 		}
-		clearComponents();
-		l = stream.readInt();
-		for (int i = 0; i < l; i++) {
-			spellComponents.put(IVadeMecumCapability.getCategoryFromID(stream.readInt()), ItemStackNetworkHelper.decodeStack(buf, stream));
+		{
+			passiveList.clear();
+			int l = stream.readInt();
+			for (int i = 0; i < l; i++) {
+				addPassive(IVadeMecumCapability.getPassiveFromID(stream.readInt()));
+			}
+		}
+		{
+			clearComponents();
+			int l = stream.readInt();
+			for (int i = 0; i < l; i++) {
+				spellComponents.put(IVadeMecumCapability.getCategoryFromID(stream.readInt()), ItemStackNetworkHelper.decodeStack(buf, stream));
+			}
 		}
 	}
 
@@ -237,10 +287,15 @@ public class VadeMecumCapabilityHandler implements IVadeMecumCapability {
 	public void encodePacket(DataOutputStream stream) throws IOException {
 		stream.writeInt(IVadeMecumCapability.getCategoryID(getCurrentActive()));
 		stream.writeUTF(getLastEntry());
+		stream.writeInt(getPage());
 		// Do Arrays last
 		stream.writeInt(getObtainedCategories().size());
 		for (Category cat : getObtainedCategories()) {
 			stream.writeInt(IVadeMecumCapability.getCategoryID(cat));
+		}
+		stream.writeInt(getActivePassiveList().size());
+		for (Passive passive : getActivePassiveList()) {
+			stream.writeInt(IVadeMecumCapability.getPassiveID(passive));
 		}
 		stream.writeInt(spellComponents.size());
 		for (Entry<Category, ItemStack> entry : spellComponents.entrySet()) {

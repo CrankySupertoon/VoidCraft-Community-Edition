@@ -25,7 +25,7 @@ public interface IVoidicInfusionCapability {
 
 	public float getInfusionPerc();
 
-	public boolean canFly();
+	public boolean canFly(EntityLivingBase entity);
 	
 	public int getXiaDefeats();
 	

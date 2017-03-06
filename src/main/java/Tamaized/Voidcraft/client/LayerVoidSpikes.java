@@ -2,6 +2,7 @@ package Tamaized.Voidcraft.client;
 
 import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.capabilities.CapabilityList;
+import Tamaized.Voidcraft.capabilities.vadeMecum.IVadeMecumCapability;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.RenderPlayer;
@@ -13,7 +14,7 @@ public class LayerVoidSpikes implements LayerRenderer {
 
 	private final ModelVoidSpikes model;
 	private final RenderPlayer renderer;
-	
+
 	private static final ResourceLocation TEXTURE = new ResourceLocation(VoidCraft.modid, "textures/entity/voidspikes.png");
 
 	public LayerVoidSpikes(RenderPlayer playerRenderer) {
@@ -27,7 +28,8 @@ public class LayerVoidSpikes implements LayerRenderer {
 		GlStateManager.pushMatrix();
 		GlStateManager.pushAttrib();
 		{
-			float perc = entitylivingbaseIn.getCapability(CapabilityList.VOIDICINFUSION, null).getInfusionPerc() * 0.85F;
+			IVadeMecumCapability cap = entitylivingbaseIn.getCapability(CapabilityList.VADEMECUM, null);
+			float perc = Math.min(0.85F, (entitylivingbaseIn.getCapability(CapabilityList.VOIDICINFUSION, null).getInfusionPerc() + (cap != null && cap.hasPassive(IVadeMecumCapability.Passive.Flight) ? 0.5F : 0.0F)) * 0.85F);
 			// DebugEvent.textL=""+Minecraft.getMinecraft().theWorld.getEntityByID(entitylivingbaseIn.getEntityId()).hasCapability(CapabilityList.VOIDICINFUSION, null);
 
 			GlStateManager.scale(perc + 0, perc + 0, perc + 0);

@@ -5,6 +5,7 @@ import java.util.List;
 import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.blocks.tileentity.TileEntityAIBlock;
 import Tamaized.Voidcraft.capabilities.CapabilityList;
+import Tamaized.Voidcraft.capabilities.vadeMecum.IVadeMecumCapability;
 import Tamaized.Voidcraft.capabilities.voidicInfusion.IVoidicInfusionCapability;
 import Tamaized.Voidcraft.world.SchematicLoader;
 import Tamaized.Voidcraft.xiaCastle.TwinsSpeech;
@@ -23,6 +24,8 @@ import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 
 public class XiaCastleLogicHandler {
@@ -150,6 +153,13 @@ public class XiaCastleLogicHandler {
 			IVoidicInfusionCapability cap = player.getCapability(CapabilityList.VOIDICINFUSION, null);
 			if (cap != null) cap.setXiaDefeats(cap.getXiaDefeats() + 1);
 			player.addStat(VoidCraft.achievements.Ascension, 1);
+			if (player.hasCapability(CapabilityList.VADEMECUM, null)) {
+				IVadeMecumCapability vade = player.getCapability(CapabilityList.VADEMECUM, null);
+				if (vade.hasCategory(IVadeMecumCapability.Category.TotalControl) && !vade.hasCategory(IVadeMecumCapability.Category.Dreams)) {
+					vade.addCategory(IVadeMecumCapability.Category.Dreams);
+					player.sendMessage(new TextComponentString(TextFormatting.DARK_PURPLE + "[" + TextFormatting.OBFUSCATED + "Voice" + TextFormatting.RESET + "" + TextFormatting.DARK_PURPLE + "]: The Quori and I thank you mortal, you've been a great contribution to us."));
+				}
+			}
 		}
 		BlockPos chestPos = pos.add(21, 8, 13);
 		world.setBlockState(chestPos, Blocks.CHEST.getDefaultState().withProperty(BlockChest.FACING, EnumFacing.EAST));
@@ -174,7 +184,7 @@ public class XiaCastleLogicHandler {
 		twins.setDone();
 		herobrine.setDone();
 		xia.setDone();
-		// xia2.setDone();
+		xia2.setDone();
 	}
 
 	private void setupPos() {

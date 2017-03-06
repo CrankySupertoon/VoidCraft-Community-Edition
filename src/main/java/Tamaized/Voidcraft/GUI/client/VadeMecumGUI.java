@@ -52,9 +52,10 @@ public class VadeMecumGUI extends GuiScreen {
 	private VadeMecumGUI.OverlayButton button_entryBack;
 	private VadeMecumGUI.OverlayButton button_credits;
 	private VadeMecumGUI.FullButton button_spells;
+	private VadeMecumGUI.FullButton button_infusion;
 
 	private static enum Button {
-		NULL, Back, Forward, LargeBack, EntryBack, Credits, WordsOfPower
+		NULL, Back, Forward, LargeBack, EntryBack, Credits, WordsOfPower, Infusion
 	}
 
 	private static int getButtonID(Button b) {
@@ -118,7 +119,10 @@ public class VadeMecumGUI extends GuiScreen {
 		button_entryBack = (VadeMecumGUI.OverlayButton) addButton(new VadeMecumGUI.OverlayButton(this, getButtonID(Button.EntryBack), vadeX + 18, vadeY + 8, true));
 		button_credits = (VadeMecumGUI.OverlayButton) addButton(new VadeMecumGUI.OverlayButton(this, getButtonID(Button.Credits), vadeX + 358, vadeY + 8, false));
 		button_largeBack = (VadeMecumGUI.LargeArrowButton) addButton(new VadeMecumGUI.LargeArrowButton(getButtonID(Button.LargeBack), vadeX + 17, vadeY + vadeH - 2/* vadeY + 10 */));
-		if (VoidCraft.isDevBuild) button_spells = (VadeMecumGUI.FullButton) addButton(new VadeMecumGUI.FullButton(this, "Spells", getButtonID(Button.WordsOfPower), vadeX + 42, vadeY + vadeH - 3));
+		if (VoidCraft.isDevBuild) {
+			button_spells = (VadeMecumGUI.FullButton) addButton(new VadeMecumGUI.FullButton(this, "Spells", getButtonID(Button.WordsOfPower), vadeX + 42, vadeY + vadeH - 3));
+			button_infusion = (VadeMecumGUI.FullButton) addButton(new VadeMecumGUI.FullButton(this, "Infusion", getButtonID(Button.Infusion), vadeX + 82, vadeY + vadeH - 3));
+		}
 		updateButtons();
 	}
 
@@ -188,6 +192,7 @@ public class VadeMecumGUI extends GuiScreen {
 		if (button_credits != null) button_credits.visible = false;// entry == ClientProxy.vadeMecumEntryList.MAIN;
 		if (button_largeBack != null) button_largeBack.visible = (entry != (VoidCraft.isDevBuild ? ClientProxy.vadeMecumEntryList : ClientProxy.vadeMecumEntryList.Docs.MAIN)/* && entry != ClientProxy.vadeMecumEntryList.Docs.MAIN && entry != ClientProxy.vadeMecumEntryList.Progression.MAIN */);
 		if (button_spells != null) button_spells.visible = playerStats != null ? playerStats.hasCategory(IVadeMecumCapability.Category.TOME) : false;
+		if (button_infusion != null) button_spells.visible = playerStats != null ? playerStats.hasCategory(IVadeMecumCapability.Category.VoidicControl) : false;
 	}
 
 	/**
@@ -212,6 +217,9 @@ public class VadeMecumGUI extends GuiScreen {
 					break;
 				case WordsOfPower:
 					PacketHelper.createPacket(VoidCraft.channel, VoidCraft.networkChannelName, ServerPacketHandler.getPacketTypeID(ServerPacketHandler.PacketType.VADEMECUM_SPELLBOOK)).sendPacketToServer();
+					break;
+				case Infusion:
+					mc.displayGuiScreen(new VadeMecumInfusionGUI(playerStats));
 					break;
 				case Credits:
 					break;

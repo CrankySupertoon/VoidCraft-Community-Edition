@@ -1,4 +1,4 @@
-package Tamaized.Voidcraft.vadeMecum.contents.progression.ritualBlock;
+package Tamaized.Voidcraft.vadeMecum.contents.progression.pages;
 
 import Tamaized.Voidcraft.capabilities.vadeMecum.IVadeMecumCapability;
 import Tamaized.Voidcraft.vadeMecum.IVadeMecumPage;

@@ -2,7 +2,7 @@ package Tamaized.Voidcraft.GUI.server;
 
 import Tamaized.Voidcraft.GUI.slots.SlotVadeMecumSpell;
 import Tamaized.Voidcraft.capabilities.vadeMecum.IVadeMecumCapability;
-import Tamaized.Voidcraft.handlers.VadeMecumWordsOfPower;
+import Tamaized.Voidcraft.vadeMecum.progression.VadeMecumWordsOfPower;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
@@ -13,11 +13,13 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class VadeMecumSpellsContainer extends Container {
 
+	private int page;
 	private final InventoryPlayer inventory;
 	private final IVadeMecumCapability capability;
 	private int index = 0;
 
 	public VadeMecumSpellsContainer(InventoryPlayer inv, IVadeMecumCapability cap) {
+		page = cap.getPage();
 		inventory = inv;
 		capability = cap;
 		initSlots(0, 0);
@@ -30,15 +32,15 @@ public class VadeMecumSpellsContainer extends Container {
 		inventorySlots.clear();
 		inventoryItemStacks.clear();
 
-		index = 0;
-		for (IVadeMecumCapability.Category cat : capability.getAvailableActivePowers()) {
-			addSlotToContainer(new SlotVadeMecumSpell(capability, cat, VadeMecumWordsOfPower.getCategoryData(cat).getStack().getItem(), index, xLoc + (135 * ((int) Math.floor(index / 5) - 1)), yLoc + (25 * (index % 5) - 1)));
-			index++;
+		for (index = 15 * page; index < (15 * (page + 1)); index++) {
+			if (capability.getAvailableActivePowers().size() - 1 < index) break;
+			IVadeMecumCapability.Category cat = capability.getAvailableActivePowers().get(index);
+			addSlotToContainer(new SlotVadeMecumSpell(capability, cat, VadeMecumWordsOfPower.getCategoryData(cat).getStack().getItem(), index, xLoc + (135 * ((int) Math.floor((index - (15*page)) / 5) - 1)), yLoc + (25 * ((index - (15*page)) % 5) - 1)));
 		}
 
 		int xPos = 32;
 		int yPos = 8;
-		
+
 		for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < 9; j++) {
 				addSlotToContainer(new Slot(inventory, j + (i * 9) + 9, xPos + j * 18, yPos + i * 18));
@@ -49,7 +51,7 @@ public class VadeMecumSpellsContainer extends Container {
 			addSlotToContainer(new Slot(inventory, i, xPos + i * 18, 58 + yPos));
 		}
 
-		addSlotToContainer(new Slot(inventory, inventory.getSizeInventory() - 1, xPos-24, yPos) {
+		addSlotToContainer(new Slot(inventory, inventory.getSizeInventory() - 1, xPos - 24, yPos) {
 			@SideOnly(Side.CLIENT)
 			@Override
 			public String getSlotTexture() {
@@ -65,7 +67,7 @@ public class VadeMecumSpellsContainer extends Container {
 		if (slot != null && slot.getHasStack()) {
 			ItemStack itemstack1 = slot.getStack();
 			itemstack = itemstack1.copy();
-			final int maxSlots = index;
+			final int maxSlots = (index - (15*page));
 			if (hoverSlot < maxSlots) {
 				if (!mergeItemStack(itemstack1, maxSlots, maxSlots + 36, true)) {
 					return null;
@@ -73,7 +75,7 @@ public class VadeMecumSpellsContainer extends Container {
 				slot.onSlotChange(itemstack1, itemstack);
 			} else {
 				if (mergeItemStack(itemstack1, 0, maxSlots, false)) {
-					
+
 				} else if (hoverSlot >= maxSlots && hoverSlot < maxSlots + 27) {
 					if (!mergeItemStack(itemstack1, maxSlots + 27, maxSlots + 36, false)) {
 						return null;

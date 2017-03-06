@@ -1,4 +1,4 @@
-package Tamaized.Voidcraft.handlers;
+package Tamaized.Voidcraft.vadeMecum.progression;
 
 import java.util.ArrayList;
 

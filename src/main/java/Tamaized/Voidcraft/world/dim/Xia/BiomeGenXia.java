@@ -22,4 +22,9 @@ public class BiomeGenXia extends Biome {
 		return 0;
 	}
 
+	@Override
+	public boolean canRain() {
+		return false;
+	}
+
 }
