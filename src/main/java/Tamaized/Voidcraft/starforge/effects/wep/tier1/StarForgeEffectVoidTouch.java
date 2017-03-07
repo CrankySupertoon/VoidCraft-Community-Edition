@@ -1,5 +1,6 @@
 package Tamaized.Voidcraft.starforge.effects.wep.tier1;
 
+import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.capabilities.CapabilityList;
 import Tamaized.Voidcraft.capabilities.voidicInfusion.IVoidicInfusionCapability;
 import Tamaized.Voidcraft.starforge.effects.IStarForgeEffect;
@@ -7,6 +8,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -36,8 +38,7 @@ public class StarForgeEffectVoidTouch implements IStarForgeEffect {
 	@Override
 	public void onEntityHit(Entity entityUser, Entity entityHit) {
 		if (entityHit instanceof EntityLivingBase) {
-			IVoidicInfusionCapability cap = ((EntityLivingBase) entityHit).getCapability(CapabilityList.VOIDICINFUSION, null);
-			if (cap != null) cap.addInfusion(600);
+			((EntityLivingBase)entityHit).addPotionEffect(new PotionEffect(VoidCraft.potions.voidicInfusion, 20 * 3));
 		}
 	}
 

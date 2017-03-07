@@ -29,8 +29,7 @@ public final class SheatheHelper {
 			attacker.attackEntityFrom(new DamageSourceAcid(), 2.0f);
 		} else if (living.getActivePotionEffect(VoidCraft.potions.voidSheathe) != null) {
 			attacker.attackEntityFrom(new DamageSourceVoidicInfusion(), 2.0f);
-			IVoidicInfusionCapability cap = attacker.getCapability(CapabilityList.VOIDICINFUSION, null);
-			if (cap != null) cap.addInfusion(600);
+			attacker.addPotionEffect(new PotionEffect(VoidCraft.potions.voidicInfusion, 20 * 3));
 		}
 	}
 

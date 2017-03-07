@@ -416,8 +416,7 @@ public class VadeMecumWordsOfPower {
 						RayTraceResult ray = RayTraceHelper.tracePath(world, caster, 2, 1, exclude);
 						if (ray != null && ray.entityHit != null && ray.entityHit instanceof EntityLivingBase) {
 							((EntityLivingBase) ray.entityHit).attackEntityFrom(new DamageSourceVoidicInfusion(), 5);
-							IVoidicInfusionCapability inf = ((EntityLivingBase) ray.entityHit).getCapability(CapabilityList.VOIDICINFUSION, null);
-							if (inf != null) inf.addInfusion(600);
+							((EntityLivingBase) ray.entityHit).addPotionEffect(new PotionEffect(VoidCraft.potions.voidicInfusion, 20 * 3));
 							useCharge = true;
 						}
 					}
@@ -437,8 +436,7 @@ public class VadeMecumWordsOfPower {
 					}
 						break;
 					case Invoke: {
-						IVoidicInfusionCapability c = caster.getCapability(CapabilityList.VOIDICINFUSION, null);
-						if (c != null) c.addInfusion(1000);
+						caster.addPotionEffect(new PotionEffect(VoidCraft.potions.voidicInfusion, 20 * 5));
 						useCharge = true;
 					}
 						break;
@@ -622,8 +620,7 @@ public class VadeMecumWordsOfPower {
 					break;
 				case VoidicTouch: {
 					target.attackEntityFrom(new DamageSourceVoidicInfusion(), 5);
-					IVoidicInfusionCapability inf = target.getCapability(CapabilityList.VOIDICINFUSION, null);
-					if (inf != null) inf.addInfusion(600);
+					target.addPotionEffect(new PotionEffect(VoidCraft.potions.voidicInfusion, 20 * 3));
 				}
 					break;
 				case VoidicSheathe: {

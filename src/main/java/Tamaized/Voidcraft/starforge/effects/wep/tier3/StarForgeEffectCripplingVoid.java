@@ -1,5 +1,6 @@
 package Tamaized.Voidcraft.starforge.effects.wep.tier3;
 
+import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.capabilities.CapabilityList;
 import Tamaized.Voidcraft.capabilities.voidicInfusion.IVoidicInfusionCapability;
 import Tamaized.Voidcraft.starforge.effects.IStarForgeEffect;
@@ -7,6 +8,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -38,11 +40,7 @@ public class StarForgeEffectCripplingVoid implements IStarForgeEffect {
 		if (entityHit.world.rand.nextInt(100) < 20) {
 			if (entityHit instanceof EntityLivingBase) {
 				EntityLivingBase livingHit = (EntityLivingBase) entityHit;
-				IVoidicInfusionCapability cap = livingHit.getCapability(CapabilityList.VOIDICINFUSION, null);
-				if (cap != null) {
-					cap.setInfusion(cap.getMaxInfusion() - 100);
-					System.out.println(cap.getInfusion()+"/"+cap.getMaxInfusion());
-				}
+				livingHit.addPotionEffect(new PotionEffect(VoidCraft.potions.voidicInfusion, 20 * 15));
 			}
 		}
 	}

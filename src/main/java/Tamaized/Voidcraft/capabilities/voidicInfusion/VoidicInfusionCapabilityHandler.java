@@ -73,9 +73,16 @@ public class VoidicInfusionCapabilityHandler implements IVoidicInfusionCapabilit
 
 	private void handleInfusionGain(EntityLivingBase entity) {
 		IVadeMecumCapability vade = entity.getCapability(CapabilityList.VADEMECUM, null);
+		int gain = 1;
 		boolean flag = (vade == null || !vade.hasPassive(IVadeMecumCapability.Passive.Vigor));
+		boolean override = false;
 		ItemStack mainHand = entity.getHeldItemMainhand();
 		ItemStack offHand = entity.getHeldItemOffhand();
+		if (entity.getActivePotionEffect(VoidCraft.potions.voidicInfusion) != null) {
+			override = true;
+			flag = true;
+			gain = 20;
+		}
 		if ((mainHand != null && mainHand.getItem() == VoidCraft.items.voidicSuppressor)) {
 			IVoidicPowerCapability cap = entity.getHeldItemMainhand().getCapability(CapabilityList.VOIDICPOWER, null);
 			if (cap != null && cap.getCurrentPower() > 0) {
@@ -93,11 +100,11 @@ public class VoidicInfusionCapabilityHandler implements IVoidicInfusionCapabilit
 		} else if (entity.getActivePotionEffect(VoidCraft.potions.voidicInfusionImmunity) != null) {
 			flag = false;
 		}
-		if (entity.world.provider.getDimension() == VoidCraft.config.getDimensionIDvoid() && flag) {
+		if ((entity.world.provider.getDimension() == VoidCraft.config.getDimensionIDvoid() || override) && flag) {
 			if (entity.onGround && (entity.world.getBlockState(entity.getPosition().down()).getBlock() == VoidCraft.blocks.blockVoidbrick || entity.world.getBlockState(entity.getPosition().down()).getBlock() == VoidCraft.blocks.blockVoidBrickHalfSlab || entity.world.getBlockState(entity.getPosition().down()).getBlock() == VoidCraft.blocks.blockVoidstairs || entity.world.getBlockState(entity.getPosition().down(2)).getBlock() == VoidCraft.blocks.blockVoidfence || entity.world.getBlockState(entity.getPosition().down()).getBlock() == VoidCraft.blocks.blockVoidBrickDoubleSlab)) {
 
 			} else {
-				infusion++;
+				infusion += gain;
 			}
 		} else {
 			infusion -= (vade != null && vade.hasPassive(IVadeMecumCapability.Passive.Vigor) ? 10 : 5);

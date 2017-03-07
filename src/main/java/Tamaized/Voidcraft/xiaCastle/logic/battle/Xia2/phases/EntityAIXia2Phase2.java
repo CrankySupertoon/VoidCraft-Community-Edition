@@ -18,6 +18,7 @@ import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -139,8 +140,7 @@ public class EntityAIXia2Phase2 extends EntityVoidNPCAIBase<EntityBossXia2> {
 				resetAnimationTick = 20 * 2;
 				if (closestEntity instanceof EntityPlayer) {
 					EntityPlayer player = (EntityPlayer) closestEntity;
-					IVoidicInfusionCapability cap = player.getCapability(CapabilityList.VOIDICINFUSION, null);
-					if (cap != null) cap.setInfusion(cap.getMaxInfusion() - 1);
+					player.addPotionEffect(new PotionEffect(VoidCraft.potions.voidicInfusion, 20 * 10));
 				}
 				break;
 		}

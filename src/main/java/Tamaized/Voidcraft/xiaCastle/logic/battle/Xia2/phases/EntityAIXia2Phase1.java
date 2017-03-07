@@ -2,6 +2,7 @@ package Tamaized.Voidcraft.xiaCastle.logic.battle.Xia2.phases;
 
 import java.util.ArrayList;
 
+import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.capabilities.CapabilityList;
 import Tamaized.Voidcraft.capabilities.voidicInfusion.IVoidicInfusionCapability;
 import Tamaized.Voidcraft.entity.boss.herobrine.extra.EntityHerobrineFireball;
@@ -13,6 +14,7 @@ import Tamaized.Voidcraft.xiaCastle.logic.battle.EntityVoidNPCAIBase;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -105,8 +107,7 @@ public class EntityAIXia2Phase1 extends EntityVoidNPCAIBase<EntityBossXia2> {
 				resetAnimationTick = 20 * 2;
 				if (closestEntity instanceof EntityPlayer) {
 					EntityPlayer player = (EntityPlayer) closestEntity;
-					IVoidicInfusionCapability cap = player.getCapability(CapabilityList.VOIDICINFUSION, null);
-					if (cap != null) cap.setInfusion(cap.getMaxInfusion() - 1);
+					player.addPotionEffect(new PotionEffect(VoidCraft.potions.voidicInfusion, 20 * 5));
 				}
 				break;
 		}
