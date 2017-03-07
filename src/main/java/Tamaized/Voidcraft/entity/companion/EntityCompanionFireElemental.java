@@ -7,6 +7,7 @@ public class EntityCompanionFireElemental extends EntityCompanion {
 	public EntityCompanionFireElemental(World worldIn) {
 		super(worldIn);
 		setSize(0.40F, 1.15F);
+		isImmuneToFire = true;
 	}
 
 	@Override

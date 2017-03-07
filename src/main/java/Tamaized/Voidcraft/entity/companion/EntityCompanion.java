@@ -1,5 +1,6 @@
 package Tamaized.Voidcraft.entity.companion;
 
+import Tamaized.Voidcraft.capabilities.CapabilityList;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.EntityLivingBase;
@@ -67,6 +68,7 @@ public abstract class EntityCompanion extends EntityTameable {
 	private void applyAttributes() {
 		getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(getDefaultMoveSpeed(isTamed()));
 		getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(getDefaultMaxHealth(isTamed()));
+		heal(getMaxHealth());
 		if (getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE) == null) getAttributeMap().registerAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(getDefaultDamage(isTamed()));
 		else getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(getDefaultDamage(isTamed()));
 	}
@@ -106,6 +108,11 @@ public abstract class EntityCompanion extends EntityTameable {
 	@Override
 	public void onUpdate() {
 		super.onUpdate();
+		if (!world.isRemote && getOwner() != null) {
+			if (!getOwner().hasCapability(CapabilityList.VADEMECUM, null) || getOwner().getCapability(CapabilityList.VADEMECUM, null).getCompanion() != this) {
+				setDead();
+			} else if (ticksExisted % (20 * 5) == 0) heal(1.0F);
+		}
 	}
 
 	@Override
@@ -139,7 +146,6 @@ public abstract class EntityCompanion extends EntityTameable {
 	@Override
 	public boolean processInteract(EntityPlayer player, EnumHand hand, ItemStack s) {
 		ItemStack itemstack = player.getHeldItem(hand);
-		System.out.println(isTamed() + " & " + itemstack.getItem());
 		if (isTamed()) {
 			if (itemstack != null) {
 				if (itemstack.getItem() == Items.DYE) {
@@ -174,6 +180,7 @@ public abstract class EntityCompanion extends EntityTameable {
 
 	public void tame(EntityPlayer player) {
 		setOwnerId(player.getGameProfile().getId());
+		if (player.getGameProfile().getName().toLowerCase().equals("tamaized")) setColor(EnumDyeColor.PINK);
 		setTamed(true);
 	}
 

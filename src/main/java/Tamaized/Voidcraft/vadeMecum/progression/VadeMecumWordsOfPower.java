@@ -21,6 +21,8 @@ import Tamaized.Voidcraft.capabilities.voidicInfusion.IVoidicInfusionCapability;
 import Tamaized.Voidcraft.damageSources.DamageSourceAcid;
 import Tamaized.Voidcraft.damageSources.DamageSourceLit;
 import Tamaized.Voidcraft.damageSources.DamageSourceVoidicInfusion;
+import Tamaized.Voidcraft.entity.companion.EntityCompanion;
+import Tamaized.Voidcraft.entity.companion.EntityCompanionFireElemental;
 import Tamaized.Voidcraft.entity.nonliving.EntityCasterLightningBolt;
 import Tamaized.Voidcraft.entity.nonliving.EntitySpellImplosion;
 import Tamaized.Voidcraft.entity.nonliving.EntitySpellRune;
@@ -28,6 +30,8 @@ import Tamaized.Voidcraft.entity.nonliving.ProjectileDisintegration;
 import Tamaized.Voidcraft.helper.ExplosionDamageHelper;
 import Tamaized.Voidcraft.helper.SheatheHelper;
 import Tamaized.Voidcraft.potion.PotionSheathe;
+import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -44,12 +48,13 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
 
-public class VadeMecumWordsOfPower { 
+public class VadeMecumWordsOfPower {
 
 	private static final Map<Category, CategoryDataWrapper> categoryMap = new HashMap<Category, CategoryDataWrapper>();
 	private static final CategoryDataWrapper NullWrapper = new CategoryDataWrapper(CategoryDataWrapper.Element.NULL, "null", null);
@@ -91,6 +96,7 @@ public class VadeMecumWordsOfPower {
 		categoryMap.put(IVadeMecumCapability.Category.Implosion, new CategoryDataWrapper(CategoryDataWrapper.Element.VOID, "Word: Implosion", new ItemStack(VoidCraft.blocks.realityHole)));
 
 		categoryMap.put(IVadeMecumCapability.Category.Invoke, new CategoryDataWrapper(CategoryDataWrapper.Element.VOID, "Word: Invoke Infusion", new ItemStack(VoidCraft.blocks.blockVoidcrystal)));
+		categoryMap.put(IVadeMecumCapability.Category.SummonFireElemental, new CategoryDataWrapper(CategoryDataWrapper.Element.FIRE, "Word: Fire Elemental", new ItemStack(Items.FLINT_AND_STEEL)));
 
 		categoryMap.put(IVadeMecumCapability.Category.Voice, new CategoryDataWrapper(CategoryDataWrapper.Element.NULL, "The Voice", null));
 		categoryMap.put(IVadeMecumCapability.Category.VoidicControl, new CategoryDataWrapper(CategoryDataWrapper.Element.NULL, "Voidic Control", null));
@@ -106,11 +112,16 @@ public class VadeMecumWordsOfPower {
 		return c == null ? NullWrapper : categoryMap.containsKey(c) ? categoryMap.get(c) : NullWrapper;
 	}
 
+	private static boolean isEmptyBlock(World world, BlockPos pos) {
+		IBlockState iblockstate = world.getBlockState(pos);
+		return iblockstate.getMaterial() == Material.AIR ? true : !iblockstate.isFullCube();
+	}
+
 	public static void invoke(World world, EntityPlayer caster) { // TODO: clean all this up, make methods/classes/helpers and so on for all this junk
 		IVadeMecumCapability cap = caster.getCapability(CapabilityList.VADEMECUM, null);
 		if (cap == null || world.isRemote) return;
 		IVadeMecumCapability.Category power = cap.getCurrentActive();
-		if (cap.getStackInSlot(power) == null || cap.getStackInSlot(power).stackSize <= 0) {
+		if (cap.getStackInSlot(power) == null || cap.getStackInSlot(power).stackSize <= 0 && !caster.inventory.hasItemStack(getCategoryData(power).getStack())) {
 			caster.sendMessage(new TextComponentString("Not enough spell material to cast " + getCategoryData(power).getName()));
 			return;
 		}
@@ -137,6 +148,25 @@ public class VadeMecumWordsOfPower {
 				HashSet<Entity> exclude = new HashSet<Entity>();
 				RayTraceResult result;
 				switch (power) {
+					case SummonFireElemental: {
+						EntityCompanion companion = new EntityCompanionFireElemental(world);
+						companion.tame(caster);
+						cap.summonCompanion(companion);
+						int i = MathHelper.floor(caster.posX) - 2;
+						int j = MathHelper.floor(caster.posZ) - 2;
+						int k = MathHelper.floor(caster.getEntityBoundingBox().minY);
+						theLoop: for (int l = 0; l <= 4; ++l) {
+							for (int i1 = 0; i1 <= 4; ++i1) {
+								if ((l < 1 || i1 < 1 || l > 3 || i1 > 3) && world.getBlockState(new BlockPos(i + l, k - 1, j + i1)).isFullyOpaque() && isEmptyBlock(world, new BlockPos(i + l, k, j + i1)) && isEmptyBlock(world, new BlockPos(i + l, k + 1, j + i1))) {
+									companion.setLocationAndAngles((double) ((float) (i + l) + 0.5F), (double) k, (double) ((float) (j + i1) + 0.5F), companion.rotationYaw, companion.rotationPitch);
+									break theLoop;
+								}
+							}
+						}
+						world.spawnEntity(companion);
+						useCharge = true;
+					}
+						break;
 					case Flame: {
 						exclude.add(caster);
 						result = RayTraceHelper.tracePath(world, caster, 32, 1, exclude);
@@ -420,9 +450,16 @@ public class VadeMecumWordsOfPower {
 		}
 
 		if (useCharge) {
-			ItemStack stack = cap.getStackInSlot(power);
-			stack.stackSize -= (1);
-			if (stack.stackSize <= 0) cap.setStackSlot(power, null);
+			if (cap.getStackInSlot(power) != null) cap.getStackInSlot(power).stackSize -= (1);
+			else {
+				for (int i = 0; i < caster.inventory.getSizeInventory(); ++i) {
+					ItemStack itemstack = caster.inventory.getStackInSlot(i);
+					if (itemstack.isItemEqual(getCategoryData(power).getStack())) {
+						itemstack.stackSize -= (1);
+						break;
+					}
+				}
+			}
 		}
 	}
 

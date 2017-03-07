@@ -26,9 +26,9 @@ public class RenderLiving {
 			}
 			if (f1 < 1) {
 				// GlStateManager.enableAlpha();
-				//GlStateManager.enableBlend();
+				// GlStateManager.enableBlend();
 				GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-	            GL11.glEnable(GL11.GL_BLEND);
+				GL11.glEnable(GL11.GL_BLEND);
 			}
 			GlStateManager.color(f1, f1, f1, f1);
 		}

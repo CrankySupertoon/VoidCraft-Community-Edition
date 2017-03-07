@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import Tamaized.Voidcraft.VoidCraft;
+import Tamaized.Voidcraft.entity.companion.EntityCompanion;
 import Tamaized.Voidcraft.network.ItemStackNetworkHelper;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.ByteBufInputStream;
@@ -28,6 +29,7 @@ public class VadeMecumCapabilityHandler implements IVadeMecumCapability {
 	private final List<Passive> passiveList = new ArrayList<Passive>();
 	private String lastEntry = "null";
 	private int page = 0;
+	private EntityCompanion companion;
 
 	private Map<Category, ItemStack> spellComponents = new HashMap<Category, ItemStack>();
 
@@ -53,6 +55,23 @@ public class VadeMecumCapabilityHandler implements IVadeMecumCapability {
 	@Override
 	public void setLoaded() {
 		hasLoaded = true;
+	}
+
+	@Override
+	public void summonCompanion(EntityCompanion entity) {
+		killCompanion();
+		companion = entity;
+	}
+
+	@Override
+	public void killCompanion() {
+		if (companion != null) companion.setDead();
+		companion = null;
+	}
+
+	@Override
+	public EntityCompanion getCompanion() {
+		return companion;
 	}
 
 	@Override
@@ -82,6 +101,8 @@ public class VadeMecumCapabilityHandler implements IVadeMecumCapability {
 	@Override
 	public void clearCategories() {
 		categoryList.clear();
+		passiveList.clear();
+		currActivePower = null;
 		markDirty();
 	}
 
@@ -256,10 +277,8 @@ public class VadeMecumCapabilityHandler implements IVadeMecumCapability {
 
 	@Override
 	public void decodePacket(ByteBuf buf, ByteBufInputStream stream) throws IOException {
-		setCurrentActive(IVadeMecumCapability.getCategoryFromID(stream.readInt()));
 		setLastEntry(stream.readUTF());
 		setPage(stream.readInt());
-		// Do Arrays last
 		{
 			clearCategories();
 			int l = stream.readInt();
@@ -281,11 +300,11 @@ public class VadeMecumCapabilityHandler implements IVadeMecumCapability {
 				spellComponents.put(IVadeMecumCapability.getCategoryFromID(stream.readInt()), ItemStackNetworkHelper.decodeStack(buf, stream));
 			}
 		}
+		setCurrentActive(IVadeMecumCapability.getCategoryFromID(stream.readInt()));
 	}
 
 	@Override
 	public void encodePacket(DataOutputStream stream) throws IOException {
-		stream.writeInt(IVadeMecumCapability.getCategoryID(getCurrentActive()));
 		stream.writeUTF(getLastEntry());
 		stream.writeInt(getPage());
 		// Do Arrays last
@@ -302,6 +321,7 @@ public class VadeMecumCapabilityHandler implements IVadeMecumCapability {
 			stream.writeInt(IVadeMecumCapability.getCategoryID(entry.getKey()));
 			ItemStackNetworkHelper.encodeStack(entry.getValue(), stream);
 		}
+		stream.writeInt(IVadeMecumCapability.getCategoryID(getCurrentActive()));
 	}
 
 }

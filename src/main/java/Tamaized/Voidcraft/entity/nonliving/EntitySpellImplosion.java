@@ -18,6 +18,7 @@ public class EntitySpellImplosion extends Entity {
 	public EntitySpellImplosion(World world, Entity entity) {
 		this(world);
 		target = entity;
+		setPositionAndUpdate(target.posX, target.posY, target.posZ);
 		tick = rand.nextInt(80);
 	}
 
@@ -38,7 +39,6 @@ public class EntitySpellImplosion extends Entity {
 
 	@Override
 	public void onUpdate() {
-		super.onUpdate();
 		if(world.isRemote) return;
 		if (target == null || !target.isEntityAlive()) {
 			setDead();

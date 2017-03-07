@@ -5,8 +5,11 @@ import java.util.ArrayList;
 import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.capabilities.CapabilityList;
 import Tamaized.Voidcraft.capabilities.vadeMecum.IVadeMecumCapability;
+import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
@@ -147,13 +150,17 @@ public class VadeMecumRitualHandler {
 							if (cap.hasCategory(IVadeMecumCapability.Category.VoidicSheathe)) {
 								if (cap.hasCategory(IVadeMecumCapability.Category.ExplosionFire) && cap.hasCategory(IVadeMecumCapability.Category.ExplosionFrost) && cap.hasCategory(IVadeMecumCapability.Category.ExplosionLit) && cap.hasCategory(IVadeMecumCapability.Category.ExplosionAcid)) {
 									if (cap.hasCategory(IVadeMecumCapability.Category.Implosion)) {
+										if (cap.hasCategory(IVadeMecumCapability.Category.SummonFireElemental)) {
 
+										} else {
+											list.add(IVadeMecumCapability.Category.SummonFireElemental);
+										}
 									} else {
 										list.add(IVadeMecumCapability.Category.Implosion);
 									}
 								}
 							} else {
-								list.add(IVadeMecumCapability.Category.VoidicTouch);
+								list.add(IVadeMecumCapability.Category.VoidicSheathe);
 							}
 						}
 					} else {
@@ -172,7 +179,7 @@ public class VadeMecumRitualHandler {
 		if (ritualStacks == null || ritualStacks.length <= 0) return false;
 		int index = 0;
 		for (index = 0; index < ritualStacks.length; index++) {
-			if (ritualStacks[index].getItem() == Item.getItemFromBlock(VoidCraft.blocks.ritualBlock)) break;
+			if (ritualStacks[index] != null && ritualStacks[index].getItem() == Item.getItemFromBlock(VoidCraft.blocks.ritualBlock)) break;
 		}
 		pos = pos.add(index % 3 == 0 ? 1 : (index > 1 && (index - 2) % 3 == 0) ? -1 : 0, index > 8 ? index > 17 ? -2 : -1 : 0, (index % 9 == 0 || (index - 1) % 9 == 0 || (index - 2) % 9 == 0) ? 1 : ((index - 6) % 9 == 0 || (index - 7) % 9 == 0 || (index - 8) % 9 == 0) ? -1 : 0);
 		// System.out.print(pos);
@@ -193,7 +200,8 @@ public class VadeMecumRitualHandler {
 					i++;
 					if (stackList[i] == null) continue;
 					IBlockState state = world.getBlockState(pos.add(x, y, z));
-					if (Item.getItemFromBlock(state.getBlock()) != stackList[i].getItem()) {
+					Block block = stackList[i].getItem() == Items.WATER_BUCKET ? Blocks.WATER : stackList[i].getItem() == Items.LAVA_BUCKET ? Blocks.LAVA : Block.getBlockFromItem(stackList[i].getItem());
+					if (state.getBlock() != block) {
 						flag = false;
 						break loop;
 					}
@@ -210,7 +218,8 @@ public class VadeMecumRitualHandler {
 					i++;
 					if (stackList[i] == null) continue;
 					IBlockState state = world.getBlockState(pos.add(x, y, z));
-					if (Item.getItemFromBlock(state.getBlock()) != stackList[i].getItem()) {
+					Block block = stackList[i].getItem() == Items.WATER_BUCKET ? Blocks.WATER : stackList[i].getItem() == Items.LAVA_BUCKET ? Blocks.LAVA : Block.getBlockFromItem(stackList[i].getItem());
+					if (state.getBlock() != block) {
 						flag = false;
 						break loop;
 					}
@@ -227,7 +236,8 @@ public class VadeMecumRitualHandler {
 					i++;
 					if (stackList[i] == null) continue;
 					IBlockState state = world.getBlockState(pos.add(x, y, z));
-					if (Item.getItemFromBlock(state.getBlock()) != stackList[i].getItem()) {
+					Block block = stackList[i].getItem() == Items.WATER_BUCKET ? Blocks.WATER : stackList[i].getItem() == Items.LAVA_BUCKET ? Blocks.LAVA : Block.getBlockFromItem(stackList[i].getItem());
+					if (state.getBlock() != block) {
 						flag = false;
 						break loop;
 					}
@@ -244,7 +254,8 @@ public class VadeMecumRitualHandler {
 					i++;
 					if (stackList[i] == null) continue;
 					IBlockState state = world.getBlockState(pos.add(x, y, z));
-					if (Item.getItemFromBlock(state.getBlock()) != stackList[i].getItem()) {
+					Block block = stackList[i].getItem() == Items.WATER_BUCKET ? Blocks.WATER : stackList[i].getItem() == Items.LAVA_BUCKET ? Blocks.LAVA : Block.getBlockFromItem(stackList[i].getItem());
+					if (state.getBlock() != block) {
 						flag = false;
 						break loop;
 					}

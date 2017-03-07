@@ -71,7 +71,7 @@ public class RenderEtherealGuardian extends RenderLiving<EntityMobEtherealGuardi
 			// net.minecraftforge.common.MinecraftForge.EVENT_BUS.post(new net.minecraftforge.client.event.RenderLivingEvent.Post(entity, this, x, y, z));
 			Minecraft mc = Minecraft.getMinecraft();
 			World world = mc.world;
-			if (!mc.isGamePaused()) {
+			if (!mc.isGamePaused() && ticks != 1.0F) {
 				for (int i = 0; i < 10; i++) {
 					Double dX = (world.rand.nextDouble() * 1.0) - 0.5D;
 					Double dZ = (world.rand.nextDouble() * 1.0) - 0.5D;

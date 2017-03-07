@@ -6,6 +6,7 @@ import java.util.Map;
 import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.capabilities.vadeMecum.IVadeMecumCapability;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
 /**
@@ -159,6 +160,52 @@ public class RitualList {
 				null, null, null,
 
 				null, null, null });
+		map.put(IVadeMecumCapability.Category.ExplosionFire, new ItemStack[] {
+
+				new ItemStack(Blocks.MAGMA), new ItemStack(Blocks.MAGMA), new ItemStack(Blocks.MAGMA),
+
+				new ItemStack(Blocks.MAGMA), new ItemStack(VoidCraft.blocks.ritualBlock), new ItemStack(Blocks.MAGMA),
+
+				new ItemStack(Blocks.MAGMA), new ItemStack(Blocks.MAGMA), new ItemStack(Blocks.MAGMA),
+
+				//////////////////////////////////////////////////////////////////////////////////////////
+
+				new ItemStack(Blocks.MAGMA), new ItemStack(Blocks.MAGMA), new ItemStack(Blocks.MAGMA),
+
+				new ItemStack(Blocks.MAGMA), null, new ItemStack(Blocks.MAGMA),
+
+				new ItemStack(Blocks.MAGMA), new ItemStack(Blocks.MAGMA), new ItemStack(Blocks.MAGMA),
+
+				//////////////////////////////////////////////////////////////////////////////////////////
+
+				new ItemStack(Blocks.MAGMA), null, new ItemStack(Blocks.MAGMA),
+
+				null, null, null,
+
+				new ItemStack(Blocks.MAGMA), null, new ItemStack(Blocks.MAGMA) });
+		map.put(IVadeMecumCapability.Category.RingOfFire, new ItemStack[] {
+
+				new ItemStack(Blocks.MAGMA), new ItemStack(Blocks.MAGMA), new ItemStack(Blocks.MAGMA),
+
+				new ItemStack(Blocks.MAGMA), new ItemStack(VoidCraft.blocks.ritualBlock), new ItemStack(Blocks.MAGMA),
+
+				new ItemStack(Blocks.MAGMA), new ItemStack(Blocks.MAGMA), new ItemStack(Blocks.MAGMA),
+
+				//////////////////////////////////////////////////////////////////////////////////////////
+
+				new ItemStack(Blocks.MAGMA), null, new ItemStack(Blocks.MAGMA),
+
+				null, null, null,
+
+				new ItemStack(Blocks.MAGMA), null, new ItemStack(Blocks.MAGMA),
+
+				//////////////////////////////////////////////////////////////////////////////////////////
+
+				null, new ItemStack(Blocks.MAGMA), null,
+
+				new ItemStack(Blocks.MAGMA), null, new ItemStack(Blocks.MAGMA),
+
+				null, new ItemStack(Blocks.MAGMA), null });
 		map.put(IVadeMecumCapability.Category.Freeze, new ItemStack[] {
 
 				new ItemStack(Blocks.ICE), new ItemStack(Blocks.SNOW), new ItemStack(Blocks.ICE),
@@ -228,6 +275,75 @@ public class RitualList {
 				null, new ItemStack(Blocks.ICE), null,
 
 				null, null, null });
+		map.put(IVadeMecumCapability.Category.FrostTrap, new ItemStack[] {
+
+				new ItemStack(Blocks.ICE), new ItemStack(Blocks.ICE), new ItemStack(Blocks.ICE),
+
+				new ItemStack(Blocks.ICE), new ItemStack(VoidCraft.blocks.ritualBlock), new ItemStack(Blocks.ICE),
+
+				new ItemStack(Blocks.ICE), new ItemStack(Blocks.ICE), new ItemStack(Blocks.ICE),
+
+				//////////////////////////////////////////////////////////////////////////////////////////
+
+				null, null, null,
+
+				null, null, null,
+
+				null, null, null,
+
+				//////////////////////////////////////////////////////////////////////////////////////////
+
+				null, null, null,
+
+				null, null, null,
+
+				null, null, null });
+		map.put(IVadeMecumCapability.Category.ExplosionFrost, new ItemStack[] {
+
+				new ItemStack(Blocks.ICE), new ItemStack(Blocks.ICE), new ItemStack(Blocks.ICE),
+
+				new ItemStack(Blocks.ICE), new ItemStack(VoidCraft.blocks.ritualBlock), new ItemStack(Blocks.ICE),
+
+				new ItemStack(Blocks.ICE), new ItemStack(Blocks.ICE), new ItemStack(Blocks.ICE),
+
+				//////////////////////////////////////////////////////////////////////////////////////////
+
+				new ItemStack(Blocks.ICE), new ItemStack(Blocks.ICE), new ItemStack(Blocks.ICE),
+
+				new ItemStack(Blocks.ICE), null, new ItemStack(Blocks.ICE),
+
+				new ItemStack(Blocks.ICE), new ItemStack(Blocks.ICE), new ItemStack(Blocks.ICE),
+
+				//////////////////////////////////////////////////////////////////////////////////////////
+
+				new ItemStack(Blocks.ICE), null, new ItemStack(Blocks.ICE),
+
+				null, null, null,
+
+				new ItemStack(Blocks.ICE), null, new ItemStack(Blocks.ICE) });
+		map.put(IVadeMecumCapability.Category.RingOfFrost, new ItemStack[] {
+
+				new ItemStack(Blocks.ICE), new ItemStack(Blocks.ICE), new ItemStack(Blocks.ICE),
+
+				new ItemStack(Blocks.ICE), new ItemStack(VoidCraft.blocks.ritualBlock), new ItemStack(Blocks.ICE),
+
+				new ItemStack(Blocks.ICE), new ItemStack(Blocks.ICE), new ItemStack(Blocks.ICE),
+
+				//////////////////////////////////////////////////////////////////////////////////////////
+
+				new ItemStack(Blocks.ICE), null, new ItemStack(Blocks.ICE),
+
+				null, null, null,
+
+				new ItemStack(Blocks.ICE), null, new ItemStack(Blocks.ICE),
+
+				//////////////////////////////////////////////////////////////////////////////////////////
+
+				null, new ItemStack(Blocks.ICE), null,
+
+				new ItemStack(Blocks.ICE), null, new ItemStack(Blocks.ICE),
+
+				null, new ItemStack(Blocks.ICE), null });
 		map.put(IVadeMecumCapability.Category.Shock, new ItemStack[] {
 
 				new ItemStack(Blocks.END_BRICKS), new ItemStack(Blocks.END_STONE), new ItemStack(Blocks.END_BRICKS),
@@ -274,6 +390,98 @@ public class RitualList {
 				null, null, null,
 
 				new ItemStack(Blocks.END_BRICKS), null, new ItemStack(Blocks.END_BRICKS) });
+		map.put(IVadeMecumCapability.Category.LitStrike, new ItemStack[] {
+
+				null, new ItemStack(Blocks.END_BRICKS), null,
+
+				new ItemStack(Blocks.END_BRICKS), new ItemStack(VoidCraft.blocks.ritualBlock), new ItemStack(Blocks.END_BRICKS),
+
+				null, new ItemStack(Blocks.END_BRICKS), null,
+
+				//////////////////////////////////////////////////////////////////////////////////////////
+
+				new ItemStack(Blocks.END_BRICKS), null, new ItemStack(Blocks.END_BRICKS),
+
+				null, null, null,
+
+				new ItemStack(Blocks.END_BRICKS), null, new ItemStack(Blocks.END_BRICKS),
+
+				//////////////////////////////////////////////////////////////////////////////////////////
+
+				new ItemStack(Blocks.END_ROD), null, new ItemStack(Blocks.END_ROD),
+
+				null, null, null,
+
+				new ItemStack(Blocks.END_ROD), null, new ItemStack(Blocks.END_ROD) });
+		map.put(IVadeMecumCapability.Category.LitTrap, new ItemStack[] {
+
+				new ItemStack(Blocks.END_BRICKS), new ItemStack(Blocks.END_BRICKS), new ItemStack(Blocks.END_BRICKS),
+
+				new ItemStack(Blocks.END_BRICKS), new ItemStack(VoidCraft.blocks.ritualBlock), new ItemStack(Blocks.END_BRICKS),
+
+				new ItemStack(Blocks.END_BRICKS), new ItemStack(Blocks.END_BRICKS), new ItemStack(Blocks.END_BRICKS),
+
+				//////////////////////////////////////////////////////////////////////////////////////////
+
+				null, new ItemStack(Blocks.END_ROD), null,
+
+				new ItemStack(Blocks.END_ROD), null, new ItemStack(Blocks.END_ROD),
+
+				null, new ItemStack(Blocks.END_ROD), null,
+
+				//////////////////////////////////////////////////////////////////////////////////////////
+
+				null, null, null,
+
+				null, null, null,
+
+				null, null, null });
+		map.put(IVadeMecumCapability.Category.ExplosionLit, new ItemStack[] {
+
+				new ItemStack(Blocks.END_BRICKS), new ItemStack(Blocks.END_BRICKS), new ItemStack(Blocks.END_BRICKS),
+
+				new ItemStack(Blocks.END_BRICKS), new ItemStack(VoidCraft.blocks.ritualBlock), new ItemStack(Blocks.END_BRICKS),
+
+				new ItemStack(Blocks.END_BRICKS), new ItemStack(Blocks.END_BRICKS), new ItemStack(Blocks.END_BRICKS),
+
+				//////////////////////////////////////////////////////////////////////////////////////////
+
+				new ItemStack(Blocks.END_BRICKS), new ItemStack(Blocks.END_BRICKS), new ItemStack(Blocks.END_BRICKS),
+
+				new ItemStack(Blocks.END_BRICKS), null, new ItemStack(Blocks.END_BRICKS),
+
+				new ItemStack(Blocks.END_BRICKS), new ItemStack(Blocks.END_BRICKS), new ItemStack(Blocks.END_BRICKS),
+
+				//////////////////////////////////////////////////////////////////////////////////////////
+
+				new ItemStack(Blocks.END_BRICKS), null, new ItemStack(Blocks.END_BRICKS),
+
+				null, null, null,
+
+				new ItemStack(Blocks.END_BRICKS), null, new ItemStack(Blocks.END_BRICKS) });
+		map.put(IVadeMecumCapability.Category.RingOfLit, new ItemStack[] {
+
+				new ItemStack(Blocks.END_BRICKS), new ItemStack(Blocks.END_BRICKS), new ItemStack(Blocks.END_BRICKS),
+
+				new ItemStack(Blocks.END_BRICKS), new ItemStack(VoidCraft.blocks.ritualBlock), new ItemStack(Blocks.END_BRICKS),
+
+				new ItemStack(Blocks.END_BRICKS), new ItemStack(Blocks.END_BRICKS), new ItemStack(Blocks.END_BRICKS),
+
+				//////////////////////////////////////////////////////////////////////////////////////////
+
+				new ItemStack(Blocks.END_BRICKS), null, new ItemStack(Blocks.END_BRICKS),
+
+				null, null, null,
+
+				new ItemStack(Blocks.END_BRICKS), null, new ItemStack(Blocks.END_BRICKS),
+
+				//////////////////////////////////////////////////////////////////////////////////////////
+
+				null, new ItemStack(Blocks.END_BRICKS), null,
+
+				new ItemStack(Blocks.END_BRICKS), null, new ItemStack(Blocks.END_BRICKS),
+
+				null, new ItemStack(Blocks.END_BRICKS), null });
 		map.put(IVadeMecumCapability.Category.AcidSpray, new ItemStack[] {
 
 				new ItemStack(Blocks.STONE), new ItemStack(Blocks.DIRT), new ItemStack(Blocks.STONE),
@@ -320,6 +528,190 @@ public class RitualList {
 				null, null, null,
 
 				new ItemStack(Blocks.STONE), null, new ItemStack(Blocks.STONE) });
+		map.put(IVadeMecumCapability.Category.Disint, new ItemStack[] {
+
+				new ItemStack(Blocks.SLIME_BLOCK), null, new ItemStack(Blocks.SLIME_BLOCK),
+
+				null, new ItemStack(VoidCraft.blocks.ritualBlock), null,
+
+				new ItemStack(Blocks.SLIME_BLOCK), null, new ItemStack(Blocks.SLIME_BLOCK),
+
+				//////////////////////////////////////////////////////////////////////////////////////////
+
+				null, new ItemStack(Blocks.SLIME_BLOCK), null,
+
+				new ItemStack(Blocks.SLIME_BLOCK), null, new ItemStack(Blocks.SLIME_BLOCK),
+
+				null, new ItemStack(Blocks.SLIME_BLOCK), null,
+
+				//////////////////////////////////////////////////////////////////////////////////////////
+
+				null, null, null,
+
+				null, new ItemStack(Blocks.SLIME_BLOCK), null,
+
+				null, null, null });
+		map.put(IVadeMecumCapability.Category.AcidTrap, new ItemStack[] {
+
+				new ItemStack(Blocks.SLIME_BLOCK), new ItemStack(Blocks.SLIME_BLOCK), new ItemStack(Blocks.SLIME_BLOCK),
+
+				new ItemStack(Blocks.SLIME_BLOCK), new ItemStack(VoidCraft.blocks.ritualBlock), new ItemStack(Blocks.SLIME_BLOCK),
+
+				new ItemStack(Blocks.SLIME_BLOCK), new ItemStack(Blocks.SLIME_BLOCK), new ItemStack(Blocks.SLIME_BLOCK),
+
+				//////////////////////////////////////////////////////////////////////////////////////////
+
+				null, null, null,
+
+				null, null, null,
+
+				null, null, null,
+
+				//////////////////////////////////////////////////////////////////////////////////////////
+
+				null, null, null,
+
+				null, null, null,
+
+				null, null, null });
+		map.put(IVadeMecumCapability.Category.ExplosionAcid, new ItemStack[] {
+
+				new ItemStack(Blocks.SLIME_BLOCK), new ItemStack(Blocks.SLIME_BLOCK), new ItemStack(Blocks.SLIME_BLOCK),
+
+				new ItemStack(Blocks.SLIME_BLOCK), new ItemStack(VoidCraft.blocks.ritualBlock), new ItemStack(Blocks.SLIME_BLOCK),
+
+				new ItemStack(Blocks.SLIME_BLOCK), new ItemStack(Blocks.SLIME_BLOCK), new ItemStack(Blocks.SLIME_BLOCK),
+
+				//////////////////////////////////////////////////////////////////////////////////////////
+
+				new ItemStack(Blocks.SLIME_BLOCK), new ItemStack(Blocks.SLIME_BLOCK), new ItemStack(Blocks.SLIME_BLOCK),
+
+				new ItemStack(Blocks.SLIME_BLOCK), null, new ItemStack(Blocks.SLIME_BLOCK),
+
+				new ItemStack(Blocks.SLIME_BLOCK), new ItemStack(Blocks.SLIME_BLOCK), new ItemStack(Blocks.SLIME_BLOCK),
+
+				//////////////////////////////////////////////////////////////////////////////////////////
+
+				new ItemStack(Blocks.SLIME_BLOCK), null, new ItemStack(Blocks.SLIME_BLOCK),
+
+				null, null, null,
+
+				new ItemStack(Blocks.SLIME_BLOCK), null, new ItemStack(Blocks.SLIME_BLOCK) });
+		map.put(IVadeMecumCapability.Category.RingOfAcid, new ItemStack[] {
+
+				new ItemStack(Blocks.SLIME_BLOCK), new ItemStack(Blocks.SLIME_BLOCK), new ItemStack(Blocks.SLIME_BLOCK),
+
+				new ItemStack(Blocks.SLIME_BLOCK), new ItemStack(VoidCraft.blocks.ritualBlock), new ItemStack(Blocks.SLIME_BLOCK),
+
+				new ItemStack(Blocks.SLIME_BLOCK), new ItemStack(Blocks.SLIME_BLOCK), new ItemStack(Blocks.SLIME_BLOCK),
+
+				//////////////////////////////////////////////////////////////////////////////////////////
+
+				new ItemStack(Blocks.SLIME_BLOCK), null, new ItemStack(Blocks.SLIME_BLOCK),
+
+				null, null, null,
+
+				new ItemStack(Blocks.SLIME_BLOCK), null, new ItemStack(Blocks.SLIME_BLOCK),
+
+				//////////////////////////////////////////////////////////////////////////////////////////
+
+				null, new ItemStack(Blocks.SLIME_BLOCK), null,
+
+				new ItemStack(Blocks.SLIME_BLOCK), null, new ItemStack(Blocks.SLIME_BLOCK),
+
+				null, new ItemStack(Blocks.SLIME_BLOCK), null });
+		map.put(IVadeMecumCapability.Category.VoidicTouch, new ItemStack[] {
+
+				null, new ItemStack(VoidCraft.blocks.blockVoidcrystal), null,
+
+				new ItemStack(VoidCraft.blocks.blockVoidcrystal), new ItemStack(VoidCraft.blocks.ritualBlock), new ItemStack(VoidCraft.blocks.blockVoidcrystal),
+
+				null, new ItemStack(VoidCraft.blocks.blockVoidcrystal), null,
+
+				//////////////////////////////////////////////////////////////////////////////////////////
+
+				null, null, null,
+
+				null, null, null,
+
+				null, null, null,
+
+				//////////////////////////////////////////////////////////////////////////////////////////
+
+				null, null, null,
+
+				null, null, null,
+
+				null, null, null });
+		map.put(IVadeMecumCapability.Category.VoidicSheathe, new ItemStack[] {
+
+				null, null, null,
+
+				null, new ItemStack(VoidCraft.blocks.blockVoidcrystal), null,
+
+				null, null, null,
+
+				//////////////////////////////////////////////////////////////////////////////////////////
+
+				null, new ItemStack(VoidCraft.blocks.blockVoidcrystal), null,
+
+				new ItemStack(VoidCraft.blocks.blockVoidcrystal), new ItemStack(VoidCraft.blocks.ritualBlock), new ItemStack(VoidCraft.blocks.blockVoidcrystal),
+
+				null, new ItemStack(VoidCraft.blocks.blockVoidcrystal), null,
+
+				//////////////////////////////////////////////////////////////////////////////////////////
+
+				new ItemStack(VoidCraft.blocks.blockVoidcrystal), null, new ItemStack(VoidCraft.blocks.blockVoidcrystal),
+
+				null, null, null,
+
+				new ItemStack(VoidCraft.blocks.blockVoidcrystal), null, new ItemStack(VoidCraft.blocks.blockVoidcrystal) });
+		map.put(IVadeMecumCapability.Category.Implosion, new ItemStack[] {
+
+				null, new ItemStack(VoidCraft.blocks.realityHole), null,
+
+				new ItemStack(VoidCraft.blocks.realityHole), null, new ItemStack(VoidCraft.blocks.realityHole),
+
+				null, new ItemStack(VoidCraft.blocks.realityHole), null,
+
+				//////////////////////////////////////////////////////////////////////////////////////////
+
+				new ItemStack(VoidCraft.blocks.realityHole), null, new ItemStack(VoidCraft.blocks.realityHole),
+
+				null, new ItemStack(VoidCraft.blocks.ritualBlock), null,
+
+				new ItemStack(VoidCraft.blocks.realityHole), null, new ItemStack(VoidCraft.blocks.realityHole),
+
+				//////////////////////////////////////////////////////////////////////////////////////////
+
+				null, new ItemStack(VoidCraft.blocks.realityHole), null,
+
+				new ItemStack(VoidCraft.blocks.realityHole), null, new ItemStack(VoidCraft.blocks.realityHole),
+
+				null, new ItemStack(VoidCraft.blocks.realityHole), null });
+		map.put(IVadeMecumCapability.Category.SummonFireElemental, new ItemStack[] {
+
+				null, null, null,
+
+				null, new ItemStack(VoidCraft.blocks.ritualBlock), null,
+
+				null, null, null,
+
+				//////////////////////////////////////////////////////////////////////////////////////////
+
+				null, new ItemStack(VoidCraft.blocks.realityHole), null,
+
+				new ItemStack(VoidCraft.blocks.realityHole), new ItemStack(Items.LAVA_BUCKET), new ItemStack(VoidCraft.blocks.realityHole),
+
+				null, new ItemStack(VoidCraft.blocks.realityHole), null,
+
+				//////////////////////////////////////////////////////////////////////////////////////////
+
+				null, null, null,
+
+				null, new ItemStack(VoidCraft.blocks.blockVoidcrystal), null,
+
+				null, null, null });
 	}
 
 }

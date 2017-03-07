@@ -24,6 +24,10 @@ import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.VertexBuffer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.network.internal.FMLNetworkHandler;
@@ -191,8 +195,8 @@ public class VadeMecumGUI extends GuiScreen {
 		if (button_entryBack != null) button_entryBack.visible = (entry != (VoidCraft.isDevBuild ? ClientProxy.vadeMecumEntryList : ClientProxy.vadeMecumEntryList.Docs.MAIN));
 		if (button_credits != null) button_credits.visible = false;// entry == ClientProxy.vadeMecumEntryList.MAIN;
 		if (button_largeBack != null) button_largeBack.visible = (entry != (VoidCraft.isDevBuild ? ClientProxy.vadeMecumEntryList : ClientProxy.vadeMecumEntryList.Docs.MAIN)/* && entry != ClientProxy.vadeMecumEntryList.Docs.MAIN && entry != ClientProxy.vadeMecumEntryList.Progression.MAIN */);
-		if (button_spells != null) button_spells.visible = playerStats != null ? playerStats.hasCategory(IVadeMecumCapability.Category.TOME) : false;
-		if (button_infusion != null) button_spells.visible = playerStats != null ? playerStats.hasCategory(IVadeMecumCapability.Category.VoidicControl) : false;
+		if (button_spells != null) button_spells.visible = (playerStats != null && playerStats.hasCategory(IVadeMecumCapability.Category.TOME));
+		if (button_infusion != null) button_infusion.visible = (playerStats != null && playerStats.hasCategory(IVadeMecumCapability.Category.VoidicControl));
 	}
 
 	/**
@@ -401,7 +405,7 @@ public class VadeMecumGUI extends GuiScreen {
 			RenderHelper.enableGUIStandardItemLighting();
 			GlStateManager.enableDepth();
 			itemRender.renderItemIntoGUI(stack, x, y);
-			// drawCenteredString(fontRendererObj, ""+stack.stackSize, x, y, 0xFFFFFF);
+			// drawCenteredString(fontRendererObj, ""+stack, x, y, 0xFFFFFF);
 			GlStateManager.disableDepth();
 			if (stack.stackSize > 1) drawString(fontRendererObj, "" + stack.stackSize, x + 11, y + 9, 0xFFFFFF);
 			GlStateManager.enableDepth();

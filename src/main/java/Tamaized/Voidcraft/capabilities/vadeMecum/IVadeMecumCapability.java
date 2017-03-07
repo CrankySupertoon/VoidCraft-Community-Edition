@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import Tamaized.Voidcraft.capabilities.vadeMecum.IVadeMecumCapability.Passive;
+import Tamaized.Voidcraft.entity.companion.EntityCompanion;
 import Tamaized.Voidcraft.vadeMecum.progression.VadeMecumWordsOfPower;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.ByteBufInputStream;
@@ -28,7 +28,7 @@ public interface IVadeMecumCapability {
 
 		VoidicTouch, VoidicSheathe, Implosion,
 
-		Invoke,
+		Invoke, SummonFireElemental,
 
 		// Tasks
 		Voice, VoidicControl, ImprovedCasting, Empowerment, Tolerance, TotalControl, Dreams
@@ -124,6 +124,12 @@ public interface IVadeMecumCapability {
 	public boolean isDirty();
 
 	public void resetDirty();
+	
+	public void summonCompanion(EntityCompanion entity);
+	
+	public void killCompanion();
+	
+	public EntityCompanion getCompanion();
 
 	public ArrayList<Category> getObtainedCategories();
 

@@ -4,6 +4,7 @@ import Tamaized.TamModized.helper.PacketHelper;
 import Tamaized.TamModized.helper.PacketHelper.PacketWrapper;
 import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.GUI.server.VadeMecumSpellsContainer;
+import Tamaized.Voidcraft.capabilities.CapabilityList;
 import Tamaized.Voidcraft.capabilities.vadeMecum.IVadeMecumCapability;
 import Tamaized.Voidcraft.capabilities.vadeMecum.IVadeMecumCapability.Category;
 import Tamaized.Voidcraft.network.ServerPacketHandler;
@@ -165,7 +166,7 @@ public class VadeMecumSpellsGUI extends GuiContainer {
 	public class SpellButton extends GuiButton {
 
 		private final IVadeMecumCapability.Category spell;
-		private final IVadeMecumCapability data;
+		private IVadeMecumCapability data;
 
 		public SpellButton(IVadeMecumCapability cap, int buttonId, int x, int y, IVadeMecumCapability.Category theSpell) {
 			super(buttonId, x, y, 110, 18, "");

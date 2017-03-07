@@ -51,6 +51,8 @@ public class RenderFireElementalCompanion extends RenderLiving<EntityCompanionFi
 			// GlStateManager.rotate(-90, 1, 0, 0);
 
 			super.doRender(entity, x, y, z, yaw, ticks);
+			GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+			GL11.glDisable(GL11.GL_BLEND);
 
 			GlStateManager.matrixMode(5890);
 			GlStateManager.loadIdentity();
@@ -61,7 +63,7 @@ public class RenderFireElementalCompanion extends RenderLiving<EntityCompanionFi
 			GlStateManager.disableBlend();
 			Minecraft mc = Minecraft.getMinecraft();
 			World world = mc.world;
-			if (!mc.isGamePaused()) {
+			if (!mc.isGamePaused() && ticks != 1.0F) {
 				if (world.rand.nextInt(5) == 0) {
 					Double dX = (world.rand.nextDouble() * 0.2) - 0.1D;
 					Double dZ = (world.rand.nextDouble() * 0.2) - 0.1D;
@@ -88,11 +90,9 @@ public class RenderFireElementalCompanion extends RenderLiving<EntityCompanionFi
 	protected void preRenderCallback(EntityCompanionFireElemental entitylivingbaseIn, float partialTickTime) {
 		super.preRenderCallback(entitylivingbaseIn, partialTickTime);
 		EnumDyeColor c = entitylivingbaseIn.getColor();
-		DebugEvent.debugMode = true;
-		DebugEvent.textL = c.getName() + " : " + c.getMapColor().colorValue;
 		GlStateManager.color((c.getMapColor().colorValue >> 16 & 0xFF) / 255F, (c.getMapColor().colorValue >> 8 & 0xFF) / 255F, (c.getMapColor().colorValue & 0xFF) / 255F, 1.0F);
-		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_DST_ALPHA);
 		GL11.glEnable(GL11.GL_BLEND);
+		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_DST_ALPHA);
 	}
 
 	@Override

@@ -18,9 +18,9 @@ public class RenderSpellImplosion<T extends EntitySpellImplosion> extends Render
 	}
 
 	@Override
-	public void doRender(T entity, double x, double y, double z, float entityYaw, float partialTicks) {
+	public void doRender(T entity, double x, double y, double z, float entityYaw, float ticks) {
 		World world = entity.world;
-		if(world == null || Minecraft.getMinecraft().isGamePaused()) return;
+		if(world == null || Minecraft.getMinecraft().isGamePaused() && ticks != 1.0F) return;
 		Random rand = world.rand;
 		for (int index = 0; index < 10; index++) {
 			Vec3d vec = entity.getLook(1.0F).rotatePitch(rand.nextInt(360)).rotateYaw(rand.nextInt(360));
