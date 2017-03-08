@@ -110,7 +110,6 @@ public class VadeMecum extends TamItem {
 
 	@SideOnly(Side.CLIENT)
 	private void openBook(EntityPlayer player, World world, BlockPos pos) {
-		// player.openGui(voidCraft.instance, GuiHandler.getTypeID(GuiHandler.Type.VadeMecum), world, pos.getX(), pos.getY(), pos.getZ());
 		net.minecraft.client.Minecraft.getMinecraft().displayGuiScreen(new Tamaized.Voidcraft.GUI.client.VadeMecumGUI(player));
 	}
 
@@ -121,14 +120,9 @@ public class VadeMecum extends TamItem {
 			IVadeMecumCapability playerCap = living.getCapability(CapabilityList.VADEMECUM, null);
 			IVadeMecumItemCapability itemCap = stack.getCapability(CapabilityList.VADEMECUMITEM, null);
 			if (itemCap != null && itemCap.getBookState()) {
-				/*
-				 * if (flag) { if (voidCraft.config.getRenderFirstPersonParticles()) { double pitch180 = (180 - (living.rotationPitch + 90)); double pitch90 = ((living.rotationPitch)); double pitch1802 = ((living.rotationPitch + 90)); double pitch = (1 + Math.cos(Math.toRadians(living.rotationPitch + 90))) / 2; double yaw = Math.toRadians(living.rotationYaw - 90); double range = ((pitch1802 < 90 ? pitch1802 : 180 - pitch1802) / 90) * 2.0D; double xOffset = range * -Math.cos(yaw); double yOffset = pitch * 2.85D; double zOffset = range * -Math.sin(yaw); double yaw2 = Math.toRadians(living.rotationYaw); double range2 = 0.25D; double xOffset2 = range2 * -Math.cos(yaw2); double zOffset2 = range2 * -Math.sin(yaw2); world.spawnParticle(EnumParticleTypes.PORTAL, living.posX + xOffset, living.posY + yOffset, living.posZ + zOffset, -xOffset + xOffset2, 1.15D - yOffset, -zOffset + zOffset2); } } else {
-				 */
 				if (VoidCraft.config.getRenderThirdPersonParticles()) {
 					particles(world, living);
-					// world.spawnParticle(EnumParticleTypes.PORTAL, living.posX + xOffset, living.posY + yOffset, living.posZ + zOffset, 0, 0, 0);
 				}
-				// }
 			}
 		}
 	}

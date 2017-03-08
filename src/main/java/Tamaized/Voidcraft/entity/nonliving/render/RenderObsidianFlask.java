@@ -20,21 +20,20 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
-@SideOnly(Side.CLIENT)
-public class RenderObsidianFlask<T extends Entity> extends Render<T> {
+import Tamaized.Voidcraft.VoidCraft;
+import Tamaized.Voidcraft.entity.nonliving.EntityObsidianFlask;
 
-	protected final Item item;
+@SideOnly(Side.CLIENT)
+public class RenderObsidianFlask<T extends EntityObsidianFlask> extends Render<T> {
+
 	private final RenderItem itemRenderer;
 
-	public RenderObsidianFlask(RenderManager renderManager, Item itemIn, RenderItem itemRendererIn) {
+	public RenderObsidianFlask(RenderManager renderManager, RenderItem itemRendererIn) {
 		super(renderManager);
-		item = itemIn;
 		itemRenderer = itemRendererIn;
 	}
 
-	/**
-	 * Renders the desired {@code T} type Entity.
-	 */
+	@Override
 	public void doRender(T entity, double x, double y, double z, float entityYaw, float partialTicks) {
 		GlStateManager.pushMatrix();
 		GlStateManager.translate((float) x, (float) y, (float) z);
@@ -61,14 +60,34 @@ public class RenderObsidianFlask<T extends Entity> extends Render<T> {
 		super.doRender(entity, x, y, z, entityYaw, partialTicks);
 	}
 
-	public ItemStack getStackToRender(T entityIn) {
+	public ItemStack getStackToRender(T e) {
+		Item item = null;
+		switch (e.getType()) {
+			default:
+			case Normal:
+				item = VoidCraft.items.obsidianFlask;
+				break;
+			case Fire:
+				item = VoidCraft.items.obsidianFlaskFire;
+				break;
+			case Freeze:
+				item = VoidCraft.items.obsidianFlaskFreeze;
+				break;
+			case Shock:
+				item = VoidCraft.items.obsidianFlaskShock;
+				break;
+			case Acid:
+				item = VoidCraft.items.obsidianFlaskAcid;
+				break;
+			case Void:
+				item = VoidCraft.items.obsidianFlaskVoid;
+				break;
+		}
 		return new ItemStack(item);
 	}
 
-	/**
-	 * Returns the location of an entity's texture. Doesn't seem to be called unless you call Render.bindEntityTexture.
-	 */
-	protected ResourceLocation getEntityTexture(Entity entity) {
+	@Override
+	protected ResourceLocation getEntityTexture(T entity) {
 		return TextureMap.LOCATION_BLOCKS_TEXTURE;
 	}
 }

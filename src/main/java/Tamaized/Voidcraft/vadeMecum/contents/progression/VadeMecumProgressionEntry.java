@@ -16,7 +16,7 @@ import net.minecraft.util.text.TextFormatting;
 public class VadeMecumProgressionEntry extends VadeMecumEntry {
 
 	public static enum Entry {
-		RitualBlocks, RitualList, Tome, Voice, VoidicControl, ImprovedCasting, Empowerment, Tolerance, TotalControl, Dreams
+		RitualBlocks, RitualList, Tome, Potions, Voice, VoidicControl, ImprovedCasting, Empowerment, Tolerance, TotalControl, Dreams
 	}
 
 	public static int getEntryID(Entry e) {
@@ -44,6 +44,17 @@ public class VadeMecumProgressionEntry extends VadeMecumEntry {
 			if (gui.getPlayerStats().hasCategory(IVadeMecumCapability.Category.TOME)) {
 				addButton(gui, getEntryID(Entry.Tome), "Words of Power", activeVade);
 			}
+		}
+		if (gui.getPlayerStats().hasCategory(IVadeMecumCapability.Category.Flame) ||
+
+				gui.getPlayerStats().hasCategory(IVadeMecumCapability.Category.Freeze) ||
+
+				gui.getPlayerStats().hasCategory(IVadeMecumCapability.Category.Shock) ||
+
+				gui.getPlayerStats().hasCategory(IVadeMecumCapability.Category.AcidSpray) ||
+
+				gui.getPlayerStats().hasCategory(IVadeMecumCapability.Category.Implosion)) {
+			addButton(gui, getEntryID(Entry.Potions), "Throwable Potions", new ItemStack(VoidCraft.items.obsidianFlaskFire));
 		}
 		if (gui.getPlayerStats().hasCategory(IVadeMecumCapability.Category.Voice)) {
 			if (!gui.getPlayerStats().hasCategory(IVadeMecumCapability.Category.VoidicControl)) {
@@ -94,6 +105,9 @@ public class VadeMecumProgressionEntry extends VadeMecumEntry {
 				break;
 			case Tome:
 				gui.changeEntry(ClientProxy.vadeMecumEntryList.Progression.TOME);
+				break;
+			case Potions:
+				gui.changeEntry(ClientProxy.vadeMecumEntryList.Progression.POTIONS);
 				break;
 			case Voice:
 				gui.changeEntry(ClientProxy.vadeMecumEntryList.Progression.VOICE);

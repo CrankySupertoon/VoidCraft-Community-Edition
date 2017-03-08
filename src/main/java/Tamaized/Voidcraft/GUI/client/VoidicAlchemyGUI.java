@@ -36,7 +36,7 @@ public class VoidicAlchemyGUI extends GuiContainer {
 		{
 			float scale = 11;
 			int k = (int) (((float) te.cookingTick / (float) te.finishTick) * scale);
-			drawTexturedModalRect(guiLeft + 182, guiTop + 88 - k, 24, 432-k, 4, k);
+			drawTexturedModalRect(guiLeft + 182, guiTop + 88 - k, 24, 432 - k, 4, k);
 		}
 
 		super.updateScreen();
@@ -52,6 +52,10 @@ public class VoidicAlchemyGUI extends GuiContainer {
 		this.fontRendererObj.drawString(text, (this.xSize / 2 - this.fontRendererObj.getStringWidth(text) / 1) - 60, this.ySize / 2 - 55, 0xFF0000);
 		text = "" + te.getMaxPower();
 		this.fontRendererObj.drawString(text, (this.xSize / 2 - this.fontRendererObj.getStringWidth(text) / 1) - 60, this.ySize / 2 - 45, 0xFF0000);
+		text = "Owner:";
+		this.fontRendererObj.drawString(text, (xSize / 2) + 60, this.ySize / 2 - 65, 0xFF0000);
+		text = te.getOwnerName().isEmpty() ? "None" : te.getOwnerName();
+		this.fontRendererObj.drawString(text, (xSize / 2) + 60, this.ySize / 2 - 55, 0xFF0000);
 	}
 
 	@Override

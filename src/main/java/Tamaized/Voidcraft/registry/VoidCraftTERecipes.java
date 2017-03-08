@@ -62,11 +62,142 @@ public class VoidCraftTERecipes implements ITamRegistry {
 		infuser.registerRecipe(infuser.new InfuserRecipe(new ItemStack[] { new ItemStack(VoidCraft.tools.archSword) }, new ItemStack(VoidCraft.tools.demonSword), 1000));
 		infuser.registerRecipe(infuser.new InfuserRecipe(new ItemStack[] { new ItemStack(Blocks.BEACON) }, new ItemStack(VoidCraft.blocks.Heimdall), 1000));
 
-		ItemStack[] voidicImmunityInputStack = new ItemStack[] { new ItemStack(VoidCraft.items.etherealFruit), new ItemStack(VoidCraft.items.etherealFruit_redstone), new ItemStack(VoidCraft.items.etherealFruit_lapis), new ItemStack(VoidCraft.items.etherealFruit_gold), new ItemStack(VoidCraft.items.etherealFruit_emerald), new ItemStack(VoidCraft.items.etherealFruit_diamond) };
-		ItemStack result = PotionUtils.addPotionToItemStack(new ItemStack(Items.POTIONITEM), VoidCraft.potions.type_voidImmunity);
-		alchemy.registerRecipe(alchemy.new AlchemyRecipe(null, voidicImmunityInputStack, result, 350));
-		ItemStack[] testInputStack = new ItemStack[] { new ItemStack(VoidCraft.items.diamondDust), new ItemStack(VoidCraft.items.ironDust), new ItemStack(VoidCraft.items.goldDust), new ItemStack(VoidCraft.items.emeraldDust), new ItemStack(Items.REDSTONE), new ItemStack(VoidCraft.items.lapisDust) };
-		if (VoidCraft.instance.isDevBuild) alchemy.registerRecipe(alchemy.new AlchemyRecipe(IVadeMecumCapability.Category.Flame, testInputStack, new ItemStack(VoidCraft.items.debugger), 350));
+		{
+			ItemStack[] voidicImmunityInputStack = new ItemStack[] { new ItemStack(VoidCraft.items.etherealFruit), new ItemStack(VoidCraft.items.etherealFruit_redstone), new ItemStack(VoidCraft.items.etherealFruit_lapis), new ItemStack(VoidCraft.items.etherealFruit_gold), new ItemStack(VoidCraft.items.etherealFruit_emerald), new ItemStack(VoidCraft.items.etherealFruit_diamond) };
+			ItemStack result = PotionUtils.addPotionToItemStack(new ItemStack(Items.POTIONITEM), VoidCraft.potions.type_voidImmunity);
+			alchemy.registerRecipe(alchemy.new AlchemyRecipe(null, voidicImmunityInputStack, result, 350));
+			if (VoidCraft.isDevBuild) {
+				alchemy.registerRecipe(alchemy.new AlchemyRecipe(
+
+						IVadeMecumCapability.Category.Flame,
+
+						new ItemStack[] {
+
+								new ItemStack(Items.NETHER_WART),
+
+								new ItemStack(Items.BLAZE_POWDER),
+
+								new ItemStack(Items.MAGMA_CREAM),
+
+								new ItemStack(Items.FIRE_CHARGE),
+
+								new ItemStack(VoidCraft.items.etherealFruit),
+
+								new ItemStack(VoidCraft.items.emptyObsidianFlask)
+
+						},
+
+						new ItemStack(VoidCraft.items.obsidianFlaskFire, 1),
+
+						350)
+
+				);
+
+				alchemy.registerRecipe(alchemy.new AlchemyRecipe(
+
+						IVadeMecumCapability.Category.Freeze,
+
+						new ItemStack[] {
+
+								new ItemStack(Blocks.ICE),
+
+								new ItemStack(Blocks.SNOW),
+
+								new ItemStack(VoidCraft.items.ectoplasm),
+
+								new ItemStack(VoidCraft.items.voidcrystal),
+
+								new ItemStack(VoidCraft.items.etherealFruit),
+
+								new ItemStack(VoidCraft.items.emptyObsidianFlask)
+
+						},
+
+						new ItemStack(VoidCraft.items.obsidianFlaskFreeze, 1),
+
+						350)
+
+				);
+
+				alchemy.registerRecipe(alchemy.new AlchemyRecipe(
+
+						IVadeMecumCapability.Category.Shock,
+
+						new ItemStack[] {
+
+								new ItemStack(Blocks.GLOWSTONE),
+
+								new ItemStack(Blocks.END_STONE),
+
+								new ItemStack(Blocks.END_ROD),
+
+								new ItemStack(Items.FEATHER),
+
+								new ItemStack(VoidCraft.items.etherealFruit),
+
+								new ItemStack(VoidCraft.items.emptyObsidianFlask)
+
+						},
+
+						new ItemStack(VoidCraft.items.obsidianFlaskShock, 1),
+
+						350)
+
+				);
+
+				alchemy.registerRecipe(alchemy.new AlchemyRecipe(
+
+						IVadeMecumCapability.Category.AcidSpray,
+
+						new ItemStack[] {
+
+								new ItemStack(Items.FISH, 1, 3),
+
+								new ItemStack(Blocks.SLIME_BLOCK),
+
+								new ItemStack(Items.FERMENTED_SPIDER_EYE),
+
+								new ItemStack(Items.POISONOUS_POTATO),
+
+								new ItemStack(VoidCraft.items.etherealFruit),
+
+								new ItemStack(VoidCraft.items.emptyObsidianFlask)
+
+						},
+
+						new ItemStack(VoidCraft.items.obsidianFlaskAcid, 1),
+
+						350)
+
+				);
+
+				alchemy.registerRecipe(alchemy.new AlchemyRecipe(
+
+						IVadeMecumCapability.Category.Flame,
+
+						new ItemStack[] {
+
+								new ItemStack(VoidCraft.blocks.blockVoidcrystal),
+
+								new ItemStack(VoidCraft.blocks.realityHole),
+
+								new ItemStack(VoidCraft.items.voidCloth),
+
+								new ItemStack(VoidCraft.items.astralEssence),
+
+								new ItemStack(VoidCraft.items.etherealFruit),
+
+								new ItemStack(VoidCraft.items.emptyObsidianFlask)
+
+						},
+
+						new ItemStack(VoidCraft.items.obsidianFlaskVoid, 1),
+
+						350)
+
+				);
+			}
+		}
 	}
 
 	@Override

@@ -1,5 +1,6 @@
 package Tamaized.Voidcraft.machina;
 
+import java.util.List;
 import java.util.Random;
 
 import Tamaized.TamModized.blocks.TamBlockContainer;
@@ -13,6 +14,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.inventory.InventoryHelper;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
@@ -98,5 +100,5 @@ public class VoidicAlchemyTable extends TamBlockContainer {
 
 		super.breakBlock(worldIn, pos, state);
 	}
-
+	
 }

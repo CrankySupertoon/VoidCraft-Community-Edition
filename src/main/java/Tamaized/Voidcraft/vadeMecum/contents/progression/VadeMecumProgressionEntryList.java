@@ -4,6 +4,7 @@ import Tamaized.Voidcraft.vadeMecum.VadeMecumEntry;
 import Tamaized.Voidcraft.vadeMecum.contents.progression.pages.VadeMecumPageListDreams;
 import Tamaized.Voidcraft.vadeMecum.contents.progression.pages.VadeMecumPageListEmpowerment;
 import Tamaized.Voidcraft.vadeMecum.contents.progression.pages.VadeMecumPageListImprovedCasting;
+import Tamaized.Voidcraft.vadeMecum.contents.progression.pages.VadeMecumPageListPotions;
 import Tamaized.Voidcraft.vadeMecum.contents.progression.pages.VadeMecumPageListRitualBlock;
 import Tamaized.Voidcraft.vadeMecum.contents.progression.pages.VadeMecumPageListRitualList;
 import Tamaized.Voidcraft.vadeMecum.contents.progression.pages.VadeMecumPageListTolerance;
@@ -30,6 +31,7 @@ public class VadeMecumProgressionEntryList {
 	public final VadeMecumEntry RITUALBLOCKS;
 	public VadeMecumEntry RITUALLIST;
 	public final VadeMecumEntry TOME;
+	public final VadeMecumEntry POTIONS;
 	public final VadeMecumEntry VOICE;
 	public final VadeMecumEntry VOIDICCONTROL;
 	public final VadeMecumEntry IMPROVEDCASTING;
@@ -43,6 +45,7 @@ public class VadeMecumProgressionEntryList {
 		RITUALBLOCKS = new VadeMecumEntry("progression_RITUALBLOCKS", "", MAIN, new VadeMecumPageListRitualBlock());
 		RITUALLIST = new VadeMecumEntry("progression_RITUALLIST", "", MAIN, new VadeMecumPageListRitualList());
 		TOME = new VadeMecumEntry("progression_TOME", "", MAIN, new VadeMecumPageListTome());
+		POTIONS = new VadeMecumEntry("progression_POTIONS", "", MAIN, new VadeMecumPageListPotions());
 		VOICE = new VadeMecumEntry("progression_VOICE", "", MAIN, new VadeMecumPageListVoice());
 		VOIDICCONTROL = new VadeMecumEntry("progression_VOIDICCONTROL", "", MAIN, new VadeMecumPageListVoidicControl());
 		IMPROVEDCASTING = new VadeMecumEntry("progression_IMPROVEDCASTING", "", MAIN, new VadeMecumPageListImprovedCasting());
@@ -57,6 +60,7 @@ public class VadeMecumProgressionEntryList {
 		RITUALBLOCKS.initObjects();
 		RITUALLIST.initObjects();
 		TOME.initObjects();
+		POTIONS.initObjects();
 		VOICE.initObjects();
 		VOIDICCONTROL.initObjects();
 		IMPROVEDCASTING.initObjects();

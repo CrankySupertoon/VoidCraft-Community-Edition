@@ -9,6 +9,7 @@ import Tamaized.TamModized.registry.ITamModel;
 import Tamaized.TamModized.registry.ITamRegistry;
 import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.blocks.tileentity.TileEntityFakeBedrockFarmland;
+import Tamaized.Voidcraft.entity.nonliving.EntityObsidianFlask;
 import Tamaized.Voidcraft.events.DamageEvent;
 import Tamaized.Voidcraft.items.ChainedSkull;
 import Tamaized.Voidcraft.items.CreativeVoidBucket;
@@ -46,6 +47,11 @@ public class VoidCraftItems implements ITamRegistry {
 	public static TamItem voidcrystal;
 	public static EmptyObsidianFlask emptyObsidianFlask;
 	public static ObsidianFlask obsidianFlask;
+	public static ObsidianFlask obsidianFlaskFire;
+	public static ObsidianFlask obsidianFlaskFreeze;
+	public static ObsidianFlask obsidianFlaskShock;
+	public static ObsidianFlask obsidianFlaskAcid;
+	public static ObsidianFlask obsidianFlaskVoid;
 	public static TamItem voidChain;
 	public static TamItem MoltenvoidChain;
 	public static TamItem MoltenvoidChainPart;
@@ -103,7 +109,12 @@ public class VoidCraftItems implements ITamRegistry {
 		vadeMecum = new VadeMecum(VoidCraft.tabs.tabVoid, "vademecum", 1); // Don't add this to the model list as it uses an ItemMeshDefinition
 
 		modelList.add(emptyObsidianFlask = new EmptyObsidianFlask(VoidCraft.tabs.tabVoid, "emptyobsidianflask", 16));
-		modelList.add(obsidianFlask = new ObsidianFlask(VoidCraft.tabs.tabVoid, "obsidianflask", 16));
+		modelList.add(obsidianFlask = new ObsidianFlask(EntityObsidianFlask.Type.Normal, VoidCraft.tabs.tabVoid, "obsidianflask", 16));
+		modelList.add(obsidianFlaskFire = new ObsidianFlask(EntityObsidianFlask.Type.Fire, VoidCraft.tabs.tabVoid, "flask_fire", 16));
+		modelList.add(obsidianFlaskFreeze = new ObsidianFlask(EntityObsidianFlask.Type.Freeze, VoidCraft.tabs.tabVoid, "flask_freeze", 16));
+		modelList.add(obsidianFlaskShock = new ObsidianFlask(EntityObsidianFlask.Type.Shock, VoidCraft.tabs.tabVoid, "flask_shock", 16));
+		modelList.add(obsidianFlaskAcid = new ObsidianFlask(EntityObsidianFlask.Type.Acid, VoidCraft.tabs.tabVoid, "flask_acid", 16));
+		modelList.add(obsidianFlaskVoid = new ObsidianFlask(EntityObsidianFlask.Type.Void, VoidCraft.tabs.tabVoid, "flask_void", 16));
 		modelList.add(ectoplasm = new TamItem(VoidCraft.tabs.tabVoid, "ectoplasm", 64));
 		modelList.add(voidcrystal = new TamItem(VoidCraft.tabs.tabVoid, "voidcrystal", 64));
 		modelList.add(voidChain = new TamItem(VoidCraft.tabs.tabVoid, "voidchain", 64));

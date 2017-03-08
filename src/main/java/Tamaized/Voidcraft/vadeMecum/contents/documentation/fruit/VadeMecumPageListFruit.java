@@ -19,13 +19,7 @@ public class VadeMecumPageListFruit implements IVadeMecumPageProvider {
 				new VadeMecumPage("", VoidCraft.modid+".VadeMecum.docs.desc.fruit.pg2"),
 				new VadeMecumPage("", VoidCraft.modid+".VadeMecum.docs.desc.fruit.pg3"),
 				new VadeMecumPage(VoidCraft.modid+".VadeMecum.docs.title.plenum", VoidCraft.modid+".VadeMecum.docs.desc.fruit.pg4"),
-				new VadeMecumPageCrafting(new VadeMecumCraftingAlchemy(VoidCraft.modid+".VadeMecum.recipe.alchemy", new ItemStack[] {
-						new ItemStack(VoidCraft.items.etherealFruit),
-						new ItemStack(VoidCraft.items.etherealFruit_redstone),
-						new ItemStack(VoidCraft.items.etherealFruit_lapis),
-						new ItemStack(VoidCraft.items.etherealFruit_gold),
-						new ItemStack(VoidCraft.items.etherealFruit_emerald),
-						new ItemStack(VoidCraft.items.etherealFruit_diamond) }, PotionUtils.addPotionToItemStack(new ItemStack(Items.POTIONITEM), VoidCraft.potions.type_voidImmunity))) };
+				new VadeMecumPageCrafting(new VadeMecumCraftingAlchemy(VoidCraft.modid + ".VadeMecum.recipe.alchemy", PotionUtils.addPotionToItemStack(new ItemStack(Items.POTIONITEM), VoidCraft.potions.type_voidImmunity))) };
 	}
 
 }

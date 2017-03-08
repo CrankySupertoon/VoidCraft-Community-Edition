@@ -48,7 +48,11 @@ public class TileEntityVoidicAlchemy extends TileEntityVoidicPowerInventory {
 		ownerName = player.getGameProfile().getName();
 		ownerID = player.getGameProfile().getId();
 		owner = player.getCapability(CapabilityList.VADEMECUM, null);
-		player.sendMessage(new TextComponentString(TextFormatting.DARK_GRAY + "Owner Set: " + player.getGameProfile().getName() + "; pos{" + getPos().getX() + ", " + getPos().getY() + ",  " + getPos().getZ() + "}"));
+		player.sendMessage(new TextComponentString(TextFormatting.DARK_GRAY + "Owner Set: " + player.getGameProfile().getName()));
+	}
+
+	public String getOwnerName() {
+		return ownerName;
 	}
 
 	@Override

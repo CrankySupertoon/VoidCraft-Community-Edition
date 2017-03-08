@@ -305,7 +305,7 @@ public class ClientProxy extends AbstractProxy {
 		RenderingRegistry.registerEntityRenderingHandler(EntityObsidianFlask.class, new IRenderFactory<EntityObsidianFlask>() {
 			@Override
 			public Render<? super EntityObsidianFlask> createRenderFor(RenderManager manager) {
-				return new RenderObsidianFlask(manager, VoidCraft.items.obsidianFlask, Minecraft.getMinecraft().getRenderItem());
+				return new RenderObsidianFlask(manager, Minecraft.getMinecraft().getRenderItem());
 			}
 		});
 		RenderingRegistry.registerEntityRenderingHandler(EntitySpellRune.class, new IRenderFactory<EntitySpellRune>() {

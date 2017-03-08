@@ -14,15 +14,18 @@ import net.minecraft.world.World;
 
 public class ObsidianFlask extends TamItem {
 
-	public ObsidianFlask(CreativeTabs tab, String n, int maxStackSize) {
+	private final EntityObsidianFlask.Type type;
+	
+	public ObsidianFlask(EntityObsidianFlask.Type t, CreativeTabs tab, String n, int maxStackSize) {
 		super(tab, n, maxStackSize);
+		type = t;
 	}
 
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(ItemStack s, World worldIn, EntityPlayer playerIn, EnumHand hand) {
 		ItemStack stack = playerIn.getHeldItem(hand);
 		if (!worldIn.isRemote) {
-			EntityObsidianFlask e = new EntityObsidianFlask(worldIn, playerIn);
+			EntityObsidianFlask e = new EntityObsidianFlask(type, worldIn, playerIn);
 			e.setHeadingFromThrower(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 1.5F, 1.0F);
 			worldIn.spawnEntity(e);
 		}

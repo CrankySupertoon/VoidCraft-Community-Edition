@@ -20,6 +20,7 @@ item.tindust.name=Void Infused Tin Dust
 item.leaddust.name=Void Infused Lead Dust
 item.quartzdust.name=Void Infused Quartz Dust
 item.debugger.name=Debug Tool
+<<<<<<< HEAD
 item.voidchain.name=Void Chain
 item.moltenvoidchain.name=Molten Void Chain
 item.moltenvoidchainpart.name=Molten Void Chain Part
@@ -45,6 +46,38 @@ item.voidicphlogiston.name=Voidic Phlogiston
 item.voidicdragonscale.name=Voidic Dragon Scale
 item.astralessence.name=Astral Essence
 item.quorifragment.name=Quori Fragment
+=======
+item.voidChain.name=Void Chain
+item.MoltenvoidChain.name=Molten Void Chain
+item.MoltenvoidChainPart.name=Molten Void Chain Part
+item.voidicSuppressor.name=Voidic Suppressor
+item.emptyObsidianFlask.name=Empty Obsidian Flask
+item.obsidianFlask.name=Filled Obsidian Flask
+item.flask_fire.name=Obsidian Flask of Fire
+item.flask_freeze.name=Obsidian Flask of Freeze
+item.flask_shock.name=Obsidian Flask of Lifting
+item.flask_acid.name=Obsidian Flask of Acid
+item.flask_void.name=Obsidian Flask of Implosion
+item.voidicDrill.name=Voidic Drill
+item.etherealFruit.name=Ethereal Fruit
+item.etherealFruit_redstone.name=Ethereal Fruit
+item.etherealFruit_lapis.name=Ethereal Fruit
+item.etherealFruit_gold.name=Ethereal Fruit
+item.etherealFruit_emerald.name=Ethereal Fruit
+item.etherealFruit_diamond.name=Ethereal Fruit
+item.etherealSeed.name=Ethereal Seeds
+item.vadeMecum.name=Void Vade Mecum
+item.realityTeleporter.name=Reality Teleporter
+item.voidicEssence.name=Voidic Essence
+item.starforgedSword.name=Starforged Sword
+item.starforgedPickaxe.name=Starforged Pickaxe
+item.starforgedAxe.name=Starforged Axe
+item.starforgedShovel.name=Starforged Shovel
+item.voidicPhlogiston.name=Voidic Phlogiston
+item.voidicDragonScale.name=Voidic Dragon Scale
+item.astralEssence.name=Astral Essence
+item.quoriFragment.name=Quori Fragment
+>>>>>>> 3e5a1f9... vade mecum potions, closes #79
 item.voidcrystalshield.name=Void Crystal Shield
 item.voidicsteel.name=Voidic Steel
 
