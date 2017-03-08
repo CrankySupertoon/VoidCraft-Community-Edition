@@ -11,9 +11,9 @@ public class VadeMecumPageListImprovedCasting implements IVadeMecumPageProvider 
 	public IVadeMecumPage[] getPageList(IVadeMecumCapability cap) {
 		return new IVadeMecumPage[] {
 
-				new VadeMecumPage("Improved Casting", "You can further decrease your chances of exploding from casting spells."),
+				new VadeMecumPage("voidcraft.VadeMecum.progression.title.improvedCasting", "voidcraft.VadeMecum.progression.desc.improvedCasting.pg1"),
 
-				new VadeMecumPage("", "For your next task, simply venture into the Void and find a Void Fortress. Yes, it's that simple. It may be wise to collect a few charred bones while you're there.") };
+				new VadeMecumPage("", "voidcraft.VadeMecum.progression.desc.improvedCasting.pg2") };
 	}
 
 }

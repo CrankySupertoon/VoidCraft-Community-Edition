@@ -26,7 +26,7 @@ public class VadeMecumMainEntry extends VadeMecumEntry {
 	public final VadeMecumProgressionEntryList Progression;
 
 	public VadeMecumMainEntry() {
-		super("mainEntry", "Void Vade Mecum", null, null);
+		super("mainEntry", new ItemStack(VoidCraft.items.vadeMecum).getDisplayName(), null, null);
 		Docs = new VadeMecumDocumentationEntryList();
 		Progression = new VadeMecumProgressionEntryList();
 	}
@@ -34,8 +34,8 @@ public class VadeMecumMainEntry extends VadeMecumEntry {
 	@Override
 	public void init(VadeMecumGUI gui) {
 		clearButtons();
-		addButton(gui, getEntryID(Entry.Progression), "Mysteries of the Void", new ItemStack(VoidCraft.blocks.ritualBlock));
-		addButton(gui, getEntryID(Entry.Docs), "Documentation", new ItemStack(VoidCraft.items.voidcrystal));
+		addButton(gui, getEntryID(Entry.Progression), "voidcraft.VadeMecum.title.progression", new ItemStack(VoidCraft.blocks.ritualBlock));
+		addButton(gui, getEntryID(Entry.Docs), "voidcraft.VadeMecum.title.docs", new ItemStack(VoidCraft.items.voidcrystal));
 	}
 
 	@Override

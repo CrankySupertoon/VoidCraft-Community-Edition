@@ -173,7 +173,7 @@ public class VoidCraftTERecipes implements ITamRegistry {
 
 				alchemy.registerRecipe(alchemy.new AlchemyRecipe(
 
-						IVadeMecumCapability.Category.Flame,
+						IVadeMecumCapability.Category.Implosion,
 
 						new ItemStack[] {
 

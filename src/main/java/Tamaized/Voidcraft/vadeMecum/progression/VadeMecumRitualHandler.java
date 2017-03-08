@@ -24,9 +24,9 @@ public class VadeMecumRitualHandler {
 		if (cap == null || world.getBlockState(pos).getBlock() != VoidCraft.blocks.ritualBlock) return;
 		IVadeMecumCapability.Category category = getRitual(cap, world, pos, true);
 		if (category == null || category == IVadeMecumCapability.Category.NULL) {
-			player.sendMessage(new TextComponentTranslation(TextFormatting.RED + "Unknown Ritual"));
+			player.sendMessage(new TextComponentTranslation("voidcraft.ritual.error"));
 		} else {
-			player.sendMessage(new TextComponentTranslation(TextFormatting.DARK_GREEN + VadeMecumWordsOfPower.getCategoryData(category).getName()));
+			player.sendMessage(new TextComponentTranslation(VadeMecumWordsOfPower.getCategoryData(category).getName()));
 			cap.addCategory(category);
 		}
 	}

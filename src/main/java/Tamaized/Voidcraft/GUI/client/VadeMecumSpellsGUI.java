@@ -17,6 +17,7 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderHelper;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -206,7 +207,7 @@ public class VadeMecumSpellsGUI extends GuiContainer {
 				GlStateManager.pushMatrix();
 				ItemStack stack = VadeMecumWordsOfPower.getCategoryData(spell).getStack();
 				if (stack != null) renderItemStack(stack, xPosition, yPosition + (height / 2) - (mc.fontRendererObj.FONT_HEIGHT / 2) - 4, mouseX, mouseY);
-				fontrenderer.drawString(VadeMecumWordsOfPower.getCategoryData(spell).getName().substring(6), xPosition + 18, yPosition + (height / 2) - (mc.fontRendererObj.FONT_HEIGHT / 2), 0x7700FF);
+				fontrenderer.drawString(VadeMecumWordsOfPower.getCategoryData(spell).getName().substring(("" + I18n.format("voidcraft.ritual.def.word", new Object[0])).trim().length()+3), xPosition + 18, yPosition + (height / 2) - (mc.fontRendererObj.FONT_HEIGHT / 2), 0x7700FF);
 				GlStateManager.popMatrix();
 			}
 		}

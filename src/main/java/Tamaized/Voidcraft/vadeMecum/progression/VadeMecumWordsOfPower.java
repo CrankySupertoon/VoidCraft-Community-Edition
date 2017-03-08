@@ -60,51 +60,51 @@ public class VadeMecumWordsOfPower {
 	private static final CategoryDataWrapper NullWrapper = new CategoryDataWrapper(CategoryDataWrapper.Element.NULL, "null", null);
 
 	static {
-		categoryMap.put(IVadeMecumCapability.Category.INTRO, new CategoryDataWrapper(CategoryDataWrapper.Element.NULL, "Rituals", null));
-		categoryMap.put(IVadeMecumCapability.Category.TOME, new CategoryDataWrapper(CategoryDataWrapper.Element.NULL, "Words of Power", null));
+		categoryMap.put(IVadeMecumCapability.Category.INTRO, new CategoryDataWrapper(CategoryDataWrapper.Element.NULL, "voidcraft.ritual.INTRO", null));
+		categoryMap.put(IVadeMecumCapability.Category.TOME, new CategoryDataWrapper(CategoryDataWrapper.Element.NULL, "voidcraft.ritual.TOME", null));
 
-		categoryMap.put(IVadeMecumCapability.Category.Flame, new CategoryDataWrapper(CategoryDataWrapper.Element.FIRE, "Word: Flame", new ItemStack(Items.FLINT)));
-		categoryMap.put(IVadeMecumCapability.Category.FireSheathe, new CategoryDataWrapper(CategoryDataWrapper.Element.FIRE, "Word: Sheathe - Fire", new ItemStack(Items.MAGMA_CREAM)));
-		categoryMap.put(IVadeMecumCapability.Category.Fireball, new CategoryDataWrapper(CategoryDataWrapper.Element.FIRE, "Word: Fireball", new ItemStack(Items.FIRE_CHARGE)));
-		categoryMap.put(IVadeMecumCapability.Category.FireTrap, new CategoryDataWrapper(CategoryDataWrapper.Element.FIRE, "Word: Trap - Fire", new ItemStack(Blocks.MAGMA)));
-		categoryMap.put(IVadeMecumCapability.Category.ExplosionFire, new CategoryDataWrapper(CategoryDataWrapper.Element.FIRE, "Word: Explosion - Fire", new ItemStack(Blocks.TNT)));
-		categoryMap.put(IVadeMecumCapability.Category.RingOfFire, new CategoryDataWrapper(CategoryDataWrapper.Element.FIRE, "Word: Ring of Fire", new ItemStack(Items.GUNPOWDER)));
+		categoryMap.put(IVadeMecumCapability.Category.Flame, new CategoryDataWrapper(CategoryDataWrapper.Element.FIRE, "voidcraft.ritual.Flame", new ItemStack(Items.FLINT)));
+		categoryMap.put(IVadeMecumCapability.Category.FireSheathe, new CategoryDataWrapper(CategoryDataWrapper.Element.FIRE, "voidcraft.ritual.FireSheathe", new ItemStack(Items.MAGMA_CREAM)));
+		categoryMap.put(IVadeMecumCapability.Category.Fireball, new CategoryDataWrapper(CategoryDataWrapper.Element.FIRE, "voidcraft.ritual.Fireball", new ItemStack(Items.FIRE_CHARGE)));
+		categoryMap.put(IVadeMecumCapability.Category.FireTrap, new CategoryDataWrapper(CategoryDataWrapper.Element.FIRE, "voidcraft.ritual.FireTrap", new ItemStack(Blocks.MAGMA)));
+		categoryMap.put(IVadeMecumCapability.Category.ExplosionFire, new CategoryDataWrapper(CategoryDataWrapper.Element.FIRE, "voidcraft.ritual.ExplosionFire", new ItemStack(Blocks.TNT)));
+		categoryMap.put(IVadeMecumCapability.Category.RingOfFire, new CategoryDataWrapper(CategoryDataWrapper.Element.FIRE, "voidcraft.ritual.RingOfFire", new ItemStack(Items.GUNPOWDER)));
 
-		categoryMap.put(IVadeMecumCapability.Category.Shock, new CategoryDataWrapper(CategoryDataWrapper.Element.AIR, "Word: Shock", new ItemStack(Items.FEATHER)));
-		categoryMap.put(IVadeMecumCapability.Category.ShockSheathe, new CategoryDataWrapper(CategoryDataWrapper.Element.AIR, "Word: Sheathe - Shock", new ItemStack(Blocks.CARPET)));
-		categoryMap.put(IVadeMecumCapability.Category.LitStrike, new CategoryDataWrapper(CategoryDataWrapper.Element.AIR, "Word: Lightning Strike", new ItemStack(Blocks.END_ROD)));
-		categoryMap.put(IVadeMecumCapability.Category.LitTrap, new CategoryDataWrapper(CategoryDataWrapper.Element.AIR, "Word: Trap - Lightning", new ItemStack(Items.GHAST_TEAR)));
-		categoryMap.put(IVadeMecumCapability.Category.ExplosionLit, new CategoryDataWrapper(CategoryDataWrapper.Element.AIR, "Word: Explosion - Shock", new ItemStack(Items.CHORUS_FRUIT_POPPED)));
-		categoryMap.put(IVadeMecumCapability.Category.RingOfLit, new CategoryDataWrapper(CategoryDataWrapper.Element.AIR, "Word: Ring of Lightning", new ItemStack(Blocks.GLOWSTONE)));
+		categoryMap.put(IVadeMecumCapability.Category.Shock, new CategoryDataWrapper(CategoryDataWrapper.Element.AIR, "voidcraft.ritual.Shock", new ItemStack(Items.FEATHER)));
+		categoryMap.put(IVadeMecumCapability.Category.ShockSheathe, new CategoryDataWrapper(CategoryDataWrapper.Element.AIR, "voidcraft.ritual.ShockSheathe", new ItemStack(Blocks.CARPET)));
+		categoryMap.put(IVadeMecumCapability.Category.LitStrike, new CategoryDataWrapper(CategoryDataWrapper.Element.AIR, "voidcraft.ritual.LitStrike", new ItemStack(Blocks.END_ROD)));
+		categoryMap.put(IVadeMecumCapability.Category.LitTrap, new CategoryDataWrapper(CategoryDataWrapper.Element.AIR, "voidcraft.ritual.LitTrap", new ItemStack(Items.GHAST_TEAR)));
+		categoryMap.put(IVadeMecumCapability.Category.ExplosionLit, new CategoryDataWrapper(CategoryDataWrapper.Element.AIR, "voidcraft.ritual.ExplosionLit", new ItemStack(Items.CHORUS_FRUIT_POPPED)));
+		categoryMap.put(IVadeMecumCapability.Category.RingOfLit, new CategoryDataWrapper(CategoryDataWrapper.Element.AIR, "voidcraft.ritual.RingOfLit", new ItemStack(Blocks.GLOWSTONE)));
 
-		categoryMap.put(IVadeMecumCapability.Category.Freeze, new CategoryDataWrapper(CategoryDataWrapper.Element.WATER, "Word: Freeze", new ItemStack(Items.SNOWBALL)));
-		categoryMap.put(IVadeMecumCapability.Category.FrostSheathe, new CategoryDataWrapper(CategoryDataWrapper.Element.WATER, "Word: Sheathe - Frost", new ItemStack(Blocks.SNOW)));
-		categoryMap.put(IVadeMecumCapability.Category.IceSpike, new CategoryDataWrapper(CategoryDataWrapper.Element.WATER, "Word: Ice Spike", new ItemStack(Blocks.ICE)));
-		categoryMap.put(IVadeMecumCapability.Category.FrostTrap, new CategoryDataWrapper(CategoryDataWrapper.Element.WATER, "Word: Trap - Frost", new ItemStack(Blocks.PRISMARINE)));
-		categoryMap.put(IVadeMecumCapability.Category.ExplosionFrost, new CategoryDataWrapper(CategoryDataWrapper.Element.WATER, "Word: Explosion - Frost", PotionUtils.addPotionToItemStack(new ItemStack(Items.SPLASH_POTION), PotionType.getPotionTypeForName("water"))));
-		categoryMap.put(IVadeMecumCapability.Category.RingOfFrost, new CategoryDataWrapper(CategoryDataWrapper.Element.WATER, "Word: Ring of Frost", new ItemStack(Items.PRISMARINE_CRYSTALS)));
+		categoryMap.put(IVadeMecumCapability.Category.Freeze, new CategoryDataWrapper(CategoryDataWrapper.Element.WATER, "voidcraft.ritual.Freeze", new ItemStack(Items.SNOWBALL)));
+		categoryMap.put(IVadeMecumCapability.Category.FrostSheathe, new CategoryDataWrapper(CategoryDataWrapper.Element.WATER, "voidcraft.ritual.FrostSheathe", new ItemStack(Blocks.SNOW)));
+		categoryMap.put(IVadeMecumCapability.Category.IceSpike, new CategoryDataWrapper(CategoryDataWrapper.Element.WATER, "voidcraft.ritual.IceSpike", new ItemStack(Blocks.ICE)));
+		categoryMap.put(IVadeMecumCapability.Category.FrostTrap, new CategoryDataWrapper(CategoryDataWrapper.Element.WATER, "voidcraft.ritual.FrostTrap", new ItemStack(Blocks.PRISMARINE)));
+		categoryMap.put(IVadeMecumCapability.Category.ExplosionFrost, new CategoryDataWrapper(CategoryDataWrapper.Element.WATER, "voidcraft.ritual.ExplosionFrost", PotionUtils.addPotionToItemStack(new ItemStack(Items.SPLASH_POTION), PotionType.getPotionTypeForName("water"))));
+		categoryMap.put(IVadeMecumCapability.Category.RingOfFrost, new CategoryDataWrapper(CategoryDataWrapper.Element.WATER, "voidcraft.ritual.RingOfFrost", new ItemStack(Items.PRISMARINE_CRYSTALS)));
 
-		categoryMap.put(IVadeMecumCapability.Category.AcidSpray, new CategoryDataWrapper(CategoryDataWrapper.Element.EARTH, "Word: Acid Spray", new ItemStack(Blocks.DIRT)));
-		categoryMap.put(IVadeMecumCapability.Category.AcidSheathe, new CategoryDataWrapper(CategoryDataWrapper.Element.EARTH, "Word: Sheathe - Acid", new ItemStack(Items.SLIME_BALL)));
-		categoryMap.put(IVadeMecumCapability.Category.Disint, new CategoryDataWrapper(CategoryDataWrapper.Element.EARTH, "Word: Disintegrate", new ItemStack(Blocks.MOSSY_COBBLESTONE)));
-		categoryMap.put(IVadeMecumCapability.Category.AcidTrap, new CategoryDataWrapper(CategoryDataWrapper.Element.EARTH, "Word: Trap - Acid", new ItemStack(Blocks.SLIME_BLOCK)));
-		categoryMap.put(IVadeMecumCapability.Category.ExplosionAcid, new CategoryDataWrapper(CategoryDataWrapper.Element.EARTH, "Word: Explosion - Acid", new ItemStack(Items.POISONOUS_POTATO)));
-		categoryMap.put(IVadeMecumCapability.Category.RingOfAcid, new CategoryDataWrapper(CategoryDataWrapper.Element.EARTH, "Word: Ring of Acid", new ItemStack(Items.FISH, 1, 3)));
+		categoryMap.put(IVadeMecumCapability.Category.AcidSpray, new CategoryDataWrapper(CategoryDataWrapper.Element.EARTH, "voidcraft.ritual.AcidSpray", new ItemStack(Blocks.DIRT)));
+		categoryMap.put(IVadeMecumCapability.Category.AcidSheathe, new CategoryDataWrapper(CategoryDataWrapper.Element.EARTH, "voidcraft.ritual.AcidSheathe", new ItemStack(Items.SLIME_BALL)));
+		categoryMap.put(IVadeMecumCapability.Category.Disint, new CategoryDataWrapper(CategoryDataWrapper.Element.EARTH, "voidcraft.ritual.Disint", new ItemStack(Blocks.MOSSY_COBBLESTONE)));
+		categoryMap.put(IVadeMecumCapability.Category.AcidTrap, new CategoryDataWrapper(CategoryDataWrapper.Element.EARTH, "voidcraft.ritual.AcidTrap", new ItemStack(Blocks.SLIME_BLOCK)));
+		categoryMap.put(IVadeMecumCapability.Category.ExplosionAcid, new CategoryDataWrapper(CategoryDataWrapper.Element.EARTH, "voidcraft.ritual.ExplosionAcid", new ItemStack(Items.POISONOUS_POTATO)));
+		categoryMap.put(IVadeMecumCapability.Category.RingOfAcid, new CategoryDataWrapper(CategoryDataWrapper.Element.EARTH, "voidcraft.ritual.RingOfAcid", new ItemStack(Items.FISH, 1, 3)));
 
-		categoryMap.put(IVadeMecumCapability.Category.VoidicTouch, new CategoryDataWrapper(CategoryDataWrapper.Element.VOID, "Word: Voidic Touch", new ItemStack(VoidCraft.items.voidcrystal)));
-		categoryMap.put(IVadeMecumCapability.Category.VoidicSheathe, new CategoryDataWrapper(CategoryDataWrapper.Element.VOID, "Word: Sheathe - Voidic", new ItemStack(VoidCraft.blocks.blockVoidbrick)));
-		categoryMap.put(IVadeMecumCapability.Category.Implosion, new CategoryDataWrapper(CategoryDataWrapper.Element.VOID, "Word: Implosion", new ItemStack(VoidCraft.blocks.realityHole)));
+		categoryMap.put(IVadeMecumCapability.Category.VoidicTouch, new CategoryDataWrapper(CategoryDataWrapper.Element.VOID, "voidcraft.ritual.VoidicTouch", new ItemStack(VoidCraft.items.voidcrystal)));
+		categoryMap.put(IVadeMecumCapability.Category.VoidicSheathe, new CategoryDataWrapper(CategoryDataWrapper.Element.VOID, "voidcraft.ritual.VoidicSheathe", new ItemStack(VoidCraft.blocks.blockVoidbrick)));
+		categoryMap.put(IVadeMecumCapability.Category.Implosion, new CategoryDataWrapper(CategoryDataWrapper.Element.VOID, "voidcraft.ritual.Implosion", new ItemStack(VoidCraft.blocks.realityHole)));
 
-		categoryMap.put(IVadeMecumCapability.Category.Invoke, new CategoryDataWrapper(CategoryDataWrapper.Element.VOID, "Word: Invoke Infusion", new ItemStack(VoidCraft.blocks.blockVoidcrystal)));
-		categoryMap.put(IVadeMecumCapability.Category.SummonFireElemental, new CategoryDataWrapper(CategoryDataWrapper.Element.FIRE, "Word: Fire Elemental", new ItemStack(Items.FLINT_AND_STEEL)));
+		categoryMap.put(IVadeMecumCapability.Category.Invoke, new CategoryDataWrapper(CategoryDataWrapper.Element.VOID, "voidcraft.ritual.Invoke", new ItemStack(VoidCraft.blocks.blockVoidcrystal)));
+		categoryMap.put(IVadeMecumCapability.Category.SummonFireElemental, new CategoryDataWrapper(CategoryDataWrapper.Element.FIRE, "voidcraft.ritual.SummonFireElemental", new ItemStack(Items.FLINT_AND_STEEL)));
 
-		categoryMap.put(IVadeMecumCapability.Category.Voice, new CategoryDataWrapper(CategoryDataWrapper.Element.NULL, "The Voice", null));
-		categoryMap.put(IVadeMecumCapability.Category.VoidicControl, new CategoryDataWrapper(CategoryDataWrapper.Element.NULL, "Voidic Control", null));
-		categoryMap.put(IVadeMecumCapability.Category.ImprovedCasting, new CategoryDataWrapper(CategoryDataWrapper.Element.NULL, "Improved Casting", null));
-		categoryMap.put(IVadeMecumCapability.Category.Empowerment, new CategoryDataWrapper(CategoryDataWrapper.Element.NULL, "Empowerment", null));
-		categoryMap.put(IVadeMecumCapability.Category.Tolerance, new CategoryDataWrapper(CategoryDataWrapper.Element.NULL, "Tolerance", null));
-		categoryMap.put(IVadeMecumCapability.Category.TotalControl, new CategoryDataWrapper(CategoryDataWrapper.Element.NULL, "Total Control", null));
-		categoryMap.put(IVadeMecumCapability.Category.Dreams, new CategoryDataWrapper(CategoryDataWrapper.Element.NULL, "Dreams", null));
+		categoryMap.put(IVadeMecumCapability.Category.Voice, new CategoryDataWrapper(CategoryDataWrapper.Element.NULL, "voidcraft.ritual.Voice", null));
+		categoryMap.put(IVadeMecumCapability.Category.VoidicControl, new CategoryDataWrapper(CategoryDataWrapper.Element.NULL, "voidcraft.ritual.VoidicControl", null));
+		categoryMap.put(IVadeMecumCapability.Category.ImprovedCasting, new CategoryDataWrapper(CategoryDataWrapper.Element.NULL, "voidcraft.ritual.ImprovedCasting", null));
+		categoryMap.put(IVadeMecumCapability.Category.Empowerment, new CategoryDataWrapper(CategoryDataWrapper.Element.NULL, "voidcraft.ritual.Empowerment", null));
+		categoryMap.put(IVadeMecumCapability.Category.Tolerance, new CategoryDataWrapper(CategoryDataWrapper.Element.NULL, "voidcraft.ritual.Tolerance", null));
+		categoryMap.put(IVadeMecumCapability.Category.TotalControl, new CategoryDataWrapper(CategoryDataWrapper.Element.NULL, "voidcraft.ritual.TotalControl", null));
+		categoryMap.put(IVadeMecumCapability.Category.Dreams, new CategoryDataWrapper(CategoryDataWrapper.Element.NULL, "voidcraft.ritual.Dreams", null));
 
 	}
 

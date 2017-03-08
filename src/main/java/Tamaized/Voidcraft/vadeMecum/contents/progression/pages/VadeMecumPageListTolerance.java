@@ -11,9 +11,9 @@ public class VadeMecumPageListTolerance implements IVadeMecumPageProvider {
 	public IVadeMecumPage[] getPageList(IVadeMecumCapability cap) {
 		return new IVadeMecumPage[] {
 
-				new VadeMecumPage("Tolerance", "I've given you a new Word of Power, Invoke Infusion. Upon using this Word you will gain some infusion. For your next task, be outside of the Void, with Voidic Anchor active, use the new Word multiple times to reach maximum Voidic Infusion. Doing so will give you a new ability."),
+				new VadeMecumPage("voidcraft.VadeMecum.progression.title.tolerance", "voidcraft.VadeMecum.progression.desc.tolerance.pg1"),
 
-				new VadeMecumPage("", "This ability when active will double your maximum amount of Voidic Infusion you can handle. This effectively allows you to hold onto this Infusion for twice as long or allows you to live through the Void without protection to Infusion twice as long.")
+				new VadeMecumPage("", "voidcraft.VadeMecum.progression.desc.tolerance.pg2")
 
 		};
 	}

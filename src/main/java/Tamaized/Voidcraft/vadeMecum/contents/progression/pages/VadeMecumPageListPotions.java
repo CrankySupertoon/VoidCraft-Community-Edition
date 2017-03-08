@@ -15,7 +15,7 @@ public class VadeMecumPageListPotions implements IVadeMecumPageProvider {
 
 	public IVadeMecumPage[] getPageList(IVadeMecumCapability cap) {
 		ArrayList<IVadeMecumPage> pages = new ArrayList<IVadeMecumPage>();
-		pages.add(new VadeMecumPage("Throwable Potions", "With some of your knowledge on these Voidic Spells you can create potions that cause some interesting effects upon impacting against the ground. To craft these potions be sure to Shift Right click the Alchemical device with your Vade Mecum first. These are handy to share with those who cannot cast such spells unlike yourself. "));
+		pages.add(new VadeMecumPage("voidcraft.VadeMecum.progression.title.potions", "voidcraft.VadeMecum.progression.desc.potions"));
 		if (cap.hasCategory(IVadeMecumCapability.Category.Flame)) pages.add(new VadeMecumPageCrafting(new VadeMecumCraftingAlchemy(VoidCraft.modid + ".VadeMecum.recipe.alchemy", new ItemStack(VoidCraft.items.obsidianFlaskFire))));
 		if (cap.hasCategory(IVadeMecumCapability.Category.Freeze)) pages.add(new VadeMecumPageCrafting(new VadeMecumCraftingAlchemy(VoidCraft.modid + ".VadeMecum.recipe.alchemy", new ItemStack(VoidCraft.items.obsidianFlaskFreeze))));
 		if (cap.hasCategory(IVadeMecumCapability.Category.Shock)) pages.add(new VadeMecumPageCrafting(new VadeMecumCraftingAlchemy(VoidCraft.modid + ".VadeMecum.recipe.alchemy", new ItemStack(VoidCraft.items.obsidianFlaskShock))));

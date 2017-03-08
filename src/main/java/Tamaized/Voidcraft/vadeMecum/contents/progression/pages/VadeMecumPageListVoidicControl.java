@@ -11,9 +11,9 @@ public class VadeMecumPageListVoidicControl implements IVadeMecumPageProvider {
 	public IVadeMecumPage[] getPageList(IVadeMecumCapability cap) {
 		return new IVadeMecumPage[] {
 
-				new VadeMecumPage("Voidic Control", "You may know that Voidic Infusion inflicts some rather nasty effects upon you, however you may also know that some of these effects can be beneficial. There are ways to control your infusion effects in a way to prove more good than bad."),
+				new VadeMecumPage("voidcraft.VadeMecum.progression.title.voidicControl", "voidcraft.VadeMecum.progression.desc.voidicControl.pg1"),
 
-				new VadeMecumPage("", "Enter the Void and allow yourself to be consumed by the Voidic Infusion, I will anchor your body to the material plane to prevent death long enough for you to gain new power.") };
+				new VadeMecumPage("", "voidcraft.VadeMecum.progression.desc.voidicControl.pg2") };
 	}
 
 }

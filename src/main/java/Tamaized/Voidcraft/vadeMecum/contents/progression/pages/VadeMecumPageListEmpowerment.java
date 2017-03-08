@@ -11,7 +11,7 @@ public class VadeMecumPageListEmpowerment implements IVadeMecumPageProvider {
 	public IVadeMecumPage[] getPageList(IVadeMecumCapability cap) {
 		return new IVadeMecumPage[] {
 
-				new VadeMecumPage("Empowerment", "I've got a new task for you, it's pretty simple. Just hold a Void Star in your hand. Yup, that's all. This will give you more control over your infusion, you will deal increased damage based on the amount of infusion you have.")
+				new VadeMecumPage("voidcraft.VadeMecum.progression.title.empowerment", "voidcraft.VadeMecum.progression.desc.empowerment")
 
 		};
 	}

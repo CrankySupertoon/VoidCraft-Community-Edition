@@ -255,7 +255,7 @@ voidcraft.VadeMecum.recipe.macerator=Macerator Recipe
 voidcraft.VadeMecum.recipe.blastfurnace=Blast Furnace Recipe
 voidcraft.VadeMecum.recipe.alchemy=Alchemy Recipe
 # -- Docs
-voidcraft.VadeMecum.title.docs=Void Vade Mecum - Documentation
+voidcraft.VadeMecum.title.docs=Documentation
 ## -- Titles
 voidcraft.VadeMecum.docs.title.weps=Weapons
 voidcraft.VadeMecum.docs.title.tools=Tools
@@ -399,6 +399,85 @@ voidcraft.VadeMecum.docs.desc.starforge.effect.haste=Increases the speed at whic
 voidcraft.VadeMecum.docs.desc.starforge.effect.silkTouch=Adds Silk Touch to the Tool.
 voidcraft.VadeMecum.docs.desc.starforge.effect.fortune=Adds Fortune 5 to the Tool.
 voidcraft.VadeMecum.docs.desc.starforge.effect.threeByThree=The Tool will now mine in a Three by Three area.
+# -- Progression
+voidcraft.VadeMecum.title.progression=Mysteries of the Void
+## -- Titles
+voidcraft.VadeMecum.progression.title.dreams=Dreams
+voidcraft.VadeMecum.progression.title.empowerment=Empowerment
+voidcraft.VadeMecum.progression.title.improvedCasting=Improved Casting
+voidcraft.VadeMecum.progression.title.potions=Throwable Potions
+voidcraft.VadeMecum.progression.title.ritualBlock=Voidic Ritual Blocks
+voidcraft.VadeMecum.progression.title.ritualList=Voidic Ritual List
+voidcraft.VadeMecum.progression.title.tolerance=Tolerance
+voidcraft.VadeMecum.progression.title.tome=Words of Power
+voidcraft.VadeMecum.progression.title.totalControl=Total Control
+voidcraft.VadeMecum.progression.title.voice=§k§5The Voice
+voidcraft.VadeMecum.progression.title.voidicControl=Voidic Control
+## -- Descriptions
+voidcraft.VadeMecum.progression.desc.dreams.pg1=This will be the last Task I give you. The benefit of this task is rather large. Instead of your health decreasing with Voidic Infusion, it will increase. Now what is the task? Defeat Xia.
+voidcraft.VadeMecum.progression.desc.dreams.pg2=Destroy his current body, he is in a weak state right now. I must make my own preparations, this is where we part ways, mortal.
+voidcraft.VadeMecum.progression.desc.empowerment=I've got a new task for you, it's pretty simple. Just hold a Void Star in your hand. Yup, that's all. This will give you more control over your infusion, you will deal increased damage based on the amount of infusion you have.
+voidcraft.VadeMecum.progression.desc.improvedCasting.pg1=You can further decrease your chances of exploding from casting spells by another 25 percent. Just complete this task.
+voidcraft.VadeMecum.progression.desc.improvedCasting.pg2=For your next task, simply venture into the Void and find a Void Fortress. Yes, it's that simple. It may be wise to collect a few charred bones while you're there.
+voidcraft.VadeMecum.progression.desc.potions=Using your knowledge on Voidic Spells you can create potions that cause some interesting effects upon impacting against the ground. To craft these potions be sure to Shift Right click the Alchemical device with your Vade Mecum first. These are handy to share with those who cannot cast such spells unlike yourself.
+voidcraft.VadeMecum.progression.desc.ritualBlock=These special blocks are used to invoke rituals for the Void Vade Mecum. The purpose of invoking a ritual is to gain new knowledge. To activate such a ritual simply construct one shown, then right click the Ritual Block with the Vade Mecum in hand. For your first ritual, just right click a lone placed ritual block. This will open up new knowledge within the Vade Mecum if not done so already.
+voidcraft.VadeMecum.progression.desc.ritualList=This page will display the available rituals that can be invoked to advance your Vade Mecum Knowledge.
+voidcraft.VadeMecum.progression.desc.tolerance.pg1=I've given you a new Word of Power, Invoke Infusion. Upon using this Word you will gain some infusion. For your next task, be outside of the Void, with Voidic Anchor active, use the new Word multiple times to reach maximum Voidic Infusion. Doing so will give you a new ability.
+voidcraft.VadeMecum.progression.desc.tolerance.pg2=This ability, when active, will double your maximum amount of Voidic Infusion you can handle. This effectively allows you to hold onto this Infusion for twice as long or allows you to live through the Void without protection to Infusion twice as long.
+voidcraft.VadeMecum.progression.desc.tome.pg1=As you invoke more and more rituals, you will gain Words of Power. A word, when spoken by Right Clicking with a ready Vade Mecum in hand, will cast magical effects. At least, it seems magical. The only explanation is that the Vade Mecum is opening small rifts to specific sections in the void to unleash such powers.
+voidcraft.VadeMecum.progression.desc.tome.pg2=To ready your Vade Mecum for a Word you must first select a Word. This can be done by clicking on the Spells button on the bottom left of the Vade Mecum GUI. Words require materials, these can be inside the Vade Mecum itself or in your inventory. After you have a word ready to use, Shift Right Click in the world with your Vade Mecum in hand and it'll change in color. You are now ready to use the Word by Right Clicking normally with the Vade Mecum in hand.
+voidcraft.VadeMecum.progression.desc.totalControl.pg1=Another task for you, this task will do quite a bit for you. You will decrease your explosion chance by another 25 percent, meaning you will no longer explode, and you will gain a new ability, Voidic Flight. This ability will allow you to gain flight at 25 percent infusion rather than 75 percent.
+voidcraft.VadeMecum.progression.desc.totalControl.pg2=Your task may be a bit more challenging, you must reach up to the top of the Void to the Void Cities, get up high enough to where the Airships dock.
+voidcraft.VadeMecum.progression.desc.voice.pg1=I'm sure you've noticed each time you attempt to cast a spell that there's a very good chance you'll explode. Now you may be wondering where this text is even coming from, i'll just let you know that I, the Vade Mecum, am no ordinary book, but let's stay on topic.
+voidcraft.VadeMecum.progression.desc.voice.pg2=Right onto the explosion bits, I have a task for you, doing this task will decrease the chance for you to explode by 25 percent, currently your chance is 75 percent. I'm sure your.. kind.. can do math, right? The task is simple, I want you to enter the Void and gain some infusion. It wont be much, but I'll let you know when your task is complete.
+voidcraft.VadeMecum.progression.desc.voidicControl.pg1=You may know that Voidic Infusion inflicts some rather nasty effects upon you, however you may also know that some of these effects can be beneficial. There are ways to control your infusion effects in a way to prove more good than bad.
+voidcraft.VadeMecum.progression.desc.voidicControl.pg2=Enter the Void and allow yourself to be consumed by the Voidic Infusion, I will anchor your body to the material plane to prevent death long enough for you to gain new power.
+# -- Rituals
+voidcraft.ritual.error=§4Unknown Ritual
+voidcraft.ritual.def.word=Word:
+voidcraft.ritual.INTRO=§2Rituals
+voidcraft.ritual.TOME=§2Words of Power
+voidcraft.ritual.Flame=§2Word: Flame
+voidcraft.ritual.FireSheathe=§2Word: Sheathe - Fire
+voidcraft.ritual.Fireball=§2Word: Fireball
+voidcraft.ritual.FireTrap=§2Word: Trap - Fire
+voidcraft.ritual.ExplosionFire=§2Word: Explosion - Fire
+voidcraft.ritual.RingOfFire=§2Word: Ring of Fire
+voidcraft.ritual.Shock=§2Word: Shock
+voidcraft.ritual.ShockSheathe=§2Word: Sheathe - Shock
+voidcraft.ritual.LitStrike=§2Word: Lightning Strike
+voidcraft.ritual.LitTrap=§2Word: Trap - Lightning
+voidcraft.ritual.ExplosionLit=§2Word: Explosion - Shock
+voidcraft.ritual.RingOfLit=§2Word: Ring of Lightning
+voidcraft.ritual.Freeze=§2Word: Freeze
+voidcraft.ritual.FrostSheathe=§2Word: Sheathe - Frost
+voidcraft.ritual.IceSpike=§2Word: Ice Spike
+voidcraft.ritual.FrostTrap=§2Word: Trap - Frost
+voidcraft.ritual.ExplosionFrost=§2Word: Explosion - Frost
+voidcraft.ritual.RingOfFrost=§2Word: Ring of Frost
+voidcraft.ritual.AcidSpray=§2Word: Acid Spray
+voidcraft.ritual.AcidSheathe=§2Word: Sheathe - Acid
+voidcraft.ritual.Disint=§2Word: Disintegrate
+voidcraft.ritual.AcidTrap=§2Word: Trap - Acid
+voidcraft.ritual.ExplosionAcid=§2Word: Explosion - Acid
+voidcraft.ritual.RingOfAcid=§2Word: Ring of Acid
+voidcraft.ritual.VoidicTouch=§2Word: Voidic Touch
+voidcraft.ritual.VoidicSheathe=§2Word: Sheathe - Voidic
+voidcraft.ritual.Implosion=§2Word: Implosion
+voidcraft.ritual.Invoke=§2Word: Invoke Infusion
+voidcraft.ritual.SummonFireElemental=§2Word: Fire Elemental
+voidcraft.ritual.Voice=The Voice
+voidcraft.ritual.VoidicControl=Voidic Control
+voidcraft.ritual.ImprovedCasting=Improved Casting
+voidcraft.ritual.Empowerment=Empowerment
+voidcraft.ritual.Tolerance=Tolerance
+voidcraft.ritual.TotalControl=Total Control
+voidcraft.ritual.Dreams=Dreams
+voidcraft.VadeMecum.passive.Anchor=Voidic Anchor
+voidcraft.VadeMecum.passive.Empowerment=Empowerment
+voidcraft.VadeMecum.passive.Tolerance=Tolerance
+voidcraft.VadeMecum.passive.Flight=Voidic Flight
+voidcraft.VadeMecum.passive.Vigor=Vigor
 
 # Thaumcraft
 # -- Research

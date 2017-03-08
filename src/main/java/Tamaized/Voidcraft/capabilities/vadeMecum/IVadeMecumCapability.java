@@ -10,6 +10,7 @@ import Tamaized.Voidcraft.entity.companion.EntityCompanion;
 import Tamaized.Voidcraft.vadeMecum.progression.VadeMecumWordsOfPower;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.ByteBufInputStream;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;
 
 public interface IVadeMecumCapability {
@@ -57,15 +58,15 @@ public interface IVadeMecumCapability {
 	public static String getPassiveName(Passive passive) {
 		switch (passive) {
 			case Anchor:
-				return "Voidic Anchor";
+				return ("" + I18n.format("voidcraft.VadeMecum.passive.Anchor", new Object[0])).trim();
 			case Empowerment:
-				return "Empowerment";
+				return ("" + I18n.format("voidcraft.VadeMecum.passive.Empowerment", new Object[0])).trim();
 			case Tolerance:
-				return "Tolerance";
+				return ("" + I18n.format("voidcraft.VadeMecum.passive.Tolerance", new Object[0])).trim();
 			case Flight:
-				return "Voidic Flight";
+				return ("" + I18n.format("voidcraft.VadeMecum.passive.Flight", new Object[0])).trim();
 			case Vigor:
-				return "Vigor";
+				return ("" + I18n.format("voidcraft.VadeMecum.passive.Vigor", new Object[0])).trim();
 			default:
 				return "null";
 		}
@@ -100,7 +101,7 @@ public interface IVadeMecumCapability {
 
 		public CategoryDataWrapper(Element type, String name, ItemStack stack) {
 			element = type;
-			this.name = name;
+			this.name = ("" + I18n.format(name, new Object[0])).trim();
 			this.stack = stack;
 		}
 
@@ -118,7 +119,7 @@ public interface IVadeMecumCapability {
 	}
 
 	public static boolean isActivePower(Category c) {
-		return VadeMecumWordsOfPower.getCategoryData(c).getName().contains("Word:");
+		return VadeMecumWordsOfPower.getCategoryData(c).getName().contains(("" + I18n.format("voidcraft.ritual.def.word", new Object[0])).trim());
 	}
 
 	public boolean isDirty();
