@@ -10,7 +10,6 @@ import Tamaized.Voidcraft.starforge.effects.IStarForgeEffect;
 import Tamaized.Voidcraft.starforge.effects.IStarForgeEffect.Tier;
 import Tamaized.Voidcraft.starforge.effects.IStarForgeEffect.Type;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.resources.I18n;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;

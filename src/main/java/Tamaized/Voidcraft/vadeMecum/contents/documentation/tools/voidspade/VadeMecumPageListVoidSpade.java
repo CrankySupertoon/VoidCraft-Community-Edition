@@ -6,8 +6,6 @@ import Tamaized.Voidcraft.vadeMecum.IVadeMecumPage;
 import Tamaized.Voidcraft.vadeMecum.IVadeMecumPageProvider;
 import Tamaized.Voidcraft.vadeMecum.VadeMecumCraftingNormal;
 import Tamaized.Voidcraft.vadeMecum.VadeMecumPageCrafting;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
 public class VadeMecumPageListVoidSpade implements IVadeMecumPageProvider {

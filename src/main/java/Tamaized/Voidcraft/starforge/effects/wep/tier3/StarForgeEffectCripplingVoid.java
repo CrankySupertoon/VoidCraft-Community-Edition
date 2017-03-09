@@ -1,8 +1,6 @@
 package Tamaized.Voidcraft.starforge.effects.wep.tier3;
 
 import Tamaized.Voidcraft.VoidCraft;
-import Tamaized.Voidcraft.capabilities.CapabilityList;
-import Tamaized.Voidcraft.capabilities.voidicInfusion.IVoidicInfusionCapability;
 import Tamaized.Voidcraft.starforge.effects.IStarForgeEffect;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.resources.I18n;

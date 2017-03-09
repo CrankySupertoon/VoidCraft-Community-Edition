@@ -1,7 +1,6 @@
 package Tamaized.Voidcraft.entity.boss.herobrine.extra;
 
 import Tamaized.Voidcraft.entity.EntityVoidBoss;
-import Tamaized.Voidcraft.entity.boss.herobrine.EntityBossHerobrine;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.projectile.EntityWitherSkull;
 import net.minecraft.init.MobEffects;

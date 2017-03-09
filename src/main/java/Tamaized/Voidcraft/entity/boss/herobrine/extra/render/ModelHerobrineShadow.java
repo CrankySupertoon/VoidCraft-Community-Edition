@@ -1,7 +1,5 @@
 package Tamaized.Voidcraft.entity.boss.herobrine.extra.render;
 
-import Tamaized.Voidcraft.entity.EntityVoidNPC;
-import Tamaized.Voidcraft.entity.EntityVoidNPC.ArmRotation;
 import Tamaized.Voidcraft.entity.boss.herobrine.extra.EntityHerobrineShadow;
 import Tamaized.Voidcraft.entity.boss.xia.finalphase.EntityTwinsXia;
 import net.minecraft.client.model.ModelBase;

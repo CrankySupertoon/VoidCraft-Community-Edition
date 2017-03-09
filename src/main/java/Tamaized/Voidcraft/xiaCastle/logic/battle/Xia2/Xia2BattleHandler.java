@@ -2,7 +2,6 @@ package Tamaized.Voidcraft.xiaCastle.logic.battle.Xia2;
 
 import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.capabilities.CapabilityList;
-import Tamaized.Voidcraft.entity.boss.xia.EntityBossXia;
 import Tamaized.Voidcraft.entity.boss.xia.EntityBossXia2;
 import Tamaized.Voidcraft.xiaCastle.logic.battle.IBattleHandler;
 import net.minecraft.item.ItemStack;

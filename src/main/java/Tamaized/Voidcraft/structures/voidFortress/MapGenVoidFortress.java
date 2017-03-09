@@ -7,8 +7,6 @@ import com.google.common.collect.Lists;
 
 import Tamaized.Voidcraft.entity.boss.herobrine.extra.EntityHerobrineCreeper;
 import Tamaized.Voidcraft.entity.mob.EntityMobVoidWrath;
-import net.minecraft.entity.monster.EntityShulker;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.Biome.SpawnListEntry;

@@ -1,11 +1,11 @@
 package Tamaized.Voidcraft.entity.boss.herobrine.extra.render.layer;
 
+import Tamaized.Voidcraft.entity.boss.herobrine.extra.EntityHerobrineCreeper;
+import Tamaized.Voidcraft.entity.boss.herobrine.extra.render.RenderHerobrineCreeper;
 import net.minecraft.client.model.ModelCreeper;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.layers.LayerRenderer;
 import net.minecraft.util.ResourceLocation;
-import Tamaized.Voidcraft.entity.boss.herobrine.extra.EntityHerobrineCreeper;
-import Tamaized.Voidcraft.entity.boss.herobrine.extra.render.RenderHerobrineCreeper;
 
 public class LayerHerobrineCreeperCharge implements LayerRenderer<EntityHerobrineCreeper>
 {

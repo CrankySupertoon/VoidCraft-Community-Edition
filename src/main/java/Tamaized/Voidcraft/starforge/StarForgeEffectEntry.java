@@ -4,7 +4,6 @@ import Tamaized.Voidcraft.GUI.client.StarForgeGUI;
 import Tamaized.Voidcraft.helper.GUIElementList.GUIContainerWrapper;
 import Tamaized.Voidcraft.helper.GUIListElement;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.VertexBuffer;

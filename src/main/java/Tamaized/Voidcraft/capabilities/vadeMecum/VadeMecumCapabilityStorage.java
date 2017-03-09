@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Map.Entry;
 
 import Tamaized.Voidcraft.VoidCraft;
-import Tamaized.Voidcraft.network.ItemStackNetworkHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;

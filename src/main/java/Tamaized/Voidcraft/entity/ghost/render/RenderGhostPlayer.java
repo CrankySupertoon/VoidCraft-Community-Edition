@@ -2,12 +2,8 @@ package Tamaized.Voidcraft.entity.ghost.render;
 
 import java.util.Random;
 
-import org.lwjgl.opengl.GL11;
-import org.lwjgl.util.glu.Sphere;
-
 import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.entity.ghost.EntityGhostPlayerBase;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.model.ModelBiped.ArmPose;
 import net.minecraft.client.model.ModelPlayer;

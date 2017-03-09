@@ -2,7 +2,6 @@ package Tamaized.Voidcraft.entity.boss.model;
 
 import Tamaized.Voidcraft.entity.EntityVoidNPC;
 import Tamaized.Voidcraft.entity.EntityVoidNPC.ArmRotation;
-import Tamaized.Voidcraft.entity.boss.xia.EntityBossXia;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.model.ModelRenderer;

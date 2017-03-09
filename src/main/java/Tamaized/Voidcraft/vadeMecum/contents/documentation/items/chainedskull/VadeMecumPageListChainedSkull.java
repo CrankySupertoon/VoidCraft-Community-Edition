@@ -7,7 +7,6 @@ import Tamaized.Voidcraft.vadeMecum.IVadeMecumPageProvider;
 import Tamaized.Voidcraft.vadeMecum.VadeMecumCraftingNormal;
 import Tamaized.Voidcraft.vadeMecum.VadeMecumPage;
 import Tamaized.Voidcraft.vadeMecum.VadeMecumPageCrafting;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
 public class VadeMecumPageListChainedSkull implements IVadeMecumPageProvider {

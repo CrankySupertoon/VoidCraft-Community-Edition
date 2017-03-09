@@ -3,7 +3,6 @@ package Tamaized.Voidcraft.events;
 import java.util.ConcurrentModificationException;
 
 import Tamaized.Voidcraft.VoidCraft;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.init.Items;

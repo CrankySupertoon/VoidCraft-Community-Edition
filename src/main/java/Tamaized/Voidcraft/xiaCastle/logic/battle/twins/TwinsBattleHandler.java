@@ -1,5 +1,13 @@
 package Tamaized.Voidcraft.xiaCastle.logic.battle.twins;
 
+import Tamaized.Voidcraft.entity.boss.twins.EntityBossDol;
+import Tamaized.Voidcraft.entity.boss.twins.EntityBossZol;
+import Tamaized.Voidcraft.xiaCastle.logic.battle.IBattleHandler;
+import Tamaized.Voidcraft.xiaCastle.logic.battle.twins.messages.TwinsMessages01;
+import Tamaized.Voidcraft.xiaCastle.logic.battle.twins.messages.TwinsMessages02;
+import Tamaized.Voidcraft.xiaCastle.logic.battle.twins.messages.TwinsMessages03;
+import Tamaized.Voidcraft.xiaCastle.logic.battle.twins.messages.TwinsMessages04;
+import Tamaized.Voidcraft.xiaCastle.logic.battle.twins.messages.TwinsMessages05;
 import net.minecraft.block.BlockLever;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.Entity;
@@ -11,14 +19,6 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
-import Tamaized.Voidcraft.entity.boss.twins.EntityBossDol;
-import Tamaized.Voidcraft.entity.boss.twins.EntityBossZol;
-import Tamaized.Voidcraft.xiaCastle.logic.battle.IBattleHandler;
-import Tamaized.Voidcraft.xiaCastle.logic.battle.twins.messages.TwinsMessages01;
-import Tamaized.Voidcraft.xiaCastle.logic.battle.twins.messages.TwinsMessages02;
-import Tamaized.Voidcraft.xiaCastle.logic.battle.twins.messages.TwinsMessages03;
-import Tamaized.Voidcraft.xiaCastle.logic.battle.twins.messages.TwinsMessages04;
-import Tamaized.Voidcraft.xiaCastle.logic.battle.twins.messages.TwinsMessages05;
 
 public class TwinsBattleHandler implements IBattleHandler {
 

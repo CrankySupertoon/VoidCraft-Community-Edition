@@ -4,14 +4,10 @@ import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.GUI.client.VadeMecumGUI;
 import Tamaized.Voidcraft.capabilities.CapabilityList;
 import Tamaized.Voidcraft.capabilities.vadeMecum.IVadeMecumCapability;
-import Tamaized.Voidcraft.capabilities.vadeMecumItem.IVadeMecumItemCapability;
 import Tamaized.Voidcraft.proxy.ClientProxy;
-import Tamaized.Voidcraft.vadeMecum.VadeMecumButton;
 import Tamaized.Voidcraft.vadeMecum.VadeMecumEntry;
-import Tamaized.Voidcraft.vadeMecum.progression.VadeMecumPacketHandler;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.text.TextFormatting;
 
 public class VadeMecumProgressionEntry extends VadeMecumEntry {
 

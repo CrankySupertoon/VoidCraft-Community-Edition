@@ -1,7 +1,5 @@
 package Tamaized.Voidcraft.entity.mob.model;
 
-import Tamaized.Voidcraft.entity.EntityVoidNPC.ArmRotation;
-import Tamaized.Voidcraft.entity.mob.EntityMobEtherealGuardian;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.model.ModelRenderer;

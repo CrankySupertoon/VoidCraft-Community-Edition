@@ -2,13 +2,26 @@ package Tamaized.Voidcraft.registry;
 
 import java.util.ArrayList;
 
-import net.minecraft.stats.Achievement;
-import net.minecraftforge.common.AchievementPage;
 import Tamaized.TamModized.registry.ITamModel;
 import Tamaized.TamModized.registry.ITamRegistry;
 import Tamaized.Voidcraft.VoidCraft;
+import Tamaized.Voidcraft.capabilities.CapabilityList;
+import net.minecraft.item.ItemStack;
+import net.minecraft.stats.Achievement;
+import net.minecraftforge.common.AchievementPage;
 
 public class VoidCraftAchievements implements ITamRegistry {
+
+	public static Achievement vadeMecum;
+	public static Achievement theVoice;
+	public static Achievement anchor; // Require Voice
+	public static Achievement stabilization; // Require Voice
+	public static Achievement empowerment; // Require Voice
+	public static Achievement tolerance;
+	public static Achievement totalControl;
+	public static Achievement nightmare;
+
+	public static Achievement familiarity;
 
 	public static Achievement voidCrystal;
 	public static Achievement enterVoid;
@@ -42,6 +55,18 @@ public class VoidCraftAchievements implements ITamRegistry {
 
 	@Override
 	public void init() {
+		ItemStack activeVade = new ItemStack(VoidCraft.items.vadeMecum);
+		activeVade.getCapability(CapabilityList.VADEMECUMITEM, null).setBookState(true);
+
+		vadeMecum = new Achievement("achievement.vadeMecum", "vadeMecum", 0, 0, VoidCraft.items.vadeMecum, (Achievement) null);
+		theVoice = new Achievement("achievement.theVoice", "theVoice", 0, 0, activeVade, vadeMecum);
+		anchor = new Achievement("achievement.anchor", "anchor", 0, 0, VoidCraft.items.voidcrystal, theVoice);
+		stabilization = new Achievement("achievement.stabilization", "stabilization", 0, 0, VoidCraft.blocks.blockVoidbrick, theVoice);
+		empowerment = new Achievement("achievement.empowerment", "empowerment", 0, 0, VoidCraft.items.voidStar, theVoice);
+		tolerance = new Achievement("achievement.tolerance", "tolerance", 0, 0, activeVade, empowerment);
+		totalControl = new Achievement("achievement.totalControl", "totalControl", 0, 0, activeVade, tolerance);
+		nightmare = new Achievement("achievement.nightmare", "nightmare", 0, 0, VoidCraft.items.quoriFragment, totalControl);
+
 		voidCrystal = new Achievement("achievement.voidCrystal", "voidCrystal", 0, 0, VoidCraft.items.voidcrystal, (Achievement) null);
 		voidCrystal.setSpecial().initIndependentStat().registerStat();
 		enterVoid = new Achievement("achievement.enterVoid", "enterVoid", 0, 3, VoidCraft.blocks.blockVoidcrystal, voidCrystal);

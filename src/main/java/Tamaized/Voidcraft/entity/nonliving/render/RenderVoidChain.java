@@ -1,23 +1,17 @@
 package Tamaized.Voidcraft.entity.nonliving.render;
 
+import Tamaized.Voidcraft.VoidCraft;
+import Tamaized.Voidcraft.entity.nonliving.VoidChain;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.VertexBuffer;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
-import org.lwjgl.opengl.GL11;
-import org.lwjgl.opengl.GL12;
-
-import Tamaized.Voidcraft.VoidCraft;
-import Tamaized.Voidcraft.entity.nonliving.VoidChain;
 
 @SideOnly(Side.CLIENT)
 public class RenderVoidChain extends Render<VoidChain> {

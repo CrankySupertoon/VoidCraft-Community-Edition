@@ -1,17 +1,13 @@
 package Tamaized.Voidcraft.entity.boss.herobrine.extra.render;
 
-import net.minecraft.client.Minecraft;
+import Tamaized.Voidcraft.VoidCraft;
+import Tamaized.Voidcraft.entity.boss.herobrine.extra.EntityHerobrineShadow;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.entity.Render;
-import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
-import Tamaized.Voidcraft.VoidCraft;
-import Tamaized.Voidcraft.entity.boss.herobrine.EntityBossHerobrine;
-import Tamaized.Voidcraft.entity.boss.herobrine.extra.EntityHerobrineShadow;
-import Tamaized.Voidcraft.entity.boss.render.bossBar.RenderBossHeathBar;
 
 public class RenderHerobrineShadow<T extends EntityHerobrineShadow> extends Render<T> {
 

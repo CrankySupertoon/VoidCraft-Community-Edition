@@ -1,7 +1,5 @@
 package Tamaized.Voidcraft.capabilities.elytraFlying;
 
-import java.util.ArrayList;
-
 import Tamaized.Voidcraft.VoidCraft;
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;

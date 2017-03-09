@@ -8,7 +8,6 @@ import java.util.Map;
 import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.starforge.effects.IStarForgeEffect;
 import Tamaized.Voidcraft.starforge.effects.StarForgeEffectList;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 public final class StarForgeEffectRecipeList {

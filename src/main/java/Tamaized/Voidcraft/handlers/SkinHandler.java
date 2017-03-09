@@ -4,7 +4,6 @@ import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -21,21 +20,20 @@ import java.util.zip.ZipInputStream;
 
 import javax.imageio.ImageIO;
 
+import org.apache.commons.codec.binary.Base64;
+import org.apache.commons.codec.binary.StringUtils;
+import org.apache.commons.io.FileUtils;
+
+import com.google.common.io.Resources;
+import com.google.gson.stream.JsonReader;
+import com.mojang.authlib.GameProfile;
+
+import Tamaized.Voidcraft.VoidCraft;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.ProgressManager;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
-import org.apache.commons.codec.binary.Base64;
-import org.apache.commons.codec.binary.StringUtils;
-import org.apache.commons.io.FileUtils;
-
-import Tamaized.Voidcraft.VoidCraft;
-
-import com.google.common.io.Resources;
-import com.google.gson.stream.JsonReader;
-import com.mojang.authlib.GameProfile;
 
 public class SkinHandler {
 

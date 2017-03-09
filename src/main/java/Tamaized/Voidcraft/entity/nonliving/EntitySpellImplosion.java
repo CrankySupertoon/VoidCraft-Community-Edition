@@ -3,7 +3,6 @@ package Tamaized.Voidcraft.entity.nonliving;
 import Tamaized.Voidcraft.damageSources.DamageSourceVoidicInfusion;
 import net.minecraft.entity.Entity;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 
 public class EntitySpellImplosion extends Entity {

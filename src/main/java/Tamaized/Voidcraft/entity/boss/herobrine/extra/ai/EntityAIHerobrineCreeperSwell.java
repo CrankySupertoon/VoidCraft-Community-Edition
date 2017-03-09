@@ -1,8 +1,8 @@
 package Tamaized.Voidcraft.entity.boss.herobrine.extra.ai;
 
+import Tamaized.Voidcraft.entity.boss.herobrine.extra.EntityHerobrineCreeper;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.EntityAIBase;
-import Tamaized.Voidcraft.entity.boss.herobrine.extra.EntityHerobrineCreeper;
 
 public class EntityAIHerobrineCreeperSwell extends EntityAIBase {
 	/** The creeper that is swelling. */

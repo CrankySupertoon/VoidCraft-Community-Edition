@@ -1,5 +1,8 @@
 package Tamaized.Voidcraft.GUI.client;
 
+import Tamaized.Voidcraft.VoidCraft;
+import Tamaized.Voidcraft.GUI.server.VoidInfuserContainer;
+import Tamaized.Voidcraft.machina.tileentity.TileEntityVoidInfuser;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
@@ -8,12 +11,6 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
-import org.lwjgl.opengl.GL11;
-
-import Tamaized.Voidcraft.VoidCraft;
-import Tamaized.Voidcraft.GUI.server.VoidInfuserContainer;
-import Tamaized.Voidcraft.machina.tileentity.TileEntityVoidInfuser;
 
 @SideOnly(Side.CLIENT)
 public class VoidInfuserGUI extends GuiContainer {

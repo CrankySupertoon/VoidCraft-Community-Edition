@@ -2,6 +2,9 @@ package Tamaized.Voidcraft.tools.spectre;
 
 import java.util.List;
 
+import Tamaized.TamModized.tools.TamSword;
+import Tamaized.Voidcraft.entity.EntityVoidMob;
+import Tamaized.Voidcraft.entity.boss.EntityBossCorruptedPawn;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -10,10 +13,6 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import Tamaized.TamModized.tools.TamSword;
-import Tamaized.Voidcraft.VoidCraft;
-import Tamaized.Voidcraft.entity.EntityVoidMob;
-import Tamaized.Voidcraft.entity.boss.EntityBossCorruptedPawn;
 
 public class AngelicSword extends TamSword{
 

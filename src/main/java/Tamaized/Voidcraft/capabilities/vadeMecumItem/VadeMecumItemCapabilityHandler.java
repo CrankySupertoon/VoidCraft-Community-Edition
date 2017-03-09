@@ -2,10 +2,8 @@ package Tamaized.Voidcraft.capabilities.vadeMecumItem;
 
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.util.ArrayList;
 
 import Tamaized.Voidcraft.VoidCraft;
-import Tamaized.Voidcraft.vadeMecum.VadeMecumEntry;
 import io.netty.buffer.ByteBufInputStream;
 import net.minecraft.util.ResourceLocation;
 

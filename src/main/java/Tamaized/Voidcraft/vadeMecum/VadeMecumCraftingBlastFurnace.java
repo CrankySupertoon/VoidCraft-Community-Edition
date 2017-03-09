@@ -1,10 +1,7 @@
 package Tamaized.Voidcraft.vadeMecum;
 
-import java.util.List;
-
 import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.GUI.client.VadeMecumGUI;
-import Tamaized.Voidcraft.helper.RecipeHelper;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.resources.I18n;

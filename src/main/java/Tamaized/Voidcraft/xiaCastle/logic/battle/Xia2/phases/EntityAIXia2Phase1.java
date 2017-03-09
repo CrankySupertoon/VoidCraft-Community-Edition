@@ -3,8 +3,6 @@ package Tamaized.Voidcraft.xiaCastle.logic.battle.Xia2.phases;
 import java.util.ArrayList;
 
 import Tamaized.Voidcraft.VoidCraft;
-import Tamaized.Voidcraft.capabilities.CapabilityList;
-import Tamaized.Voidcraft.capabilities.voidicInfusion.IVoidicInfusionCapability;
 import Tamaized.Voidcraft.entity.boss.herobrine.extra.EntityHerobrineFireball;
 import Tamaized.Voidcraft.entity.boss.xia.EntityBossXia2;
 import Tamaized.Voidcraft.entity.boss.xia.EntityBossXia2.Xia2TookDamagePacket;

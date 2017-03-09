@@ -1,7 +1,6 @@
 package Tamaized.Voidcraft.events.client;
 
 import Tamaized.Voidcraft.VoidCraft;
-import Tamaized.Voidcraft.helper.TextureAtlasSpriteHelper;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.TextureStitchEvent;

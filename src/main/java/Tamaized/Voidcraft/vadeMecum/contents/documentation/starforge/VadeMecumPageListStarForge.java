@@ -5,7 +5,6 @@ import Tamaized.Voidcraft.capabilities.vadeMecum.IVadeMecumCapability;
 import Tamaized.Voidcraft.vadeMecum.IVadeMecumPage;
 import Tamaized.Voidcraft.vadeMecum.IVadeMecumPageProvider;
 import Tamaized.Voidcraft.vadeMecum.VadeMecumPage;
-import net.minecraft.client.resources.I18n;
 
 public class VadeMecumPageListStarForge implements IVadeMecumPageProvider {
 

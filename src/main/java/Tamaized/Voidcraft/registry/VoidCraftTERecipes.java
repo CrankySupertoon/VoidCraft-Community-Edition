@@ -9,7 +9,6 @@ import Tamaized.Voidcraft.capabilities.vadeMecum.IVadeMecumCapability;
 import Tamaized.Voidcraft.machina.addons.TERecipeInfuser;
 import Tamaized.Voidcraft.machina.addons.TERecipesAlchemy;
 import Tamaized.Voidcraft.machina.addons.TERecipesBlastFurnace;
-import Tamaized.Voidcraft.machina.addons.TERecipesBlastFurnace.BlastFurnaceRecipe;
 import Tamaized.Voidcraft.machina.addons.TERecipesMacerator;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;

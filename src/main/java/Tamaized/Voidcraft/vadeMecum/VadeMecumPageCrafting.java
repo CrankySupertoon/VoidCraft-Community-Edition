@@ -2,7 +2,6 @@ package Tamaized.Voidcraft.vadeMecum;
 
 import Tamaized.Voidcraft.GUI.client.VadeMecumGUI;
 import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.util.text.TextFormatting;
 
 public class VadeMecumPageCrafting implements IVadeMecumPage {
 

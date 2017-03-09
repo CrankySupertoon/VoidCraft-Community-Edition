@@ -1,12 +1,11 @@
 package Tamaized.Voidcraft.tools.arch;
 
+import Tamaized.TamModized.tools.TamSword;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
-import Tamaized.TamModized.tools.TamSword;
-import Tamaized.Voidcraft.VoidCraft;
 
 public class ArchSword extends TamSword {
 

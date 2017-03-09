@@ -1,7 +1,6 @@
 package Tamaized.Voidcraft.entity.boss.twins.render;
 
 import Tamaized.Voidcraft.VoidCraft;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;

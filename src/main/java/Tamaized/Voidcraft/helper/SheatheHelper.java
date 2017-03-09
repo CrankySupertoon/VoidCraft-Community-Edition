@@ -1,8 +1,6 @@
 package Tamaized.Voidcraft.helper;
 
 import Tamaized.Voidcraft.VoidCraft;
-import Tamaized.Voidcraft.capabilities.CapabilityList;
-import Tamaized.Voidcraft.capabilities.voidicInfusion.IVoidicInfusionCapability;
 import Tamaized.Voidcraft.damageSources.DamageSourceAcid;
 import Tamaized.Voidcraft.damageSources.DamageSourceFrost;
 import Tamaized.Voidcraft.damageSources.DamageSourceLit;

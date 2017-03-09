@@ -4,7 +4,6 @@ import org.lwjgl.opengl.GL11;
 
 import Tamaized.Voidcraft.entity.boss.herobrine.extra.EntityHerobrineCreeper;
 import Tamaized.Voidcraft.entity.boss.herobrine.extra.render.layer.LayerHerobrineCreeperCharge;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelCreeper;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.RenderLiving;

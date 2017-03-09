@@ -1,11 +1,5 @@
 package Tamaized.Voidcraft.capabilities.elytraFlying;
 
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.util.ArrayList;
-
-import io.netty.buffer.ByteBufInputStream;
-
 public interface IElytraFlyingCapability {
 
 	public boolean isDirty();

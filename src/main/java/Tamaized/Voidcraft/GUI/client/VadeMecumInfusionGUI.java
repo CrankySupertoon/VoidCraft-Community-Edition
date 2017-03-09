@@ -1,25 +1,13 @@
 package Tamaized.Voidcraft.GUI.client;
 
-import Tamaized.TamModized.helper.PacketHelper;
-import Tamaized.TamModized.helper.PacketHelper.PacketWrapper;
-import Tamaized.Voidcraft.VoidCraft;
-import Tamaized.Voidcraft.GUI.server.VadeMecumSpellsContainer;
 import Tamaized.Voidcraft.capabilities.vadeMecum.IVadeMecumCapability;
-import Tamaized.Voidcraft.capabilities.vadeMecum.IVadeMecumCapability.Category;
-import Tamaized.Voidcraft.network.ServerPacketHandler;
 import Tamaized.Voidcraft.vadeMecum.progression.VadeMecumPacketHandler;
-import Tamaized.Voidcraft.vadeMecum.progression.VadeMecumWordsOfPower;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.resources.I18n;
-import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
 
 public class VadeMecumInfusionGUI extends GuiScreen {
 

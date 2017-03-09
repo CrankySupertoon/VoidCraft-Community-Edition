@@ -13,6 +13,8 @@ import Tamaized.Voidcraft.entity.companion.EntityCompanion;
 import Tamaized.Voidcraft.network.ItemStackNetworkHelper;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.ByteBufInputStream;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
@@ -87,8 +89,38 @@ public class VadeMecumCapabilityHandler implements IVadeMecumCapability {
 	}
 
 	@Override
-	public void addCategory(Category category) {
-		if (!categoryList.contains(category)) categoryList.add(category);
+	public void addCategory(EntityLivingBase entity, Category category) {
+		if (!categoryList.contains(category)) {
+			categoryList.add(category);
+			if (entity instanceof EntityPlayer) {
+				EntityPlayer player = (EntityPlayer) entity;
+				switch (category) {
+					case Voice:
+						player.addStat(VoidCraft.achievements.vadeMecum, 1);
+						break;
+					case VoidicControl:
+						player.addStat(VoidCraft.achievements.vadeMecum, 1);
+						break;
+					case ImprovedCasting:
+						player.addStat(VoidCraft.achievements.vadeMecum, 1);
+						break;
+					case Empowerment:
+						player.addStat(VoidCraft.achievements.vadeMecum, 1);
+						break;
+					case Tolerance:
+						player.addStat(VoidCraft.achievements.vadeMecum, 1);
+						break;
+					case TotalControl:
+						player.addStat(VoidCraft.achievements.vadeMecum, 1);
+						break;
+					case Dreams:
+						player.addStat(VoidCraft.achievements.vadeMecum, 1);
+						break;
+					default:
+						break;
+				}
+			}
+		}
 		markDirty();
 	}
 
@@ -283,7 +315,7 @@ public class VadeMecumCapabilityHandler implements IVadeMecumCapability {
 			clearCategories();
 			int l = stream.readInt();
 			for (int i = 0; i < l; i++) {
-				addCategory(IVadeMecumCapability.getCategoryFromID(stream.readInt()));
+				addCategory(null, IVadeMecumCapability.getCategoryFromID(stream.readInt()));
 			}
 		}
 		{

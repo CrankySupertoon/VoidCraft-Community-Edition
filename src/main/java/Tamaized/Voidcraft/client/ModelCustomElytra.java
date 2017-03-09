@@ -1,6 +1,5 @@
 package Tamaized.Voidcraft.client;
 
-import Tamaized.Voidcraft.capabilities.CapabilityList;
 import Tamaized.Voidcraft.handlers.CustomElytraHandler;
 import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.model.ModelBase;

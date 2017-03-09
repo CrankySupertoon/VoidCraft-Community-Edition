@@ -7,9 +7,7 @@ import com.google.common.collect.Lists;
 
 import Tamaized.Voidcraft.VoidCraft;
 import net.minecraft.entity.item.EntityItemFrame;
-import net.minecraft.entity.monster.EntityShulker;
 import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.server.MinecraftServer;
@@ -29,7 +27,6 @@ import net.minecraft.world.gen.structure.StructureEndCityPieces;
 import net.minecraft.world.gen.structure.template.PlacementSettings;
 import net.minecraft.world.gen.structure.template.Template;
 import net.minecraft.world.gen.structure.template.TemplateManager;
-import net.minecraft.world.storage.loot.LootTableList;
 
 public class StructureVoidCityPieces {
 	private static final PlacementSettings OVERWRITE = (new PlacementSettings()).setIgnoreEntities(true);

@@ -11,6 +11,7 @@ import Tamaized.Voidcraft.vadeMecum.progression.VadeMecumWordsOfPower;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.ByteBufInputStream;
 import net.minecraft.client.resources.I18n;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 
 public interface IVadeMecumCapability {
@@ -136,7 +137,7 @@ public interface IVadeMecumCapability {
 
 	public void setObtainedCategories(ArrayList<Category> list);
 
-	public void addCategory(Category category);
+	public void addCategory(EntityLivingBase entity, Category category);
 
 	public void removeCategory(Category category);
 

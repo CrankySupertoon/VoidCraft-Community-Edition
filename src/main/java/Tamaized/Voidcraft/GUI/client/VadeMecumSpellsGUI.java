@@ -1,13 +1,8 @@
 package Tamaized.Voidcraft.GUI.client;
 
-import Tamaized.TamModized.helper.PacketHelper;
-import Tamaized.TamModized.helper.PacketHelper.PacketWrapper;
 import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.GUI.server.VadeMecumSpellsContainer;
-import Tamaized.Voidcraft.capabilities.CapabilityList;
 import Tamaized.Voidcraft.capabilities.vadeMecum.IVadeMecumCapability;
-import Tamaized.Voidcraft.capabilities.vadeMecum.IVadeMecumCapability.Category;
-import Tamaized.Voidcraft.network.ServerPacketHandler;
 import Tamaized.Voidcraft.vadeMecum.progression.VadeMecumPacketHandler;
 import Tamaized.Voidcraft.vadeMecum.progression.VadeMecumWordsOfPower;
 import net.minecraft.client.Minecraft;

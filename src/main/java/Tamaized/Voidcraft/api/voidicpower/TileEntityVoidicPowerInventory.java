@@ -1,7 +1,5 @@
 package Tamaized.Voidcraft.api.voidicpower;
 
-import java.util.Arrays;
-
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;

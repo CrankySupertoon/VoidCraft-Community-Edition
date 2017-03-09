@@ -1,7 +1,6 @@
 package Tamaized.Voidcraft.entity.boss.herobrine.extra;
 
 import Tamaized.Voidcraft.entity.EntityVoidBoss;
-import Tamaized.Voidcraft.entity.boss.herobrine.EntityBossHerobrine;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.RayTraceResult;

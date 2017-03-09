@@ -1,5 +1,6 @@
 package Tamaized.Voidcraft.particles;
 
+import Tamaized.TamModized.particles.TamParticle;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
@@ -10,7 +11,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-import Tamaized.TamModized.particles.TamParticle;
 
 public class XiaLaser extends TamParticle {
 

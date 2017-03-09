@@ -1,19 +1,18 @@
 package Tamaized.Voidcraft.particles.network;
 
-import io.netty.buffer.ByteBufInputStream;
-
 import java.io.DataOutputStream;
 import java.io.IOException;
 
-import net.minecraft.client.multiplayer.WorldClient;
-import net.minecraft.util.math.Vec3d;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import Tamaized.TamModized.particles.ParticleHelper.IParticlePacketData;
 import Tamaized.TamModized.particles.ParticlePacketBase;
 import Tamaized.TamModized.particles.TamParticle;
 import Tamaized.Voidcraft.items.VoidicDrill.VoidDrillParticleData;
 import Tamaized.Voidcraft.particles.VoidicDrillLaser;
+import io.netty.buffer.ByteBufInputStream;
+import net.minecraft.client.multiplayer.WorldClient;
+import net.minecraft.util.math.Vec3d;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class VoidicDrillLaserPacketHandler extends ParticlePacketBase {
 

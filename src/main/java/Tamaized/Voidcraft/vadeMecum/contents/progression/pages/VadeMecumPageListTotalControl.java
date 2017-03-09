@@ -4,7 +4,6 @@ import Tamaized.Voidcraft.capabilities.vadeMecum.IVadeMecumCapability;
 import Tamaized.Voidcraft.vadeMecum.IVadeMecumPage;
 import Tamaized.Voidcraft.vadeMecum.IVadeMecumPageProvider;
 import Tamaized.Voidcraft.vadeMecum.VadeMecumPage;
-import net.minecraft.util.text.TextFormatting;
 
 public class VadeMecumPageListTotalControl implements IVadeMecumPageProvider {
 

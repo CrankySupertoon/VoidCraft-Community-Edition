@@ -1,11 +1,6 @@
 package Tamaized.Voidcraft.capabilities.elytraFlying;
 
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.util.ArrayList;
-
 import Tamaized.Voidcraft.VoidCraft;
-import io.netty.buffer.ByteBufInputStream;
 import net.minecraft.util.ResourceLocation;
 
 public class ElytraFlyingCapabilityHandler implements IElytraFlyingCapability {

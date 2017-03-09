@@ -1,5 +1,6 @@
 package Tamaized.Voidcraft.entity.boss.herobrine.extra.render;
 
+import Tamaized.Voidcraft.entity.boss.herobrine.extra.EntityHerobrineTNTPrimed;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BlockRendererDispatcher;
 import net.minecraft.client.renderer.GlStateManager;
@@ -9,7 +10,6 @@ import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
-import Tamaized.Voidcraft.entity.boss.herobrine.extra.EntityHerobrineTNTPrimed;
 
 public class RenderHerobrineTNTPrimed extends Render<EntityHerobrineTNTPrimed> {
 	public RenderHerobrineTNTPrimed(RenderManager renderManagerIn) {

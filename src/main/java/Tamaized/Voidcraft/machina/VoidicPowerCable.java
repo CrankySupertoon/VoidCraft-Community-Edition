@@ -4,8 +4,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import javax.annotation.Nullable;
+import com.google.common.collect.ImmutableList;
 
+import Tamaized.TamModized.blocks.TamBlockContainer;
+import Tamaized.Voidcraft.api.voidicpower.IVoidicPower;
+import Tamaized.Voidcraft.machina.tileentity.TileEntityVoidicPowerCable;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -21,11 +24,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3i;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import Tamaized.TamModized.blocks.TamBlockContainer;
-import Tamaized.Voidcraft.api.voidicpower.IVoidicPower;
-import Tamaized.Voidcraft.machina.tileentity.TileEntityVoidicPowerCable;
-
-import com.google.common.collect.ImmutableList;
 
 public class VoidicPowerCable extends TamBlockContainer {
 

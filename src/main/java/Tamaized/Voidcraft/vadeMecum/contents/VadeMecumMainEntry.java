@@ -2,7 +2,6 @@ package Tamaized.Voidcraft.vadeMecum.contents;
 
 import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.GUI.client.VadeMecumGUI;
-import Tamaized.Voidcraft.vadeMecum.VadeMecumButton;
 import Tamaized.Voidcraft.vadeMecum.VadeMecumEntry;
 import Tamaized.Voidcraft.vadeMecum.contents.documentation.VadeMecumDocumentationEntryList;
 import Tamaized.Voidcraft.vadeMecum.contents.progression.VadeMecumProgressionEntryList;

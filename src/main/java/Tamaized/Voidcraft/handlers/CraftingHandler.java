@@ -1,11 +1,10 @@
 package Tamaized.Voidcraft.handlers;
 
+import Tamaized.Voidcraft.VoidCraft;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.ItemCraftedEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.ItemSmeltedEvent;
-import Tamaized.Voidcraft.VoidCraft;
 
 public class CraftingHandler {
 	

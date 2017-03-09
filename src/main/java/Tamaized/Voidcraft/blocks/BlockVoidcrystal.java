@@ -2,12 +2,12 @@ package Tamaized.Voidcraft.blocks;
 
 import java.util.Random;
 
+import Tamaized.TamModized.blocks.TamBlock;
+import Tamaized.Voidcraft.VoidCraft;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
-import Tamaized.TamModized.blocks.TamBlock;
-import Tamaized.Voidcraft.VoidCraft;
 
 public class BlockVoidcrystal extends TamBlock {
 

@@ -1,11 +1,8 @@
 package Tamaized.Voidcraft.Addons.thaumcraft.items;
 
-import Tamaized.Voidcraft.entity.EntityVoidMob;
-import Tamaized.Voidcraft.entity.boss.EntityBossCorruptedPawn;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
-import net.minecraft.util.DamageSource;
 
 public class ItemCorruptedSword extends ItemSword {
 

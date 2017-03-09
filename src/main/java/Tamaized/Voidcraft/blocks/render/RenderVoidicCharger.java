@@ -1,17 +1,16 @@
 package Tamaized.Voidcraft.blocks.render;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
-import net.minecraft.entity.Entity;
-import net.minecraft.util.ResourceLocation;
-
 import org.lwjgl.opengl.GL11;
 
 import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.blocks.model.ModelVoidicCharger;
 import Tamaized.Voidcraft.client.ClientRenderTicker;
 import Tamaized.Voidcraft.machina.tileentity.TileEntityVoidicCharger;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
+import net.minecraft.entity.Entity;
+import net.minecraft.util.ResourceLocation;
 
 public class RenderVoidicCharger extends TileEntitySpecialRenderer<TileEntityVoidicCharger> {
 	
