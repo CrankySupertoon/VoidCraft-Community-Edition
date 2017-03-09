@@ -13,6 +13,7 @@ import Tamaized.Voidcraft.network.ServerPacketHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemRecord;
 import net.minecraft.util.ResourceLocation;
@@ -50,10 +51,10 @@ public class VoidBoxGUI extends GuiContainer {
 		super.initGui();
 
 		buttonList.clear();
-		buttonList.add(BtnPlay = new GuiButton(BUTTON_PLAY, guiLeft + 200, guiTop + 113, 33, 20, "Play"));
-		buttonList.add(BtnStop = new GuiButton(BUTTON_STOP, guiLeft + 100, guiTop + 113, 33, 20, "Stop"));
-		buttonList.add(BtnLoop = new GuiButton(BUTTON_LOOP, guiLeft + 240, guiTop + 113, 33, 20, "Loop"));
-		buttonList.add(BtnLoop = new GuiButton(BUTTON_AUTO, guiLeft + 25, guiTop + 113, 66, 20, "Auto Insert"));
+		buttonList.add(BtnPlay = new GuiButton(BUTTON_PLAY, guiLeft + 200, guiTop + 113, 33, 20, ("" + I18n.format("voidcraft.gui.misc.play", new Object[0])).trim()));
+		buttonList.add(BtnStop = new GuiButton(BUTTON_STOP, guiLeft + 100, guiTop + 113, 33, 20, ("" + I18n.format("voidcraft.gui.misc.stop", new Object[0])).trim()));
+		buttonList.add(BtnLoop = new GuiButton(BUTTON_LOOP, guiLeft + 240, guiTop + 113, 33, 20, ("" + I18n.format("voidcraft.gui.misc.loop", new Object[0])).trim()));
+		buttonList.add(BtnLoop = new GuiButton(BUTTON_AUTO, guiLeft + 25, guiTop + 113, 66, 20, ("" + I18n.format("voidcraft.gui.misc.auto", new Object[0])).trim()));
 	}
 
 	@Override
@@ -111,10 +112,10 @@ public class VoidBoxGUI extends GuiContainer {
 	@Override
 	protected void drawGuiContainerForegroundLayer(int param1, int param2) {
 
-		String name = "Void Infused Box";
-
-		this.fontRendererObj.drawString("Void Music Box", this.xSize / 2 - this.fontRendererObj.getStringWidth(name) / 2, this.ySize - 260, 0x7700FF);
-		this.fontRendererObj.drawString("Currently Playing:", (this.xSize / 12 - this.fontRendererObj.getStringWidth(name) / 12) - 5, this.ySize - 240, 0xFF0000);
+		String name = ("" + I18n.format("voidcraft.gui.musicbox.title", new Object[0])).trim();
+		this.fontRendererObj.drawString(name, this.xSize / 2 - this.fontRendererObj.getStringWidth(name) / 2, this.ySize - 260, 0x7700FF);
+		name = ("" + I18n.format("voidcraft.gui.musicbox.curr", new Object[0])).trim() + ":";
+		this.fontRendererObj.drawString(name, (this.xSize / 12 - this.fontRendererObj.getStringWidth(name) / 12) - 5, this.ySize - 240, 0xFF0000);
 
 		if (voidBox.isPlaying() && voidBox.getStackInSlot(0) != null) {
 			int hexacolor = 0x000000;
@@ -227,11 +228,9 @@ public class VoidBoxGUI extends GuiContainer {
 			fontRendererObj.drawString(voidBox.getStackInSlot(0) != null ? ((ItemRecord) voidBox.getStackInSlot(0).getItem()).getRecordNameLocal() : "", (xSize / 12) - 13 - (fontRendererObj.getStringWidth(name) / 12) + 102, (ySize / 12) + 54, hexacolor);
 		}
 
-		if (voidBox.getLoopState()) fontRendererObj.drawString("Loop: On", (xSize / 12) - (fontRendererObj.getStringWidth(name) / 12) + 220, ySize - 220, 0x00FF00);
-		else fontRendererObj.drawString("Loop: Off", (xSize / 12) - (fontRendererObj.getStringWidth(name) / 12) + 220, ySize - 220, 0xFF0000);
+		fontRendererObj.drawString(("" + I18n.format("voidcraft.gui.misc.loop", new Object[0])).trim() + ": " + ("" + I18n.format("voidcraft.gui.misc." + (voidBox.getLoopState() ? "on" : "off"), new Object[0])).trim(), (xSize / 12) - (fontRendererObj.getStringWidth(name) / 12) + 220, ySize - 220, 0x00FF00);
 
-		if (voidBox.getAutoState()) fontRendererObj.drawString("Auto: On", (xSize / 12) - (fontRendererObj.getStringWidth(name) / 12) + 7, ySize - 180, 0x00FF00);
-		else fontRendererObj.drawString("Auto: Off", (xSize / 12) - (fontRendererObj.getStringWidth(name) / 12) + 7, ySize - 180, 0xFF0000);
+		fontRendererObj.drawString(("" + I18n.format("voidcraft.gui.misc.loop", new Object[0])).trim() + ": " + ("" + I18n.format("voidcraft.gui.misc." + (voidBox.getAutoState() ? "on" : "off"), new Object[0])).trim(), (xSize / 12) - (fontRendererObj.getStringWidth(name) / 12) + 7, ySize - 180, 0x00FF00);
 
 		if (voidBox.isPlaying()) fontRendererObj.drawString(getTimeInMinutes(voidBox.getSongLength() - voidBox.getSongTimeLeft()) + "/" + getTimeInMinutes(voidBox.getSongLength()), (xSize / 12) + (fontRendererObj.getStringWidth(name) / 12), ySize - 220, 0xFFFF00);
 	}

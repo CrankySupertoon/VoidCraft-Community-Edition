@@ -5,6 +5,7 @@ import java.util.List;
 import Tamaized.TamModized.items.TamItem;
 import Tamaized.Voidcraft.entity.boss.EntityBossCorruptedPawn;
 import net.minecraft.block.Block;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -51,7 +52,7 @@ public class ChainedSkull extends TamItem {
 			EntityBossCorruptedPawn entity = new EntityBossCorruptedPawn(world);
 
 			if (entity != null) {
-				entity.setCustomNameTag("Corrupted Pawn");
+				entity.setCustomNameTag(("" + I18n.format("entity.VoidBoss.name", new Object[0])).trim());
 				entity.ignite();
 
 				int yaw = (int) player.rotationYaw;
@@ -92,7 +93,7 @@ public class ChainedSkull extends TamItem {
 						break;
 				}
 				world.spawnEntity(entity);
-				player.sendMessage(new TextComponentTranslation("???: Go forth, my pawn."));
+				player.sendMessage(new TextComponentTranslation("voidcraft.misc.pawn.summon"));
 				stack.stackSize -= (1);
 			}
 			return EnumActionResult.PASS;
@@ -101,7 +102,7 @@ public class ChainedSkull extends TamItem {
 
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack p_77624_1_, EntityPlayer p_77624_2_, List p_77624_3_, boolean p_77624_4_) {
-		p_77624_3_.add(TextFormatting.DARK_RED + "WARNING: EXPLOSIONS");
+		p_77624_3_.add(("" + I18n.format("voidcraft.misc.pawn.desc", new Object[0])).trim());
 	}
 
 }

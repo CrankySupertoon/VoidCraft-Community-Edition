@@ -3,6 +3,7 @@ package Tamaized.Voidcraft.GUI.client;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
@@ -53,17 +54,17 @@ public class HeimdallGUI extends GuiContainer {
 
 	@Override
 	protected void drawGuiContainerForegroundLayer(int param1, int param2) {
-		String text = "Heimdall has opened a Gate";
+		String text = ("" + I18n.format("voidcraft.gui.heimdall.title", new Object[0])).trim();
 		fontRendererObj.drawString(text, xSize / 2 - fontRendererObj.getStringWidth(text) / 2, ySize - 260, 0xAAAAAA);
 
-		text = "Fluid:";
+		text = ("" + I18n.format("voidcraft.gui.misc.fluid", new Object[0])).trim()+":";
 		fontRendererObj.drawString(text, (xSize) - 132, ySize - 230, 0x7700FF);
 		text = te.getFluidAmount() + "";
 		fontRendererObj.drawString(text, (xSize) - 132, ySize - 220, 0x7700FF);
 		text = "/" + te.getMaxFluidAmount() + "mb";
 		fontRendererObj.drawString(text, (xSize) - 132, ySize - 210, 0x7700FF);
 
-		text = "Forge Energy:";
+		text = ("" + I18n.format("voidcraft.gui.misc.FE", new Object[0])).trim()+":";
 		fontRendererObj.drawString(text, (xSize - fontRendererObj.getStringWidth(text)) - 226, ySize - 230, 0xAAAAFF);
 		text = te.getEnergyStored() + "";
 		fontRendererObj.drawString(text, ((xSize) - (fontRendererObj.getStringWidth(text))) - 226, ySize - 220, 0xAAAAFF);

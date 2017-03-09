@@ -5,6 +5,7 @@ import Tamaized.Voidcraft.capabilities.CapabilityList;
 import Tamaized.Voidcraft.capabilities.voidicInfusion.IVoidicInfusionCapability;
 import Tamaized.Voidcraft.starforge.effects.IStarForgeEffect;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
@@ -59,7 +60,7 @@ public class StarForgeEffectVoidTouch implements IStarForgeEffect {
 
 	@Override
 	public String getName() {
-		return "Touch of Void";
+		return ("" + I18n.format("voidcraft.VadeMecum.docs.title.starforge.effect.voidTouch", new Object[0])).trim();
 	}
 
 }

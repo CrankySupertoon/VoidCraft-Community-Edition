@@ -27,7 +27,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
-import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
 
@@ -55,7 +55,7 @@ public class EntityBossXia extends EntityVoidBoss<XiaBattleHandler> {
 		world.spawnEntity(new EntityItem(world, posX, posY, posZ, new ItemStack(VoidCraft.armors.xiaLegs)));
 		world.spawnEntity(new EntityItem(world, posX, posY, posZ, new ItemStack(VoidCraft.armors.xiaBoots)));
 		for (EntityPlayer player : getHandler().getPlayers()) {
-			player.sendMessage(new TextComponentString(TextFormatting.DARK_GRAY + "[Xia] Very well.. Take my armor, you'll gain flight. Fly up through the hole and come do battle with me over the Void..."));
+			player.sendMessage(new TextComponentTranslation("voidcraft.misc.xia.death"));
 		}
 	}
 

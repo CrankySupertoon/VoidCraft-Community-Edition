@@ -6,6 +6,7 @@ import Tamaized.Voidcraft.machina.tileentity.TileEntityVoidBlastFurnace;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 
@@ -44,9 +45,9 @@ public class VoidBlastFurnaceGUI extends GuiContainer {
 
 	@Override
 	protected void drawGuiContainerForegroundLayer(int param1, int param2) {
-		String text = "Void Blast Furnace";
+		String text = ("" + I18n.format("voidcraft.gui.blastfurnace.title", new Object[0])).trim();
 		this.fontRendererObj.drawString(text, this.xSize / 2 - this.fontRendererObj.getStringWidth(text) / 2, this.ySize - 260, 0xAAAAAA);
-		text = "Voidic Power:";
+		text = ("" + I18n.format("voidcraft.gui.misc.power", new Object[0])).trim()+":";
 		this.fontRendererObj.drawString(text, (this.xSize / 2 - this.fontRendererObj.getStringWidth(text) / 1) - 60, this.ySize / 2 - 65, 0xFF0000);
 		text = te.getPowerAmount() + "/";
 		this.fontRendererObj.drawString(text, (this.xSize / 2 - this.fontRendererObj.getStringWidth(text) / 1) - 60, this.ySize / 2 - 55, 0xFF0000);

@@ -4,6 +4,7 @@ import Tamaized.Voidcraft.starforge.effects.IStarForgeEffect;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -85,7 +86,7 @@ public class StarForgeEffectThreeByThree implements IStarForgeEffect {
 
 	@Override
 	public String getName() {
-		return "3x3 Mining";
+		return ("" + I18n.format("voidcraft.VadeMecum.docs.title.starforge.effect.threeByThree", new Object[0])).trim();
 	}
 
 	private void caseY(EntityPlayer player, World world, ItemStack tool, BlockPos pos) {

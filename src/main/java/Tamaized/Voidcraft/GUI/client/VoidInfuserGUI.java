@@ -3,6 +3,7 @@ package Tamaized.Voidcraft.GUI.client;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
@@ -53,9 +54,9 @@ public class VoidInfuserGUI extends GuiContainer {
 
 	@Override
 	protected void drawGuiContainerForegroundLayer(int param1, int param2) {
-		String text = "Void Infuser";
+		String text = ("" + I18n.format("voidcraft.gui.infuser.title", new Object[0])).trim();
 		fontRendererObj.drawString(text, xSize/2 - fontRendererObj.getStringWidth(text) / 2, ySize-260, 0xAAAAAA);
-		text = "Fluid:";
+		text = ("" + I18n.format("voidcraft.gui.misc.fluid", new Object[0])).trim()+":";
 		fontRendererObj.drawString(text, (xSize/2 - fontRendererObj.getStringWidth(text) / 2) - 100, ySize/2 - 65, 0x7700FF);
 		text = te.getFluidAmount()+"/";
 		fontRendererObj.drawString(text, (xSize/2 - fontRendererObj.getStringWidth(text) / 1) - 85, ySize/2 - 55, 0x7700FF);

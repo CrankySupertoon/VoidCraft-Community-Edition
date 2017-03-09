@@ -27,6 +27,7 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
 
@@ -61,7 +62,7 @@ public class VoidicInfusionCapabilityHandler implements IVoidicInfusionCapabilit
 							if (cap.hasCategory(IVadeMecumCapability.Category.AcidSpray)) {
 								if (cap.hasCategory(IVadeMecumCapability.Category.Shock)) {
 									cap.addCategory(IVadeMecumCapability.Category.Voice);
-									entity.sendMessage(new TextComponentString(TextFormatting.DARK_PURPLE + "[" + TextFormatting.OBFUSCATED + "Voice" + TextFormatting.RESET + "" + TextFormatting.DARK_PURPLE + "]: Your task is complete. I've added a new entry to your Vade Mecum."));
+									entity.sendMessage(new TextComponentTranslation("voidcraft.VadeMecum.voice.Voice"));
 								}
 							}
 						}
@@ -158,13 +159,13 @@ public class VoidicInfusionCapabilityHandler implements IVoidicInfusionCapabilit
 						kill = false;
 						infusion = 0;
 						cap.addCategory(IVadeMecumCapability.Category.VoidicControl);
-						entity.sendMessage(new TextComponentString(TextFormatting.DARK_PURPLE + "[" + TextFormatting.OBFUSCATED + "Voice" + TextFormatting.RESET + "" + TextFormatting.DARK_PURPLE + "]: Very Good."));
+						entity.sendMessage(new TextComponentTranslation("voidcraft.VadeMecum.voice.VoidicControl"));
 					}
 					if (cap.hasCategory(IVadeMecumCapability.Category.Empowerment) && !cap.hasCategory(IVadeMecumCapability.Category.Tolerance) && entity.world.provider.getDimension() != VoidCraft.config.getDimensionIDvoid()) {
 						kill = false;
 						infusion = 0;
 						cap.addCategory(IVadeMecumCapability.Category.Tolerance);
-						entity.sendMessage(new TextComponentString(TextFormatting.DARK_PURPLE + "[" + TextFormatting.OBFUSCATED + "Voice" + TextFormatting.RESET + "" + TextFormatting.DARK_PURPLE + "]: Very Good."));
+						entity.sendMessage(new TextComponentTranslation("voidcraft.VadeMecum.voice.Tolerance"));
 					}
 				}
 			}

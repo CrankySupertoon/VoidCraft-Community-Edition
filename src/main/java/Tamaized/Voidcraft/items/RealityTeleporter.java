@@ -22,7 +22,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
 
 public class RealityTeleporter extends VoidicPowerItem {
@@ -124,14 +124,14 @@ public class RealityTeleporter extends VoidicPowerItem {
 			if (loc.length == 3) {
 				BlockPos newPos = new BlockPos(loc[0], loc[1], loc[2]);
 				if (teleporter.getPos().equals(newPos)) {
-					if (!worldIn.isRemote) playerIn.sendMessage(new TextComponentString("Cannot link to the same block"));
+					if (!worldIn.isRemote) playerIn.sendMessage(new TextComponentTranslation("voidcraft.misc.item.teleporter.error"));
 				} else {
 					teleporter.setLink(newPos);
-					if (!worldIn.isRemote) playerIn.sendMessage(new TextComponentString("Linked: { x:" + loc[0] + ", y:" + loc[1] + ", z:" + loc[2] + " }"));
+					if (!worldIn.isRemote) playerIn.sendMessage(new TextComponentTranslation("voidcraft.misc.item.teleporter.link", loc[0], loc[1], loc[2]));
 				}
 			} else {
 				ct.setIntArray("link", new int[] { pos.getX(), pos.getY(), pos.getZ() });
-				if (!worldIn.isRemote) playerIn.sendMessage(new TextComponentString("Saved Link: { x:" + pos.getX() + ", y:" + pos.getY() + ", z:" + pos.getZ() + " }"));
+				if (!worldIn.isRemote) playerIn.sendMessage(new TextComponentTranslation("voidcraft.misc.item.teleporter.save", pos.getX(), pos.getY(), pos.getZ()));
 			}
 			return EnumActionResult.SUCCESS;
 		}

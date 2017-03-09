@@ -24,8 +24,7 @@ import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.TextComponentString;
-import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
 
 public class XiaCastleLogicHandler {
@@ -157,7 +156,7 @@ public class XiaCastleLogicHandler {
 				IVadeMecumCapability vade = player.getCapability(CapabilityList.VADEMECUM, null);
 				if (vade.hasCategory(IVadeMecumCapability.Category.TotalControl) && !vade.hasCategory(IVadeMecumCapability.Category.Dreams)) {
 					vade.addCategory(IVadeMecumCapability.Category.Dreams);
-					player.sendMessage(new TextComponentString(TextFormatting.DARK_PURPLE + "[" + TextFormatting.OBFUSCATED + "Voice" + TextFormatting.RESET + "" + TextFormatting.DARK_PURPLE + "]: The Quori and I thank you mortal, you've been a great contribution to us."));
+					player.sendMessage(new TextComponentTranslation("voidcraft.VadeMecum.voice.Dreams"));
 				}
 			}
 		}

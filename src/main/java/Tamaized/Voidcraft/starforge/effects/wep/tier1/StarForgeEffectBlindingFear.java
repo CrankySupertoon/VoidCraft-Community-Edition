@@ -2,6 +2,7 @@ package Tamaized.Voidcraft.starforge.effects.wep.tier1;
 
 import Tamaized.Voidcraft.starforge.effects.IStarForgeEffect;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.MobEffects;
@@ -58,7 +59,7 @@ public class StarForgeEffectBlindingFear implements IStarForgeEffect {
 
 	@Override
 	public String getName() {
-		return "Blinding Fear";
+		return ("" + I18n.format("voidcraft.VadeMecum.docs.title.starforge.effect.blindingFear", new Object[0])).trim();
 	}
 
 }

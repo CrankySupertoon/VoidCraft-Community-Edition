@@ -15,9 +15,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
-import net.minecraftforge.common.capabilities.CapabilityManager;
 
 public class TileEntityVoidicAlchemy extends TileEntityVoidicPowerInventory {
 
@@ -48,7 +47,7 @@ public class TileEntityVoidicAlchemy extends TileEntityVoidicPowerInventory {
 		ownerName = player.getGameProfile().getName();
 		ownerID = player.getGameProfile().getId();
 		owner = player.getCapability(CapabilityList.VADEMECUM, null);
-		player.sendMessage(new TextComponentString(TextFormatting.DARK_GRAY + "Owner Set: " + player.getGameProfile().getName()));
+		player.sendMessage(new TextComponentTranslation("voidcraft.misc.te.alch.set", player.getGameProfile().getName()));
 	}
 
 	public String getOwnerName() {

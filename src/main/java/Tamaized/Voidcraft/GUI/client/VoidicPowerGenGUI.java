@@ -4,6 +4,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 import Tamaized.Voidcraft.VoidCraft;
@@ -47,15 +48,15 @@ public class VoidicPowerGenGUI extends GuiContainer {
 	
 	@Override
 	protected void drawGuiContainerForegroundLayer(int param1, int param2) {
-		String text = "Voidic Power Generator";
+		String text = ("" + I18n.format("voidcraft.gui.gen.title", new Object[0])).trim();
 		fontRendererObj.drawString(text, xSize/2 - fontRendererObj.getStringWidth(text) / 2, ySize-260, 0xAAAAAA);
-		text = "Fluid:";
+		text = ("" + I18n.format("voidcraft.gui.misc.fluid", new Object[0])).trim()+":";
 		fontRendererObj.drawString(text, (xSize/2 - fontRendererObj.getStringWidth(text) / 2) - 100, ySize/2 - 65, 0x7700FF);
 		text = te.getFluidAmount()+"/";
 		fontRendererObj.drawString(text, (xSize/2 - fontRendererObj.getStringWidth(text) / 1) - 85, ySize/2 - 55, 0x7700FF);
 		text = ""+te.getMaxFluidAmount();
 		fontRendererObj.drawString(text, (xSize/2 - fontRendererObj.getStringWidth(text) / 1) - 85, ySize/2 - 45, 0x7700FF);
-		text = "Voidic Power:";
+		text = ("" + I18n.format("voidcraft.gui.misc.power", new Object[0])).trim()+":";
 		fontRendererObj.drawString(text, (xSize/2 - fontRendererObj.getStringWidth(text) / 2) + 70, ySize/2 - 65, 0xFF0000);
 		text = te.getPowerAmount()+"/";
 		fontRendererObj.drawString(text, (xSize/2) + 38, ySize/2 - 55, 0xFF0000);

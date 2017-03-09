@@ -1,6 +1,7 @@
 package Tamaized.Voidcraft.xiaCastle.logic.battle.twins;
 
 import net.minecraft.block.BlockLever;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -50,7 +51,7 @@ public class TwinsBattleHandler implements IBattleHandler {
 								if (sign != null) {
 									boolean flag1 = false;
 									for (ITextComponent t : sign.signText) {
-										if (t.getUnformattedText().toLowerCase().contains("dol")) flag1 = true;
+										if (t.getUnformattedText().toLowerCase().contains(("" + I18n.format("voidcraft.twins.riddle.1.a", new Object[0])).trim())) flag1 = true;
 									}
 									if (flag1) {
 										worldObj.setBlockState(pos.add(3, 1, 0), Blocks.AIR.getDefaultState());
@@ -84,7 +85,7 @@ public class TwinsBattleHandler implements IBattleHandler {
 								if (sign != null) {
 									boolean flag1 = false;
 									for (ITextComponent t : sign.signText) {
-										if (t.getUnformattedText().toLowerCase().contains("void")) flag1 = true;
+										if (t.getUnformattedText().toLowerCase().contains(("" + I18n.format("voidcraft.twins.riddle.2.a", new Object[0])).trim())) flag1 = true;
 									}
 									if (flag1) {
 										worldObj.setBlockState(pos.add(3, 1, 0), Blocks.AIR.getDefaultState());
@@ -118,7 +119,7 @@ public class TwinsBattleHandler implements IBattleHandler {
 								if (sign != null) {
 									boolean flag1 = false;
 									for (ITextComponent t : sign.signText) {
-										if (t.getUnformattedText().toLowerCase().contains("herobrine")) flag1 = true;
+										if (t.getUnformattedText().toLowerCase().contains(("" + I18n.format("voidcraft.twins.riddle.3.a", new Object[0])).trim())) flag1 = true;
 									}
 									if (flag1) {
 										worldObj.setBlockState(pos.add(3, 1, 0), Blocks.AIR.getDefaultState());
@@ -152,7 +153,7 @@ public class TwinsBattleHandler implements IBattleHandler {
 								if (sign != null) {
 									boolean flag1 = false;
 									for (ITextComponent t : sign.signText) {
-										if (t.getUnformattedText().toLowerCase().contains("dream")) flag1 = true;
+										if (t.getUnformattedText().toLowerCase().contains(("" + I18n.format("voidcraft.twins.riddle.4.a", new Object[0])).trim())) flag1 = true;
 									}
 									if (flag1) {
 										worldObj.setBlockState(pos.add(3, 1, 0), Blocks.AIR.getDefaultState());

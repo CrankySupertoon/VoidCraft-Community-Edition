@@ -21,7 +21,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.fml.common.FMLCommonHandler;
@@ -59,7 +59,7 @@ public class DamageEvent {
 			if (living.hasCapability(CapabilityList.VOIDICINFUSION, null) && living.getCapability(CapabilityList.VOIDICINFUSION, null).getInfusionPerc() >= 0.50f) {
 				if (Math.floor(Math.random() * 5) == 0 && isWhiteListed(e.getSource(), true)) { // 0-4; 25%
 					e.setCanceled(true);
-					living.sendMessage(new TextComponentString(TextFormatting.ITALIC + "" + TextFormatting.DARK_GRAY + "Incorporeal"));
+					living.sendMessage(new TextComponentTranslation("voidcraft.misc.incorp"));
 					return;
 				}
 			}

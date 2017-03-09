@@ -16,6 +16,7 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderHelper;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -36,8 +37,8 @@ public class VadeMecumInfusionGUI extends GuiScreen {
 	public void initGui() {
 		super.initGui();
 
-		buttonList.add(new GuiButton(BUTTON_BACK, 5, height - 50, 80, 20, "Back"));
-		buttonList.add(new GuiButton(BUTTON_CLOSE, 5, height - 25, 80, 20, "Close"));
+		buttonList.add(new GuiButton(BUTTON_BACK, 5, height - 50, 80, 20, ("" + I18n.format("voidcraft.gui.misc.back", new Object[0])).trim()));
+		buttonList.add(new GuiButton(BUTTON_CLOSE, 5, height - 25, 80, 20, ("" + I18n.format("voidcraft.gui.misc.close", new Object[0])).trim()));
 
 		int xLoc = (width / 2) - 55;
 		int yLoc = 28;
@@ -86,7 +87,7 @@ public class VadeMecumInfusionGUI extends GuiScreen {
 	public void drawScreen(int mouseX, int mouseY, float partialTicks) {
 		drawDefaultBackground();
 		super.drawScreen(mouseX, mouseY, partialTicks);
-		drawCenteredString(fontRendererObj, "Voidic Infusion Control", width / 2, 15, 16777215);
+		drawCenteredString(fontRendererObj, ("" + I18n.format("voidcraft.gui.voidicInfusionControl.title", new Object[0])).trim(), width / 2, 15, 16777215);
 	}
 
 	public class PassiveButton extends GuiButton {

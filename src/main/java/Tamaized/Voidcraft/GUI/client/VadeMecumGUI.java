@@ -23,6 +23,7 @@ import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.VertexBuffer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -124,8 +125,8 @@ public class VadeMecumGUI extends GuiScreen {
 		button_credits = (VadeMecumGUI.OverlayButton) addButton(new VadeMecumGUI.OverlayButton(this, getButtonID(Button.Credits), vadeX + 358, vadeY + 8, false));
 		button_largeBack = (VadeMecumGUI.LargeArrowButton) addButton(new VadeMecumGUI.LargeArrowButton(getButtonID(Button.LargeBack), vadeX + 17, vadeY + vadeH - 2/* vadeY + 10 */));
 		if (VoidCraft.isDevBuild) {
-			button_spells = (VadeMecumGUI.FullButton) addButton(new VadeMecumGUI.FullButton(this, "Spells", getButtonID(Button.WordsOfPower), vadeX + 42, vadeY + vadeH - 3));
-			button_infusion = (VadeMecumGUI.FullButton) addButton(new VadeMecumGUI.FullButton(this, "Infusion", getButtonID(Button.Infusion), vadeX + 82, vadeY + vadeH - 3));
+			button_spells = (VadeMecumGUI.FullButton) addButton(new VadeMecumGUI.FullButton(this, ("" + I18n.format("voidcraft.gui.misc.spells", new Object[0])).trim(), getButtonID(Button.WordsOfPower), vadeX + 42, vadeY + vadeH - 3));
+			button_infusion = (VadeMecumGUI.FullButton) addButton(new VadeMecumGUI.FullButton(this, ("" + I18n.format("voidcraft.gui.misc.infusion", new Object[0])).trim(), getButtonID(Button.Infusion), vadeX + 82, vadeY + vadeH - 3));
 		}
 		updateButtons();
 	}
@@ -253,8 +254,8 @@ public class VadeMecumGUI extends GuiScreen {
 		if (canDrawPage()) {
 			entry.render(this, fontRendererObj, mouseX, mouseY, vadeX, vadeY, pageNumber);
 		}
-		if (button_entryBack != null && button_entryBack.visible) drawCenteredString(fontRendererObj, "Main", vadeX + 30, vadeY + vadeH - 24, 0xFFFF00);
-		if (button_credits != null && button_credits.visible) drawCenteredString(fontRendererObj, "Credits", vadeX + 360, vadeY + 12, 0xFFFF00);
+		if (button_entryBack != null && button_entryBack.visible) drawCenteredString(fontRendererObj, ("" + I18n.format("voidcraft.gui.misc.button.main", new Object[0])).trim(), vadeX + 30, vadeY + vadeH - 24, 0xFFFF00);
+		if (button_credits != null && button_credits.visible) drawCenteredString(fontRendererObj, ("" + I18n.format("voidcraft.gui.misc.button.credits", new Object[0])).trim(), vadeX + 360, vadeY + 12, 0xFFFF00);
 		if (playerStats.getCurrentActive() != null) {
 
 		}

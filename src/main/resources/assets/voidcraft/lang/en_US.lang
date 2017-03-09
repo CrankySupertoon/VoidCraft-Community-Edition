@@ -119,7 +119,19 @@ tile.voidblastfurnace.name=Void Blast Furnace
 # Potion
 effect.voidcraft:voidicinfusionimmunity=Voidic Immunity
 effect.voidcraft:voidimmunity=Plenum
+effect.voidcraft:potionsheathelit=Sheathe: Shock
+effect.voidcraft:potionsheathefrost=Sheathe: Frost
+effect.voidcraft:potionsheathefire=Sheathe: Flame
+effect.voidcraft:potionsheatheacid=Sheathe: Acid
+effect.voidcraft:potionsheathevoid=Sheathe: Void
+effect.voidcraft:voidicinfusion=Voidic Infusion
 potion.effect.voidimmunity=Potion of Plenum
+
+# Death
+death.attack.VoidicInfusion=%s has left the material plane
+death.attack.Acid=%s disintegrated
+death.attack.Frost=%s froze to death
+death.attack.Lit=Zap! %s died
 
 # Fluid
 fluid.void=Liquid Void
@@ -179,6 +191,7 @@ itemGroup.tabVoid=VoidCraft
 itemGroup.tForge=Star Forge
 
 # Entity
+<<<<<<< HEAD
 entity.voidcraft.Wraith.name=Void Wraith
 entity.voidcraft.SpectreChain.name=Chained Spectre
 entity.voidcraft.VoidWrath.name=Void's Wrath
@@ -199,6 +212,67 @@ entity.voidcraft.DragonXia.name=Ender Dragon
 entity.voidcraft.DolXia.name=Dol
 entity.voidcraft.ZolXia.name=Zol
 entity.voidcraft.VoidicDragon.name=Voidic Dragon
+=======
+entity.Wraith.name=Void Wraith
+entity.SpectreChain.name=Chained Spectre
+entity.VoidWrath.name=Void's Wrath
+entity.Lich.name=Void Lich
+entity.VoidBoss.name=Corrupted Pawn
+entity.Herobrine.name=Avatar of Herobrine
+entity.Dol.name=Dol
+entity.Zol.name=Zol
+entity.Xia.name=Xia
+entity.Xia2.name=Xia
+entity.EtherealGuardian.name=Ethereal Guardian
+entity.HerobrineCreeper.name=Herobrine's Creeper
+entity.GhostPlayer.name=Ghost
+entity.GhostBiped.name=Ghost
+entity.Witherbrine.name=Witherbrine
+entity.DragonOld.name=Ender Dragon
+entity.DragonXia.name=Ender Dragon
+entity.DolXia.name=Dol
+entity.ZolXia.name=Zol
+entity.VoidicDragon.name=Voidic Dragon
+entity.FireElemental.name=Fire Elemental
+
+# GUI
+voidcraft.gui.misc.none=None
+voidcraft.gui.misc.owner=Owner
+voidcraft.gui.misc.on=On
+voidcraft.gui.misc.off=Off
+voidcraft.gui.misc.play=Play
+voidcraft.gui.misc.stop=Stop
+voidcraft.gui.misc.loop=Loop
+voidcraft.gui.misc.auto=Auto Insert
+voidcraft.gui.misc.back=Back
+voidcraft.gui.misc.close=Close
+voidcraft.gui.misc.main=Main
+voidcraft.gui.misc.credits=Credits
+voidcraft.gui.misc.spells=Spells
+voidcraft.gui.misc.infusion=Infusion
+voidcraft.gui.misc.fluid=Fluid
+voidcraft.gui.misc.FE=Forge Energy
+voidcraft.gui.misc.power=Voidic Power
+voidcraft.gui.misc.button.clearlink=Clear Link
+voidcraft.gui.misc.button.forge=Forge
+voidcraft.gui.heimdall.title=Heimdall has opened a Gate
+voidcraft.gui.realitystabilizer.title=Reality Stabilizer
+voidcraft.gui.realityteleporterblock.title=Reality Teleportation Block
+voidcraft.gui.realityteleporterblock.link=Linked to
+voidcraft.gui.realityteleporterblock.nolink=Not Linked
+voidcraft.gui.realityteleporter.title=Reality Teleporter
+voidcraft.gui.starforge.title=Star Forge
+voidcraft.gui.voidicInfusionControl.title=Voidic Infusion Control
+voidcraft.gui.wordsofpower.title=Words of Power
+voidcraft.gui.blastfurnace.title=Void Blast Furnace
+voidcraft.gui.musicbox.title=Void Music Box
+voidcraft.gui.musicbox.curr=Currently Playing
+voidcraft.gui.alchemy.title=Voidic Alchemy Table
+voidcraft.gui.charger.title=Voidic Power Charger
+voidcraft.gui.gen.title=Voidic Power Generator
+voidcraft.gui.infuser.title=Void Infusion Altar
+voidcraft.gui.macerator.title=Void Infused Macerator
+>>>>>>> ff87443... lang file all the things, closes #91
 
 # Achievements
 achievement.voidCrystal=Void?
@@ -432,7 +506,7 @@ voidcraft.VadeMecum.progression.desc.voice.pg1=I'm sure you've noticed each time
 voidcraft.VadeMecum.progression.desc.voice.pg2=Right onto the explosion bits, I have a task for you, doing this task will decrease the chance for you to explode by 25 percent, currently your chance is 75 percent. I'm sure your.. kind.. can do math, right? The task is simple, I want you to enter the Void and gain some infusion. It wont be much, but I'll let you know when your task is complete.
 voidcraft.VadeMecum.progression.desc.voidicControl.pg1=You may know that Voidic Infusion inflicts some rather nasty effects upon you, however you may also know that some of these effects can be beneficial. There are ways to control your infusion effects in a way to prove more good than bad.
 voidcraft.VadeMecum.progression.desc.voidicControl.pg2=Enter the Void and allow yourself to be consumed by the Voidic Infusion, I will anchor your body to the material plane to prevent death long enough for you to gain new power.
-# -- Rituals
+## -- Rituals
 voidcraft.ritual.error=§4Unknown Ritual
 voidcraft.ritual.def.word=Word:
 voidcraft.ritual.INTRO=§2Rituals
@@ -478,6 +552,163 @@ voidcraft.VadeMecum.passive.Empowerment=Empowerment
 voidcraft.VadeMecum.passive.Tolerance=Tolerance
 voidcraft.VadeMecum.passive.Flight=Voidic Flight
 voidcraft.VadeMecum.passive.Vigor=Vigor
+## -- Voice
+voidcraft.VadeMecum.voice.VoidicControl=§5[§kVoice§r§5]: Very Good.
+voidcraft.VadeMecum.voice.Tolerance=§5[§kVoice§r§5]: Very Good, your infusion has been consumed in order to create your new power.
+voidcraft.VadeMecum.voice.Voice=§5[§kVoice§r§5]: Your task is complete. I've added a new entry to your Vade Mecum.
+voidcraft.VadeMecum.voice.Dreams=§5[§kVoice§r§5]: The Quori and I thank you mortal, you've been a great contribution to us.
+
+# Twins Speech
+# -- Battle
+## -- Riddle
+voidcraft.twins.riddle.1.1=Material
+voidcraft.twins.riddle.1.2=Elemental
+voidcraft.twins.riddle.1.3=Lawful Neutral
+voidcraft.twins.riddle.1.4=Who am I
+voidcraft.twins.riddle.1.a=dol
+
+voidcraft.twins.riddle.2.1=Nothing
+voidcraft.twins.riddle.2.2=Empty
+voidcraft.twins.riddle.2.3=Consume
+voidcraft.twins.riddle.2.4=What am I
+voidcraft.twins.riddle.2.a=void
+
+voidcraft.twins.riddle.3.1=Destruction
+voidcraft.twins.riddle.3.2=Unexposed
+voidcraft.twins.riddle.3.3=Chaotic Evil
+voidcraft.twins.riddle.3.4=Who am I
+voidcraft.twins.riddle.3.a=herobrine
+
+voidcraft.twins.riddle.4.1=In your future
+voidcraft.twins.riddle.4.2=and in your past
+voidcraft.twins.riddle.4.3=I come and go
+voidcraft.twins.riddle.4.4=so senseless and fast
+voidcraft.twins.riddle.4.5=My purpose is
+voidcraft.twins.riddle.4.6=unknown to all
+voidcraft.twins.riddle.4.7=Remembrance seems
+voidcraft.twins.riddle.4.8=to drift then fall
+voidcraft.twins.riddle.4.9=I travel by night
+voidcraft.twins.riddle.4.10=and fade by day
+voidcraft.twins.riddle.4.11=Because that is
+voidcraft.twins.riddle.4.12=my common way
+voidcraft.twins.riddle.4.a=dream
+## -- 1
+voidcraft.twins.speech.riddle.1.1=§3%s is approaching.
+voidcraft.twins.speech.riddle.1.2=§2I know.
+voidcraft.twins.speech.riddle.1.3=§3Isn't it strange? This one is actually able to be here because they changed the rules of our universe.
+voidcraft.twins.speech.riddle.1.4=§2Yes... While so many like %s are able to do this, so few choose to do so.
+voidcraft.twins.speech.riddle.1.5=§3I don't blame them. There isn't much information out there about us... yet.
+voidcraft.twins.speech.riddle.1.6=§2True, but to think... we're going to play a bigger part of this one's dream. %s will get to meet us.
+voidcraft.twins.speech.riddle.1.7=§3Will %s understand what we are?
+voidcraft.twins.speech.riddle.1.8=§2I don't think so. We are the greatest mystery of all to humans. While this one is strong enough to understand our thoughts, it does not mean it will understand us in all our entirety.
+voidcraft.twins.speech.riddle.1.9=§3Let us take a form that is familiar to them, then.
+voidcraft.twins.speech.riddle.1.10=§2I agree.
+voidcraft.twins.speech.riddle.1.11=§2[Dol]: Hello, %s.
+voidcraft.twins.speech.riddle.1.12=§2[Dol]: As you can tell, you are trapped in here.
+voidcraft.twins.speech.riddle.1.13=§3[Zol]: We'd like to have a little battle with you.
+voidcraft.twins.speech.riddle.1.14=§2[Dol]: Not just any battle.
+voidcraft.twins.speech.riddle.1.15=§3[Zol]: A battle of wits.
+voidcraft.twins.speech.riddle.1.16=§2[Dol]: If you pass our little challenge, we'll let you free. If Herobrine is also defeated, Xia's door will be open for you to proceed.
+voidcraft.twins.speech.riddle.1.17=§3[Zol]: Now then, shall we begin?
+voidcraft.twins.speech.riddle.1.18=§3[Zol]: Place this sign, with your answer, in front of the chest and then flip the lever.
+## -- 2
+voidcraft.twins.speech.riddle.2.1=§3[Zol]: %s is correct, Dol.
+voidcraft.twins.speech.riddle.2.2=§2[Dol]: Yes indeed.
+voidcraft.twins.speech.riddle.2.3=§3[Zol]: We've got a few more for you, %s.
+## -- 3
+voidcraft.twins.speech.riddle.3.1=§2[Dol]: %s is clever, Zol.
+voidcraft.twins.speech.riddle.3.2=§3[Zol]: We're not done yet though.
+## -- 4
+voidcraft.twins.speech.riddle.4.1=§3[Zol]: ...
+voidcraft.twins.speech.riddle.4.2=§2[Dol]: How about this one?
+## -- 5
+voidcraft.twins.speech.riddle.5.1=§2[Dol]: What did this player dream?
+voidcraft.twins.speech.riddle.5.2=§3[Zol]: This player dreamed of sunlight and trees. Of fire and water. It dreamed it created. And it dreamed it destroyed. It dreamed it hunted, and was hunted. It dreamed of shelter.
+voidcraft.twins.speech.riddle.5.3=§2[Dol]: Hah, the original interface. A million years old, and it still works. But what true structure did this player create, in the reality behind the screen?
+voidcraft.twins.speech.riddle.5.4=§3[Zol]: It worked, with a million others, to sculpt a true world in a fold of the §kqwertyui§r§3, and created a §kqwertyui§r§3 for §kqwertyui§r§3, in the §kqwertyui§r§3.
+voidcraft.twins.speech.riddle.5.5=§2[Dol]: It cannot read that thought.
+voidcraft.twins.speech.riddle.5.6=§3[Zol]: It has not yet achieved the highest level. That, it must achieve in the long dream of life, not the short dream of a game.
+voidcraft.twins.speech.riddle.5.7=§2[Dol]: Sometimes I wish to tell them, this world you take for truth is merely §kqwertyui§r§2 and §kqwertyui§r§2, I wish to tell them that they are §kqwertyui§r§2 in the §kqwertyui§r§2. They see so little of reality, in their long dream.
+voidcraft.twins.speech.riddle.5.8=§3[Zol]: %s, go.. defeat Xia, only then will you achieve this so called "highest level".
+# -- End
+## -- 1
+voidcraft.twins.speech.end.1.1=§3Hello. Do you remember us?
+voidcraft.twins.speech.end.1.2=§2Believe it or not, we've met before.
+voidcraft.twins.speech.end.1.3=§3In fact, we've never left your side.
+voidcraft.twins.speech.end.1.4=§2Though, I could imagine that our presence is all too subtle and overbearing for you to even acknowledge our presence.
+voidcraft.twins.speech.end.1.5=§3I wouldn't blame you. After all, it's easy to lose sight of reality while living in your dreams.
+voidcraft.twins.speech.end.1.6=§2We are the universe. We are everything you think isn't you.
+voidcraft.twins.speech.end.1.7=§3We are kind and loving, but Dol is not very humble.
+voidcraft.twins.speech.end.1.8=§2Were it not for me you'd use that line every chance you could, Zol.
+voidcraft.twins.speech.end.1.9=§3You're not wrong, but let's get back on topic.
+voidcraft.twins.speech.end.1.10=§2We are here because you've reached an even higher level, %s.
+voidcraft.twins.speech.end.1.11=§2You’ve overcome great trial and tribulation, so we’ve come to see you, player.
+voidcraft.twins.speech.end.1.12=§2To let you know that you played well.
+voidcraft.twins.speech.end.1.13=§3But the question remains: Have you reached the highest level?
+voidcraft.twins.speech.end.1.14=§2That is something only you hold the answer to.
+voidcraft.twins.speech.end.1.15=§2Your potential is only barred by your own willpower.
+voidcraft.twins.speech.end.1.16=§3Your presence here is a testament to your character, but there’s not much room for growth here.
+voidcraft.twins.speech.end.1.17=§3Perhaps you’ll find the answers you seek by leaping into the abyss below.
+## -- 2
+voidcraft.twins.speech.end.2.1=§2Welcome back
+voidcraft.twins.speech.end.2.2=§3What brings you here?
+voidcraft.twins.speech.end.2.3=§2Do you enjoy overcoming challenges?
+voidcraft.twins.speech.end.2.4=§3Do you seek a tangible reward for your efforts?
+voidcraft.twins.speech.end.2.5=§2Or did you simply come to see us again?
+voidcraft.twins.speech.end.2.6=§3Well, if it’s the latter, let us not disappoint.
+voidcraft.twins.speech.end.2.7=§2Let’s tell the player a story.
+voidcraft.twins.speech.end.2.8=§2Time started when there was change. As time flowed, or rather, as we came to be, you came to be as you are now.
+voidcraft.twins.speech.end.2.9=§3Us? We have been here since the beginning.
+voidcraft.twins.speech.end.2.10=§2...Though, to be truthful... You are just as old as we are.
+voidcraft.twins.speech.end.2.11=§3The difference, though, is that, in principle, we haven’t changed.
+voidcraft.twins.speech.end.2.12=§3We were born from nothingness and thrust into a lawless world.
+voidcraft.twins.speech.end.2.13=§2And so, by our mere existence, we became law.
+voidcraft.twins.speech.end.2.14=§3We had a maker. Though, he neglected to tell us his name.
+voidcraft.twins.speech.end.2.15=§2We decided to call him "Xia"
+voidcraft.twins.speech.end.2.16=§3He told us that we were to govern the realms that he also created.
+voidcraft.twins.speech.end.2.17=§3We knew not his of his intentions, but before him, we were nothing.
+voidcraft.twins.speech.end.2.18=§2So logically, we followed his order without hesitation.
+voidcraft.twins.speech.end.2.19=§2If he held the power to make us, he could easily eliminate us.
+voidcraft.twins.speech.end.2.20=§2After all, it is far more simple to destroy than it is to create. You of all people should know this by now.
+voidcraft.twins.speech.end.2.21=§3I, Zol, was to be the order which oversaw the development of the universe.
+voidcraft.twins.speech.end.2.22=§3From my intangible skies above, I would set the pace of time itself.
+voidcraft.twins.speech.end.2.23=§2I, Dol, was to give the universe form and function.
+voidcraft.twins.speech.end.2.24=§2I gave room for all worlds to exist, I even gave you space for your own.
+voidcraft.twins.speech.end.2.25=§3Together, we shaped the Universe as you know it.
+voidcraft.twins.speech.end.2.26=§3Everything that ever has, is, and will happen falls under our jurisdiction.
+voidcraft.twins.speech.end.2.27=§3Even your presence here today.
+voidcraft.twins.speech.end.2.28=§3We have been watching you form since you were just a random set of atoms.
+voidcraft.twins.speech.end.2.29=§3You were a part of many things before you were called %s.
+voidcraft.twins.speech.end.2.30=§3You were once Dust, Rock, Star, Mountain, River, and Valley.
+voidcraft.twins.speech.end.2.31=§3You were also Microbe, Virus, Flora, and Fauna.
+voidcraft.twins.speech.end.2.32=§3And countless other things too, this is just to name a few.
+voidcraft.twins.speech.end.2.33=§2And in your previous forms, you did many things.
+voidcraft.twins.speech.end.2.34=§2Sometimes you sunbathed to convert the kinetic energy from photons into chemical energy in an extremely complex, yet beautiful process which your current form calls "Photosynthesis"
+voidcraft.twins.speech.end.2.35=§2Sometimes you were hunting. Sometimes you were being hunted.
+voidcraft.twins.speech.end.2.36=§2Other times you were motionless. Either because you were dead or inanimate.
+voidcraft.twins.speech.end.2.37=§2Regardless of the form you took, however, there were some things that you always did throughout your entire existence.
+voidcraft.twins.speech.end.2.38=§3You changed.
+voidcraft.twins.speech.end.2.39=§2We mean that in both senses of the word.
+voidcraft.twins.speech.end.2.40=§3You have grown in character as much as you have grown as a body.
+voidcraft.twins.speech.end.2.41=§3Gathering together both the knowledge needed to succeed, and the nutrients you need to make your body stronger.
+voidcraft.twins.speech.end.2.42=§2You have also altered the world around you. Especially in this Short Dream of the game.
+voidcraft.twins.speech.end.2.43=§2We gave you the time and space you needed to do all of this.
+voidcraft.twins.speech.end.2.44=§2But the question remains: What will you do with it, if anything at all?
+voidcraft.twins.speech.end.2.45=§2Only you hold the answer to that question.
+voidcraft.twins.speech.end.2.46=§2But even if you have plans, you will have to leap into action to leave this place.
+voidcraft.twins.speech.end.2.47=§2There is nothing left for you here, so go...
+voidcraft.twins.speech.end.2.48=§2Go out and live your dream.
+
+# Misc
+voidcraft.misc.xia.death=§8[Xia]: Very well.. Take my armor, you'll gain flight. Fly up through the hole and come do battle with me over the Void...
+voidcraft.misc.incorp=§o§8Incorporeal
+voidcraft.misc.pawn.summon=§8[§kXia§r§8]: Go forth, my pawn.
+voidcraft.misc.pawn.desc=§4WARNING: EXPLOSIONS
+voidcraft.misc.item.teleporter.error=§4Cannot link to the same block
+voidcraft.misc.item.teleporter.link=Linked: { x:%s, y:%s, z:%s }
+voidcraft.misc.item.teleporter.save=Saved Link: { x:%s, y:%s, z:%s }
+voidcraft.misc.te.alch.set=§8Owner Set: %s
+voidcraft.VadeMecum.spells.nomats=Not enough spell material to cast %s
 
 # Thaumcraft
 # -- Research

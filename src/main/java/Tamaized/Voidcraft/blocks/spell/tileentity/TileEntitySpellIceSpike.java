@@ -1,11 +1,11 @@
 package Tamaized.Voidcraft.blocks.spell.tileentity;
 
+import Tamaized.Voidcraft.damageSources.DamageSourceFrost;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.MobEffects;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.AxisAlignedBB;
 
 public class TileEntitySpellIceSpike extends TileEntitySpell {
@@ -36,7 +36,7 @@ public class TileEntitySpellIceSpike extends TileEntitySpell {
 			for (Entity e : world.getEntitiesWithinAABBExcludingEntity(null, new AxisAlignedBB(getPos().add(-3, -3, -3), getPos().add(3, 3, 3)))) {
 				if (!(e instanceof EntityLivingBase) || e == caster) continue;
 				EntityLivingBase living = ((EntityLivingBase) e);
-				living.attackEntityFrom(DamageSource.MAGIC, 2.0f);
+				living.attackEntityFrom(new DamageSourceFrost(), 2.0f);
 				living.addPotionEffect(new PotionEffect(MobEffects.SLOWNESS, 5 * 20, 3));
 			}
 			if (tick > 0 && tick % life == 0) {

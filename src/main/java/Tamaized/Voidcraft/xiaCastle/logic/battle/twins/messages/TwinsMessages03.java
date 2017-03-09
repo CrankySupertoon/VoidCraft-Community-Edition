@@ -11,9 +11,7 @@ import net.minecraft.tileentity.TileEntitySign;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextComponentTranslation;
-import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 
 public class TwinsMessages03 {
@@ -27,10 +25,10 @@ public class TwinsMessages03 {
 			for (EntityPlayer p : worldObj.getEntitiesWithinAABB(EntityPlayer.class, new AxisAlignedBB(pos.add(-50, -50, -50), pos.add(50, 50, 50)))) {
 				switch (childPhase) {
 					case 0:
-						p.sendMessage(new TextComponentTranslation(TextFormatting.GREEN + "[Dol] " + p.getGameProfile().getName() + " is clever, Zol."));
+						p.sendMessage(new TextComponentTranslation("voidcraft.twins.speech.riddle.3.1", p.getGameProfile().getName()));
 						break;
 					case 1:
-						p.sendMessage(new TextComponentTranslation(TextFormatting.AQUA + "[Zol] We're not done yet though."));
+						p.sendMessage(new TextComponentTranslation("voidcraft.twins.speech.riddle.3.2"));
 						break;
 					case 2:
 						worldObj.setBlockState(pos.add(3, 0, 0), Blocks.CHEST.getDefaultState().withProperty(Blocks.CHEST.FACING, EnumFacing.WEST));
@@ -39,10 +37,10 @@ public class TwinsMessages03 {
 						worldObj.setBlockState(pos.add(3, 0, 1), Blocks.LEVER.getDefaultState().withProperty(BlockLever.FACING, BlockLever.EnumOrientation.UP_X));
 						worldObj.setBlockState(pos.add(3, 1, 0), Blocks.STANDING_SIGN.getDefaultState().withProperty(BlockStandingSign.ROTATION, 4));
 						TileEntitySign s = (TileEntitySign) worldObj.getTileEntity(pos.add(3, 1, 0));
-						s.signText[0] = new TextComponentString("Destruction");
-						s.signText[1] = new TextComponentString("Unexposed");
-						s.signText[2] = new TextComponentString("Chaotic Evil");
-						s.signText[3] = new TextComponentString("Who am I");
+						s.signText[0] = new TextComponentTranslation("voidcraft.twins.riddle.3.1");
+						s.signText[1] = new TextComponentTranslation("voidcraft.twins.riddle.3.2");
+						s.signText[2] = new TextComponentTranslation("voidcraft.twins.riddle.3.3");
+						s.signText[3] = new TextComponentTranslation("voidcraft.twins.riddle.3.4");
 						return true;
 					default:
 						break;
