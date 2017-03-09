@@ -36,8 +36,8 @@ public class VoidCraftFluids extends TamFluidRegistryBase {
 		voidMaterialLiquid = new MaterialLiquid(MapColor.PURPLE);
 		acidMaterialLiquid = new MaterialLiquid(MapColor.GREEN);
 
-		register(voidFluidBlock = new TamFluidBlock(VoidCraft.tabs.tabVoid, voidFluid, Material.WATER, "blockVoidFluid"));
-		register(acidFluidBlock = new TamFluidFiniteBlock(VoidCraft.tabs.tabVoid, acidFluid, Material.WATER, "blockAcidFluid", new DamageSourceAcid(), 5));
+		register(voidFluidBlock = new TamFluidBlock(VoidCraft.tabs.tabVoid, voidFluid, Material.WATER, "blockvoidfluid"));
+		register(acidFluidBlock = new TamFluidFiniteBlock(VoidCraft.tabs.tabVoid, acidFluid, Material.WATER, "blockacidfluid", new DamageSourceAcid(), 5));
 
 		voidBucket = new BucketWrapper(ForgeModContainer.getInstance().universalBucket.getFilledBucket(ForgeModContainer.getInstance().universalBucket, voidFluid));
 	}
