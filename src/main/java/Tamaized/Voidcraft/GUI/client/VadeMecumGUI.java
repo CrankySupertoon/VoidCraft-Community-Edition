@@ -248,8 +248,8 @@ public class VadeMecumGUI extends GuiScreen {
 		if (canDrawPage()) {
 			entry.render(this, fontRendererObj, mouseX, mouseY, vadeX, vadeY, pageNumber);
 		}
-		if (button_entryBack != null && button_entryBack.visible) drawCenteredString(fontRendererObj, ("" + I18n.format("voidcraft.gui.misc.button.main", new Object[0])).trim(), vadeX + 30, vadeY + vadeH - 24, 0xFFFF00);
-		if (button_credits != null && button_credits.visible) drawCenteredString(fontRendererObj, ("" + I18n.format("voidcraft.gui.misc.button.credits", new Object[0])).trim(), vadeX + 360, vadeY + 12, 0xFFFF00);
+		if (button_entryBack != null && button_entryBack.visible) drawCenteredString(fontRendererObj, ("" + I18n.format("voidcraft.gui.misc.main", new Object[0])).trim(), vadeX + 30, vadeY + vadeH - 24, 0xFFFF00);
+		if (button_credits != null && button_credits.visible) drawCenteredString(fontRendererObj, ("" + I18n.format("voidcraft.gui.misc.credits", new Object[0])).trim(), vadeX + 360, vadeY + 12, 0xFFFF00);
 		if (playerStats.getCurrentActive() != null) {
 
 		}

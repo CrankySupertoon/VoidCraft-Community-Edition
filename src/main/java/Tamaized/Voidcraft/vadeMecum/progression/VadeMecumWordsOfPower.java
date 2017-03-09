@@ -136,6 +136,7 @@ public class VadeMecumWordsOfPower {
 					if (rand <= cap.getFailureChance()) {
 						ExplosionDamageHelper.explode(null, world, world.newExplosion(null, caster.posX, caster.posY, caster.posZ, 7.0F, true, true), 7.0F, caster.posX, caster.posY, caster.posZ);
 						world.playBroadcastSound(1023, caster.getPosition(), 0);
+						caster.addStat(VoidCraft.achievements.familiarity, 1);
 						useCharge = true;
 					} else {
 						doCast = true;

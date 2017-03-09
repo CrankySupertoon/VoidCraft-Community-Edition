@@ -54,7 +54,7 @@ public class VadeMecumPacketHandler {
 				FMLNetworkHandler.openGui(player, VoidCraft.instance, GuiHandler.getTypeID(GuiHandler.Type.VadeMecumSpells), player.world, player.getPosition().getX(), player.getPosition().getY(), player.getPosition().getZ());
 				break;
 			case CATEGORY_ADD:
-				capability.addCategory(IVadeMecumCapability.getCategoryFromID(bbis.readInt()));
+				capability.addCategory(player, IVadeMecumCapability.getCategoryFromID(bbis.readInt()));
 				break;
 			case CATEGORY_REMOVE:
 				capability.removeCategory(IVadeMecumCapability.getCategoryFromID(bbis.readInt()));

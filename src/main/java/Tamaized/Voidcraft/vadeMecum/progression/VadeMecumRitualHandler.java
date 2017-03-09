@@ -26,7 +26,7 @@ public class VadeMecumRitualHandler {
 			player.sendMessage(new TextComponentTranslation("voidcraft.ritual.error"));
 		} else {
 			player.sendMessage(new TextComponentTranslation(VadeMecumWordsOfPower.getCategoryData(category).getName()));
-			cap.addCategory(category);
+			cap.addCategory(player, category);
 		}
 	}
 

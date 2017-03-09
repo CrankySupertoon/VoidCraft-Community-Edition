@@ -115,6 +115,7 @@ tile.cosmicmaterial.name=Cosmic Material
 tile.starforge.name=Star Forge
 tile.starforgestation.name=Star Forge
 tile.voidblastfurnace.name=Void Blast Furnace
+tile.ritualBlock.name=Voidic Ritual Block
 
 # Potion
 effect.voidcraft:voidicinfusionimmunity=Voidic Immunity
@@ -275,6 +276,25 @@ voidcraft.gui.macerator.title=Void Infused Macerator
 >>>>>>> ff87443... lang file all the things, closes #91
 
 # Achievements
+achievement.familiarity=EXPLOSION
+achievement.familiarity.desc=ルイズ・フランソワーズ・ル・ブラン・ド・ラ・ヴァリエール
+achievement.vadeMecum=Void Vade Mecum
+achievement.vadeMecum.desc=Toss a book into Void Fire to collect the Void Vade Mecum
+achievement.theVoice=§kThe Voice
+achievement.theVoice.desc=Complete the First Task
+achievement.anchor=Voidic Anchor
+achievement.anchor.desc=Enter the Void and allow yourself to be consumed by the Voidic Infusion
+achievement.stabilization=Stabilized
+achievement.stabilization.desc=Discover a Void Fortress
+achievement.empowerment=Empowered
+achievement.empowerment.desc=Hold a Void Star
+achievement.tolerance=Voidic Tolerance
+achievement.tolerance.desc=Inflict full Voidic Infusion upon yourself while outside the Void
+achievement.totalControl=To the... Voidic Skies?
+achievement.totalControl.desc=Travel as High as you can in the Void Cities
+achievement.nightmare=Nightmare
+achievement.nightmare.desc=This is only the beginning
+
 achievement.voidCrystal=Void?
 achievement.voidCrystal.desc=Discover an unknown crystal located in The End
 achievement.enterVoid=We Need to Go Even Deeper

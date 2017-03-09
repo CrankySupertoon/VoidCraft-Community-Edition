@@ -155,7 +155,7 @@ public class XiaCastleLogicHandler {
 			if (player.hasCapability(CapabilityList.VADEMECUM, null)) {
 				IVadeMecumCapability vade = player.getCapability(CapabilityList.VADEMECUM, null);
 				if (vade.hasCategory(IVadeMecumCapability.Category.TotalControl) && !vade.hasCategory(IVadeMecumCapability.Category.Dreams)) {
-					vade.addCategory(IVadeMecumCapability.Category.Dreams);
+					vade.addCategory(player, IVadeMecumCapability.Category.Dreams);
 					player.sendMessage(new TextComponentTranslation("voidcraft.VadeMecum.voice.Dreams"));
 				}
 			}

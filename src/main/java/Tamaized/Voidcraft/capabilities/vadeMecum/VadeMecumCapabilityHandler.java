@@ -96,25 +96,25 @@ public class VadeMecumCapabilityHandler implements IVadeMecumCapability {
 				EntityPlayer player = (EntityPlayer) entity;
 				switch (category) {
 					case Voice:
-						player.addStat(VoidCraft.achievements.vadeMecum, 1);
+						player.addStat(VoidCraft.achievements.theVoice, 1);
 						break;
 					case VoidicControl:
-						player.addStat(VoidCraft.achievements.vadeMecum, 1);
+						player.addStat(VoidCraft.achievements.anchor, 1);
 						break;
 					case ImprovedCasting:
-						player.addStat(VoidCraft.achievements.vadeMecum, 1);
+						player.addStat(VoidCraft.achievements.stabilization, 1);
 						break;
 					case Empowerment:
-						player.addStat(VoidCraft.achievements.vadeMecum, 1);
+						player.addStat(VoidCraft.achievements.empowerment, 1);
 						break;
 					case Tolerance:
-						player.addStat(VoidCraft.achievements.vadeMecum, 1);
+						player.addStat(VoidCraft.achievements.tolerance, 1);
 						break;
 					case TotalControl:
-						player.addStat(VoidCraft.achievements.vadeMecum, 1);
+						player.addStat(VoidCraft.achievements.totalControl, 1);
 						break;
 					case Dreams:
-						player.addStat(VoidCraft.achievements.vadeMecum, 1);
+						player.addStat(VoidCraft.achievements.nightmare, 1);
 						break;
 					default:
 						break;

@@ -52,8 +52,8 @@ public class VoidTickEvent {
 
 			if (cap.hasCategory(IVadeMecumCapability.Category.VoidicControl) && cap.hasCategory(IVadeMecumCapability.Category.ImprovedCasting) && !cap.hasCategory(IVadeMecumCapability.Category.Empowerment)) {
 				if ((e.player.getHeldItem(EnumHand.MAIN_HAND) != null && e.player.getHeldItem(EnumHand.MAIN_HAND).getItem() == VoidCraft.items.voidStar) || (e.player.getHeldItem(EnumHand.OFF_HAND) != null && e.player.getHeldItem(EnumHand.OFF_HAND).getItem() == VoidCraft.items.voidStar)) {
-					cap.addCategory(IVadeMecumCapability.Category.Empowerment);
-					cap.addCategory(IVadeMecumCapability.Category.Invoke);
+					cap.addCategory(e.player, IVadeMecumCapability.Category.Empowerment);
+					cap.addCategory(e.player, IVadeMecumCapability.Category.Invoke);
 				}
 			}
 
@@ -63,12 +63,12 @@ public class VoidTickEvent {
 					ChunkProviderVoid provider = (ChunkProviderVoid) ((ChunkProviderServer) world.getChunkProvider()).chunkGenerator;
 					if (cap.hasCategory(IVadeMecumCapability.Category.Voice) && !cap.hasCategory(IVadeMecumCapability.Category.ImprovedCasting)) {
 						if (provider.genFortress.isPositionInStructure(world, e.player.getPosition())) {
-							cap.addCategory(IVadeMecumCapability.Category.ImprovedCasting);
+							cap.addCategory(e.player, IVadeMecumCapability.Category.ImprovedCasting);
 						}
 					}
 					if (cap.hasCategory(IVadeMecumCapability.Category.Tolerance) && !cap.hasCategory(IVadeMecumCapability.Category.TotalControl)) {
 						if (e.player.posY >= 187 && provider.genCity.isPositionInStructure(world, e.player.getPosition())) {
-							cap.addCategory(IVadeMecumCapability.Category.TotalControl);
+							cap.addCategory(e.player, IVadeMecumCapability.Category.TotalControl);
 						}
 					}
 				}

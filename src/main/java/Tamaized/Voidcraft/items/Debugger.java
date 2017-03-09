@@ -73,9 +73,9 @@ public class Debugger extends TamItem {
 		// worldIn.spawnEntity(zol);
 
 		IVadeMecumCapability cap = player.getCapability(CapabilityList.VADEMECUM, null);
+		cap.clearCategories();
 		for (IVadeMecumCapability.Category cat : IVadeMecumCapability.Category.values())
-			cap.addCategory(cat);
-		// cap.clearCategories();
+			cap.addCategory(player, cat);
 
 		// IVoidicInfusionCapability cap = player.getCapability(CapabilityList.VOIDICINFUSION, null);
 		// cap.setInfusion(5999);
