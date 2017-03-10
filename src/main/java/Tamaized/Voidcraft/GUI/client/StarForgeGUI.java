@@ -125,7 +125,7 @@ public class StarForgeGUI extends GUIContainerWrapper {
 				GUIListElement element = list.get(index);
 				if (element instanceof StarForgeToolEntry) {
 					StarForgeToolEntry entry = (StarForgeToolEntry) element;
-					if (te.getStackInSlot(te.SLOT_INPUT_TOOL) == null && te.getStackInSlot(te.SLOT_INPUT_COSMICMATERIAL).stackSize >= 4 && te.getStackInSlot(te.SLOT_INPUT_QUORIFRAGMENT).stackSize >= 1) {
+					if (te.getStackInSlot(te.SLOT_INPUT_TOOL) == null && te.getStackInSlot(te.SLOT_INPUT_COSMICMATERIAL) != null && te.getStackInSlot(te.SLOT_INPUT_COSMICMATERIAL).stackSize >= 4 && te.getStackInSlot(te.SLOT_INPUT_QUORIFRAGMENT) != null && te.getStackInSlot(te.SLOT_INPUT_QUORIFRAGMENT).stackSize >= 1) {
 						enough = true;
 					}
 				} else if (element instanceof StarForgeEffectEntry) {

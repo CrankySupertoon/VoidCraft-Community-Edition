@@ -75,7 +75,7 @@ public class ServerPacketHandler {
 								GUIListElement element = list.get(index);
 								if (element instanceof StarForgeToolEntry) {
 									StarForgeToolEntry entry = (StarForgeToolEntry) element;
-									if (tile.getStackInSlot(tile.SLOT_INPUT_TOOL) == null && tile.getStackInSlot(tile.SLOT_INPUT_COSMICMATERIAL).stackSize >= 4 && tile.getStackInSlot(tile.SLOT_INPUT_QUORIFRAGMENT).stackSize >= 1) {
+									if (tile.getStackInSlot(tile.SLOT_INPUT_TOOL) == null && tile.getStackInSlot(tile.SLOT_INPUT_COSMICMATERIAL) != null && tile.getStackInSlot(tile.SLOT_INPUT_COSMICMATERIAL).stackSize >= 4 && tile.getStackInSlot(tile.SLOT_INPUT_QUORIFRAGMENT) != null &&  tile.getStackInSlot(tile.SLOT_INPUT_QUORIFRAGMENT).stackSize >= 1) {
 										tile.getStackInSlot(tile.SLOT_INPUT_COSMICMATERIAL).stackSize -= (4);
 										if (tile.getStackInSlot(tile.SLOT_INPUT_COSMICMATERIAL).stackSize <= 0) tile.setInventorySlotContents(tile.SLOT_INPUT_COSMICMATERIAL, null);
 										tile.getStackInSlot(tile.SLOT_INPUT_QUORIFRAGMENT).stackSize -= (1);
@@ -88,7 +88,7 @@ public class ServerPacketHandler {
 										boolean flag = true;
 										for (ItemStack checkStack : entry.getRecipe().getInputs()) {
 											int slot = checkStack.getItem() == Item.getItemFromBlock(VoidCraft.blocks.cosmicMaterial) ? tile.SLOT_INPUT_COSMICMATERIAL : checkStack.getItem() == VoidCraft.items.voidicDragonScale ? tile.SLOT_INPUT_DRAGONSCALE : checkStack.getItem() == VoidCraft.items.quoriFragment ? tile.SLOT_INPUT_QUORIFRAGMENT : checkStack.getItem() == VoidCraft.items.astralEssence ? tile.SLOT_INPUT_ASTRALESSENCE : tile.SLOT_INPUT_VOIDICPHLOG;
-											if (tile.getStackInSlot(slot).stackSize >= checkStack.stackSize) continue;
+											if (tile.getStackInSlot(slot) != null && tile.getStackInSlot(slot).stackSize >= checkStack.stackSize) continue;
 											flag = false;
 										}
 										if (flag) {
