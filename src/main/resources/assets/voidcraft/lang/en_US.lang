@@ -20,13 +20,17 @@ item.tindust.name=Void Infused Tin Dust
 item.leaddust.name=Void Infused Lead Dust
 item.quartzdust.name=Void Infused Quartz Dust
 item.debugger.name=Debug Tool
-<<<<<<< HEAD
 item.voidchain.name=Void Chain
 item.moltenvoidchain.name=Molten Void Chain
 item.moltenvoidchainpart.name=Molten Void Chain Part
 item.voidicsuppressor.name=Voidic Suppressor
 item.emptyobsidianflask.name=Empty Obsidian Flask
 item.obsidianflask.name=Filled Obsidian Flask
+item.flask_fire.name=Obsidian Flask of Fire
+item.flask_freeze.name=Obsidian Flask of Freeze
+item.flask_shock.name=Obsidian Flask of Lifting
+item.flask_acid.name=Obsidian Flask of Acid
+item.flask_void.name=Obsidian Flask of Implosion
 item.voidicdrill.name=Voidic Drill
 item.etherealfruit.name=Ethereal Fruit
 item.etherealfruit_redstone.name=Ethereal Fruit
@@ -46,38 +50,6 @@ item.voidicphlogiston.name=Voidic Phlogiston
 item.voidicdragonscale.name=Voidic Dragon Scale
 item.astralessence.name=Astral Essence
 item.quorifragment.name=Quori Fragment
-=======
-item.voidChain.name=Void Chain
-item.MoltenvoidChain.name=Molten Void Chain
-item.MoltenvoidChainPart.name=Molten Void Chain Part
-item.voidicSuppressor.name=Voidic Suppressor
-item.emptyObsidianFlask.name=Empty Obsidian Flask
-item.obsidianFlask.name=Filled Obsidian Flask
-item.flask_fire.name=Obsidian Flask of Fire
-item.flask_freeze.name=Obsidian Flask of Freeze
-item.flask_shock.name=Obsidian Flask of Lifting
-item.flask_acid.name=Obsidian Flask of Acid
-item.flask_void.name=Obsidian Flask of Implosion
-item.voidicDrill.name=Voidic Drill
-item.etherealFruit.name=Ethereal Fruit
-item.etherealFruit_redstone.name=Ethereal Fruit
-item.etherealFruit_lapis.name=Ethereal Fruit
-item.etherealFruit_gold.name=Ethereal Fruit
-item.etherealFruit_emerald.name=Ethereal Fruit
-item.etherealFruit_diamond.name=Ethereal Fruit
-item.etherealSeed.name=Ethereal Seeds
-item.vadeMecum.name=Void Vade Mecum
-item.realityTeleporter.name=Reality Teleporter
-item.voidicEssence.name=Voidic Essence
-item.starforgedSword.name=Starforged Sword
-item.starforgedPickaxe.name=Starforged Pickaxe
-item.starforgedAxe.name=Starforged Axe
-item.starforgedShovel.name=Starforged Shovel
-item.voidicPhlogiston.name=Voidic Phlogiston
-item.voidicDragonScale.name=Voidic Dragon Scale
-item.astralEssence.name=Astral Essence
-item.quoriFragment.name=Quori Fragment
->>>>>>> 3e5a1f9... vade mecum potions, closes #79
 item.voidcrystalshield.name=Void Crystal Shield
 item.voidicsteel.name=Voidic Steel
 
@@ -115,7 +87,7 @@ tile.cosmicmaterial.name=Cosmic Material
 tile.starforge.name=Star Forge
 tile.starforgestation.name=Star Forge
 tile.voidblastfurnace.name=Void Blast Furnace
-tile.ritualBlock.name=Voidic Ritual Block
+tile.ritualblock.name=Voidic Ritual Block
 
 # Potion
 effect.voidcraft:voidicinfusionimmunity=Voidic Immunity
@@ -136,7 +108,7 @@ death.attack.Lit=Zap! %s died
 
 # Fluid
 fluid.void=Liquid Void
-tile.blockVoidFluid.name=Liquid Void
+tile.blockvoidfluid.name=Liquid Void
 
 # Armor
 # -- Void
@@ -192,7 +164,6 @@ itemGroup.tabVoid=VoidCraft
 itemGroup.tForge=Star Forge
 
 # Entity
-<<<<<<< HEAD
 entity.voidcraft.Wraith.name=Void Wraith
 entity.voidcraft.SpectreChain.name=Chained Spectre
 entity.voidcraft.VoidWrath.name=Void's Wrath
@@ -213,27 +184,6 @@ entity.voidcraft.DragonXia.name=Ender Dragon
 entity.voidcraft.DolXia.name=Dol
 entity.voidcraft.ZolXia.name=Zol
 entity.voidcraft.VoidicDragon.name=Voidic Dragon
-=======
-entity.Wraith.name=Void Wraith
-entity.SpectreChain.name=Chained Spectre
-entity.VoidWrath.name=Void's Wrath
-entity.Lich.name=Void Lich
-entity.VoidBoss.name=Corrupted Pawn
-entity.Herobrine.name=Avatar of Herobrine
-entity.Dol.name=Dol
-entity.Zol.name=Zol
-entity.Xia.name=Xia
-entity.Xia2.name=Xia
-entity.EtherealGuardian.name=Ethereal Guardian
-entity.HerobrineCreeper.name=Herobrine's Creeper
-entity.GhostPlayer.name=Ghost
-entity.GhostBiped.name=Ghost
-entity.Witherbrine.name=Witherbrine
-entity.DragonOld.name=Ender Dragon
-entity.DragonXia.name=Ender Dragon
-entity.DolXia.name=Dol
-entity.ZolXia.name=Zol
-entity.VoidicDragon.name=Voidic Dragon
 entity.FireElemental.name=Fire Elemental
 
 # GUI
@@ -274,7 +224,6 @@ voidcraft.gui.charger.title=Voidic Power Charger
 voidcraft.gui.gen.title=Voidic Power Generator
 voidcraft.gui.infuser.title=Void Infusion Altar
 voidcraft.gui.macerator.title=Void Infused Macerator
->>>>>>> ff87443... lang file all the things, closes #91
 
 # Achievements
 achievement.familiarity=EXPLOSION
@@ -581,8 +530,8 @@ voidcraft.VadeMecum.passive.Flight.desc=Normally you gain the ability to Fly fro
 voidcraft.VadeMecum.passive.Vigor=Vigor
 voidcraft.VadeMecum.passive.Vigor.desc=While active, Voidic Infusion no longer decreases your maximum health but instead increases it. You can still die with max infusion unless you have Voidic Anchor active.
 ## -- Voice
-voidcraft.VadeMecum.voice.VoidicControl=§5[§kVoice§r§5]: Very Good.
-voidcraft.VadeMecum.voice.Tolerance=§5[§kVoice§r§5]: Very Good, your infusion has been consumed in order to create your new power.
+voidcraft.VadeMecum.voice.Tolerance=§5[§kVoice§r§5]: Very Good.
+voidcraft.VadeMecum.voice.VoidicControl=§5[§kVoice§r§5]: Very Good, your infusion has been consumed in order to create your new power.
 voidcraft.VadeMecum.voice.Voice=§5[§kVoice§r§5]: Your task is complete. I've added a new entry to your Vade Mecum.
 voidcraft.VadeMecum.voice.Dreams=§5[§kVoice§r§5]: The Quori and I thank you mortal, you've been a great contribution to us.
 

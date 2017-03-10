@@ -228,9 +228,9 @@ public class VoidBoxGUI extends GuiContainer {
 			fontRendererObj.drawString(voidBox.getStackInSlot(0) != null ? ((ItemRecord) voidBox.getStackInSlot(0).getItem()).getRecordNameLocal() : "", (xSize / 12) - 13 - (fontRendererObj.getStringWidth(name) / 12) + 102, (ySize / 12) + 54, hexacolor);
 		}
 
-		fontRendererObj.drawString(("" + I18n.format("voidcraft.gui.misc.loop", new Object[0])).trim() + ": " + ("" + I18n.format("voidcraft.gui.misc." + (voidBox.getLoopState() ? "on" : "off"), new Object[0])).trim(), (xSize / 12) - (fontRendererObj.getStringWidth(name) / 12) + 220, ySize - 220, 0x00FF00);
+		fontRendererObj.drawString(("" + I18n.format("voidcraft.gui.misc.loop", new Object[0])).trim() + ": " + ("" + I18n.format("voidcraft.gui.misc." + (voidBox.getLoopState() ? "on" : "off"), new Object[0])).trim(), (xSize / 12) - (fontRendererObj.getStringWidth(name) / 12) + 220, ySize - 220, voidBox.getLoopState() ? 0x00FF00 : 0xFF0000);
 
-		fontRendererObj.drawString(("" + I18n.format("voidcraft.gui.misc.loop", new Object[0])).trim() + ": " + ("" + I18n.format("voidcraft.gui.misc." + (voidBox.getAutoState() ? "on" : "off"), new Object[0])).trim(), (xSize / 12) - (fontRendererObj.getStringWidth(name) / 12) + 7, ySize - 180, 0x00FF00);
+		fontRendererObj.drawString(("" + I18n.format("voidcraft.gui.misc.auto", new Object[0])).trim() + ": " + ("" + I18n.format("voidcraft.gui.misc." + (voidBox.getAutoState() ? "on" : "off"), new Object[0])).trim(), (xSize / 12) - (fontRendererObj.getStringWidth(name) / 12) + 7, ySize - 180, voidBox.getAutoState() ? 0x00FF00 : 0xFF0000);
 
 		if (voidBox.isPlaying()) fontRendererObj.drawString(getTimeInMinutes(voidBox.getSongLength() - voidBox.getSongTimeLeft()) + "/" + getTimeInMinutes(voidBox.getSongLength()), (xSize / 12) + (fontRendererObj.getStringWidth(name) / 12), ySize - 220, 0xFFFF00);
 	}

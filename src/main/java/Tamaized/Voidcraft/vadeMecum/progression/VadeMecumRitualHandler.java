@@ -39,7 +39,7 @@ public class VadeMecumRitualHandler {
 
 	public static ArrayList<IVadeMecumCapability.Category> getAvailiableRituals(IVadeMecumCapability cap) {
 		ArrayList<IVadeMecumCapability.Category> list = new ArrayList<IVadeMecumCapability.Category>();
-		if (cap.getObtainedCategories() == null) {
+		if (cap.getObtainedCategories().isEmpty()) {
 			list.add(IVadeMecumCapability.Category.INTRO);
 		} else {
 			if (cap.hasCategory(IVadeMecumCapability.Category.TOME)) {
