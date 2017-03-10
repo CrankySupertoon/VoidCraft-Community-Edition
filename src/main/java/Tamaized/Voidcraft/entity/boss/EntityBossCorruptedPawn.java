@@ -39,7 +39,7 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.datafix.DataFixer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
 
 public class EntityBossCorruptedPawn extends EntityVoidMob implements IVoidBossData, IMob {
@@ -251,7 +251,7 @@ public class EntityBossCorruptedPawn extends EntityVoidMob implements IVoidBossD
 
 	@Override
 	public ITextComponent getNameForBossBar() {
-		return new TextComponentString("Corrupted Pawn");
+		return new TextComponentTranslation("entity.VoidBoss.name");
 	}
 
 	@Override

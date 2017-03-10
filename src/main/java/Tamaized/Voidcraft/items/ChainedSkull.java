@@ -51,7 +51,6 @@ public class ChainedSkull extends TamItem {
 			EntityBossCorruptedPawn entity = new EntityBossCorruptedPawn(world);
 
 			if (entity != null) {
-				entity.setCustomNameTag(("" + I18n.format("entity.VoidBoss.name", new Object[0])).trim());
 				entity.ignite();
 
 				int yaw = (int) player.rotationYaw;

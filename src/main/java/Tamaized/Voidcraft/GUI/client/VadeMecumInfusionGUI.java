@@ -119,7 +119,7 @@ public class VadeMecumInfusionGUI extends GuiScreen {
 
 				drawRect(xPosition, yPosition, xPosition + width, yPosition + height, j);
 				GlStateManager.pushMatrix();
-				fontrenderer.drawString(IVadeMecumCapability.getPassiveName(passive), xPosition + 18, yPosition + (height / 2) - (mc.fontRendererObj.FONT_HEIGHT / 2), 0x7700FF);
+				fontrenderer.drawString(("" + I18n.format(IVadeMecumCapability.getPassiveName(passive), new Object[0])).trim(), xPosition + 18, yPosition + (height / 2) - (mc.fontRendererObj.FONT_HEIGHT / 2), 0x7700FF);
 				GlStateManager.popMatrix();
 			}
 		}

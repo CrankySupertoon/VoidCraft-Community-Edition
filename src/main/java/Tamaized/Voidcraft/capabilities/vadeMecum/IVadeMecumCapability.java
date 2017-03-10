@@ -59,15 +59,15 @@ public interface IVadeMecumCapability {
 	public static String getPassiveName(Passive passive) {
 		switch (passive) {
 			case Anchor:
-				return ("" + I18n.format("voidcraft.VadeMecum.passive.Anchor", new Object[0])).trim();
+				return "voidcraft.VadeMecum.passive.Anchor";
 			case Empowerment:
-				return ("" + I18n.format("voidcraft.VadeMecum.passive.Empowerment", new Object[0])).trim();
+				return "voidcraft.VadeMecum.passive.Empowerment";
 			case Tolerance:
-				return ("" + I18n.format("voidcraft.VadeMecum.passive.Tolerance", new Object[0])).trim();
+				return "voidcraft.VadeMecum.passive.Tolerance";
 			case Flight:
-				return ("" + I18n.format("voidcraft.VadeMecum.passive.Flight", new Object[0])).trim();
+				return "voidcraft.VadeMecum.passive.Flight";
 			case Vigor:
-				return ("" + I18n.format("voidcraft.VadeMecum.passive.Vigor", new Object[0])).trim();
+				return "voidcraft.VadeMecum.passive.Vigor";
 			default:
 				return "null";
 		}
@@ -102,7 +102,7 @@ public interface IVadeMecumCapability {
 
 		public CategoryDataWrapper(Element type, String name, ItemStack stack) {
 			element = type;
-			this.name = ("" + I18n.format(name, new Object[0])).trim();
+			this.name = name;
 			this.stack = stack;
 		}
 
@@ -120,7 +120,7 @@ public interface IVadeMecumCapability {
 	}
 
 	public static boolean isActivePower(Category c) {
-		return VadeMecumWordsOfPower.getCategoryData(c).getName().contains(("" + I18n.format("voidcraft.ritual.def.word", new Object[0])).trim());
+		return VadeMecumWordsOfPower.getCategoryData(c).getElement() != CategoryDataWrapper.Element.NULL;
 	}
 
 	public boolean isDirty();

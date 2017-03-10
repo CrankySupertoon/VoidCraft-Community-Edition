@@ -18,6 +18,7 @@ import net.minecraft.tileentity.TileEntitySign;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
 
 public class TwinsBattleHandler implements IBattleHandler {
@@ -51,7 +52,7 @@ public class TwinsBattleHandler implements IBattleHandler {
 								if (sign != null) {
 									boolean flag1 = false;
 									for (ITextComponent t : sign.signText) {
-										if (t.getUnformattedText().toLowerCase().contains(("" + I18n.format("voidcraft.twins.riddle.1.a", new Object[0])).trim())) flag1 = true;
+										if (t.getUnformattedComponentText().toLowerCase().contains(new TextComponentTranslation("voidcraft.twins.riddle.1.a").getUnformattedComponentText())) flag1 = true;
 									}
 									if (flag1) {
 										worldObj.setBlockState(pos.add(3, 1, 0), Blocks.AIR.getDefaultState());
@@ -85,7 +86,7 @@ public class TwinsBattleHandler implements IBattleHandler {
 								if (sign != null) {
 									boolean flag1 = false;
 									for (ITextComponent t : sign.signText) {
-										if (t.getUnformattedText().toLowerCase().contains(("" + I18n.format("voidcraft.twins.riddle.2.a", new Object[0])).trim())) flag1 = true;
+										if (t.getUnformattedComponentText().toLowerCase().contains(new TextComponentTranslation("voidcraft.twins.riddle.2.a").getUnformattedComponentText())) flag1 = true;
 									}
 									if (flag1) {
 										worldObj.setBlockState(pos.add(3, 1, 0), Blocks.AIR.getDefaultState());
@@ -119,7 +120,7 @@ public class TwinsBattleHandler implements IBattleHandler {
 								if (sign != null) {
 									boolean flag1 = false;
 									for (ITextComponent t : sign.signText) {
-										if (t.getUnformattedText().toLowerCase().contains(("" + I18n.format("voidcraft.twins.riddle.3.a", new Object[0])).trim())) flag1 = true;
+										if (t.getUnformattedComponentText().toLowerCase().contains(new TextComponentTranslation("voidcraft.twins.riddle.3.a").getUnformattedComponentText())) flag1 = true;
 									}
 									if (flag1) {
 										worldObj.setBlockState(pos.add(3, 1, 0), Blocks.AIR.getDefaultState());
@@ -153,7 +154,7 @@ public class TwinsBattleHandler implements IBattleHandler {
 								if (sign != null) {
 									boolean flag1 = false;
 									for (ITextComponent t : sign.signText) {
-										if (t.getUnformattedText().toLowerCase().contains(("" + I18n.format("voidcraft.twins.riddle.4.a", new Object[0])).trim())) flag1 = true;
+										if (t.getUnformattedComponentText().toLowerCase().contains(new TextComponentTranslation("voidcraft.twins.riddle.4.a").getUnformattedComponentText())) flag1 = true;
 									}
 									if (flag1) {
 										worldObj.setBlockState(pos.add(3, 1, 0), Blocks.AIR.getDefaultState());
