@@ -112,16 +112,14 @@ public class VadeMecumGUI extends GuiScreen {
 		playerStats = player.getCapability(CapabilityList.VADEMECUM, null);
 		if (playerStats != null && playerStats.getLastEntry() != null && playerStats.getLastEntry() != "null" && playerStats.getLastEntry().contains(":")) setEntry(VadeMecumEntry.getEntry(playerStats.getLastEntry().split(":")[0]), Integer.parseInt(playerStats.getLastEntry().split(":")[1]));
 		// else setEntry(ClientProxy.vadeMecumEntryList, 0);
-		else setEntry(VoidCraft.isDevBuild ? ClientProxy.vadeMecumEntryList : ClientProxy.vadeMecumEntryList.Docs.MAIN, 0);
+		else setEntry(ClientProxy.vadeMecumEntryList, 0);
 		button_forward = (VadeMecumGUI.ArrowButton) addButton(new VadeMecumGUI.ArrowButton(getButtonID(Button.Forward), vadeX + vadeW - 70, vadeY + 185, true));
 		button_back = (VadeMecumGUI.ArrowButton) addButton(new VadeMecumGUI.ArrowButton(getButtonID(Button.Back), vadeX + 45, vadeY + 185, false));
 		button_entryBack = (VadeMecumGUI.OverlayButton) addButton(new VadeMecumGUI.OverlayButton(this, getButtonID(Button.EntryBack), vadeX + 18, vadeY + 8, true));
 		button_credits = (VadeMecumGUI.OverlayButton) addButton(new VadeMecumGUI.OverlayButton(this, getButtonID(Button.Credits), vadeX + 358, vadeY + 8, false));
 		button_largeBack = (VadeMecumGUI.LargeArrowButton) addButton(new VadeMecumGUI.LargeArrowButton(getButtonID(Button.LargeBack), vadeX + 17, vadeY + vadeH - 2/* vadeY + 10 */));
-		if (VoidCraft.isDevBuild) {
-			button_spells = (VadeMecumGUI.FullButton) addButton(new VadeMecumGUI.FullButton(this, ("" + I18n.format("voidcraft.gui.misc.spells", new Object[0])).trim(), getButtonID(Button.WordsOfPower), vadeX + 42, vadeY + vadeH - 3));
-			button_infusion = (VadeMecumGUI.FullButton) addButton(new VadeMecumGUI.FullButton(this, ("" + I18n.format("voidcraft.gui.misc.infusion", new Object[0])).trim(), getButtonID(Button.Infusion), vadeX + 82, vadeY + vadeH - 3));
-		}
+		button_spells = (VadeMecumGUI.FullButton) addButton(new VadeMecumGUI.FullButton(this, ("" + I18n.format("voidcraft.gui.misc.spells", new Object[0])).trim(), getButtonID(Button.WordsOfPower), vadeX + 42, vadeY + vadeH - 3));
+		button_infusion = (VadeMecumGUI.FullButton) addButton(new VadeMecumGUI.FullButton(this, ("" + I18n.format("voidcraft.gui.misc.infusion", new Object[0])).trim(), getButtonID(Button.Infusion), vadeX + 82, vadeY + vadeH - 3));
 		updateButtons();
 	}
 
@@ -187,9 +185,9 @@ public class VadeMecumGUI extends GuiScreen {
 	private void updateButtons() {
 		if (button_forward != null) button_forward.visible = canDrawPage() ? pageNumber + 2 < entry.getPageLength(this) : false;
 		if (button_back != null) button_back.visible = canDrawPage() ? pageNumber > 0 : false;
-		if (button_entryBack != null) button_entryBack.visible = (entry != (VoidCraft.isDevBuild ? ClientProxy.vadeMecumEntryList : ClientProxy.vadeMecumEntryList.Docs.MAIN));
+		if (button_entryBack != null) button_entryBack.visible = (entry != ClientProxy.vadeMecumEntryList);
 		if (button_credits != null) button_credits.visible = false;// entry == ClientProxy.vadeMecumEntryList.MAIN;
-		if (button_largeBack != null) button_largeBack.visible = (entry != (VoidCraft.isDevBuild ? ClientProxy.vadeMecumEntryList : ClientProxy.vadeMecumEntryList.Docs.MAIN)/* && entry != ClientProxy.vadeMecumEntryList.Docs.MAIN && entry != ClientProxy.vadeMecumEntryList.Progression.MAIN */);
+		if (button_largeBack != null) button_largeBack.visible = (entry != ClientProxy.vadeMecumEntryList);
 		if (button_spells != null) button_spells.visible = (playerStats != null && playerStats.hasCategory(IVadeMecumCapability.Category.TOME));
 		if (button_infusion != null) button_infusion.visible = (playerStats != null && playerStats.hasCategory(IVadeMecumCapability.Category.VoidicControl));
 	}
@@ -211,7 +209,7 @@ public class VadeMecumGUI extends GuiScreen {
 					entry.goBack(this);
 					break;
 				case EntryBack:
-					setEntry(VoidCraft.isDevBuild ? ClientProxy.vadeMecumEntryList : ClientProxy.vadeMecumEntryList.Docs.MAIN, 0);
+					setEntry(ClientProxy.vadeMecumEntryList, 0);
 					// setEntry(ClientProxy.vadeMecumEntryList.Docs.MAIN, 0);
 					break;
 				case WordsOfPower:

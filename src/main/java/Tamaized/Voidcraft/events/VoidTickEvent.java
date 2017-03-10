@@ -47,7 +47,7 @@ public class VoidTickEvent {
 		if (e.phase == e.phase.END) return;
 		World world = e.player.world;
 
-		if (VoidCraft.isDevBuild && e.player.hasCapability(CapabilityList.VADEMECUM, null)) {
+		if (e.player.hasCapability(CapabilityList.VADEMECUM, null)) {
 			IVadeMecumCapability cap = e.player.getCapability(CapabilityList.VADEMECUM, null);
 
 			if (cap.hasCategory(IVadeMecumCapability.Category.VoidicControl) && cap.hasCategory(IVadeMecumCapability.Category.ImprovedCasting) && !cap.hasCategory(IVadeMecumCapability.Category.Empowerment)) {

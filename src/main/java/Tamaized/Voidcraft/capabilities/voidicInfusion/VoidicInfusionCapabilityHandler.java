@@ -53,15 +53,13 @@ public class VoidicInfusionCapabilityHandler implements IVoidicInfusionCapabilit
 		tick++;
 		if (infusion >= 3000 && entity.hasCapability(CapabilityList.VADEMECUM, null)) {
 			IVadeMecumCapability cap = entity.getCapability(CapabilityList.VADEMECUM, null);
-			if (VoidCraft.isDevBuild) {
-				if (!cap.hasCategory(IVadeMecumCapability.Category.Voice)) {
-					if (cap.hasCategory(IVadeMecumCapability.Category.Flame)) {
-						if (cap.hasCategory(IVadeMecumCapability.Category.Freeze)) {
-							if (cap.hasCategory(IVadeMecumCapability.Category.AcidSpray)) {
-								if (cap.hasCategory(IVadeMecumCapability.Category.Shock)) {
-									cap.addCategory(entity, IVadeMecumCapability.Category.Voice);
-									entity.sendMessage(new TextComponentTranslation("voidcraft.VadeMecum.voice.Voice"));
-								}
+			if (!cap.hasCategory(IVadeMecumCapability.Category.Voice)) {
+				if (cap.hasCategory(IVadeMecumCapability.Category.Flame)) {
+					if (cap.hasCategory(IVadeMecumCapability.Category.Freeze)) {
+						if (cap.hasCategory(IVadeMecumCapability.Category.AcidSpray)) {
+							if (cap.hasCategory(IVadeMecumCapability.Category.Shock)) {
+								cap.addCategory(entity, IVadeMecumCapability.Category.Voice);
+								entity.sendMessage(new TextComponentTranslation("voidcraft.VadeMecum.voice.Voice"));
 							}
 						}
 					}
@@ -127,7 +125,7 @@ public class VoidicInfusionCapabilityHandler implements IVoidicInfusionCapabilit
 			}
 		}
 		IVadeMecumCapability cap = living.getCapability(CapabilityList.VADEMECUM, null);
-		float value = getInfusionPerc() * ((cap == null || !VoidCraft.isDevBuild) ? 1.0F : cap.hasPassive(IVadeMecumCapability.Passive.Anchor) ? cap.hasPassive(IVadeMecumCapability.Passive.Vigor) ? 0.5F : 2.0F : 1.0F);
+		float value = getInfusionPerc() * ((cap == null) ? 1.0F : cap.hasPassive(IVadeMecumCapability.Passive.Anchor) ? cap.hasPassive(IVadeMecumCapability.Passive.Vigor) ? 0.5F : 2.0F : 1.0F);
 		if (value == 0) return;
 		float min = 1F - (0.5F / living.getMaxHealth());
 		living.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).applyModifier(new AttributeModifier(name, Math.min(value, min) * ((cap != null && cap.hasPassive(IVadeMecumCapability.Passive.Vigor) ? 1 : -1)), 2));
@@ -149,22 +147,20 @@ public class VoidicInfusionCapabilityHandler implements IVoidicInfusionCapabilit
 	private void handleEffects(EntityLivingBase entity) {
 		if (infusion >= maxInfusion) {
 			boolean kill = true;
-			if (VoidCraft.isDevBuild) {
-				if (entity.hasCapability(CapabilityList.VADEMECUM, null)) {
-					IVadeMecumCapability cap = entity.getCapability(CapabilityList.VADEMECUM, null);
-					if (cap.hasPassive(IVadeMecumCapability.Passive.Anchor)) kill = false;
-					if (cap.hasCategory(IVadeMecumCapability.Category.Voice) && !cap.hasCategory(IVadeMecumCapability.Category.VoidicControl)) {
-						kill = false;
-						infusion = 0;
-						cap.addCategory(entity, IVadeMecumCapability.Category.VoidicControl);
-						entity.sendMessage(new TextComponentTranslation("voidcraft.VadeMecum.voice.VoidicControl"));
-					}
-					if (cap.hasCategory(IVadeMecumCapability.Category.Empowerment) && !cap.hasCategory(IVadeMecumCapability.Category.Tolerance) && entity.world.provider.getDimension() != VoidCraft.config.getDimensionIDvoid()) {
-						kill = false;
-						infusion = 0;
-						cap.addCategory(entity, IVadeMecumCapability.Category.Tolerance);
-						entity.sendMessage(new TextComponentTranslation("voidcraft.VadeMecum.voice.Tolerance"));
-					}
+			if (entity.hasCapability(CapabilityList.VADEMECUM, null)) {
+				IVadeMecumCapability cap = entity.getCapability(CapabilityList.VADEMECUM, null);
+				if (cap.hasPassive(IVadeMecumCapability.Passive.Anchor)) kill = false;
+				if (cap.hasCategory(IVadeMecumCapability.Category.Voice) && !cap.hasCategory(IVadeMecumCapability.Category.VoidicControl)) {
+					kill = false;
+					infusion = 0;
+					cap.addCategory(entity, IVadeMecumCapability.Category.VoidicControl);
+					entity.sendMessage(new TextComponentTranslation("voidcraft.VadeMecum.voice.VoidicControl"));
+				}
+				if (cap.hasCategory(IVadeMecumCapability.Category.Empowerment) && !cap.hasCategory(IVadeMecumCapability.Category.Tolerance) && entity.world.provider.getDimension() != VoidCraft.config.getDimensionIDvoid()) {
+					kill = false;
+					infusion = 0;
+					cap.addCategory(entity, IVadeMecumCapability.Category.Tolerance);
+					entity.sendMessage(new TextComponentTranslation("voidcraft.VadeMecum.voice.Tolerance"));
 				}
 			}
 			if (kill) {

@@ -237,6 +237,7 @@ entity.VoidicDragon.name=Voidic Dragon
 entity.FireElemental.name=Fire Elemental
 
 # GUI
+voidcraft.gui.jei.alch.research=Required Vade Mecum Knowledge:
 voidcraft.gui.misc.none=None
 voidcraft.gui.misc.owner=Owner
 voidcraft.gui.misc.on=On
@@ -507,6 +508,7 @@ voidcraft.VadeMecum.progression.title.tome=Words of Power
 voidcraft.VadeMecum.progression.title.totalControl=Total Control
 voidcraft.VadeMecum.progression.title.voice=§k§5The Voice
 voidcraft.VadeMecum.progression.title.voidicControl=Voidic Control
+voidcraft.VadeMecum.progression.title.infusionControl=Controlling Infusion
 ## -- Descriptions
 voidcraft.VadeMecum.progression.desc.dreams.pg1=This will be the last Task I give you. The benefit of this task is rather large. Instead of your health decreasing with Voidic Infusion, it will increase. Now what is the task? Defeat Xia.
 voidcraft.VadeMecum.progression.desc.dreams.pg2=Destroy his current body, he is in a weak state right now. I must make my own preparations, this is where we part ways, mortal.
@@ -526,6 +528,7 @@ voidcraft.VadeMecum.progression.desc.voice.pg1=I'm sure you've noticed each time
 voidcraft.VadeMecum.progression.desc.voice.pg2=Right onto the explosion bits, I have a task for you, doing this task will decrease the chance for you to explode by 25 percent, currently your chance is 75 percent. I'm sure your.. kind.. can do math, right? The task is simple, I want you to enter the Void and gain some infusion. It wont be much, but I'll let you know when your task is complete.
 voidcraft.VadeMecum.progression.desc.voidicControl.pg1=You may know that Voidic Infusion inflicts some rather nasty effects upon you, however you may also know that some of these effects can be beneficial. There are ways to control your infusion effects in a way to prove more good than bad.
 voidcraft.VadeMecum.progression.desc.voidicControl.pg2=Enter the Void and allow yourself to be consumed by the Voidic Infusion, I will anchor your body to the material plane to prevent death long enough for you to gain new power.
+voidcraft.VadeMecum.progression.desc.infusionControl.main=This page will display your obtained Voidic Infusion Powers and will explain each one in detail.
 ## -- Rituals
 voidcraft.ritual.error=§4Unknown Ritual
 voidcraft.ritual.def.word=Word:
@@ -568,10 +571,15 @@ voidcraft.ritual.Tolerance=Tolerance
 voidcraft.ritual.TotalControl=Total Control
 voidcraft.ritual.Dreams=Dreams
 voidcraft.VadeMecum.passive.Anchor=Voidic Anchor
+voidcraft.VadeMecum.passive.Anchor.desc=While active, you will not succumb to death upon reaching maximum Voidic Infusion. The rate at which your health decreases is also sped up while active, if you have Voidic Vigor active, the rate is instead decreased and the amount you can gain is cut in half.
 voidcraft.VadeMecum.passive.Empowerment=Empowerment
+voidcraft.VadeMecum.passive.Empowerment.desc=While active, your base damage will increase based on how much Voidic Infusion you have. [BaseDamage * (1 + (InfusionAmount / MaxInfusion))]
 voidcraft.VadeMecum.passive.Tolerance=Tolerance
+voidcraft.VadeMecum.passive.Tolerance.desc=While active, your max infusion amount is doubled. This allows you to last twice as long without protections against Voidic Infusion or allows you to hold onto Voidic Infusion for twice as long.
 voidcraft.VadeMecum.passive.Flight=Voidic Flight
+voidcraft.VadeMecum.passive.Flight.desc=Normally you gain the ability to Fly from Voidic Infusion when you reach 75 percent infusion. While this is active you instead gain flight at 25 percent infusion. Spikes also begin to grow much sooner than usual. (But this is just a visual thing)
 voidcraft.VadeMecum.passive.Vigor=Vigor
+voidcraft.VadeMecum.passive.Vigor.desc=While active, Voidic Infusion no longer decreases your maximum health but instead increases it. You can still die with max infusion unless you have Voidic Anchor active.
 ## -- Voice
 voidcraft.VadeMecum.voice.VoidicControl=§5[§kVoice§r§5]: Very Good.
 voidcraft.VadeMecum.voice.Tolerance=§5[§kVoice§r§5]: Very Good, your infusion has been consumed in order to create your new power.

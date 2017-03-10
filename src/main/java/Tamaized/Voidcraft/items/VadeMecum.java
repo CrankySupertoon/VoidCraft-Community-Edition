@@ -92,14 +92,13 @@ public class VadeMecum extends TamItem {
 		return super.onItemRightClick(s, world, player, hand);
 	}
 
-	@SuppressWarnings("unused")
 	private boolean dorightClick(World world, EntityPlayer player, ItemStack stack) {
 		IVadeMecumItemCapability cap = stack.getCapability(CapabilityList.VADEMECUMITEM, null);
 		if (cap == null) return false;
-		if (player.isSneaking() && VoidCraft.isDevBuild) {
+		if (player.isSneaking()) {
 			cap.toggleBookState();
 		} else {
-			if (cap.getBookState() && VoidCraft.isDevBuild) {
+			if (cap.getBookState()) {
 				VadeMecumWordsOfPower.invoke(world, player);
 			} else {
 				if (world.isRemote) openBook(player, world, player.getPosition());

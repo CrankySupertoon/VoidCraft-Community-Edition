@@ -12,7 +12,7 @@ import net.minecraft.item.ItemStack;
 public class VadeMecumProgressionEntry extends VadeMecumEntry {
 
 	public static enum Entry {
-		RitualBlocks, RitualList, Tome, Potions, Voice, VoidicControl, ImprovedCasting, Empowerment, Tolerance, TotalControl, Dreams
+		RitualBlocks, RitualList, Tome, InfusionControl, Potions, Voice, VoidicControl, ImprovedCasting, Empowerment, Tolerance, TotalControl, Dreams
 	}
 
 	public static int getEntryID(Entry e) {
@@ -40,6 +40,9 @@ public class VadeMecumProgressionEntry extends VadeMecumEntry {
 			if (gui.getPlayerStats().hasCategory(IVadeMecumCapability.Category.TOME)) {
 				addButton(gui, getEntryID(Entry.Tome), "voidcraft.VadeMecum.progression.title.tome", activeVade);
 			}
+		}
+		if (gui.getPlayerStats().hasCategory(IVadeMecumCapability.Category.VoidicControl)) {
+			addButton(gui, getEntryID(Entry.InfusionControl), "voidcraft.VadeMecum.progression.title.infusionControl", new ItemStack(VoidCraft.items.voidcrystal));
 		}
 		if (gui.getPlayerStats().hasCategory(IVadeMecumCapability.Category.Flame) ||
 
@@ -101,6 +104,9 @@ public class VadeMecumProgressionEntry extends VadeMecumEntry {
 				break;
 			case Tome:
 				gui.changeEntry(ClientProxy.vadeMecumEntryList.Progression.TOME);
+				break;
+			case InfusionControl:
+				gui.changeEntry(ClientProxy.vadeMecumEntryList.Progression.INFUSIONCONTROL);
 				break;
 			case Potions:
 				gui.changeEntry(ClientProxy.vadeMecumEntryList.Progression.POTIONS);

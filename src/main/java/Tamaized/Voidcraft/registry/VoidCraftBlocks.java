@@ -147,7 +147,7 @@ public class VoidCraftBlocks implements ITamRegistry {
 	@Override
 	public void init() {
 		GameRegistry.addRecipe(new ItemStack(blockVoidcrystal), "XXX", "XXX", "XXX", 'X', VoidCraft.items.voidcrystal);
-		if (VoidCraft.isDevBuild) GameRegistry.addRecipe(new ItemStack(ritualBlock, 8), "XXX", "XYX", "XXX", 'X', Blocks.STONEBRICK, 'Y', VoidCraft.items.voidcrystal);
+		GameRegistry.addRecipe(new ItemStack(ritualBlock, 8), "XXX", "XYX", "XXX", 'X', Blocks.STONEBRICK, 'Y', VoidCraft.items.voidcrystal);
 		GameRegistry.addRecipe(new ItemStack(voidInfuserInert), "XYX", "YZY", "XYX", 'X', blockVoidbrick, 'Y', VoidCraft.items.voidCloth, 'Z', Items.CAULDRON);
 		GameRegistry.addShapelessRecipe(new ItemStack(voidInfuser), voidInfuserInert, VoidCraft.items.voidStar);
 		GameRegistry.addRecipe(new ItemStack(voidBlastFurnace), "CBC", "BMB", "CBC", 'C', VoidCraft.items.voidCloth, 'B', blockVoidbrick, 'M', VoidCraft.items.MoltenvoidChainPart);
