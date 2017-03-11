@@ -14,9 +14,11 @@ import Tamaized.Voidcraft.handlers.XiaFlightHandler;
 import Tamaized.Voidcraft.world.dim.TheVoid.ChunkProviderVoid;
 import Tamaized.Voidcraft.world.dim.Xia.TeleporterXia;
 import Tamaized.Voidcraft.world.dim.Xia.WorldProviderXia;
+import Tamaized.Voidcraft.world.dim.dalQuor.TeleporterDream;
 import net.minecraft.block.Block;
 import net.minecraft.client.entity.EntityOtherPlayerMP;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.network.play.server.SPacketEntityEffect;
 import net.minecraft.network.play.server.SPacketPlayerAbilities;
@@ -186,6 +188,14 @@ public class VoidTickEvent {
 	public void forcePlayerTeleportFromXia(EntityPlayerMP player) {
 		PortalDataHandler j = data.get(player.getGameProfile().getId());
 		transferPlayerToDimension(player.mcServer, player, j.lastDim, new TeleportLoc(new TeleporterXia(player.mcServer.worldServerForDimension(j.lastDim))));
+	}
+
+	public void dream(EntityPlayer player) {
+		if (player instanceof EntityPlayerMP) {
+			EntityPlayerMP p = (EntityPlayerMP) player;
+			int dim = p.dimension == VoidCraft.config.getDimensionIDdalQuor() ? 0 : VoidCraft.config.getDimensionIDdalQuor();
+			transferPlayerToDimension(p.mcServer, p, dim, new TeleportLoc(new TeleporterDream(p.mcServer.worldServerForDimension(dim))));
+		}
 	}
 
 	private void teleport(EntityPlayerMP player) {

@@ -117,6 +117,7 @@ import Tamaized.Voidcraft.vadeMecum.progression.RitualList;
 import Tamaized.Voidcraft.world.WorldGeneratorVoid;
 import Tamaized.Voidcraft.world.dim.TheVoid.WorldProviderVoid;
 import Tamaized.Voidcraft.world.dim.Xia.WorldProviderXia;
+import Tamaized.Voidcraft.world.dim.dalQuor.WorldProviderDalQuor;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.biome.Biome;
@@ -141,7 +142,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 @Mod(modid = VoidCraft.modid, name = "VoidCraft", guiFactory = "Tamaized.Voidcraft.GUI.client.GUIConfigFactory", version = VoidCraft.version, dependencies = "required-before:" + TamModized.modid + "@[" + TamModized.version + ",)")
 public class VoidCraft extends TamModBase {
 
-//	public static final boolean isDevBuild = true;
+	public static final boolean isDevBuild = false;
 
 	public static final String version = "${version}";
 	public static final String modid = "voidcraft";
@@ -338,6 +339,7 @@ public class VoidCraft extends TamModBase {
 		// Register Dimensions
 		DimensionManager.registerDimension(config.getDimensionIDvoid(), DimensionType.register("The Void", "_void", config.getDimensionIDvoid(), WorldProviderVoid.class, false));
 		DimensionManager.registerDimension(config.getDimensionIDxia(), DimensionType.register("???", "_xia", config.getDimensionIDxia(), WorldProviderXia.class, false));
+		if (isDevBuild) DimensionManager.registerDimension(config.getDimensionIDdalQuor(), DimensionType.register("Dal Quor", "_dalquor", config.getDimensionIDdalQuor(), WorldProviderDalQuor.class, false));
 
 		// Register World Gen
 		GameRegistry.registerWorldGenerator(new WorldGeneratorVoid(), 0);

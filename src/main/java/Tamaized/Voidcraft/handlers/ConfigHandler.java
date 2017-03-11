@@ -99,6 +99,10 @@ public class ConfigHandler {
 		return dimensionIdXia;
 	}
 
+	public int getDimensionIDdalQuor() {
+		return -4;
+	}
+
 	public List<Integer> getRealityWhiteList() {
 		return realityWhitelist;
 	}
