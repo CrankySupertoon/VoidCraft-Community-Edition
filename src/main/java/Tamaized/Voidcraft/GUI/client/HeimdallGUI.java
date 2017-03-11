@@ -20,7 +20,7 @@ public class HeimdallGUI extends GuiContainer {
 
 	public TileEntityHeimdall te;
 
-	private static final ResourceLocation daTexture = new ResourceLocation(VoidCraft.modid, "textures/gui/heimdall.png");
+	private static final ResourceLocation TEXTURE = new ResourceLocation(VoidCraft.modid, "textures/gui/heimdall.png");
 
 	public HeimdallGUI(InventoryPlayer inventoryPlayer, TileEntityHeimdall tileEntity) {
 		super(new HeimdallContainer(inventoryPlayer, tileEntity));
@@ -75,7 +75,7 @@ public class HeimdallGUI extends GuiContainer {
 		GlStateManager.pushAttrib();
 		{
 			GlStateManager.color(1.0f, 1.0f, 1.0f, 1.0f);
-			Minecraft.getMinecraft().getTextureManager().bindTexture(daTexture);
+			Minecraft.getMinecraft().getTextureManager().bindTexture(TEXTURE);
 			drawTexturedModalRect(guiLeft + 78, guiTop + 66, 0, 0, xSize / 2, ySize / 2);
 			this.updateScreen();
 		}

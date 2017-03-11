@@ -15,7 +15,7 @@ public class VoidicPowerGenGUI extends GuiContainer {
 	
 	public TileEntityVoidicPowerGen te;
 	
-	private static final ResourceLocation daTexture = new ResourceLocation(VoidCraft.modid, "textures/gui/voidgen.png");
+	private static final ResourceLocation TEXTURE = new ResourceLocation(VoidCraft.modid, "textures/gui/voidgen.png");
 	
 	public VoidicPowerGenGUI (InventoryPlayer inventoryPlayer, TileEntityVoidicPowerGen tileEntity) {
 		super(new VoidicPowerGenContainer(inventoryPlayer, tileEntity));
@@ -69,7 +69,7 @@ public class VoidicPowerGenGUI extends GuiContainer {
 		GlStateManager.pushMatrix();
 		GlStateManager.pushAttrib();{
 			GlStateManager.color(1.0f, 1.0f, 1.0f, 1.0f);
-			Minecraft.getMinecraft().getTextureManager().bindTexture(daTexture);
+			Minecraft.getMinecraft().getTextureManager().bindTexture(TEXTURE);
 			drawTexturedModalRect(guiLeft+78, guiTop+66, 0, 0, xSize/2, ySize/2);
 			updateScreen();
 		}

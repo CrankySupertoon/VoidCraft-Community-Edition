@@ -20,7 +20,7 @@ public class VoidInfuserGUI extends GuiContainer {
 	
 	public TileEntityVoidInfuser te;
 	
-	private static final ResourceLocation daTexture = new ResourceLocation(VoidCraft.modid, "textures/gui/voidInfuser.png");
+	private static final ResourceLocation TEXTURE = new ResourceLocation(VoidCraft.modid, "textures/gui/voidinfuser.png");
 
 	public VoidInfuserGUI (InventoryPlayer inventoryPlayer, TileEntityVoidInfuser tileEntity) {
 		super(new VoidInfuserContainer(inventoryPlayer, tileEntity));
@@ -66,7 +66,7 @@ public class VoidInfuserGUI extends GuiContainer {
 		GlStateManager.pushMatrix();
 		GlStateManager.pushAttrib();{
 			GlStateManager.color(1.0f, 1.0f, 1.0f, 1.0f);
-			Minecraft.getMinecraft().getTextureManager().bindTexture(daTexture);
+			Minecraft.getMinecraft().getTextureManager().bindTexture(TEXTURE);
 			drawTexturedModalRect(guiLeft+78, guiTop+66, 0, 0, xSize/2, ySize/2);
 			updateScreen();
 		}

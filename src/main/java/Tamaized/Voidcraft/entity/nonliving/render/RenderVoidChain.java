@@ -22,7 +22,7 @@ public class RenderVoidChain extends Render<VoidChain> {
 
 	private static final ResourceLocation arrowTextures = new ResourceLocation(VoidCraft.modid, "textures/entity/voidchain.png");
 
-	public void renderArrow(VoidChain entity, double x, double y, double z, float entityYaw, float partialTicks) {
+	public void renderArrow(VoidChain entity, double x, double y, double z, float entityYaw, float partialTicks){
 		this.bindEntityTexture(entity);
 		GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 		GlStateManager.pushMatrix();

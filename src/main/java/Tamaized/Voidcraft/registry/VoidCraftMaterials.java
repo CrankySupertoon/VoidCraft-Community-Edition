@@ -34,8 +34,8 @@ public class VoidCraftMaterials implements ITamRegistry {
 		CosmicTools = EnumHelper.addToolMaterial(VoidCraft.modid + ":cosmic", 9, 14000, 55.0F, 14.0F, 30);
 
 		// 25 = invul
-		voidArmor = EnumHelper.addArmorMaterial( VoidCraft.modid + ":Void", VoidCraft.modid + ":void", 120, new int[] { 4, 6, 8, 4 }, 30, VoidSoundEvents.ArmorSoundEvents.voidcrystal, 0.0f); // 22
-		xiaArmor = EnumHelper.addArmorMaterial( VoidCraft.modid + ":Xia", VoidCraft.modid + ":xia", 240, new int[] { 4, 6, 10, 4 }, 30, VoidSoundEvents.ArmorSoundEvents.xia, 0.0f); // 24
+		voidArmor = EnumHelper.addArmorMaterial( VoidCraft.modid + ":void", VoidCraft.modid + ":void", 120, new int[] { 4, 6, 8, 4 }, 30, VoidSoundEvents.ArmorSoundEvents.voidcrystal, 0.0f); // 22
+		xiaArmor = EnumHelper.addArmorMaterial( VoidCraft.modid + ":xia", VoidCraft.modid + ":xia", 240, new int[] { 4, 6, 10, 4 }, 30, VoidSoundEvents.ArmorSoundEvents.xia, 0.0f); // 24
 	}
 
 	@Override

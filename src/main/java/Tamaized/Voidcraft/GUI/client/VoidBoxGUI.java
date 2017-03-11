@@ -35,7 +35,7 @@ public class VoidBoxGUI extends GuiContainer {
 
 	private int CurrColor = 0;
 
-	private static final ResourceLocation daTexture = new ResourceLocation(VoidCraft.modid, "textures/gui/voidbox.png");
+	private static final ResourceLocation TEXTURE = new ResourceLocation(VoidCraft.modid, "textures/gui/voidbox.png");
 
 	public VoidBoxGUI(InventoryPlayer inventoryPlayer, TileEntityVoidBox tileEntity) {
 		super(new VoidBoxContainer(inventoryPlayer, tileEntity));
@@ -246,7 +246,7 @@ public class VoidBoxGUI extends GuiContainer {
 	protected void drawGuiContainerBackgroundLayer(float par1, int par2, int par3) {
 		GL11.glColor4f(1F, 1F, 1F, 1F);
 
-		Minecraft.getMinecraft().getTextureManager().bindTexture(daTexture);
+		Minecraft.getMinecraft().getTextureManager().bindTexture(TEXTURE);
 		drawTexturedModalRect(guiLeft + 78, guiTop + 99, 0, 0, xSize / 2, ySize / 2);
 		// buttonList.add(BtnDebug = new GuiButton(BUTTON_DEBUG, guiLeft + 240, guiTop + 136, 33, 20, "DEBUG"));
 

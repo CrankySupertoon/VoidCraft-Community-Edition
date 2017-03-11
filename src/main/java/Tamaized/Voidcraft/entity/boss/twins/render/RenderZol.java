@@ -12,7 +12,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class RenderZol<T extends EntityLiving> extends RenderLiving<T> {
 
-	private static final ResourceLocation Herobrine_Texture = new ResourceLocation(VoidCraft.modid, "textures/entity/zol.png");
+	private static final ResourceLocation TEXTURE = new ResourceLocation(VoidCraft.modid, "textures/entity/zol.png");
 
 	public RenderZol(RenderManager manager, ModelBase par1ModelBase, float par2) {
 		super(manager, par1ModelBase, par2);
@@ -26,7 +26,7 @@ public class RenderZol<T extends EntityLiving> extends RenderLiving<T> {
 
 	@Override
 	protected ResourceLocation getEntityTexture(T entity) {
-		return Herobrine_Texture;
+		return TEXTURE;
 	}
 
 	protected void renderLabel(T yourentityLiving, double par2, double par4, double par6) {

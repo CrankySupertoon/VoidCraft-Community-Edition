@@ -14,7 +14,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class RenderCorruptedPawn<T extends EntityLiving> extends RenderLiving<T>{
 	
-	private static final ResourceLocation VoidBoss_Texture = new ResourceLocation(VoidCraft.modid, "textures/entity/zvoidboss.png");
+	private static final ResourceLocation TEXTURE = new ResourceLocation(VoidCraft.modid, "textures/entity/zvoidboss.png");
 	
 	public RenderCorruptedPawn(RenderManager manager, ModelBase par1ModelBase, float par2){
 		super(manager, par1ModelBase, par2);
@@ -41,6 +41,6 @@ public class RenderCorruptedPawn<T extends EntityLiving> extends RenderLiving<T>
 	
 	@Override
 	protected ResourceLocation getEntityTexture(T entity) {
-		return VoidBoss_Texture;
+		return TEXTURE;
 	}
 }

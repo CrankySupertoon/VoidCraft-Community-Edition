@@ -130,7 +130,6 @@ public class VoidCraftItems implements ITamRegistry {
 		modelList.add(voidicDragonScale = new TamItem(VoidCraft.tabs.tabVoid, "voidicdragonscale", 64));
 		modelList.add(astralEssence = new TamItem(VoidCraft.tabs.tabVoid, "astralessence", 64));
 		modelList.add(quoriFragment = new TamItem(VoidCraft.tabs.tabVoid, "quorifragment", 64));
-		
 		modelList.add(voidicSteel = new TamItem(VoidCraft.tabs.tabVoid, "voidicsteel", 64));
 
 		// dust
@@ -182,7 +181,7 @@ public class VoidCraftItems implements ITamRegistry {
 	public void init() {
 
 		OreDictionary.registerOre("ingotSteel", voidicSteel);
-		
+
 		OreDictionary.registerOre("dustQuartz", quartzDust);
 		OreDictionary.registerOre("dustCoal", coalDust);
 		OreDictionary.registerOre("dustIron", ironDust);

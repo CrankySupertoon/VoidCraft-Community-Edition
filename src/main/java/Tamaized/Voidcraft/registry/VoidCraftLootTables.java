@@ -10,7 +10,7 @@ import net.minecraft.world.storage.loot.LootTableList;
 
 public class VoidCraftLootTables implements ITamRegistry {
 
-	public static final ResourceLocation chest_voidFortress = new ResourceLocation(VoidCraft.modid,"chests/voidfortress");
+	public static final ResourceLocation chest_voidFortress = new ResourceLocation(VoidCraft.modid, "chests/voidfortress");
 	public static final ResourceLocation chest_voidCity = new ResourceLocation(VoidCraft.modid, "chests/voidcity");
 
 	@Override

@@ -23,7 +23,7 @@ public class VoidCraftArmors implements ITamRegistry {
 	public static XiaArmor xiaChest;
 	public static XiaArmor xiaLegs;
 	public static XiaArmor xiaBoots;
-	//public static ArmorCustomElytra elytra;
+	// public static ArmorCustomElytra elytra;
 
 	@Override
 	public void preInit() {
@@ -39,7 +39,7 @@ public class VoidCraftArmors implements ITamRegistry {
 		modelList.add(xiaLegs = new XiaArmor(VoidCraft.tabs.tabVoid, VoidCraft.materials.xiaArmor, 0, EntityEquipmentSlot.LEGS, "xia", "xialegs"));
 		modelList.add(xiaBoots = new XiaArmor(VoidCraft.tabs.tabVoid, VoidCraft.materials.xiaArmor, 0, EntityEquipmentSlot.FEET, "xia", "xiaboots"));
 
-		//modelList.add(elytra = new ArmorCustomElytra(voidCraft.tabs.tabVoid, voidCraft.materials.voidArmor, 0, EntityEquipmentSlot.CHEST, "void", "voidElytra"));
+		// modelList.add(elytra = new ArmorCustomElytra(voidCraft.tabs.tabVoid, voidCraft.materials.voidArmor, 0, EntityEquipmentSlot.CHEST, "void", "voidElytra"));
 	}
 
 	@Override
@@ -48,7 +48,7 @@ public class VoidCraftArmors implements ITamRegistry {
 		GameRegistry.addRecipe(new ItemStack(voidChest, 1), "X X", "XXX", "XXX", 'X', VoidCraft.items.voidcrystal);
 		GameRegistry.addRecipe(new ItemStack(voidLegs, 1), "XXX", "X X", "X X", 'X', VoidCraft.items.voidcrystal);
 		GameRegistry.addRecipe(new ItemStack(voidBoots, 1), "X X", "X X", 'X', VoidCraft.items.voidcrystal);
-		//GameRegistry.addShapelessRecipe(new ItemStack(elytra, 1), voidChest, Items.ELYTRA);
+		// GameRegistry.addShapelessRecipe(new ItemStack(elytra, 1), voidChest, Items.ELYTRA);
 	}
 
 	@Override

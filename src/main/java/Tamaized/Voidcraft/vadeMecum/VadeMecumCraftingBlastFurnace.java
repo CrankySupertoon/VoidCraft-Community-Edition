@@ -11,7 +11,7 @@ import net.minecraft.util.text.TextFormatting;
 
 public class VadeMecumCraftingBlastFurnace implements IVadeMecumCrafting {
 
-	private static final ResourceLocation TEXTURE = new ResourceLocation(VoidCraft.modid, "textures/gui/VadeMecum/Crafting_Furnace.png");
+	private static final ResourceLocation TEXTURE = new ResourceLocation(VoidCraft.modid, "textures/gui/vademecum/crafting_furnace.png");
 
 	private final String title;
 	private final ItemStack input[];

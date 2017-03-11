@@ -15,7 +15,7 @@ public class VoidicChargerGUI extends GuiContainer {
 
 	public TileEntityVoidicCharger te;
 
-	private static final ResourceLocation daTexture = new ResourceLocation(VoidCraft.modid, "textures/gui/voidcharger.png");
+	private static final ResourceLocation TEXTURE = new ResourceLocation(VoidCraft.modid, "textures/gui/voidcharger.png");
 
 	public VoidicChargerGUI(InventoryPlayer inventoryPlayer, TileEntityVoidicCharger tileEntity) {
 		super(new VoidicChargerContainer(inventoryPlayer, tileEntity));
@@ -58,7 +58,7 @@ public class VoidicChargerGUI extends GuiContainer {
 		GlStateManager.pushAttrib();
 		{
 			GlStateManager.color(1.0f, 1.0f, 1.0f, 1.0f);
-			Minecraft.getMinecraft().getTextureManager().bindTexture(daTexture);
+			Minecraft.getMinecraft().getTextureManager().bindTexture(TEXTURE);
 			drawTexturedModalRect(guiLeft + 78, guiTop + 66, 0, 0, xSize / 2, ySize / 2);
 			this.updateScreen();
 		}
