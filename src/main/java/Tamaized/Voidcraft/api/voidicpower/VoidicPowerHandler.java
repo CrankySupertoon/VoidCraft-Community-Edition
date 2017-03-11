@@ -11,13 +11,13 @@ public class VoidicPowerHandler {
 	}
 
 	public static int recievePower(IVoidicPower input, int a) {
-		int sendBack = 0;
+		int sendBack = a;
 		if (a > input.maxPowerTransfer()) {
-			sendBack = a - input.maxPowerTransfer();
 			a = input.maxPowerTransfer();
 		}
 		if (input.getPowerAmount() + a > input.getMaxPower()) {
-			sendBack += a = input.getMaxPower() - input.getPowerAmount();
+			a = input.getMaxPower() - input.getPowerAmount();
+			sendBack -= a;
 		}
 		input.setPowerAmount(input.getPowerAmount() + a);
 		return sendBack;
