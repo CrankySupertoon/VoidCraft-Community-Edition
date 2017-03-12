@@ -5,6 +5,7 @@ import java.util.Random;
 
 import javax.annotation.Nullable;
 
+import Tamaized.Voidcraft.VoidCraft;
 import net.minecraft.block.BlockChorusFlower;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.material.Material;
@@ -30,6 +31,24 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraft.world.gen.structure.MapGenEndCity;
 
 public class ChunkProviderDalQuor implements IChunkGenerator {
+
+	private enum GenType {
+		Overworld, Nether, End, Void
+	}
+
+	private IBlockState[] getGenBlocks(GenType type) {
+		switch (type) {
+			default:
+			case Overworld:
+				return new IBlockState[] { Blocks.GRASS.getDefaultState(), Blocks.DIRT.getDefaultState(), Blocks.STONE.getDefaultState() };
+			case Nether:
+				return new IBlockState[] { Blocks.NETHERRACK.getDefaultState(), Blocks.MAGMA.getDefaultState(), Blocks.MAGMA.getDefaultState() };
+			case End:
+				return new IBlockState[] { Blocks.PURPUR_BLOCK.getDefaultState(), Blocks.END_STONE.getDefaultState(), Blocks.END_STONE.getDefaultState() };
+			case Void:
+				return new IBlockState[] { VoidCraft.blocks.blockFakeBedrock.getDefaultState(), VoidCraft.blocks.blockFakeBedrock.getDefaultState(), VoidCraft.blocks.blockFakeBedrock.getDefaultState() };
+		}
+	}
 
 	private final Random rand;
 	protected static final IBlockState END_STONE = Blocks.END_STONE.getDefaultState();
@@ -79,11 +98,13 @@ public class ChunkProviderDalQuor implements IChunkGenerator {
 		public boolean generate(World worldIn, Random rand, BlockPos position) {
 			float f = (float) (rand.nextInt(3) + 4);
 
+			IBlockState[] blockStates = getGenBlocks(GenType.values()[rand.nextInt(GenType.values().length)]);
+
 			for (int i = 0; f > 0.5F; --i) {
 				for (int j = MathHelper.floor(-f); j <= MathHelper.ceil(f); ++j) {
 					for (int k = MathHelper.floor(-f); k <= MathHelper.ceil(f); ++k) {
 						if ((float) (j * j + k * k) <= (f + 1.0F) * (f + 1.0F)) {
-							this.setBlockAndNotifyAdequately(worldIn, position.add(j, i, k), Blocks.NETHERRACK.getDefaultState());
+							this.setBlockAndNotifyAdequately(worldIn, position.add(j, i, k), i == 0 ? blockStates[0] : i == -1 ? blockStates[1] : blockStates[2]);
 						}
 					}
 				}
@@ -104,6 +125,8 @@ public class ChunkProviderDalQuor implements IChunkGenerator {
 		int k = 33;
 		int l = 3;
 		this.buffer = this.getHeights(this.buffer, x * 2, 0, z * 2, 3, 33, 3);
+
+		IBlockState[] blockStates = getGenBlocks(GenType.values()[rand.nextInt(GenType.values().length)]);
 
 		for (int i1 = 0; i1 < 2; ++i1) {
 			for (int j1 = 0; j1 < 2; ++j1) {
@@ -134,7 +157,7 @@ public class ChunkProviderDalQuor implements IChunkGenerator {
 								IBlockState iblockstate = AIR;
 
 								if (d15 > 0.0D) {
-									iblockstate = END_STONE;
+									iblockstate = k1 == 32 ? blockStates[0] : k1 == (31) ? blockStates[1] : blockStates[2];
 								}
 
 								int k2 = i2 + i1 * 8;
@@ -163,8 +186,8 @@ public class ChunkProviderDalQuor implements IChunkGenerator {
 			for (int j = 0; j < 16; ++j) {
 				int k = 1;
 				int l = -1;
-				IBlockState iblockstate = Blocks.DIRT.getDefaultState();//END_STONE;
-				IBlockState iblockstate1 = Blocks.DIAMOND_BLOCK.getDefaultState();//END_STONE;
+				IBlockState iblockstate = Blocks.DIRT.getDefaultState();// END_STONE;
+				IBlockState iblockstate1 = Blocks.DIAMOND_BLOCK.getDefaultState();// END_STONE;
 
 				for (int i1 = 127; i1 >= 0; --i1) {
 					IBlockState iblockstate2 = primer.getBlockState(i, i1, j);
@@ -228,7 +251,7 @@ public class ChunkProviderDalQuor implements IChunkGenerator {
 				long k = (long) (p_185960_1_ + i);
 				long l = (long) (p_185960_2_ + j);
 
-				if (/*k * k + l * l > 4096L && */this.islandNoise.getValue((double) k, (double) l) < -0.8999999761581421D) {
+				if (/* k * k + l * l > 4096L && */this.islandNoise.getValue((double) k, (double) l) < -0.8999999761581421D) {
 					float f3 = (MathHelper.abs((float) k) * 3439.0F + MathHelper.abs((float) l) * 147.0F) % 13.0F + 9.0F;
 					f = (float) (p_185960_3_ - i * 2);
 					f1 = (float) (p_185960_4_ - j * 2);
@@ -253,7 +276,7 @@ public class ChunkProviderDalQuor implements IChunkGenerator {
 	}
 
 	public boolean isIslandChunk(int p_185961_1_, int p_185961_2_) {
-		return /*(long) p_185961_1_ * (long) p_185961_1_ + (long) p_185961_2_ * (long) p_185961_2_ > 4096L &&*/ this.getIslandHeightValue(p_185961_1_, p_185961_2_, 1, 1) >= 0.0F;
+		return /* (long) p_185961_1_ * (long) p_185961_1_ + (long) p_185961_2_ * (long) p_185961_2_ > 4096L && */ this.getIslandHeightValue(p_185961_1_, p_185961_2_, 1, 1) >= 0.0F;
 	}
 
 	private double[] getHeights(double[] p_185963_1_, int p_185963_2_, int p_185963_3_, int p_185963_4_, int p_185963_5_, int p_185963_6_, int p_185963_7_) {
@@ -320,7 +343,7 @@ public class ChunkProviderDalQuor implements IChunkGenerator {
 		BlockFalling.fallInstantly = true;
 		BlockPos blockpos = new BlockPos(x * 16, 0, z * 16);
 
-		this.world.getBiome(blockpos.add(16, 0, 16)).decorate(this.world, this.world.rand, blockpos);
+		// this.world.getBiome(blockpos.add(16, 0, 16)).decorate(this.world, this.world.rand, blockpos);
 		long i = (long) x * (long) x + (long) z * (long) z;
 
 		// if (i > 4096L) {
