@@ -17,7 +17,11 @@ public class VoidCraftBiomes implements ITamRegistry {
 
 	public static Biome biomeVoid;
 	public static Biome biomeXia;
-	public static Biome biomeDream;
+	
+	public static Biome biomeDreamOverworld;
+	public static Biome biomeDreamNether;
+	public static Biome biomeDreamEnd;
+	public static Biome biomeDreamVoid;
 
 	@Override
 	public void preInit() {
@@ -25,20 +29,36 @@ public class VoidCraftBiomes implements ITamRegistry {
 		float heightVariation = 0.1F;
 		BiomeProperties biomeVoidProp = new BiomeProperties("The Void").setBaseBiome("voidcraft_biome_void").setBaseHeight(baseHeight).setHeightVariation(heightVariation).setTemperature(0.21F).setRainfall(0.0F).setRainDisabled();
 		BiomeProperties biomeXiaProp = new BiomeProperties("???").setBaseBiome("voidcraft_biome_xia").setBaseHeight(baseHeight).setHeightVariation(heightVariation).setTemperature(0.21F).setRainfall(0.0F).setRainDisabled();
-		BiomeProperties biomeDreamProp = new BiomeProperties("Dream").setBaseBiome("voidcraft_biome_dream").setBaseHeight(baseHeight).setHeightVariation(heightVariation).setTemperature(0.21F).setRainfall(0.0F).setRainDisabled();
-
+		
+		BiomeProperties biomeDreamOverworldProp = new BiomeProperties("Dream Overworld").setBaseBiome("voidcraft_biome_dream_overworld").setBaseHeight(baseHeight).setHeightVariation(heightVariation).setTemperature(0.21F).setRainfall(0.0F).setRainDisabled();
+		BiomeProperties biomeDreamNetherProp = new BiomeProperties("Dream Nether").setBaseBiome("voidcraft_biome_dream_nether").setBaseHeight(baseHeight).setHeightVariation(heightVariation).setTemperature(0.21F).setRainfall(0.0F).setRainDisabled();
+		BiomeProperties biomeDreamEndProp = new BiomeProperties("Dream End").setBaseBiome("voidcraft_biome_dream_end").setBaseHeight(baseHeight).setHeightVariation(heightVariation).setTemperature(0.21F).setRainfall(0.0F).setRainDisabled();
+		BiomeProperties biomeDreamVoidProp = new BiomeProperties("Dream Void").setBaseBiome("voidcraft_biome_dream_void").setBaseHeight(baseHeight).setHeightVariation(heightVariation).setTemperature(0.21F).setRainfall(0.0F).setRainDisabled();
+		
 		biomeVoid = new BiomeGenVoid(biomeVoidProp);
 		biomeXia = new BiomeGenXia(biomeXiaProp);
-		biomeDream = new BiomeGenDream(biomeDreamProp);
-
+		
+		biomeDreamOverworld = new BiomeGenDream(biomeDreamOverworldProp);
+		biomeDreamNether = new BiomeGenDream(biomeDreamNetherProp);
+		biomeDreamEnd = new BiomeGenDream(biomeDreamEndProp);
+		biomeDreamVoid = new BiomeGenDream(biomeDreamVoidProp);
+		
 		biomeVoid.setRegistryName("voidcraft_biome_void");
 		biomeXia.setRegistryName("voidcraft_biome_xia");
-		biomeDream.setRegistryName("voidcraft_biome_dream");
+		
+		biomeDreamOverworld.setRegistryName("voidcraft_biome_dream_overworld");
+		biomeDreamNether.setRegistryName("voidcraft_biome_dream_nether");
+		biomeDreamEnd.setRegistryName("voidcraft_biome_dream_end");
+		biomeDreamVoid.setRegistryName("voidcraft_biome_dream_void");
 
 		GameRegistry.register(biomeVoid);
 		GameRegistry.register(biomeXia);
-		GameRegistry.register(biomeDream);
-
+		
+		GameRegistry.register(biomeDreamOverworld);
+		GameRegistry.register(biomeDreamNether);
+		GameRegistry.register(biomeDreamEnd);
+		GameRegistry.register(biomeDreamVoid);
+		
 	}
 
 	@Override

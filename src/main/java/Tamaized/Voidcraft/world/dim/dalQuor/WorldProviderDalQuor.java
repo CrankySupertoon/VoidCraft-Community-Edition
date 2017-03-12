@@ -19,7 +19,7 @@ public class WorldProviderDalQuor extends WorldProvider {
 
 	@Override
 	protected void init() {
-		biomeProvider = new BiomeProviderSingle(VoidCraft.biomes.biomeDream);
+		biomeProvider = new BiomeProviderSingle(VoidCraft.biomes.biomeDreamVoid);
 		doesWaterVaporize = false;
 		hasNoSky = false;
 		// hasSkyLight = true;

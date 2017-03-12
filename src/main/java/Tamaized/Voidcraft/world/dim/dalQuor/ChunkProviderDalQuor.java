@@ -50,6 +50,27 @@ public class ChunkProviderDalQuor implements IChunkGenerator {
 		}
 	}
 
+	private GenType getTypeFromBlockState(IBlockState state) {
+		for (GenType type : GenType.values()) {
+			for (IBlockState blockState : getGenBlocks(type)) {
+				if (state == blockState) return type;
+			}
+		}
+		return null;
+	}
+
+	private GenType getTypeFromChunk(int x, int z) {
+		for (int i = 0; i < 16; ++i) {
+			for (int j = 0; j < 16; ++j) {
+				for (int i1 = 127; i1 >= 0; --i1) {
+					GenType type = getTypeFromBlockState(world.getBlockState(new BlockPos((x * 16) + i, i1, (z * 16) + j)));
+					if (type != null) return type;
+				}
+			}
+		}
+		return null;
+	}
+
 	private final Random rand;
 	protected static final IBlockState END_STONE = Blocks.END_STONE.getDefaultState();
 	protected static final IBlockState AIR = Blocks.AIR.getDefaultState();
@@ -119,14 +140,12 @@ public class ChunkProviderDalQuor implements IChunkGenerator {
 	/**
 	 * Generates a bare-bones chunk of nothing but stone or ocean blocks, formed, but featureless.
 	 */
-	public void setBlocksInChunk(int x, int z, ChunkPrimer primer) {
+	public void setBlocksInChunk(int x, int z, ChunkPrimer primer, IBlockState[] blockStates) {
 		int i = 2;
 		int j = 3;
 		int k = 33;
 		int l = 3;
 		this.buffer = this.getHeights(this.buffer, x * 2, 0, z * 2, 3, 33, 3);
-
-		IBlockState[] blockStates = getGenBlocks(GenType.values()[rand.nextInt(GenType.values().length)]);
 
 		for (int i1 = 0; i1 < 2; ++i1) {
 			for (int j1 = 0; j1 < 2; ++j1) {
@@ -156,13 +175,14 @@ public class ChunkProviderDalQuor implements IChunkGenerator {
 							for (int j2 = 0; j2 < 8; ++j2) {
 								IBlockState iblockstate = AIR;
 
-								if (d15 > 0.0D) {
-									iblockstate = k1 == 32 ? blockStates[0] : k1 == (31) ? blockStates[1] : blockStates[2];
-								}
-
 								int k2 = i2 + i1 * 8;
 								int l2 = l1 + k1 * 4;
 								int i3 = j2 + j1 * 8;
+
+								if (d15 > 0.0D) {
+									iblockstate = blockStates[2];// (k1 == 0) ? Blocks.EMERALD_BLOCK.getDefaultState() : Blocks.DIAMOND_BLOCK.getDefaultState();//blockStates[l1 == 4 ? 0 : l1 == 3 ? 1 : 2];
+								}
+
 								primer.setBlockState(k2, l2, i3, iblockstate);
 								d15 += d16;
 							}
@@ -181,20 +201,20 @@ public class ChunkProviderDalQuor implements IChunkGenerator {
 		}
 	}
 
-	public void buildSurfaces(ChunkPrimer primer) {
+	public void buildSurfaces(ChunkPrimer primer, IBlockState[] blockStates) {
 		for (int i = 0; i < 16; ++i) {
 			for (int j = 0; j < 16; ++j) {
 				int k = 1;
 				int l = -1;
-				IBlockState iblockstate = Blocks.DIRT.getDefaultState();// END_STONE;
-				IBlockState iblockstate1 = Blocks.DIAMOND_BLOCK.getDefaultState();// END_STONE;
+				IBlockState iblockstate = blockStates[0];// END_STONE;
+				IBlockState iblockstate1 = blockStates[1];// END_STONE;
 
 				for (int i1 = 127; i1 >= 0; --i1) {
 					IBlockState iblockstate2 = primer.getBlockState(i, i1, j);
 
 					if (iblockstate2.getMaterial() == Material.AIR) {
 						l = -1;
-					} else if (iblockstate2.getBlock() == Blocks.STONE) {
+					} else if (iblockstate2 == blockStates[2]) {
 						if (l == -1) {
 							l = 1;
 
@@ -219,8 +239,25 @@ public class ChunkProviderDalQuor implements IChunkGenerator {
 		this.rand.setSeed((long) x * 341873128712L + (long) z * 132897987541L);
 		ChunkPrimer chunkprimer = new ChunkPrimer();
 		this.biomesForGeneration = this.world.getBiomeProvider().getBiomes(this.biomesForGeneration, x * 16, z * 16, 16, 16);
-		this.setBlocksInChunk(x, z, chunkprimer);
-		this.buildSurfaces(chunkprimer);
+		IBlockState[] blockStates = null;
+//		if (blockStates == null && world.isChunkGeneratedAt(x - 1, z)) {
+//			GenType type = getTypeFromChunk(x - 1, z);
+//			if (type != null) blockStates = getGenBlocks(type);
+//		} else if (blockStates == null && world.isChunkGeneratedAt(x + 1, z)) {
+//			GenType type = getTypeFromChunk(x + 1, z);
+//			if (type != null) blockStates = getGenBlocks(type);
+//		} else if (blockStates == null && world.isChunkGeneratedAt(x, z - 1)) {
+//			GenType type = getTypeFromChunk(x, z - 1);
+//			if (type != null) blockStates = getGenBlocks(type);
+//		} else if (blockStates == null && world.isChunkGeneratedAt(x, z + 1)) {
+//			GenType type = getTypeFromChunk(x, z + 1);
+//			if (type != null) blockStates = getGenBlocks(type);
+//		}
+
+		if (blockStates == null) blockStates = getGenBlocks(GenType.values()[rand.nextInt(GenType.values().length)]);
+
+		this.setBlocksInChunk(x, z, chunkprimer, blockStates);
+		this.buildSurfaces(chunkprimer, blockStates);
 
 		Chunk chunk = new Chunk(this.world, chunkprimer, x, z);
 		byte[] abyte = chunk.getBiomeArray();

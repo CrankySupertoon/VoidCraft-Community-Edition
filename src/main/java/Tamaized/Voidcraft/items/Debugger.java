@@ -4,8 +4,7 @@ import java.util.List;
 
 import Tamaized.TamModized.items.TamItem;
 import Tamaized.Voidcraft.VoidCraft;
-import Tamaized.Voidcraft.capabilities.CapabilityList;
-import Tamaized.Voidcraft.capabilities.vadeMecum.IVadeMecumCapability;
+import Tamaized.Voidcraft.blocks.tileentity.TileEntityAIBlock;
 import Tamaized.Voidcraft.world.SchematicLoader;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -52,6 +51,8 @@ public class Debugger extends TamItem {
 			// entity.setPositionAndUpdate(pos.getX(), pos.getY() + 1, pos.getZ());
 			// worldIn.spawnEntity(entity);
 			// voidCraft.fluids.acidFluidBlock.place(worldIn, pos.up(), new FluidStack(voidCraft.fluids.acidFluid, Fluid.BUCKET_VOLUME), true);
+			worldIn.setBlockState(pos.up(), VoidCraft.blocks.AIBlock.getDefaultState());
+			((TileEntityAIBlock) worldIn.getTileEntity(pos.up())).setFake();
 		}
 		return EnumActionResult.PASS;
 	}
@@ -73,7 +74,7 @@ public class Debugger extends TamItem {
 		// zol.setPositionAndUpdate(playerIn.posX, playerIn.posY + 20, playerIn.posZ);
 		// worldIn.spawnEntity(zol);
 
-		VoidCraft.instance.VoidTickEvent.dream(player);
+//		VoidCraft.instance.VoidTickEvent.dream(player);
 		
 		// IVadeMecumCapability cap = player.getCapability(CapabilityList.VADEMECUM, null);
 		// cap.clearCategories();
