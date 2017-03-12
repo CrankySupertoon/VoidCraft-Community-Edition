@@ -65,8 +65,8 @@ public class XiaCastleLogicHandler {
 				if (xia2.isRunning()) xia2.update();
 				if (!hasFinished && xia2.isDone()) finish();
 				if (hasFinished && !twinsSpeech.done()) twinsSpeech.update(world.playerEntities);
+				handleProgressVisual();
 			}
-			handleProgressVisual();
 		}
 	}
 
