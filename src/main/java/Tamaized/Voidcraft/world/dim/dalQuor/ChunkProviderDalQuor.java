@@ -6,69 +6,30 @@ import java.util.Random;
 import javax.annotation.Nullable;
 
 import Tamaized.Voidcraft.VoidCraft;
-import net.minecraft.block.BlockChorusFlower;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.init.Blocks;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.tileentity.TileEntityEndGateway;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.Biome.SpawnListEntry;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.chunk.IChunkGenerator;
 import net.minecraft.world.gen.NoiseGeneratorOctaves;
 import net.minecraft.world.gen.NoiseGeneratorSimplex;
-import net.minecraft.world.gen.feature.WorldGenEndGateway;
-import net.minecraft.world.gen.feature.WorldGenEndIsland;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import net.minecraft.world.gen.structure.MapGenEndCity;
 
 public class ChunkProviderDalQuor implements IChunkGenerator {
 
-	private enum GenType {
-		Overworld, Nether, End, Void
-	}
-
-	private IBlockState[] getGenBlocks(GenType type) {
-		switch (type) {
-			default:
-			case Overworld:
-				return new IBlockState[] { Blocks.GRASS.getDefaultState(), Blocks.DIRT.getDefaultState(), Blocks.STONE.getDefaultState() };
-			case Nether:
-				return new IBlockState[] { Blocks.NETHERRACK.getDefaultState(), Blocks.MAGMA.getDefaultState(), Blocks.MAGMA.getDefaultState() };
-			case End:
-				return new IBlockState[] { Blocks.PURPUR_BLOCK.getDefaultState(), Blocks.END_STONE.getDefaultState(), Blocks.END_STONE.getDefaultState() };
-			case Void:
-				return new IBlockState[] { VoidCraft.blocks.blockFakeBedrock.getDefaultState(), VoidCraft.blocks.blockFakeBedrock.getDefaultState(), VoidCraft.blocks.blockFakeBedrock.getDefaultState() };
-		}
-	}
-
-	private GenType getTypeFromBlockState(IBlockState state) {
-		for (GenType type : GenType.values()) {
-			for (IBlockState blockState : getGenBlocks(type)) {
-				if (state == blockState) return type;
-			}
-		}
-		return null;
-	}
-
-	private GenType getTypeFromChunk(int x, int z) {
-		for (int i = 0; i < 16; ++i) {
-			for (int j = 0; j < 16; ++j) {
-				for (int i1 = 127; i1 >= 0; --i1) {
-					GenType type = getTypeFromBlockState(world.getBlockState(new BlockPos((x * 16) + i, i1, (z * 16) + j)));
-					if (type != null) return type;
-				}
-			}
-		}
-		return null;
+	public static IBlockState[] getGenBlocks(Biome biome) {
+		if (biome == VoidCraft.biomes.biomeDreamOverworld) return new IBlockState[] { Blocks.GRASS.getDefaultState(), Blocks.DIRT.getDefaultState(), Blocks.STONE.getDefaultState() };
+		if (biome == VoidCraft.biomes.biomeDreamNether) return new IBlockState[] { Blocks.NETHERRACK.getDefaultState(), Blocks.MAGMA.getDefaultState(), Blocks.MAGMA.getDefaultState() };
+		if (biome == VoidCraft.biomes.biomeDreamEnd) return new IBlockState[] { Blocks.PURPUR_BLOCK.getDefaultState(), Blocks.END_STONE.getDefaultState(), Blocks.END_STONE.getDefaultState() };
+		if (biome == VoidCraft.biomes.biomeDreamVoid) return new IBlockState[] { VoidCraft.blocks.blockFakeBedrock.getDefaultState(), VoidCraft.blocks.blockFakeBedrock.getDefaultState(), VoidCraft.blocks.blockFakeBedrock.getDefaultState() };
+		else return new IBlockState[] { Blocks.GRASS.getDefaultState(), Blocks.DIRT.getDefaultState(), Blocks.STONE.getDefaultState() };
 	}
 
 	private final Random rand;
@@ -119,7 +80,7 @@ public class ChunkProviderDalQuor implements IChunkGenerator {
 		public boolean generate(World worldIn, Random rand, BlockPos position) {
 			float f = (float) (rand.nextInt(3) + 4);
 
-			IBlockState[] blockStates = getGenBlocks(GenType.values()[rand.nextInt(GenType.values().length)]);
+			IBlockState[] blockStates = getGenBlocks(world.getBiome(position));
 
 			for (int i = 0; f > 0.5F; --i) {
 				for (int j = MathHelper.floor(-f); j <= MathHelper.ceil(f); ++j) {
@@ -233,31 +194,36 @@ public class ChunkProviderDalQuor implements IChunkGenerator {
 		}
 	}
 
+	public void replaceBiomeBlocks(int x, int z, ChunkPrimer primer, Biome[] biomesIn) {
+		IBlockState[] compare = getGenBlocks(null);
+		for (int i = 0; i < 16; ++i) {
+			for (int j = 0; j < 16; ++j) {
+				for (int i1 = 255; i1 >= 0; --i1) {
+					Biome biome = biomesIn[j + i * 16];
+					IBlockState[] blockStates = getGenBlocks(biome);
+					IBlockState state = primer.getBlockState(i, i1, j);
+					for (int index = 0; index < 3; index++) {
+						if (compare[index] == state) {
+							state = blockStates[index];
+							break;
+						}
+					}
+					primer.setBlockState(i, i1, j, state);
+				}
+			}
+		}
+	}
+
 	public Chunk provideChunk(int x, int z) {
 		this.chunkX = x;
 		this.chunkZ = z;
 		this.rand.setSeed((long) x * 341873128712L + (long) z * 132897987541L);
 		ChunkPrimer chunkprimer = new ChunkPrimer();
 		this.biomesForGeneration = this.world.getBiomeProvider().getBiomes(this.biomesForGeneration, x * 16, z * 16, 16, 16);
-		IBlockState[] blockStates = null;
-//		if (blockStates == null && world.isChunkGeneratedAt(x - 1, z)) {
-//			GenType type = getTypeFromChunk(x - 1, z);
-//			if (type != null) blockStates = getGenBlocks(type);
-//		} else if (blockStates == null && world.isChunkGeneratedAt(x + 1, z)) {
-//			GenType type = getTypeFromChunk(x + 1, z);
-//			if (type != null) blockStates = getGenBlocks(type);
-//		} else if (blockStates == null && world.isChunkGeneratedAt(x, z - 1)) {
-//			GenType type = getTypeFromChunk(x, z - 1);
-//			if (type != null) blockStates = getGenBlocks(type);
-//		} else if (blockStates == null && world.isChunkGeneratedAt(x, z + 1)) {
-//			GenType type = getTypeFromChunk(x, z + 1);
-//			if (type != null) blockStates = getGenBlocks(type);
-//		}
 
-		if (blockStates == null) blockStates = getGenBlocks(GenType.values()[rand.nextInt(GenType.values().length)]);
-
-		this.setBlocksInChunk(x, z, chunkprimer, blockStates);
-		this.buildSurfaces(chunkprimer, blockStates);
+		this.setBlocksInChunk(x, z, chunkprimer, getGenBlocks(null));
+		this.buildSurfaces(chunkprimer, getGenBlocks(null));
+		this.replaceBiomeBlocks(x, z, chunkprimer, this.biomesForGeneration);
 
 		Chunk chunk = new Chunk(this.world, chunkprimer, x, z);
 		byte[] abyte = chunk.getBiomeArray();

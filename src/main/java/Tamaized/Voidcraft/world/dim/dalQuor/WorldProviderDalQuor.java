@@ -3,6 +3,7 @@ package Tamaized.Voidcraft.world.dim.dalQuor;
 import javax.annotation.Nullable;
 
 import Tamaized.Voidcraft.VoidCraft;
+import Tamaized.Voidcraft.world.BiomeProviderDalQuor;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.DimensionType;
@@ -19,7 +20,7 @@ public class WorldProviderDalQuor extends WorldProvider {
 
 	@Override
 	protected void init() {
-		biomeProvider = new BiomeProviderSingle(VoidCraft.biomes.biomeDreamVoid);
+		biomeProvider = new BiomeProviderDalQuor(world);
 		doesWaterVaporize = false;
 		hasNoSky = false;
 		// hasSkyLight = true;
