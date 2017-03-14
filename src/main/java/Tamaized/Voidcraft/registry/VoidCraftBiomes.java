@@ -5,11 +5,16 @@ import java.util.ArrayList;
 import Tamaized.TamModized.registry.ITamModel;
 import Tamaized.TamModized.registry.ITamRegistry;
 import Tamaized.Voidcraft.VoidCraft;
+import Tamaized.Voidcraft.entity.mob.EntityMobWraith;
 import Tamaized.Voidcraft.world.dim.TheVoid.BiomeGenVoid;
 import Tamaized.Voidcraft.world.dim.Xia.BiomeGenXia;
 import Tamaized.Voidcraft.world.dim.dalQuor.BiomeGenDream;
+import net.minecraft.entity.monster.EntityEnderman;
+import net.minecraft.entity.monster.EntityPigZombie;
+import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.Biome.BiomeProperties;
+import net.minecraft.world.biome.Biome.SpawnListEntry;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
@@ -38,10 +43,10 @@ public class VoidCraftBiomes implements ITamRegistry {
 		biomeVoid = new BiomeGenVoid(biomeVoidProp);
 		biomeXia = new BiomeGenXia(biomeXiaProp);
 		
-		biomeDreamOverworld = new BiomeGenDream(biomeDreamOverworldProp);
-		biomeDreamNether = new BiomeGenDream(biomeDreamNetherProp);
-		biomeDreamEnd = new BiomeGenDream(biomeDreamEndProp);
-		biomeDreamVoid = new BiomeGenDream(biomeDreamVoidProp);
+		biomeDreamOverworld = new BiomeGenDream(biomeDreamOverworldProp, new SpawnListEntry(EntityZombie.class, 100, 0, 1));
+		biomeDreamNether = new BiomeGenDream(biomeDreamNetherProp, new SpawnListEntry(EntityPigZombie.class, 100, 0, 1));
+		biomeDreamEnd = new BiomeGenDream(biomeDreamEndProp, new SpawnListEntry(EntityEnderman.class, 100, 0, 1));
+		biomeDreamVoid = new BiomeGenDream(biomeDreamVoidProp, new SpawnListEntry(EntityMobWraith.class, 100, 0, 1));
 		
 		biomeVoid.setRegistryName("voidcraft_biome_void");
 		biomeXia.setRegistryName("voidcraft_biome_xia");

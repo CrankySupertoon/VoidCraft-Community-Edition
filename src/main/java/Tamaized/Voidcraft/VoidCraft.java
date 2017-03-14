@@ -142,7 +142,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 @Mod(modid = VoidCraft.modid, name = "VoidCraft", guiFactory = "Tamaized.Voidcraft.GUI.client.GUIConfigFactory", version = VoidCraft.version, dependencies = "required-before:" + TamModized.modid + "@[" + TamModized.version + ",)")
 public class VoidCraft extends TamModBase {
 
-	public static final boolean isDevBuild = false;
+	public static final boolean isDevBuild = true;
 
 	public static final String version = "${version}";
 	public static final String modid = "voidcraft";

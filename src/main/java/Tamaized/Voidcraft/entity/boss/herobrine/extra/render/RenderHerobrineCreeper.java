@@ -40,14 +40,12 @@ public class RenderHerobrineCreeper<T extends EntityHerobrineCreeper> extends Re
 	 * Renders the desired {@code T} type Entity.
 	 */
 	public void doRender(T entity, double x, double y, double z, float entityYaw, float partialTicks) {
-		GlStateManager.pushAttrib();
 		GlStateManager.pushMatrix();
 		// GlStateManager.color(1.0f, 1.0f, 1.0f, 1.0f);
 		super.doRender(entity, x, y, z, entityYaw, partialTicks);
 		GlStateManager.color(1.0f, 1.0f, 1.0f, 1.0f);
 		GlStateManager.disableBlend();
 		GlStateManager.popMatrix();
-		GlStateManager.popAttrib();
 	}
 
 	/**

@@ -32,7 +32,6 @@ public class RenderHerobrineShadow<T extends EntityHerobrineShadow> extends Rend
 	@Override
 	public void doRender(T entity, double x, double y, double z, float yaw, float partialTicks) {
 		GlStateManager.pushMatrix();
-		GlStateManager.pushAttrib();
 		float f = this.interpolateRotation(entity.prevRenderYawOffset, entity.renderYawOffset, partialTicks);
 		float f1 = this.interpolateRotation(entity.prevRotationYawHead, entity.rotationYawHead, partialTicks);
 		float f2 = f1 - f;
@@ -53,7 +52,6 @@ public class RenderHerobrineShadow<T extends EntityHerobrineShadow> extends Rend
         GlStateManager.enableTexture2D();
         GlStateManager.setActiveTexture(OpenGlHelper.defaultTexUnit);
         GlStateManager.enableCull();
-		GlStateManager.popAttrib();
 		GlStateManager.popMatrix();
 		super.doRender(entity, x, y, z, yaw, partialTicks);
 	}

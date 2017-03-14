@@ -68,7 +68,6 @@ public class AnimationXiaSwordSwing implements IAnimation<EntityBossXia> {
 		double yAngle = 1;// Math.sin(xia.rightArmPitch);
 		double zAngle = -Math.sin(Math.toRadians(90.0D + xia.getArmRotation(ArmRotation.RightYaw))) * Math.sin(xia.getArmRotation(ArmRotation.RightPitch));
 
-		GlStateManager.pushAttrib();
 		{
 			GlStateManager.pushMatrix();
 			{
@@ -84,7 +83,6 @@ public class AnimationXiaSwordSwing implements IAnimation<EntityBossXia> {
 			}
 			GlStateManager.popMatrix();
 		}
-		GlStateManager.popAttrib();
 
 	}
 

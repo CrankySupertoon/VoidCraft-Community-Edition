@@ -43,7 +43,6 @@ public class RenderGhostPlayer<T extends EntityGhostPlayerBase> extends RenderLi
 		if (playerModel) setModelVisibilities(entity);
 		GlStateManager.enableBlendProfile(GlStateManager.Profile.PLAYER_SKIN);
 		GlStateManager.pushMatrix();
-		GlStateManager.pushAttrib();
 		ModelBiped model = (ModelBiped) getMainModel();
 		{
 			if (entity.isInteractable()) renderInteractable(entity, model);
@@ -57,7 +56,6 @@ public class RenderGhostPlayer<T extends EntityGhostPlayerBase> extends RenderLi
 		super.doRender(entity, x, y, z, yaw, partialTicks); // Entity texture is bound here, we're free to bind whatever we want before this and not care
 		model.leftArmPose = ArmPose.EMPTY;
 		GlStateManager.color(1.0f, 1.0f, 1.0f, 1.0f);
-		GlStateManager.popAttrib();
 		GlStateManager.popMatrix();
 		GlStateManager.disableBlendProfile(GlStateManager.Profile.PLAYER_SKIN);
 		this.renderLabel(entity, x, y, z);

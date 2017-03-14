@@ -28,7 +28,6 @@ public class RenderSheathe {
 	@SubscribeEvent
 	public void renderLivingPre(RenderLivingEvent.Pre<EntityLivingBase> e) {
 		GlStateManager.pushMatrix();
-		GlStateManager.pushAttrib();
 		EntityLivingBase entity = e.getEntity();
 
 		GL11.glGetFloat(GL11.GL_CURRENT_COLOR, buffer);
@@ -42,7 +41,6 @@ public class RenderSheathe {
 
 	@SubscribeEvent
 	public void renderLivingPost(RenderLivingEvent.Post<EntityLivingBase> e) {
-		GlStateManager.popAttrib();
 		GlStateManager.popMatrix();
 	}
 

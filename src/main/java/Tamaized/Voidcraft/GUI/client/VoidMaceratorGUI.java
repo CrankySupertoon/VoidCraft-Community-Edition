@@ -47,7 +47,7 @@ public class VoidMaceratorGUI extends GuiContainer {
 	protected void drawGuiContainerForegroundLayer(int param1, int param2) {
 		String text = ("" + I18n.format("voidcraft.gui.macerator.title", new Object[0])).trim();
 		this.fontRendererObj.drawString(text, this.xSize / 2 - this.fontRendererObj.getStringWidth(text) / 2, this.ySize - 260, 0xAAAAAA);
-		text = ("" + I18n.format("voidcraft.gui.misc.power", new Object[0])).trim()+":";
+		text = ("" + I18n.format("voidcraft.gui.misc.power", new Object[0])).trim() + ":";
 		this.fontRendererObj.drawString(text, (this.xSize / 2 - this.fontRendererObj.getStringWidth(text) / 1) - 60, this.ySize / 2 - 65, 0xFF0000);
 		text = te.getPowerAmount() + "/";
 		this.fontRendererObj.drawString(text, (this.xSize / 2 - this.fontRendererObj.getStringWidth(text) / 1) - 60, this.ySize / 2 - 55, 0xFF0000);
@@ -58,14 +58,12 @@ public class VoidMaceratorGUI extends GuiContainer {
 	@Override
 	protected void drawGuiContainerBackgroundLayer(float par1, int par2, int par3) {
 		GlStateManager.pushMatrix();
-		GlStateManager.pushAttrib();
 		{
 			GlStateManager.color(1.0f, 1.0f, 1.0f, 1.0f);
 			Minecraft.getMinecraft().getTextureManager().bindTexture(TEXTURE);
 			drawTexturedModalRect(guiLeft + 78, guiTop + 66, 0, 0, xSize / 2, ySize / 2);
 			this.updateScreen();
 		}
-		GlStateManager.popAttrib();
 		GlStateManager.popMatrix();
 
 	}

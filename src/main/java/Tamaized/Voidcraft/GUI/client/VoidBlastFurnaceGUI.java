@@ -58,14 +58,12 @@ public class VoidBlastFurnaceGUI extends GuiContainer {
 	@Override
 	protected void drawGuiContainerBackgroundLayer(float par1, int par2, int par3) {
 		GlStateManager.pushMatrix();
-		GlStateManager.pushAttrib();
 		{
 			GlStateManager.color(1.0f, 1.0f, 1.0f, 1.0f);
 			Minecraft.getMinecraft().getTextureManager().bindTexture(TEXTURE);
 			drawTexturedModalRect(guiLeft + 78, guiTop + 66, 0, 0, xSize / 2, ySize / 2);
 			this.updateScreen();
 		}
-		GlStateManager.popAttrib();
 		GlStateManager.popMatrix();
 
 	}

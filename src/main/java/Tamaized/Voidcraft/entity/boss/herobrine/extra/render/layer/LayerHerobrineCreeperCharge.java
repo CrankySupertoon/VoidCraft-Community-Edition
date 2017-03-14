@@ -22,7 +22,6 @@ public class LayerHerobrineCreeperCharge implements LayerRenderer<EntityHerobrin
     {
         if (entitylivingbaseIn.getPowered())
         {
-        	GlStateManager.pushAttrib();
         	GlStateManager.pushMatrix();
             boolean flag = entitylivingbaseIn.isInvisible();
             GlStateManager.depthMask(!flag);
@@ -46,7 +45,6 @@ public class LayerHerobrineCreeperCharge implements LayerRenderer<EntityHerobrin
             GlStateManager.disableBlend();
             GlStateManager.depthMask(!flag);
         	GlStateManager.popMatrix();
-        	GlStateManager.popAttrib();
         }
     }
 

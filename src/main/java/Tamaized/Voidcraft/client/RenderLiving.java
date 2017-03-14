@@ -6,6 +6,7 @@ import Tamaized.Voidcraft.capabilities.CapabilityList;
 import Tamaized.Voidcraft.capabilities.voidicInfusion.IVoidicInfusionCapability;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.monster.EntityEnderman;
 import net.minecraftforge.client.event.RenderLivingEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
@@ -14,7 +15,6 @@ public class RenderLiving {
 	@SubscribeEvent
 	public void renderPre(RenderLivingEvent.Pre e) {
 		GlStateManager.pushMatrix();
-		GlStateManager.pushAttrib();
 		EntityLivingBase living = e.getEntity();
 		if (living != null) {
 			float f1 = 1.0f;
@@ -25,10 +25,8 @@ public class RenderLiving {
 				f1 = f1 > 1.0f ? 1.0f : f1;
 			}
 			if (f1 < 1) {
-				// GlStateManager.enableAlpha();
-				// GlStateManager.enableBlend();
+				GlStateManager.enableBlend();
 				GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-				GL11.glEnable(GL11.GL_BLEND);
 			}
 			GlStateManager.color(f1, f1, f1, f1);
 		}
@@ -36,9 +34,8 @@ public class RenderLiving {
 
 	@SubscribeEvent
 	public void renderPost(RenderLivingEvent.Post e) {
-		GlStateManager.popAttrib();
-		GlStateManager.popMatrix();
 		GlStateManager.disableBlend();
+		GlStateManager.popMatrix();
 	}
 
 }

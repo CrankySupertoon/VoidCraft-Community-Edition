@@ -16,7 +16,6 @@ public class RenderPlayer {
 	@SubscribeEvent
 	public void renderPlayer(RenderPlayerEvent.Pre e) {
 		GlStateManager.pushMatrix();
-		GlStateManager.pushAttrib();
 		EntityPlayer player = e.getEntityPlayer();
 		if (player != null) {
 			// renderElytra(player, e.getPartialRenderTick());
@@ -25,13 +24,11 @@ public class RenderPlayer {
 
 	@SubscribeEvent
 	public void renderPlayer(RenderPlayerEvent.Post e) {
-		GlStateManager.popAttrib();
 		GlStateManager.popMatrix();
 	}
 
 	private void renderElytra(EntityPlayer player, float partialTick) {
 		GlStateManager.pushMatrix();
-		GlStateManager.pushAttrib();
 		{
 			if (CustomElytraHandler.isElytraFlying(player)) {
 				// rotateCorpse(player, player.ticksExisted + e.getPartialRenderTick(), interpolateRotation(player.prevRenderYawOffset, player.renderYawOffset, e.getPartialRenderTick()), e.getPartialRenderTick());
@@ -49,7 +46,6 @@ public class RenderPlayer {
 				}
 			}
 		}
-		GlStateManager.popAttrib();
 		GlStateManager.popMatrix();
 	}
 

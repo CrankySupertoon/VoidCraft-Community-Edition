@@ -26,7 +26,6 @@ public class LayerVoidSpikes implements LayerRenderer {
 	public void doRenderLayer(EntityLivingBase entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
 		if (!entitylivingbaseIn.hasCapability(CapabilityList.VOIDICINFUSION, null)) return;
 		GlStateManager.pushMatrix();
-		GlStateManager.pushAttrib();
 		{
 			IVadeMecumCapability cap = entitylivingbaseIn.getCapability(CapabilityList.VADEMECUM, null);
 			float perc = Math.min(0.85F, (entitylivingbaseIn.getCapability(CapabilityList.VOIDICINFUSION, null).getInfusionPerc() + (cap != null && cap.hasPassive(IVadeMecumCapability.Passive.Flight) ? 0.5F : 0.0F)) * 0.85F);
@@ -51,7 +50,6 @@ public class LayerVoidSpikes implements LayerRenderer {
 
 			// model.reload(null);
 		}
-		GlStateManager.popAttrib();
 		GlStateManager.popMatrix();
 	}
 

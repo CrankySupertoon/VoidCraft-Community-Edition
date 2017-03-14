@@ -27,7 +27,6 @@ public class RenderFireElementalCompanion extends RenderLiving<EntityCompanionFi
 	@Override
 	public void doRender(EntityCompanionFireElemental entity, double x, double y, double z, float yaw, float ticks) {
 		GlStateManager.pushMatrix();
-		GlStateManager.pushAttrib();
 		{
 			// GlStateManager.rotate(180, 0, 1, 0);
 			// GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
@@ -70,7 +69,6 @@ public class RenderFireElementalCompanion extends RenderLiving<EntityCompanionFi
 				}
 			}
 		}
-		GlStateManager.popAttrib();
 		GlStateManager.popMatrix();
 	}
 

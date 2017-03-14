@@ -1,21 +1,36 @@
 package Tamaized.Voidcraft.world.dim.dalQuor;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import Tamaized.Voidcraft.entity.boss.dragon.sub.voidic.EntityVoidicDragon;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class BiomeGenDream extends Biome {
 
-	public BiomeGenDream(BiomeProperties prop) {
+	public static final List<Class<? extends EntityLiving>> allowedEntities = new ArrayList<Class<? extends EntityLiving>>();
+
+	public BiomeGenDream(BiomeProperties prop, SpawnListEntry... list) {
 		super(prop);
 
-		this.spawnableMonsterList.clear();
-		this.spawnableCreatureList.clear();
-		this.spawnableWaterCreatureList.clear();
-		this.spawnableCaveCreatureList.clear();
+		spawnableMonsterList.clear();
+		spawnableCreatureList.clear();
+		spawnableWaterCreatureList.clear();
+		spawnableCaveCreatureList.clear();
 
-		// this.spawnableCreatureList.add(new SpawnListEntry(EntityMobWraith.class, 1, 0, 1));
+		for (SpawnListEntry entry : list)
+			addEntry(entry);
 
+		addEntry(new SpawnListEntry(EntityVoidicDragon.class, 1, 0, 1));
+
+	}
+
+	private void addEntry(SpawnListEntry entry) {
+		if (!allowedEntities.contains(entry.entityClass)) allowedEntities.add(entry.entityClass);
+		spawnableMonsterList.add(entry);
 	}
 
 	@SideOnly(Side.CLIENT)
