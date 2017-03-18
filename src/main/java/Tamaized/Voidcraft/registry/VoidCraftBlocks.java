@@ -13,6 +13,7 @@ import Tamaized.TamModized.registry.RegistryHelper;
 import Tamaized.TamModized.registry.TamColorRegistry;
 import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.blocks.AIBlock;
+import Tamaized.Voidcraft.blocks.BlockDreamBed;
 import Tamaized.Voidcraft.blocks.BlockEtherealPlant;
 import Tamaized.Voidcraft.blocks.BlockFakeBedrock;
 import Tamaized.Voidcraft.blocks.BlockFakeBedrockFarmland;
@@ -92,6 +93,8 @@ public class VoidCraftBlocks implements ITamRegistry {
 	public static TamBlock starforge;
 	public static StarForgeBlock starforgeStation;
 
+	public static BlockDreamBed dreamBed;
+
 	@Override
 	public void preInit() {
 		modelList = new ArrayList<ITamModel>();
@@ -137,6 +140,8 @@ public class VoidCraftBlocks implements ITamRegistry {
 		modelList.add(etherealPlant = new BlockEtherealPlant(VoidCraft.tabs.tabVoid, "etherealplant", 1.0f));
 
 		modelList.add(iceSpike = new BlockSpellIceSpike(VoidCraft.tabs.tabVoid, Material.ICE, "blockspellicespike", -1F));
+
+		modelList.add(dreamBed = new BlockDreamBed(VoidCraft.tabs.tabVoid, "dreambed"));
 
 		// Slabs have to be registered outside of their class
 		RegistryHelper.registerBlockSlab(blockVoidBrickHalfSlab, blockVoidBrickDoubleSlab);

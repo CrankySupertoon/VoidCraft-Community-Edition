@@ -19,12 +19,10 @@ public class WorldGeneratorVoid implements IWorldGenerator {
 
 	@Override
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider) {
-		int dimension = world.provider.getDimension();
-		if (dimension == 1) {
-			generateEnd(world, random, chunkX * 16, chunkZ * 16);
-		} else if (dimension == VoidCraft.config.getDimensionIDvoid()) {
-			generateVoid(world, random, chunkX * 16, chunkZ * 16);
-		}
+		int id = world.provider.getDimension();
+		if (id == 1) generateEnd(world, random, chunkX * 16, chunkZ * 16);
+		if (id == VoidCraft.config.getDimensionIDvoid()) generateVoid(world, random, chunkX * 16, chunkZ * 16);
+		if (id == VoidCraft.config.getDimensionIDdalQuor()) generateDalQuor(world, random, chunkX * 16, chunkZ * 16);
 	}
 
 	private void generateEnd(World world, Random random, int BlockX, int BlockZ) {
@@ -66,6 +64,22 @@ public class WorldGeneratorVoid implements IWorldGenerator {
 				@Override
 				public boolean apply(IBlockState input) {
 					return input == VoidCraft.blocks.blockFakeBedrock.getDefaultState();
+				}
+
+			}).generate(world, random, new BlockPos(Xcoord, Ycoord, Zcoord));
+		}
+	}
+
+	private void generateDalQuor(World world, Random random, int BlockX, int BlockZ) {
+		for (int i = 0; i < 10; i++) {
+			int Xcoord = BlockX + random.nextInt(16);
+			int Zcoord = BlockZ + random.nextInt(16);
+			int Ycoord = random.nextInt(255);
+			new WorldGenMinable(VoidCraft.blocks.cosmicMaterial.getDefaultState(), 3, new Predicate<IBlockState>() {
+
+				@Override
+				public boolean apply(IBlockState input) {
+					return input != Blocks.AIR.getDefaultState();
 				}
 
 			}).generate(world, random, new BlockPos(Xcoord, Ycoord, Zcoord));

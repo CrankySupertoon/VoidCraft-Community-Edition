@@ -58,6 +58,8 @@ import Tamaized.Voidcraft.entity.mob.EntityMobLich;
 import Tamaized.Voidcraft.entity.mob.EntityMobSpectreChain;
 import Tamaized.Voidcraft.entity.mob.EntityMobVoidWrath;
 import Tamaized.Voidcraft.entity.mob.EntityMobWraith;
+import Tamaized.Voidcraft.entity.mob.dalquor.EntityHashalaq;
+import Tamaized.Voidcraft.entity.mob.dalquor.model.ModelHashalaq;
 import Tamaized.Voidcraft.entity.mob.lich.EntityLichInferno;
 import Tamaized.Voidcraft.entity.mob.model.ModelLich;
 import Tamaized.Voidcraft.entity.mob.model.ModelSpectreChain;
@@ -125,30 +127,36 @@ public class ClientProxy extends AbstractProxy {
 
 		float shadowSize = 0.5F;
 		// MOBS
+		RenderingRegistry.registerEntityRenderingHandler(EntityHashalaq.class, new IRenderFactory<EntityHashalaq>() {
+			@Override
+			public Render<? super EntityHashalaq> createRenderFor(RenderManager manager) {
+				return new RenderGeneric(manager, new ModelHashalaq(), shadowSize, new ResourceLocation(VoidCraft.modid, "textures/entity/hashalaq.png"), 0.5F);
+			}
+		});
 		RenderingRegistry.registerEntityRenderingHandler(EntityMobWraith.class, new IRenderFactory<EntityMobWraith>() {
 			@Override
 			public Render<? super EntityMobWraith> createRenderFor(RenderManager manager) {
-				return new RenderGeneric(manager, new ModelWraith(), shadowSize, new ResourceLocation(VoidCraft.modid, "textures/entity/zwraith.png"));
+				return new RenderGeneric(manager, new ModelWraith(), shadowSize, new ResourceLocation(VoidCraft.modid, "textures/entity/zwraith.png"), 1.0F);
 			}
 		});
 		RenderingRegistry.registerEntityRenderingHandler(EntityMobSpectreChain.class, new IRenderFactory<EntityMobSpectreChain>() {
 			@Override
 			public Render<? super EntityMobSpectreChain> createRenderFor(RenderManager manager) {
-				return new RenderGeneric(manager, new ModelSpectreChain(), shadowSize, new ResourceLocation(VoidCraft.modid, "textures/entity/zspectrechain.png"));
+				return new RenderGeneric(manager, new ModelSpectreChain(), shadowSize, new ResourceLocation(VoidCraft.modid, "textures/entity/zspectrechain.png"), 1.0F);
 			}
 		});
 
 		RenderingRegistry.registerEntityRenderingHandler(EntityMobLich.class, new IRenderFactory<EntityMobLich>() {
 			@Override
 			public Render<? super EntityMobLich> createRenderFor(RenderManager manager) {
-				return new RenderGeneric(manager, new ModelLich(), shadowSize, new ResourceLocation(VoidCraft.modid, "textures/entity/voidiclich.png"));
+				return new RenderGeneric(manager, new ModelLich(), shadowSize, new ResourceLocation(VoidCraft.modid, "textures/entity/voidiclich.png"), 1.0F);
 			}
 		});
 
 		RenderingRegistry.registerEntityRenderingHandler(EntityMobVoidWrath.class, new IRenderFactory<EntityMobVoidWrath>() {
 			@Override
 			public Render<? super EntityMobVoidWrath> createRenderFor(RenderManager manager) {
-				return new RenderGeneric(manager, new ModelVoidWrath(), shadowSize, new ResourceLocation(VoidCraft.modid, "textures/entity/zvoidwrath.png"));
+				return new RenderGeneric(manager, new ModelVoidWrath(), shadowSize, new ResourceLocation(VoidCraft.modid, "textures/entity/zvoidwrath.png"), 1.0F);
 			}
 		});
 		RenderingRegistry.registerEntityRenderingHandler(EntityBossCorruptedPawn.class, new IRenderFactory<EntityBossCorruptedPawn>() {

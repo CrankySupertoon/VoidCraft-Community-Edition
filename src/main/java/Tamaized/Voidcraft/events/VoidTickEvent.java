@@ -20,6 +20,7 @@ import net.minecraft.client.entity.EntityOtherPlayerMP;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.item.ItemStack;
 import net.minecraft.network.play.server.SPacketEntityEffect;
 import net.minecraft.network.play.server.SPacketPlayerAbilities;
 import net.minecraft.network.play.server.SPacketRespawn;
@@ -46,7 +47,9 @@ public class VoidTickEvent {
 
 	@SubscribeEvent
 	public void onPlayerTick(TickEvent.PlayerTickEvent e) {
+
 		if (e.phase == e.phase.END) return;
+
 		World world = e.player.world;
 
 		if (e.player.hasCapability(CapabilityList.VADEMECUM, null)) {
@@ -79,7 +82,7 @@ public class VoidTickEvent {
 
 		if (e.player.world.provider.getDimension() == VoidCraft.config.getDimensionIDvoid()) {
 			if (e.player.getPosition().getY() >= 127) e.player.attackEntityFrom(DamageSource.OUT_OF_WORLD, 4.0F);
-		} else if (e.player.world.provider.getDimension() != VoidCraft.config.getDimensionIDxia()) {
+		} else if (e.player.world.provider.getDimension() != VoidCraft.config.getDimensionIDxia() && e.player.world.provider.getDimension() != VoidCraft.config.getDimensionIDdalQuor()) {
 			if (e.player instanceof EntityPlayerMP && e.player.getPosition().getY() <= -256) {
 				EntityPlayerMP player = (EntityPlayerMP) e.player;
 				transferPlayerToDimension(player.mcServer, player, VoidCraft.config.getDimensionIDvoid(), new TeleportLoc(player.getPosition().add(0, 256 * 2, 0)));
@@ -193,7 +196,7 @@ public class VoidTickEvent {
 	public void dream(EntityPlayer player) {
 		if (player instanceof EntityPlayerMP) {
 			EntityPlayerMP p = (EntityPlayerMP) player;
-			int dim = p.dimension == VoidCraft.config.getDimensionIDdalQuor() ? 0 : VoidCraft.config.getDimensionIDdalQuor();
+			int dim = (p.dimension == VoidCraft.config.getDimensionIDdalQuor() ? 0 : VoidCraft.config.getDimensionIDdalQuor());
 			transferPlayerToDimension(p.mcServer, p, dim, new TeleportLoc(new TeleporterDream(p.mcServer.worldServerForDimension(dim))));
 		}
 	}

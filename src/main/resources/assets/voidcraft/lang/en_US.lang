@@ -185,6 +185,7 @@ entity.voidcraft.DolXia.name=Dol
 entity.voidcraft.ZolXia.name=Zol
 entity.voidcraft.VoidicDragon.name=Voidic Dragon
 entity.FireElemental.name=Fire Elemental
+entity.Hashalaq.name=Hashalaq
 
 # GUI
 voidcraft.gui.jei.alch.research=Required Vade Mecum Knowledge:

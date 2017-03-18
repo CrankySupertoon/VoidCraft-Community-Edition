@@ -16,6 +16,7 @@ import Tamaized.Voidcraft.items.CreativeVoidBucket;
 import Tamaized.Voidcraft.items.Debugger;
 import Tamaized.Voidcraft.items.EmptyObsidianFlask;
 import Tamaized.Voidcraft.items.EtherealFruit;
+import Tamaized.Voidcraft.items.ItemDreamBed;
 import Tamaized.Voidcraft.items.ObsidianFlask;
 import Tamaized.Voidcraft.items.RealityTeleporter;
 import Tamaized.Voidcraft.items.VadeMecum;
@@ -96,6 +97,8 @@ public class VoidCraftItems implements ITamRegistry {
 	public static EtherealFruit etherealFruit_gold;
 	public static EtherealFruit etherealFruit_emerald;
 	public static EtherealFruit etherealFruit_diamond;
+	
+	public static ItemDreamBed dreamBed;
 
 	// public static VoidRecord record_noStrings;
 	// public static VoidRecord record_bleedingThrough;
@@ -164,6 +167,8 @@ public class VoidCraftItems implements ITamRegistry {
 		modelList.add(etherealFruit_gold = new EtherealFruit(TileEntityFakeBedrockFarmland.Alteration.GOLD, VoidCraft.tabs.tabVoid, "etherealfruit_gold", 64, 2, false));
 		modelList.add(etherealFruit_emerald = new EtherealFruit(TileEntityFakeBedrockFarmland.Alteration.EMERALD, VoidCraft.tabs.tabVoid, "etherealfruit_emerald", 64, 2, false));
 		modelList.add(etherealFruit_diamond = new EtherealFruit(TileEntityFakeBedrockFarmland.Alteration.DIAMOND, VoidCraft.tabs.tabVoid, "etherealfruit_diamond", 64, 2, false));
+		
+		modelList.add(dreamBed = new ItemDreamBed(VoidCraft.tabs.tabVoid, "dreambed"));
 
 		// modelList.add(record_noStrings = new VoidRecord("Approaching Nirvana - No Strings Attached", VoidSoundEvents.MusicDiscSoundEvents.No_Strings_Attached, "voidDisc1"));
 		// modelList.add(record_bleedingThrough = new VoidRecord("Haven - Bleeding Through", VoidSoundEvents.MusicDiscSoundEvents.Haven_Bleeding_Through, "voidDisc2"));

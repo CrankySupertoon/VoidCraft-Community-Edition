@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Tamaized.Voidcraft.entity.boss.dragon.sub.voidic.EntityVoidicDragon;
+import Tamaized.Voidcraft.entity.mob.dalquor.EntityHashalaq;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.fml.relauncher.Side;
@@ -24,7 +25,8 @@ public class BiomeGenDream extends Biome {
 		for (SpawnListEntry entry : list)
 			addEntry(entry);
 
-		addEntry(new SpawnListEntry(EntityVoidicDragon.class, 1, 0, 1));
+		addEntry(new SpawnListEntry(EntityVoidicDragon.class, 10, 0, 1));
+		addEntry(new SpawnListEntry(EntityHashalaq.class, 25, 0, 1));
 
 	}
 

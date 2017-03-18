@@ -1,6 +1,5 @@
 package Tamaized.Voidcraft;
 
-import java.awt.image.BufferedImage;
 import java.io.File;
 
 import org.apache.logging.log4j.LogManager;
@@ -58,6 +57,7 @@ import Tamaized.Voidcraft.entity.mob.EntityMobLich;
 import Tamaized.Voidcraft.entity.mob.EntityMobSpectreChain;
 import Tamaized.Voidcraft.entity.mob.EntityMobVoidWrath;
 import Tamaized.Voidcraft.entity.mob.EntityMobWraith;
+import Tamaized.Voidcraft.entity.mob.dalquor.EntityHashalaq;
 import Tamaized.Voidcraft.entity.mob.lich.EntityLichInferno;
 import Tamaized.Voidcraft.entity.nonliving.AcidBall;
 import Tamaized.Voidcraft.entity.nonliving.EntityCasterLightningBolt;
@@ -120,7 +120,6 @@ import Tamaized.Voidcraft.world.dim.TheVoid.WorldProviderVoid;
 import Tamaized.Voidcraft.world.dim.Xia.WorldProviderXia;
 import Tamaized.Voidcraft.world.dim.dalQuor.WorldProviderDalQuor;
 import net.minecraft.entity.EnumCreatureType;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.Biome.SpawnListEntry;
@@ -129,7 +128,6 @@ import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.common.config.Configuration;
-import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -141,7 +139,6 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.FMLEventChannel;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.minecraftforge.fml.relauncher.Side;
 
 @Mod(modid = VoidCraft.modid, name = "VoidCraft", guiFactory = "Tamaized.Voidcraft.GUI.client.GUIConfigFactory", version = VoidCraft.version, dependencies = "required-before:" + TamModized.modid + "@[" + TamModized.version + ",)")
 public class VoidCraft extends TamModBase {
@@ -373,6 +370,7 @@ public class VoidCraft extends TamModBase {
 		registerEntity(EntityVoidicDragon.class, "VoidicDragon", this, modid, 64, 1, true);
 		registerEntityWithEgg(EntityMobEtherealGuardian.class, "EtherealGuardian", this, modid, 64, 1, true, 0xFF0000, 0x000000);
 		registerEntity(EntityCompanionFireElemental.class, "FireElemental", this, modid, 64, 1, true);
+		registerEntityWithEgg(EntityHashalaq.class, "Hashalaq", this, modid, 64, 1, true, 0x000000, 0x00FFFF);
 
 		// Register Biomes
 		Biome.getBiome(6).getSpawnableList(EnumCreatureType.MONSTER).add(new SpawnListEntry(EntityMobLich.class, 10, 0, 1));
