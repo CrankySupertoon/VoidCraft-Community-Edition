@@ -41,7 +41,7 @@ public class BlockRealityHole extends TamBlock {
 		if (!worldIn.isRemote) {
 			if (entityIn instanceof EntityPlayerMP) {
 				EntityPlayerMP player = ((EntityPlayerMP) entityIn);
-				if (entityIn.dimension == VoidCraft.config.getDimensionIDxia()) {
+				if (entityIn.dimension == VoidCraft.config.getDimensionIdXia()) {
 					entityIn.setPositionAndUpdate(52.5, 61, 4.5);
 				} else {
 					if (VoidCraft.config.getRealityWhiteList().size() > 0) {

@@ -91,6 +91,6 @@ public class WorldProviderDalQuor extends WorldProvider {
 
 	@Override
 	public DimensionType getDimensionType() {
-		return DimensionType.getById(VoidCraft.config.getDimensionIDdalQuor());
+		return DimensionType.getById(VoidCraft.config.getDimensionIdDalQuor());
 	}
 }

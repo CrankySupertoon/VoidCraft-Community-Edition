@@ -28,7 +28,7 @@ public class TeleporterXia extends Teleporter {
 
 	@Override
 	public void placeInPortal(Entity entityIn, float rotationYaw) {
-		if (entityIn.dimension != VoidCraft.config.getDimensionIDxia()) {
+		if (entityIn.dimension != VoidCraft.config.getDimensionIdXia()) {
 			BlockPos bedPos = entityIn instanceof EntityPlayer && ((EntityPlayer) entityIn).getBedLocation(0) != null ? ((EntityPlayer) entityIn).getBedLocation(0) : worldServerInstance.getSpawnPoint();
 			while(!worldServerInstance.isAirBlock(bedPos)){
 				bedPos = bedPos.up();
@@ -60,7 +60,7 @@ public class TeleporterXia extends Teleporter {
 		int j = MathHelper.floor(e.posY);
 		int k = MathHelper.floor(e.posZ);
 
-		if (e.dimension == VoidCraft.config.getDimensionIDxia()) {
+		if (e.dimension == VoidCraft.config.getDimensionIdXia()) {
 			// doStructure(sut, worldServerInstance, new BlockPos(-11, 59, -4));
 			// worldServerInstance.setBlockState(new BlockPos(0, 0, 58), voidCraft.blocks.xiaBlock.getDefaultState());
 			SchematicLoader loader = new SchematicLoader();

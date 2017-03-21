@@ -52,11 +52,11 @@ public class ItemDreamBed extends TamItem {
 					IBlockState iblockstate2 = VoidCraft.blocks.dreamBed.getDefaultState().withProperty(BlockBed.OCCUPIED, Boolean.valueOf(false)).withProperty(BlockBed.FACING, enumfacing).withProperty(BlockBed.PART, BlockBed.EnumPartType.FOOT);
 					worldIn.setBlockState(pos, iblockstate2, 10);
 					worldIn.setBlockState(blockpos, iblockstate2.withProperty(BlockBed.PART, BlockBed.EnumPartType.HEAD), 10);
-					worldIn.notifyNeighborsRespectDebug(pos, block, false);
-					worldIn.notifyNeighborsRespectDebug(blockpos, iblockstate1.getBlock(), false);
+					worldIn.notifyNeighborsRespectDebug(pos, block);
+					worldIn.notifyNeighborsRespectDebug(blockpos, iblockstate1.getBlock());
 					SoundType soundtype = iblockstate2.getBlock().getSoundType(iblockstate2, worldIn, pos, player);
 					worldIn.playSound((EntityPlayer) null, pos, soundtype.getPlaceSound(), SoundCategory.BLOCKS, (soundtype.getVolume() + 1.0F) / 2.0F, soundtype.getPitch() * 0.8F);
-					itemstack.shrink(1);
+					itemstack.stackSize -= (1);
 					return EnumActionResult.SUCCESS;
 				} else {
 					return EnumActionResult.FAIL;

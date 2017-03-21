@@ -27,7 +27,7 @@ public class TeleporterDream extends Teleporter {
 
 	@Override
 	public void placeInPortal(Entity entityIn, float rotationYaw) {
-		if (entityIn.dimension != VoidCraft.config.getDimensionIDdalQuor()) {
+		if (entityIn.dimension != VoidCraft.config.getDimensionIdDalQuor()) {
 			BlockPos bedPos = entityIn instanceof EntityPlayer && ((EntityPlayer) entityIn).getBedLocation(0) != null ? ((EntityPlayer) entityIn).getBedLocation(0) : worldServerInstance.getSpawnPoint();
 			while (!worldServerInstance.isAirBlock(bedPos)) {
 				bedPos = bedPos.up();
@@ -38,7 +38,7 @@ public class TeleporterDream extends Teleporter {
 		// if (entityIn instanceof EntityPlayer) ((EntityPlayer) entityIn).addStat(VoidCraft.achievements.tooFar, 1);
 		BlockPos pos = entityIn instanceof EntityPlayer && ((EntityPlayer) entityIn).getBedLocation(0) != null ? ((EntityPlayer) entityIn).getBedLocation(0) : DimensionManager.getWorld(0).getSpawnPoint();
 		pos = new BlockPos(pos.getX(), 45, pos.getZ()).down();
-		if (entityIn.dimension == VoidCraft.config.getDimensionIDdalQuor()) {
+		if (entityIn.dimension == VoidCraft.config.getDimensionIdDalQuor()) {
 			boolean create = true;
 			while (!worldServerInstance.isAirBlock(pos)) {
 				pos = pos.up();

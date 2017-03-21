@@ -42,8 +42,8 @@ public class OreVoidcrystal extends TamBlock {
 
 	@Override
 	public void onBlockAdded(World world, BlockPos pos, IBlockState state) {
-		if (world.provider.getDimension() == VoidCraft.config.getDimensionIDvoid() && !state.getValue(VOID)) world.setBlockState(pos, state.withProperty(VOID, true), 2);
-		else if (world.provider.getDimension() != VoidCraft.config.getDimensionIDvoid() && state.getValue(VOID)) world.setBlockState(pos, state.withProperty(VOID, false), 2);
+		if (world.provider.getDimension() == VoidCraft.config.getDimensionIdVoid() && !state.getValue(VOID)) world.setBlockState(pos, state.withProperty(VOID, true), 2);
+		else if (world.provider.getDimension() != VoidCraft.config.getDimensionIdVoid() && state.getValue(VOID)) world.setBlockState(pos, state.withProperty(VOID, false), 2);
 	}
 
 	@Override

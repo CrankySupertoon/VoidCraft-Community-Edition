@@ -23,11 +23,11 @@ public class SpawnEvent {
 	@SubscribeEvent
 	public void canEntitySpawn(LivingSpawnEvent.CheckSpawn event) {
 		if (!event.getWorld().isRemote) {
-			if (event.getWorld().provider.getDimension() == VoidCraft.config.getDimensionIDvoid()) {
+			if (event.getWorld().provider.getDimension() == VoidCraft.config.getDimensionIdVoid()) {
 				if (event.getEntity() instanceof EntityLivingBase && !(event.getEntity() instanceof EntityPlayer || event.getEntity() instanceof EntityVoidMob || event.getEntity() instanceof EntityBossCorruptedPawn || event.getEntity() instanceof EntityVoidNPC || !(event.getEntity() instanceof EntityHerobrineCreeper) || !(event.getEntity() instanceof EntityShulker))) {
 					event.setResult(Result.DENY);
 				}
-			} else if (event.getWorld().provider.getDimension() == VoidCraft.config.getDimensionIDdalQuor()) {
+			} else if (event.getWorld().provider.getDimension() == VoidCraft.config.getDimensionIdDalQuor()) {
 				if (BiomeGenDream.allowedEntities.contains(event.getEntity().getClass())){
 					if(event.getWorld().rand.nextInt(500) == 0) event.setResult(Result.ALLOW);
 					else event.setResult(Result.DENY);

@@ -20,12 +20,14 @@ public class ConfigHandler {
 
 	private int dimensionIdVoid = -2;
 	private int dimensionIdXia = -3;
+	private int dimensionIdDalQuor = -4;
 	private List<Integer> realityWhitelist = new ArrayList<Integer>();
 	private boolean renderFirstPersonVadeMecumParticles;
 	private boolean renderThirdPersonVadeMecumParticles;
 
 	private int default_dimensionIdVoid = -2;
 	private int default_dimensionIdXia = -3;
+	private int default_dimensionIdDalQuor = -4;
 	private int[] default_realityWhitelist = new int[] { 0, -1 };
 	private boolean default_renderFirstPersonVadeMecumParticles = true;
 	private boolean default_renderThirdPersonVadeMecumParticles = true;
@@ -33,6 +35,7 @@ public class ConfigHandler {
 	// Use these to store values that wont be updated during runtime but need to be stored to the config from in-game gui
 	private int temp_dimensionIdVoid = -2;
 	private int temp_dimensionIdXia = -3;
+	private int temp_dimensionIdDalQuor = -4;
 
 	public ConfigHandler(Configuration c) {
 		config = c;
@@ -56,20 +59,21 @@ public class ConfigHandler {
 	}
 
 	private void loadData(boolean firstLoad) {
-		// renderFirstPersonVadeMecumParticles = config.get(Configuration.CATEGORY_GENERAL, "Render First Person Particles", default_renderFirstPersonVadeMecumParticles).getBoolean();
 		renderThirdPersonVadeMecumParticles = config.get(Configuration.CATEGORY_GENERAL, "Render Vade Mecum Item Particles", default_renderThirdPersonVadeMecumParticles).getBoolean();
 		if (firstLoad) {
 			temp_dimensionIdVoid = dimensionIdVoid = config.get(Configuration.CATEGORY_GENERAL, "Void Dimension ID", default_dimensionIdVoid).getInt();
 			temp_dimensionIdXia = dimensionIdXia = config.get(Configuration.CATEGORY_GENERAL, "Xia Dimension ID", dimensionIdXia).getInt();
+			if (VoidCraft.isDevBuild) temp_dimensionIdDalQuor = dimensionIdDalQuor = config.get(Configuration.CATEGORY_GENERAL, "Dal Quor Dimension ID", dimensionIdDalQuor).getInt();
 		} else {
 			temp_dimensionIdVoid = config.get(Configuration.CATEGORY_GENERAL, "Void Dimension ID", default_dimensionIdVoid).getInt();
 			temp_dimensionIdXia = config.get(Configuration.CATEGORY_GENERAL, "Xia Dimension ID", dimensionIdXia).getInt();
+			if (VoidCraft.isDevBuild) temp_dimensionIdDalQuor = config.get(Configuration.CATEGORY_GENERAL, "Dal Quor Dimension ID", dimensionIdDalQuor).getInt();
 		}
 		realityWhitelist = IntStream.of(config.get(Configuration.CATEGORY_GENERAL, "Reality Hole Dimension Whitelist", default_realityWhitelist, "List of Dimension IDs the Reality Hole will attempt to send you to").getIntList()).boxed().collect(Collectors.toList());
 		Iterator<Integer> iter = realityWhitelist.iterator();
 		while (iter.hasNext()) {
 			int id = iter.next();
-			if (id == getDimensionIDdalQuor() || id == getDimensionIDxia()) iter.remove();
+			if (id == getDimensionIdDalQuor() || id == getDimensionIdXia()) iter.remove();
 
 		}
 	}
@@ -82,6 +86,7 @@ public class ConfigHandler {
 		config.get(Configuration.CATEGORY_GENERAL, "Render Vade Mecum Item Particles", default_renderThirdPersonVadeMecumParticles).set(renderThirdPersonVadeMecumParticles);
 		config.get(Configuration.CATEGORY_GENERAL, "Void Dimension ID", default_dimensionIdVoid).set(temp_dimensionIdVoid);
 		config.get(Configuration.CATEGORY_GENERAL, "Xia Dimension ID", dimensionIdXia).set(temp_dimensionIdXia);
+		if (VoidCraft.isDevBuild) config.get(Configuration.CATEGORY_GENERAL, "Dal Quor Dimension ID", dimensionIdDalQuor).set(temp_dimensionIdDalQuor);
 		config.get(Configuration.CATEGORY_GENERAL, "Reality Hole Dimension Whitelist", default_realityWhitelist, "List of Dimension IDs the Reality Hole will attempt to send you to").set(ArrayUtils.toPrimitive(realityWhitelist.toArray(new Integer[realityWhitelist.size()])));
 	}
 
@@ -98,16 +103,16 @@ public class ConfigHandler {
 		return renderThirdPersonVadeMecumParticles;
 	}
 
-	public int getDimensionIDvoid() {
+	public int getDimensionIdVoid() {
 		return dimensionIdVoid;
 	}
 
-	public int getDimensionIDxia() {
+	public int getDimensionIdXia() {
 		return dimensionIdXia;
 	}
 
-	public int getDimensionIDdalQuor() {
-		return -4;
+	public int getDimensionIdDalQuor() {
+		return dimensionIdDalQuor;
 	}
 
 	public List<Integer> getRealityWhiteList() {

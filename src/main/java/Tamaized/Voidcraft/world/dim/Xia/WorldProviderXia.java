@@ -143,6 +143,6 @@ public class WorldProviderXia extends WorldProvider {
 
 	@Override
 	public DimensionType getDimensionType() {
-		return DimensionType.getById(VoidCraft.config.getDimensionIDxia());
+		return DimensionType.getById(VoidCraft.config.getDimensionIdXia());
 	}
 }

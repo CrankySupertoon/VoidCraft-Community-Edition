@@ -1,82 +1,117 @@
 package Tamaized.Voidcraft.sound.client;
 
 import Tamaized.Voidcraft.VoidCraft;
+import Tamaized.Voidcraft.events.client.DebugEvent;
+import Tamaized.Voidcraft.sound.BossMusicPlayer;
 import Tamaized.Voidcraft.sound.VoidSoundEvents;
-import Tamaized.Voidcraft.sound.VoidSoundEvents.SoundTrack;
+import Tamaized.Voidcraft.world.dim.Xia.WorldProviderXia;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.ISound;
 import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 import net.minecraftforge.client.event.sound.PlaySoundEvent;
+import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent.Stop;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.ClientTickEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.Phase;
 
 public class BGMusic {
 
-	private static ISound sound;
-	public static boolean isPlaying = false;
-	public static int tick = 0;
-	public static boolean pause = false;
+	private static final SoundEvent[] musicVoid = new SoundEvent[] {
+
+			VoidSoundEvents.MusicSoundEvents.mcMusic_end,
+
+			VoidSoundEvents.MusicSoundEvents.crystalcove
+
+	};
+
+	private static final SoundEvent[] musicDalQuor = new SoundEvent[] {
+
+			VoidSoundEvents.MusicSoundEvents.mcMusic_end,
+
+			VoidSoundEvents.MusicSoundEvents.fleshmaker,
+
+			VoidSoundEvents.MusicSoundEvents.gop1,
+
+			VoidSoundEvents.MusicSoundEvents.gop2,
+
+			VoidSoundEvents.MusicSoundEvents.inferno
+
+	};
+
+	private static volatile ISound sound;
 
 	@SubscribeEvent
 	public void PlaySoundEvent(PlaySoundEvent e) {
-		// if(e.getSound().getCategory() == SoundCategory.MUSIC)DebugEvent.textL = (e.getName()+" "+e.getSound().getCategory()+" "+e.getResultSound().getSoundLocation());
+		if (sound != null && e.getSound().getCategory() == SoundCategory.MUSIC) {
+			if (e.getResultSound() == sound) return;
+			e.setResultSound(null);
+			return;
+		}
 		World world = Minecraft.getMinecraft().world;
 		EntityPlayerSP player = Minecraft.getMinecraft().player;
 		if (e.getSound().getCategory() == SoundCategory.MUSIC && world != null && world.provider != null) {
-			/*
-			 * if(world.provider.getDimension() == voidCraft.dimensionIdXia){ TODO if(Minecraft.getMinecraft().getSoundHandler().isSoundPlaying(sound)){ e.setResultSound(null); }else{ sound = PositionedSoundRecord.getMusicRecord(VoidSoundEvents.BGMusicSoundEvents.undertale_core.getTrack()); e.setResultSound(sound); } }else
-			 */if (world.provider.getDimension() == VoidCraft.config.getDimensionIDvoid()) {
-				if (Minecraft.getMinecraft().getSoundHandler().isSoundPlaying(sound)) {
-					e.setResultSound(null);
-				} else {
-					// int rand = (int) Math.floor(Math.random()*7);
-					sound = PositionedSoundRecord.getMusicRecord(
-							// rand == 0 ? VoidSoundEvents.BGMusicSoundEvents.emile_wish.getTrack() :
-							// rand < 4 ? VoidSoundEvents.BGMusicSoundEvents.emile_nether.getTrack() :
-							VoidSoundEvents.BGMusicSoundEvents.mcMusic_end.getTrack());
-					e.setResultSound(sound);
-				}
+			if (world.provider.getDimension() == VoidCraft.config.getDimensionIdVoid()) {
+				if (isPlaying(sound)) e.setResultSound(null);
+				else e.setResultSound(sound = PositionedSoundRecord.getMusicRecord(musicVoid[world.rand.nextInt(musicVoid.length)]));
+			} else if (world.provider.getDimension() == VoidCraft.config.getDimensionIdDalQuor()) {
+				if (isPlaying(sound)) e.setResultSound(null);
+				else e.setResultSound(sound = PositionedSoundRecord.getMusicRecord(musicDalQuor[world.rand.nextInt(musicDalQuor.length)]));
+			} else if (world.provider.getDimension() == VoidCraft.config.getDimensionIdXia()) {
+				if (isPlaying(sound)) e.setResultSound(null);
 			}
 		}
 	}
 
 	@SubscribeEvent
 	public void tick(ClientTickEvent e) {
-		if (e.phase == Phase.END) {
+		if (e.phase == Phase.END && !Minecraft.getMinecraft().isGamePaused()) {
 			World world = Minecraft.getMinecraft().world;
-			if (world != null && world.provider != null) {
-				if (world.provider.getDimension() != VoidCraft.config.getDimensionIDxia()) {
-					if (world.provider.getDimension() != VoidCraft.config.getDimensionIDvoid()) {
-						Minecraft.getMinecraft().getSoundHandler().stopSound(sound);
-						sound = null;
-					}
-				} else {
-					if (sound != null && !Minecraft.getMinecraft().getSoundHandler().isSoundPlaying(sound)) sound = null;
+			boolean boss = BossMusicPlayer.update(sound);
+			if (sound != null) {
+				if (world == null || world.provider == null) {
+					StopMusic();
+				} else if (!boss && isNotInDims(world.provider.getDimension())) {
+					StopMusic();
+				} else if (!isPlaying(sound)) {
+					StopMusic();
 				}
-			} else {
-				if (Minecraft.getMinecraft().getSoundHandler().isSoundPlaying(sound)) Minecraft.getMinecraft().getSoundHandler().stopSound(sound);
-				sound = null;
+			} else if (world != null && world.provider != null) { // This is to loop music if needed while in a specific DIM
+				if (!boss) { // Check if Boss Music isn't playing, if so then play our track
+					if (world.provider.getDimension() == VoidCraft.config.getDimensionIdXia() && !isPlaying(sound)) {
+						PlayMusic(VoidSoundEvents.MusicSoundEvents.deathwyrm);
+					}
+				}
 			}
 		}
 	}
 
-	private static void PlayMusic(SoundTrack track) {
+	private static boolean isNotInDims(int dim) {
+		return dim != VoidCraft.config.getDimensionIdXia() && dim != VoidCraft.config.getDimensionIdVoid() && dim != VoidCraft.config.getDimensionIdDalQuor();
+	}
+
+	public static boolean isPlaying(ISound sound) {
+		return sound != null && Minecraft.getMinecraft().getSoundHandler().isSoundPlaying(sound);
+	}
+
+	public static ISound PlayMusic(SoundEvent track) {
+		PlayMusic(PositionedSoundRecord.getMusicRecord(track));
+		return sound;
+	}
+
+	public static void PlayMusic(ISound s) {
 		StopMusic();
-		isPlaying = true;
-		tick = track.getLength() * 20;
-		sound = PositionedSoundRecord.getMusicRecord(track.getTrack());
+		sound = s;
 		Minecraft.getMinecraft().getSoundHandler().playSound(sound);
 	}
 
-	private static void StopMusic() {
-		if (Minecraft.getMinecraft().getSoundHandler().isSoundPlaying(sound)) Minecraft.getMinecraft().getSoundHandler().stopSound(sound);
-		else sound = null;
+	public static void StopMusic() {
+		if (isPlaying(sound)) Minecraft.getMinecraft().getSoundHandler().stopSound(sound);
+		sound = null;
 		Minecraft.getMinecraft().getMusicTicker().stopMusic();
-		isPlaying = false;
 	}
 
 }

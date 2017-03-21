@@ -19,7 +19,7 @@ public class PlayerRightClickEvent {
 		BlockPos pos = e.getPos();
 		ItemStack stack = e.getItemStack();
 		IBlockState state = world.getBlockState(pos);
-		if (!world.isRemote && state.getBlock() instanceof BlockBed && world.provider.getDimension() != VoidCraft.config.getDimensionIDdalQuor()) {
+		if (!world.isRemote && state.getBlock() instanceof BlockBed && world.provider.getDimension() != VoidCraft.config.getDimensionIdDalQuor()) {
 			if (stack != null && stack.getItem() == VoidCraft.items.quoriFragment) {
 				stack.stackSize -= (1);
 				e.setCanceled(true);

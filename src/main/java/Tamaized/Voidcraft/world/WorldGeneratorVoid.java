@@ -21,8 +21,8 @@ public class WorldGeneratorVoid implements IWorldGenerator {
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider) {
 		int id = world.provider.getDimension();
 		if (id == 1) generateEnd(world, random, chunkX * 16, chunkZ * 16);
-		if (id == VoidCraft.config.getDimensionIDvoid()) generateVoid(world, random, chunkX * 16, chunkZ * 16);
-		if (id == VoidCraft.config.getDimensionIDdalQuor()) generateDalQuor(world, random, chunkX * 16, chunkZ * 16);
+		if (id == VoidCraft.config.getDimensionIdVoid()) generateVoid(world, random, chunkX * 16, chunkZ * 16);
+		if (id == VoidCraft.config.getDimensionIdDalQuor()) generateDalQuor(world, random, chunkX * 16, chunkZ * 16);
 	}
 
 	private void generateEnd(World world, Random random, int BlockX, int BlockZ) {

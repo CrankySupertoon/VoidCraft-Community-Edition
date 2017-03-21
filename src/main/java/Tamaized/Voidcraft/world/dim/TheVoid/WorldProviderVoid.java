@@ -112,6 +112,6 @@ public class WorldProviderVoid extends WorldProvider {
 
 	@Override
 	public DimensionType getDimensionType() {
-		return DimensionType.getById(VoidCraft.config.getDimensionIDvoid());
+		return DimensionType.getById(VoidCraft.config.getDimensionIdVoid());
 	}
 }

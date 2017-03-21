@@ -45,7 +45,7 @@ public class OverlayEvent {
 			GlStateManager.color(1.0F, 1.0F, 1.0F, j);
 			mc.getTextureManager().bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
 
-			TextureAtlasSprite textureatlassprite = mc.getBlockRendererDispatcher().getBlockModelShapes().getModelManager().getTextureMap().getAtlasSprite(type == VoidCraft.config.getDimensionIDxia() ? texture_xia : texture_void);
+			TextureAtlasSprite textureatlassprite = mc.getBlockRendererDispatcher().getBlockModelShapes().getModelManager().getTextureMap().getAtlasSprite(type == VoidCraft.config.getDimensionIdXia() ? texture_xia : texture_void);
 			float f = textureatlassprite.getMinU();
 			float f1 = textureatlassprite.getMinV();
 			float f2 = textureatlassprite.getMaxU();

@@ -57,7 +57,7 @@ public class BlockDreamBed extends BlockBed implements ITamModel {
 
 	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune) {
-		return Items.AIR;
+		return null;
 	}
 
 	@Override
@@ -68,11 +68,11 @@ public class BlockDreamBed extends BlockBed implements ITamModel {
 
 	@Override
 	public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state) {
-		return ItemStack.EMPTY;
+		return null;
 	}
-
+	
 	@Override
-	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, ItemStack facing, EnumFacing hitX, float hitY, float hitZ, float p_180639_10_) {
 		if (!worldIn.isRemote) VoidCraft.instance.VoidTickEvent.dream(playerIn);
 		return true;
 	}

@@ -81,7 +81,7 @@ public class EntityMobVoidWrath extends EntityVoidMob {
 
 	@Override
 	protected SoundEvent getAmbientSound() {
-		return world.rand.nextInt(2) == 0 ? VoidSoundEvents.EntityMobWrathSoundEvents.ambientSound1 : VoidSoundEvents.EntityMobWrathSoundEvents.ambientSound2;
+		return VoidSoundEvents.EntityMobWrathSoundEvents.ambientSound;
 	}
 
 	@Override

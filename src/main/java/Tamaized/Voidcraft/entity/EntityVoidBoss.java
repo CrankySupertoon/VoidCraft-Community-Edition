@@ -7,7 +7,6 @@ import Tamaized.Voidcraft.entity.boss.render.bossBar.IVoidBossData;
 import Tamaized.Voidcraft.entity.client.animation.IAnimatable;
 import Tamaized.Voidcraft.network.IVoidBossAIPacket;
 import Tamaized.Voidcraft.network.VoidBossAIBus;
-import Tamaized.Voidcraft.sound.BossMusicManager;
 import Tamaized.Voidcraft.xiaCastle.logic.battle.EntityVoidNPCAIBase;
 import Tamaized.Voidcraft.xiaCastle.logic.battle.IBattleHandler;
 import net.minecraft.entity.Entity;
@@ -259,7 +258,6 @@ public abstract class EntityVoidBoss<T extends IBattleHandler> extends EntityVoi
 
 	@Override
 	public void setDead() { // True death
-		BossMusicManager.StopTheSound();
 		Iterator iter = ai.iterator();
 		while (iter.hasNext()) {
 			Object o = iter.next();

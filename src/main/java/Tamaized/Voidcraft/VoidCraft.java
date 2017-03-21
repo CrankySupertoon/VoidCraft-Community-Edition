@@ -106,7 +106,6 @@ import Tamaized.Voidcraft.registry.VoidCraftParticles;
 import Tamaized.Voidcraft.registry.VoidCraftPotions;
 import Tamaized.Voidcraft.registry.VoidCraftTERecipes;
 import Tamaized.Voidcraft.registry.VoidCraftTools;
-import Tamaized.Voidcraft.sound.BossMusicManager;
 import Tamaized.Voidcraft.sound.VoidSoundEvents;
 import Tamaized.Voidcraft.starforge.StarForgeEffectRecipeList;
 import Tamaized.Voidcraft.starforge.effects.StarForgeEffectList;
@@ -307,7 +306,6 @@ public class VoidCraft extends TamModBase {
 		MinecraftForge.EVENT_BUS.register(new PickUpEvent());
 		MinecraftForge.EVENT_BUS.register(new SpawnEvent());
 		MinecraftForge.EVENT_BUS.register(new CraftingHandler());
-		MinecraftForge.EVENT_BUS.register(BossMusicManager.instance); // We want to give this class a tick updater
 		MinecraftForge.EVENT_BUS.register(new BlockBreakPlaceEvent());
 		MinecraftForge.EVENT_BUS.register(new VoidicInfusionHandler());
 		MinecraftForge.EVENT_BUS.register(new DamageEvent());
@@ -336,9 +334,9 @@ public class VoidCraft extends TamModBase {
 		registerEntity(EntitySpellImplosion.class, "EntitySpellImplosion", this, modid, 64, 1, true);
 
 		// Register Dimensions
-		DimensionManager.registerDimension(config.getDimensionIDvoid(), DimensionType.register("The Void", "_void", config.getDimensionIDvoid(), WorldProviderVoid.class, false));
-		DimensionManager.registerDimension(config.getDimensionIDxia(), DimensionType.register("???", "_xia", config.getDimensionIDxia(), WorldProviderXia.class, false));
-		if (isDevBuild) DimensionManager.registerDimension(config.getDimensionIDdalQuor(), DimensionType.register("Dal Quor", "_dalquor", config.getDimensionIDdalQuor(), WorldProviderDalQuor.class, false));
+		DimensionManager.registerDimension(config.getDimensionIdVoid(), DimensionType.register("The Void", "_void", config.getDimensionIdVoid(), WorldProviderVoid.class, false));
+		DimensionManager.registerDimension(config.getDimensionIdXia(), DimensionType.register("???", "_xia", config.getDimensionIdXia(), WorldProviderXia.class, false));
+		if (isDevBuild) DimensionManager.registerDimension(config.getDimensionIdDalQuor(), DimensionType.register("Dal Quor", "_dalquor", config.getDimensionIdDalQuor(), WorldProviderDalQuor.class, false));
 
 		// Register World Gen
 		GameRegistry.registerWorldGenerator(new WorldGeneratorVoid(), 0);

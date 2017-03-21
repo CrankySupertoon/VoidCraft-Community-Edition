@@ -30,14 +30,14 @@ public class PortalDataHandler {
 	}
 
 	public Teleporter getTeleporter(EntityPlayerMP player) {
-		if (player.dimension == VoidCraft.config.getDimensionIDvoid()) {
+		if (player.dimension == VoidCraft.config.getDimensionIdVoid()) {
 			return new TeleporterVoid(player.mcServer.worldServerForDimension(lastDim)); // From Void to ?
-		} else if (player.dimension == VoidCraft.config.getDimensionIDxia()) {
+		} else if (player.dimension == VoidCraft.config.getDimensionIdXia()) {
 			return new TeleporterXia(player.mcServer.worldServerForDimension(lastDim)); // From Xia to ?
-		} else if (type == VoidCraft.config.getDimensionIDvoid()) {
-			return new TeleporterVoid(player.mcServer.worldServerForDimension(VoidCraft.config.getDimensionIDvoid())); // From ? to Void
-		} else if (type == VoidCraft.config.getDimensionIDxia()) {
-			return new TeleporterXia(player.mcServer.worldServerForDimension(VoidCraft.config.getDimensionIDxia())); // From ? to Xia
+		} else if (type == VoidCraft.config.getDimensionIdVoid()) {
+			return new TeleporterVoid(player.mcServer.worldServerForDimension(VoidCraft.config.getDimensionIdVoid())); // From ? to Void
+		} else if (type == VoidCraft.config.getDimensionIdXia()) {
+			return new TeleporterXia(player.mcServer.worldServerForDimension(VoidCraft.config.getDimensionIdXia())); // From ? to Xia
 		} else {
 			return new TeleporterVoid(player.mcServer.worldServerForDimension(0)); // Shouldnt happen
 		}

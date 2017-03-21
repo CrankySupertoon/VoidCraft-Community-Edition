@@ -1,17 +1,20 @@
 {
-  "lich.lichLive": {"category": "hostile","sounds": [{"name": "voidcraft:mobs/lich/lichLive","stream": false}]},
-  "lich.lichDeath": {"category": "hostile","sounds": [{"name": "voidcraft:mobs/lich/lichDeath","stream": false}]},
-  "lich.lichActive": {"category": "hostile","sounds": [{"name": "voidcraft:mobs/lich/lichActive","stream": false}]},
-  "chain.chainLive": {"category": "hostile","sounds": [{"name": "voidcraft:mobs/spectrechain/chainLive","stream": false}]},
-  "wraith.wraithLive": {"category": "hostile","sounds": [{"name": "voidcraft:mobs/wraith/wraithLive","stream": false}]},
-  "wraith.wraithHurt": {"category": "hostile","sounds": [{"name": "voidcraft:mobs/wraith/wraithHurt","stream": false}]},
-  "wraith.wraithDeath": {"category": "hostile","sounds": [{"name": "voidcraft:mobs/wraith/wraithDeath","stream": false}]},
-  "wrath.breathe1": {"category": "hostile","sounds": [{"name": "voidcraft:mobs/voidwrath/breathe1","stream": false}]},
-  "wrath.breathe2": {"category": "hostile","sounds": [{"name": "voidcraft:mobs/voidwrath/breathe2","stream": false}]},
-  "wrath.death": {"category": "hostile","sounds": [{"name": "voidcraft:mobs/voidwrath/death","stream": false}]},
-  "wrath.hit": {"category": "hostile","sounds": [{"name": "voidcraft:mobs/voidwrath/hit","stream": false}]},
+  "lich.lichlive": {"category": "hostile", "sounds": [{"name": "voidcraft:mobs/lich/lichlive", "stream": false}]},
+  "lich.lichdeath": {"category": "hostile", "sounds": [{"name": "voidcraft:mobs/lich/lichdeath", "stream": false}]},
+  "lich.lichactive": {"category": "hostile", "sounds": [{"name": "voidcraft:mobs/lich/lichactive", "stream": false}]},
+  "chain.chainlive": {"category": "hostile", "sounds": [{"name": "voidcraft:mobs/spectrechain/chainlive", "stream": false}]},
+  "wraith.wraithlive": {"category": "hostile", "sounds": [{"name": "voidcraft:mobs/wraith/wraithlive", "stream": false}]},
+  "wraith.wraithhurt": {"category": "hostile", "sounds": [{"name": "voidcraft:mobs/wraith/wraithhurt", "stream": false}]},
+  "wraith.wraithdeath": {"category": "hostile", "sounds": [{"name": "voidcraft:mobs/wraith/wraithdeath", "stream": false}]},
   
-  "portal.Xia": {"category": "ambient","sounds": [{"name": "voidcraft:portal/Xia","stream": true}]},
+  "random.chain": {"category": "ambient", "sounds": [{"name": "voidcraft:random/chain", "stream": false}]},
   
-  "random.chain": {"category": "ambient","sounds": [{"name": "voidcraft:random/chain","stream": true}]}
+  "music.fleshmaker": {"category": "music", "sounds": [{"name": "voidcraft:music/fleshmaker", "stream": true}]},
+  "music.gop1": {"category": "music", "sounds": [{"name": "voidcraft:music/ghosts of perdition", "stream": true}]},
+  "music.gop2": {"category": "music", "sounds": [{"name": "voidcraft:music/ghosts of perdition_2", "stream": true}]},
+  "music.inferno": {"category": "music", "sounds": [{"name": "voidcraft:music/inferno of the damned", "stream": true}]},
+  "music.mod": {"category": "music", "sounds": [{"name": "voidcraft:music/mark of death", "stream": true}]},
+  "music.deathwyrm": {"category": "music", "sounds": [{"name": "voidcraft:music/temple of the deathwyrm", "stream": true}]},
+  "music.titan": {"category": "music", "sounds": [{"name": "voidcraft:music/titan awakes", "stream": true}]},
+  "music.crystalcove": {"category": "music", "sounds": [{"name": "voidcraft:music/crystal cove", "stream": true}]}
 }

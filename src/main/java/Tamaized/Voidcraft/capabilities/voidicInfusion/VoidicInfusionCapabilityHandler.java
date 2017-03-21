@@ -97,7 +97,7 @@ public class VoidicInfusionCapabilityHandler implements IVoidicInfusionCapabilit
 		} else if (entity.getActivePotionEffect(VoidCraft.potions.voidicInfusionImmunity) != null) {
 			flag = false;
 		}
-		if ((entity.world.provider.getDimension() == VoidCraft.config.getDimensionIDvoid() || override) && flag) {
+		if ((entity.world.provider.getDimension() == VoidCraft.config.getDimensionIdVoid() || override) && flag) {
 			if (entity.onGround && (entity.world.getBlockState(entity.getPosition().down()).getBlock() == VoidCraft.blocks.blockVoidbrick || entity.world.getBlockState(entity.getPosition().down()).getBlock() == VoidCraft.blocks.blockVoidBrickHalfSlab || entity.world.getBlockState(entity.getPosition().down()).getBlock() == VoidCraft.blocks.blockVoidstairs || entity.world.getBlockState(entity.getPosition().down(2)).getBlock() == VoidCraft.blocks.blockVoidfence || entity.world.getBlockState(entity.getPosition().down()).getBlock() == VoidCraft.blocks.blockVoidBrickDoubleSlab)) {
 
 			} else {
@@ -156,7 +156,7 @@ public class VoidicInfusionCapabilityHandler implements IVoidicInfusionCapabilit
 					cap.addCategory(entity, IVadeMecumCapability.Category.VoidicControl);
 					entity.sendMessage(new TextComponentTranslation("voidcraft.VadeMecum.voice.VoidicControl"));
 				}
-				if (cap.hasCategory(IVadeMecumCapability.Category.Empowerment) && !cap.hasCategory(IVadeMecumCapability.Category.Tolerance) && entity.world.provider.getDimension() != VoidCraft.config.getDimensionIDvoid()) {
+				if (cap.hasCategory(IVadeMecumCapability.Category.Empowerment) && !cap.hasCategory(IVadeMecumCapability.Category.Tolerance) && entity.world.provider.getDimension() != VoidCraft.config.getDimensionIdVoid()) {
 					kill = false;
 					infusion = 0;
 					cap.addCategory(entity, IVadeMecumCapability.Category.Tolerance);
