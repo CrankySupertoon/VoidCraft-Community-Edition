@@ -22,10 +22,10 @@ public class AlchemyRecipeCategory implements IRecipeCategory {
 	public AlchemyRecipeCategory() {
 		// craftingGridHelper = VoidCraftJEIPlugin.jeiHelpers.getGuiHelper().createCraftingGridHelper(TileEntityVoidicAlchemy.SLOT_INPUT_1, TileEntityVoidicAlchemy.SLOT_OUTPUT);
 
-		IDrawableStatic powerRender = VoidCraftJEIPlugin.jeiHelpers.getGuiHelper().createDrawable(background, 12, 419, 12, 47, 5, 0, -14, 0);
+		IDrawableStatic powerRender = VoidCraftJEIPlugin.jeiHelpers.getGuiHelper().createDrawable(background, 12, 419, 12, 47, 45, 0, -14, 0);
 		powerAnimation = VoidCraftJEIPlugin.jeiHelpers.getGuiHelper().createAnimatedDrawable(powerRender, 500, IDrawableAnimated.StartDirection.TOP, true);
 
-		IDrawableStatic progressRender = VoidCraftJEIPlugin.jeiHelpers.getGuiHelper().createDrawable(background, 24, 420, 4, 11, 0, 0, 44, 0);
+		IDrawableStatic progressRender = VoidCraftJEIPlugin.jeiHelpers.getGuiHelper().createDrawable(background, 24, 420, 4, 11, 40, 0, 44, 0);
 		progressAnimation = VoidCraftJEIPlugin.jeiHelpers.getGuiHelper().createAnimatedDrawable(progressRender, 100, IDrawableAnimated.StartDirection.BOTTOM, false);
 	}
 
@@ -41,11 +41,12 @@ public class AlchemyRecipeCategory implements IRecipeCategory {
 
 	@Override
 	public IDrawable getBackground() {
-		return VoidCraftJEIPlugin.jeiHelpers.getGuiHelper().createDrawable(background, 0, 0, 150, 75, -10, 0, -60, 0);
+		return VoidCraftJEIPlugin.jeiHelpers.getGuiHelper().createDrawable(background, 0, 0, 150, 75, 30, 0, -60, 0);
 	}
 	
 	@Override
 	public void drawExtras(Minecraft minecraft) {
+		
 		powerAnimation.draw(minecraft);
 		progressAnimation.draw(minecraft);
 	}

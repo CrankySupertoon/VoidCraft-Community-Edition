@@ -20,20 +20,24 @@ public class AlchemyRecipeWrapperJEI extends VoidCraftRecipeWrapperJEI<AlchemyRe
 
 	@Override
 	public void drawInfo(Minecraft minecraft, int recipeWidth, int recipeHeight, int mouseX, int mouseY) {
-		minecraft.fontRendererObj.drawString(("" + I18n.format("voidcraft.gui.jei.alch.research", new Object[0])).trim(), -40, -30, 0x000000);
-		minecraft.fontRendererObj.drawString("" + (getRecipe().getCategory() == null ? ("" + I18n.format("voidcraft.gui.misc.none", new Object[0])).trim() : VadeMecumWordsOfPower.getCategoryData(getRecipe().getCategory()).getName()), -40, -20, 0x000000);
+		minecraft.fontRendererObj.drawString(I18n.format("voidcraft.gui.jei.alch.research", new Object[0]).trim(), -40, 0, 0x000000);
+		minecraft.fontRendererObj.drawString(getRecipe().getCategory() == null ? I18n.format("voidcraft.gui.misc.none", new Object[0]).trim() : I18n.format(VadeMecumWordsOfPower.getCategoryData(getRecipe().getCategory()).getName(), new Object[0]).trim(), -40, 10, 0x000000);
 		super.drawInfo(minecraft, recipeWidth, recipeHeight, mouseX, mouseY);
 	}
 
 	@Override
 	public void setupSlots(IGuiIngredientGroup g) {
-		g.init(TileEntityVoidicAlchemy.SLOT_OUTPUT, false, renderer, 38, 21, 16, 16, 0, 0);
-		g.init(TileEntityVoidicAlchemy.SLOT_INPUT_1, true, renderer, 14, -4, 16, 16, 0, 0);
-		g.init(TileEntityVoidicAlchemy.SLOT_INPUT_2, true, renderer, 3, 21, 16, 16, 0, 0);
-		g.init(TileEntityVoidicAlchemy.SLOT_INPUT_3, true, renderer, 14, 46, 16, 16, 0, 0);
-		g.init(TileEntityVoidicAlchemy.SLOT_INPUT_4, true, renderer, 62, -4, 16, 16, 0, 0);
-		g.init(TileEntityVoidicAlchemy.SLOT_INPUT_5, true, renderer, 73, 21, 16, 16, 0, 0);
-		g.init(TileEntityVoidicAlchemy.SLOT_INPUT_6, true, renderer, 62, 46, 16, 16, 0, 0);
+		
+		final int x = 0;
+		final int y = 41;
+		
+		g.init(TileEntityVoidicAlchemy.SLOT_OUTPUT, false, renderer, 38 + x, 21 + y, 16, 16, 0, 0);
+		g.init(TileEntityVoidicAlchemy.SLOT_INPUT_1, true, renderer, 14 + x, -4 + y, 16, 16, 0, 0);
+		g.init(TileEntityVoidicAlchemy.SLOT_INPUT_2, true, renderer, 3 + x, 21 + y, 16, 16, 0, 0);
+		g.init(TileEntityVoidicAlchemy.SLOT_INPUT_3, true, renderer, 14 + x, 46 + y, 16, 16, 0, 0);
+		g.init(TileEntityVoidicAlchemy.SLOT_INPUT_4, true, renderer, 62 + x, -4 + y, 16, 16, 0, 0);
+		g.init(TileEntityVoidicAlchemy.SLOT_INPUT_5, true, renderer, 73 + x, 21 + y, 16, 16, 0, 0);
+		g.init(TileEntityVoidicAlchemy.SLOT_INPUT_6, true, renderer, 62 + x, 46 + y, 16, 16, 0, 0);
 
 		g.set(TileEntityVoidicAlchemy.SLOT_OUTPUT, getOutput());
 
