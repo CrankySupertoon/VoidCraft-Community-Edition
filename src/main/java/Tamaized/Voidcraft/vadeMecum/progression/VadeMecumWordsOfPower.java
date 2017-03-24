@@ -121,6 +121,7 @@ public class VadeMecumWordsOfPower {
 		IVadeMecumCapability cap = caster.getCapability(CapabilityList.VADEMECUM, null);
 		if (cap == null || world.isRemote) return;
 		IVadeMecumCapability.Category power = cap.getCurrentActive();
+		if (power == null || !IVadeMecumCapability.isActivePower(power) || !cap.hasCategory(power)) return;
 		if (cap.getStackInSlot(power) == null || cap.getStackInSlot(power).stackSize <= 0 && !caster.inventory.hasItemStack(getCategoryData(power).getStack())) {
 			caster.sendMessage(new TextComponentTranslation("voidcraft.VadeMecum.spells.nomats", getCategoryData(power).getName()));
 			return;
