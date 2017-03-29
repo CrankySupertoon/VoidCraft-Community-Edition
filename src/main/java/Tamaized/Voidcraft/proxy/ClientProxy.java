@@ -79,6 +79,7 @@ import Tamaized.Voidcraft.entity.nonliving.render.RenderVoidChain;
 import Tamaized.Voidcraft.events.client.DebugEvent;
 import Tamaized.Voidcraft.events.client.OverlayEvent;
 import Tamaized.Voidcraft.events.client.TextureStitch;
+import Tamaized.Voidcraft.handlers.SkinHandler;
 import Tamaized.Voidcraft.machina.tileentity.TileEntityVoidicCharger;
 import Tamaized.Voidcraft.network.ClientPacketHandler;
 import Tamaized.Voidcraft.sound.client.BGMusic;
@@ -117,6 +118,7 @@ public class ClientProxy extends AbstractProxy {
 
 	@Override
 	public void preInit() {
+		MinecraftForge.EVENT_BUS.register(SkinHandler.instance);
 		VoidCraft.instance.clientPreInit();
 		vadeMecumEntryList = new VadeMecumMainEntry();
 		vadeMecumEntryList.preLoadObject();

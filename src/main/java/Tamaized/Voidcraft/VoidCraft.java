@@ -1,5 +1,6 @@
 package Tamaized.Voidcraft;
 
+import java.awt.image.BufferedImage;
 import java.io.File;
 
 import org.apache.logging.log4j.LogManager;
@@ -76,8 +77,8 @@ import Tamaized.Voidcraft.events.PlayerRightClickEvent;
 import Tamaized.Voidcraft.events.SpawnEvent;
 import Tamaized.Voidcraft.events.VoidTickEvent;
 import Tamaized.Voidcraft.handlers.ConfigHandler;
+import Tamaized.Voidcraft.handlers.ContributorHandler;
 import Tamaized.Voidcraft.handlers.CraftingHandler;
-import Tamaized.Voidcraft.handlers.SkinHandler;
 import Tamaized.Voidcraft.handlers.VoidicInfusionHandler;
 import Tamaized.Voidcraft.handlers.XiaFlightHandler;
 import Tamaized.Voidcraft.machina.tileentity.TileEntityHeimdall;
@@ -119,6 +120,7 @@ import Tamaized.Voidcraft.world.dim.TheVoid.WorldProviderVoid;
 import Tamaized.Voidcraft.world.dim.Xia.WorldProviderXia;
 import Tamaized.Voidcraft.world.dim.dalQuor.WorldProviderDalQuor;
 import net.minecraft.entity.EnumCreatureType;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.Biome.SpawnListEntry;
@@ -127,6 +129,7 @@ import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.common.config.Configuration;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -138,6 +141,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.FMLEventChannel;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.relauncher.Side;
 
 @Mod(modid = VoidCraft.modid, name = "VoidCraft", guiFactory = "Tamaized.Voidcraft.GUI.client.GUIConfigFactory", version = VoidCraft.version, dependencies = "required-before:" + TamModized.modid + "@[" + TamModized.version + ",)")
 public class VoidCraft extends TamModBase {
@@ -165,7 +169,6 @@ public class VoidCraft extends TamModBase {
 
 	public VoidTickEvent VoidTickEvent;
 
-	public static final SkinHandler skinHandler = new SkinHandler();
 	public static RitualList ritualList;
 
 	// Public API Integrations
@@ -224,6 +227,8 @@ public class VoidCraft extends TamModBase {
 		configFile = event.getSuggestedConfigurationFile();
 		config = new ConfigHandler(new Configuration(configFile));
 
+		ContributorHandler.start();
+
 		// Initialize Network
 		channel = NetworkRegistry.INSTANCE.newEventDrivenChannel(networkChannelName);
 
@@ -273,9 +278,6 @@ public class VoidCraft extends TamModBase {
 	@Override
 	public void init(FMLInitializationEvent event) {
 		logger.info("Starting VoidCraft Init");
-
-		// Run Skin Handler
-		skinHandler.run();
 
 		// Register StarForge Effects
 		StarForgeEffectList.register();
@@ -396,4 +398,5 @@ public class VoidCraft extends TamModBase {
 	public static void reloadRitualList() {
 		ritualList = new RitualList();
 	}
+
 }

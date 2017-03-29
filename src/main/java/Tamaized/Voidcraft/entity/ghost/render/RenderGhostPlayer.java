@@ -4,6 +4,7 @@ import java.util.Random;
 
 import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.entity.ghost.EntityGhostPlayerBase;
+import Tamaized.Voidcraft.handlers.SkinHandler;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.model.ModelBiped.ArmPose;
 import net.minecraft.client.model.ModelPlayer;
@@ -174,6 +175,6 @@ public class RenderGhostPlayer<T extends EntityGhostPlayerBase> extends RenderLi
 
 	@Override
 	protected ResourceLocation getEntityTexture(T entity) {
-		return VoidCraft.skinHandler.getSkinResource(entity.getAlias());
+		return SkinHandler.getSkinResource(entity.getUUID());
 	}
 }

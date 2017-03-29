@@ -2,12 +2,13 @@ package Tamaized.Voidcraft.items;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import Tamaized.TamModized.items.TamItem;
 import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.entity.boss.xia.EntityBossXia2;
 import Tamaized.Voidcraft.entity.ghost.EntityGhostPlayerBase;
-import Tamaized.Voidcraft.handlers.SkinHandler.PlayerNameAlias;
+import Tamaized.Voidcraft.handlers.SkinHandler;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -35,12 +36,12 @@ public class VoidicEssence extends TamItem {
 				if (e instanceof EntityBossXia2) {
 					EntityBossXia2 xia = (EntityBossXia2) e;
 					if (xia.getCurrentPhase() == phase) {
-						List<PlayerNameAlias> list = new ArrayList<PlayerNameAlias>();
+						List<UUID> list = new ArrayList<UUID>();
 						for (EntityGhostPlayerBase ghost : xia.getGhostList()) {
-							list.add(ghost.getAlias());
+							list.add(ghost.getUUID());
 						}
-						PlayerNameAlias alias = getRandomUnusedAlias(0, list);
-						EntityGhostPlayerBase entity = EntityGhostPlayerBase.newInstance(world, alias, false, xia, 20 * 30);
+						UUID uuid = getRandomUnusedUUID(0, list);
+						EntityGhostPlayerBase entity = EntityGhostPlayerBase.newInstance(world, uuid, false, xia, 20 * 30);
 						entity.setPositionAndUpdate(player.posX, player.posY, player.posZ);
 						world.spawnEntity(entity);
 						xia.addGhost(entity);
@@ -52,12 +53,12 @@ public class VoidicEssence extends TamItem {
 		return super.onItemRightClick(s, world, player, hand);
 	}
 
-	private PlayerNameAlias getRandomUnusedAlias(int j, List<PlayerNameAlias> list) {
+	private UUID getRandomUnusedUUID(int j, List<UUID> list) {
 		int i = 0;
-		if (j == 0) i = (int) Math.floor(Math.random() * PlayerNameAlias.values().length);
+		if (j == 0) i = (int) Math.floor(Math.random() * SkinHandler.getSize());
 		else i = j;
-		if (i >= PlayerNameAlias.values().length) i = 0;
-		return list.contains(PlayerNameAlias.values()[i]) ? getRandomUnusedAlias(i + 1, list) : PlayerNameAlias.values()[i];
+		if (i >= SkinHandler.getSize()) i = 0;
+		return list.contains(SkinHandler.getUUID(i)) ? getRandomUnusedUUID(i + 1, list) : SkinHandler.getUUID(i);
 	}
 
 }

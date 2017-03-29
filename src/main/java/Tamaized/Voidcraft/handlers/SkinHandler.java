@@ -13,7 +13,10 @@ import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.UUID;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
@@ -31,11 +34,17 @@ import com.mojang.authlib.GameProfile;
 import Tamaized.Voidcraft.VoidCraft;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.FMLCommonHandler;
-import net.minecraftforge.fml.common.ProgressManager;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class SkinHandler {
+
+	public static final SkinHandler instance = new SkinHandler();
+
+	private SkinHandler() {
+	}
 
 	private static final String SESSION_SERVER = "https://sessionserver.mojang.com";
 	private static final String profileUrl = SESSION_SERVER + "/session/minecraft/profile/";
@@ -47,61 +56,45 @@ public class SkinHandler {
 	private static final String skinZip = "/assets/" + VoidCraft.modid + "/skinHandler/skins.zip";
 
 	// Perm
-	private Map<PlayerNameAlias, GameProfile> aliasProfile = new HashMap<PlayerNameAlias, GameProfile>();
-	private Map<PlayerNameAlias, ResourceLocation> aliasSkin = new HashMap<PlayerNameAlias, ResourceLocation>();
-	private Map<PlayerNameAlias, Boolean> aliasBiped = new HashMap<PlayerNameAlias, Boolean>();
-	private static final Map<PlayerNameAlias, UUID> aliasUUID = new HashMap<PlayerNameAlias, UUID>();
+	private static volatile Map<UUID, GameProfile> uuidProfile = new HashMap<UUID, GameProfile>();
+	private static volatile Map<UUID, ResourceLocation> uuidSkin = new HashMap<UUID, ResourceLocation>();
+	private static volatile Map<UUID, Boolean> uuidBiped = new HashMap<UUID, Boolean>();
+	private static volatile Map<String, UUID> uuidNames = new HashMap<String, UUID>();
 
 	// Temp
-	private Map<String, UUID> uuidNames = new HashMap<String, UUID>();
-	private Map<UUID, String> uuidNamesFlip = new HashMap<UUID, String>();
-	private ArrayList<UUID> blacklist = new ArrayList<UUID>();
+	private static volatile ArrayList<UUID> blacklist = new ArrayList<UUID>();
 
-	public static enum PlayerNameAlias {
-		Tamaized, DireWolf20, Cpw11, Soaryn, Vazkii, Tlovetech, Boni, Azanor, Rorax, Slowpoke101, XCompWiz, Pahimar, iChun, RWTema, FireBall1725, TTFTCUTS
+	public static synchronized UUID getUUID(String name) {
+		return uuidNames.get(name);
 	}
 
-	static {
-		aliasUUID.put(PlayerNameAlias.Tamaized, UUID.fromString("16fea09e-314e-4955-88c2-6b552ecf314a"));
-		aliasUUID.put(PlayerNameAlias.DireWolf20, UUID.fromString("bbb87dbe-690f-4205-bdc5-72ffb8ebc29d"));
-		aliasUUID.put(PlayerNameAlias.Cpw11, UUID.fromString("59af7399-5544-4990-81f1-c8f2263b00e5"));
-		aliasUUID.put(PlayerNameAlias.Soaryn, UUID.fromString("4f3a8d1e-33c1-44e7-bce8-e683027c7dac"));
-		aliasUUID.put(PlayerNameAlias.Vazkii, UUID.fromString("8c826f34-113b-4238-a173-44639c53b6e6"));
-		aliasUUID.put(PlayerNameAlias.Tlovetech, UUID.fromString("c2024e2a-dd76-4bc9-9ea3-b771f18f23b6"));
-		aliasUUID.put(PlayerNameAlias.Boni, UUID.fromString("6078f46a-bae3-496b-bbdc-dcc25aca75ba"));
-		aliasUUID.put(PlayerNameAlias.Azanor, UUID.fromString("0f95811a-b3b6-4dba-ba03-4adfec7cf5ab"));
-		aliasUUID.put(PlayerNameAlias.Rorax, UUID.fromString("e8b46b33-3e17-4b64-8d07-9af116df7d3b"));
-		aliasUUID.put(PlayerNameAlias.Slowpoke101, UUID.fromString("d2839efc-727a-4263-97ce-3c73cdee5013"));
-		aliasUUID.put(PlayerNameAlias.XCompWiz, UUID.fromString("b97e12ce-dbb1-4c0c-afc8-132b708a9b88"));
-		aliasUUID.put(PlayerNameAlias.Pahimar, UUID.fromString("0192723f-b3dc-495a-959f-52c53fa63bff"));
-		aliasUUID.put(PlayerNameAlias.iChun, UUID.fromString("0b7509f0-2458-4160-9ce1-2772b9a45ac2"));
-		aliasUUID.put(PlayerNameAlias.RWTema, UUID.fromString("72ddaa05-7bbe-4ae2-9892-2c8d90ea0ad8"));
-		aliasUUID.put(PlayerNameAlias.FireBall1725, UUID.fromString("e43e9766-f903-48e1-818f-d41bb48d80d5"));
-		aliasUUID.put(PlayerNameAlias.TTFTCUTS, UUID.fromString("48a16fc8-bc1f-4e72-84e9-7ec73b7d8ea1"));
+	public static synchronized int getSize() {
+		return uuidNames.size();
 	}
 
-	public static UUID getUUID(PlayerNameAlias name) {
-		return aliasUUID.get(name);
+	public static synchronized UUID getUUID(int index) {
+		return (UUID) uuidNames.values().toArray()[index];
 	}
 
 	/**
 	 * This will return null if we were unable to update from the Mojang servers or there was an issue with that specific player alias
 	 */
-	public GameProfile getGameProfile(PlayerNameAlias name) {
-		return aliasProfile.get(name);
+	public static synchronized GameProfile getGameProfile(UUID id) {
+		return uuidProfile.get(id);
 	}
 
 	@SideOnly(Side.CLIENT)
-	public ResourceLocation getSkinResource(PlayerNameAlias name) {
-		return aliasSkin.get(name);
+	public static synchronized ResourceLocation getSkinResource(UUID id) {
+		return uuidSkin.get(id);
 	}
 
-	public boolean isBipedModel(PlayerNameAlias alias) {
-		return aliasBiped.get(alias);
+	public static synchronized boolean isBipedModel(UUID id) {
+		return uuidBiped.get(id);
 	}
 
-	public void run() {
+	public static synchronized void run() {
 		VoidCraft.instance.logger.info("Running SkinHandler");
+		fillNames();
 		handleResources();
 		if (isOnline()) {
 			VoidCraft.instance.logger.info("Able to Connect to Mojang Servers, validating skins");
@@ -110,33 +103,54 @@ public class SkinHandler {
 			updateSkins();
 		} else {
 			VoidCraft.instance.logger.info("Unable to Connect to Mojang Servers, using cache");
-			useCacheNames();
-			cacheSkins();
+			loadCacheSkins();
 		}
 		freeMemory();
 	}
 
-	private void freeMemory() {
-		uuidNames.clear();
-		uuidNamesFlip.clear();
+	private static void freeMemory() {
 		blacklist.clear();
-		uuidNames = null;
-		uuidNamesFlip = null;
 		blacklist = null;
 	}
 
-	private void handleResources() {
-		ProgressManager.ProgressBar progressBar = ProgressManager.push("SkinHandler (Resources)", 1);
+	private static void fillNames() {
+		if (!ContributorHandler.skinList.isEmpty()) {
+			for (Entry<String, UUID> entry : ContributorHandler.skinList.entrySet()) {
+				String key = entry.getKey();
+				UUID value = entry.getValue();
+				uuidNames.put(key, value);
+			}
+		} else {
+			cache("azanor");
+			cache("boni");
+			cache("cpw11");
+			cache("direwolf20");
+			cache("FireBall1725");
+			cache("iChun");
+			cache("Pahimar");
+			cache("Rorax");
+			cache("RWTema");
+			cache("slowpoke101");
+			cache("Soaryn");
+			cache("Tamaized");
+			cache("tlovetech");
+			cache("TTFTCUTS");
+			cache("Vazkii");
+			cache("XCompWiz");
+		}
+	}
+
+	private static void cache(String name) {
+		uuidNames.put(name, getUUID(name));
+	}
+
+	private static void handleResources() {
 		File dir = new File(loc);
 		dir.mkdirs();
-		if (dir.list().length < aliasUUID.size()) {
+		if (dir.list().length < uuidNames.size()) {
 			VoidCraft.instance.logger.info("Populating: " + loc);
-			progressBar.step("Populating: " + loc);
-			extractZip(getClass().getResourceAsStream(skinZip), loc);
-		}else{
-			progressBar.step("Already populated, Skipping");
+			extractZip(SkinHandler.class.getResourceAsStream(skinZip), loc);
 		}
-		ProgressManager.pop(progressBar);
 	}
 
 	public static void extractZip(InputStream loc, String dest) {
@@ -178,34 +192,10 @@ public class SkinHandler {
 		}
 	}
 
-	private void useCacheNames() {
-		ProgressManager.ProgressBar progressBar = ProgressManager.push("SkinHandler (Cache)", 2);
-		progressBar.step("Caching");
-		uuidNamesFlip.put(getUUID(PlayerNameAlias.Azanor), "azanor");
-		uuidNamesFlip.put(getUUID(PlayerNameAlias.Boni), "boni");
-		uuidNamesFlip.put(getUUID(PlayerNameAlias.Cpw11), "cpw11");
-		uuidNamesFlip.put(getUUID(PlayerNameAlias.DireWolf20), "direwolf20");
-		uuidNamesFlip.put(getUUID(PlayerNameAlias.FireBall1725), "FireBall1725");
-		uuidNamesFlip.put(getUUID(PlayerNameAlias.iChun), "iChun");
-		uuidNamesFlip.put(getUUID(PlayerNameAlias.Pahimar), "Pahimar");
-		uuidNamesFlip.put(getUUID(PlayerNameAlias.Rorax), "Rorax");
-		uuidNamesFlip.put(getUUID(PlayerNameAlias.RWTema), "RWTema");
-		uuidNamesFlip.put(getUUID(PlayerNameAlias.Slowpoke101), "slowpoke101");
-		uuidNamesFlip.put(getUUID(PlayerNameAlias.Soaryn), "Soaryn");
-		uuidNamesFlip.put(getUUID(PlayerNameAlias.Tamaized), "Tamaized");
-		uuidNamesFlip.put(getUUID(PlayerNameAlias.Tlovetech), "tlovetech");
-		uuidNamesFlip.put(getUUID(PlayerNameAlias.TTFTCUTS), "TTFTCUTS");
-		uuidNamesFlip.put(getUUID(PlayerNameAlias.Vazkii), "Vazkii");
-		uuidNamesFlip.put(getUUID(PlayerNameAlias.XCompWiz), "XCompWiz");
-		progressBar.step("Cached");
-		ProgressManager.pop(progressBar);
-	}
-
-	private void validateNames() {
+	private static void validateNames() {
 		VoidCraft.instance.logger.info("Mapping Names to UUIDs");
-		ProgressManager.ProgressBar progressBar = ProgressManager.push("SkinHandler (Validate Names)", aliasUUID.size());
-		for (UUID id : aliasUUID.values()) {
-			progressBar.step("Mapping: " + id);
+		Map<String, UUID> tempMap = new HashMap<String, UUID>();
+		for (UUID id : uuidNames.values()) {
 			try {
 				String theName = id.toString().replace("-", "");
 				URL url = new URL(nameUrl + id.toString().replace("-", "") + "/names");
@@ -233,22 +223,20 @@ public class SkinHandler {
 					}
 				}
 				json.close();
-				uuidNames.put(theName, id);
-				uuidNamesFlip.put(id, theName);
+				tempMap.put(theName, id);
 				VoidCraft.instance.logger.info("Mapped " + theName + " -> " + id);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}
-		ProgressManager.pop(progressBar);
+		uuidNames.clear();
+		uuidNames.putAll(tempMap);
 	}
 
-	private void validateSkins() {
+	private static void validateSkins() {
 		File[] list = new File(loc).listFiles();
-		ProgressManager.ProgressBar progressBar = ProgressManager.push("SkinHandler (Validate Skins)", list.length);
 		for (File file : list) {
 			String name = file.getName().split("\\.")[0];
-			progressBar.step(name);
 			if (!uuidNames.containsKey(name)) {
 				file.delete();
 			}
@@ -266,10 +254,9 @@ public class SkinHandler {
 				VoidCraft.instance.logger.info(name + " was validated");
 			}
 		}
-		ProgressManager.pop(progressBar);
 	}
 
-	private int getFileSize(URL url) {
+	private static int getFileSize(URL url) {
 		HttpURLConnection conn = null;
 		try {
 			conn = (HttpURLConnection) url.openConnection();
@@ -283,20 +270,19 @@ public class SkinHandler {
 		}
 	}
 
-	private void updateSkins() {
-		ProgressManager.ProgressBar progressBar = ProgressManager.push("SkinHandler (Update)", PlayerNameAlias.values().length);
-		aliasList: for (PlayerNameAlias alias : PlayerNameAlias.values()) {
-			progressBar.step("" + getUUID(alias));
-			if (blacklist.contains(getUUID(alias))) {
-				loadCachedAlias(alias);
+	private static void updateSkins() {
+		aliasList: for (Entry<String, UUID> entry : uuidNames.entrySet()) {
+			String name = entry.getKey();
+			UUID id = entry.getValue();
+			if (blacklist.contains(id)) {
+				loadResource(name, id);
 				continue;
 			}
-			VoidCraft.instance.logger.info("Updating alias: " + alias);
+			VoidCraft.instance.logger.info("Updating alias: " + id);
 			try {
-				BufferedReader reader = Resources.asCharSource(new URL(profileUrl + ("" + getUUID(alias)).replace("-", "")), StandardCharsets.UTF_8).openBufferedStream();
+				BufferedReader reader = Resources.asCharSource(new URL(profileUrl + id.toString().replace("-", "")), StandardCharsets.UTF_8).openBufferedStream();
 
 				String encodedString = null;
-				String profileName = null;
 				String skinUrl = "";
 
 				JsonReader json = new JsonReader(reader);
@@ -328,7 +314,7 @@ public class SkinHandler {
 									json.endArray();
 									break;
 								case "error":
-									loadCachedAlias(alias);
+									loadResource(name, id);
 									continue aliasList;
 								default:
 									json.skipValue();
@@ -342,7 +328,7 @@ public class SkinHandler {
 				json.close();
 
 				if (encodedString == null) {
-					loadCachedAlias(alias);
+					loadResource(name, id);
 					continue;
 				}
 
@@ -355,9 +341,6 @@ public class SkinHandler {
 						while (json.hasNext()) {
 							String key = json.nextName();
 							switch (key) {
-								case "profileName":
-									profileName = json.nextString();
-									break;
 								case "textures":
 									json.beginObject(); // textures
 								{
@@ -399,47 +382,30 @@ public class SkinHandler {
 				}
 				json.close();
 				VoidCraft.instance.logger.info("Downloading skin: " + skinUrl);
-				FileUtils.copyURLToFile(new URL(skinUrl), new File(loc + uuidNamesFlip.get(getUUID(alias)) + ".png"));
-				loadAlias(alias, profileName);
+				FileUtils.copyURLToFile(new URL(skinUrl), new File(loc + name + ".png"));
+				loadResource(name, id);
 			} catch (IOException e) {
-				VoidCraft.instance.logger.info("Request was sent too often or there was an issue with the Mojang servers, using cache for " + alias);
-				loadCachedAlias(alias);
+				VoidCraft.instance.logger.info("Request was sent too often or there was an issue with the Mojang servers, using cache for " + name);
+				loadResource(name, id);
 			}
 		}
-		ProgressManager.pop(progressBar);
 	}
 
-	private void cacheSkins() {
-		ProgressManager.ProgressBar progressBar = ProgressManager.push("SkinHandler (Load Cache)", PlayerNameAlias.values().length);
-		for (PlayerNameAlias alias : PlayerNameAlias.values()) {
-			progressBar.step(uuidNamesFlip.get(getUUID(alias)));
-			loadCachedAlias(alias);
+	private static void loadCacheSkins() {
+		for (Entry<String, UUID> entry : uuidNames.entrySet()) {
+			String name = entry.getKey();
+			UUID id = entry.getValue();
+			loadResource(name, id);
 		}
-		ProgressManager.pop(progressBar);
 	}
 
-	private void loadCachedAlias(PlayerNameAlias alias) {
-		VoidCraft.instance.logger.info("Loading alias cache: " + uuidNamesFlip.get(getUUID(alias)));
-		aliasProfile.put(alias, new GameProfile(getUUID(alias), uuidNamesFlip.get(getUUID(alias))));
-		loadAliasResource(alias);
-	}
-
-	private void loadAlias(PlayerNameAlias alias, String name) {
-		VoidCraft.instance.logger.info("Loading updated alias: " + uuidNamesFlip.get(getUUID(alias)));
-		aliasProfile.put(alias, new GameProfile(getUUID(alias), name));
-		loadAliasResource(alias);
-	}
-
-	private void loadAliasResource(PlayerNameAlias alias) {
+	private static void loadResource(String name, UUID id) {
+		VoidCraft.instance.logger.info("Queue resource: " + name);
+		uuidProfile.put(id, new GameProfile(id, name));
 		try {
-			BufferedImage bimg = ImageIO.read(new File(loc + uuidNamesFlip.get(getUUID(alias)) + ".png"));
-			if (FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT) {
-				net.minecraft.client.renderer.texture.DynamicTexture dt = new net.minecraft.client.renderer.texture.DynamicTexture(bimg);
-				net.minecraft.client.renderer.texture.TextureManager tm = net.minecraft.client.Minecraft.getMinecraft().getTextureManager();
-				ResourceLocation resource = tm.getDynamicTextureLocation(VoidCraft.modid + ":skin_" + alias.toString(), dt);
-				aliasSkin.put(alias, resource);
-			}
-			aliasBiped.put(alias, bimg.getHeight() == 32);
+			BufferedImage bimg = ImageIO.read(new File(loc + name + ".png"));
+			if (FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT) bimgQueue.add(new ImgWrapper(bimg, name, id));
+			uuidBiped.put(id, bimg.getHeight() == 32);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -457,6 +423,36 @@ public class SkinHandler {
 			e.printStackTrace();
 		}
 		return false;
+	}
+
+	private static volatile List<ImgWrapper> bimgQueue = new ArrayList<ImgWrapper>();
+
+	@SubscribeEvent
+	public void handleQueue(TickEvent.ClientTickEvent e) {
+		Iterator<ImgWrapper> iter = bimgQueue.iterator();
+		while (iter.hasNext()) {
+			ImgWrapper i = iter.next();
+			VoidCraft.instance.logger.info("Loading resource: " + i.name);
+			net.minecraft.client.renderer.texture.DynamicTexture dt = new net.minecraft.client.renderer.texture.DynamicTexture(i.bimg);
+			net.minecraft.client.renderer.texture.TextureManager tm = net.minecraft.client.Minecraft.getMinecraft().getTextureManager();
+			ResourceLocation resource = tm.getDynamicTextureLocation(VoidCraft.modid + ":skin_" + i.name, dt);
+			uuidSkin.put(i.id, resource);
+			iter.remove();
+		}
+	}
+
+	private static class ImgWrapper {
+
+		public final BufferedImage bimg;
+		public final String name;
+		public final UUID id;
+
+		public ImgWrapper(BufferedImage bi, String n, UUID uuid) {
+			bimg = bi;
+			name = n;
+			id = uuid;
+		}
+
 	}
 
 }

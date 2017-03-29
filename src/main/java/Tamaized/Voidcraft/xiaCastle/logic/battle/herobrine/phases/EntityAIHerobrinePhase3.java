@@ -12,7 +12,6 @@ import Tamaized.Voidcraft.entity.boss.herobrine.extra.EntityHerobrineTNTPrimed;
 import Tamaized.Voidcraft.entity.boss.herobrine.extra.EntityHerobrineWitherSkull;
 import Tamaized.Voidcraft.entity.ghost.EntityGhostPlayerBase;
 import Tamaized.Voidcraft.handlers.SkinHandler;
-import Tamaized.Voidcraft.handlers.SkinHandler.PlayerNameAlias;
 import Tamaized.Voidcraft.network.IVoidBossAIPacket;
 import Tamaized.Voidcraft.xiaCastle.logic.battle.EntityVoidNPCAIBase;
 import net.minecraft.entity.monster.EntitySkeleton;
@@ -114,10 +113,10 @@ public class EntityAIHerobrinePhase3<T extends EntityBossHerobrine> extends Enti
 			return;
 		}
 		spawns++;
-		PlayerNameAlias alias = getRandomUnusedAlias(0);
-		alreadyUsed.add(SkinHandler.getUUID(alias));
+		UUID id = getRandomUnusedUUID(0);
+		alreadyUsed.add(id);
 		usedLocs.add(i);
-		EntityGhostPlayerBase entity = EntityGhostPlayerBase.newInstance(world, alias, true);
+		EntityGhostPlayerBase entity = EntityGhostPlayerBase.newInstance(world, id, true);
 		currGhost = entity;
 		switch (i) {
 			case 0:
@@ -145,12 +144,12 @@ public class EntityAIHerobrinePhase3<T extends EntityBossHerobrine> extends Enti
 		}
 	}
 
-	private PlayerNameAlias getRandomUnusedAlias(int j) {
+	private UUID getRandomUnusedUUID(int j) {
 		int i = 0;
-		if (j == 0) i = (int) Math.floor(Math.random() * PlayerNameAlias.values().length);
+		if (j == 0) i = (int) Math.floor(Math.random() * SkinHandler.getSize());
 		else i = j;
-		if (i >= PlayerNameAlias.values().length) i = 0;
-		return alreadyUsed.contains(SkinHandler.getUUID(PlayerNameAlias.values()[i])) ? getRandomUnusedAlias(i + 1) : PlayerNameAlias.values()[i];
+		if (i >= SkinHandler.getSize()) i = 0;
+		return alreadyUsed.contains(SkinHandler.getUUID(i)) ? getRandomUnusedUUID(i + 1) : SkinHandler.getUUID(i);
 	}
 
 	private void updateMotion() {
