@@ -2,7 +2,7 @@
     "textures": {
         "particle": "voidcraft:blocks/dreambed/bed_feet_top",
         "top": "voidcraft:blocks/dreambed/bed_feet_top",
-        "bottom": "planks_oak",
+        "bottom": "voidcraft:blocks/dreambed/bed_feet_top",
         "end": "voidcraft:blocks/dreambed/bed_feet_end",
         "side": "voidcraft:blocks/dreambed/bed_feet_side"
     },
