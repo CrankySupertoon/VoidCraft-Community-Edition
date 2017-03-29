@@ -3,13 +3,7 @@ package Tamaized.Voidcraft.items;
 import java.util.List;
 
 import Tamaized.TamModized.items.TamItem;
-import Tamaized.Voidcraft.capabilities.CapabilityList;
-import Tamaized.Voidcraft.capabilities.vadeMecum.IVadeMecumCapability;
-import Tamaized.Voidcraft.sound.VoidSoundEvents;
-import Tamaized.Voidcraft.sound.client.BGMusic;
 import Tamaized.Voidcraft.world.SchematicLoader;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -64,9 +58,9 @@ public class Debugger extends TamItem {
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(ItemStack s, World world, EntityPlayer player, EnumHand hand) {
 		if (world.isRemote) {
-			BGMusic.StopMusic();
-			Minecraft.getMinecraft().getSoundHandler().playSound(PositionedSoundRecord.getMusicRecord(VoidSoundEvents.MusicSoundEvents.mcMusic_end));
-			return super.onItemRightClick(s, world, player, hand);
+			// BGMusic.StopMusic();
+			// Minecraft.getMinecraft().getSoundHandler().playSound(PositionedSoundRecord.getMusicRecord(VoidSoundEvents.MusicSoundEvents.mcMusic_end));
+			// return super.onItemRightClick(s, world, player, hand);
 		}
 		// EntityWitherbrine wither = new EntityWitherbrine(worldIn);
 		// wither.setPositionAndUpdate(playerIn.posX, playerIn.posY, playerIn.posZ);
