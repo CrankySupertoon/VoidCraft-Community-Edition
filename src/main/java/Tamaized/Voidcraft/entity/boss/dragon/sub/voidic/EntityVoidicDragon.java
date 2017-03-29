@@ -3,6 +3,7 @@ package Tamaized.Voidcraft.entity.boss.dragon.sub.voidic;
 import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.entity.boss.dragon.EntityDragonOld;
 import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
@@ -26,6 +27,7 @@ public class EntityVoidicDragon extends EntityDragonOld {
 	@Override
 	protected void dropItemsOnDeath() {
 		entityDropItem(new ItemStack(VoidCraft.items.voidicDragonScale, world.rand.nextInt(2) + 1), 0.0F);
+		if (world.isAirBlock(getPosition())) world.setBlockState(getPosition(), Blocks.DRAGON_EGG.getDefaultState());
 	}
 
 }
