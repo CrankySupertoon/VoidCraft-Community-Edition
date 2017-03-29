@@ -82,7 +82,7 @@ public class VoidTickEvent {
 
 		if (e.player.world.provider.getDimension() == VoidCraft.config.getDimensionIdVoid()) {
 			if (e.player.getPosition().getY() >= 127) e.player.attackEntityFrom(DamageSource.OUT_OF_WORLD, 4.0F);
-		} else if (e.player.world.provider.getDimension() != VoidCraft.config.getDimensionIdXia() && e.player.world.provider.getDimension() != VoidCraft.config.getDimensionIdDalQuor()) {
+		} else if (VoidCraft.isDevBuild && e.player.world.provider.getDimension() != VoidCraft.config.getDimensionIdXia() && e.player.world.provider.getDimension() != VoidCraft.config.getDimensionIdDalQuor()) {
 			if (e.player instanceof EntityPlayerMP && e.player.getPosition().getY() <= -256) {
 				EntityPlayerMP player = (EntityPlayerMP) e.player;
 				transferPlayerToDimension(player.mcServer, player, VoidCraft.config.getDimensionIdVoid(), new TeleportLoc(player.getPosition().add(0, 256 * 2, 0)));
@@ -194,7 +194,7 @@ public class VoidTickEvent {
 	}
 
 	public void dream(EntityPlayer player) {
-		if (player instanceof EntityPlayerMP) {
+		if (VoidCraft.isDevBuild && player instanceof EntityPlayerMP) {
 			EntityPlayerMP p = (EntityPlayerMP) player;
 			int dim = (p.dimension == VoidCraft.config.getDimensionIdDalQuor() ? 0 : VoidCraft.config.getDimensionIdDalQuor());
 			transferPlayerToDimension(p.mcServer, p, dim, new TeleportLoc(new TeleporterDream(p.mcServer.worldServerForDimension(dim))));

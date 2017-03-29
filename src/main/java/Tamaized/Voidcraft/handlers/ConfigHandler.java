@@ -73,7 +73,7 @@ public class ConfigHandler {
 		Iterator<Integer> iter = realityWhitelist.iterator();
 		while (iter.hasNext()) {
 			int id = iter.next();
-			if (id == getDimensionIdDalQuor() || id == getDimensionIdXia()) iter.remove();
+			if ((VoidCraft.isDevBuild && id == getDimensionIdDalQuor()) || id == getDimensionIdXia()) iter.remove();
 
 		}
 	}

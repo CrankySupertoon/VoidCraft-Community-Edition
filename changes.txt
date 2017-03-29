@@ -1,1 +1,13 @@
- - Ethereal Fruit Plants will always give at least 1 seed now.
+ - Ethereal Fruit Plants will always give at least 1 seed now. (#113)
+ - Voidic Dragons now drop Dragon Eggs
+ - Changed how Mob Spawning is handled in VoidCraft dimensions, this *MAY* prevent the massive spam of EnderZoo mobs and the like now.
+ - Contributor System
+  + The Skin Handler is now on a seperate thread, it no longer effects inital load times.
+  + Contributors/Patreons can have their Skins show up from the "Ghost" Players during Xia fights. 
+  + They can also have a preset color set for Fire Elemental Companions when summoned. (So they don't have to redye them every time)
+ - More Background Music has been added, only two will be noticed within the Void and Xia. The rest are will be used in the future along with their Music Disc forms.
+ - Fixed Vade Mecum Spells not displaying the correct text in the GUI
+ - Fixed #107
+ - Fixed #108
+ - Fixed #109
+ - Fixed #111
