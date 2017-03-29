@@ -12,6 +12,12 @@
             "custom": { 
 				"fluid": "acid"
 			}
+        },
+		"arcanesludge": {
+            "model": "forge:fluid",
+            "custom": { 
+				"fluid": "arcanesludge"
+			}
         }
     }
 }

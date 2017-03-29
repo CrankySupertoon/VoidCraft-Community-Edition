@@ -4,6 +4,7 @@ import Tamaized.TamModized.fluids.TamFluidBlock;
 import Tamaized.TamModized.registry.TamFluidRegistryBase;
 import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.damageSources.DamageSourceAcid;
+import Tamaized.Voidcraft.fluids.ArcaneSludgeFluidBlock;
 import Tamaized.Voidcraft.fluids.TamFluidFiniteBlock;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
@@ -16,12 +17,15 @@ public class VoidCraftFluids extends TamFluidRegistryBase {
 
 	public static Fluid voidFluid;
 	public static Fluid acidFluid;
+	public static Fluid arcaneSludgeFluid;
 
 	public static MaterialLiquid voidMaterialLiquid;
 	public static MaterialLiquid acidMaterialLiquid;
+	public static MaterialLiquid arcaneSludgeMaterialLiquid;
 
 	public static TamFluidBlock voidFluidBlock;
 	public static TamFluidFiniteBlock acidFluidBlock;
+	public static TamFluidBlock arcaneSludgeFluidBlock;
 
 	public static BucketWrapper voidBucket;
 
@@ -29,15 +33,19 @@ public class VoidCraftFluids extends TamFluidRegistryBase {
 	public void preInit() {
 		voidFluid = createFluid("void", "fluids/void/fluid", true, true);
 		acidFluid = createFluid("acid", "fluids/acid/fluid", true, false);
+		arcaneSludgeFluid = createFluid("arcanesludge", "fluids/arcanesludge/fluid", true, false);
 
 		voidFluid.setLuminosity(3).setDensity(-400).setViscosity(1500).setGaseous(true);
 		acidFluid.setLuminosity(7).setDensity(2).setViscosity(500).setGaseous(false);
+		arcaneSludgeFluid.setLuminosity(15).setDensity(3100).setViscosity(250).setGaseous(false);
 
 		voidMaterialLiquid = new MaterialLiquid(MapColor.PURPLE);
 		acidMaterialLiquid = new MaterialLiquid(MapColor.GREEN);
+		arcaneSludgeMaterialLiquid = new MaterialLiquid(MapColor.CYAN);
 
 		register(voidFluidBlock = new TamFluidBlock(VoidCraft.tabs.tabVoid, voidFluid, Material.WATER, "blockvoidfluid"));
 		register(acidFluidBlock = new TamFluidFiniteBlock(VoidCraft.tabs.tabVoid, acidFluid, Material.WATER, "blockacidfluid", new DamageSourceAcid(), 5));
+		register(arcaneSludgeFluidBlock = new ArcaneSludgeFluidBlock(VoidCraft.tabs.tabVoid, arcaneSludgeFluid, Material.WATER, "blockarcanesludgefluid"));
 
 		voidBucket = new BucketWrapper(ForgeModContainer.getInstance().universalBucket.getFilledBucket(ForgeModContainer.getInstance().universalBucket, voidFluid));
 	}
