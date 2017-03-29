@@ -106,8 +106,8 @@ public class BlockEtherealPlant extends TamBlockCrops {
 				ItemStack newStack = new ItemStack(fruit, a);
 				ItemHandlerHelper.giveItemToPlayer(player, newStack);
 			}
-			int amount = rand.nextInt(3);
-			if (amount > 0) ItemHandlerHelper.giveItemToPlayer(player, new ItemStack(getSeed(), amount));
+			int amount = rand.nextInt(2) + 1;
+			ItemHandlerHelper.giveItemToPlayer(player, new ItemStack(getSeed(), amount));
 			worldIn.setBlockToAir(pos);
 			return true;
 		}

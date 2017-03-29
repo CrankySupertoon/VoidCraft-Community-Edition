@@ -1,0 +1,1 @@
+ - Ethereal Fruit Plants will always give at least 1 seed now.
