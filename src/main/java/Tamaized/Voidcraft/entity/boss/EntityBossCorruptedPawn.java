@@ -251,7 +251,7 @@ public class EntityBossCorruptedPawn extends EntityVoidMob implements IVoidBossD
 
 	@Override
 	public ITextComponent getNameForBossBar() {
-		return new TextComponentTranslation("entity.VoidBoss.name");
+		return new TextComponentTranslation("entity.voidcraft.VoidBoss.name");
 	}
 
 	@Override
