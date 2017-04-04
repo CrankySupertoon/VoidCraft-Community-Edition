@@ -2,3 +2,5 @@
  - Nerfed The Corrupted Pawn
   + Health Reduced to 500 from 600
   + Attack Damage Reduced to 40 from 100
+ - Voidic Lich Lightning Strike based attacks now only trigger on EntityPlayer
+ - Fixed Voidic Lich Fireball inital Y position, it'll no longer hit the ground directly under the Lich.

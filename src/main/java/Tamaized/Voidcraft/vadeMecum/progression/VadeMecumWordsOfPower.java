@@ -484,6 +484,7 @@ public class VadeMecumWordsOfPower {
 					double d7 = target.posZ - caster.posZ;
 					EntityFireball entity = new EntityLargeFireball(world, caster, d5, d6, d7);
 					entity.shootingEntity = caster;
+					entity.posY += 1;
 					world.spawnEntity(entity);
 				}
 					break;
@@ -509,8 +510,10 @@ public class VadeMecumWordsOfPower {
 				}
 					break;
 				case LitStrike: {
-					EntityCasterLightningBolt entitylightningbolt = new EntityCasterLightningBolt(world, caster, target.posX, target.posY, target.posZ, false);
-					world.addWeatherEffect(entitylightningbolt);
+					if (target instanceof EntityPlayer) {
+						EntityCasterLightningBolt entitylightningbolt = new EntityCasterLightningBolt(world, caster, target.posX, target.posY, target.posZ, false);
+						world.addWeatherEffect(entitylightningbolt);
+					}
 				}
 					break;
 				case LitTrap: {
@@ -529,9 +532,11 @@ public class VadeMecumWordsOfPower {
 				}
 					break;
 				case RingOfLit: {
-					for (BlockPos pos : createCircle(caster.getPosition())) {
-						EntityCasterLightningBolt entitylightningbolt = new EntityCasterLightningBolt(world, caster, pos.getX(), pos.getY(), pos.getZ(), false);
-						world.addWeatherEffect(entitylightningbolt);
+					if (target instanceof EntityPlayer) {
+						for (BlockPos pos : createCircle(caster.getPosition())) {
+							EntityCasterLightningBolt entitylightningbolt = new EntityCasterLightningBolt(world, caster, pos.getX(), pos.getY(), pos.getZ(), false);
+							world.addWeatherEffect(entitylightningbolt);
+						}
 					}
 				}
 					break;
