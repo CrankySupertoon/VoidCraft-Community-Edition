@@ -32,6 +32,7 @@ import Tamaized.Voidcraft.helper.SheatheHelper;
 import Tamaized.Voidcraft.potion.PotionSheathe;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -123,7 +124,7 @@ public class VadeMecumWordsOfPower {
 		IVadeMecumCapability.Category power = cap.getCurrentActive();
 		if (power == null || !IVadeMecumCapability.isActivePower(power) || !cap.hasCategory(power)) return;
 		if (cap.getStackInSlot(power) == null || cap.getStackInSlot(power).stackSize <= 0 && !caster.inventory.hasItemStack(getCategoryData(power).getStack())) {
-			caster.sendMessage(new TextComponentTranslation("voidcraft.VadeMecum.spells.nomats", getCategoryData(power).getName()));
+			caster.sendMessage(new TextComponentTranslation("voidcraft.VadeMecum.spells.nomats", I18n.format(getCategoryData(power).getName(), new Object[0]).toString().trim()));
 			return;
 		}
 		boolean useCharge = false;
