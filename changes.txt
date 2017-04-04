@@ -1,1 +1,4 @@
  - Fixed #119
+ - Nerfed The Corrupted Pawn
+  + Health Reduced to 500 from 600
+  + Attack Damage Reduced to 40 from 100
