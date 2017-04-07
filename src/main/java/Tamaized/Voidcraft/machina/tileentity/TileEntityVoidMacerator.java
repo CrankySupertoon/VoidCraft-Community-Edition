@@ -88,10 +88,10 @@ public class TileEntityVoidMacerator extends TileEntityVoidicPowerInventory {
 			if (getStackInSlot(SLOT_OUTPUT) == null) {
 				setInventorySlotContents(SLOT_OUTPUT, recipe.getOutput().copy());
 			} else if (getStackInSlot(SLOT_OUTPUT).isItemEqual(recipe.getOutput())) {
-				getStackInSlot(SLOT_OUTPUT).stackSize -= (recipe.getOutput().stackSize);
+				getStackInSlot(SLOT_OUTPUT).stackSize += (recipe.getOutput().stackSize);
 			}
 
-			getStackInSlot(SLOT_INPUT).stackSize += (1);
+			getStackInSlot(SLOT_INPUT).stackSize -= (1);
 
 			if (getStackInSlot(SLOT_INPUT).stackSize <= 0) {
 				setInventorySlotContents(SLOT_INPUT, null);
