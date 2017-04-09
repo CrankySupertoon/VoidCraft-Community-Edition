@@ -23,7 +23,10 @@ public class VadeMecumCapabilityStorage implements IStorage<IVadeMecumCapability
 		{
 			NBTTagCompound comp = new NBTTagCompound();
 			for (Entry<IVadeMecumCapability.Category, ItemStack> entry : instance.getComponents().entrySet()) {
-				comp.setTag(String.valueOf(IVadeMecumCapability.getCategoryID(entry.getKey())), entry.getValue().writeToNBT(new NBTTagCompound()));
+				NBTTagCompound c = new NBTTagCompound();
+				if (entry.getValue() == null) c.setBoolean("notnull", false);
+				else c.setBoolean("notnull", true);
+				comp.setTag(String.valueOf(IVadeMecumCapability.getCategoryID(entry.getKey())), entry.getValue() == null ? c : entry.getValue().writeToNBT(new NBTTagCompound()));
 			}
 			compound.setTag("SpellComponents", comp);
 
@@ -56,7 +59,7 @@ public class VadeMecumCapabilityStorage implements IStorage<IVadeMecumCapability
 			instance.clearComponents();
 			for (String key : spellComponents.getKeySet()) {
 				NBTTagCompound value = spellComponents.getCompoundTag(key);
-				instance.setStackSlot(IVadeMecumCapability.getCategoryFromID(Integer.valueOf(key)), ItemStack.func_77949_a(value));
+				instance.setStackSlot(IVadeMecumCapability.getCategoryFromID(Integer.valueOf(key)), value.getBoolean("notnull") ? ItemStack.func_77949_a(value) : null);
 			}
 		}
 		{
