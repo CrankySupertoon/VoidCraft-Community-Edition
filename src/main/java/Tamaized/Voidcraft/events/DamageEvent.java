@@ -21,6 +21,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.fml.common.FMLCommonHandler;
@@ -33,8 +34,6 @@ public class DamageEvent {
 
 	@SubscribeEvent
 	public void entityDamaged(LivingAttackEvent e) {
-
-		handleShield(e);
 
 		// Vanilla Void
 		if (e.getSource().damageType.equals("outOfWorld") && e.getEntity() != null && e.getEntity() instanceof EntityLivingBase && ((EntityLivingBase) e.getEntity()).getActivePotionEffect(VoidCraft.potions.voidImmunity) != null) {
@@ -69,6 +68,8 @@ public class DamageEvent {
 				SheatheHelper.onAttack(living, attacker);
 			}
 		}
+
+		handleShield(e); // Do this last
 	}
 
 	private void handleShield(LivingAttackEvent e) {
@@ -79,31 +80,59 @@ public class DamageEvent {
 			return;
 		}
 		player = (EntityPlayer) e.getEntityLiving();
-		if (player.getActiveItemStack() == null) {
-			return;
+
+		if (canBlockDamageSource(player, e.getSource()) && damage > 0.0F) {
+			damageShield(player, damage);
+			e.setCanceled(true);
+			if (!e.getSource().isProjectile()) {
+				Entity entity = e.getSource().getSourceOfDamage();
+
+				if (entity instanceof EntityLivingBase) {
+					EntityLivingBase p_190629_1_ = (EntityLivingBase) entity;
+					p_190629_1_.knockBack(player, 0.5F, player.posX - p_190629_1_.posX, player.posZ - p_190629_1_.posZ);
+				}
+				player.world.setEntityState(player, (byte)29);
+			}
 		}
-		activeItemStack = player.getActiveItemStack();
+	}
 
-		if (damage > 0.0F && activeItemStack != null && shieldRegistry.contains(activeItemStack.getItem())) {
+	private void damageShield(EntityPlayer player, float damage) {
+		if (damage >= 3.0F && player.getActiveItemStack() != null && shieldRegistry.contains(player.getActiveItemStack().getItem())) {
 			int i = 1 + MathHelper.floor(damage);
-			activeItemStack.damageItem(i, player);
+			player.getActiveItemStack().damageItem(i, player);
 
-			if (activeItemStack.stackSize <= 0) {
+			if (player.getActiveItemStack() == null) {
 				EnumHand enumhand = player.getActiveHand();
-				net.minecraftforge.event.ForgeEventFactory.onPlayerDestroyItem(player, activeItemStack, enumhand);
+				net.minecraftforge.event.ForgeEventFactory.onPlayerDestroyItem(player, player.getActiveItemStack(), enumhand);
 
 				if (enumhand == EnumHand.MAIN_HAND) {
-					player.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, (ItemStack) null);
+					player.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, null);
 				} else {
-					player.setItemStackToSlot(EntityEquipmentSlot.OFFHAND, (ItemStack) null);
+					player.setItemStackToSlot(EntityEquipmentSlot.OFFHAND, null);
 				}
 
-				activeItemStack = null;
-				if (FMLCommonHandler.instance().getSide() == Side.CLIENT) {
-					player.playSound(SoundEvents.ITEM_SHIELD_BREAK, 0.8F, 0.8F + player.world.rand.nextFloat() * 0.4F);
+				player.resetActiveHand();
+				player.playSound(SoundEvents.ITEM_SHIELD_BREAK, 0.8F, 0.8F + player.world.rand.nextFloat() * 0.4F);
+			}
+		}
+	}
+
+	private boolean canBlockDamageSource(EntityPlayer player, DamageSource damageSourceIn) {
+		if (!damageSourceIn.isUnblockable() && player.isActiveItemStackBlocking()) {
+			Vec3d vec3d = damageSourceIn.getDamageLocation();
+
+			if (vec3d != null) {
+				Vec3d vec3d1 = player.getLook(1.0F);
+				Vec3d vec3d2 = vec3d.subtractReverse(new Vec3d(player.posX, player.posY, player.posZ)).normalize();
+				vec3d2 = new Vec3d(vec3d2.xCoord, 0.0D, vec3d2.zCoord);
+
+				if (vec3d2.dotProduct(vec3d1) < 0.0D) {
+					return true;
 				}
 			}
 		}
+
+		return false;
 	}
 
 	private boolean isWhiteListed(DamageSource source, boolean ranged) {
