@@ -82,9 +82,10 @@ public class Debugger extends TamItem {
 
 		IVadeMecumCapability cap = player.getCapability(CapabilityList.VADEMECUM, null);
 		cap.clearCategories();
-		// for (IVadeMecumCapability.Category cat : IVadeMecumCapability.Category.values())
-		// cap.addCategory(player, cat);
-		// cap.removeCategory(IVadeMecumCapability.Category.FireSheathe);
+		for (IVadeMecumCapability.Category cat : IVadeMecumCapability.Category.values())
+			cap.addCategory(player, cat);
+		 cap.removeCategory(IVadeMecumCapability.Category.TotalControl);
+		 cap.removeCategory(IVadeMecumCapability.Category.Dreams);
 
 		// IVoidicInfusionCapability cap = player.getCapability(CapabilityList.VOIDICINFUSION, null);
 		// cap.setInfusion(5999);

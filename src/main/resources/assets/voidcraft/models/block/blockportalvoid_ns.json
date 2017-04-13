@@ -1,6 +1,6 @@
 {
     "textures": {
-        "particle": "blocks/portal",
+        "particle": "voidcraft:blocks/blockportalvoid",
         "portal": "voidcraft:blocks/blockportalvoid"
     },
     "elements": [

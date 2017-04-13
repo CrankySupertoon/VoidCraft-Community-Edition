@@ -2,6 +2,8 @@ package Tamaized.Voidcraft.blocks;
 
 import java.util.Random;
 
+import javax.annotation.Nullable;
+
 import com.google.common.cache.LoadingCache;
 
 import Tamaized.TamModized.blocks.TamBlockPortal;
@@ -13,7 +15,9 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.block.state.pattern.BlockPattern;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
+import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -22,8 +26,18 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class BlockPortalVoid extends TamBlockPortal {
 
+	protected static final AxisAlignedBB X_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.375D, 1.0D, 1.0D, 0.625D);
+	protected static final AxisAlignedBB Z_AABB = new AxisAlignedBB(0.375D, 0.0D, 0.0D, 0.625D, 1.0D, 1.0D);
+	protected static final AxisAlignedBB Y_AABB = new AxisAlignedBB(0.375D, 0.0D, 0.375D, 0.625D, 1.0D, 0.625D);
+
 	public BlockPortalVoid(CreativeTabs tab, String n) {
 		super(tab, n, true);
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public BlockRenderLayer getBlockLayer() {
+		return BlockRenderLayer.TRANSLUCENT;
 	}
 
 	@Override
@@ -43,7 +57,7 @@ public class BlockPortalVoid extends TamBlockPortal {
 			}
 		}
 	}
-	
+
 	@Override
 	public void neighborChanged(IBlockState state, World world, BlockPos pos, Block blockIn) {
 		EnumFacing.Axis enumfacing$axis = (EnumFacing.Axis) state.getValue(AXIS);
@@ -63,11 +77,24 @@ public class BlockPortalVoid extends TamBlockPortal {
 		}
 	}
 
+	@Override
+	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
+		switch ((EnumFacing.Axis) state.getValue(AXIS)) {
+			case X:
+				return X_AABB;
+			case Y:
+			default:
+				return Y_AABB;
+			case Z:
+				return Z_AABB;
+		}
+	}
+
 	/**
 	 * A randomly called display update to be able to add particles or other items for display
 	 */
-	@SideOnly(Side.CLIENT)
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand) {
 		int x = pos.getX();
 		int y = pos.getY();
@@ -98,23 +125,43 @@ public class BlockPortalVoid extends TamBlockPortal {
 		}
 	}
 
+	@Override
+	public boolean isFullCube(IBlockState state) {
+		return false;
+	}
+
 	/**
 	 * Returns true if the given side of this block type should be rendered, if the adjacent block is at the given coordinates. Args: blockAccess, x, y, z, side
 	 */
-	@SideOnly(Side.CLIENT)
 	@Override
+	@SideOnly(Side.CLIENT)
 	public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side) {
-		if (blockAccess.getBlockState(pos).getBlock() == this) {
-			return false;
-		} else {
-			boolean flag = blockAccess.getBlockState(pos.add(-1, 0, 0)).getBlock() == this && blockAccess.getBlockState(pos.add(-2, 0, 0)).getBlock() != this;
-			boolean flag1 = blockAccess.getBlockState(pos.add(1, 0, 0)).getBlock() == this && blockAccess.getBlockState(pos.add(2, 0, 0)).getBlock() != this;
-			boolean flag2 = blockAccess.getBlockState(pos.add(0, 0, -1)).getBlock() == this && blockAccess.getBlockState(pos.add(0, 0, -2)).getBlock() != this;
-			boolean flag3 = blockAccess.getBlockState(pos.add(0, 0, 1)).getBlock() == this && blockAccess.getBlockState(pos.add(0, 0, 2)).getBlock() != this;
-			boolean flag4 = flag || flag1;
-			boolean flag5 = flag2 || flag3;
-			return flag4 && side == EnumFacing.WEST ? true : (flag4 && side == EnumFacing.EAST ? true : (flag5 && side == EnumFacing.NORTH ? true : flag5 && side == EnumFacing.SOUTH));
+		pos = pos.offset(side);
+		EnumFacing.Axis enumfacing$axis = null;
+
+		if (blockState.getBlock() == this) {
+			enumfacing$axis = (EnumFacing.Axis) blockState.getValue(AXIS);
+
+			if (enumfacing$axis == null) {
+				return false;
+			}
+
+			if (enumfacing$axis == EnumFacing.Axis.Z && side != EnumFacing.EAST && side != EnumFacing.WEST) {
+				return false;
+			}
+
+			if (enumfacing$axis == EnumFacing.Axis.X && side != EnumFacing.SOUTH && side != EnumFacing.NORTH) {
+				return false;
+			}
 		}
+
+		boolean flag = blockAccess.getBlockState(pos.west()).getBlock() == this && blockAccess.getBlockState(pos.west(2)).getBlock() != this;
+		boolean flag1 = blockAccess.getBlockState(pos.east()).getBlock() == this && blockAccess.getBlockState(pos.east(2)).getBlock() != this;
+		boolean flag2 = blockAccess.getBlockState(pos.north()).getBlock() == this && blockAccess.getBlockState(pos.north(2)).getBlock() != this;
+		boolean flag3 = blockAccess.getBlockState(pos.south()).getBlock() == this && blockAccess.getBlockState(pos.south(2)).getBlock() != this;
+		boolean flag4 = flag || flag1 || enumfacing$axis == EnumFacing.Axis.X;
+		boolean flag5 = flag2 || flag3 || enumfacing$axis == EnumFacing.Axis.Z;
+		return flag4 && side == EnumFacing.WEST ? true : (flag4 && side == EnumFacing.EAST ? true : (flag5 && side == EnumFacing.NORTH ? true : flag5 && side == EnumFacing.SOUTH));
 	}
 
 	public BlockPattern.PatternHelper createPatternHelper(World p_181089_1_, BlockPos p_181089_2_) {
