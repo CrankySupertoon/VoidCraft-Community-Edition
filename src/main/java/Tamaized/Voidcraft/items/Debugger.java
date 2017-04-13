@@ -3,6 +3,8 @@ package Tamaized.Voidcraft.items;
 import java.util.List;
 
 import Tamaized.TamModized.items.TamItem;
+import Tamaized.Voidcraft.capabilities.CapabilityList;
+import Tamaized.Voidcraft.capabilities.vadeMecum.IVadeMecumCapability;
 import Tamaized.Voidcraft.world.SchematicLoader;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -78,10 +80,11 @@ public class Debugger extends TamItem {
 
 		// VoidCraft.instance.VoidTickEvent.dream(player);
 
-		// IVadeMecumCapability cap = player.getCapability(CapabilityList.VADEMECUM, null);
-		// cap.clearCategories();
+		IVadeMecumCapability cap = player.getCapability(CapabilityList.VADEMECUM, null);
+		cap.clearCategories();
 		// for (IVadeMecumCapability.Category cat : IVadeMecumCapability.Category.values())
 		// cap.addCategory(player, cat);
+		// cap.removeCategory(IVadeMecumCapability.Category.FireSheathe);
 
 		// IVoidicInfusionCapability cap = player.getCapability(CapabilityList.VOIDICINFUSION, null);
 		// cap.setInfusion(5999);

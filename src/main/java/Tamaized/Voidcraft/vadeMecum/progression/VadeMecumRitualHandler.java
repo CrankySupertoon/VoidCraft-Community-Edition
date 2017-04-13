@@ -173,19 +173,20 @@ public class VadeMecumRitualHandler {
 		return list;
 	}
 
-	public static boolean doChecks(IVadeMecumCapability.Category ritual, World world, BlockPos pos, boolean clear) {
+	public static boolean doChecks(IVadeMecumCapability.Category ritual, World world, BlockPos oPos, boolean clear) {
 		ItemStack[] ritualStacks = VoidCraft.ritualList.getRitual(ritual);
 		if (ritualStacks == null || ritualStacks.length <= 0) return false;
-		int index = 0;
-		for (index = 0; index < ritualStacks.length; index++) {
-			if (ritualStacks[index] != null && ritualStacks[index].getItem() == Item.getItemFromBlock(VoidCraft.blocks.ritualBlock)) break;
-		}
-		pos = pos.add(index % 3 == 0 ? 1 : (index > 1 && (index - 2) % 3 == 0) ? -1 : 0, index > 8 ? index > 17 ? -2 : -1 : 0, (index % 9 == 0 || (index - 1) % 9 == 0 || (index - 2) % 9 == 0) ? 1 : ((index - 6) % 9 == 0 || (index - 7) % 9 == 0 || (index - 8) % 9 == 0) ? -1 : 0);
-		// System.out.print(pos);
-		int val = check(ritualStacks, world, pos);
-		if (val > 0) {
-			if (clear) clear(ritualStacks, val, world, pos);
-			return true;
+		for (int yPos = 0; yPos >= -2; yPos--) {
+			for (int xPos = -1; xPos <= 1; xPos++) {
+				for (int zPos = -1; zPos <= 1; zPos++) {
+					BlockPos pos = oPos.add(xPos, yPos, zPos);
+					int val = check(ritualStacks, world, pos);
+					if (val > 0) {
+						if (clear) clear(ritualStacks, val, world, pos);
+						return true;
+					}
+				}
+			}
 		}
 		return false;
 	}
