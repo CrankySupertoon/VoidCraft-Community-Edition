@@ -5,6 +5,7 @@ import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.GUI.GuiHandler;
 import Tamaized.Voidcraft.blocks.tileentity.TileEntityStarForge;
 import net.minecraft.block.Block;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyDirection;
@@ -29,7 +30,7 @@ public class StarForgeBlock extends TamBlockContainer {
 	public static final PropertyDirection FACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
 
 	public StarForgeBlock(CreativeTabs tab, Material material, String n, float hardness) {
-		super(tab, material, n, hardness);
+		super(tab, material, n, hardness, SoundType.METAL);
 		setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
 	}
 

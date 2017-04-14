@@ -9,6 +9,7 @@ import com.google.common.cache.LoadingCache;
 import Tamaized.TamModized.blocks.TamBlockPortal;
 import Tamaized.Voidcraft.VoidCraft;
 import net.minecraft.block.Block;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockWorldState;
 import net.minecraft.block.state.IBlockState;
@@ -31,7 +32,7 @@ public class BlockPortalVoid extends TamBlockPortal {
 	protected static final AxisAlignedBB Y_AABB = new AxisAlignedBB(0.375D, 0.0D, 0.375D, 0.625D, 1.0D, 0.625D);
 
 	public BlockPortalVoid(CreativeTabs tab, String n) {
-		super(tab, n, true);
+		super(tab, n, true, SoundType.GLASS);
 	}
 
 	@Override

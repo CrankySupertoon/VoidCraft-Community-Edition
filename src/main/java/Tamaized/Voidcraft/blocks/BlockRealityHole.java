@@ -6,6 +6,7 @@ import Tamaized.TamModized.blocks.TamBlock;
 import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.entity.EntityVoidBoss;
 import Tamaized.Voidcraft.entity.boss.render.bossBar.RenderAlternateBossBars.IAlternateBoss;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
@@ -20,7 +21,7 @@ import net.minecraft.world.WorldServer;
 public class BlockRealityHole extends TamBlock {
 
 	public BlockRealityHole(CreativeTabs tab, Material material, String n, float hardness) {
-		super(tab, material, n, hardness);
+		super(tab, material, n, hardness, SoundType.CLOTH);
 		setLightLevel(1.0F);
 		setResistance(100);
 	}

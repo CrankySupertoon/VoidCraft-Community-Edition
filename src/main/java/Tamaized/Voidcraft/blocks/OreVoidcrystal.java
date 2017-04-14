@@ -4,6 +4,7 @@ import java.util.Random;
 
 import Tamaized.TamModized.blocks.TamBlock;
 import Tamaized.Voidcraft.VoidCraft;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyBool;
@@ -27,7 +28,7 @@ public class OreVoidcrystal extends TamBlock {
 	public static final PropertyBool VOID = PropertyBool.create("void");
 
 	public OreVoidcrystal(CreativeTabs tab, Material material, String n, float hardness) {
-		super(tab, material, n, hardness);
+		super(tab, material, n, hardness, SoundType.STONE);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(VOID, true));
 	}
 

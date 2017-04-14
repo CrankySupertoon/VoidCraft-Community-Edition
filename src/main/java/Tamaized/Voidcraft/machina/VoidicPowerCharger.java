@@ -4,6 +4,7 @@ import Tamaized.TamModized.blocks.TamBlockContainer;
 import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.GUI.GuiHandler;
 import Tamaized.Voidcraft.machina.tileentity.TileEntityVoidicCharger;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
@@ -21,7 +22,7 @@ import net.minecraftforge.fml.common.network.internal.FMLNetworkHandler;
 public class VoidicPowerCharger extends TamBlockContainer {
 
 	public VoidicPowerCharger(CreativeTabs tab, Material material, String n, float hardness) {
-		super(tab, material, n, hardness);
+		super(tab, material, n, hardness, SoundType.METAL);
 	}
 
 	@Override

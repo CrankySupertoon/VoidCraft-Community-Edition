@@ -7,6 +7,7 @@ import Tamaized.TamModized.blocks.TamBlockPortal;
 import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.entity.EntityVoidMob;
 import net.minecraft.block.Block;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
@@ -22,7 +23,7 @@ import net.minecraft.world.World;
 public class FireVoid extends TamBlockFire {
 
 	public FireVoid(CreativeTabs tab, String n) {
-		super(tab, n);
+		super(tab, n, SoundType.CLOTH);
 	}
 
 	@Override

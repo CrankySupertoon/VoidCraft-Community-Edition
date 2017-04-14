@@ -6,6 +6,7 @@ import Tamaized.TamModized.blocks.TamBlockContainer;
 import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.GUI.GuiHandler;
 import Tamaized.Voidcraft.machina.tileentity.TileEntityVoidicAlchemy;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
@@ -28,7 +29,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class VoidicAlchemyTable extends TamBlockContainer {
 
 	public VoidicAlchemyTable(CreativeTabs tab, Material material, String n, float hardness) {
-		super(tab, material, n, hardness);
+		super(tab, material, n, hardness, SoundType.METAL);
 	}
 
 	@Override

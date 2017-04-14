@@ -10,6 +10,7 @@ import Tamaized.TamModized.blocks.TamBlockContainer;
 import Tamaized.Voidcraft.api.voidicpower.IVoidicPower;
 import Tamaized.Voidcraft.machina.tileentity.TileEntityVoidicPowerCable;
 import net.minecraft.block.Block;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyBool;
@@ -48,7 +49,7 @@ public class VoidicPowerCable extends TamBlockContainer {
 	}
 
 	public VoidicPowerCable(CreativeTabs tab, Material material, String n, float hardness) {
-		super(tab, material, n, hardness);
+		super(tab, material, n, hardness, SoundType.GLASS);
 	}
 
 	@Override

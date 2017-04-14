@@ -6,6 +6,7 @@ import Tamaized.TamModized.blocks.TamBlockFarmland;
 import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.blocks.tileentity.TileEntityFakeBedrockFarmland;
 import net.minecraft.block.Block;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
@@ -23,7 +24,7 @@ import net.minecraftforge.common.IPlantable;
 public class BlockFakeBedrockFarmland extends TamBlockFarmland {
 
 	public BlockFakeBedrockFarmland(CreativeTabs tab, Material material, String n, float hardness) {
-		super(tab, material, n, hardness);
+		super(tab, material, n, hardness, SoundType.GROUND);
 	}
 
 	@Override

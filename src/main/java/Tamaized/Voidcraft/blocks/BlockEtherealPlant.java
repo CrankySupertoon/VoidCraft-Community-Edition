@@ -8,6 +8,7 @@ import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.blocks.tileentity.TileEntityFakeBedrockFarmland;
 import Tamaized.Voidcraft.items.EtherealFruit;
 import net.minecraft.block.Block;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
@@ -28,7 +29,7 @@ public class BlockEtherealPlant extends TamBlockCrops {
 	private static final ArrayList<Block> plantableBlocks = new ArrayList<Block>();
 
 	public BlockEtherealPlant(CreativeTabs tab, String n, float hardness) {
-		super(tab, Material.PLANTS, n, hardness);
+		super(tab, Material.PLANTS, n, hardness, SoundType.PLANT);
 		plantableBlocks.add(VoidCraft.blocks.blockFakeBedrockFarmland);
 	}
 
