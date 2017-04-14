@@ -107,6 +107,10 @@ import net.minecraftforge.fml.client.registry.RenderingRegistry;
 
 public class ClientProxy extends AbstractProxy {
 
+	public ClientProxy() {
+		super(Side.CLIENT);
+	}
+
 	public static ClientInfusionOverlayRender infusionHandler = new ClientInfusionOverlayRender();
 	public static VadeMecumGUI vadeMecum;
 	public static VadeMecumMainEntry vadeMecumEntryList;
@@ -121,7 +125,6 @@ public class ClientProxy extends AbstractProxy {
 	@Override
 	public void preInit() {
 		MinecraftForge.EVENT_BUS.register(SkinHandler.instance);
-		VoidCraft.instance.clientPreInit();
 		vadeMecumEntryList = new VadeMecumMainEntry();
 		vadeMecumEntryList.preLoadObject();
 
@@ -340,7 +343,6 @@ public class ClientProxy extends AbstractProxy {
 
 	@Override
 	public void init() {
-		VoidCraft.instance.clientInit();
 		RenderNoBreak renderNoBreak = new RenderNoBreak();
 		RenderVoidicCharger renderCharger = new RenderVoidicCharger();
 
@@ -353,7 +355,6 @@ public class ClientProxy extends AbstractProxy {
 
 	@Override
 	public void postInit() {
-		VoidCraft.instance.clientPostInit();
 		// Events
 		MinecraftForge.EVENT_BUS.register(new OverlayEvent());
 		MinecraftForge.EVENT_BUS.register(new BossBarOverlay());
