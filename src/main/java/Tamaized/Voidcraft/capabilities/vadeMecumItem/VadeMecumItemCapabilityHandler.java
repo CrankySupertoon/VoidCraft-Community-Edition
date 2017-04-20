@@ -52,7 +52,7 @@ public class VadeMecumItemCapabilityHandler implements IVadeMecumItemCapability 
 
 	@Override
 	public void toggleBookState() {
-		bookstate ^= true;
+		bookstate = !bookstate;
 		markDirty();
 	}
 
