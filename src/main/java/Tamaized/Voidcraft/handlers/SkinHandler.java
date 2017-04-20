@@ -95,14 +95,14 @@ public class SkinHandler {
 	public static synchronized void run() {
 		VoidCraft.instance.logger.info("Running SkinHandler");
 		fillNames();
-		handleResources();
 		if (isOnline()) {
 			VoidCraft.instance.logger.info("Able to Connect to Mojang Servers, validating skins");
 			validateNames();
+			handleResources();
 			validateSkins();
-			updateSkins();
 		} else {
 			VoidCraft.instance.logger.info("Unable to Connect to Mojang Servers, using cache");
+			handleResources();
 			loadCacheSkins();
 		}
 		freeMemory();
@@ -147,9 +147,23 @@ public class SkinHandler {
 	private static void handleResources() {
 		File dir = new File(loc);
 		dir.mkdirs();
-		if (dir.list().length < uuidNames.size()) {
-			VoidCraft.instance.logger.info("Populating: " + loc);
-			extractZip(SkinHandler.class.getResourceAsStream(skinZip), loc);
+		File[] filelist = dir.listFiles();
+		List<String> list = new ArrayList<String>();
+		for (File f : filelist) {
+			String fileName = f.getName().replace(".png", "");
+			if (!uuidNames.containsKey(fileName)) {
+				VoidCraft.instance.logger.info("Deleting: " + fileName);
+				f.delete();
+			}
+			else list.add(fileName);
+		}
+		for (String name : uuidNames.keySet()) {
+			if (!list.contains(name)) {
+				VoidCraft.instance.logger.info("Missing: " + name);
+				VoidCraft.instance.logger.info("Populating: " + loc);
+				extractZip(SkinHandler.class.getResourceAsStream(skinZip), loc);
+				return;
+			}
 		}
 	}
 
@@ -195,9 +209,10 @@ public class SkinHandler {
 	private static void validateNames() {
 		VoidCraft.instance.logger.info("Mapping Names to UUIDs");
 		Map<String, UUID> tempMap = new HashMap<String, UUID>();
-		for (UUID id : uuidNames.values()) {
+		for (Entry<String, UUID> entry : uuidNames.entrySet()) {
+			String name = entry.getKey();
+			UUID id = entry.getValue();
 			try {
-				String theName = id.toString().replace("-", "");
 				URL url = new URL(nameUrl + id.toString().replace("-", "") + "/names");
 				BufferedReader reader = Resources.asCharSource(url, StandardCharsets.UTF_8).openBufferedStream();
 				JsonReader json = new JsonReader(reader);
@@ -210,7 +225,11 @@ public class SkinHandler {
 								while (json.hasNext()) {
 									switch (json.nextName()) {
 										case "name":
-											theName = json.nextString();
+											String newName = json.nextString();
+											if (!name.equals(newName)) {
+												VoidCraft.instance.logger.info("Detected Name Change (" + name + ") is now (" + newName + ")");
+												name = newName;
+											}
 											break;
 										default:
 											json.skipValue();
@@ -223,8 +242,8 @@ public class SkinHandler {
 					}
 				}
 				json.close();
-				tempMap.put(theName, id);
-				VoidCraft.instance.logger.info("Mapped " + theName + " -> " + id);
+				tempMap.put(name, id);
+				VoidCraft.instance.logger.info("Mapped " + name + " -> " + id);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -234,24 +253,36 @@ public class SkinHandler {
 	}
 
 	private static void validateSkins() {
-		File[] list = new File(loc).listFiles();
-		for (File file : list) {
-			String name = file.getName().split("\\.")[0];
-			if (!uuidNames.containsKey(name)) {
-				file.delete();
-			}
+		for (Entry<String, UUID> entry : uuidNames.entrySet()) {
+			String name = entry.getKey();
+			UUID id = entry.getValue();
+			File f = new File(loc + name + ".png");
+			boolean valid = true;
+			String urlName = skinUrl.concat(name + ".png");
 			try {
-				long size = getFileSize(new URL(skinUrl.concat(file.getName())));
-				if (file.length() != size) {
-					file.delete();
+				URL url = new URL(urlName);
+				long size = getFileSize(url);
+				if (!f.exists() || f.length() != size) {
+					VoidCraft.instance.logger.info(name + " not valid, will download the new skin. (" + f.exists() + " : " + f.length() + " : " + size + ")");
+					valid = false;
 				}
 			} catch (IOException e) {
 				e.printStackTrace();
-				file.delete();
+				VoidCraft.instance.logger.info(name + " couldn't be validated but we'll pass it anyway to load the cache");
 			}
-			if (file.exists()) {
-				blacklist.add(uuidNames.get(name));
+			if (valid) {
 				VoidCraft.instance.logger.info(name + " was validated");
+				loadResource(name, id);
+			} else {
+				try {
+					VoidCraft.instance.logger.info("Updating skin: " + name);
+					VoidCraft.instance.logger.info("Downloading skin: " + urlName);
+					FileUtils.copyURLToFile(new URL(urlName), new File(loc + name + ".png"));
+					loadResource(name, id);
+				} catch (IOException e) {
+					e.printStackTrace();
+					VoidCraft.instance.logger.info("Problem downloading skin");
+				}
 			}
 		}
 	}
@@ -270,127 +301,6 @@ public class SkinHandler {
 		}
 	}
 
-	private static void updateSkins() {
-		aliasList: for (Entry<String, UUID> entry : uuidNames.entrySet()) {
-			String name = entry.getKey();
-			UUID id = entry.getValue();
-			if (blacklist.contains(id)) {
-				loadResource(name, id);
-				continue;
-			}
-			VoidCraft.instance.logger.info("Updating alias: " + id);
-			try {
-				BufferedReader reader = Resources.asCharSource(new URL(profileUrl + id.toString().replace("-", "")), StandardCharsets.UTF_8).openBufferedStream();
-
-				String encodedString = null;
-				String skinUrl = "";
-
-				JsonReader json = new JsonReader(reader);
-				{
-					json.beginObject();
-					{
-						while (json.hasNext()) {
-							String key = json.nextName();
-							switch (key) {
-								case "properties":
-									json.beginArray(); // properties
-								{
-									json.beginObject(); // 0
-									{
-										while (json.hasNext()) {
-											String key2 = json.nextName();
-											switch (key2) {
-												case "value":
-													encodedString = json.nextString();
-													break;
-												default:
-													json.skipValue();
-													break;
-											}
-										}
-									}
-									json.endObject();
-								}
-									json.endArray();
-									break;
-								case "error":
-									loadResource(name, id);
-									continue aliasList;
-								default:
-									json.skipValue();
-									break;
-							}
-						}
-
-					}
-					json.endObject();
-				}
-				json.close();
-
-				if (encodedString == null) {
-					loadResource(name, id);
-					continue;
-				}
-
-				InputStream is = new ByteArrayInputStream(StringUtils.newStringUtf8(Base64.decodeBase64(encodedString)).getBytes());
-				reader = new BufferedReader(new InputStreamReader(is));
-				json = new JsonReader(reader);
-				{
-					json.beginObject();
-					{
-						while (json.hasNext()) {
-							String key = json.nextName();
-							switch (key) {
-								case "textures":
-									json.beginObject(); // textures
-								{
-									while (json.hasNext()) {
-										String key2 = json.nextName();
-										switch (key2) {
-											case "SKIN":
-												json.beginObject(); // SKIN
-											{
-												while (json.hasNext()) {
-													String key3 = json.nextName();
-													switch (key3) {
-														case "url":
-															skinUrl = json.nextString();
-															break;
-														default:
-															json.skipValue();
-															break;
-													}
-												}
-											}
-												json.endObject();
-												break;
-											default:
-												json.skipValue();
-												break;
-										}
-									}
-								}
-									json.endObject();
-									break;
-								default:
-									json.skipValue();
-									break;
-							}
-						}
-					}
-					json.endObject();
-				}
-				json.close();
-				VoidCraft.instance.logger.info("Downloading skin: " + skinUrl);
-				FileUtils.copyURLToFile(new URL(skinUrl), new File(loc + name + ".png"));
-				loadResource(name, id);
-			} catch (IOException e) {
-				VoidCraft.instance.logger.info("Request was sent too often or there was an issue with the Mojang servers, using cache for " + name);
-				loadResource(name, id);
-			}
-		}
-	}
-
 	private static void loadCacheSkins() {
 		for (Entry<String, UUID> entry : uuidNames.entrySet()) {
 			String name = entry.getKey();
@@ -403,7 +313,9 @@ public class SkinHandler {
 		VoidCraft.instance.logger.info("Queue resource: " + name);
 		uuidProfile.put(id, new GameProfile(id, name));
 		try {
-			BufferedImage bimg = ImageIO.read(new File(loc + name + ".png"));
+			File file = new File(loc + name + ".png");
+			if (!file.exists()) throw new IOException("File doesnt exist! (" + file.getAbsolutePath() + ")");
+			BufferedImage bimg = ImageIO.read(file);
 			if (FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT) bimgQueue.add(new ImgWrapper(bimg, name, id));
 			uuidBiped.put(id, bimg.getHeight() == 32);
 		} catch (IOException e) {
