@@ -2,6 +2,7 @@ package Tamaized.Voidcraft.vadeMecum.contents.documentation.starforge;
 
 import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.capabilities.vadeMecum.IVadeMecumCapability;
+import Tamaized.Voidcraft.starforge.effects.StarForgeEffectList;
 import Tamaized.Voidcraft.vadeMecum.IVadeMecumPage;
 import Tamaized.Voidcraft.vadeMecum.IVadeMecumPageProvider;
 import Tamaized.Voidcraft.vadeMecum.VadeMecumPage;
@@ -15,33 +16,33 @@ public class VadeMecumPageListStarForge implements IVadeMecumPageProvider {
 
 				new VadeMecumPage("", VoidCraft.modid + ".VadeMecum.docs.desc.starforge.pg2"),
 
-				new VadeMecumPage(VoidCraft.modid + ".VadeMecum.docs.title.starforge.effect.blindingFear", VoidCraft.modid + ".VadeMecum.docs.desc.starforge.effect.blindingFear"),
+				new VadeMecumPageStarForgeEffect(VoidCraft.modid + ".VadeMecum.docs.title.starforge.effect.blindingFear", VoidCraft.modid + ".VadeMecum.docs.desc.starforge.effect.blindingFear", StarForgeEffectList.blindingFear),
 
-				new VadeMecumPage(VoidCraft.modid + ".VadeMecum.docs.title.starforge.effect.firstDegreeBurns", VoidCraft.modid + ".VadeMecum.docs.desc.starforge.effect.firstDegreeBurns"),
+				new VadeMecumPageStarForgeEffect(VoidCraft.modid + ".VadeMecum.docs.title.starforge.effect.firstDegreeBurns", VoidCraft.modid + ".VadeMecum.docs.desc.starforge.effect.firstDegreeBurns", StarForgeEffectList.firstDegreeBurns),
 
-				new VadeMecumPage(VoidCraft.modid + ".VadeMecum.docs.title.starforge.effect.voidTouch", VoidCraft.modid + ".VadeMecum.docs.desc.starforge.effect.voidTouch"),
+				new VadeMecumPageStarForgeEffect(VoidCraft.modid + ".VadeMecum.docs.title.starforge.effect.voidTouch", VoidCraft.modid + ".VadeMecum.docs.desc.starforge.effect.voidTouch", StarForgeEffectList.voidTouch),
 
-				new VadeMecumPage(VoidCraft.modid + ".VadeMecum.docs.title.starforge.effect.xiaBlessing", VoidCraft.modid + ".VadeMecum.docs.desc.starforge.effect.xiaBlessing"),
+				new VadeMecumPageStarForgeEffect(VoidCraft.modid + ".VadeMecum.docs.title.starforge.effect.xiaBlessing", VoidCraft.modid + ".VadeMecum.docs.desc.starforge.effect.xiaBlessing", StarForgeEffectList.xiaBlessing),
 
-				new VadeMecumPage(VoidCraft.modid + ".VadeMecum.docs.title.starforge.effect.secondDegreeBurns", VoidCraft.modid + ".VadeMecum.docs.desc.starforge.effect.secondDegreeBurns"),
+				new VadeMecumPageStarForgeEffect(VoidCraft.modid + ".VadeMecum.docs.title.starforge.effect.secondDegreeBurns", VoidCraft.modid + ".VadeMecum.docs.desc.starforge.effect.secondDegreeBurns", StarForgeEffectList.secondDegreeBurns),
 
-				new VadeMecumPage(VoidCraft.modid + ".VadeMecum.docs.title.starforge.effect.voidWrath", VoidCraft.modid + ".VadeMecum.docs.desc.starforge.effect.voidWrath"),
+				new VadeMecumPageStarForgeEffect(VoidCraft.modid + ".VadeMecum.docs.title.starforge.effect.voidWrath", VoidCraft.modid + ".VadeMecum.docs.desc.starforge.effect.voidWrath", StarForgeEffectList.voidWrath),
 
-				new VadeMecumPage(VoidCraft.modid + ".VadeMecum.docs.title.starforge.effect.mortalFear", VoidCraft.modid + ".VadeMecum.docs.desc.starforge.effect.mortalFear"),
+				new VadeMecumPageStarForgeEffect(VoidCraft.modid + ".VadeMecum.docs.title.starforge.effect.mortalFear", VoidCraft.modid + ".VadeMecum.docs.desc.starforge.effect.mortalFear", StarForgeEffectList.mortalFear),
 
-				new VadeMecumPage(VoidCraft.modid + ".VadeMecum.docs.title.starforge.effect.thirdDegreeBurns", VoidCraft.modid + ".VadeMecum.docs.desc.starforge.effect.thirdDegreeBurns"),
+				new VadeMecumPageStarForgeEffect(VoidCraft.modid + ".VadeMecum.docs.title.starforge.effect.thirdDegreeBurns", VoidCraft.modid + ".VadeMecum.docs.desc.starforge.effect.thirdDegreeBurns", StarForgeEffectList.thirdDegreeBurns),
 
-				new VadeMecumPage(VoidCraft.modid + ".VadeMecum.docs.title.starforge.effect.voidCripple", VoidCraft.modid + ".VadeMecum.docs.desc.starforge.effect.voidCripple"),
+				new VadeMecumPageStarForgeEffect(VoidCraft.modid + ".VadeMecum.docs.title.starforge.effect.voidCripple", VoidCraft.modid + ".VadeMecum.docs.desc.starforge.effect.voidCripple", StarForgeEffectList.voidCripple),
 
-				new VadeMecumPage(VoidCraft.modid + ".VadeMecum.docs.title.starforge.effect.vorp", VoidCraft.modid + ".VadeMecum.docs.desc.starforge.effect.vorp"),
+				new VadeMecumPageStarForgeEffect(VoidCraft.modid + ".VadeMecum.docs.title.starforge.effect.vorp", VoidCraft.modid + ".VadeMecum.docs.desc.starforge.effect.vorp", StarForgeEffectList.vorp),
 
-				new VadeMecumPage(VoidCraft.modid + ".VadeMecum.docs.title.starforge.effect.haste", VoidCraft.modid + ".VadeMecum.docs.desc.starforge.effect.haste"),
+				new VadeMecumPageStarForgeEffect(VoidCraft.modid + ".VadeMecum.docs.title.starforge.effect.haste", VoidCraft.modid + ".VadeMecum.docs.desc.starforge.effect.haste", StarForgeEffectList.haste),
 
-				new VadeMecumPage(VoidCraft.modid + ".VadeMecum.docs.title.starforge.effect.silkTouch", VoidCraft.modid + ".VadeMecum.docs.desc.starforge.effect.silkTouch"),
+				new VadeMecumPageStarForgeEffect(VoidCraft.modid + ".VadeMecum.docs.title.starforge.effect.silkTouch", VoidCraft.modid + ".VadeMecum.docs.desc.starforge.effect.silkTouch", StarForgeEffectList.silkTouch),
 
-				new VadeMecumPage(VoidCraft.modid + ".VadeMecum.docs.title.starforge.effect.fortune", VoidCraft.modid + ".VadeMecum.docs.desc.starforge.effect.fortune"),
+				new VadeMecumPageStarForgeEffect(VoidCraft.modid + ".VadeMecum.docs.title.starforge.effect.fortune", VoidCraft.modid + ".VadeMecum.docs.desc.starforge.effect.fortune", StarForgeEffectList.fortune),
 
-				new VadeMecumPage(VoidCraft.modid + ".VadeMecum.docs.title.starforge.effect.threeByThree", VoidCraft.modid + ".VadeMecum.docs.desc.starforge.effect.threeByThree")
+				new VadeMecumPageStarForgeEffect(VoidCraft.modid + ".VadeMecum.docs.title.starforge.effect.threeByThree", VoidCraft.modid + ".VadeMecum.docs.desc.starforge.effect.threeByThree", StarForgeEffectList.threeByThree)
 
 		};
 	}

@@ -394,13 +394,17 @@ public class VadeMecumGUI extends GuiScreen {
 	}
 
 	public void renderItemStack(ItemStack stack, int x, int y, int mx, int my) {
+		renderItemStack(stack, x, y, mx, my, 0xFFFFFF);
+	}
+
+	public void renderItemStack(ItemStack stack, int x, int y, int mx, int my, int color) {
 		if (itemRender != null) {
 			RenderHelper.enableGUIStandardItemLighting();
 			GlStateManager.enableDepth();
 			itemRender.renderItemIntoGUI(stack, x, y);
 			// drawCenteredString(fontRendererObj, ""+stack, x, y, 0xFFFFFF);
 			GlStateManager.disableDepth();
-			if (stack.stackSize > 1) drawString(fontRendererObj, "" + stack.stackSize, x + 11, y + 9, 0xFFFFFF);
+			if (stack.stackSize > 1) drawString(fontRendererObj, "" + stack.stackSize, x + 11, y + 9, color);
 			GlStateManager.enableDepth();
 			if (mx >= x && mx <= x + 16 && my >= y && my <= y + 16) renderStackHover = stack;
 			RenderHelper.disableStandardItemLighting();
