@@ -451,8 +451,10 @@ public class VadeMecumWordsOfPower {
 		}
 
 		if (useCharge) {
-			if (cap.getStackInSlot(power) != null) cap.getStackInSlot(power).stackSize -= (1);
-			else {
+			if (cap.getStackInSlot(power) != null) {
+				cap.getStackInSlot(power).stackSize -= (1);
+				if (cap.getStackInSlot(power).stackSize <= 0) cap.setStackSlot(power, null);
+			} else {
 				for (int i = 0; i < caster.inventory.getSizeInventory(); ++i) {
 					ItemStack itemstack = caster.inventory.getStackInSlot(i);
 					if (itemstack.isItemEqual(getCategoryData(power).getStack())) {
