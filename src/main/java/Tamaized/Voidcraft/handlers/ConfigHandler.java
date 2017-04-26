@@ -18,6 +18,8 @@ public class ConfigHandler {
 
 	private Configuration config;
 
+	private boolean generate_VoidOre = true;
+	private boolean generate_CosmicOre = true;
 	private int dimensionIdVoid = -2;
 	private int dimensionIdXia = -3;
 	private int dimensionIdDalQuor = -4;
@@ -25,6 +27,8 @@ public class ConfigHandler {
 	private boolean renderFirstPersonVadeMecumParticles;
 	private boolean renderThirdPersonVadeMecumParticles;
 
+	private boolean default_generate_VoidOre = true;
+	private boolean default_generate_CosmicOre = true;
 	private int default_dimensionIdVoid = -2;
 	private int default_dimensionIdXia = -3;
 	private int default_dimensionIdDalQuor = -4;
@@ -59,6 +63,7 @@ public class ConfigHandler {
 	}
 
 	private void loadData(boolean firstLoad) {
+
 		renderThirdPersonVadeMecumParticles = config.get(Configuration.CATEGORY_GENERAL, "Render Vade Mecum Item Particles", default_renderThirdPersonVadeMecumParticles).getBoolean();
 		if (firstLoad) {
 			temp_dimensionIdVoid = dimensionIdVoid = config.get(Configuration.CATEGORY_GENERAL, "Void Dimension ID", default_dimensionIdVoid).getInt();
@@ -74,8 +79,9 @@ public class ConfigHandler {
 		while (iter.hasNext()) {
 			int id = iter.next();
 			if ((VoidCraft.isDevBuild && id == getDimensionIdDalQuor()) || id == getDimensionIdXia()) iter.remove();
-
 		}
+		generate_VoidOre = config.get(Configuration.CATEGORY_GENERAL, "Enable VoidCrystal Ore Gen", default_generate_VoidOre).getBoolean();
+		generate_CosmicOre = config.get(Configuration.CATEGORY_GENERAL, "Enable Cosmic Material Gen", default_generate_CosmicOre).getBoolean();
 	}
 
 	private void cleanupFile() throws IOException {
@@ -88,6 +94,8 @@ public class ConfigHandler {
 		config.get(Configuration.CATEGORY_GENERAL, "Xia Dimension ID", dimensionIdXia).set(temp_dimensionIdXia);
 		if (VoidCraft.isDevBuild) config.get(Configuration.CATEGORY_GENERAL, "Dal Quor Dimension ID", dimensionIdDalQuor).set(temp_dimensionIdDalQuor);
 		config.get(Configuration.CATEGORY_GENERAL, "Reality Hole Dimension Whitelist", default_realityWhitelist, "List of Dimension IDs the Reality Hole will attempt to send you to").set(ArrayUtils.toPrimitive(realityWhitelist.toArray(new Integer[realityWhitelist.size()])));
+		config.get(Configuration.CATEGORY_GENERAL, "Enable VoidCrystal Ore Gen", default_generate_VoidOre).set(generate_VoidOre);
+		config.get(Configuration.CATEGORY_GENERAL, "Enable Cosmic Material Gen", default_generate_CosmicOre).set(generate_CosmicOre);
 	}
 
 	@SubscribeEvent
@@ -117,6 +125,14 @@ public class ConfigHandler {
 
 	public List<Integer> getRealityWhiteList() {
 		return realityWhitelist;
+	}
+
+	public boolean canGenVoidCrystalOre() {
+		return generate_VoidOre;
+	}
+
+	public boolean canGenCosmicMaterial() {
+		return generate_CosmicOre;
 	}
 
 }

@@ -26,63 +26,71 @@ public class WorldGeneratorVoid implements IWorldGenerator {
 	}
 
 	private void generateEnd(World world, Random random, int BlockX, int BlockZ) {
-		for (int i = 0; i < 6; i++) {
-			int Xcoord = BlockX + random.nextInt(16);
-			int Zcoord = BlockZ + random.nextInt(16);
-			int Ycoord = random.nextInt(100);
-			new WorldGenMinable(((OreVoidcrystal) VoidCraft.blocks.oreVoidcrystal).getStateVoidFalse(), 5, new Predicate<IBlockState>() {
+		if (VoidCraft.config.canGenVoidCrystalOre()) {
+			for (int i = 0; i < 6; i++) {
+				int Xcoord = BlockX + random.nextInt(16);
+				int Zcoord = BlockZ + random.nextInt(16);
+				int Ycoord = random.nextInt(100);
+				new WorldGenMinable(((OreVoidcrystal) VoidCraft.blocks.oreVoidcrystal).getStateVoidFalse(), 5, new Predicate<IBlockState>() {
 
-				@Override
-				public boolean apply(IBlockState input) {
-					return input == Blocks.END_STONE.getDefaultState();
-				}
+					@Override
+					public boolean apply(IBlockState input) {
+						return input == Blocks.END_STONE.getDefaultState();
+					}
 
-			}).generate(world, random, new BlockPos(Xcoord, Ycoord, Zcoord));
+				}).generate(world, random, new BlockPos(Xcoord, Ycoord, Zcoord));
+			}
 		}
-		for (int i = 0; i < 6; i++) {
-			int Xcoord = BlockX + random.nextInt(16);
-			int Zcoord = BlockZ + random.nextInt(16);
-			int Ycoord = random.nextInt(100);
-			new WorldGenMinable(VoidCraft.blocks.cosmicMaterial.getDefaultState(), 3, new Predicate<IBlockState>() {
+		if (VoidCraft.config.canGenCosmicMaterial()) {
+			for (int i = 0; i < 6; i++) {
+				int Xcoord = BlockX + random.nextInt(16);
+				int Zcoord = BlockZ + random.nextInt(16);
+				int Ycoord = random.nextInt(100);
+				new WorldGenMinable(VoidCraft.blocks.cosmicMaterial.getDefaultState(), 3, new Predicate<IBlockState>() {
 
-				@Override
-				public boolean apply(IBlockState input) {
-					return input == Blocks.END_STONE.getDefaultState();
-				}
+					@Override
+					public boolean apply(IBlockState input) {
+						return input == Blocks.END_STONE.getDefaultState();
+					}
 
-			}).generate(world, random, new BlockPos(Xcoord, Ycoord, Zcoord));
+				}).generate(world, random, new BlockPos(Xcoord, Ycoord, Zcoord));
+			}
 		}
 	}
 
 	private void generateVoid(World world, Random random, int BlockX, int BlockZ) {
-		for (int i = 0; i < 10; i++) {
-			int Xcoord = BlockX + random.nextInt(16);
-			int Zcoord = BlockZ + random.nextInt(16);
-			int Ycoord = random.nextInt(255);
-			new WorldGenMinable(VoidCraft.blocks.cosmicMaterial.getDefaultState(), 3, new Predicate<IBlockState>() {
+		if (VoidCraft.config.canGenCosmicMaterial()) {
+			for (int i = 0; i < 10; i++) {
+				int Xcoord = BlockX + random.nextInt(16);
+				int Zcoord = BlockZ + random.nextInt(16);
+				int Ycoord = random.nextInt(255);
+				new WorldGenMinable(VoidCraft.blocks.cosmicMaterial.getDefaultState(), 3, new Predicate<IBlockState>() {
 
-				@Override
-				public boolean apply(IBlockState input) {
-					return input == VoidCraft.blocks.blockFakeBedrock.getDefaultState();
-				}
+					@Override
+					public boolean apply(IBlockState input) {
+						return input == VoidCraft.blocks.blockFakeBedrock.getDefaultState();
+					}
 
-			}).generate(world, random, new BlockPos(Xcoord, Ycoord, Zcoord));
+				}).generate(world, random, new BlockPos(Xcoord, Ycoord, Zcoord));
+			}
 		}
 	}
 
 	private void generateDalQuor(World world, Random random, int BlockX, int BlockZ) {
-		for (int i = 0; i < 10; i++) {
-			int Xcoord = BlockX + random.nextInt(16);
-			int Zcoord = BlockZ + random.nextInt(16);
-			int Ycoord = random.nextInt(255);
-			new WorldGenMinable(VoidCraft.blocks.cosmicMaterial.getDefaultState(), 3, new Predicate<IBlockState>() {
+		if (VoidCraft.config.canGenCosmicMaterial()) {
+			for (int i = 0; i < 10; i++) {
+				int Xcoord = BlockX + random.nextInt(16);
+				int Zcoord = BlockZ + random.nextInt(16);
+				int Ycoord = random.nextInt(255);
+				new WorldGenMinable(VoidCraft.blocks.cosmicMaterial.getDefaultState(), 3, new Predicate<IBlockState>() {
 
-				@Override
-				public boolean apply(IBlockState input) {
-					return input != Blocks.AIR.getDefaultState();
-				}
+					@Override
+					public boolean apply(IBlockState input) {
+						return input != Blocks.AIR.getDefaultState();
+					}
 
-			}).generate(world, random, new BlockPos(Xcoord, Ycoord, Zcoord));
+				}).generate(world, random, new BlockPos(Xcoord, Ycoord, Zcoord));
+			}
 		}
 	}
 }

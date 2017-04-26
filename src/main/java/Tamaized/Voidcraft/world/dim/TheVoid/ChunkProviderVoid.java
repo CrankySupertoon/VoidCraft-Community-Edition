@@ -337,7 +337,6 @@ public class ChunkProviderVoid implements IChunkGenerator {
 		ChunkPos chunkpos = new ChunkPos(x, z);
 		this.genFortress.generateStructure(this.world, this.rand, chunkpos);
 		this.genCity.generateStructure(this.world, this.rand, chunkpos);
-
 		WorldGenMinable worldgenminable = new WorldGenMinable(VoidCraft.blocks.oreVoidcrystal.getDefaultState(), 5, new Predicate<IBlockState>() {
 
 			@Override
@@ -348,8 +347,11 @@ public class ChunkProviderVoid implements IChunkGenerator {
 		});
 		WorldGenEtherealPlants worldGenEtherealPlants = new WorldGenEtherealPlants();
 		int k1;
-		for (k1 = 0; k1 < 16; ++k1) {
-			worldgenminable.generate(this.world, this.rand, blockpos.add(this.rand.nextInt(16), this.rand.nextInt(108) + 10, this.rand.nextInt(16)));
+
+		if (VoidCraft.config.canGenVoidCrystalOre()) {
+			for (k1 = 0; k1 < 16; ++k1) {
+				worldgenminable.generate(this.world, this.rand, blockpos.add(this.rand.nextInt(16), this.rand.nextInt(108) + 10, this.rand.nextInt(16)));
+			}
 		}
 
 		for (k1 = 0; k1 < 16; ++k1) {
