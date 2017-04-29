@@ -5,6 +5,7 @@ import java.io.File;
 import org.apache.logging.log4j.LogManager;
 
 import Tamaized.TamModized.TamModBase;
+import Tamaized.TamModized.TamModized;
 import Tamaized.TamModized.proxy.AbstractProxy;
 import Tamaized.TamModized.registry.PortalHandlerRegistry;
 import Tamaized.Voidcraft.Addons.thaumcraft.VoidCraftThaum;
@@ -141,7 +142,7 @@ import net.minecraftforge.fml.common.network.FMLEventChannel;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
-@Mod(modid = VoidCraft.modid, name = "VoidCraft", guiFactory = "Tamaized.Voidcraft.GUI.client.GUIConfigFactory", version = VoidCraft.version, dependencies = "required-before:${tamversion}@[${tamversion},)")
+@Mod(modid = VoidCraft.modid, name = "VoidCraft", guiFactory = "Tamaized.Voidcraft.GUI.client.GUIConfigFactory", version = VoidCraft.version, dependencies = "required-before:" + TamModized.modid + "@[${tamversion},)")
 public class VoidCraft extends TamModBase {
 
 	public static final boolean isDevBuild = false;
@@ -339,7 +340,7 @@ public class VoidCraft extends TamModBase {
 		DimensionManager.registerDimension(config.getDimensionIdVoid(), DimensionType.register("The Void", "_void", config.getDimensionIdVoid(), WorldProviderVoid.class, false));
 		DimensionManager.registerDimension(config.getDimensionIdXia(), DimensionType.register("???", "_xia", config.getDimensionIdXia(), WorldProviderXia.class, false));
 		if (isDevBuild) DimensionManager.registerDimension(config.getDimensionIdDalQuor(), DimensionType.register("Dal Quor", "_dalquor", config.getDimensionIdDalQuor(), WorldProviderDalQuor.class, false));
-		
+
 		// Register Portals
 		PortalHandlerRegistry.register(blocks.blockPortalVoid, config.getDimensionIdVoid(), TeleporterVoid.class);
 		PortalHandlerRegistry.register(blocks.blockPortalXia, config.getDimensionIdXia(), TeleporterXia.class);
