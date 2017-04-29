@@ -20,12 +20,12 @@ public class ClientInfusionOverlayRender {
 
 	@SubscribeEvent
 	public void InGameOverlay(RenderGameOverlayEvent e) {
-		Minecraft mc = Minecraft.getMinecraft();
-		EntityPlayerSP player = mc.player;
-		if (!player.hasCapability(CapabilityList.VOIDICINFUSION, null)) return;
-		IVoidicInfusionCapability cap = player.getCapability(CapabilityList.VOIDICINFUSION, null);
-
 		if (e.getType() == e.getType().PORTAL) {
+			Minecraft mc = Minecraft.getMinecraft();
+			EntityPlayerSP player = mc.player;
+			if (!player.hasCapability(CapabilityList.VOIDICINFUSION, null)) return;
+			IVoidicInfusionCapability cap = player.getCapability(CapabilityList.VOIDICINFUSION, null);
+			if (cap.getInfusion() <= 0) return;
 			ScaledResolution scaledRes = new ScaledResolution(mc);
 			GlStateManager.disableAlpha();
 			GlStateManager.disableDepth();
