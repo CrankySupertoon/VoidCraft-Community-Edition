@@ -3,6 +3,7 @@ package Tamaized.Voidcraft.events;
 import java.util.ArrayList;
 import java.util.List;
 
+import Tamaized.TamModized.helper.FloatyTextHelper;
 import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.capabilities.CapabilityList;
 import Tamaized.Voidcraft.capabilities.starforge.IStarForgeCapability;
@@ -57,7 +58,7 @@ public class DamageEvent {
 			if (living.hasCapability(CapabilityList.VOIDICINFUSION, null) && living.getCapability(CapabilityList.VOIDICINFUSION, null).getInfusionPerc() >= 0.50f) {
 				if (Math.floor(Math.random() * 5) == 0 && isWhiteListed(e.getSource(), true)) { // 0-4; 25%
 					e.setCanceled(true);
-					living.sendMessage(new TextComponentTranslation("voidcraft.misc.incorp"));
+					if (living instanceof EntityPlayer) FloatyTextHelper.sendText((EntityPlayer) living, "Incorporeal");
 					return;
 				}
 			}
@@ -91,7 +92,7 @@ public class DamageEvent {
 					EntityLivingBase p_190629_1_ = (EntityLivingBase) entity;
 					p_190629_1_.knockBack(player, 0.5F, player.posX - p_190629_1_.posX, player.posZ - p_190629_1_.posZ);
 				}
-				player.world.setEntityState(player, (byte)29);
+				player.world.setEntityState(player, (byte) 29);
 			}
 		}
 	}
