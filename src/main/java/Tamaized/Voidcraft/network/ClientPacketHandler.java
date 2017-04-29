@@ -2,6 +2,7 @@ package Tamaized.Voidcraft.network;
 
 import java.io.IOException;
 
+import Tamaized.TamModized.helper.MotionHelper;
 import Tamaized.Voidcraft.api.voidicpower.VoidicPowerItem;
 import Tamaized.Voidcraft.capabilities.CapabilityList;
 import Tamaized.Voidcraft.capabilities.vadeMecum.IVadeMecumCapability;
@@ -10,7 +11,6 @@ import Tamaized.Voidcraft.capabilities.voidicPower.IVoidicPowerCapability;
 import Tamaized.Voidcraft.entity.boss.xia.EntityBossXia;
 import Tamaized.Voidcraft.entity.boss.xia.render.EntityAnimationsXia;
 import Tamaized.Voidcraft.entity.ghost.EntityGhostPlayerBase;
-import Tamaized.Voidcraft.helper.EntityMotionHelper;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.ByteBufInputStream;
 import net.minecraft.client.Minecraft;
@@ -137,7 +137,7 @@ public class ClientPacketHandler {
 			}
 				break;
 			case PLAYER_MOTION: {
-				EntityMotionHelper.updatePlayerMotion(bbis.readDouble(), bbis.readDouble(), bbis.readDouble());
+				MotionHelper.updatePlayerMotion(bbis.readDouble(), bbis.readDouble(), bbis.readDouble());
 			}
 				break;
 			default: {

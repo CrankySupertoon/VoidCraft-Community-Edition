@@ -2,9 +2,9 @@ package Tamaized.Voidcraft.entity.nonliving;
 
 import java.util.List;
 
+import Tamaized.TamModized.helper.MotionHelper;
 import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.damageSources.DamageSourceVoidicInfusion;
-import Tamaized.Voidcraft.helper.EntityMotionHelper;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -89,7 +89,7 @@ public class EntityObsidianFlask extends EntityThrowable implements IEntityAddit
 					world.playEvent(2002, pos, 0xFFFFFF);
 					List<EntityLivingBase> damageList = world.getEntitiesWithinAABB(EntityLivingBase.class, new AxisAlignedBB(pos.add(-5, -5, -5), pos.add(5, 5, 5)));
 					for (EntityLivingBase e : damageList) {
-						EntityMotionHelper.addMotion(e, 0, 5, 0);
+						MotionHelper.addMotion(e, 0, 5, 0);
 					}
 				}
 					break;

@@ -3,13 +3,13 @@ package Tamaized.Voidcraft.xiaCastle.logic.battle.Xia.phases;
 import java.util.ArrayList;
 import java.util.Random;
 
+import Tamaized.TamModized.helper.MotionHelper;
 import Tamaized.TamModized.particles.ParticleHelper;
 import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.entity.boss.herobrine.extra.EntityHerobrineFireball;
 import Tamaized.Voidcraft.entity.boss.xia.EntityBossXia;
 import Tamaized.Voidcraft.entity.boss.xia.EntityBossXia.XiaTookDamagePacket;
 import Tamaized.Voidcraft.entity.nonliving.ProjectileDisintegration;
-import Tamaized.Voidcraft.helper.EntityMotionHelper;
 import Tamaized.Voidcraft.network.IVoidBossAIPacket;
 import Tamaized.Voidcraft.xiaCastle.logic.battle.EntityVoidNPCAIBase;
 import net.minecraft.entity.Entity;
@@ -137,7 +137,7 @@ public class EntityAIXiaPhase3<T extends EntityBossXia> extends EntityVoidNPCAIB
 			double mX = 0;
 			double mY = 1;
 			double mZ = -5;
-			EntityMotionHelper.addMotion(e, mX, mY, mZ);
+			MotionHelper.addMotion(e, mX, mY, mZ);
 		}
 	}
 
