@@ -19,17 +19,19 @@ public class BlockVoidcrystal extends TamBlock {
 		super(tab, material, n, hardness, SoundType.GLASS);
 	}
 
-	/**
-	 * Is this block (a) opaque and (B) a full 1m cube? This determines whether
-	 * or not to render the shared face of two adjacent blocks and also whether
-	 * the player can attach torches, redstone wire, etc to this block.
-	 */
-	public boolean isOpaqueCube() {
+	@Override
+	public boolean isOpaqueCube(IBlockState state) {
 		return false;
 	}
 
-	public int getRenderBlockPass() {
-		return 1;
+	@Override
+	public boolean isFullCube(IBlockState state) {
+		return false;
+	}
+
+	@Override
+	protected boolean canSilkHarvest() {
+		return true;
 	}
 
 	@Override
@@ -37,6 +39,7 @@ public class BlockVoidcrystal extends TamBlock {
 		return VoidCraft.items.voidcrystal;
 	}
 
+	@Override
 	public int quantityDropped(Random random) {
 		return 9;
 	}
