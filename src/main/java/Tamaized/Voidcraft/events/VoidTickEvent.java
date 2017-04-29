@@ -1,26 +1,18 @@
 package Tamaized.Voidcraft.events;
 
-import java.util.HashMap;
 import java.util.Iterator;
-import java.util.Map;
-import java.util.UUID;
 
 import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.capabilities.CapabilityList;
 import Tamaized.Voidcraft.capabilities.vadeMecum.IVadeMecumCapability;
-import Tamaized.Voidcraft.handlers.ClientPortalDataHandler;
-import Tamaized.Voidcraft.handlers.PortalDataHandler;
 import Tamaized.Voidcraft.handlers.XiaFlightHandler;
 import Tamaized.Voidcraft.world.dim.TheVoid.ChunkProviderVoid;
 import Tamaized.Voidcraft.world.dim.Xia.TeleporterXia;
 import Tamaized.Voidcraft.world.dim.Xia.WorldProviderXia;
 import Tamaized.Voidcraft.world.dim.dalQuor.TeleporterDream;
-import net.minecraft.block.Block;
-import net.minecraft.client.entity.EntityOtherPlayerMP;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.item.ItemStack;
 import net.minecraft.network.play.server.SPacketEntityEffect;
 import net.minecraft.network.play.server.SPacketPlayerAbilities;
 import net.minecraft.network.play.server.SPacketRespawn;
@@ -42,8 +34,6 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 
 public class VoidTickEvent {
-
-	public Map<UUID, PortalDataHandler> data = new HashMap<UUID, PortalDataHandler>();
 
 	@SubscribeEvent
 	public void onPlayerTick(TickEvent.PlayerTickEvent e) {
@@ -112,85 +102,10 @@ public class VoidTickEvent {
 			}
 		}
 
-		if (e.player.world.isRemote || e.side == e.side.CLIENT) {
-			BlockPos bPos = new BlockPos(MathHelper.floor(e.player.posX), MathHelper.floor(e.player.posY - 0.2D - (double) e.player.getYOffset()), MathHelper.floor(e.player.posZ));
-			Block block = e.player.world.getBlockState(bPos).getBlock();
-			if (ClientPortalDataHandler.type != VoidCraft.config.getDimensionIdVoid() && block == VoidCraft.blocks.blockPortalVoid) {
-				if (!ClientPortalDataHandler.active) {
-					ClientPortalDataHandler.type = VoidCraft.config.getDimensionIdVoid();
-					ClientPortalDataHandler.active = true;
-				}
-			} else if (ClientPortalDataHandler.type != VoidCraft.config.getDimensionIdXia() && block == VoidCraft.blocks.blockPortalXia) {
-				if (!ClientPortalDataHandler.active) {
-					ClientPortalDataHandler.type = VoidCraft.config.getDimensionIdXia();
-					ClientPortalDataHandler.active = true;
-				}
-			} else {
-				if (ClientPortalDataHandler.active && !(ClientPortalDataHandler.type == VoidCraft.config.getDimensionIdVoid() && block == VoidCraft.blocks.blockPortalVoid) && !(ClientPortalDataHandler.type == VoidCraft.config.getDimensionIdXia() && block == VoidCraft.blocks.blockPortalXia)) {
-					ClientPortalDataHandler.active = false;
-					// ClientPortalDataHandler.type = 0;
-				}
-			}
-			return;
-		}
-
-		if (data.get(e.player.getGameProfile().getId()) != null) {
-
-			// Determine when to Teleport
-			BlockPos bPos = new BlockPos(MathHelper.floor(e.player.posX), MathHelper.floor(e.player.posY - 0.2D - (double) e.player.getYOffset()), MathHelper.floor(e.player.posZ));
-			Block block = e.player.world.getBlockState(bPos).getBlock();
-			PortalDataHandler j = data.get(e.player.getGameProfile().getId());
-			if (j.type != VoidCraft.config.getDimensionIdVoid() && block == VoidCraft.blocks.blockPortalVoid) {
-				if (!j.active) {
-					j.type = VoidCraft.config.getDimensionIdVoid();
-					j.active = true;
-				}
-			} else if (j.type != VoidCraft.config.getDimensionIdXia() && block == VoidCraft.blocks.blockPortalXia) {
-				if (!j.active) {
-					j.type = VoidCraft.config.getDimensionIdXia();
-					j.active = true;
-				}
-			} else {
-				if (j.active && !(j.type == VoidCraft.config.getDimensionIdVoid() && block == VoidCraft.blocks.blockPortalVoid) && !(j.type == VoidCraft.config.getDimensionIdXia() && block == VoidCraft.blocks.blockPortalXia)) {
-					j.active = false;
-					j.type = 0;
-				}
-			}
-			if (j.active) {
-				if (j.tick < 0.8F) j.tick = j.tick + 0.012F;
-				else j.tick = 0.8F;
-			} else {
-				if (j.tick > 0.0F) j.tick = j.tick - 0.030F;
-				else j.tick = 0.0F;
-			}
-
-			// Teleport Player to Dimension when Ready
-			if (!j.hasTeleported && j.tick >= 0.8F) {
-				// System.out.println(e.player);
-				if (e.player instanceof EntityPlayerMP) {
-					teleport((EntityPlayerMP) e.player);
-				} else if (e.player instanceof EntityOtherPlayerMP) {
-					// Client Side do nothing
-				} else {
-					String err = "ISSUE DETECTED, REPORT THIS TO THE AUTHOR OF VOIDCRAFT; Data: " + j + " : " + e.player + "; " + e.player.getClass();
-					VoidCraft.instance.logger.info(err);
-					// System.out.println(err);
-				}
-				j.hasTeleported = true;
-			}
-
-			if (j.tick <= 0.0F) {
-				j.hasTeleported = false;
-			}
-		} else {
-			VoidCraft.instance.logger.info("Adding UUID: '" + e.player.getGameProfile().getId() + "' (" + e.player.getGameProfile().getName() + ") to Portal Overlay Handler");
-			data.put(e.player.getGameProfile().getId(), new PortalDataHandler(e.player.getGameProfile().getId(), e.player.dimension == VoidCraft.config.getDimensionIdVoid() ? 0 : e.player.dimension == VoidCraft.config.getDimensionIdXia() ? 0 : e.player.dimension));
-		}
 	}
 
 	public void forcePlayerTeleportFromXia(EntityPlayerMP player) {
-		PortalDataHandler j = data.get(player.getGameProfile().getId());
-		transferPlayerToDimension(player.mcServer, player, j.lastDim, new TeleportLoc(new TeleporterXia(player.mcServer.worldServerForDimension(j.lastDim))));
+		transferPlayerToDimension(player.mcServer, player, 0, new TeleportLoc(new TeleporterXia(player.mcServer.worldServerForDimension(0))));
 	}
 
 	public void dream(EntityPlayer player) {
@@ -198,21 +113,6 @@ public class VoidTickEvent {
 			EntityPlayerMP p = (EntityPlayerMP) player;
 			int dim = (p.dimension == VoidCraft.config.getDimensionIdDalQuor() ? 0 : VoidCraft.config.getDimensionIdDalQuor());
 			transferPlayerToDimension(p.mcServer, p, dim, new TeleportLoc(new TeleporterDream(p.mcServer.worldServerForDimension(dim))));
-		}
-	}
-
-	private void teleport(EntityPlayerMP player) {
-		PortalDataHandler j = data.get(player.getGameProfile().getId());
-		if (player.dimension != j.type && player.dimension != 1 && player.dimension != VoidCraft.config.getDimensionIdVoid() && player.dimension != VoidCraft.config.getDimensionIdXia()) { // Teleport into void/xia
-			j.lastDim = player.dimension;
-			transferPlayerToDimension(player.mcServer, player, j.type, new TeleportLoc(j.getTeleporter(player)));
-		} else if (player.dimension == 1) { // From end
-			j.lastDim = player.dimension;
-			transferPlayerToDimension(player.mcServer, player, j.type, new TeleportLoc(j.getTeleporter(player)));
-			transferPlayerToDimension(player.mcServer, player, j.type, new TeleportLoc(j.getTeleporter(player)));
-		} else { // Teleport out of void/xia
-			j.lastDim = j.lastDim == VoidCraft.config.getDimensionIdVoid() ? 0 : j.lastDim == VoidCraft.config.getDimensionIdXia() ? 0 : j.lastDim; // Ensure lastDim never equals Void or Xia IDs
-			transferPlayerToDimension(player.mcServer, player, j.lastDim, new TeleportLoc(j.getTeleporter(player)));
 		}
 	}
 

@@ -79,7 +79,6 @@ import Tamaized.Voidcraft.entity.nonliving.render.RenderSpellImplosion;
 import Tamaized.Voidcraft.entity.nonliving.render.RenderSpellRune;
 import Tamaized.Voidcraft.entity.nonliving.render.RenderVoidChain;
 import Tamaized.Voidcraft.events.client.DebugEvent;
-import Tamaized.Voidcraft.events.client.OverlayEvent;
 import Tamaized.Voidcraft.events.client.TextureStitch;
 import Tamaized.Voidcraft.handlers.SkinHandler;
 import Tamaized.Voidcraft.machina.tileentity.TileEntityVoidicCharger;
@@ -356,7 +355,6 @@ public class ClientProxy extends AbstractProxy {
 	@Override
 	public void postInit() {
 		// Events
-		MinecraftForge.EVENT_BUS.register(new OverlayEvent());
 		MinecraftForge.EVENT_BUS.register(new BossBarOverlay());
 		MinecraftForge.EVENT_BUS.register(new BGMusic());
 		MinecraftForge.EVENT_BUS.register(new DebugEvent());

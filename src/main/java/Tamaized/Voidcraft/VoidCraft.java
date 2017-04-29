@@ -5,8 +5,8 @@ import java.io.File;
 import org.apache.logging.log4j.LogManager;
 
 import Tamaized.TamModized.TamModBase;
-import Tamaized.TamModized.TamModized;
 import Tamaized.TamModized.proxy.AbstractProxy;
+import Tamaized.TamModized.registry.PortalHandlerRegistry;
 import Tamaized.Voidcraft.Addons.thaumcraft.VoidCraftThaum;
 import Tamaized.Voidcraft.GUI.GuiHandler;
 import Tamaized.Voidcraft.blocks.TileEntityNoBreak;
@@ -115,7 +115,9 @@ import Tamaized.Voidcraft.structures.voidFortress.MapGenVoidFortress;
 import Tamaized.Voidcraft.structures.voidFortress.StructureVoidFortressPieces;
 import Tamaized.Voidcraft.vadeMecum.progression.RitualList;
 import Tamaized.Voidcraft.world.WorldGeneratorVoid;
+import Tamaized.Voidcraft.world.dim.TheVoid.TeleporterVoid;
 import Tamaized.Voidcraft.world.dim.TheVoid.WorldProviderVoid;
+import Tamaized.Voidcraft.world.dim.Xia.TeleporterXia;
 import Tamaized.Voidcraft.world.dim.Xia.WorldProviderXia;
 import Tamaized.Voidcraft.world.dim.dalQuor.WorldProviderDalQuor;
 import net.minecraft.entity.EnumCreatureType;
@@ -337,6 +339,10 @@ public class VoidCraft extends TamModBase {
 		DimensionManager.registerDimension(config.getDimensionIdVoid(), DimensionType.register("The Void", "_void", config.getDimensionIdVoid(), WorldProviderVoid.class, false));
 		DimensionManager.registerDimension(config.getDimensionIdXia(), DimensionType.register("???", "_xia", config.getDimensionIdXia(), WorldProviderXia.class, false));
 		if (isDevBuild) DimensionManager.registerDimension(config.getDimensionIdDalQuor(), DimensionType.register("Dal Quor", "_dalquor", config.getDimensionIdDalQuor(), WorldProviderDalQuor.class, false));
+		
+		// Register Portals
+		PortalHandlerRegistry.register(blocks.blockPortalVoid, config.getDimensionIdVoid(), TeleporterVoid.class);
+		PortalHandlerRegistry.register(blocks.blockPortalXia, config.getDimensionIdXia(), TeleporterXia.class);
 
 		// Register World Gen
 		GameRegistry.registerWorldGenerator(new WorldGeneratorVoid(), 0);
