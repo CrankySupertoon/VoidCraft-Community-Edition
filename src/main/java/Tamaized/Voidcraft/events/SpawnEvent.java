@@ -27,7 +27,7 @@ public class SpawnEvent {
 				if (event.getEntity() instanceof EntityLivingBase && !(event.getEntity() instanceof EntityPlayer || event.getEntity() instanceof EntityVoidMob || event.getEntity() instanceof EntityBossCorruptedPawn || event.getEntity() instanceof EntityVoidNPC || !(event.getEntity() instanceof EntityHerobrineCreeper) || !(event.getEntity() instanceof EntityShulker))) {
 					event.setResult(Result.DENY);
 				}
-			} else if (VoidCraft.isDevBuild && event.getWorld().provider.getDimension() == VoidCraft.config.getDimensionIdDalQuor()) {
+			} else if (event.getWorld().provider.getDimension() == VoidCraft.config.getDimensionIdDalQuor()) {
 				if (BiomeGenDream.allowedEntities.contains(event.getEntity().getClass())){
 					if(event.getWorld().rand.nextInt(500) == 0) event.setResult(Result.ALLOW);
 					else event.setResult(Result.DENY);

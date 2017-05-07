@@ -145,7 +145,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 @Mod(modid = VoidCraft.modid, name = "VoidCraft", guiFactory = "Tamaized.Voidcraft.GUI.client.GUIConfigFactory", version = VoidCraft.version, dependencies = "required-before:" + TamModized.modid + "@[${tamversion},)")
 public class VoidCraft extends TamModBase {
 
-	public static final boolean isDevBuild = false;
+	// public static final boolean isDevBuild = false;
 
 	public static final String version = "${version}";
 	public static final String modid = "voidcraft";
@@ -339,7 +339,7 @@ public class VoidCraft extends TamModBase {
 		// Register Dimensions
 		DimensionManager.registerDimension(config.getDimensionIdVoid(), DimensionType.register("The Void", "_void", config.getDimensionIdVoid(), WorldProviderVoid.class, false));
 		DimensionManager.registerDimension(config.getDimensionIdXia(), DimensionType.register("???", "_xia", config.getDimensionIdXia(), WorldProviderXia.class, false));
-		if (isDevBuild) DimensionManager.registerDimension(config.getDimensionIdDalQuor(), DimensionType.register("Dal Quor", "_dalquor", config.getDimensionIdDalQuor(), WorldProviderDalQuor.class, false));
+		DimensionManager.registerDimension(config.getDimensionIdDalQuor(), DimensionType.register("Dal Quor", "_dalquor", config.getDimensionIdDalQuor(), WorldProviderDalQuor.class, false));
 
 		// Register Portals
 		PortalHandlerRegistry.register(blocks.blockPortalVoid, config.getDimensionIdVoid(), TeleporterVoid.class);

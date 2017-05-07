@@ -57,7 +57,7 @@ public class BGMusic {
 			if (world.provider.getDimension() == VoidCraft.config.getDimensionIdVoid()) {
 				if (isPlaying(sound)) e.setResultSound(null);
 				else e.setResultSound(sound = PositionedSoundRecord.getMusicRecord(musicVoid[world.rand.nextInt(musicVoid.length)]));
-			} else if (VoidCraft.isDevBuild && world.provider.getDimension() == VoidCraft.config.getDimensionIdDalQuor()) {
+			} else if (world.provider.getDimension() == VoidCraft.config.getDimensionIdDalQuor()) {
 				if (isPlaying(sound)) e.setResultSound(null);
 				else e.setResultSound(sound = PositionedSoundRecord.getMusicRecord(musicDalQuor[world.rand.nextInt(musicDalQuor.length)]));
 			} else if (world.provider.getDimension() == VoidCraft.config.getDimensionIdXia()) {
@@ -90,7 +90,7 @@ public class BGMusic {
 	}
 
 	private static boolean isNotInDims(int dim) {
-		return dim != VoidCraft.config.getDimensionIdXia() && dim != VoidCraft.config.getDimensionIdVoid() && (!VoidCraft.isDevBuild || dim != VoidCraft.config.getDimensionIdDalQuor());
+		return dim != VoidCraft.config.getDimensionIdXia() && dim != VoidCraft.config.getDimensionIdVoid() && dim != VoidCraft.config.getDimensionIdDalQuor();
 	}
 
 	public static boolean isPlaying(ISound sound) {

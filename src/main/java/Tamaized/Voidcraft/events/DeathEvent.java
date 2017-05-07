@@ -13,7 +13,7 @@ public class DeathEvent {
 	@SubscribeEvent
 	public void onDeath(LivingDeathEvent e) {
 		EntityLivingBase target = e.getEntityLiving();
-		if (VoidCraft.isDevBuild && target instanceof EntityPlayer && target.world.provider.getDimension() == VoidCraft.config.getDimensionIdDalQuor()) {
+		if (target instanceof EntityPlayer && target.world.provider.getDimension() == VoidCraft.config.getDimensionIdDalQuor()) {
 			target.setHealth(target.getMaxHealth());
 			e.setCanceled(true);
 			VoidCraft.instance.VoidTickEvent.dream((EntityPlayer) target);

@@ -68,17 +68,17 @@ public class ConfigHandler {
 		if (firstLoad) {
 			temp_dimensionIdVoid = dimensionIdVoid = config.get(Configuration.CATEGORY_GENERAL, "Void Dimension ID", default_dimensionIdVoid).getInt();
 			temp_dimensionIdXia = dimensionIdXia = config.get(Configuration.CATEGORY_GENERAL, "Xia Dimension ID", dimensionIdXia).getInt();
-			if (VoidCraft.isDevBuild) temp_dimensionIdDalQuor = dimensionIdDalQuor = config.get(Configuration.CATEGORY_GENERAL, "Dal Quor Dimension ID", dimensionIdDalQuor).getInt();
+			temp_dimensionIdDalQuor = dimensionIdDalQuor = config.get(Configuration.CATEGORY_GENERAL, "Dal Quor Dimension ID", dimensionIdDalQuor).getInt();
 		} else {
 			temp_dimensionIdVoid = config.get(Configuration.CATEGORY_GENERAL, "Void Dimension ID", default_dimensionIdVoid).getInt();
 			temp_dimensionIdXia = config.get(Configuration.CATEGORY_GENERAL, "Xia Dimension ID", dimensionIdXia).getInt();
-			if (VoidCraft.isDevBuild) temp_dimensionIdDalQuor = config.get(Configuration.CATEGORY_GENERAL, "Dal Quor Dimension ID", dimensionIdDalQuor).getInt();
+			temp_dimensionIdDalQuor = config.get(Configuration.CATEGORY_GENERAL, "Dal Quor Dimension ID", dimensionIdDalQuor).getInt();
 		}
 		realityWhitelist = IntStream.of(config.get(Configuration.CATEGORY_GENERAL, "Reality Hole Dimension Whitelist", default_realityWhitelist, "List of Dimension IDs the Reality Hole will attempt to send you to").getIntList()).boxed().collect(Collectors.toList());
 		Iterator<Integer> iter = realityWhitelist.iterator();
 		while (iter.hasNext()) {
 			int id = iter.next();
-			if ((VoidCraft.isDevBuild && id == getDimensionIdDalQuor()) || id == getDimensionIdXia()) iter.remove();
+			if (id == getDimensionIdDalQuor() || id == getDimensionIdXia()) iter.remove();
 		}
 		generate_VoidOre = config.get(Configuration.CATEGORY_GENERAL, "Enable VoidCrystal Ore Gen", default_generate_VoidOre).getBoolean();
 		generate_CosmicOre = config.get(Configuration.CATEGORY_GENERAL, "Enable Cosmic Material Gen", default_generate_CosmicOre).getBoolean();
@@ -92,7 +92,7 @@ public class ConfigHandler {
 		config.get(Configuration.CATEGORY_GENERAL, "Render Vade Mecum Item Particles", default_renderThirdPersonVadeMecumParticles).set(renderThirdPersonVadeMecumParticles);
 		config.get(Configuration.CATEGORY_GENERAL, "Void Dimension ID", default_dimensionIdVoid).set(temp_dimensionIdVoid);
 		config.get(Configuration.CATEGORY_GENERAL, "Xia Dimension ID", dimensionIdXia).set(temp_dimensionIdXia);
-		if (VoidCraft.isDevBuild) config.get(Configuration.CATEGORY_GENERAL, "Dal Quor Dimension ID", dimensionIdDalQuor).set(temp_dimensionIdDalQuor);
+		config.get(Configuration.CATEGORY_GENERAL, "Dal Quor Dimension ID", dimensionIdDalQuor).set(temp_dimensionIdDalQuor);
 		config.get(Configuration.CATEGORY_GENERAL, "Reality Hole Dimension Whitelist", default_realityWhitelist, "List of Dimension IDs the Reality Hole will attempt to send you to").set(ArrayUtils.toPrimitive(realityWhitelist.toArray(new Integer[realityWhitelist.size()])));
 		config.get(Configuration.CATEGORY_GENERAL, "Enable VoidCrystal Ore Gen", default_generate_VoidOre).set(generate_VoidOre);
 		config.get(Configuration.CATEGORY_GENERAL, "Enable Cosmic Material Gen", default_generate_CosmicOre).set(generate_CosmicOre);
