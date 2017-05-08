@@ -4,6 +4,7 @@ import java.io.DataOutputStream;
 
 import Tamaized.TamModized.helper.PacketHelper;
 import Tamaized.TamModized.helper.PacketHelper.PacketWrapper;
+import Tamaized.TamModized.helper.TranslateHelper;
 import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.GUI.server.RealityTeleporterContainer;
 import Tamaized.Voidcraft.capabilities.CapabilityList;
@@ -15,7 +16,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -62,7 +62,7 @@ public class RealityTeleporterGUI extends GuiContainer {
 		super.initGui();
 
 		buttonList.clear();
-		buttonList.add(button_clearLink = new GuiButton(BUTTON_LINK_CLEAR, guiLeft + 170, guiTop + 122, 56, 20, ("" + I18n.format("voidcraft.gui.misc.button.clearlink", new Object[0])).trim()));
+		buttonList.add(button_clearLink = new GuiButton(BUTTON_LINK_CLEAR, guiLeft + 170, guiTop + 122, 56, 20, TranslateHelper.translate("voidcraft.gui.misc.button.clearlink")));
 	}
 
 	@Override
@@ -104,19 +104,19 @@ public class RealityTeleporterGUI extends GuiContainer {
 
 	@Override
 	protected void drawGuiContainerForegroundLayer(int param1, int param2) {
-		String text = ("" + I18n.format("voidcraft.gui.realityteleporter.title", new Object[0])).trim();
+		String text = TranslateHelper.translate("voidcraft.gui.realityteleporter.title");
 		fontRendererObj.drawString(text, xSize / 2 - fontRendererObj.getStringWidth(text) / 2, ySize - 260, 0xAAAAAA);
 		BlockPos linkPos = RealityTeleporter.getLink(parent);
 		if (linkPos != null) {
-			text = ("" + I18n.format("voidcraft.gui.realityteleporterblock.link", new Object[0])).trim()+":";
+			text = TranslateHelper.translate("voidcraft.gui.realityteleporterblock.link") + ":";
 			fontRendererObj.drawString(text, (xSize / 2) + 30, ySize / 2 - 70, 0xAAAAAA);
 			text = "{ x: " + linkPos.getX() + ", y:" + linkPos.getY() + ", z:" + linkPos.getZ() + " }";
 			fontRendererObj.drawString(text, (xSize / 2) + 30, ySize / 2 - 60, 0xAAAAAA);
 		} else {
-			text = ("" + I18n.format("voidcraft.gui.realityteleporterblock.nolink", new Object[0])).trim()+":";
+			text = TranslateHelper.translate("voidcraft.gui.realityteleporterblock.nolink") + ":";
 			fontRendererObj.drawString(text, (xSize / 2) + 30, ySize / 2 - 70, 0xAAAAAA);
 		}
-		text = ("" + I18n.format("voidcraft.gui.misc.power", new Object[0])).trim()+":";
+		text = TranslateHelper.translate("voidcraft.gui.misc.power") + ":";
 		fontRendererObj.drawString(text, (xSize / 2 - fontRendererObj.getStringWidth(text) / 1) - 55, ySize / 2 - 70, 0xFF0000);
 		text = cap == null ? "N/A" : cap.getCurrentPower() + "/";
 		fontRendererObj.drawString(text, (xSize / 2 - fontRendererObj.getStringWidth(text) / 1) - 55, ySize / 2 - 60, 0xFF0000);

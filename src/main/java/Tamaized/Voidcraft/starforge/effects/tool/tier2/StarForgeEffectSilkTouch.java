@@ -1,8 +1,8 @@
 package Tamaized.Voidcraft.starforge.effects.tool.tier2;
 
+import Tamaized.TamModized.helper.TranslateHelper;
 import Tamaized.Voidcraft.starforge.effects.IStarForgeEffect;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.resources.I18n;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.init.Enchantments;
@@ -55,7 +55,7 @@ public class StarForgeEffectSilkTouch implements IStarForgeEffect {
 
 	@Override
 	public String getName() {
-		return ("" + I18n.format("voidcraft.VadeMecum.docs.title.starforge.effect.silkTouch", new Object[0])).trim();
+		return TranslateHelper.translate("voidcraft.VadeMecum.docs.title.starforge.effect.silkTouch");
 	}
 
 }

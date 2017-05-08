@@ -1,5 +1,6 @@
 package Tamaized.Voidcraft.GUI.client;
 
+import Tamaized.TamModized.helper.TranslateHelper;
 import Tamaized.Voidcraft.capabilities.vadeMecum.IVadeMecumCapability;
 import Tamaized.Voidcraft.vadeMecum.progression.VadeMecumPacketHandler;
 import net.minecraft.client.Minecraft;
@@ -7,7 +8,6 @@ import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.resources.I18n;
 
 public class VadeMecumInfusionGUI extends GuiScreen {
 
@@ -25,8 +25,8 @@ public class VadeMecumInfusionGUI extends GuiScreen {
 	public void initGui() {
 		super.initGui();
 
-		buttonList.add(new GuiButton(BUTTON_BACK, 5, height - 50, 80, 20, ("" + I18n.format("voidcraft.gui.misc.back", new Object[0])).trim()));
-		buttonList.add(new GuiButton(BUTTON_CLOSE, 5, height - 25, 80, 20, ("" + I18n.format("voidcraft.gui.misc.close", new Object[0])).trim()));
+		buttonList.add(new GuiButton(BUTTON_BACK, 5, height - 50, 80, 20, TranslateHelper.translate("voidcraft.gui.misc.back")));
+		buttonList.add(new GuiButton(BUTTON_CLOSE, 5, height - 25, 80, 20, TranslateHelper.translate("voidcraft.gui.misc.close")));
 
 		int xLoc = (width / 2) - 55;
 		int yLoc = 28;
@@ -75,7 +75,7 @@ public class VadeMecumInfusionGUI extends GuiScreen {
 	public void drawScreen(int mouseX, int mouseY, float partialTicks) {
 		drawDefaultBackground();
 		super.drawScreen(mouseX, mouseY, partialTicks);
-		drawCenteredString(fontRendererObj, ("" + I18n.format("voidcraft.gui.voidicInfusionControl.title", new Object[0])).trim(), width / 2, 15, 16777215);
+		drawCenteredString(fontRendererObj, TranslateHelper.translate("voidcraft.gui.voidicInfusionControl.title"), width / 2, 15, 16777215);
 	}
 
 	public class PassiveButton extends GuiButton {
@@ -119,7 +119,7 @@ public class VadeMecumInfusionGUI extends GuiScreen {
 
 				drawRect(xPosition, yPosition, xPosition + width, yPosition + height, j);
 				GlStateManager.pushMatrix();
-				fontrenderer.drawString(("" + I18n.format(IVadeMecumCapability.getPassiveName(passive), new Object[0])).trim(), xPosition + 18, yPosition + (height / 2) - (mc.fontRendererObj.FONT_HEIGHT / 2), 0x7700FF);
+				fontrenderer.drawString(TranslateHelper.translate(IVadeMecumCapability.getPassiveName(passive)), xPosition + 18, yPosition + (height / 2) - (mc.fontRendererObj.FONT_HEIGHT / 2), 0x7700FF);
 				GlStateManager.popMatrix();
 			}
 		}

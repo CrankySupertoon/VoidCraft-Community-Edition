@@ -1,5 +1,6 @@
 package Tamaized.Voidcraft.GUI.client;
 
+import Tamaized.TamModized.helper.TranslateHelper;
 import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.GUI.server.VoidicChargerContainer;
 import Tamaized.Voidcraft.machina.tileentity.TileEntityVoidicCharger;
@@ -7,7 +8,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 
@@ -42,9 +42,9 @@ public class VoidicChargerGUI extends GuiContainer {
 
 	@Override
 	protected void drawGuiContainerForegroundLayer(int param1, int param2) {
-		String text = ("" + I18n.format("voidcraft.gui.charger.title", new Object[0])).trim();
+		String text = TranslateHelper.translate("voidcraft.gui.charger.title");
 		this.fontRendererObj.drawString(text, this.xSize / 2 - this.fontRendererObj.getStringWidth(text) / 2, this.ySize - 260, 0xAAAAAA);
-		text = ("" + I18n.format("voidcraft.gui.misc.power", new Object[0])).trim()+":";
+		text = TranslateHelper.translate("voidcraft.gui.misc.power")+":";
 		this.fontRendererObj.drawString(text, (this.xSize / 2 - this.fontRendererObj.getStringWidth(text) / 1) - 55, this.ySize / 2 - 70, 0xFF0000);
 		text = te.getPowerAmount() + "/";
 		this.fontRendererObj.drawString(text, (this.xSize / 2 - this.fontRendererObj.getStringWidth(text) / 1) - 55, this.ySize / 2 - 60, 0xFF0000);

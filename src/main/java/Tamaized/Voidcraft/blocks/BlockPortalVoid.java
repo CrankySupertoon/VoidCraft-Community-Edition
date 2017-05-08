@@ -2,8 +2,6 @@ package Tamaized.Voidcraft.blocks;
 
 import java.util.Random;
 
-import javax.annotation.Nullable;
-
 import com.google.common.cache.LoadingCache;
 
 import Tamaized.TamModized.blocks.TamBlockPortal;

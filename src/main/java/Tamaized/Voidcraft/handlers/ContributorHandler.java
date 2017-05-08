@@ -8,9 +8,6 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.UUID;
 
-import org.lwjgl.opengl.ContextCapabilities;
-import org.lwjgl.opengl.GLContext;
-
 import Tamaized.Voidcraft.VoidCraft;
 import net.minecraft.item.EnumDyeColor;
 

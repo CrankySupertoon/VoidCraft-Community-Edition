@@ -1,12 +1,12 @@
 package Tamaized.Voidcraft.GUI.client;
 
+import Tamaized.TamModized.helper.TranslateHelper;
 import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.GUI.server.HeimdallContainer;
 import Tamaized.Voidcraft.machina.tileentity.TileEntityHeimdall;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
@@ -37,13 +37,13 @@ public class HeimdallGUI extends GuiContainer {
 		{
 			float scale = 47;
 			int k = (int) (((float) te.getFluidAmount() / (float) te.getMaxFluidAmount()) * scale);
-			drawTexturedModalRect(guiLeft + 196, guiTop + 132 - k, 0, 498 - (k), 12, k+1);
+			drawTexturedModalRect(guiLeft + 196, guiTop + 132 - k, 0, 498 - (k), 12, k + 1);
 		}
 
 		{
 			float scale = 46;
 			int k = (int) (((float) te.getEnergyStored() / (float) te.getMaxEnergyStored()) * scale);
-			drawTexturedModalRect(guiLeft + 124, guiTop + 131 - k, 12, 498 - (k), 12, k+1);
+			drawTexturedModalRect(guiLeft + 124, guiTop + 131 - k, 12, 498 - (k), 12, k + 1);
 		}
 
 		super.updateScreen();
@@ -51,17 +51,17 @@ public class HeimdallGUI extends GuiContainer {
 
 	@Override
 	protected void drawGuiContainerForegroundLayer(int param1, int param2) {
-		String text = ("" + I18n.format("voidcraft.gui.heimdall.title", new Object[0])).trim();
+		String text = TranslateHelper.translate("voidcraft.gui.heimdall.title");
 		fontRendererObj.drawString(text, xSize / 2 - fontRendererObj.getStringWidth(text) / 2, ySize - 260, 0xAAAAAA);
 
-		text = ("" + I18n.format("voidcraft.gui.misc.fluid", new Object[0])).trim()+":";
+		text = TranslateHelper.translate("voidcraft.gui.misc.fluid") + ":";
 		fontRendererObj.drawString(text, (xSize) - 132, ySize - 230, 0x7700FF);
 		text = te.getFluidAmount() + "";
 		fontRendererObj.drawString(text, (xSize) - 132, ySize - 220, 0x7700FF);
 		text = "/" + te.getMaxFluidAmount() + "mb";
 		fontRendererObj.drawString(text, (xSize) - 132, ySize - 210, 0x7700FF);
 
-		text = ("" + I18n.format("voidcraft.gui.misc.FE", new Object[0])).trim()+":";
+		text = TranslateHelper.translate("voidcraft.gui.misc.FE") + ":";
 		fontRendererObj.drawString(text, (xSize - fontRendererObj.getStringWidth(text)) - 226, ySize - 230, 0xAAAAFF);
 		text = te.getEnergyStored() + "";
 		fontRendererObj.drawString(text, ((xSize) - (fontRendererObj.getStringWidth(text))) - 226, ySize - 220, 0xAAAAFF);

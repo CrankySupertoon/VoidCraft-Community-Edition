@@ -6,6 +6,7 @@ import org.lwjgl.opengl.GL11;
 
 import Tamaized.TamModized.helper.PacketHelper;
 import Tamaized.TamModized.helper.PacketHelper.PacketWrapper;
+import Tamaized.TamModized.helper.TranslateHelper;
 import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.GUI.server.VoidBoxContainer;
 import Tamaized.Voidcraft.machina.tileentity.TileEntityVoidBox;
@@ -13,7 +14,6 @@ import Tamaized.Voidcraft.network.ServerPacketHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
-import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemRecord;
 import net.minecraft.util.ResourceLocation;
@@ -51,10 +51,10 @@ public class VoidBoxGUI extends GuiContainer {
 		super.initGui();
 
 		buttonList.clear();
-		buttonList.add(BtnPlay = new GuiButton(BUTTON_PLAY, guiLeft + 200, guiTop + 113, 33, 20, ("" + I18n.format("voidcraft.gui.misc.play", new Object[0])).trim()));
-		buttonList.add(BtnStop = new GuiButton(BUTTON_STOP, guiLeft + 100, guiTop + 113, 33, 20, ("" + I18n.format("voidcraft.gui.misc.stop", new Object[0])).trim()));
-		buttonList.add(BtnLoop = new GuiButton(BUTTON_LOOP, guiLeft + 240, guiTop + 113, 33, 20, ("" + I18n.format("voidcraft.gui.misc.loop", new Object[0])).trim()));
-		buttonList.add(BtnLoop = new GuiButton(BUTTON_AUTO, guiLeft + 25, guiTop + 113, 66, 20, ("" + I18n.format("voidcraft.gui.misc.auto", new Object[0])).trim()));
+		buttonList.add(BtnPlay = new GuiButton(BUTTON_PLAY, guiLeft + 200, guiTop + 113, 33, 20, TranslateHelper.translate("voidcraft.gui.misc.play")));
+		buttonList.add(BtnStop = new GuiButton(BUTTON_STOP, guiLeft + 100, guiTop + 113, 33, 20, TranslateHelper.translate("voidcraft.gui.misc.stop")));
+		buttonList.add(BtnLoop = new GuiButton(BUTTON_LOOP, guiLeft + 240, guiTop + 113, 33, 20, TranslateHelper.translate("voidcraft.gui.misc.loop")));
+		buttonList.add(BtnLoop = new GuiButton(BUTTON_AUTO, guiLeft + 25, guiTop + 113, 66, 20, TranslateHelper.translate("voidcraft.gui.misc.auto")));
 	}
 
 	@Override
@@ -112,9 +112,9 @@ public class VoidBoxGUI extends GuiContainer {
 	@Override
 	protected void drawGuiContainerForegroundLayer(int param1, int param2) {
 
-		String name = ("" + I18n.format("voidcraft.gui.musicbox.title", new Object[0])).trim();
+		String name = TranslateHelper.translate("voidcraft.gui.musicbox.title");
 		this.fontRendererObj.drawString(name, this.xSize / 2 - this.fontRendererObj.getStringWidth(name) / 2, this.ySize - 260, 0x7700FF);
-		name = ("" + I18n.format("voidcraft.gui.musicbox.curr", new Object[0])).trim() + ":";
+		name = TranslateHelper.translate("voidcraft.gui.musicbox.curr") + ":";
 		this.fontRendererObj.drawString(name, (this.xSize / 12 - this.fontRendererObj.getStringWidth(name) / 12) - 5, this.ySize - 240, 0xFF0000);
 
 		if (voidBox.isPlaying() && voidBox.getStackInSlot(0) != null) {
@@ -228,9 +228,9 @@ public class VoidBoxGUI extends GuiContainer {
 			fontRendererObj.drawString(voidBox.getStackInSlot(0) != null ? ((ItemRecord) voidBox.getStackInSlot(0).getItem()).getRecordNameLocal() : "", (xSize / 12) - 13 - (fontRendererObj.getStringWidth(name) / 12) + 102, (ySize / 12) + 54, hexacolor);
 		}
 
-		fontRendererObj.drawString(("" + I18n.format("voidcraft.gui.misc.loop", new Object[0])).trim() + ": " + ("" + I18n.format("voidcraft.gui.misc." + (voidBox.getLoopState() ? "on" : "off"), new Object[0])).trim(), (xSize / 12) - (fontRendererObj.getStringWidth(name) / 12) + 220, ySize - 220, voidBox.getLoopState() ? 0x00FF00 : 0xFF0000);
+		fontRendererObj.drawString(TranslateHelper.translate("voidcraft.gui.misc.loop") + ": " + TranslateHelper.translate("voidcraft.gui.misc." + (voidBox.getLoopState() ? "on" : "off")), (xSize / 12) - (fontRendererObj.getStringWidth(name) / 12) + 220, ySize - 220, voidBox.getLoopState() ? 0x00FF00 : 0xFF0000);
 
-		fontRendererObj.drawString(("" + I18n.format("voidcraft.gui.misc.auto", new Object[0])).trim() + ": " + ("" + I18n.format("voidcraft.gui.misc." + (voidBox.getAutoState() ? "on" : "off"), new Object[0])).trim(), (xSize / 12) - (fontRendererObj.getStringWidth(name) / 12) + 7, ySize - 180, voidBox.getAutoState() ? 0x00FF00 : 0xFF0000);
+		fontRendererObj.drawString(TranslateHelper.translate("voidcraft.gui.misc.auto") + ": " + TranslateHelper.translate("voidcraft.gui.misc." + (voidBox.getAutoState() ? "on" : "off")), (xSize / 12) - (fontRendererObj.getStringWidth(name) / 12) + 7, ySize - 180, voidBox.getAutoState() ? 0x00FF00 : 0xFF0000);
 
 		if (voidBox.isPlaying()) fontRendererObj.drawString(getTimeInMinutes(voidBox.getSongLength() - voidBox.getSongTimeLeft()) + "/" + getTimeInMinutes(voidBox.getSongLength()), (xSize / 12) + (fontRendererObj.getStringWidth(name) / 12), ySize - 220, 0xFFFF00);
 	}

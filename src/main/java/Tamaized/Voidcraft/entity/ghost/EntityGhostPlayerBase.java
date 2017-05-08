@@ -6,7 +6,6 @@ import java.util.UUID;
 
 import com.mojang.authlib.GameProfile;
 
-import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.entity.EntityVoidNPC;
 import Tamaized.Voidcraft.handlers.SkinHandler;
 import Tamaized.Voidcraft.sound.VoidSoundEvents;

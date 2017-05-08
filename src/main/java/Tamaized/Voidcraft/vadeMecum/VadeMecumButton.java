@@ -1,12 +1,12 @@
 package Tamaized.Voidcraft.vadeMecum;
 
+import Tamaized.TamModized.helper.TranslateHelper;
 import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.GUI.client.VadeMecumGUI;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderHelper;
-import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
@@ -17,7 +17,7 @@ public class VadeMecumButton extends GuiButton {
 	private final VadeMecumGUI gui;
 
 	public VadeMecumButton(VadeMecumGUI gui, int buttonId, int x, int y, int widthIn, int heightIn, String buttonText, ItemStack stack) {
-		super(buttonId, x, y, widthIn, heightIn, ("" + I18n.format(buttonText, new Object[0])).trim());
+		super(buttonId, x, y, widthIn, heightIn, TranslateHelper.translate(buttonText));
 		stackToRender = stack;
 		this.gui = gui;
 	}

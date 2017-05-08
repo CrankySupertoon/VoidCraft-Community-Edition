@@ -1,11 +1,11 @@
 package Tamaized.Voidcraft.vadeMecum;
 
+import Tamaized.TamModized.helper.TranslateHelper;
 import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.GUI.client.VadeMecumGUI;
 import Tamaized.Voidcraft.helper.RecipeHelper;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
@@ -23,7 +23,7 @@ public class VadeMecumCraftingNormal implements IVadeMecumCrafting {
 	private final ItemStack output;
 
 	public VadeMecumCraftingNormal(String title, ItemStack output) {
-		this.title = ("" + I18n.format(title, new Object[0])).trim();
+		this.title = TranslateHelper.translate(title);
 		recipe = RecipeHelper.getRecipe(output);
 		this.output = output;
 	}

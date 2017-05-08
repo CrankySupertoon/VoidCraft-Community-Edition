@@ -9,7 +9,6 @@ import Tamaized.Voidcraft.xiaCastle.logic.battle.twins.messages.TwinsMessages03;
 import Tamaized.Voidcraft.xiaCastle.logic.battle.twins.messages.TwinsMessages04;
 import Tamaized.Voidcraft.xiaCastle.logic.battle.twins.messages.TwinsMessages05;
 import net.minecraft.block.BlockLever;
-import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;

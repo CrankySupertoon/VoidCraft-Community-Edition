@@ -1,5 +1,6 @@
 package Tamaized.Voidcraft.GUI.client;
 
+import Tamaized.TamModized.helper.TranslateHelper;
 import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.GUI.server.VadeMecumSpellsContainer;
 import Tamaized.Voidcraft.capabilities.vadeMecum.IVadeMecumCapability;
@@ -120,7 +121,7 @@ public class VadeMecumSpellsGUI extends GuiContainer {
 	protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY) {
 		int i = this.guiLeft;
 		int j = this.guiTop;
-		drawCenteredString(fontRendererObj, ("" + I18n.format("voidcraft.gui.wordsofpower.title", new Object[0])).trim(), width / 2, 15, 16777215);
+		drawCenteredString(fontRendererObj, TranslateHelper.translate("voidcraft.gui.wordsofpower.title"), width / 2, 15, 16777215);
 		this.mc.getTextureManager().bindTexture(TEXTURE);
 		this.drawTexturedModalRect(i, j, 0, 0, this.xSize, this.ySize);
 		int xLoc = 0;

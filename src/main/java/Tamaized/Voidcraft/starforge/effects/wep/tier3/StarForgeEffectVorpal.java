@@ -1,8 +1,8 @@
 package Tamaized.Voidcraft.starforge.effects.wep.tier3;
 
+import Tamaized.TamModized.helper.TranslateHelper;
 import Tamaized.Voidcraft.starforge.effects.IStarForgeEffect;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.monster.EntityCreeper;
 import net.minecraft.entity.monster.EntitySkeleton;
@@ -79,7 +79,7 @@ public class StarForgeEffectVorpal implements IStarForgeEffect {
 
 	@Override
 	public String getName() {
-		return ("" + I18n.format("voidcraft.VadeMecum.docs.title.starforge.effect.vorp", new Object[0])).trim();
+		return TranslateHelper.translate("voidcraft.VadeMecum.docs.title.starforge.effect.vorp");
 	}
 
 }

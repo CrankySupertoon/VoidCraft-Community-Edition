@@ -9,7 +9,6 @@ import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.blocks.model.ModelVoidicCharger;
 import Tamaized.Voidcraft.client.ClientRenderTicker;
 import Tamaized.Voidcraft.machina.tileentity.TileEntityVoidicAnchor;
-import Tamaized.Voidcraft.machina.tileentity.TileEntityVoidicCharger;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;

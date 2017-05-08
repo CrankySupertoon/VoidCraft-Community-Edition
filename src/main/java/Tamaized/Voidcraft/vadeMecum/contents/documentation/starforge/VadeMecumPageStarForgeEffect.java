@@ -1,7 +1,6 @@
 package Tamaized.Voidcraft.vadeMecum.contents.documentation.starforge;
 
 import Tamaized.Voidcraft.GUI.client.VadeMecumGUI;
-import Tamaized.Voidcraft.starforge.StarForgeEffectEntry;
 import Tamaized.Voidcraft.starforge.StarForgeEffectRecipeList;
 import Tamaized.Voidcraft.starforge.effects.IStarForgeEffect;
 import Tamaized.Voidcraft.vadeMecum.VadeMecumPage;

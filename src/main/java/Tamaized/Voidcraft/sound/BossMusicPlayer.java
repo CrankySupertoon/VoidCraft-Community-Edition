@@ -4,7 +4,6 @@ import Tamaized.Voidcraft.sound.client.BGMusic;
 import net.minecraft.client.audio.ISound;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.SoundEvent;
-import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent.Stop;
 import net.minecraftforge.fml.common.gameevent.TickEvent.ClientTickEvent;
 
 public class BossMusicPlayer {

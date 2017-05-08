@@ -1,12 +1,12 @@
 package Tamaized.Voidcraft.GUI.client;
 
+import Tamaized.TamModized.helper.TranslateHelper;
 import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.GUI.server.RealityTeleporterBlockContainer;
 import Tamaized.Voidcraft.machina.tileentity.TileEntityRealityTeleporter;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
@@ -41,19 +41,19 @@ public class RealityTeleporterBlockGUI extends GuiContainer {
 
 	@Override
 	protected void drawGuiContainerForegroundLayer(int param1, int param2) {
-		String text = ("" + I18n.format("voidcraft.gui.realityteleporterblock.title", new Object[0])).trim();
+		String text = TranslateHelper.translate("voidcraft.gui.realityteleporterblock.title");
 		this.fontRendererObj.drawString(text, this.xSize / 2 - this.fontRendererObj.getStringWidth(text) / 2, this.ySize - 260, 0xAAAAAA);
 		BlockPos linkPos = te.getLink();
 		if (linkPos != null) {
-			text = ("" + I18n.format("voidcraft.gui.realityteleporterblock.link", new Object[0])).trim()+":";
+			text = TranslateHelper.translate("voidcraft.gui.realityteleporterblock.link") + ":";
 			this.fontRendererObj.drawString(text, (this.xSize / 2) + 30, this.ySize / 2 - 70, 0xAAAAAA);
 			text = "{ x: " + linkPos.getX() + ", y:" + linkPos.getY() + ", z:" + linkPos.getZ() + " }";
 			this.fontRendererObj.drawString(text, (this.xSize / 2) + 30, this.ySize / 2 - 60, 0xAAAAAA);
 		} else {
-			text = ("" + I18n.format("voidcraft.gui.realityteleporterblock.nolink", new Object[0])).trim()+":";
+			text = TranslateHelper.translate("voidcraft.gui.realityteleporterblock.nolink") + ":";
 			this.fontRendererObj.drawString(text, (this.xSize / 2) + 30, this.ySize / 2 - 70, 0xAAAAAA);
 		}
-		text = ("" + I18n.format("voidcraft.gui.misc.power", new Object[0])).trim()+":";
+		text = TranslateHelper.translate("voidcraft.gui.misc.power") + ":";
 		this.fontRendererObj.drawString(text, (this.xSize / 2 - this.fontRendererObj.getStringWidth(text) / 1) - 55, this.ySize / 2 - 70, 0xFF0000);
 		text = te == null ? "N/A" : te.getPowerAmount() + "/";
 		this.fontRendererObj.drawString(text, (this.xSize / 2 - this.fontRendererObj.getStringWidth(text) / 1) - 55, this.ySize / 2 - 60, 0xFF0000);

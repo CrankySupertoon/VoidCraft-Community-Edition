@@ -1,12 +1,12 @@
 package Tamaized.Voidcraft.GUI.client;
 
+import Tamaized.TamModized.helper.TranslateHelper;
 import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.GUI.server.VoidicAlchemyContainer;
 import Tamaized.Voidcraft.machina.tileentity.TileEntityVoidicAlchemy;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 
@@ -45,17 +45,17 @@ public class VoidicAlchemyGUI extends GuiContainer {
 
 	@Override
 	protected void drawGuiContainerForegroundLayer(int param1, int param2) {
-		String text = ("" + I18n.format("voidcraft.gui.alchemy.title", new Object[0])).trim();
+		String text = TranslateHelper.translate("voidcraft.gui.alchemy.title");
 		this.fontRendererObj.drawString(text, this.xSize / 2 - this.fontRendererObj.getStringWidth(text) / 2, this.ySize - 260, 0xAAAAAA);
-		text = ("" + I18n.format("voidcraft.gui.misc.power", new Object[0])).trim()+":";
+		text = TranslateHelper.translate("voidcraft.gui.misc.power")+":";
 		this.fontRendererObj.drawString(text, (this.xSize / 2 - this.fontRendererObj.getStringWidth(text) / 1) - 60, this.ySize / 2 - 65, 0xFF0000);
 		text = te.getPowerAmount() + "/";
 		this.fontRendererObj.drawString(text, (this.xSize / 2 - this.fontRendererObj.getStringWidth(text) / 1) - 60, this.ySize / 2 - 55, 0xFF0000);
 		text = "" + te.getMaxPower();
 		this.fontRendererObj.drawString(text, (this.xSize / 2 - this.fontRendererObj.getStringWidth(text) / 1) - 60, this.ySize / 2 - 45, 0xFF0000);
-		text = ("" + I18n.format("voidcraft.gui.misc.owner", new Object[0])).trim()+":";
+		text = TranslateHelper.translate("voidcraft.gui.misc.owner")+":";
 		this.fontRendererObj.drawString(text, (xSize / 2) + 60, this.ySize / 2 - 65, 0xFF0000);
-		text = te.getOwnerName().isEmpty() ? ("" + I18n.format("voidcraft.gui.misc.none", new Object[0])).trim() : te.getOwnerName();
+		text = te.getOwnerName().isEmpty() ? TranslateHelper.translate("voidcraft.gui.misc.none") : te.getOwnerName();
 		this.fontRendererObj.drawString(text, (xSize / 2) + 60, this.ySize / 2 - 55, 0xFF0000);
 	}
 

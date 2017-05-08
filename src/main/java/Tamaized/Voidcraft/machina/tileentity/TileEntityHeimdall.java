@@ -1,7 +1,5 @@
 package Tamaized.Voidcraft.machina.tileentity;
 
-import Tamaized.TamModized.TamModized;
-import Tamaized.TamModized.particles.ParticleHelper;
 import Tamaized.TamModized.particles.FX.network.ParticleFluffPacketHandler;
 import Tamaized.TamModized.tileentity.TamTileEntityInventory;
 import Tamaized.Voidcraft.VoidCraft;

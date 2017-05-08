@@ -8,6 +8,7 @@ import org.lwjgl.input.Mouse;
 
 import Tamaized.TamModized.helper.PacketHelper;
 import Tamaized.TamModized.helper.PacketHelper.PacketWrapper;
+import Tamaized.TamModized.helper.TranslateHelper;
 import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.GUI.server.StarForgeContainer;
 import Tamaized.Voidcraft.blocks.tileentity.TileEntityStarForge;
@@ -22,7 +23,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderHelper;
-import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -59,7 +59,7 @@ public class StarForgeGUI extends GUIContainerWrapper {
 		setupScroll();
 
 		buttonList.clear();
-		buttonList.add(button_Craft = new GuiButton(BUTTON_CRAFT, guiLeft + (xSize / 2) + 10, height - 102, 170, 20, ("" + I18n.format("voidcraft.gui.misc.button.forge", new Object[0])).trim()));
+		buttonList.add(button_Craft = new GuiButton(BUTTON_CRAFT, guiLeft + (xSize / 2) + 10, height - 102, 170, 20, TranslateHelper.translate("voidcraft.gui.misc.button.forge")));
 	}
 
 	private void setupScroll() {
@@ -159,7 +159,7 @@ public class StarForgeGUI extends GUIContainerWrapper {
 
 	@Override
 	protected void drawGuiContainerForegroundLayer(int param1, int param2) {
-		String text = ("" + I18n.format("voidcraft.gui.starforge.title", new Object[0])).trim();
+		String text = TranslateHelper.translate("voidcraft.gui.starforge.title");
 		this.fontRendererObj.drawString(text, this.xSize / 3 - this.fontRendererObj.getStringWidth(text) / 2, this.ySize - 260, 0xAAAAAA);
 	}
 

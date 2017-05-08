@@ -2,10 +2,10 @@ package Tamaized.Voidcraft.items;
 
 import java.util.List;
 
+import Tamaized.TamModized.helper.TranslateHelper;
 import Tamaized.TamModized.items.TamItem;
 import Tamaized.Voidcraft.entity.boss.EntityBossCorruptedPawn;
 import net.minecraft.block.Block;
-import net.minecraft.client.resources.I18n;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -100,7 +100,7 @@ public class ChainedSkull extends TamItem {
 
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack p_77624_1_, EntityPlayer p_77624_2_, List p_77624_3_, boolean p_77624_4_) {
-		p_77624_3_.add(("" + I18n.format("voidcraft.misc.pawn.desc", new Object[0])).trim());
+		p_77624_3_.add(TranslateHelper.translate("voidcraft.misc.pawn.desc"));
 	}
 
 }

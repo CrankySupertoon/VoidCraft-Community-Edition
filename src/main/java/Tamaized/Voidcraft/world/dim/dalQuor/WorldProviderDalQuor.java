@@ -4,11 +4,9 @@ import javax.annotation.Nullable;
 
 import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.world.BiomeProviderDalQuor;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.WorldProvider;
-import net.minecraft.world.biome.BiomeProviderSingle;
 import net.minecraft.world.chunk.IChunkGenerator;
 import net.minecraftforge.client.IRenderHandler;
 import net.minecraftforge.fml.relauncher.Side;

@@ -1,7 +1,6 @@
 package Tamaized.Voidcraft.GUI.server;
 
 import Tamaized.Voidcraft.GUI.slots.SlotAdjustedMaxSize;
-import Tamaized.Voidcraft.machina.tileentity.TileEntityHeimdall;
 import Tamaized.Voidcraft.machina.tileentity.TileEntityVoidicAnchor;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;

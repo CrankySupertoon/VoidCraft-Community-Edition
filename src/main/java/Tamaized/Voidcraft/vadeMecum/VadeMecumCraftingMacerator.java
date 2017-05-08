@@ -1,10 +1,10 @@
 package Tamaized.Voidcraft.vadeMecum;
 
+import Tamaized.TamModized.helper.TranslateHelper;
 import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.GUI.client.VadeMecumGUI;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
@@ -18,7 +18,7 @@ public class VadeMecumCraftingMacerator implements IVadeMecumCrafting {
 	private final ItemStack output;
 
 	public VadeMecumCraftingMacerator(String title, ItemStack output) {
-		this.title = ("" + I18n.format(title, new Object[0])).trim();
+		this.title = TranslateHelper.translate(title);
 		input = VoidCraft.teRecipes.macerator.getInput(output);
 		this.output = output;
 	}

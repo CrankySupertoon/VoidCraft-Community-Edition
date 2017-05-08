@@ -1,8 +1,8 @@
 package Tamaized.Voidcraft.vadeMecum;
 
+import Tamaized.TamModized.helper.TranslateHelper;
 import Tamaized.Voidcraft.GUI.client.VadeMecumGUI;
 import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.client.resources.I18n;
 import net.minecraft.util.text.TextFormatting;
 
 public class VadeMecumPage implements IVadeMecumPage {
@@ -11,8 +11,8 @@ public class VadeMecumPage implements IVadeMecumPage {
 	protected final String text;
 
 	public VadeMecumPage(String title, String text) {
-		this.title = ("" + I18n.format(title, new Object[0])).trim();
-		this.text = ("" + I18n.format(text, new Object[0])).trim();
+		this.title = TranslateHelper.translate(title);
+		this.text = TranslateHelper.translate(text);
 	}
 
 	@Override

@@ -7,6 +7,7 @@ import org.lwjgl.input.Mouse;
 
 import Tamaized.TamModized.helper.PacketHelper;
 import Tamaized.TamModized.helper.PacketHelper.PacketWrapper;
+import Tamaized.TamModized.helper.TranslateHelper;
 import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.capabilities.CapabilityList;
 import Tamaized.Voidcraft.capabilities.vadeMecum.IVadeMecumCapability;
@@ -22,7 +23,6 @@ import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.VertexBuffer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -118,8 +118,8 @@ public class VadeMecumGUI extends GuiScreen {
 		button_entryBack = (VadeMecumGUI.OverlayButton) addButton(new VadeMecumGUI.OverlayButton(this, getButtonID(Button.EntryBack), vadeX + 18, vadeY + 8, true));
 		button_credits = (VadeMecumGUI.OverlayButton) addButton(new VadeMecumGUI.OverlayButton(this, getButtonID(Button.Credits), vadeX + 358, vadeY + 8, false));
 		button_largeBack = (VadeMecumGUI.LargeArrowButton) addButton(new VadeMecumGUI.LargeArrowButton(getButtonID(Button.LargeBack), vadeX + 17, vadeY + vadeH - 2/* vadeY + 10 */));
-		button_spells = (VadeMecumGUI.FullButton) addButton(new VadeMecumGUI.FullButton(this, ("" + I18n.format("voidcraft.gui.misc.spells", new Object[0])).trim(), getButtonID(Button.WordsOfPower), vadeX + 42, vadeY + vadeH - 3));
-		button_infusion = (VadeMecumGUI.FullButton) addButton(new VadeMecumGUI.FullButton(this, ("" + I18n.format("voidcraft.gui.misc.infusion", new Object[0])).trim(), getButtonID(Button.Infusion), vadeX + 82, vadeY + vadeH - 3));
+		button_spells = (VadeMecumGUI.FullButton) addButton(new VadeMecumGUI.FullButton(this, TranslateHelper.translate("voidcraft.gui.misc.spells"), getButtonID(Button.WordsOfPower), vadeX + 42, vadeY + vadeH - 3));
+		button_infusion = (VadeMecumGUI.FullButton) addButton(new VadeMecumGUI.FullButton(this, TranslateHelper.translate("voidcraft.gui.misc.infusion"), getButtonID(Button.Infusion), vadeX + 82, vadeY + vadeH - 3));
 		updateButtons();
 	}
 
@@ -246,8 +246,8 @@ public class VadeMecumGUI extends GuiScreen {
 		if (canDrawPage()) {
 			entry.render(this, fontRendererObj, mouseX, mouseY, vadeX, vadeY, pageNumber);
 		}
-		if (button_entryBack != null && button_entryBack.visible) drawCenteredString(fontRendererObj, ("" + I18n.format("voidcraft.gui.misc.main", new Object[0])).trim(), vadeX + 30, vadeY + vadeH - 24, 0xFFFF00);
-		if (button_credits != null && button_credits.visible) drawCenteredString(fontRendererObj, ("" + I18n.format("voidcraft.gui.misc.credits", new Object[0])).trim(), vadeX + 360, vadeY + 12, 0xFFFF00);
+		if (button_entryBack != null && button_entryBack.visible) drawCenteredString(fontRendererObj, TranslateHelper.translate("voidcraft.gui.misc.main"), vadeX + 30, vadeY + vadeH - 24, 0xFFFF00);
+		if (button_credits != null && button_credits.visible) drawCenteredString(fontRendererObj, TranslateHelper.translate("voidcraft.gui.misc.credits"), vadeX + 360, vadeY + 12, 0xFFFF00);
 		if (playerStats.getCurrentActive() != null) {
 
 		}
