@@ -1,6 +1,7 @@
 package Tamaized.Voidcraft;
 
 import java.io.File;
+import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 
@@ -124,10 +125,15 @@ import Tamaized.Voidcraft.world.dim.Xia.WorldProviderXia;
 import Tamaized.Voidcraft.world.dim.dalQuor.WorldProviderDalQuor;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.world.DimensionType;
+import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.Biome.SpawnListEntry;
 import net.minecraft.world.gen.structure.MapGenStructureIO;
 import net.minecraftforge.common.DimensionManager;
+import net.minecraftforge.common.ForgeChunkManager;
+import net.minecraftforge.common.ForgeChunkManager.LoadingCallback;
+import net.minecraftforge.common.ForgeChunkManager.Ticket;
+import net.minecraftforge.common.ForgeChunkManager.Type;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.common.config.Configuration;
@@ -365,15 +371,15 @@ public class VoidCraft extends TamModBase {
 		registerEntity(EntityBossDol.class, "Dol", this, modid, 64, 1, true);
 		registerEntity(EntityBossZol.class, "Zol", this, modid, 64, 1, true);
 		registerEntity(EntityBossXia.class, "Xia", this, modid, 64, 1, true);
-		registerEntity(EntityBossXia2.class, "Xia2", this, modid, 64, 1, true);
+		registerEntity(EntityBossXia2.class, "Xia2", this, modid, 250, 1, true);
 		registerEntity(EntityGhostPlayer.class, "GhostPlayer", this, modid, 64, 1, true);
 		registerEntity(EntityGhostBiped.class, "GhostBiped", this, modid, 64, 1, true);
 		registerEntityWithEgg(EntityHerobrineCreeper.class, "HerobrineCreeper", this, modid, 64, 1, true, 0xFF0000, 0x000000);
-		registerEntity(EntityWitherbrine.class, "Witherbrine", this, modid, 64, 1, true);
+		registerEntity(EntityWitherbrine.class, "Witherbrine", this, modid, 250, 1, true);
 		registerEntity(EntityDragonOld.class, "DragonOld", this, modid, 64, 1, true);
-		registerEntity(EntityDragonXia.class, "DragonXia", this, modid, 64, 1, true);
-		registerEntity(EntityDolXia.class, "DolXia", this, modid, 64, 1, true);
-		registerEntity(EntityZolXia.class, "ZolXia", this, modid, 64, 1, true);
+		registerEntity(EntityDragonXia.class, "DragonXia", this, modid, 250, 1, true);
+		registerEntity(EntityDolXia.class, "DolXia", this, modid, 250, 1, true);
+		registerEntity(EntityZolXia.class, "ZolXia", this, modid, 250, 1, true);
 		registerEntity(EntityVoidicDragon.class, "VoidicDragon", this, modid, 64, 1, true);
 		registerEntityWithEgg(EntityMobEtherealGuardian.class, "EtherealGuardian", this, modid, 64, 1, true, 0xFF0000, 0x000000);
 		registerEntity(EntityCompanionFireElemental.class, "FireElemental", this, modid, 64, 1, true);
@@ -389,6 +395,15 @@ public class VoidCraft extends TamModBase {
 	@Override
 	public void postInit(FMLPostInitializationEvent e) {
 		logger.info("Starting VoidCraft PostInit");
+
+		ForgeChunkManager.setForcedChunkLoadingCallback(this, new LoadingCallback() {
+			@Override
+			public void ticketsLoaded(List<Ticket> tickets, World world) {
+				for (Ticket ticket : tickets) {
+
+				}
+			}
+		});
 
 		// Load Rituals
 		reloadRitualList();

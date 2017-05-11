@@ -10,6 +10,7 @@ import Tamaized.TamModized.helper.PacketHelper.PacketWrapper;
 import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.entity.EntityVoidBoss;
 import Tamaized.Voidcraft.entity.ghost.EntityGhostPlayerBase;
+import Tamaized.Voidcraft.events.client.DebugEvent;
 import Tamaized.Voidcraft.network.ClientPacketHandler;
 import Tamaized.Voidcraft.network.IEntitySync;
 import Tamaized.Voidcraft.network.IVoidBossAIPacket;
@@ -27,6 +28,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
 
@@ -174,7 +176,12 @@ public class EntityBossXia2 extends EntityVoidBoss<Xia2BattleHandler> implements
 
 	@Override
 	protected void updatePhase(int phase) {
-
+		for (EntityPlayer player : world.playerEntities) {
+			if (player.getDistanceToEntity(getEntity()) >= 100) {
+				player.sendMessage(new TextComponentTranslation("voidcraft.misc.xia.escape"));
+				player.setPositionAndUpdate(getEntity().posX, getEntity().posY, getEntity().posZ - 2);
+			}
+		}
 	}
 
 	@Override

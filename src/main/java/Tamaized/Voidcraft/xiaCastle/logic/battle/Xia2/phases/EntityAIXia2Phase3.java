@@ -8,12 +8,15 @@ import Tamaized.Voidcraft.entity.boss.xia.finalphase.EntityDragonXia;
 import Tamaized.Voidcraft.entity.boss.xia.finalphase.EntityWitherbrine;
 import Tamaized.Voidcraft.entity.boss.xia.finalphase.EntityZolXia;
 import Tamaized.Voidcraft.entity.boss.xia.finalphase.render.EntityDolXia;
+import Tamaized.Voidcraft.events.client.DebugEvent;
 import Tamaized.Voidcraft.network.IVoidBossAIPacket;
 import Tamaized.Voidcraft.xiaCastle.logic.battle.EntityVoidNPCAIBase;
 import net.minecraft.entity.effect.EntityLightningBolt;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.text.TextComponentTranslation;
 
 public class EntityAIXia2Phase3 extends EntityVoidNPCAIBase<EntityBossXia2> {
 
@@ -63,10 +66,14 @@ public class EntityAIXia2Phase3 extends EntityVoidNPCAIBase<EntityBossXia2> {
 		if (!world.isRemote) {
 			if (dol == null || zol == null || dragon == null || wither == null) return;
 			if (!(dol instanceof EntityDolXia) || !(zol instanceof EntityZolXia) || !(dragon instanceof EntityDragonOld) || !(wither instanceof EntityWitherbrine)) return;
-			//System.out.println("beep: "+getEntity().getPosition().getDistance(dragon.getPosition().getX(), dragon.getPosition().getY(), dragon.getPosition().getZ()));
-			if(getEntity().getPosition().getDistance(dragon.getPosition().getX(), dragon.getPosition().getY(), dragon.getPosition().getZ()) > 125){
-				dragon.setPositionAndUpdate(getEntity().posX, getEntity().posY, getEntity().posZ);
-			}
+			if (zol.getDistanceToEntity(getEntity()) >= 100) zol.setPositionAndUpdate(getEntity().posX, getEntity().posY, getEntity().posZ);
+			if (dol.getDistanceToEntity(getEntity()) >= 100) dol.setPositionAndUpdate(getEntity().posX, getEntity().posY, getEntity().posZ);
+			if (dragon.getDistanceToEntity(getEntity()) >= 100) dragon.setPositionAndUpdate(getEntity().posX, getEntity().posY, getEntity().posZ);
+			if (wither.getDistanceToEntity(getEntity()) >= 100) wither.setPositionAndUpdate(getEntity().posX, getEntity().posY, getEntity().posZ);
+			if (!world.loadedEntityList.contains(dol) && !dol.isDead) world.spawnEntity(dol);
+			if (!world.loadedEntityList.contains(zol) && !zol.isDead) world.spawnEntity(zol);
+			if (!world.loadedEntityList.contains(wither) && !wither.isDead) world.spawnEntity(wither);
+			if (!world.loadedEntityList.contains(dragon) && !dragon.isDead) world.spawnEntity(dragon);
 			if (tick % litStrikeTick == 0) {
 				int lx = (int) ((world.rand.nextDouble() * (litBox.maxX - litBox.minX)) + litBox.minX);
 				int ly = 70;

@@ -55,7 +55,7 @@ public class BlockRealityHole extends TamBlock {
 						// else new RealityTeleporter(player.getServerWorld(), player.getPosition()).placeInPortal(player, player.rotationYaw);
 					}
 				}
-			} else if (!(entityIn instanceof EntityVoidBoss) && !(entityIn instanceof IAlternateBoss)) entityIn.setDead();
+			} else if (!(entityIn instanceof EntityVoidBoss) && !(entityIn instanceof IAlternateBoss) && (entityIn.isNonBoss())) entityIn.setDead();
 		}
 	}
 	

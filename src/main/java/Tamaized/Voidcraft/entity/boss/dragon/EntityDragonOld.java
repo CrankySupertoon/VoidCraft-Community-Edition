@@ -6,6 +6,7 @@ import java.util.List;
 import Tamaized.Voidcraft.entity.boss.render.bossBar.RenderAlternateBossBars;
 import Tamaized.Voidcraft.entity.boss.render.bossBar.RenderAlternateBossBars.AlternateBossBarWrapper;
 import Tamaized.Voidcraft.entity.boss.render.bossBar.RenderAlternateBossBars.IAlternateBoss;
+import Tamaized.Voidcraft.events.client.DebugEvent;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
@@ -21,6 +22,7 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.ITextComponent;
@@ -28,6 +30,8 @@ import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.BossInfo;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
+import net.minecraftforge.common.ForgeChunkManager;
+import net.minecraftforge.common.ForgeChunkManager.Ticket;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -69,6 +73,8 @@ public class EntityDragonOld extends EntityLiving implements IEntityMultiPartOld
 
 	public final AlternateBossBarWrapper bossBarWrapper;
 
+	private Ticket chunkLoadTicket;
+
 	public EntityDragonOld(World p_i1700_1_) {
 		super(p_i1700_1_);
 		this.dragonPartArray = new EntityDragonPartOld[] { this.dragonPartHead = new EntityDragonPartOld(this, "head", 6.0F, 6.0F), this.dragonPartBody = new EntityDragonPartOld(this, "body", 8.0F, 8.0F), this.dragonPartTail1 = new EntityDragonPartOld(this, "tail", 4.0F, 4.0F), this.dragonPartTail2 = new EntityDragonPartOld(this, "tail", 4.0F, 4.0F), this.dragonPartTail3 = new EntityDragonPartOld(this, "tail", 4.0F, 4.0F), this.dragonPartWing1 = new EntityDragonPartOld(this, "wing", 4.0F, 4.0F), this.dragonPartWing2 = new EntityDragonPartOld(this, "wing", 4.0F, 4.0F) };
@@ -84,6 +90,13 @@ public class EntityDragonOld extends EntityLiving implements IEntityMultiPartOld
 		this.targetX = targetXf = posX;
 		this.targetY = targetYf = posY;
 		this.targetZ = targetZf = posZ;
+
+		if (chunkLoadTicket != null) {
+			for (ChunkPos pos : chunkLoadTicket.getChunkList()) {
+				ForgeChunkManager.unforceChunk(chunkLoadTicket, pos);
+			}
+			ForgeChunkManager.forceChunk(chunkLoadTicket, world.getChunkFromBlockCoords(getPosition()).getPos());
+		}
 	}
 
 	@Override
@@ -99,15 +112,15 @@ public class EntityDragonOld extends EntityLiving implements IEntityMultiPartOld
 		super.applyEntityAttributes();
 		this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(200.0D);
 	}
-	
-	@Override
-	public boolean isNonBoss() {
-		return false;
-	}
 
 	@Override
 	protected void entityInit() {
 		super.entityInit();
+	}
+
+	@Override
+	public boolean isNonBoss() {
+		return false;
 	}
 
 	/**
@@ -148,8 +161,17 @@ public class EntityDragonOld extends EntityLiving implements IEntityMultiPartOld
 				this.world.playSound(this.posX, this.posY, this.posZ, SoundEvents.ENTITY_ENDERDRAGON_FLAP, this.getSoundCategory(), 5.0F, 0.8F + this.rand.nextFloat() * 0.3F, false);
 			}
 		}
+		if (chunkLoadTicket != null) {
+			for (ChunkPos pos : chunkLoadTicket.getChunkList()) {
+				ForgeChunkManager.unforceChunk(chunkLoadTicket, pos);
+			}
+			for (int x = -1; x <= 1; x++)
+				for (int z = -1; z <= 1; z++)
+					ForgeChunkManager.forceChunk(chunkLoadTicket, world.getChunkFromChunkCoords((getPosition().getX() >> 4) + x, (getPosition().getZ() >> 4) + z).getPos());
+		}
 
 		this.prevAnimTime = this.animTime;
+
 		float f2;
 
 		if (this.getHealth() <= 0.0F) {

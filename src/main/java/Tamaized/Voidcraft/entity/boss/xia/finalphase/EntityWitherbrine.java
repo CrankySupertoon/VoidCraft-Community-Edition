@@ -7,6 +7,7 @@ import javax.annotation.Nullable;
 import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
 
+import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.entity.EntityVoidBoss;
 import Tamaized.Voidcraft.entity.EntityVoidNPC;
 import Tamaized.Voidcraft.entity.boss.dragon.EntityDragonOld;
@@ -47,12 +48,16 @@ import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.datafix.DataFixer;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.BossInfo;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
+import net.minecraftforge.common.ForgeChunkManager;
+import net.minecraftforge.common.ForgeChunkManager.Ticket;
+import net.minecraftforge.common.ForgeChunkManager.Type;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -83,6 +88,8 @@ public class EntityWitherbrine extends EntityMob implements IRangedAttackMob, IA
 
 	private EntityAIXia2Phase3 ai;
 
+	private Ticket chunkLoadTicket;
+
 	public EntityWitherbrine(World worldIn) {
 		super(worldIn);
 		this.setHealth(this.getMaxHealth());
@@ -97,6 +104,13 @@ public class EntityWitherbrine extends EntityMob implements IRangedAttackMob, IA
 	public EntityWitherbrine(World world, EntityAIXia2Phase3 entityAIXia2Phase3) {
 		this(world);
 		ai = entityAIXia2Phase3;
+		chunkLoadTicket = ForgeChunkManager.requestTicket(VoidCraft.instance, world, Type.ENTITY);
+		if (chunkLoadTicket != null) chunkLoadTicket.bindEntity(this);
+	}
+	
+	@Override
+	protected boolean canDespawn() {
+		return false;
 	}
 
 	@Override
@@ -166,6 +180,14 @@ public class EntityWitherbrine extends EntityMob implements IRangedAttackMob, IA
 	 */
 	@Override
 	public void onLivingUpdate() {
+		if (chunkLoadTicket != null) {
+			for (ChunkPos pos : chunkLoadTicket.getChunkList()) {
+				ForgeChunkManager.unforceChunk(chunkLoadTicket, pos);
+			}
+			for (int x = -1; x <= 1; x++)
+				for (int z = -1; z <= 1; z++)
+					ForgeChunkManager.forceChunk(chunkLoadTicket, world.getChunkFromChunkCoords((getPosition().getX() >> 4) + x, (getPosition().getZ() >> 4) + z).getPos());
+		}
 		if (!world.isRemote) {
 			if (ai == null || ai.getEntity() == null || ai.getEntity().getCurrentPhase() != 3) setDead();
 		}
