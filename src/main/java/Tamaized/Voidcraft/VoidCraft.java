@@ -90,6 +90,7 @@ import Tamaized.Voidcraft.machina.tileentity.TileEntityVoidBox;
 import Tamaized.Voidcraft.machina.tileentity.TileEntityVoidInfuser;
 import Tamaized.Voidcraft.machina.tileentity.TileEntityVoidMacerator;
 import Tamaized.Voidcraft.machina.tileentity.TileEntityVoidicAlchemy;
+import Tamaized.Voidcraft.machina.tileentity.TileEntityVoidicAnchor;
 import Tamaized.Voidcraft.machina.tileentity.TileEntityVoidicCharger;
 import Tamaized.Voidcraft.machina.tileentity.TileEntityVoidicPowerCable;
 import Tamaized.Voidcraft.machina.tileentity.TileEntityVoidicPowerGen;
@@ -299,6 +300,7 @@ public class VoidCraft extends TamModBase {
 		GameRegistry.registerTileEntity(TileEntitySpellIceSpike.class, "tileEntitySpellIceSpike");
 		GameRegistry.registerTileEntity(TileEntityStarForge.class, "tileEntityStarForge");
 		GameRegistry.registerTileEntity(TileEntityVoidBlastFurnace.class, "tileEntityVoidBlastFurnace");
+		GameRegistry.registerTileEntity(TileEntityVoidicAnchor.class, "tileEntityVoidicAnchor");
 
 		// GUI Handler
 		NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());

@@ -5,6 +5,7 @@ import Tamaized.Voidcraft.GUI.client.VadeMecumGUI;
 import Tamaized.Voidcraft.proxy.ClientProxy;
 import Tamaized.Voidcraft.vadeMecum.VadeMecumEntry;
 import Tamaized.Voidcraft.vadeMecum.contents.documentation.machines.alchemy.VadeMecumPageListAlchemy;
+import Tamaized.Voidcraft.vadeMecum.contents.documentation.machines.anchor.VadeMecumPageListAnchor;
 import Tamaized.Voidcraft.vadeMecum.contents.documentation.machines.blastfurnace.VadeMecumPageListBlastFurnace;
 import Tamaized.Voidcraft.vadeMecum.contents.documentation.machines.cable.VadeMecumPageListCable;
 import Tamaized.Voidcraft.vadeMecum.contents.documentation.machines.charger.VadeMecumPageListCharger;
@@ -20,9 +21,9 @@ import net.minecraft.item.ItemStack;
 public class VadeMecumMachinesEntry extends VadeMecumEntry {
 
 	public static enum Entry {
-		VoidInfusionAltar, VoidInfusedMacerator, BlastFurnace, Heimdall, VoidicGenerator, VoidicCable, 
-		
-		VoidMusicBox, VoidicCharger, RealityStabilizer, AlchemyTable, Teleporter
+		VoidInfusionAltar, VoidInfusedMacerator, BlastFurnace, Heimdall, VoidicGenerator, VoidicCable,
+
+		VoidMusicBox, VoidicCharger, VoidicAnchor, RealityStabilizer, AlchemyTable, Teleporter
 	}
 
 	public static int getEntryID(Entry e) {
@@ -39,9 +40,10 @@ public class VadeMecumMachinesEntry extends VadeMecumEntry {
 	public VadeMecumEntry heimdall;
 	public VadeMecumEntry voidicGenerator;
 	public VadeMecumEntry voidicCable;
-	
+
 	public VadeMecumEntry voidMusicBox;
 	public VadeMecumEntry voidicCharger;
+	public VadeMecumEntry voidicAnchor;
 	public VadeMecumEntry realityStabilizer;
 	public VadeMecumEntry alchemyTable;
 	public VadeMecumEntry teleporter;
@@ -58,9 +60,10 @@ public class VadeMecumMachinesEntry extends VadeMecumEntry {
 		heimdall = new VadeMecumEntry("docs_Machines_heimdall", "", this, new VadeMecumPageListHeimdall());
 		voidicGenerator = new VadeMecumEntry("docs_Machines_voidicGenerator", "", this, new VadeMecumPageListGenerator());
 		voidicCable = new VadeMecumEntry("docs_Machines_voidicCable", "", this, new VadeMecumPageListCable());
-		
+
 		voidMusicBox = new VadeMecumEntry("docs_Machines_voidMusicBox", "", this, new VadeMecumPageListMusicBox());
 		voidicCharger = new VadeMecumEntry("docs_Machines_voidicCharger", "", this, new VadeMecumPageListCharger());
+		voidicAnchor = new VadeMecumEntry("docs_Machines_voidicAnchor", "", this, new VadeMecumPageListAnchor());
 		realityStabilizer = new VadeMecumEntry("docs_Machines_realityStabilizer", "", this, new VadeMecumPageListStabilizer());
 		alchemyTable = new VadeMecumEntry("docs_Machines_alchemyTable", "", this, new VadeMecumPageListAlchemy());
 		teleporter = new VadeMecumEntry("docs_Machines_teleporter", "", this, new VadeMecumPageListTeleporter());
@@ -76,9 +79,10 @@ public class VadeMecumMachinesEntry extends VadeMecumEntry {
 		addButton(gui, getEntryID(Entry.Heimdall), new ItemStack(VoidCraft.blocks.Heimdall).getDisplayName(), new ItemStack(VoidCraft.blocks.Heimdall));
 		addButton(gui, getEntryID(Entry.VoidicGenerator), new ItemStack(VoidCraft.blocks.voidicGen).getDisplayName(), new ItemStack(VoidCraft.blocks.voidicGen));
 		addButton(gui, getEntryID(Entry.VoidicCable), new ItemStack(VoidCraft.blocks.voidicCable).getDisplayName(), new ItemStack(VoidCraft.blocks.voidicCable));
-		
+
 		addButton(gui, getEntryID(Entry.VoidMusicBox), new ItemStack(VoidCraft.blocks.voidBox).getDisplayName(), new ItemStack(VoidCraft.blocks.voidBox));
 		addButton(gui, getEntryID(Entry.VoidicCharger), new ItemStack(VoidCraft.blocks.voidicCharger).getDisplayName(), new ItemStack(VoidCraft.blocks.voidicCharger));
+		addButton(gui, getEntryID(Entry.VoidicAnchor), new ItemStack(VoidCraft.blocks.voidicAnchor).getDisplayName(), new ItemStack(VoidCraft.blocks.voidicAnchor));
 		addButton(gui, getEntryID(Entry.RealityStabilizer), new ItemStack(VoidCraft.blocks.realityStabilizer).getDisplayName(), new ItemStack(VoidCraft.blocks.realityStabilizer));
 		addButton(gui, getEntryID(Entry.AlchemyTable), new ItemStack(VoidCraft.blocks.voidicAlchemyTable).getDisplayName(), new ItemStack(VoidCraft.blocks.voidicAlchemyTable));
 		addButton(gui, getEntryID(Entry.Teleporter), new ItemStack(VoidCraft.blocks.realityTeleporterBlock).getDisplayName(), new ItemStack(VoidCraft.blocks.realityTeleporterBlock));
@@ -110,6 +114,9 @@ public class VadeMecumMachinesEntry extends VadeMecumEntry {
 				break;
 			case VoidicCharger:
 				gui.changeEntry(voidicCharger);
+				break;
+			case VoidicAnchor:
+				gui.changeEntry(voidicAnchor);
 				break;
 			case RealityStabilizer:
 				gui.changeEntry(realityStabilizer);

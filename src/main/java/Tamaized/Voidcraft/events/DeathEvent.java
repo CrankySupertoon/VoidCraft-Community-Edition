@@ -16,6 +16,7 @@ public class DeathEvent {
 		if (target instanceof EntityPlayer && target.world.provider.getDimension() == VoidCraft.config.getDimensionIdDalQuor()) {
 			target.setHealth(target.getMaxHealth());
 			e.setCanceled(true);
+			target.fallDistance=0;
 			VoidCraft.instance.VoidTickEvent.dream((EntityPlayer) target);
 		}
 		DamageSource source = e.getSource();

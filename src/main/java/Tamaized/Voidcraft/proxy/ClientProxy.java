@@ -5,6 +5,7 @@ import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.GUI.client.VadeMecumGUI;
 import Tamaized.Voidcraft.blocks.TileEntityNoBreak;
 import Tamaized.Voidcraft.blocks.render.RenderNoBreak;
+import Tamaized.Voidcraft.blocks.render.RenderVoidicAnchor;
 import Tamaized.Voidcraft.blocks.render.RenderVoidicCharger;
 import Tamaized.Voidcraft.client.ClientInfusionOverlayRender;
 import Tamaized.Voidcraft.client.ClientRenderTicker;
@@ -81,6 +82,7 @@ import Tamaized.Voidcraft.entity.nonliving.render.RenderVoidChain;
 import Tamaized.Voidcraft.events.client.DebugEvent;
 import Tamaized.Voidcraft.events.client.TextureStitch;
 import Tamaized.Voidcraft.handlers.SkinHandler;
+import Tamaized.Voidcraft.machina.tileentity.TileEntityVoidicAnchor;
 import Tamaized.Voidcraft.machina.tileentity.TileEntityVoidicCharger;
 import Tamaized.Voidcraft.network.ClientPacketHandler;
 import Tamaized.Voidcraft.sound.client.BGMusic;
@@ -110,7 +112,6 @@ public class ClientProxy extends AbstractProxy {
 		super(Side.CLIENT);
 	}
 
-	public static ClientInfusionOverlayRender infusionHandler = new ClientInfusionOverlayRender();
 	public static VadeMecumGUI vadeMecum;
 	public static VadeMecumMainEntry vadeMecumEntryList;
 
@@ -342,14 +343,13 @@ public class ClientProxy extends AbstractProxy {
 
 	@Override
 	public void init() {
-		RenderNoBreak renderNoBreak = new RenderNoBreak();
-		RenderVoidicCharger renderCharger = new RenderVoidicCharger();
-
-		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityNoBreak.class, renderNoBreak);
-		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityVoidicCharger.class, renderCharger);
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityNoBreak.class, new RenderNoBreak());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityVoidicCharger.class, new RenderVoidicCharger());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityVoidicAnchor.class, new RenderVoidicAnchor());
 
 		ForgeHooksClient.registerTESRItemStack(Item.getItemFromBlock(VoidCraft.blocks.blockNoBreak), 0, TileEntityNoBreak.class);
 		ForgeHooksClient.registerTESRItemStack(Item.getItemFromBlock(VoidCraft.blocks.voidicCharger), 0, TileEntityVoidicCharger.class);
+		ForgeHooksClient.registerTESRItemStack(Item.getItemFromBlock(VoidCraft.blocks.voidicAnchor), 0, TileEntityVoidicAnchor.class);
 	}
 
 	@Override
@@ -358,7 +358,7 @@ public class ClientProxy extends AbstractProxy {
 		MinecraftForge.EVENT_BUS.register(new BossBarOverlay());
 		MinecraftForge.EVENT_BUS.register(new BGMusic());
 		MinecraftForge.EVENT_BUS.register(new DebugEvent());
-		MinecraftForge.EVENT_BUS.register(infusionHandler);
+		MinecraftForge.EVENT_BUS.register(new ClientInfusionOverlayRender());
 		MinecraftForge.EVENT_BUS.register(new Tamaized.Voidcraft.client.RenderPlayer());
 		MinecraftForge.EVENT_BUS.register(new Tamaized.Voidcraft.client.RenderLiving());
 		MinecraftForge.EVENT_BUS.register(new Tamaized.Voidcraft.client.RenderSheathe());
