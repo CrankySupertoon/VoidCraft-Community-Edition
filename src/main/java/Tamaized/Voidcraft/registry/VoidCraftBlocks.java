@@ -176,7 +176,7 @@ public class VoidCraftBlocks implements ITamRegistry {
 		GameRegistry.addRecipe(new ItemStack(voidicCable, 8), "XXX", "XYX", "XXX", 'Y', blockVoidcrystal, 'X', Items.REDSTONE);
 		GameRegistry.addRecipe(new ItemStack(voidicGen), "XXX", "XYX", "XXX", 'Y', voidInfuser, 'X', Items.REDSTONE);
 		GameRegistry.addRecipe(new ItemStack(voidicCharger), "DSD", "CZC", "DPD", 'D', VoidCraft.items.diamondDust, 'S', VoidCraft.items.voidStar, 'C', VoidCraft.items.voidCloth, 'Z', Items.END_CRYSTAL, 'P', voidicCable);
-		GameRegistry.addRecipe(new ItemStack(voidicAnchor), "DSD", "CZC", "XPX", 'X', VoidCraft.items.voidicSteel, 'D', VoidCraft.items.diamondDust, 'S', VoidCraft.items.voidStar, 'C', VoidCraft.items.voidCloth, 'Z', Items.END_CRYSTAL, 'P', voidicAnchor);
+		GameRegistry.addRecipe(new ItemStack(voidicAnchor), "DSD", "CZC", "XPX", 'X', VoidCraft.items.voidicSteel, 'D', VoidCraft.items.diamondDust, 'S', VoidCraft.items.voidStar, 'C', VoidCraft.items.voidCloth, 'Z', Items.END_CRYSTAL, 'P', voidicCharger);
 		GameRegistry.addRecipe(new ItemStack(realityStabilizer), "IDI", "DSD", "ICI", 'I', VoidCraft.items.voidicSteel, 'C', voidicCharger, 'S', VoidCraft.items.voidStar, 'D', VoidCraft.items.diamondDust);
 		GameRegistry.addRecipe(new ItemStack(voidicAlchemyTable), "BCB", "CSC", "BIB", 'B', blockVoidbrick, 'C', VoidCraft.items.voidicSteel, 'S', Items.BREWING_STAND, 'I', voidInfuserInert);
 		GameRegistry.addRecipe(new ItemStack(realityTeleporterBlock), "BEB", "LHL", "BCB", 'B', VoidCraft.items.voidicSteel, 'E', VoidCraft.items.emeraldDust, 'L', VoidCraft.items.voidCloth, 'H', realityHole, 'C', voidicCharger);

@@ -374,6 +374,7 @@ voidcraft.VadeMecum.docs.title.starforge.effect.haste=Haste
 voidcraft.VadeMecum.docs.title.starforge.effect.silkTouch=Silk Touch
 voidcraft.VadeMecum.docs.title.starforge.effect.fortune=Fortune
 voidcraft.VadeMecum.docs.title.starforge.effect.threeByThree=3x3 Mining
+voidcraft.VadeMecum.docs.title.quori=Dal Quor
 ## -- Descriptions
 voidcraft.VadeMecum.docs.desc.moltenSword=Foes struck by this sword are lit on fire and are inflicted with a weakness and nausea debuff for 5 seconds.
 voidcraft.VadeMecum.docs.desc.demonSword=Foes struck by this sword are dealt the same effects as the Arch-Angelic sword though the durations are now 20 seconds each.
@@ -425,7 +426,7 @@ voidcraft.VadeMecum.docs.desc.voidicCharger.pg1=End Crystals are perhaps the mos
 voidcraft.VadeMecum.docs.desc.voidicCharger.pg2=Charger. A device capable of charging certain items with Voidic Power. However, it should be noted that, due to its shape, it can only take in power from the Bottom. So plan accordingly when making your network of Voidic Generators and Voidic Cables.
 voidcraft.VadeMecum.docs.desc.voidicAnchor.pg1=It is known that the Voidic Charger can disperse Voidic Power to items, however there is a way to reverse this effect to draw Voidic Infusion from entities into liquid form. That is where the Voidic Anchor comes in. It requires Voidic Power to function itself, which can only be inputted from the bottom. In a 10 block radius it'll consume infusion from entities and turn it into Liquid Void. This Liquid void can only be extracted from the bottom as well.
 voidcraft.VadeMecum.docs.desc.voidicAnchor.pg2=Because both power and liquid void can only be accessed from the bottom it is recommended you place the Anchor right on top of a Voidic Power Generator.
-voidcraft.VadeMecum.docs.desc.voidicCrystallizer.pg1=The Voidic Crystallizer, as the name implies, takes Liquid Void and converts it back into Crystal form. It does however require power to function, 144 Voidic Power is needed per operation and ofcourse 1000mb (1 bucket) worth of Liquid Void is required. Both of these can only be inputted from the top and bottom of the machine.
+voidcraft.VadeMecum.docs.desc.voidicCrystallizer.pg1=The Voidic Crystallizer, as the name implies, takes Liquid Void and converts it back into Crystal form. It does however require power to function, 144 Voidic Power is needed per operation and ofcourse 1000mb (1 bucket) worth of Liquid Void is required. Both of these can only be inputted from the top and bottom of the machine. Crystals are thrown out of the machine into the world once formed.
 voidcraft.VadeMecum.docs.desc.realityStabilizer=Throughout the Void, there are tears in space and time. It is unknown if these Holes in Reality occur naturally, or if they are the product some other powerful force. In either case, one may wish to remove them from the terrain for one reason or another. To do this, one must construct a powerful machine capable of containing these rifts. That is where this machine, the Reality Stabilizer, comes into play.
 voidcraft.VadeMecum.docs.desc.voidicAlchemyTable.pg1=Consuming Ethereal Fruit and their fertilized variants provide many great benefits. However, if brewing and farming in the Overworld has taught you anything, it would be that some of the most potent potions are created from enhanced crops. This holds true for the Voidic Plants as well. By encasing a Brewing Stand in Void Bricks and creating an interface of Void Cables and an Inert Void Infusion Altar, one creates a special workspace
 voidcraft.VadeMecum.docs.desc.voidicAlchemyTable.pg2=specifically for brewing with these strange plants.
@@ -476,6 +477,7 @@ voidcraft.VadeMecum.docs.desc.starforge.effect.haste=Increases the speed at whic
 voidcraft.VadeMecum.docs.desc.starforge.effect.silkTouch=Adds Silk Touch to the Tool.
 voidcraft.VadeMecum.docs.desc.starforge.effect.fortune=Adds Fortune 5 to the Tool.
 voidcraft.VadeMecum.docs.desc.starforge.effect.threeByThree=The Tool will now mine in a Three by Three area.
+voidcraft.VadeMecum.docs.desc.quori.pg1=This is an early access version of the 'Dream Update' for VoidCraft, do NOT expect much content here nor any real documentation just yet. The only thing I will say is that you must right click a bed with a Quori Fragment. Have fun.
 # -- Progression
 voidcraft.VadeMecum.title.progression=Mysteries of the Void
 ## -- Titles

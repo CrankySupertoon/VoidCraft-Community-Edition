@@ -32,6 +32,7 @@ public class VadeMecumDocumentationEntry extends VadeMecumEntry {
 		addButton(gui, VadeMecumDocumentationEntryList.getEntryID(VadeMecumDocumentationEntryList.Entry.XIA), VoidCraft.modid + ".VadeMecum.docs.title.xia", new ItemStack(VoidCraft.blocks.blockPortalXia));
 
 		addButton(gui, VadeMecumDocumentationEntryList.getEntryID(VadeMecumDocumentationEntryList.Entry.STARFORGE), VoidCraft.modid + ".VadeMecum.docs.title.starforge", new ItemStack(VoidCraft.blocks.starforgeStation));
+		addButton(gui, VadeMecumDocumentationEntryList.getEntryID(VadeMecumDocumentationEntryList.Entry.QUORI), VoidCraft.modid + ".VadeMecum.docs.title.quori", new ItemStack(VoidCraft.items.dreamBed));
 	}
 
 	@Override
@@ -75,6 +76,9 @@ public class VadeMecumDocumentationEntry extends VadeMecumEntry {
 				break;
 			case STARFORGE:
 				gui.changeEntry(ClientProxy.vadeMecumEntryList.Docs.STARFORGE);
+				break;
+			case QUORI:
+				gui.changeEntry(ClientProxy.vadeMecumEntryList.Docs.QUORI);
 				break;
 			default:
 				gui.changeEntry(ClientProxy.vadeMecumEntryList.Docs.MAIN);

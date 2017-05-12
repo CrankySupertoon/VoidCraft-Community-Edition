@@ -8,6 +8,7 @@ import Tamaized.Voidcraft.vadeMecum.contents.documentation.fruit.VadeMecumPageLi
 import Tamaized.Voidcraft.vadeMecum.contents.documentation.items.VadeMecumItemsEntry;
 import Tamaized.Voidcraft.vadeMecum.contents.documentation.machines.VadeMecumMachinesEntry;
 import Tamaized.Voidcraft.vadeMecum.contents.documentation.mobs.VadeMecumMobsEntry;
+import Tamaized.Voidcraft.vadeMecum.contents.documentation.quori.VadeMecumPageListQuori;
 import Tamaized.Voidcraft.vadeMecum.contents.documentation.starforge.VadeMecumPageListStarForge;
 import Tamaized.Voidcraft.vadeMecum.contents.documentation.thevoid.VadeMecumPageListVoid;
 import Tamaized.Voidcraft.vadeMecum.contents.documentation.tools.VadeMecumToolsEntry;
@@ -18,7 +19,7 @@ import Tamaized.Voidcraft.vadeMecum.contents.documentation.xia.VadeMecumPageList
 public class VadeMecumDocumentationEntryList {
 
 	public static enum Entry {
-		CREDITS, MAIN, BLOCKS, MACHINES, ITEMS, TOOLS, WEAPONS, ARMOR, ETHEREALFRUIT, MOBS, BOSSES, VOID, VOIDICINFUSION, XIA, STARFORGE
+		CREDITS, MAIN, BLOCKS, MACHINES, ITEMS, TOOLS, WEAPONS, ARMOR, ETHEREALFRUIT, MOBS, BOSSES, VOID, VOIDICINFUSION, XIA, STARFORGE, QUORI
 	}
 
 	public static int getEntryID(Entry e) {
@@ -44,6 +45,7 @@ public class VadeMecumDocumentationEntryList {
 	public final VadeMecumEntry VOIDICINFUSION;
 	public final VadeMecumEntry XIA;
 	public final VadeMecumEntry STARFORGE;
+	public final VadeMecumEntry QUORI;
 
 	public VadeMecumDocumentationEntryList() {
 		CREDITS = new VadeMecumDocumentationEntry();
@@ -61,6 +63,7 @@ public class VadeMecumDocumentationEntryList {
 		VOIDICINFUSION = new VadeMecumEntry("docs_VOIDICINFUSION", "", MAIN, new VadeMecumPageListVoidicInfusion());
 		XIA = new VadeMecumEntry("docs_XIA", "", MAIN, new VadeMecumPageListXia());
 		STARFORGE = new VadeMecumEntry("docs_STARFORGE", "", MAIN, new VadeMecumPageListStarForge());
+		QUORI = new VadeMecumEntry("docs_QUORI", "", MAIN, new VadeMecumPageListQuori());
 	}
 
 	public void preLoadObjects() {
@@ -79,6 +82,7 @@ public class VadeMecumDocumentationEntryList {
 		VOIDICINFUSION.initObjects();
 		XIA.initObjects();
 		STARFORGE.initObjects();
+		QUORI.initObjects();
 	}
 
 }
