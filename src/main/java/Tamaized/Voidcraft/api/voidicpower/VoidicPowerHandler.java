@@ -17,8 +17,8 @@ public class VoidicPowerHandler {
 		}
 		if (input.getPowerAmount() + a > input.getMaxPower()) {
 			a = input.getMaxPower() - input.getPowerAmount();
-			sendBack -= a;
 		}
+		sendBack -= a;
 		input.setPowerAmount(input.getPowerAmount() + a);
 		return sendBack;
 	}
