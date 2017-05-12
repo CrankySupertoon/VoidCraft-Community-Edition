@@ -78,15 +78,30 @@ public class WorldGeneratorVoid implements IWorldGenerator {
 
 	private void generateDalQuor(World world, Random random, int BlockX, int BlockZ) {
 		if (VoidCraft.config.canGenCosmicMaterial()) {
-			for (int i = 0; i < 10; i++) {
+			for (int i = 0; i < 16; i++) {
 				int Xcoord = BlockX + random.nextInt(16);
 				int Zcoord = BlockZ + random.nextInt(16);
 				int Ycoord = random.nextInt(255);
-				new WorldGenMinable(VoidCraft.blocks.cosmicMaterial.getDefaultState(), 3, new Predicate<IBlockState>() {
+				new WorldGenMinable(VoidCraft.blocks.cosmicMaterial.getDefaultState(), 7, new Predicate<IBlockState>() {
 
 					@Override
 					public boolean apply(IBlockState input) {
 						return input != Blocks.AIR.getDefaultState();
+					}
+
+				}).generate(world, random, new BlockPos(Xcoord, Ycoord, Zcoord));
+			}
+		}
+		if (VoidCraft.config.canGenVoidCrystalOre()) {
+			for (int i = 0; i < 10; i++) {
+				int Xcoord = BlockX + random.nextInt(16);
+				int Zcoord = BlockZ + random.nextInt(16);
+				int Ycoord = random.nextInt(255);
+				new WorldGenMinable(((OreVoidcrystal) VoidCraft.blocks.oreVoidcrystal).getDefaultState(), 5, new Predicate<IBlockState>() {
+
+					@Override
+					public boolean apply(IBlockState input) {
+						return input == VoidCraft.blocks.blockFakeBedrock.getDefaultState();
 					}
 
 				}).generate(world, random, new BlockPos(Xcoord, Ycoord, Zcoord));
