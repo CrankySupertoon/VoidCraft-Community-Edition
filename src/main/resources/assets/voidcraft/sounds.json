@@ -13,7 +13,7 @@
   "music.gop1": {"category": "music", "sounds": [{"name": "voidcraft:music/ghosts of perdition", "stream": true}]},
   "music.gop2": {"category": "music", "sounds": [{"name": "voidcraft:music/ghosts of perdition_2", "stream": true}]},
   "music.inferno": {"category": "music", "sounds": [{"name": "voidcraft:music/inferno of the damned", "stream": true}]},
-  "music.mod": {"category": "music", "sounds": [{"name": "voidcraft:music/mark of death", "stream": true}]},
+  "music.darkness": {"category": "music", "sounds": [{"name": "voidcraft:music/darkness", "stream": true}]},
   "music.deathwyrm": {"category": "music", "sounds": [{"name": "voidcraft:music/temple of the deathwyrm", "stream": true}]},
   "music.titan": {"category": "music", "sounds": [{"name": "voidcraft:music/titan awakes", "stream": true}]},
   "music.crystalcove": {"category": "music", "sounds": [{"name": "voidcraft:music/crystal cove", "stream": true}]}

@@ -23,7 +23,7 @@ public class VoidSoundEvents {
 		public static SoundEvent gop1 = null;
 		public static SoundEvent gop2 = null;
 		public static SoundEvent inferno = null;
-		public static SoundEvent mod = null;
+		public static SoundEvent darkness = null;
 		public static SoundEvent deathwyrm = null;
 		public static SoundEvent titan = null;
 		public static SoundEvent crystalcove = null;
@@ -108,7 +108,7 @@ public class VoidSoundEvents {
 		MusicSoundEvents.gop1 = registerSound("music.gop1");
 		MusicSoundEvents.gop2 = registerSound("music.gop2");
 		MusicSoundEvents.inferno = registerSound("music.inferno");
-		MusicSoundEvents.mod = registerSound("music.mod");
+		MusicSoundEvents.darkness = registerSound("music.darkness");
 		MusicSoundEvents.deathwyrm = registerSound("music.deathwyrm");
 		MusicSoundEvents.titan = registerSound("music.titan");
 		MusicSoundEvents.crystalcove = registerSound("music.crystalcove");
