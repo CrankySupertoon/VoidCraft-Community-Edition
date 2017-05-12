@@ -77,44 +77,6 @@ public class VoidMacerator extends TamBlockContainer {
 		return meta;
 	}
 
-	@SideOnly(Side.CLIENT)
-	@Override
-	public void randomDisplayTick(IBlockState state, World world, BlockPos pos, Random rand) {
-		if (state.getValue(ACTIVE)) {
-			float x1 = (float) pos.getX() + 0.5F;
-			float y1 = (float) pos.getY() + rand.nextFloat();
-			float z1 = (float) pos.getZ() + 0.5F;
-
-			float f = 0.52F;
-			float f1 = rand.nextFloat() * 0.6F - 0.3F;
-
-			switch (state.getValue(FACING)) {
-				case NORTH:
-					world.spawnParticle(EnumParticleTypes.PORTAL, (double) (x1 + f1), (double) (y1), (double) (z1 - f), 0D, 0D, -1D);
-					world.spawnParticle(EnumParticleTypes.PORTAL, (double) (x1 + f1), (double) (y1), (double) (z1 - f), 0D, 0D, -1D);
-					world.spawnParticle(EnumParticleTypes.PORTAL, (double) (x1 + f1), (double) (y1), (double) (z1 - f), 0D, 0D, -1D);
-					break;
-				case SOUTH:
-					world.spawnParticle(EnumParticleTypes.PORTAL, (double) (x1 + f1), (double) (y1), (double) (z1 + f), 0D, 0D, 1D);
-					world.spawnParticle(EnumParticleTypes.PORTAL, (double) (x1 + f1), (double) (y1), (double) (z1 + f), 0D, 0D, 1D);
-					world.spawnParticle(EnumParticleTypes.PORTAL, (double) (x1 + f1), (double) (y1), (double) (z1 + f), 0D, 0D, 1D);
-					break;
-				case EAST:
-					world.spawnParticle(EnumParticleTypes.PORTAL, (double) (x1 + f), (double) (y1), (double) (z1 + f1), 1D, 0D, 0D);
-					world.spawnParticle(EnumParticleTypes.PORTAL, (double) (x1 + f), (double) (y1), (double) (z1 + f1), 1D, 0D, 0D);
-					world.spawnParticle(EnumParticleTypes.PORTAL, (double) (x1 + f), (double) (y1), (double) (z1 + f1), 1D, 0D, 0D);
-					break;
-				case WEST:
-					world.spawnParticle(EnumParticleTypes.PORTAL, (double) (x1 - f), (double) (y1), (double) (z1 + f1), -1D, 0D, 0D);
-					world.spawnParticle(EnumParticleTypes.PORTAL, (double) (x1 - f), (double) (y1), (double) (z1 + f1), -1D, 0D, 0D);
-					world.spawnParticle(EnumParticleTypes.PORTAL, (double) (x1 - f), (double) (y1), (double) (z1 + f1), -1D, 0D, 0D);
-					break;
-				default:
-					break;
-			}
-		}
-	}
-
 	@Override
 	public void onBlockAdded(World world, BlockPos pos, IBlockState state) {
 		if (!world.isRemote) {

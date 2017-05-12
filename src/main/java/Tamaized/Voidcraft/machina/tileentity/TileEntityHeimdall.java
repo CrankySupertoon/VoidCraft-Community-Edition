@@ -1,5 +1,8 @@
 package Tamaized.Voidcraft.machina.tileentity;
 
+import Tamaized.TamModized.TamModized;
+import Tamaized.TamModized.particles.ParticleHelper;
+import Tamaized.TamModized.particles.FX.network.ParticleFluffPacketHandler;
 import Tamaized.TamModized.tileentity.TamTileEntityInventory;
 import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.machina.addons.VoidTank;
@@ -8,6 +11,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.Vec3d;
 import net.minecraftforge.energy.IEnergyStorage;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.IFluidHandler;
@@ -101,6 +105,7 @@ public class TileEntityHeimdall extends TamTileEntityInventory implements IFluid
 			if (forgeEnergy >= 5 && getFluidAmount() < getMaxFluidAmount()) {
 				forgeEnergy -= 5;
 				fill(new FluidStack(VoidCraft.fluids.voidFluid, 5), true);
+				ParticleFluffPacketHandler.spawnOnServer(world, new Vec3d(pos.getX()+0.5F, pos.getY() + 0.5F, pos.getZ()+0.5F), new Vec3d(0, 0, 0), world.rand.nextInt(20 * 2) + 20, -((world.rand.nextFloat() * 0.02F) + 0.01F), (world.rand.nextFloat() * 0.50F) + 0.25F, 0x7700FFFF);
 			}
 
 			// Check if Void Machina is nearby; if so give it fluid

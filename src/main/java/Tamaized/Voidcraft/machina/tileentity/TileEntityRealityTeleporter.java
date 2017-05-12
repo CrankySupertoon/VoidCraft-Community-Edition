@@ -2,6 +2,7 @@ package Tamaized.Voidcraft.machina.tileentity;
 
 import java.util.List;
 
+import Tamaized.TamModized.particles.FX.network.ParticleFluffPacketHandler;
 import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.api.voidicpower.TileEntityVoidicPowerInventory;
 import net.minecraft.entity.EntityLivingBase;
@@ -12,6 +13,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 
 public class TileEntityRealityTeleporter extends TileEntityVoidicPowerInventory {
 
@@ -86,6 +88,12 @@ public class TileEntityRealityTeleporter extends TileEntityVoidicPowerInventory 
 	public void useResources() {
 		drainPower(getPowerUse());
 		decrStackSize(SLOT_INPUT, 1);
+		for (float xf = 0.0F; xf <= 1.0F; xf += 0.25F)
+			for (float zf = 0.0F; zf <= 1.0F; zf += 0.25F)
+				for (float yf = 0.0F; yf <= 1.0F; yf += 0.25F) {
+					if(world.rand.nextInt(4) != 0) continue;
+					ParticleFluffPacketHandler.spawnOnServer(world, new Vec3d(pos.getX() + xf, pos.getY() + yf + 1.0F, pos.getZ() + zf), new Vec3d(0, 0, 0), world.rand.nextInt(20 * 2) + 20, -((world.rand.nextFloat() * 0.02F) + 0.01F), (world.rand.nextFloat() * 0.50F) + 0.25F, 0xFFFFFFFF);
+				}
 	}
 
 	public void useLinkResources() {
@@ -122,7 +130,7 @@ public class TileEntityRealityTeleporter extends TileEntityVoidicPowerInventory 
 					useResources();
 					useLinkResources();
 					for (EntityLivingBase e : list) {
-						e.setPositionAndUpdate(link.getX()+0.5, link.getY()+1, link.getZ()+0.5);
+						e.setPositionAndUpdate(link.getX() + 0.5, link.getY() + 1, link.getZ() + 0.5);
 					}
 				}
 			}

@@ -111,11 +111,7 @@ public class TileEntityVoidBox extends TamTileEntityInventory {
 						break;
 					}
 				}
-				if (soundEvent == null) throw new IOException("null soundEvent");
-				Class<? extends SoundEvent> cS = soundEvent.getClass();
-				field = ReflectionHelper.findField(cS, new String[] { "field_187506_b", "field_149219_a", "soundName" });
-				field.setAccessible(true);
-				ResourceLocation resourceLocation = (ResourceLocation) field.get(soundEvent);
+				ResourceLocation resourceLocation = SoundEvent.REGISTRY.getNameForObject(soundEvent);
 				String modid = resourceLocation.getResourceDomain();
 				String soundID = resourceLocation.getResourcePath();
 				String encodedValue = "";

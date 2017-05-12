@@ -1,5 +1,6 @@
 package Tamaized.Voidcraft.machina.tileentity;
 
+import Tamaized.TamModized.particles.FX.network.ParticleFluffPacketHandler;
 import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.api.voidicpower.TileEntityVoidicPowerInventory;
 import Tamaized.Voidcraft.machina.VoidMacerator;
@@ -10,6 +11,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
 public class TileEntityVoidMacerator extends TileEntityVoidicPowerInventory {
@@ -65,6 +67,7 @@ public class TileEntityVoidMacerator extends TileEntityVoidicPowerInventory {
 		if (!world.isRemote) {
 			if (cooking) {
 				cookingTick++;
+				if (cookingTick % 10 == 0) ParticleFluffPacketHandler.spawnOnServer(world, new Vec3d(pos.getX() + 0.25F + (world.rand.nextFloat()*0.5F), pos.getY() + 0.5F, pos.getZ() + 0.25F + (world.rand.nextFloat()*0.5F)), new Vec3d(0, 0, 0), world.rand.nextInt(20 * 4) + 20, -((world.rand.nextFloat() * 0.02F) + 0.01F), (world.rand.nextFloat() * 0.75F) + 0.25F, 0x7700FFFF);
 				if (cookingTick >= (finishTick = recipe.getRequiredPower())) {
 					cookingTick = 0;
 					bakeItem();
