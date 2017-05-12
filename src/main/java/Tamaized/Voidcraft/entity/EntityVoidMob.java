@@ -1,5 +1,6 @@
 package Tamaized.Voidcraft.entity;
 
+import Tamaized.Voidcraft.VoidCraft;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityCreature;
@@ -19,6 +20,7 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.EnumDifficulty;
+import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
 
 public abstract class EntityVoidMob extends EntityCreature implements IMob {
@@ -30,9 +32,6 @@ public abstract class EntityVoidMob extends EntityCreature implements IMob {
 		experienceValue = 10;
 	}
 
-	/**
-	 * Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons use this to react to sunlight and start to burn.
-	 */
 	@Override
 	public void onLivingUpdate() {
 		updateArmSwingProgress();
@@ -43,9 +42,6 @@ public abstract class EntityVoidMob extends EntityCreature implements IMob {
 		super.onLivingUpdate();
 	}
 
-	/**
-	 * Called to update the entity's position/logic.
-	 */
 	@Override
 	public void onUpdate() {
 		super.onUpdate();
@@ -74,9 +70,6 @@ public abstract class EntityVoidMob extends EntityCreature implements IMob {
 		return SoundEvents.ENTITY_HOSTILE_SPLASH;
 	}
 
-	/**
-	 * Called when the entity is attacked.
-	 */
 	@Override
 	public boolean attackEntityFrom(DamageSource p_70097_1_, float p_70097_2_) {
 		if (isEntityInvulnerable()) {
@@ -92,33 +85,19 @@ public abstract class EntityVoidMob extends EntityCreature implements IMob {
 		}
 	}
 
-	/**
-	 * I'm lazy
-	 * 
-	 * @param b
-	 */
 	public void setInvul(boolean b) {
 		invulnerable = b;
 	}
 
-	/**
-	 * Return whether this entity is invulnerable to damage. Again, im lazy
-	 */
 	public boolean isEntityInvulnerable() {
 		return invulnerable;
 	}
 
-	/**
-	 * Returns the sound this mob makes when it is hurt.
-	 */
 	@Override
 	protected SoundEvent getHurtSound() {
 		return SoundEvents.ENTITY_HOSTILE_HURT;
 	}
 
-	/**
-	 * Returns the sound this mob makes on death.
-	 */
 	@Override
 	protected SoundEvent getDeathSound() {
 		return SoundEvents.ENTITY_HOSTILE_DEATH;
@@ -131,8 +110,6 @@ public abstract class EntityVoidMob extends EntityCreature implements IMob {
 
 	@Override
 	public boolean attackEntityAsMob(Entity entityIn) {
-		// if(p_70652_1_ instanceof VoidChain) return false;
-
 		float f = (float) getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getAttributeValue();
 		int i = 0;
 
@@ -178,30 +155,31 @@ public abstract class EntityVoidMob extends EntityCreature implements IMob {
 		return flag;
 	}
 
-	/**
-	 * Basic mob attack. Default to touch of death in EntityCreature. Overridden by each mob to define their attack.
-	 *//*
-		 * protected void attackEntity(Entity p_70785_1_, float p_70785_2_) { if (attackTime <= 0 && p_70785_2_ < 2.0F && p_70785_1_.boundingBox.maxY > boundingBox.minY && p_70785_1_.boundingBox.minY < boundingBox.maxY) { attackTime = 20; if(!canAttack(p_70785_1_)) return; attackEntityAsMob(p_70785_1_); } }
-		 */
-
-	/**
-	 * Takes a coordinate in and returns a weight to determine how likely this creature will try to path to the block. Args: x, y, z
-	 */
 	@Override
 	public float getBlockPathWeight(BlockPos pos) {
 		return 0.5F - world.getLightBrightness(pos);
 	}
 
-	/**
-	 * Checks to make sure the light is not too bright where the mob is spawning BUT! MY MOBS DONT CARE SO YEA; this always returns true bro
-	 */
 	protected boolean isValidLightLevel() {
-		return true;
+		BlockPos blockpos = new BlockPos(this.posX, this.getEntityBoundingBox().minY, this.posZ);
+
+		if (world.provider.getDimension() != VoidCraft.config.getDimensionIdVoid()) {
+			return true;
+		} else if (this.world.getLightFor(EnumSkyBlock.SKY, blockpos) > this.rand.nextInt(32)) {
+			return false;
+		} else {
+			int i = this.world.getLightFromNeighbors(blockpos);
+
+			if (this.world.isThundering()) {
+				int j = this.world.getSkylightSubtracted();
+				this.world.setSkylightSubtracted(10);
+				i = this.world.getLightFromNeighbors(blockpos);
+				this.world.setSkylightSubtracted(j);
+			}
+			return i <= this.rand.nextInt(8);
+		}
 	}
 
-	/**
-	 * Checks if the entity's current position is a valid location to spawn this entity.
-	 */
 	@Override
 	public boolean getCanSpawnHere() {
 		return world.getDifficulty() != EnumDifficulty.PEACEFUL && isValidLightLevel() && super.getCanSpawnHere();
@@ -213,9 +191,6 @@ public abstract class EntityVoidMob extends EntityCreature implements IMob {
 		getAttributeMap().registerAttribute(SharedMonsterAttributes.ATTACK_DAMAGE);
 	}
 
-	/**
-	 * Entity won't drop items or experience points if this returns false
-	 */
 	@Override
 	protected boolean canDropLoot() {
 		return true;
