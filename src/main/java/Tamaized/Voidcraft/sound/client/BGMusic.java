@@ -24,7 +24,9 @@ public class BGMusic {
 
 			VoidSoundEvents.MusicSoundEvents.mcMusic_end,
 
-			VoidSoundEvents.MusicSoundEvents.crystalcove
+			VoidSoundEvents.MusicSoundEvents.crystalcove,
+
+			VoidSoundEvents.MusicSoundEvents.darkness
 
 	};
 
