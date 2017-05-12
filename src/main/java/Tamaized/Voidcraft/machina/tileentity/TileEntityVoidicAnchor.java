@@ -45,7 +45,7 @@ public class TileEntityVoidicAnchor extends TileEntityVoidicPowerInventory imple
 	@Override
 	public void onUpdate() {
 		// Fill a bucket
-		if (!getStackInSlot(SLOT_DEFAULT).isEmpty() && getStackInSlot(SLOT_DEFAULT).getItem() == Items.BUCKET && getFluidAmount() >= 1000) {
+		if (getStackInSlot(SLOT_DEFAULT) != null && getStackInSlot(SLOT_DEFAULT).getItem() == Items.BUCKET && getFluidAmount() >= 1000) {
 			drain(1000, true);
 			setInventorySlotContents(SLOT_DEFAULT, VoidCraft.fluids.voidBucket.getBucket());
 		}
@@ -140,7 +140,7 @@ public class TileEntityVoidicAnchor extends TileEntityVoidicPowerInventory imple
 
 	@Override
 	public boolean isItemValidForSlot(int slot, ItemStack itemstack) {
-		return slot == SLOT_DEFAULT && itemstack.getItem() == Items.BUCKET && getStackInSlot(SLOT_DEFAULT).isEmpty();
+		return slot == SLOT_DEFAULT && itemstack.getItem() == Items.BUCKET && getStackInSlot(SLOT_DEFAULT) == null;
 	}
 
 	@Override
@@ -150,7 +150,7 @@ public class TileEntityVoidicAnchor extends TileEntityVoidicPowerInventory imple
 
 	@Override
 	protected boolean canExtractSlot(int slot, ItemStack stack) {
-		return slot == SLOT_DEFAULT ? !getStackInSlot(SLOT_DEFAULT).isEmpty() ? getStackInSlot(SLOT_DEFAULT).isItemEqual(VoidCraft.fluids.voidBucket.getBucket()) : false : false;
+		return slot == SLOT_DEFAULT ? getStackInSlot(SLOT_DEFAULT) != null ? getStackInSlot(SLOT_DEFAULT).isItemEqual(VoidCraft.fluids.voidBucket.getBucket()) : false : false;
 	}
 
 }
