@@ -14,6 +14,7 @@ import Tamaized.Voidcraft.GUI.client.VoidMaceratorGUI;
 import Tamaized.Voidcraft.GUI.client.VoidicAlchemyGUI;
 import Tamaized.Voidcraft.GUI.client.VoidicAnchorGUI;
 import Tamaized.Voidcraft.GUI.client.VoidicChargerGUI;
+import Tamaized.Voidcraft.GUI.client.VoidicCrystallizerGUI;
 import Tamaized.Voidcraft.GUI.client.VoidicPowerGenGUI;
 import Tamaized.Voidcraft.GUI.server.HeimdallContainer;
 import Tamaized.Voidcraft.GUI.server.RealityStabilizerContainer;
@@ -28,6 +29,7 @@ import Tamaized.Voidcraft.GUI.server.VoidMaceratorContainer;
 import Tamaized.Voidcraft.GUI.server.VoidicAlchemyContainer;
 import Tamaized.Voidcraft.GUI.server.VoidicAnchorContainer;
 import Tamaized.Voidcraft.GUI.server.VoidicChargerContainer;
+import Tamaized.Voidcraft.GUI.server.VoidicCrystallizerContainer;
 import Tamaized.Voidcraft.GUI.server.VoidicPowerGenContainer;
 import Tamaized.Voidcraft.blocks.tileentity.TileEntityStarForge;
 import Tamaized.Voidcraft.capabilities.CapabilityList;
@@ -41,6 +43,7 @@ import Tamaized.Voidcraft.machina.tileentity.TileEntityVoidMacerator;
 import Tamaized.Voidcraft.machina.tileentity.TileEntityVoidicAlchemy;
 import Tamaized.Voidcraft.machina.tileentity.TileEntityVoidicAnchor;
 import Tamaized.Voidcraft.machina.tileentity.TileEntityVoidicCharger;
+import Tamaized.Voidcraft.machina.tileentity.TileEntityVoidicCrystallizer;
 import Tamaized.Voidcraft.machina.tileentity.TileEntityVoidicPowerGen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -52,7 +55,9 @@ import net.minecraftforge.fml.common.network.IGuiHandler;
 public class GuiHandler implements IGuiHandler {
 
 	public static enum Type {
-		NULL, Macerator, BlastFurnace, MusicBox, Infuser, Heimdall, VoidicGenerator, VoidicCharger, RealityStabilizer, RealityTeleporterBlock, VoidicAlchemy, RealityTeleporter, StarForge, VadeMecumSpells, VoidicAnchor
+		NULL, Macerator, BlastFurnace, MusicBox, Infuser, Heimdall, VoidicGenerator, VoidicCharger, RealityStabilizer, RealityTeleporterBlock,
+
+		VoidicAlchemy, RealityTeleporter, StarForge, VadeMecumSpells, VoidicAnchor, VoidicCrystallizer
 	}
 
 	public static int getTypeID(Type type) {
@@ -114,6 +119,9 @@ public class GuiHandler implements IGuiHandler {
 			case VoidicAnchor:
 				if (tileEntity != null && tileEntity instanceof TileEntityVoidicAnchor) return new VoidicAnchorContainer(player.inventory, (TileEntityVoidicAnchor) tileEntity);
 				else return null;
+			case VoidicCrystallizer:
+				if (tileEntity != null && tileEntity instanceof TileEntityVoidicCrystallizer) return new VoidicCrystallizerContainer(player.inventory, (TileEntityVoidicCrystallizer) tileEntity);
+				else return null;
 			default:
 				return null;
 		}
@@ -169,6 +177,9 @@ public class GuiHandler implements IGuiHandler {
 				else return null;
 			case VoidicAnchor:
 				if (tileEntity != null && tileEntity instanceof TileEntityVoidicAnchor) return new VoidicAnchorGUI(player.inventory, (TileEntityVoidicAnchor) tileEntity);
+				else return null;
+			case VoidicCrystallizer:
+				if (tileEntity != null && tileEntity instanceof TileEntityVoidicCrystallizer) return new VoidicCrystallizerGUI(player.inventory, (TileEntityVoidicCrystallizer) tileEntity);
 				else return null;
 			default:
 				return null;

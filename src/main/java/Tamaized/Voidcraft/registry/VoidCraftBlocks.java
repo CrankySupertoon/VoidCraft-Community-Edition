@@ -36,6 +36,7 @@ import Tamaized.Voidcraft.machina.VoidInfuser;
 import Tamaized.Voidcraft.machina.VoidMacerator;
 import Tamaized.Voidcraft.machina.VoidicAlchemyTable;
 import Tamaized.Voidcraft.machina.VoidicAnchor;
+import Tamaized.Voidcraft.machina.VoidicCrystallizer;
 import Tamaized.Voidcraft.machina.VoidicPowerCable;
 import Tamaized.Voidcraft.machina.VoidicPowerCharger;
 import Tamaized.Voidcraft.machina.VoidicPowerGen;
@@ -85,6 +86,7 @@ public class VoidCraftBlocks implements ITamRegistry {
 	public static RealityTeleporterBlock realityTeleporterBlock;
 	public static VoidBlastFurnace voidBlastFurnace;
 	public static VoidicAnchor voidicAnchor;
+	public static VoidicCrystallizer voidicCrystallizer;
 
 	public static BlockEtherealPlant etherealPlant;
 
@@ -140,6 +142,7 @@ public class VoidCraftBlocks implements ITamRegistry {
 		modelList.add(voidicAlchemyTable = new VoidicAlchemyTable(VoidCraft.tabs.tabVoid, Material.IRON, "voidicalchemytable", 3.5f));
 		modelList.add(realityTeleporterBlock = new RealityTeleporterBlock(VoidCraft.tabs.tabVoid, Material.IRON, "realityteleporterblock", 3.5f));
 		modelList.add(voidicAnchor = new VoidicAnchor(VoidCraft.tabs.tabVoid, Material.IRON, "voidicanchor", 3.5f));
+		modelList.add(voidicCrystallizer = new VoidicCrystallizer(VoidCraft.tabs.tabVoid, Material.IRON, "voidiccrystallizer", 3.5f));
 
 		modelList.add(etherealPlant = new BlockEtherealPlant(VoidCraft.tabs.tabVoid, "etherealplant", 1.0f));
 
@@ -177,6 +180,7 @@ public class VoidCraftBlocks implements ITamRegistry {
 		GameRegistry.addRecipe(new ItemStack(realityStabilizer), "IDI", "DSD", "ICI", 'I', VoidCraft.items.voidicSteel, 'C', voidicCharger, 'S', VoidCraft.items.voidStar, 'D', VoidCraft.items.diamondDust);
 		GameRegistry.addRecipe(new ItemStack(voidicAlchemyTable), "BCB", "CSC", "BIB", 'B', blockVoidbrick, 'C', VoidCraft.items.voidicSteel, 'S', Items.BREWING_STAND, 'I', voidInfuserInert);
 		GameRegistry.addRecipe(new ItemStack(realityTeleporterBlock), "BEB", "LHL", "BCB", 'B', VoidCraft.items.voidicSteel, 'E', VoidCraft.items.emeraldDust, 'L', VoidCraft.items.voidCloth, 'H', realityHole, 'C', voidicCharger);
+		GameRegistry.addRecipe(new ItemStack(voidicCrystallizer), "SCS", "SES", "SCS", 'S', VoidCraft.items.voidicSteel, 'C', VoidCraft.items.voidChain, 'E', VoidCraft.items.ectoplasm);
 	}
 
 	@Override

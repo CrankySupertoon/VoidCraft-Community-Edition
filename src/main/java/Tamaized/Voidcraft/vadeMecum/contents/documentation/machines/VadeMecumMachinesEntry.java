@@ -9,6 +9,7 @@ import Tamaized.Voidcraft.vadeMecum.contents.documentation.machines.anchor.VadeM
 import Tamaized.Voidcraft.vadeMecum.contents.documentation.machines.blastfurnace.VadeMecumPageListBlastFurnace;
 import Tamaized.Voidcraft.vadeMecum.contents.documentation.machines.cable.VadeMecumPageListCable;
 import Tamaized.Voidcraft.vadeMecum.contents.documentation.machines.charger.VadeMecumPageListCharger;
+import Tamaized.Voidcraft.vadeMecum.contents.documentation.machines.crystallizer.VadeMecumPageListCrystallizer;
 import Tamaized.Voidcraft.vadeMecum.contents.documentation.machines.generator.VadeMecumPageListGenerator;
 import Tamaized.Voidcraft.vadeMecum.contents.documentation.machines.heimdall.VadeMecumPageListHeimdall;
 import Tamaized.Voidcraft.vadeMecum.contents.documentation.machines.infusionAltar.VadeMecumPageListInfusionAltar;
@@ -23,7 +24,9 @@ public class VadeMecumMachinesEntry extends VadeMecumEntry {
 	public static enum Entry {
 		VoidInfusionAltar, VoidInfusedMacerator, BlastFurnace, Heimdall, VoidicGenerator, VoidicCable,
 
-		VoidMusicBox, VoidicCharger, VoidicAnchor, RealityStabilizer, AlchemyTable, Teleporter
+		VoidMusicBox, VoidicCharger, VoidicAnchor, VoidicCrystallizer, RealityStabilizer, AlchemyTable,
+
+		Teleporter
 	}
 
 	public static int getEntryID(Entry e) {
@@ -44,8 +47,10 @@ public class VadeMecumMachinesEntry extends VadeMecumEntry {
 	public VadeMecumEntry voidMusicBox;
 	public VadeMecumEntry voidicCharger;
 	public VadeMecumEntry voidicAnchor;
+	public VadeMecumEntry voidicCrystallizer;
 	public VadeMecumEntry realityStabilizer;
 	public VadeMecumEntry alchemyTable;
+
 	public VadeMecumEntry teleporter;
 
 	public VadeMecumMachinesEntry(VadeMecumEntry back) {
@@ -64,8 +69,10 @@ public class VadeMecumMachinesEntry extends VadeMecumEntry {
 		voidMusicBox = new VadeMecumEntry("docs_Machines_voidMusicBox", "", this, new VadeMecumPageListMusicBox());
 		voidicCharger = new VadeMecumEntry("docs_Machines_voidicCharger", "", this, new VadeMecumPageListCharger());
 		voidicAnchor = new VadeMecumEntry("docs_Machines_voidicAnchor", "", this, new VadeMecumPageListAnchor());
+		voidicCrystallizer = new VadeMecumEntry("docs_Machines_voidicCrystallizer", "", this, new VadeMecumPageListCrystallizer());
 		realityStabilizer = new VadeMecumEntry("docs_Machines_realityStabilizer", "", this, new VadeMecumPageListStabilizer());
 		alchemyTable = new VadeMecumEntry("docs_Machines_alchemyTable", "", this, new VadeMecumPageListAlchemy());
+
 		teleporter = new VadeMecumEntry("docs_Machines_teleporter", "", this, new VadeMecumPageListTeleporter());
 	}
 
@@ -83,8 +90,10 @@ public class VadeMecumMachinesEntry extends VadeMecumEntry {
 		addButton(gui, getEntryID(Entry.VoidMusicBox), new ItemStack(VoidCraft.blocks.voidBox).getDisplayName(), new ItemStack(VoidCraft.blocks.voidBox));
 		addButton(gui, getEntryID(Entry.VoidicCharger), new ItemStack(VoidCraft.blocks.voidicCharger).getDisplayName(), new ItemStack(VoidCraft.blocks.voidicCharger));
 		addButton(gui, getEntryID(Entry.VoidicAnchor), new ItemStack(VoidCraft.blocks.voidicAnchor).getDisplayName(), new ItemStack(VoidCraft.blocks.voidicAnchor));
+		addButton(gui, getEntryID(Entry.VoidicCrystallizer), new ItemStack(VoidCraft.blocks.voidicCrystallizer).getDisplayName(), new ItemStack(VoidCraft.blocks.voidicCrystallizer));
 		addButton(gui, getEntryID(Entry.RealityStabilizer), new ItemStack(VoidCraft.blocks.realityStabilizer).getDisplayName(), new ItemStack(VoidCraft.blocks.realityStabilizer));
 		addButton(gui, getEntryID(Entry.AlchemyTable), new ItemStack(VoidCraft.blocks.voidicAlchemyTable).getDisplayName(), new ItemStack(VoidCraft.blocks.voidicAlchemyTable));
+
 		addButton(gui, getEntryID(Entry.Teleporter), new ItemStack(VoidCraft.blocks.realityTeleporterBlock).getDisplayName(), new ItemStack(VoidCraft.blocks.realityTeleporterBlock));
 	}
 
@@ -117,6 +126,9 @@ public class VadeMecumMachinesEntry extends VadeMecumEntry {
 				break;
 			case VoidicAnchor:
 				gui.changeEntry(voidicAnchor);
+				break;
+			case VoidicCrystallizer:
+				gui.changeEntry(voidicCrystallizer);
 				break;
 			case RealityStabilizer:
 				gui.changeEntry(realityStabilizer);

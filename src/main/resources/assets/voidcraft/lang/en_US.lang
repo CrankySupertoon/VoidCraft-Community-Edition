@@ -89,6 +89,7 @@ tile.starforgestation.name=Star Forge
 tile.voidblastfurnace.name=Void Blast Furnace
 tile.ritualblock.name=Voidic Ritual Block
 tile.voidicanchor.name=Voidic Anchor
+tile.voidiccrystallizer.name=Voidic Crystallizer
 
 # Potion
 effect.voidcraft:voidicinfusionimmunity=Voidic Immunity
@@ -424,6 +425,7 @@ voidcraft.VadeMecum.docs.desc.voidicCharger.pg1=End Crystals are perhaps the mos
 voidcraft.VadeMecum.docs.desc.voidicCharger.pg2=Charger. A device capable of charging certain items with Voidic Power. However, it should be noted that, due to its shape, it can only take in power from the Bottom. So plan accordingly when making your network of Voidic Generators and Voidic Cables.
 voidcraft.VadeMecum.docs.desc.voidicAnchor.pg1=It is known that the Voidic Charger can disperse Voidic Power to items, however there is a way to reverse this effect to draw Voidic Infusion from entities into liquid form. That is where the Voidic Anchor comes in. It requires Voidic Power to function itself, which can only be inputted from the bottom. In a 10 block radius it'll consume infusion from entities and turn it into Liquid Void. This Liquid void can only be extracted from the bottom as well.
 voidcraft.VadeMecum.docs.desc.voidicAnchor.pg2=Because both power and liquid void can only be accessed from the bottom it is recommended you place the Anchor right on top of a Voidic Power Generator.
+voidcraft.VadeMecum.docs.desc.voidicCrystallizer.pg1=The Voidic Crystallizer, as the name implies, takes Liquid Void and converts it back into Crystal Form. It does however require power to function, 144 Voidic Power is needed per operation and ofcourse 1000mb (1 bucket) worth of Liquid Void is required. Both of these can only be inputted from the top and bottom of the machine.
 voidcraft.VadeMecum.docs.desc.realityStabilizer=Throughout the Void, there are tears in space and time. It is unknown if these Holes in Reality occur naturally, or if they are the product some other powerful force. In either case, one may wish to remove them from the terrain for one reason or another. To do this, one must construct a powerful machine capable of containing these rifts. That is where this machine, the Reality Stabilizer, comes into play.
 voidcraft.VadeMecum.docs.desc.voidicAlchemyTable.pg1=Consuming Ethereal Fruit and their fertilized variants provide many great benefits. However, if brewing and farming in the Overworld has taught you anything, it would be that some of the most potent potions are created from enhanced crops. This holds true for the Voidic Plants as well. By encasing a Brewing Stand in Void Bricks and creating an interface of Void Cables and an Inert Void Infusion Altar, one creates a special workspace
 voidcraft.VadeMecum.docs.desc.voidicAlchemyTable.pg2=specifically for brewing with these strange plants.

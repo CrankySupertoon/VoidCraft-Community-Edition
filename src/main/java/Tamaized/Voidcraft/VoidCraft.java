@@ -93,6 +93,7 @@ import Tamaized.Voidcraft.machina.tileentity.TileEntityVoidMacerator;
 import Tamaized.Voidcraft.machina.tileentity.TileEntityVoidicAlchemy;
 import Tamaized.Voidcraft.machina.tileentity.TileEntityVoidicAnchor;
 import Tamaized.Voidcraft.machina.tileentity.TileEntityVoidicCharger;
+import Tamaized.Voidcraft.machina.tileentity.TileEntityVoidicCrystallizer;
 import Tamaized.Voidcraft.machina.tileentity.TileEntityVoidicPowerCable;
 import Tamaized.Voidcraft.machina.tileentity.TileEntityVoidicPowerGen;
 import Tamaized.Voidcraft.network.ServerPacketHandler;
@@ -133,7 +134,6 @@ import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.ForgeChunkManager;
 import net.minecraftforge.common.ForgeChunkManager.LoadingCallback;
 import net.minecraftforge.common.ForgeChunkManager.Ticket;
-import net.minecraftforge.common.ForgeChunkManager.Type;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.common.config.Configuration;
@@ -307,6 +307,7 @@ public class VoidCraft extends TamModBase {
 		GameRegistry.registerTileEntity(TileEntityStarForge.class, "tileEntityStarForge");
 		GameRegistry.registerTileEntity(TileEntityVoidBlastFurnace.class, "tileEntityVoidBlastFurnace");
 		GameRegistry.registerTileEntity(TileEntityVoidicAnchor.class, "tileEntityVoidicAnchor");
+		GameRegistry.registerTileEntity(TileEntityVoidicCrystallizer.class, "tileEntityVoidicCrystallizer");
 
 		// GUI Handler
 		NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
