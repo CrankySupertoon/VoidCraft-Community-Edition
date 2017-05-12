@@ -62,11 +62,11 @@ public class VoidicCrystallizerGUI extends GuiContainer {
 		fontRendererObj.drawString(text, (xSize) - 132, ySize - 210, 0x7700FF);
 
 		text = TranslateHelper.translate("voidcraft.gui.misc.power") + ":";
-		fontRendererObj.drawString(text, (xSize - fontRendererObj.getStringWidth(text)) - 226, ySize - 230, 0xAAAAFF);
+		fontRendererObj.drawString(text, (xSize - fontRendererObj.getStringWidth(text)) - 226, ySize - 230, 0xFF0000);
 		text = te.getPowerAmount() + "";
-		fontRendererObj.drawString(text, ((xSize) - (fontRendererObj.getStringWidth(text))) - 226, ySize - 220, 0xAAAAFF);
+		fontRendererObj.drawString(text, ((xSize) - (fontRendererObj.getStringWidth(text))) - 226, ySize - 220, 0xFF0000);
 		text = "/" + te.getMaxPower();
-		fontRendererObj.drawString(text, (xSize - fontRendererObj.getStringWidth(text)) - 226, ySize - 210, 0xAAAAFF);
+		fontRendererObj.drawString(text, (xSize - fontRendererObj.getStringWidth(text)) - 226, ySize - 210, 0xFF0000);
 	}
 
 	@Override

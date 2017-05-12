@@ -1,21 +1,26 @@
 package Tamaized.Voidcraft.machina.tileentity;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 import Tamaized.TamModized.particles.FX.network.ParticleFluffPacketHandler;
 import Tamaized.TamModized.tileentity.TamTileEntityInventory;
 import Tamaized.Voidcraft.VoidCraft;
+import Tamaized.Voidcraft.fluids.FluidHelper;
+import Tamaized.Voidcraft.fluids.IFaceFluidHandler;
 import Tamaized.Voidcraft.machina.addons.VoidTank;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraftforge.energy.IEnergyStorage;
 import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidTankProperties;
 
-public class TileEntityHeimdall extends TamTileEntityInventory implements IFluidHandler, IEnergyStorage {
+public class TileEntityHeimdall extends TamTileEntityInventory implements IEnergyStorage, IFaceFluidHandler {
 
 	public static final int SLOT_INPUT = 0;
 	public static final int SLOT_BUCKET = 1;
@@ -28,9 +33,13 @@ public class TileEntityHeimdall extends TamTileEntityInventory implements IFluid
 
 	private boolean isDraining = false;
 
+	private List<EnumFacing> fluidOutput = new ArrayList<EnumFacing>();
+	private List<EnumFacing> fluidInput = new ArrayList<EnumFacing>();
+
 	public TileEntityHeimdall() {
 		super(2);
 		tank = new VoidTank(this, 10000);
+		fluidOutput.add(EnumFacing.DOWN);
 	}
 
 	@Override
@@ -100,23 +109,16 @@ public class TileEntityHeimdall extends TamTileEntityInventory implements IFluid
 			}
 
 			// Convert Power to Fluid
-			if (forgeEnergy >= 5 && getFluidAmount() < getMaxFluidAmount()) {
-				forgeEnergy -= 5;
-				fill(new FluidStack(VoidCraft.fluids.voidFluid, 5), true);
-				ParticleFluffPacketHandler.spawnOnServer(world, new Vec3d(pos.getX()+0.5F, pos.getY() + 0.5F, pos.getZ()+0.5F), new Vec3d(0, 0, 0), world.rand.nextInt(20 * 2) + 20, -((world.rand.nextFloat() * 0.02F) + 0.01F), (world.rand.nextFloat() * 0.50F) + 0.25F, 0x7700FFFF);
+			if (forgeEnergy >= 1 && getFluidAmount() < getMaxFluidAmount()) {
+				int rate = MathHelper.clamp(forgeEnergy, 1, 100);
+				forgeEnergy -= rate;
+				fill(new FluidStack(VoidCraft.fluids.voidFluid, rate), true);
+				ParticleFluffPacketHandler.spawnOnServer(world, new Vec3d(pos.getX() + 0.5F, pos.getY() + 0.5F, pos.getZ() + 0.5F), new Vec3d(0, 0, 0), world.rand.nextInt(20 * 2) + 20, -((world.rand.nextFloat() * 0.02F) + 0.01F), (world.rand.nextFloat() * 0.50F) + 0.25F, 0x7700FFFF);
 			}
 
 			// Check if Void Machina is nearby; if so give it fluid
 			if (tank.getFluidAmount() > 0) {
-				for (EnumFacing face : EnumFacing.VALUES) {
-					TileEntity te = world.getTileEntity(getPos().offset(face));
-					if (te instanceof IFluidHandler) {
-						IFluidHandler fte = ((IFluidHandler) te);
-						if (fte.fill(new FluidStack(VoidCraft.fluids.voidFluid, 1), true) > 0) {
-							drain(new FluidStack(VoidCraft.fluids.voidFluid, 1), true);
-						}
-					}
-				}
+				FluidHelper.sendToAllAround(this, world, pos, MathHelper.clamp(getFluidAmount(), 1, 100));
 			}
 
 		}
@@ -184,4 +186,13 @@ public class TileEntityHeimdall extends TamTileEntityInventory implements IFluid
 		tank.setFluid(new FluidStack(VoidCraft.fluids.voidFluid, amount > tank.getCapacity() ? tank.getCapacity() : amount));
 	}
 
+	@Override
+	public List<EnumFacing> outputFaces() {
+		return Collections.unmodifiableList(fluidOutput);
+	}
+
+	@Override
+	public List<EnumFacing> inputFaces() {
+		return Collections.unmodifiableList(fluidInput);
+	}
 }

@@ -1,7 +1,12 @@
 package Tamaized.Voidcraft.machina.tileentity;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 import Tamaized.TamModized.tileentity.TamTileEntityInventory;
 import Tamaized.Voidcraft.VoidCraft;
+import Tamaized.Voidcraft.fluids.IFaceFluidHandler;
 import Tamaized.Voidcraft.machina.addons.TERecipeInfuser.InfuserRecipe;
 import Tamaized.Voidcraft.machina.addons.VoidTank;
 import net.minecraft.init.Items;
@@ -10,10 +15,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidTankProperties;
 
-public class TileEntityVoidInfuser extends TamTileEntityInventory implements IFluidHandler {
+public class TileEntityVoidInfuser extends TamTileEntityInventory implements IFaceFluidHandler {
 
 	public VoidTank tank;
 
@@ -28,9 +32,15 @@ public class TileEntityVoidInfuser extends TamTileEntityInventory implements IFl
 
 	private Item lastCookingItem = null;
 
+	private List<EnumFacing> fluidOutput = new ArrayList<EnumFacing>();
+	private List<EnumFacing> fluidInput = new ArrayList<EnumFacing>();
+
 	public TileEntityVoidInfuser() {
 		super(3);
 		tank = new VoidTank(this, 3000);
+		for (EnumFacing face : EnumFacing.VALUES) {
+			fluidInput.add(face);
+		}
 	}
 
 	@Override
@@ -206,5 +216,15 @@ public class TileEntityVoidInfuser extends TamTileEntityInventory implements IFl
 
 	public void setFluidAmount(int amount) {
 		tank.setFluid(new FluidStack(VoidCraft.fluids.voidFluid, amount > tank.getCapacity() ? tank.getCapacity() : amount));
+	}
+
+	@Override
+	public List<EnumFacing> outputFaces() {
+		return Collections.unmodifiableList(fluidOutput);
+	}
+
+	@Override
+	public List<EnumFacing> inputFaces() {
+		return Collections.unmodifiableList(fluidInput);
 	}
 }
