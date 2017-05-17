@@ -73,7 +73,7 @@ public class VoidTickEvent {
 		if (e.player.world.provider.getDimension() == VoidCraft.config.getDimensionIdVoid()) {
 			if (e.player.getPosition().getY() >= 127) e.player.attackEntityFrom(DamageSource.OUT_OF_WORLD, 4.0F);
 		} else if (e.player.world.provider.getDimension() != VoidCraft.config.getDimensionIdXia() && e.player.world.provider.getDimension() != VoidCraft.config.getDimensionIdDalQuor()) {
-			if (e.player instanceof EntityPlayerMP && e.player.getPosition().getY() <= -256) {
+			if (e.player instanceof EntityPlayerMP && e.player.getPosition().getY() <= -256 && VoidCraft.config.voidYLevelTeleport()) {
 				EntityPlayerMP player = (EntityPlayerMP) e.player;
 				transferPlayerToDimension(player.mcServer, player, VoidCraft.config.getDimensionIdVoid(), new TeleportLoc(player.getPosition().add(0, 256 * 2, 0)));
 			}

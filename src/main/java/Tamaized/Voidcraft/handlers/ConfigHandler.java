@@ -26,6 +26,7 @@ public class ConfigHandler {
 	private List<Integer> realityWhitelist = new ArrayList<Integer>();
 	private boolean renderFirstPersonVadeMecumParticles;
 	private boolean renderThirdPersonVadeMecumParticles;
+	private boolean voidTeleport;
 
 	private boolean default_generate_VoidOre = true;
 	private boolean default_generate_CosmicOre = true;
@@ -35,6 +36,7 @@ public class ConfigHandler {
 	private int[] default_realityWhitelist = new int[] { 0, -1 };
 	private boolean default_renderFirstPersonVadeMecumParticles = true;
 	private boolean default_renderThirdPersonVadeMecumParticles = true;
+	private boolean default_voidTeleport = true;
 
 	// Use these to store values that wont be updated during runtime but need to be stored to the config from in-game gui
 	private int temp_dimensionIdVoid = -2;
@@ -63,7 +65,7 @@ public class ConfigHandler {
 	}
 
 	private void loadData(boolean firstLoad) {
-
+		voidTeleport = config.get(Configuration.CATEGORY_GENERAL, "Teleport below Y level -256", default_voidTeleport).getBoolean();
 		renderThirdPersonVadeMecumParticles = config.get(Configuration.CATEGORY_GENERAL, "Render Vade Mecum Item Particles", default_renderThirdPersonVadeMecumParticles).getBoolean();
 		if (firstLoad) {
 			temp_dimensionIdVoid = dimensionIdVoid = config.get(Configuration.CATEGORY_GENERAL, "Void Dimension ID", default_dimensionIdVoid).getInt();
@@ -96,6 +98,7 @@ public class ConfigHandler {
 		config.get(Configuration.CATEGORY_GENERAL, "Reality Hole Dimension Whitelist", default_realityWhitelist, "List of Dimension IDs the Reality Hole will attempt to send you to").set(ArrayUtils.toPrimitive(realityWhitelist.toArray(new Integer[realityWhitelist.size()])));
 		config.get(Configuration.CATEGORY_GENERAL, "Enable VoidCrystal Ore Gen", default_generate_VoidOre).set(generate_VoidOre);
 		config.get(Configuration.CATEGORY_GENERAL, "Enable Cosmic Material Gen", default_generate_CosmicOre).set(generate_CosmicOre);
+		config.get(Configuration.CATEGORY_GENERAL, "Teleport below Y level -256", default_voidTeleport).set(voidTeleport);
 	}
 
 	@SubscribeEvent
@@ -134,5 +137,10 @@ public class ConfigHandler {
 	public boolean canGenCosmicMaterial() {
 		return generate_CosmicOre;
 	}
+
+	public boolean voidYLevelTeleport() {
+		return voidTeleport;
+	}
+
 
 }
