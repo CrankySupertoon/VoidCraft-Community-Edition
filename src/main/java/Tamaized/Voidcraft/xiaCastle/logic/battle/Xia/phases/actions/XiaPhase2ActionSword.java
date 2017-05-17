@@ -64,7 +64,7 @@ public class XiaPhase2ActionSword {
 
 	private void sendPacketToClients() {
 		try {
-			PacketWrapper packet = PacketHelper.createPacket(VoidCraft.channel, VoidCraft.networkChannelName, ClientPacketHandler.getPacketTypeID(ClientPacketHandler.PacketType.XIA_ANIMATIONS));
+			PacketWrapper packet = PacketHelper.createPacket(VoidCraft.channel, VoidCraft.networkChannelName, ClientPacketHandler.getPacketTypeID(ClientPacketHandler.PacketType.BOSS_ANIMATIONS));
 			DataOutputStream stream = packet.getStream();
 			stream.writeInt(xia.getEntityId());
 			stream.writeInt(EntityAnimationsXia.getAnimationID(animation));

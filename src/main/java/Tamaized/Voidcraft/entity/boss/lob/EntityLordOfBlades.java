@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import Tamaized.Voidcraft.entity.EntityVoidBoss;
+import Tamaized.Voidcraft.network.IVoidBossAIPacket;
+import Tamaized.Voidcraft.xiaCastle.logic.battle.EntityVoidNPCAIBase;
 import Tamaized.Voidcraft.xiaCastle.logic.battle.IBattleHandler;
 import io.netty.buffer.ByteBufInputStream;
 import net.minecraft.util.DamageSource;
@@ -16,37 +18,36 @@ public class EntityLordOfBlades extends EntityVoidBoss<IBattleHandler> {
 
 	public EntityLordOfBlades(World world) {
 		super(world, new IBattleHandler() {
-			
+
 			@Override
 			public void update() {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 			@Override
 			public void stop() {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 			@Override
 			public void start(World worldObj, BlockPos pos) {
-				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 			@Override
 			public void setDone() {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 			@Override
 			public boolean isRunning() {
 				// TODO Auto-generated method stub
 				return true;
 			}
-			
+
 			@Override
 			public boolean isDone() {
 				// TODO Auto-generated method stub
@@ -63,8 +64,42 @@ public class EntityLordOfBlades extends EntityVoidBoss<IBattleHandler> {
 
 	@Override
 	protected void initPhase(int phase) {
-		// TODO Auto-generated method stub
+		switch (phase) {
+			case 1:
+				addAI(new EntityVoidNPCAIBase<EntityLordOfBlades>(this, getFilters()) {
 
+					@Override
+					protected void preInit() {
+						// TODO Auto-generated method stub
+
+					}
+
+					@Override
+					protected void postInit() {
+						// TODO Auto-generated method stub
+
+					}
+
+					@Override
+					protected void update() {
+						// TODO Auto-generated method stub
+
+					}
+
+					@Override
+					public void doAction(BlockPos pos) {
+						// TODO Auto-generated method stub
+
+					}
+
+					@Override
+					public void readPacket(IVoidBossAIPacket packet) {
+						// TODO Auto-generated method stub
+
+					}
+				});
+				break;
+		}
 	}
 
 	@Override
@@ -95,8 +130,7 @@ public class EntityLordOfBlades extends EntityVoidBoss<IBattleHandler> {
 
 	@Override
 	protected int maxPhases() {
-		// TODO Auto-generated method stub
-		return 0;
+		return 1;
 	}
 
 	@Override

@@ -5,7 +5,7 @@ import java.util.Iterator;
 
 import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.entity.boss.render.bossBar.IVoidBossData;
-import Tamaized.Voidcraft.entity.client.animation.IAnimatable;
+import Tamaized.Voidcraft.entity.client.animation.IAnimation;
 import Tamaized.Voidcraft.network.IVoidBossAIPacket;
 import Tamaized.Voidcraft.network.VoidBossAIBus;
 import Tamaized.Voidcraft.xiaCastle.logic.battle.EntityVoidNPCAIBase;
@@ -39,7 +39,7 @@ public abstract class EntityVoidBoss<T extends IBattleHandler> extends EntityVoi
 
 	private ArrayList<EntityAIBase> ai = new ArrayList<EntityAIBase>();
 
-	private ArrayList<IAnimatable> animations = new ArrayList<IAnimatable>();
+	private ArrayList<IAnimation> animations = new ArrayList<IAnimation>();
 
 	private Ticket chunkLoadTicket;
 
@@ -66,7 +66,7 @@ public abstract class EntityVoidBoss<T extends IBattleHandler> extends EntityVoi
 	}
 
 	@SideOnly(Side.CLIENT)
-	public void addAnimation(IAnimatable animation) {
+	public void addAnimation(IAnimation animation) {
 		animations.add(animation);
 	}
 
@@ -156,10 +156,10 @@ public abstract class EntityVoidBoss<T extends IBattleHandler> extends EntityVoi
 			updateAI();
 			bus.readNextPacket();
 		} else {
-			Iterator<IAnimatable> iter = animations.iterator();
+			Iterator<IAnimation> iter = animations.iterator();
 			while (iter.hasNext()) {
-				IAnimatable animation = iter.next();
-				if (animation.update()) iter.remove();
+				IAnimation animation = iter.next();
+				if (animation.update(this)) iter.remove();
 			}
 		}
 	}
@@ -335,8 +335,8 @@ public abstract class EntityVoidBoss<T extends IBattleHandler> extends EntityVoi
 
 	@SideOnly(Side.CLIENT)
 	public void renderSpecials() {
-		for (IAnimatable animation : animations) {
-			animation.render();
+		for (IAnimation animation : animations) {
+			animation.render(this);
 		}
 	}
 
