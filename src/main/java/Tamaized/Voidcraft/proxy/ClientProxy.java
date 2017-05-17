@@ -29,6 +29,9 @@ import Tamaized.Voidcraft.entity.boss.herobrine.extra.render.RenderHerobrineCree
 import Tamaized.Voidcraft.entity.boss.herobrine.extra.render.RenderHerobrineShadow;
 import Tamaized.Voidcraft.entity.boss.herobrine.extra.render.RenderHerobrineTNTPrimed;
 import Tamaized.Voidcraft.entity.boss.herobrine.render.RenderHerobrine;
+import Tamaized.Voidcraft.entity.boss.lob.EntityLordOfBlades;
+import Tamaized.Voidcraft.entity.boss.lob.render.ModelLordOfBlades;
+import Tamaized.Voidcraft.entity.boss.lob.render.RenderLordOfBlades;
 import Tamaized.Voidcraft.entity.boss.model.ModelCorruptedPawn;
 import Tamaized.Voidcraft.entity.boss.model.ModelVoidBoss;
 import Tamaized.Voidcraft.entity.boss.model.ModelVoidBossOverlay;
@@ -130,6 +133,12 @@ public class ClientProxy extends AbstractProxy {
 
 		float shadowSize = 0.5F;
 		// MOBS
+		RenderingRegistry.registerEntityRenderingHandler(EntityLordOfBlades.class, new IRenderFactory<EntityLordOfBlades>() {
+			@Override
+			public Render<? super EntityLordOfBlades> createRenderFor(RenderManager manager) {
+				return new RenderLordOfBlades(manager, new ModelLordOfBlades(), shadowSize, new ResourceLocation(VoidCraft.modid, "textures/entity/lordofblades.png"));
+			}
+		});
 		RenderingRegistry.registerEntityRenderingHandler(EntityHashalaq.class, new IRenderFactory<EntityHashalaq>() {
 			@Override
 			public Render<? super EntityHashalaq> createRenderFor(RenderManager manager) {

@@ -43,6 +43,7 @@ import Tamaized.Voidcraft.entity.boss.herobrine.extra.EntityHerobrineFireball;
 import Tamaized.Voidcraft.entity.boss.herobrine.extra.EntityHerobrineShadow;
 import Tamaized.Voidcraft.entity.boss.herobrine.extra.EntityHerobrineTNTPrimed;
 import Tamaized.Voidcraft.entity.boss.herobrine.extra.EntityHerobrineWitherSkull;
+import Tamaized.Voidcraft.entity.boss.lob.EntityLordOfBlades;
 import Tamaized.Voidcraft.entity.boss.twins.EntityBossDol;
 import Tamaized.Voidcraft.entity.boss.twins.EntityBossZol;
 import Tamaized.Voidcraft.entity.boss.xia.EntityBossXia;
@@ -385,6 +386,7 @@ public class VoidCraft extends TamModBase {
 		registerEntityWithEgg(EntityMobEtherealGuardian.class, "EtherealGuardian", this, modid, 64, 1, true, 0xFF0000, 0x000000);
 		registerEntity(EntityCompanionFireElemental.class, "FireElemental", this, modid, 64, 1, true);
 		registerEntityWithEgg(EntityHashalaq.class, "Hashalaq", this, modid, 64, 1, true, 0x000000, 0x00FFFF);
+		registerEntityWithEgg(EntityLordOfBlades.class, "LordOfBlades", this, modid, 250, 1, true, 0x777777, 0x000000);
 
 		// Register Biomes
 		Biome.getBiome(6).getSpawnableList(EnumCreatureType.MONSTER).add(new SpawnListEntry(EntityMobLich.class, 10, 0, 1));
