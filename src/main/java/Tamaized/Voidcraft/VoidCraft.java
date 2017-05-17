@@ -120,6 +120,7 @@ import Tamaized.Voidcraft.structures.voidFortress.MapGenVoidFortress;
 import Tamaized.Voidcraft.structures.voidFortress.StructureVoidFortressPieces;
 import Tamaized.Voidcraft.vadeMecum.progression.RitualList;
 import Tamaized.Voidcraft.world.WorldGeneratorVoid;
+import Tamaized.Voidcraft.world.dim.TheVoid.ChunkProviderVoid;
 import Tamaized.Voidcraft.world.dim.TheVoid.TeleporterVoid;
 import Tamaized.Voidcraft.world.dim.TheVoid.WorldProviderVoid;
 import Tamaized.Voidcraft.world.dim.Xia.TeleporterXia;
@@ -128,8 +129,10 @@ import Tamaized.Voidcraft.world.dim.dalQuor.WorldProviderDalQuor;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldType;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.Biome.SpawnListEntry;
+import net.minecraft.world.chunk.IChunkGenerator;
 import net.minecraft.world.gen.structure.MapGenStructureIO;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.ForgeChunkManager;
@@ -357,6 +360,12 @@ public class VoidCraft extends TamModBase {
 
 		// Register World Gen
 		GameRegistry.registerWorldGenerator(new WorldGeneratorVoid(), 0);
+		new WorldType(modid+"_void") {
+			@Override
+			public IChunkGenerator getChunkGenerator(World world, String generatorOptions) {
+				return new ChunkProviderVoid(world, true, world.getSeed());
+			}
+		};
 
 		MapGenStructureIO.registerStructure(MapGenVoidFortress.Start.class, "VoidFortress");
 		MapGenStructureIO.registerStructure(MapGenVoidCity.Start.class, "VoidCity");
