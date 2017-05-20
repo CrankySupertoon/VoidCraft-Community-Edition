@@ -1,5 +1,8 @@
 package Tamaized.Voidcraft.Addons.JEI.macerator;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.Addons.JEI.VoidCraftJEIPlugin;
 import mezz.jei.api.gui.IDrawable;
@@ -73,6 +76,11 @@ public class MaceratorRecipeCategory implements IRecipeCategory {
 			MaceratorRecipeWrapperJEI recipe = (MaceratorRecipeWrapperJEI) recipeWrapper;
 			recipe.setupSlots(recipeLayout.getIngredientsGroup(ItemStack.class));
 		}
+	}
+
+	@Override
+	public List<String> getTooltipStrings(int mouseX, int mouseY) {
+		return new ArrayList<String>();
 	}
 
 }
