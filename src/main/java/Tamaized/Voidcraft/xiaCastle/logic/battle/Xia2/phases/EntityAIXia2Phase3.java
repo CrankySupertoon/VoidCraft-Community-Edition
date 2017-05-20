@@ -91,12 +91,12 @@ public class EntityAIXia2Phase3 extends EntityVoidNPCAIBase<EntityBossXia2> {
 		if (getEntity().shouldSphereRender()) {
 			if (zol.isFrozen() && dol.isFrozen() && wither.isDead && dragon.isDead) {
 				getEntity().setSphereState(false);
-				getEntity().setInvul(false);
+				getEntity().setInvulnerable(false);
 			}
 		} else {
 			if (!zol.isFrozen() || !dol.isFrozen()) {
 				getEntity().setSphereState(true);
-				getEntity().setInvul(true);
+				getEntity().setInvulnerable(true);
 			}
 		}
 	}

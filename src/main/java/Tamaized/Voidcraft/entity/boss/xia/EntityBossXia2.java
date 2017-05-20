@@ -40,17 +40,17 @@ public class EntityBossXia2 extends EntityVoidBoss<Xia2BattleHandler> implements
 
 	public EntityBossXia2(World par1World) {
 		super(par1World);
-		this.setInvul(true);
+		this.setInvulnerable(true);
 	}
 
 	public EntityBossXia2(World world, Xia2BattleHandler handler) {
 		super(world, handler, false);
-		this.setInvul(true);
+		this.setInvulnerable(true);
 	}
 
 	public void setSphereState(boolean state) {
 		sphereState = state;
-		if (!world.isRemote) sendPacketUpdates();
+		if (!world.isRemote) sendPacketUpdates(this);
 	}
 
 	public boolean shouldSphereRender() {
@@ -122,7 +122,7 @@ public class EntityBossXia2 extends EntityVoidBoss<Xia2BattleHandler> implements
 				getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.0D);
 				setHealth(getMaxHealth());
 				// BossMusicManager.PlayTheSound(this.worldObj, this, new ItemStack(voidCraft.items.voidDiscs.get(10)), new int[]{(int) this.posX, (int) this.posY, (int) this.posZ}, true);
-				setInvul(false);
+				setInvulnerable(false);
 				addAI(new EntityAIXia2Phase1(this, getFilters()));
 			}
 				break;
@@ -130,7 +130,7 @@ public class EntityBossXia2 extends EntityVoidBoss<Xia2BattleHandler> implements
 				getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(100.0D);
 				getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.25D);
 				setHealth(getMaxHealth());
-				setInvul(false);
+				setInvulnerable(false);
 				addAI(new EntityAIXia2Phase2(this, getFilters()));
 			}
 				break;
@@ -139,7 +139,7 @@ public class EntityBossXia2 extends EntityVoidBoss<Xia2BattleHandler> implements
 				getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(200.0D);
 				getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.0D);
 				setHealth(getMaxHealth());
-				setInvul(false);
+				setInvulnerable(false);
 				addAI(new EntityAIXia2Phase3(this, getFilters()));
 			}
 				break;
@@ -177,9 +177,9 @@ public class EntityBossXia2 extends EntityVoidBoss<Xia2BattleHandler> implements
 	@Override
 	protected void updatePhase(int phase) {
 		for (EntityPlayer player : world.playerEntities) {
-			if (player.getDistanceToEntity(getEntity()) >= 100) {
+			if (player.getDistanceToEntity(this) >= 100) {
 				player.sendMessage(new TextComponentTranslation("voidcraft.misc.xia.escape"));
-				player.setPositionAndUpdate(getEntity().posX, getEntity().posY, getEntity().posZ - 2);
+				player.setPositionAndUpdate(this.posX, this.posY, this.posZ - 2);
 			}
 		}
 	}

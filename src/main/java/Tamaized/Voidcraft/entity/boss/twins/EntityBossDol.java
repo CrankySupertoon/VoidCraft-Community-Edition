@@ -22,12 +22,12 @@ public class EntityBossDol extends EntityVoidBoss<TwinsBattleHandler> {
 
 	public EntityBossDol(World par1World) {
 		super(par1World);
-		this.setInvul(true);
+		this.setInvulnerable(true);
 	}
 
 	public EntityBossDol(World world, TwinsBattleHandler handler) {
 		super(world, handler, true);
-		this.setInvul(true);
+		this.setInvulnerable(true);
 	}
 
 	@Override

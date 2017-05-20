@@ -21,12 +21,12 @@ public class EntityBossZol extends EntityVoidBoss<TwinsBattleHandler> {
 
 	public EntityBossZol(World par1World) {
 		super(par1World);
-		this.setInvul(true);
+		this.setInvulnerable(true);
 	}
 
 	public EntityBossZol(World world, TwinsBattleHandler handler) {
 		super(world, handler, true);
-		this.setInvul(true);
+		this.setInvulnerable(true);
 	}
 
 	@Override

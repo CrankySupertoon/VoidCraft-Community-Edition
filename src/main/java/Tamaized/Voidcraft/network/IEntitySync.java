@@ -12,14 +12,14 @@ import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
 
 public interface IEntitySync {
 
-	default void sendPacketUpdates() {
-		if (getEntity().world.isRemote) return;
+	default void sendPacketUpdates(Entity entity) {
+		if (entity.world.isRemote) return;
 		try {
 			PacketWrapper packet = PacketHelper.createPacket(VoidCraft.channel, VoidCraft.networkChannelName, ClientPacketHandler.getPacketTypeID(ClientPacketHandler.PacketType.ENTITY_UPDATES));
 			DataOutputStream stream = packet.getStream();
-			stream.writeInt(getEntity().getEntityId());
+			stream.writeInt(entity.getEntityId());
 			encodePacket(stream);
-			packet.sendPacket(new TargetPoint(getEntity().world.provider.getDimension(), getEntity().posX, getEntity().posY, getEntity().posZ, 64));
+			packet.sendPacket(new TargetPoint(entity.world.provider.getDimension(), entity.posX, entity.posY, entity.posZ, 64));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -28,10 +28,5 @@ public interface IEntitySync {
 	void encodePacket(DataOutputStream stream) throws IOException;
 
 	void decodePacket(ByteBufInputStream stream) throws IOException;
-
-	/**
-	 * Return the entity implementing this interface so the interface can hook into the entity to grab specific values (EntityID, World, Position)
-	 */
-	Entity getEntity();
 
 }

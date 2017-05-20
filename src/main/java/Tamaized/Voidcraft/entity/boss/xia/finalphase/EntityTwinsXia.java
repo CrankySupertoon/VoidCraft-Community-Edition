@@ -74,10 +74,10 @@ public abstract class EntityTwinsXia extends EntityVoidNPC implements IEntitySyn
 	}
 
 	protected void setFrozen() {
-		setInvul(true);
+		setInvulnerable(true);
 		frozen = true;
 		setHealth(0);
-		sendPacketUpdates();
+		sendPacketUpdates(this);
 	}
 
 	@Override
@@ -139,9 +139,9 @@ public abstract class EntityTwinsXia extends EntityVoidNPC implements IEntitySyn
 				setHealth(getHealth() + 0.25F);
 				if (getHealth() >= getMaxHealth()) {
 					setHealth(getMaxHealth());
-					setInvul(false);
+					setInvulnerable(false);
 					frozen = false;
-					sendPacketUpdates();
+					sendPacketUpdates(this);
 				}
 			}
 		}

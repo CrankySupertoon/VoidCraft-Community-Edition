@@ -39,8 +39,6 @@ public abstract class EntityVoidBoss<T extends IBattleHandler> extends EntityVoi
 
 	private ArrayList<EntityAIBase> ai = new ArrayList<EntityAIBase>();
 
-	private IAnimation animation;
-
 	private Ticket chunkLoadTicket;
 
 	public EntityVoidBoss(World world) {
@@ -63,11 +61,6 @@ public abstract class EntityVoidBoss<T extends IBattleHandler> extends EntityVoi
 		this.handler = handler;
 		bus = new VoidBossAIBus();
 		if (hasIdleTask) tasks.addTask(6, new EntityAILookIdle(this));
-	}
-
-	@SideOnly(Side.CLIENT)
-	public void playAnimation(IAnimation a) {
-		animation = a;
 	}
 
 	protected void addDefaultTasks() {
@@ -155,8 +148,6 @@ public abstract class EntityVoidBoss<T extends IBattleHandler> extends EntityVoi
 			}
 			updateAI();
 			bus.readNextPacket();
-		} else {
-			if (animation != null && animation.update(this)) animation = null;
 		}
 	}
 
@@ -327,11 +318,6 @@ public abstract class EntityVoidBoss<T extends IBattleHandler> extends EntityVoi
 		getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(999.0D);
 		getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.0D);
 		getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(999.0D);
-	}
-
-	@SideOnly(Side.CLIENT)
-	public void renderSpecials() {
-		animation.render(this);
 	}
 
 	protected abstract void initPhase(int phase);

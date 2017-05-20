@@ -25,12 +25,12 @@ public class EntityBossHerobrine extends EntityVoidBoss<HerobrineBattleHandler> 
 
 	public EntityBossHerobrine(World par1World) {
 		super(par1World);
-		this.setInvul(true);
+		this.setInvulnerable(true);
 	}
 
 	public EntityBossHerobrine(World world, HerobrineBattleHandler handler) {
 		super(world, handler, false);
-		this.setInvul(true);
+		this.setInvulnerable(true);
 	}
 
 	@Override

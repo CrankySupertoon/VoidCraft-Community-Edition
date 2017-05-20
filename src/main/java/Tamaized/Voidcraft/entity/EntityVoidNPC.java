@@ -3,6 +3,7 @@ package Tamaized.Voidcraft.entity;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
+import Tamaized.Voidcraft.entity.client.animation.IAnimation;
 import Tamaized.Voidcraft.network.IEntitySync;
 import io.netty.buffer.ByteBufInputStream;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -24,6 +25,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public abstract class EntityVoidNPC extends EntityCreature implements IMob, IEntitySync {
 
@@ -35,26 +38,37 @@ public abstract class EntityVoidNPC extends EntityCreature implements IMob, IEnt
 	private int[] spawnLoc;
 	private boolean firstSpawn = true;
 
+	private IAnimation animation;
+
 	/**
 	 * Degrees
 	 */
+
+	@Deprecated
 	private float leftArmYaw = 0.0f;
 
 	/**
 	 * Degrees
 	 */
+
+	@Deprecated
 	private float leftArmPitch = 0.0f;
 
 	/**
 	 * Degrees
 	 */
+
+	@Deprecated
 	private float rightArmYaw = 0.0f;
 
 	/**
 	 * Degrees
 	 */
+
+	@Deprecated
 	private float rightArmPitch = 0.0f;
 
+	@Deprecated
 	public enum ArmRotation {
 		LeftYaw, LeftPitch, RightYaw, RightPitch
 	}
@@ -67,11 +81,6 @@ public abstract class EntityVoidNPC extends EntityCreature implements IMob, IEnt
 	}
 
 	@Override
-	public SoundCategory getSoundCategory() {
-		return SoundCategory.HOSTILE;
-	}
-
-	@Override
 	public void writeEntityToNBT(NBTTagCompound nbt) {
 		super.writeEntityToNBT(nbt);
 	}
@@ -81,14 +90,25 @@ public abstract class EntityVoidNPC extends EntityCreature implements IMob, IEnt
 		super.readEntityFromNBT(nbt);
 	}
 
+	public void playAnimation(IAnimation a) {
+		animation = a;
+	}
+
+	@SideOnly(Side.CLIENT)
+	public void renderSpecials() {
+		animation.render(this);
+	}
+
+	@Deprecated
 	public final void setArmRotations(float leftArmPitch, float rightArmPitch, float leftArmYaw, float rightArmYaw, boolean sendUpdates) {
 		this.leftArmYaw = leftArmYaw;
 		this.leftArmPitch = leftArmPitch;
 		this.rightArmYaw = rightArmYaw;
 		this.rightArmPitch = rightArmPitch;
-		if (sendUpdates) sendPacketUpdates();
+		if (sendUpdates) sendPacketUpdates(this);
 	}
 
+	@Deprecated
 	public final float getArmRotation(ArmRotation arm) {
 		switch (arm) {
 			default:
@@ -122,11 +142,9 @@ public abstract class EntityVoidNPC extends EntityCreature implements IMob, IEnt
 
 	protected abstract void decodePacketData(ByteBufInputStream stream) throws IOException;
 
-	/**
-	 * Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons use this to react to sunlight and start to burn.
-	 */
 	@Override
 	public void onLivingUpdate() {
+		if (animation != null && animation.update(this)) animation = null;
 		updateArmSwingProgress();
 		float f = getBrightness(1.0F);
 		if (f > 0.5F) {
@@ -144,9 +162,6 @@ public abstract class EntityVoidNPC extends EntityCreature implements IMob, IEnt
 		return canPush;
 	}
 
-	/**
-	 * Called to update the entity's position/logic.
-	 */
 	@Override
 	public void onUpdate() {
 		super.onUpdate();
@@ -155,23 +170,13 @@ public abstract class EntityVoidNPC extends EntityCreature implements IMob, IEnt
 		}
 	}
 
-	/**
-	 * Checks whether target entity is alive.
-	 */
 	@Override
 	public boolean isEntityAlive() {
 		return !canDie ? true : !isDead && getHealth() > 0.0F;
 	}
 
-	/**
-	 * Moves the entity based on the specified heading. Args: strafe, forward
-	 */
 	@Override
 	public void moveEntityWithHeading(float p_70612_1_, float p_70612_2_) {
-		/*
-		 * if(isFlying){ jumpMovementFactor = 0.0F; double d3 = motionY; motionY = d3 * 0.6D; }else{ jumpMovementFactor = 0.2F; super.moveEntityWithHeading(p_70612_1_, p_70612_2_); }
-		 */
-		// super.moveEntityWithHeading(p_70612_1_, p_70612_2_);
 		prevLimbSwingAmount = limbSwingAmount;
 		double d0 = posX - prevPosX;
 		double d1 = posZ - prevPosZ;
@@ -186,21 +191,8 @@ public abstract class EntityVoidNPC extends EntityCreature implements IMob, IEnt
 	}
 
 	@Override
-	protected SoundEvent getSwimSound() {
-		return SoundEvents.ENTITY_HOSTILE_SWIM;
-	}
-
-	@Override
-	protected SoundEvent getSplashSound() {
-		return SoundEvents.ENTITY_HOSTILE_SPLASH;
-	}
-
-	/**
-	 * Called when the entity is attacked.
-	 */
-	@Override
 	public boolean attackEntityFrom(DamageSource source, float amount) {
-		if (isEntityInvulnerable()) {
+		if (isInvulnerable()) {
 			return false;
 		} else if (super.attackEntityFrom(source, amount)) {
 			Entity entity = source.getEntity();
@@ -213,33 +205,34 @@ public abstract class EntityVoidNPC extends EntityCreature implements IMob, IEnt
 		}
 	}
 
-	/**
-	 * I'm lazy
-	 * 
-	 * @param b
-	 */
-	public void setInvul(boolean b) {
+	public void setInvulnerable(boolean b) {
 		invulnerable = b;
 	}
 
-	/**
-	 * Return whether this entity is invulnerable to damage. Again, im lazy
-	 */
-	public boolean isEntityInvulnerable() {
+	public boolean isInvulnerable() {
 		return invulnerable;
 	}
 
-	/**
-	 * Returns the sound this mob makes when it is hurt.
-	 */
+	@Override
+	public SoundCategory getSoundCategory() {
+		return SoundCategory.HOSTILE;
+	}
+
+	@Override
+	protected SoundEvent getSwimSound() {
+		return SoundEvents.ENTITY_HOSTILE_SWIM;
+	}
+
+	@Override
+	protected SoundEvent getSplashSound() {
+		return SoundEvents.ENTITY_HOSTILE_SPLASH;
+	}
+
 	@Override
 	protected SoundEvent getHurtSound() {
 		return SoundEvents.ENTITY_HOSTILE_HURT;
 	}
 
-	/**
-	 * Returns the sound this mob makes on death.
-	 */
 	@Override
 	protected SoundEvent getDeathSound() {
 		return SoundEvents.ENTITY_HOSTILE_DEATH;
@@ -252,8 +245,6 @@ public abstract class EntityVoidNPC extends EntityCreature implements IMob, IEnt
 
 	@Override
 	public boolean attackEntityAsMob(Entity entityIn) {
-		// if(p_70652_1_ instanceof VoidChain) return false;
-
 		float f = (float) getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getAttributeValue();
 		int i = 0;
 
@@ -265,6 +256,7 @@ public abstract class EntityVoidNPC extends EntityCreature implements IMob, IEnt
 		boolean flag = entityIn.attackEntityFrom(DamageSource.causeMobDamage(this), f);
 
 		if (flag) {
+
 			if (i > 0) {
 				entityIn.addVelocity((double) (-MathHelper.sin(rotationYaw * (float) Math.PI / 180.0F) * (float) i * 0.5F), 0.1D, (double) (MathHelper.cos(rotationYaw * (float) Math.PI / 180.0F) * (float) i * 0.5F));
 				motionX *= 0.6D;
@@ -294,34 +286,18 @@ public abstract class EntityVoidNPC extends EntityCreature implements IMob, IEnt
 
 			applyEnchantments(this, entityIn);
 		}
-
 		return flag;
 	}
 
-	/**
-	 * Basic mob attack. Default to touch of death in EntityCreature. Overridden by each mob to define their attack.
-	 *//*
-		 * protected void attackEntity(Entity p_70785_1_, float p_70785_2_){ if (attackTime <= 0 && p_70785_2_ < 2.0F && p_70785_1_.boundingBox.maxY > boundingBox.minY && p_70785_1_.boundingBox.minY < boundingBox.maxY){ attackTime = 20; attackEntityAsMob(p_70785_1_); } }
-		 */
-
-	/**
-	 * Takes a coordinate in and returns a weight to determine how likely this creature will try to path to the block. Args: x, y, z
-	 */
 	@Override
 	public float getBlockPathWeight(BlockPos pos) {
 		return 0.5F - world.getLightBrightness(pos);
 	}
 
-	/**
-	 * Checks to make sure the light is not too bright where the mob is spawning BUT! MY NPCS DONT CARE SO YEA; this always returns false bro
-	 */
 	protected boolean isValidLightLevel() {
 		return false;
 	}
 
-	/**
-	 * Checks if the entity's current position is a valid location to spawn this entity.
-	 */
 	@Override
 	public boolean getCanSpawnHere() {
 		return world.getDifficulty() != EnumDifficulty.PEACEFUL && isValidLightLevel() && super.getCanSpawnHere();
@@ -333,9 +309,6 @@ public abstract class EntityVoidNPC extends EntityCreature implements IMob, IEnt
 		getAttributeMap().registerAttribute(SharedMonsterAttributes.ATTACK_DAMAGE);
 	}
 
-	/**
-	 * Entity won't drop items or experience points if this returns false
-	 */
 	@Override
 	protected boolean canDropLoot() {
 		return true;
@@ -351,8 +324,4 @@ public abstract class EntityVoidNPC extends EntityCreature implements IMob, IEnt
 		return false;
 	}
 
-	@Override
-	public final Entity getEntity() {
-		return this;
-	}
 }

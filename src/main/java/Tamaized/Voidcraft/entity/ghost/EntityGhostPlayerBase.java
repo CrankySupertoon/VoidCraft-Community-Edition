@@ -56,7 +56,7 @@ public class EntityGhostPlayerBase extends EntityVoidNPC implements IEntityAddit
 		// this.tasks.addTask(6, new EntityAIWatchClosest(this, EntityPlayer.class, 50.0F));
 		// this.tasks.addTask(6, new EntityAILookIdle(this));
 		// this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
-		this.setInvul(true);
+		this.setInvulnerable(true);
 
 	}
 
@@ -159,7 +159,7 @@ public class EntityGhostPlayerBase extends EntityVoidNPC implements IEntityAddit
 				if (rune && runeState < maxRuneState) runeState++;
 			}
 			if (tick >= finalTick) hasInteracted = true;
-			sendPacketUpdates();
+			sendPacketUpdates(this);
 		}
 		runeRotation += (int) Math.ceil(20F * getRuneStatePerc());
 		if (runeRotation >= 360) runeRotation = 0;
@@ -236,7 +236,7 @@ public class EntityGhostPlayerBase extends EntityVoidNPC implements IEntityAddit
 	public boolean processInteract(EntityPlayer player, EnumHand hand, ItemStack s) {
 		if (running || !canInteract) return false;
 		running = true;
-		sendPacketUpdates();
+		sendPacketUpdates(this);
 		return true;
 	}
 

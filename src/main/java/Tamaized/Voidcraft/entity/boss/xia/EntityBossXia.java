@@ -35,12 +35,12 @@ public class EntityBossXia extends EntityVoidBoss<XiaBattleHandler> {
 
 	public EntityBossXia(World par1World) {
 		super(par1World);
-		this.setInvul(true);
+		this.setInvulnerable(true);
 	}
 
 	public EntityBossXia(World world, XiaBattleHandler handler) {
 		super(world, handler, false);
-		this.setInvul(true);
+		this.setInvulnerable(true);
 	}
 
 	@Override
@@ -98,7 +98,7 @@ public class EntityBossXia extends EntityVoidBoss<XiaBattleHandler> {
 			this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.0D);
 			this.setHealth(this.getMaxHealth());
 			// BossMusicManager.PlayTheSound(this.worldObj, this, new ItemStack(voidCraft.items.voidDiscs.get(10)), new int[]{(int) this.posX, (int) this.posY, (int) this.posZ}, true);
-			setInvul(false);
+			setInvulnerable(false);
 			addAI(new EntityAIXiaPhase1(this, getFilters()));
 		} else if (phase == 2) {
 			/**
@@ -107,7 +107,7 @@ public class EntityBossXia extends EntityVoidBoss<XiaBattleHandler> {
 			this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(100.0D);
 			this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.25D);
 			this.setHealth(this.getMaxHealth());
-			setInvul(false);
+			setInvulnerable(false);
 			addAI(new EntityAIXiaPhase2(this, getFilters()));
 		} else if (phase == 3) {
 			/**
@@ -117,7 +117,7 @@ public class EntityBossXia extends EntityVoidBoss<XiaBattleHandler> {
 			this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(200.0D);
 			this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.0D);
 			this.setHealth(this.getMaxHealth());
-			setInvul(false);
+			setInvulnerable(false);
 			addAI(new EntityAIXiaPhase3(this, getFilters()));
 
 		}

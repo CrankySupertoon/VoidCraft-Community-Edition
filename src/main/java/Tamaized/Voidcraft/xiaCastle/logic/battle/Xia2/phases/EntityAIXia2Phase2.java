@@ -91,7 +91,7 @@ public class EntityAIXia2Phase2 extends EntityVoidNPCAIBase<EntityBossXia2> {
 						ghost.setDead();
 					getEntity().clearGhosts();
 					getEntity().setSphereState(false);
-					getEntity().setInvul(false);
+					getEntity().setInvulnerable(false);
 				}
 			}
 		}
@@ -149,7 +149,7 @@ public class EntityAIXia2Phase2 extends EntityVoidNPCAIBase<EntityBossXia2> {
 		if (packet instanceof Xia2TookDamagePacket) {
 			getEntity().setArmRotations(135, 135, 45, -45, true);
 			resetAnimationTick = 20 * 2;
-			getEntity().setInvul(true);
+			getEntity().setInvulnerable(true);
 			getEntity().setSphereState(true);
 		}
 	}
