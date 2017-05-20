@@ -1,6 +1,7 @@
 package Tamaized.Voidcraft.registry;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import Tamaized.TamModized.registry.ITamModel;
 import Tamaized.TamModized.registry.ITamRegistry;
@@ -246,14 +247,12 @@ public class VoidCraftTERecipes implements ITamRegistry {
 
 	}
 
-	public static ItemStack[] getOreDict(String[] input) {
-		ArrayList<ItemStack> stacks = new ArrayList<ItemStack>();
+	public static List<ItemStack> getOreDict(String[] input) {
+		List<ItemStack> stacks = new ArrayList<ItemStack>();
 		for (String ore : input) {
-			for (ItemStack item : OreDictionary.getOres(ore)) {
-				stacks.add(item);
-			}
+			stacks.addAll(OreDictionary.getOres(ore));
 		}
-		return stacks.toArray(new ItemStack[stacks.size()]);
+		return stacks;
 	}
 
 }
