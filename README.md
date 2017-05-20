@@ -18,15 +18,16 @@ There are also [Legacy Builds](http://tamaized.tk/website/VoidCraft/mod/) that g
 * Sure, provide a link to this github or [here](https://minecraft.curseforge.com/projects/voidcraft) or [here](http://www.minecraftforum.net/forums/mapping-and-modding/minecraft-mods/2746403-voidcraft) up to you.
  
 ## Other Mod Integrations
- This mod currently has integrations with:
- * Note: These Mods are NOT required in order to use this mod.
- * Planned:
-  * Aether II
-  * Thaumcraft
- * 1.9.4 - 1.11
-  * JEI
- * 1.8.9
-  * None
- * 1.7.10
-  * NEI
-  * Thaumcraft
+This mod currently has integrations with:
+* Note: These Mods are NOT required in order to use this mod.
+* Planned:
+    * Aether II
+    * Thaumcraft
+* 1.9.4 - 1.11
+    * JEI
+    * Void Fog
+* 1.8.9
+    * None
+* 1.7.10
+    * NEI
+    * Thaumcraft
