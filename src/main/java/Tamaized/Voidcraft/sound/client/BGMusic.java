@@ -45,6 +45,7 @@ public class BGMusic {
 
 	@SubscribeEvent
 	public void PlaySoundEvent(PlaySoundEvent e) {
+		if(!VoidCraft.config.canPlayMusic()) return;
 		if (sound != null && e.getSound().getCategory() == SoundCategory.MUSIC) {
 			if (e.getResultSound() == sound) return;
 			e.setResultSound(null);
@@ -67,6 +68,7 @@ public class BGMusic {
 
 	@SubscribeEvent
 	public void tick(ClientTickEvent e) {
+		if(!VoidCraft.config.canPlayMusic()) return;
 		if (e.phase == Phase.END && !Minecraft.getMinecraft().isGamePaused()) {
 			World world = Minecraft.getMinecraft().world;
 			boolean boss = BossMusicPlayer.update(sound);
@@ -102,6 +104,7 @@ public class BGMusic {
 	}
 
 	public static void PlayMusic(ISound s) {
+		if(!VoidCraft.config.canPlayMusic()) return;
 		StopMusic();
 		sound = s;
 		Minecraft.getMinecraft().getSoundHandler().playSound(sound);

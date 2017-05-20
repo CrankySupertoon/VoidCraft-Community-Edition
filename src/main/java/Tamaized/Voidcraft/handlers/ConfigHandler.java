@@ -27,6 +27,7 @@ public class ConfigHandler {
 	private boolean renderFirstPersonVadeMecumParticles;
 	private boolean renderThirdPersonVadeMecumParticles;
 	private boolean voidTeleport;
+	private boolean music;
 
 	private boolean default_generate_VoidOre = true;
 	private boolean default_generate_CosmicOre = true;
@@ -37,6 +38,7 @@ public class ConfigHandler {
 	private boolean default_renderFirstPersonVadeMecumParticles = true;
 	private boolean default_renderThirdPersonVadeMecumParticles = true;
 	private boolean default_voidTeleport = true;
+	private boolean default_music = true;
 
 	// Use these to store values that wont be updated during runtime but need to be stored to the config from in-game gui
 	private int temp_dimensionIdVoid = -2;
@@ -65,6 +67,7 @@ public class ConfigHandler {
 	}
 
 	private void loadData(boolean firstLoad) {
+		music = config.get(Configuration.CATEGORY_GENERAL, "Enable all custom BG Music", default_music).getBoolean();
 		voidTeleport = config.get(Configuration.CATEGORY_GENERAL, "Teleport below Y level -256", default_voidTeleport).getBoolean();
 		renderThirdPersonVadeMecumParticles = config.get(Configuration.CATEGORY_GENERAL, "Render Vade Mecum Item Particles", default_renderThirdPersonVadeMecumParticles).getBoolean();
 		if (firstLoad) {
@@ -99,6 +102,7 @@ public class ConfigHandler {
 		config.get(Configuration.CATEGORY_GENERAL, "Enable VoidCrystal Ore Gen", default_generate_VoidOre).set(generate_VoidOre);
 		config.get(Configuration.CATEGORY_GENERAL, "Enable Cosmic Material Gen", default_generate_CosmicOre).set(generate_CosmicOre);
 		config.get(Configuration.CATEGORY_GENERAL, "Teleport below Y level -256", default_voidTeleport).set(voidTeleport);
+		config.get(Configuration.CATEGORY_GENERAL, "Enable all custom BG Music", default_music).set(music);
 	}
 
 	@SubscribeEvent
@@ -142,5 +146,8 @@ public class ConfigHandler {
 		return voidTeleport;
 	}
 
+	public boolean canPlayMusic() {
+		return music;
+	}
 
 }
