@@ -39,7 +39,7 @@ public abstract class EntityVoidBoss<T extends IBattleHandler> extends EntityVoi
 
 	private ArrayList<EntityAIBase> ai = new ArrayList<EntityAIBase>();
 
-	private ArrayList<IAnimation> animations = new ArrayList<IAnimation>();
+	private IAnimation animation;
 
 	private Ticket chunkLoadTicket;
 
@@ -66,8 +66,8 @@ public abstract class EntityVoidBoss<T extends IBattleHandler> extends EntityVoi
 	}
 
 	@SideOnly(Side.CLIENT)
-	public void addAnimation(IAnimation animation) {
-		animations.add(animation);
+	public void playAnimation(IAnimation a) {
+		animation = a;
 	}
 
 	protected void addDefaultTasks() {
@@ -156,11 +156,7 @@ public abstract class EntityVoidBoss<T extends IBattleHandler> extends EntityVoi
 			updateAI();
 			bus.readNextPacket();
 		} else {
-			Iterator<IAnimation> iter = animations.iterator();
-			while (iter.hasNext()) {
-				IAnimation animation = iter.next();
-				if (animation.update(this)) iter.remove();
-			}
+			if (animation != null && animation.update(this)) animation = null;
 		}
 	}
 
@@ -335,9 +331,7 @@ public abstract class EntityVoidBoss<T extends IBattleHandler> extends EntityVoi
 
 	@SideOnly(Side.CLIENT)
 	public void renderSpecials() {
-		for (IAnimation animation : animations) {
-			animation.render(this);
-		}
+		animation.render(this);
 	}
 
 	protected abstract void initPhase(int phase);

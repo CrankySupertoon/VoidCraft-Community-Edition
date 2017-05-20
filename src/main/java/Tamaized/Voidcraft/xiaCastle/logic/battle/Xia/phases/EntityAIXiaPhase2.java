@@ -7,7 +7,6 @@ import Tamaized.Voidcraft.entity.boss.xia.EntityBossXia;
 import Tamaized.Voidcraft.entity.boss.xia.EntityBossXia.XiaTookDamagePacket;
 import Tamaized.Voidcraft.network.IVoidBossAIPacket;
 import Tamaized.Voidcraft.xiaCastle.logic.battle.EntityVoidNPCAIBase;
-import Tamaized.Voidcraft.xiaCastle.logic.battle.Xia.phases.actions.XiaPhase2ActionSword;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -23,20 +22,17 @@ public class EntityAIXiaPhase2<T extends EntityBossXia> extends EntityVoidNPCAIB
 
 	private int actionTick = 20 * 10;
 
-	private XiaPhase2ActionSword actionSword;
-
 	private AxisAlignedBB teleportationBox = new AxisAlignedBB(-18, 0, -25, 18, 5, 6);
 	private boolean isTeleporting = false;
 
 	private Action currAction = Action.IDLE;
 
 	public static enum Action {
-		IDLE, SWORD, FOLLOW
+		IDLE, FOLLOW
 	}
 
 	public EntityAIXiaPhase2(T entityBoss, ArrayList<Class> c) {
 		super(entityBoss, c);
-		actionSword = new XiaPhase2ActionSword(entityBoss, getPosition());
 		watchNew();
 	}
 
@@ -88,10 +84,6 @@ public class EntityAIXiaPhase2<T extends EntityBossXia> extends EntityVoidNPCAIB
 					// break;
 					// }
 				}
-				break;
-			case SWORD:
-				actionSword.update();
-				if (actionSword.isDone()) finishAction();
 				break;
 			default:
 				break;
@@ -184,11 +176,6 @@ public class EntityAIXiaPhase2<T extends EntityBossXia> extends EntityVoidNPCAIB
 	private void finishAction() {
 		currAction = Action.IDLE;
 		tick = 1;
-	}
-
-	private void beginSwordAction() {
-		actionSword.init();
-		currAction = Action.SWORD;
 	}
 
 	private void watchNewAndTeleport() {
