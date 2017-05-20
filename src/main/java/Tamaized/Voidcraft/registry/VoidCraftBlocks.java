@@ -99,6 +99,8 @@ public class VoidCraftBlocks implements ITamRegistry {
 	public static StarForgeBlock starforgeStation;
 
 	public static BlockDreamBed dreamBed;
+	public static TamBlock creationforge;
+	public static TamBlock creationforge_ray;
 
 	@Override
 	public void preInit() {
@@ -149,6 +151,8 @@ public class VoidCraftBlocks implements ITamRegistry {
 		modelList.add(iceSpike = new BlockSpellIceSpike(VoidCraft.tabs.tabVoid, Material.ICE, "blockspellicespike", -1F));
 
 		modelList.add(dreamBed = new BlockDreamBed(VoidCraft.tabs.tabVoid, "dreambed"));
+		modelList.add(creationforge = new TamBlock(VoidCraft.tabs.tabVoid, Material.IRON, "creationforge", -1.0F, SoundType.METAL));
+		modelList.add(creationforge_ray = new TamBlock(VoidCraft.tabs.tabVoid, Material.IRON, "creationforge_ray", -1.0F, SoundType.METAL));
 
 		// Slabs have to be registered outside of their class
 		RegistryHelper.registerBlockSlab(blockVoidBrickHalfSlab, blockVoidBrickDoubleSlab);
