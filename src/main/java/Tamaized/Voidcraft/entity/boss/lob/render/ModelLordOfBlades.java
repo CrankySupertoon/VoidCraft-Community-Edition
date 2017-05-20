@@ -1,10 +1,11 @@
 package Tamaized.Voidcraft.entity.boss.lob.render;
 
-import net.minecraft.client.model.ModelBase;
+import Tamaized.Voidcraft.entity.EntityVoidNPC;
+import Tamaized.Voidcraft.entity.client.animation.AnimatableModel.AnimatableModelArms;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 
-public class ModelLordOfBlades extends ModelBase {
+public class ModelLordOfBlades extends AnimatableModelArms {
 
 	public ModelRenderer armLeft;
 	public ModelRenderer legRight;
@@ -447,6 +448,7 @@ public class ModelLordOfBlades extends ModelBase {
 
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
+		((EntityVoidNPC) entity).renderAnimation(this);
 		armLeft.render(f5);
 		bodyOverlay.render(f5);
 		legLeftOverlay.render(f5);
@@ -468,5 +470,10 @@ public class ModelLordOfBlades extends ModelBase {
 		modelRenderer.rotateAngleX = x;
 		modelRenderer.rotateAngleY = y;
 		modelRenderer.rotateAngleZ = z;
+	}
+
+	@Override
+	public void setAnimations(float leftArmPitch, float rightArmPitch, float leftArmYaw, float rightArmYaw) {
+		
 	}
 }

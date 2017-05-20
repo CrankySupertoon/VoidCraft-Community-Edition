@@ -75,7 +75,6 @@ public class RenderXia2<T extends EntityBossXia2> extends RenderLiving<T> {
 				renderHeldItem(entity, itemstack1, ItemCameraTransforms.TransformType.THIRD_PERSON_LEFT_HAND, EnumHandSide.LEFT);
 				GlStateManager.popMatrix();
 			}
-			entity.renderSpecials();
 			renderLabel(entity, x, y, z);
 			RenderBossHeathBar.setCurrentBoss(entity);
 		}

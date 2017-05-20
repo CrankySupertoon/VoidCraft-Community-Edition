@@ -6,6 +6,7 @@ import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.entity.boss.herobrine.extra.EntityHerobrineFireball;
 import Tamaized.Voidcraft.entity.boss.xia.EntityBossXia2;
 import Tamaized.Voidcraft.entity.boss.xia.EntityBossXia2.Xia2TookDamagePacket;
+import Tamaized.Voidcraft.entity.client.animation.AnimationRegistry;
 import Tamaized.Voidcraft.entity.nonliving.ProjectileDisintegration;
 import Tamaized.Voidcraft.network.IVoidBossAIPacket;
 import Tamaized.Voidcraft.xiaCastle.logic.battle.EntityVoidNPCAIBase;
@@ -49,7 +50,7 @@ public class EntityAIXia2Phase1 extends EntityVoidNPCAIBase<EntityBossXia2> {
 	protected void update() {
 		if (resetAnimationTick == 0) {
 			resetAnimationTick--;
-			getEntity().setArmRotations(0, 0, 0, 0, true);
+			AnimationRegistry.AnimationLimbs.play(getEntity(), 0, 0, 0, 0);
 		} else if (resetAnimationTick >= 0) {
 			resetAnimationTick--;
 		}
@@ -69,7 +70,7 @@ public class EntityAIXia2Phase1 extends EntityVoidNPCAIBase<EntityBossXia2> {
 		switch (world.rand.nextInt(4)) {
 			default:
 			case ACTION_FIREBALL:
-				getEntity().setArmRotations(90, 0, 0, 0, true);
+				AnimationRegistry.AnimationLimbs.play(getEntity(), 90, 0, 0, 0);
 				resetAnimationTick = 20 * 2;
 				double d5 = closestEntity.posX - getEntity().posX;
 				double d6 = closestEntity.getEntityBoundingBox().minY + (double) (closestEntity.height / 2.0F) - (getEntity().posY + (double) (getEntity().height / 2.0F));
@@ -83,7 +84,7 @@ public class EntityAIXia2Phase1 extends EntityVoidNPCAIBase<EntityBossXia2> {
 				getEntity().world.spawnEntity(entitylargefireball);
 				break;
 			case ACTION_LITSTRIKE:
-				getEntity().setArmRotations(0, 180, 0, 0, true);
+				AnimationRegistry.AnimationLimbs.play(getEntity(), 0, 180, 0, 0);
 				resetAnimationTick = 20 * 2;
 				double x = closestEntity.posX;
 				double y = closestEntity.posY;
@@ -94,14 +95,14 @@ public class EntityAIXia2Phase1 extends EntityVoidNPCAIBase<EntityBossXia2> {
 				break;
 			case ACTION_DISINT:
 				if (closestEntity instanceof EntityLivingBase) {
-					getEntity().setArmRotations(0, 90, 0, 0, true);
+					AnimationRegistry.AnimationLimbs.play(getEntity(), 0, 90, 0, 0);
 					resetAnimationTick = 20 * 2;
 					ProjectileDisintegration disint = new ProjectileDisintegration(world, getEntity(), (EntityLivingBase) closestEntity, 10.0F);
 					world.spawnEntity(disint);
 				}
 				break;
 			case ACTION_VOIDICINFUSION:
-				getEntity().setArmRotations(90, 90, 45, -45, true);
+				AnimationRegistry.AnimationLimbs.play(getEntity(), 90, 90, 45, -45);
 				resetAnimationTick = 20 * 2;
 				if (closestEntity instanceof EntityPlayer) {
 					EntityPlayer player = (EntityPlayer) closestEntity;
@@ -114,7 +115,7 @@ public class EntityAIXia2Phase1 extends EntityVoidNPCAIBase<EntityBossXia2> {
 	@Override
 	public void readPacket(IVoidBossAIPacket packet) {
 		if (packet instanceof Xia2TookDamagePacket) {
-			getEntity().setArmRotations(135, 135, 45, -45, true);
+			AnimationRegistry.AnimationLimbs.play(getEntity(), 135, 135, 45, -45);
 			resetAnimationTick = 20 * 2;
 			world.newExplosion(getEntity(), getEntity().posX, getEntity().posY + (double) getEntity().getEyeHeight(), getEntity().posZ, 14.0F, false, true);
 			world.playBroadcastSound(1023, getBlockPosition(), 0);

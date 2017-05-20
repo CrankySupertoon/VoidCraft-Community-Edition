@@ -1,8 +1,7 @@
 package Tamaized.Voidcraft.entity.boss.xia.model;
 
 import Tamaized.Voidcraft.entity.EntityVoidNPC;
-import Tamaized.Voidcraft.entity.EntityVoidNPC.ArmRotation;
-import net.minecraft.client.model.ModelBase;
+import Tamaized.Voidcraft.entity.client.animation.AnimatableModel.AnimatableModelArms;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
@@ -10,7 +9,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.EnumHandSide;
 import net.minecraft.util.math.MathHelper;
 
-public class ModelXia2<T extends EntityVoidNPC> extends ModelBase {
+public class ModelXia2<T extends EntityVoidNPC> extends AnimatableModelArms {
 
 	public ModelRenderer Head;
 	public ModelRenderer Body;
@@ -50,23 +49,16 @@ public class ModelXia2<T extends EntityVoidNPC> extends ModelBase {
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
 		super.render(entity, f, f1, f2, f3, f4, f5);
 		setRotationAngles(f, f1, f2, f3, f4, f5, entity);
-		setAnimations((T) entity, 1.0f);
-
+		((EntityVoidNPC) entity).renderAnimation(this);
 		this.LeftArm.render(f5);
 		this.Head.render(f5);
 		this.RightArm.render(f5);
 		this.Body.render(f5);
 	}
 
-	private void setAnimations(T entity, float partialTickTime) {
-		setRotation(LeftArm, Math.toRadians(entity.getArmRotation(ArmRotation.LeftPitch)), Math.toRadians(entity.getArmRotation(ArmRotation.LeftYaw)), 0.0F);
-		setRotation(RightArm, Math.toRadians(entity.getArmRotation(ArmRotation.RightPitch)), Math.toRadians(entity.getArmRotation(ArmRotation.RightYaw)), 0.0F);
-	}
-
-	private void setRotation(ModelRenderer model, double x, double y, double z) {
-		model.rotateAngleX -= x;
-		model.rotateAngleY -= y;
-		model.rotateAngleZ -= z;
+	public void setAnimations(float leftArmPitch, float rightArmPitch, float leftArmYaw, float rightArmYaw) {
+		setRotation(LeftArm, Math.toRadians(leftArmPitch), Math.toRadians(leftArmYaw), 0.0F);
+		setRotation(RightArm, Math.toRadians(rightArmPitch), Math.toRadians(rightArmYaw), 0.0F);
 	}
 
 	/**

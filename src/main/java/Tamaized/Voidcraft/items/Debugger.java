@@ -3,8 +3,8 @@ package Tamaized.Voidcraft.items;
 import java.util.List;
 
 import Tamaized.TamModized.items.TamItem;
-import Tamaized.Voidcraft.entity.boss.lob.EntityLordOfBlades;
 import Tamaized.Voidcraft.world.SchematicLoader;
+import Tamaized.Voidcraft.world.dim.Xia.WorldProviderXia;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -74,10 +74,10 @@ public class Debugger extends TamItem {
 		// dol.setPositionAndUpdate(playerIn.posX, playerIn.posY + 20, playerIn.posZ);
 		// worldIn.spawnEntity(dol);
 		// EntityZolXia entity = new EntityZolXia(worldIn);
-		EntityLordOfBlades entity = new EntityLordOfBlades(world);
-		entity.setPositionAndUpdate(player.posX, player.posY + 20, player.posZ);
-		world.spawnEntity(entity);
-		entity.start();
+		// EntityLordOfBlades entity = new EntityLordOfBlades(world);
+		// entity.setPositionAndUpdate(player.posX, player.posY + 20, player.posZ);
+		// world.spawnEntity(entity);
+		// entity.start();
 
 		// VoidCraft.instance.VoidTickEvent.dream(player);
 
@@ -91,8 +91,8 @@ public class Debugger extends TamItem {
 		// IVoidicInfusionCapability cap = player.getCapability(CapabilityList.VOIDICINFUSION, null);
 		// cap.setInfusion(5999);
 		// if (cap != null) cap.setXiaDefeats(0);
-		// if (world.provider instanceof WorldProviderXia) ((WorldProviderXia) world.provider).getXiaCastleHandler().start();
-		// if (world.provider instanceof WorldProviderXia) ((WorldProviderXia) world.provider).getXiaCastleHandler().debug();
+		if (world.provider instanceof WorldProviderXia) ((WorldProviderXia) world.provider).getXiaCastleHandler().start();
+		if (world.provider instanceof WorldProviderXia) ((WorldProviderXia) world.provider).getXiaCastleHandler().debug();
 		// FMLNetworkHandler.openGui(player, VoidCraft.instance, GuiHandler.getTypeID(GuiHandler.Type.VadeMecumSpells), world, player.getPosition().getX(), player.getPosition().getY(), player.getPosition().getZ());
 
 		// ItemStack newStack = new ItemStack(voidCraft.tools.starforgedPickaxe);

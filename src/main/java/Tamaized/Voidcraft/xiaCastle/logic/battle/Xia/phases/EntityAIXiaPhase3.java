@@ -9,6 +9,7 @@ import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.entity.boss.herobrine.extra.EntityHerobrineFireball;
 import Tamaized.Voidcraft.entity.boss.xia.EntityBossXia;
 import Tamaized.Voidcraft.entity.boss.xia.EntityBossXia.XiaTookDamagePacket;
+import Tamaized.Voidcraft.entity.client.animation.AnimationRegistry;
 import Tamaized.Voidcraft.entity.nonliving.ProjectileDisintegration;
 import Tamaized.Voidcraft.network.IVoidBossAIPacket;
 import Tamaized.Voidcraft.xiaCastle.logic.battle.EntityVoidNPCAIBase;
@@ -63,7 +64,7 @@ public class EntityAIXiaPhase3<T extends EntityBossXia> extends EntityVoidNPCAIB
 	protected void update() {
 		if (resetAnimationTick == 0) {
 			resetAnimationTick--;
-			getEntity().setArmRotations(0, 0, 0, 0, true);
+			AnimationRegistry.AnimationLimbs.play(getEntity(), 0, 0, 0, 0);
 		} else if (resetAnimationTick >= 0) {
 			resetAnimationTick--;
 		}
@@ -77,7 +78,7 @@ public class EntityAIXiaPhase3<T extends EntityBossXia> extends EntityVoidNPCAIB
 			switch (rand.nextInt(5)) {
 				default:
 				case ACTION_FIREBALL:
-					getEntity().setArmRotations(90, 0, 0, 0, true);
+					AnimationRegistry.AnimationLimbs.play(getEntity(), 90, 0, 0, 0);
 					resetAnimationTick = 20 * 2;
 					double d5 = closestEntity.posX - getEntity().posX;
 					double d6 = closestEntity.getEntityBoundingBox().minY + (double) (closestEntity.height / 2.0F) - (getEntity().posY + (double) (getEntity().height / 2.0F));
@@ -91,7 +92,7 @@ public class EntityAIXiaPhase3<T extends EntityBossXia> extends EntityVoidNPCAIB
 					getEntity().world.spawnEntity(entitylargefireball);
 					break;
 				case ACTION_LITSTRIKE:
-					getEntity().setArmRotations(0, 180, 0, 0, true);
+					AnimationRegistry.AnimationLimbs.play(getEntity(), 0, 180, 0, 0);
 					resetAnimationTick = 20 * 2;
 					double x = closestEntity.posX;
 					double y = closestEntity.posY;
@@ -101,20 +102,20 @@ public class EntityAIXiaPhase3<T extends EntityBossXia> extends EntityVoidNPCAIB
 					world.addWeatherEffect(entitylightningbolt);
 					break;
 				case ACTION_ICESPIKE:
-					getEntity().setArmRotations(180, 180, 0, 0, true);
+					AnimationRegistry.AnimationLimbs.play(getEntity(), 180, 180, 0, 0);
 					resetAnimationTick = 20 * 2;
 					if (world.isAirBlock(closestEntity.getPosition())) world.setBlockState(closestEntity.getPosition(), VoidCraft.blocks.iceSpike.getDefaultState());
 					break;
 				case ACTION_DISINT:
 					if (closestEntity instanceof EntityLivingBase) {
-						getEntity().setArmRotations(0, 90, 0, 0, true);
+						AnimationRegistry.AnimationLimbs.play(getEntity(), 0, 90, 0, 0);
 						resetAnimationTick = 20 * 2;
 						ProjectileDisintegration disint = new ProjectileDisintegration(world, getEntity(), (EntityLivingBase) closestEntity, 10.0F);
 						world.spawnEntity(disint);
 					}
 					break;
 				case ACTION_VOIDICINFUSION:
-					getEntity().setArmRotations(90, 90, 45, -45, true);
+					AnimationRegistry.AnimationLimbs.play(getEntity(), 90, 90, 45, -45);
 					resetAnimationTick = 20 * 2;
 					if (closestEntity instanceof EntityPlayer) {
 						EntityPlayer player = (EntityPlayer) closestEntity;
@@ -128,7 +129,7 @@ public class EntityAIXiaPhase3<T extends EntityBossXia> extends EntityVoidNPCAIB
 	}
 
 	private void doBlast() {
-		getEntity().setArmRotations(135, 135, 45, -45, true);
+		AnimationRegistry.AnimationLimbs.play(getEntity(), 135, 135, 45, -45);
 		resetAnimationTick = 20 * 2;
 		world.playSound((EntityPlayer) null, getEntity().posX, getEntity().posY, getEntity().posZ, SoundEvents.ENTITY_GENERIC_EXPLODE, SoundCategory.BLOCKS, 4.0F, (1.0F + (world.rand.nextFloat() - world.rand.nextFloat()) * 0.2F) * 0.7F);
 		ParticleHelper.spawnVanillaParticleOnServer(world, EnumParticleTypes.EXPLOSION_HUGE, getEntity().posX, getEntity().posY, getEntity().posZ, 1.0D, 0.0D, 0.0D);
@@ -157,7 +158,7 @@ public class EntityAIXiaPhase3<T extends EntityBossXia> extends EntityVoidNPCAIB
 	}
 
 	private void castSheathe() {
-		getEntity().setArmRotations(180, 0, 0, 0, true);
+		AnimationRegistry.AnimationLimbs.play(getEntity(), 180, 0, 0, 0);
 		resetAnimationTick = 20 * 2;
 		getEntity().clearActivePotions();
 		Potion sheathe = VoidCraft.potions.fireSheathe;

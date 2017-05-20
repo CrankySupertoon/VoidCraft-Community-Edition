@@ -9,8 +9,8 @@ import Tamaized.TamModized.helper.PacketHelper;
 import Tamaized.TamModized.helper.PacketHelper.PacketWrapper;
 import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.entity.EntityVoidBoss;
+import Tamaized.Voidcraft.entity.client.animation.AnimationRegistry;
 import Tamaized.Voidcraft.entity.ghost.EntityGhostPlayerBase;
-import Tamaized.Voidcraft.events.client.DebugEvent;
 import Tamaized.Voidcraft.network.ClientPacketHandler;
 import Tamaized.Voidcraft.network.IEntitySync;
 import Tamaized.Voidcraft.network.IVoidBossAIPacket;
@@ -146,7 +146,11 @@ public class EntityBossXia2 extends EntityVoidBoss<Xia2BattleHandler> implements
 			default:
 				break;
 		}
-		setArmRotations(0, 0, 0, 0, true);
+
+		AnimationRegistry.AnimationLimbs animation = ((AnimationRegistry.AnimationLimbs) constructAnimation(AnimationRegistry.limbs));
+		animation.init(0, 0, 0, 0);
+		setAnimation(animation);
+		playAnimation();
 	}
 
 	@Override

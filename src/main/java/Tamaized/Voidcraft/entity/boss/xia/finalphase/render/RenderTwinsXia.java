@@ -4,6 +4,7 @@ import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.entity.boss.model.ModelVoidBoss;
 import Tamaized.Voidcraft.entity.boss.render.bossBar.RenderAlternateBossBars;
 import Tamaized.Voidcraft.entity.boss.xia.finalphase.EntityTwinsXia;
+import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
@@ -44,6 +45,11 @@ public class RenderTwinsXia extends RenderLiving<EntityTwinsXia> {
 	@Override
 	protected ResourceLocation getEntityTexture(EntityTwinsXia entity) {
 		return TEXTURE;
+	}
+	
+	@Override
+	public ModelVoidBoss getMainModel() {
+		return (ModelVoidBoss) super.getMainModel();
 	}
 
 }

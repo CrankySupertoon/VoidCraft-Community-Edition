@@ -8,6 +8,8 @@ import Tamaized.TamModized.helper.PacketHelper;
 import Tamaized.TamModized.helper.PacketHelper.PacketWrapper;
 import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.entity.EntityVoidBoss;
+import Tamaized.Voidcraft.entity.client.animation.AnimationRegistry;
+import Tamaized.Voidcraft.entity.client.animation.IAnimation;
 import Tamaized.Voidcraft.network.ClientPacketHandler;
 import Tamaized.Voidcraft.network.IVoidBossAIPacket;
 import Tamaized.Voidcraft.sound.VoidSoundEvents;
@@ -121,7 +123,7 @@ public class EntityBossXia extends EntityVoidBoss<XiaBattleHandler> {
 			addAI(new EntityAIXiaPhase3(this, getFilters()));
 
 		}
-		setArmRotations(0, 0, 0, 0, true);
+		AnimationRegistry.AnimationLimbs.play(this, 0, 0, 0, 0);
 	}
 
 	@Override

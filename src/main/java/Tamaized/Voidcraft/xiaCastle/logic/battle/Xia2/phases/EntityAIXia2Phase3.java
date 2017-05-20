@@ -8,15 +8,13 @@ import Tamaized.Voidcraft.entity.boss.xia.finalphase.EntityDragonXia;
 import Tamaized.Voidcraft.entity.boss.xia.finalphase.EntityWitherbrine;
 import Tamaized.Voidcraft.entity.boss.xia.finalphase.EntityZolXia;
 import Tamaized.Voidcraft.entity.boss.xia.finalphase.render.EntityDolXia;
-import Tamaized.Voidcraft.events.client.DebugEvent;
+import Tamaized.Voidcraft.entity.client.animation.AnimationRegistry;
 import Tamaized.Voidcraft.network.IVoidBossAIPacket;
 import Tamaized.Voidcraft.xiaCastle.logic.battle.EntityVoidNPCAIBase;
 import net.minecraft.entity.effect.EntityLightningBolt;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.text.TextComponentTranslation;
 
 public class EntityAIXia2Phase3 extends EntityVoidNPCAIBase<EntityBossXia2> {
 
@@ -57,7 +55,7 @@ public class EntityAIXia2Phase3 extends EntityVoidNPCAIBase<EntityBossXia2> {
 			world.spawnEntity(dragon);
 			world.spawnEntity(wither);
 
-			getEntity().setArmRotations(135, 135, 45, -45, true);
+			AnimationRegistry.AnimationLimbs.play(getEntity(), 135, 135, 45, -45);
 		}
 	}
 
@@ -70,8 +68,8 @@ public class EntityAIXia2Phase3 extends EntityVoidNPCAIBase<EntityBossXia2> {
 			if (dol.getDistanceToEntity(getEntity()) >= 100) dol.setPositionAndUpdate(getEntity().posX, getEntity().posY, getEntity().posZ);
 			if (dragon.getDistanceToEntity(getEntity()) >= 100) dragon.setPositionAndUpdate(getEntity().posX, getEntity().posY, getEntity().posZ);
 			if (wither.getDistanceToEntity(getEntity()) >= 100) wither.setPositionAndUpdate(getEntity().posX, getEntity().posY, getEntity().posZ);
-			if (!world.loadedEntityList.contains(dol) && !dol.isDead) world.spawnEntity(dol);
-			if (!world.loadedEntityList.contains(zol) && !zol.isDead) world.spawnEntity(zol);
+			if (!world.loadedEntityList.contains(dol) && !dol.isFrozen() && !dol.isDead) world.spawnEntity(dol);
+			if (!world.loadedEntityList.contains(zol) && !zol.isFrozen() && !zol.isDead) world.spawnEntity(zol);
 			if (!world.loadedEntityList.contains(wither) && !wither.isDead) world.spawnEntity(wither);
 			if (!world.loadedEntityList.contains(dragon) && !dragon.isDead) world.spawnEntity(dragon);
 			if (tick % litStrikeTick == 0) {

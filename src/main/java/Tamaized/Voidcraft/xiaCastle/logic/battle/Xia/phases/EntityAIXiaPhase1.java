@@ -8,6 +8,8 @@ import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.damageSources.DamageSourceVoidicInfusion;
 import Tamaized.Voidcraft.entity.boss.xia.EntityBossXia;
 import Tamaized.Voidcraft.entity.boss.xia.EntityBossXia.XiaTookDamagePacket;
+import Tamaized.Voidcraft.entity.client.animation.AnimationRegistry;
+import Tamaized.Voidcraft.entity.client.animation.IAnimation;
 import Tamaized.Voidcraft.entity.mob.lich.EntityLichInferno;
 import Tamaized.Voidcraft.network.IVoidBossAIPacket;
 import Tamaized.Voidcraft.particles.network.XiaLaserPacketHandler;
@@ -54,45 +56,53 @@ public class EntityAIXiaPhase1<T extends EntityBossXia> extends EntityVoidNPCAIB
 	public void update() {
 		if (resetAnimationTick == 0) {
 			resetAnimationTick--;
-			getEntity().setArmRotations(0, 0, 0, 0, true);
+			AnimationRegistry.AnimationLimbs animation = ((AnimationRegistry.AnimationLimbs) getEntity().constructAnimation(AnimationRegistry.limbs));
+			animation.init(0, 0, 0, 0);
+			getEntity().setAnimation(animation);
+			getEntity().playAnimation();
 		} else if (resetAnimationTick >= 0) {
 			resetAnimationTick--;
 		}
 
 		if (tick % actionTick == 0) {
 			switch (world.rand.nextInt(5)) {
-				case 0:
-					getEntity().setArmRotations(180, 180, 0, 0, true);
+				case 0: {
+					AnimationRegistry.AnimationLimbs.play(getEntity(), 180, 180, 0, 0);
 					resetAnimationTick = 20 * 4;
 					actionTeleport();
+				}
 					break;
-				case 1: // Voidic Fire (Same as Lich)
-					getEntity().setArmRotations(180, 0, 0, 0, true);
+				case 1: { // Voidic Fire (Same as Lich)
+					AnimationRegistry.AnimationLimbs.play(getEntity(), 180, 0, 0, 0);
 					resetAnimationTick = 20 * 4;
 					getEntity().world.spawnEntity(new EntityLichInferno(getEntity().world, getEntity().getPosition(), 10, 10));
+				}
 					break;
-				case 2: // Use the force luke :P some sort of choke mechanic idk
+				case 2: { // Use the force luke :P some sort of choke mechanic idk
 					if (closestEntity == null) break;
 					resetAnimationTick = 20 * 4;
-					getEntity().setArmRotations(90, 90, 0, 0, true);
+					AnimationRegistry.AnimationLimbs.play(getEntity(), 90, 90, 0, 0);
 					closestEntity.attackEntityFrom(new DamageSourceVoidicInfusion(), 8.0f);
+				}
 					break;
-				case 3: // litBolt
+				case 3: { // litBolt
 					if (closestEntity == null) break;
-					getEntity().setArmRotations(90, 0.0f, 0, 0, true);
+					AnimationRegistry.AnimationLimbs.play(getEntity(), 90, 0.0f, 0, 0);
 					resetAnimationTick = 20 * 2;
 					EntityLightningBolt entitylightningbolt = new EntityLightningBolt(world, closestEntity.posX, closestEntity.posY, closestEntity.posZ, false);
 					entitylightningbolt.setLocationAndAngles(closestEntity.posX, closestEntity.posY + 1 + entitylightningbolt.getYOffset(), closestEntity.posZ, closestEntity.rotationYaw, closestEntity.rotationPitch);
 					world.addWeatherEffect(entitylightningbolt);
+				}
 					break;
-				case 4: // Give less than 1 of the max voidic infusion to the player
+				case 4: { // Give less than 1 of the max voidic infusion to the player
 					if (closestEntity == null) break;
-					getEntity().setArmRotations(0, 90, 0, 0, true);
+					AnimationRegistry.AnimationLimbs.play(getEntity(), 0, 90, 0, 0);
 					resetAnimationTick = 20 * 2;
 					if (closestEntity instanceof EntityPlayer) {
 						EntityPlayer player = (EntityPlayer) closestEntity;
 						player.addPotionEffect(new PotionEffect(VoidCraft.potions.voidicInfusion, 20 * 10));
 					}
+				}
 					break;
 				default:
 					actionTeleport();

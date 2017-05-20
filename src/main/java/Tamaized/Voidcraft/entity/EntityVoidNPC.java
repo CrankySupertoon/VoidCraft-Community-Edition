@@ -3,8 +3,15 @@ package Tamaized.Voidcraft.entity;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
+import Tamaized.TamModized.helper.PacketHelper;
+import Tamaized.TamModized.helper.PacketHelper.PacketWrapper;
+import Tamaized.Voidcraft.VoidCraft;
+import Tamaized.Voidcraft.entity.client.animation.AnimatableModel;
+import Tamaized.Voidcraft.entity.client.animation.AnimationRegistry;
 import Tamaized.Voidcraft.entity.client.animation.IAnimation;
+import Tamaized.Voidcraft.network.ClientPacketHandler;
 import Tamaized.Voidcraft.network.IEntitySync;
+import io.netty.buffer.ByteBuf;
 import io.netty.buffer.ByteBufInputStream;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
@@ -25,6 +32,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
+import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -38,40 +47,8 @@ public abstract class EntityVoidNPC extends EntityCreature implements IMob, IEnt
 	private int[] spawnLoc;
 	private boolean firstSpawn = true;
 
+	private int animationID;
 	private IAnimation animation;
-
-	/**
-	 * Degrees
-	 */
-
-	@Deprecated
-	private float leftArmYaw = 0.0f;
-
-	/**
-	 * Degrees
-	 */
-
-	@Deprecated
-	private float leftArmPitch = 0.0f;
-
-	/**
-	 * Degrees
-	 */
-
-	@Deprecated
-	private float rightArmYaw = 0.0f;
-
-	/**
-	 * Degrees
-	 */
-
-	@Deprecated
-	private float rightArmPitch = 0.0f;
-
-	@Deprecated
-	public enum ArmRotation {
-		LeftYaw, LeftPitch, RightYaw, RightPitch
-	}
 
 	public EntityVoidNPC(World p_i1738_1_) {
 		super(p_i1738_1_);
@@ -90,45 +67,60 @@ public abstract class EntityVoidNPC extends EntityCreature implements IMob, IEnt
 		super.readEntityFromNBT(nbt);
 	}
 
-	public void playAnimation(IAnimation a) {
+	public IAnimation constructAnimation(int a) {
+		animationID = a;
+		if (animation == null && animationID >= 0) {
+			Class<? extends IAnimation> ani = AnimationRegistry.getAnimation(animationID);
+			if (ani != null) {
+				try {
+					animation = ani.newInstance();
+				} catch (InstantiationException | IllegalAccessException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		if (animationID < 0 && animation != null) animation = null;
+		return animation;
+	}
+
+	public void setAnimation(IAnimation a) {
 		animation = a;
+		animationID = AnimationRegistry.getAnimationID(animation);
+	}
+
+	/**
+	 * Call this (on the server) after calling {@link #constructAnimation(int)} to play the animation
+	 */
+	public void playAnimation() {
+		if (!world.isRemote && animationID >= 0 && animation != null) {
+			try {
+				PacketWrapper packet = PacketHelper.createPacket(VoidCraft.channel, VoidCraft.networkChannelName, ClientPacketHandler.getPacketTypeID(ClientPacketHandler.PacketType.ANIMATIONS));
+				packet.getStream().writeInt(getEntityId());
+				packet.getStream().writeInt(animationID);
+				animation.encodePacket(packet.getStream());
+				packet.sendPacket(new TargetPoint(dimension, posX, posY, posZ, 64));
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			animationID = -1;
+			animation = null;
+		}
+	}
+
+	public IAnimation getAnimation() {
+		return animation;
 	}
 
 	@SideOnly(Side.CLIENT)
-	public void renderSpecials() {
-		animation.render(this);
-	}
-
-	@Deprecated
-	public final void setArmRotations(float leftArmPitch, float rightArmPitch, float leftArmYaw, float rightArmYaw, boolean sendUpdates) {
-		this.leftArmYaw = leftArmYaw;
-		this.leftArmPitch = leftArmPitch;
-		this.rightArmYaw = rightArmYaw;
-		this.rightArmPitch = rightArmPitch;
-		if (sendUpdates) sendPacketUpdates(this);
-	}
-
-	@Deprecated
-	public final float getArmRotation(ArmRotation arm) {
-		switch (arm) {
-			default:
-			case LeftPitch:
-				return leftArmPitch;
-			case LeftYaw:
-				return leftArmYaw;
-			case RightPitch:
-				return rightArmPitch;
-			case RightYaw:
-				return rightArmYaw;
+	public void renderAnimation(AnimatableModel model) {
+		IAnimation a = getAnimation();
+		if (a != null) {
+			a.render(this, model);
 		}
 	}
 
 	@Override
 	public final void encodePacket(DataOutputStream stream) throws IOException {
-		stream.writeFloat(leftArmPitch);
-		stream.writeFloat(rightArmPitch);
-		stream.writeFloat(leftArmYaw);
-		stream.writeFloat(rightArmYaw);
 		encodePacketData(stream);
 	}
 
@@ -136,7 +128,6 @@ public abstract class EntityVoidNPC extends EntityCreature implements IMob, IEnt
 
 	@Override
 	public final void decodePacket(ByteBufInputStream stream) throws IOException {
-		setArmRotations(stream.readFloat(), stream.readFloat(), stream.readFloat(), stream.readFloat(), false);
 		decodePacketData(stream);
 	}
 
@@ -144,7 +135,8 @@ public abstract class EntityVoidNPC extends EntityCreature implements IMob, IEnt
 
 	@Override
 	public void onLivingUpdate() {
-		if (animation != null && animation.update(this)) animation = null;
+		IAnimation a = getAnimation();
+		if (animationID >= 0 && (a == null || a.update(this))) animationID = -1;
 		updateArmSwingProgress();
 		float f = getBrightness(1.0F);
 		if (f > 0.5F) {

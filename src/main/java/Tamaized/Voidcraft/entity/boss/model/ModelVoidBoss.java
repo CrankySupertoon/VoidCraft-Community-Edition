@@ -1,9 +1,9 @@
 package Tamaized.Voidcraft.entity.boss.model;
 
 import Tamaized.Voidcraft.entity.EntityVoidNPC;
-import Tamaized.Voidcraft.entity.EntityVoidNPC.ArmRotation;
 import Tamaized.Voidcraft.entity.boss.xia.finalphase.EntityTwinsXia;
-import net.minecraft.client.model.ModelBase;
+import Tamaized.Voidcraft.entity.client.animation.AnimatableModel.AnimatableModelArms;
+import Tamaized.Voidcraft.events.client.DebugEvent;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
@@ -11,7 +11,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.EnumHandSide;
 import net.minecraft.util.math.MathHelper;
 
-public class ModelVoidBoss<T extends EntityVoidNPC> extends ModelBase {
+public class ModelVoidBoss<T extends EntityVoidNPC> extends AnimatableModelArms {
 
 	ModelRenderer head;
 	ModelRenderer body;
@@ -72,8 +72,10 @@ public class ModelVoidBoss<T extends EntityVoidNPC> extends ModelBase {
 
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
 		super.render(entity, f, f1, f2, f3, f4, f5);
-		setRotationAngles(f, f1, f2, f3, f4, f5, entity);
-		setAnimations((T) entity, 1.0f);
+		if (!(entity instanceof EntityTwinsXia) || !((EntityTwinsXia) entity).isFrozen()) {
+			setRotationAngles(f, f1, f2, f3, f4, f5, entity);
+			((EntityVoidNPC) entity).renderAnimation(this);
+		}
 		head.render(f5);
 		body.render(f5);
 		rightarm.render(f5);
@@ -87,19 +89,13 @@ public class ModelVoidBoss<T extends EntityVoidNPC> extends ModelBase {
 		// setAnimations((EntityBossXia) entitylivingbaseIn, partialTickTime);
 	}
 
-	private void setAnimations(T entity, float partialTickTime) {
-		setRotation(leftarm, Math.toRadians(entity.getArmRotation(ArmRotation.LeftPitch)), Math.toRadians(entity.getArmRotation(ArmRotation.LeftYaw)), 0.0F);
-		setRotation(rightarm, Math.toRadians(entity.getArmRotation(ArmRotation.RightPitch)), Math.toRadians(entity.getArmRotation(ArmRotation.RightYaw)), 0.0F);
-	}
-
-	private void setRotation(ModelRenderer model, double x, double y, double z) {
-		model.rotateAngleX -= x;
-		model.rotateAngleY -= y;
-		model.rotateAngleZ -= z;
+	public void setAnimations(float leftArmPitch, float rightArmPitch, float leftArmYaw, float rightArmYaw) {
+		setRotation(leftarm, Math.toRadians(leftArmPitch), Math.toRadians(leftArmYaw), 0.0F);
+		setRotation(rightarm, Math.toRadians(rightArmPitch), Math.toRadians(rightArmYaw), 0.0F);
 	}
 
 	public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entity) {
-		if(entity instanceof EntityTwinsXia && ((EntityTwinsXia)entity).isFrozen()) return;
+		if (entity instanceof EntityTwinsXia && ((EntityTwinsXia) entity).isFrozen()) return;
 		super.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scaleFactor, entity);
 
 		head.rotateAngleX = headPitch / (180F / (float) Math.PI);

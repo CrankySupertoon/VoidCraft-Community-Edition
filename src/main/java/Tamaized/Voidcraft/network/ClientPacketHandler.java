@@ -8,7 +8,8 @@ import Tamaized.Voidcraft.capabilities.CapabilityList;
 import Tamaized.Voidcraft.capabilities.vadeMecum.IVadeMecumCapability;
 import Tamaized.Voidcraft.capabilities.voidicInfusion.IVoidicInfusionCapability;
 import Tamaized.Voidcraft.capabilities.voidicPower.IVoidicPowerCapability;
-import Tamaized.Voidcraft.entity.EntityVoidBoss;
+import Tamaized.Voidcraft.entity.EntityVoidNPC;
+import Tamaized.Voidcraft.entity.client.animation.IAnimation;
 import Tamaized.Voidcraft.entity.ghost.EntityGhostPlayerBase;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.ByteBufInputStream;
@@ -27,7 +28,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class ClientPacketHandler {
 
 	public static enum PacketType {
-		INFUSION_UPDATE, INFUSION_UPDATE_ALL, ENTITY_UPDATES, BOSS_ANIMATIONS, SHEATHE, PLAYER_MOTION, VADEMECUM_UPDATE, VOIDICPOWERITEM, GHOSTPLAYER_UPDATES, CLIENT_HEALTH
+		INFUSION_UPDATE, INFUSION_UPDATE_ALL, ENTITY_UPDATES, ANIMATIONS, SHEATHE, PLAYER_MOTION, VADEMECUM_UPDATE, VOIDICPOWERITEM, GHOSTPLAYER_UPDATES, CLIENT_HEALTH
 	}
 
 	public static int getPacketTypeID(PacketType type) {
@@ -106,11 +107,12 @@ public class ClientPacketHandler {
 				if (vadeMecumCap != null) vadeMecumCap.decodePacket(parBB, bbis);
 			}
 				break;
-			case BOSS_ANIMATIONS: {
+			case ANIMATIONS: {
 				Entity entity = world.getEntityByID(bbis.readInt());
-				if (entity instanceof EntityVoidBoss) {
-					EntityVoidBoss boss = (EntityVoidBoss) entity;
-					// boss.addAnimation(new EntityAnimationsXia(boss, EntityAnimationsXia.getAnimationFromID(bbis.readInt())));
+				if (entity instanceof EntityVoidNPC) {
+					EntityVoidNPC npc = (EntityVoidNPC) entity;
+					IAnimation animation = npc.constructAnimation(bbis.readInt());
+					if (animation != null) animation.decodePacket(bbis);
 				}
 			}
 				break;
