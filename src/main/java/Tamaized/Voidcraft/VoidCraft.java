@@ -412,7 +412,7 @@ public class VoidCraft extends TamModBase {
 			@Override
 			public void ticketsLoaded(List<Ticket> tickets, World world) {
 				for (Ticket ticket : tickets) {
-
+					ForgeChunkManager.releaseTicket(ticket);
 				}
 			}
 		});
