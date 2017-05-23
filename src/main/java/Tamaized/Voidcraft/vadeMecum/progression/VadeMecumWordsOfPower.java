@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import Tamaized.TamModized.TamModized;
+import Tamaized.TamModized.helper.ExplosionDamageHelper;
 import Tamaized.TamModized.helper.RayTraceHelper;
 import Tamaized.TamModized.particles.ParticleHelper;
 import Tamaized.TamModized.particles.ParticlePacketHandlerRegistry;
@@ -27,7 +28,6 @@ import Tamaized.Voidcraft.entity.nonliving.EntityCasterLightningBolt;
 import Tamaized.Voidcraft.entity.nonliving.EntitySpellImplosion;
 import Tamaized.Voidcraft.entity.nonliving.EntitySpellRune;
 import Tamaized.Voidcraft.entity.nonliving.ProjectileDisintegration;
-import Tamaized.Voidcraft.helper.ExplosionDamageHelper;
 import Tamaized.Voidcraft.helper.SheatheHelper;
 import Tamaized.Voidcraft.potion.PotionSheathe;
 import net.minecraft.block.material.Material;
