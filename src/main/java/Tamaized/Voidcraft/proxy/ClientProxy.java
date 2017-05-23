@@ -14,8 +14,7 @@ import Tamaized.Voidcraft.client.LayerVoidSpikes;
 import Tamaized.Voidcraft.client.RenderGeneric;
 import Tamaized.Voidcraft.client.RenderNull;
 import Tamaized.Voidcraft.entity.boss.EntityBossCorruptedPawn;
-import Tamaized.Voidcraft.entity.boss.dragon.EntityDragonOld;
-import Tamaized.Voidcraft.entity.boss.dragon.render.RenderDragonOld;
+import Tamaized.Voidcraft.entity.boss.dragon.render.RenderDragonOldWithBar;
 import Tamaized.Voidcraft.entity.boss.dragon.sub.voidic.EntityVoidicDragon;
 import Tamaized.Voidcraft.entity.boss.dragon.sub.voidic.render.RenderVoidicDragon;
 import Tamaized.Voidcraft.entity.boss.herobrine.EntityBossHerobrine;
@@ -249,16 +248,10 @@ public class ClientProxy extends AbstractProxy {
 				return new RenderWitherbrine(manager);
 			}
 		});
-		RenderingRegistry.registerEntityRenderingHandler(EntityDragonOld.class, new IRenderFactory<EntityDragonOld>() {
-			@Override
-			public Render<? super EntityDragonOld> createRenderFor(RenderManager manager) {
-				return new RenderDragonOld(manager);
-			}
-		});
 		RenderingRegistry.registerEntityRenderingHandler(EntityDragonXia.class, new IRenderFactory<EntityDragonXia>() {
 			@Override
 			public Render<? super EntityDragonXia> createRenderFor(RenderManager manager) {
-				return new RenderDragonOld(manager);
+				return new RenderDragonOldWithBar(manager);
 			}
 		});
 		RenderingRegistry.registerEntityRenderingHandler(EntityVoidicDragon.class, new IRenderFactory<EntityVoidicDragon>() {

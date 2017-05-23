@@ -2,7 +2,6 @@ package Tamaized.Voidcraft.xiaCastle.logic.battle.Xia2.phases;
 
 import java.util.ArrayList;
 
-import Tamaized.Voidcraft.entity.boss.dragon.EntityDragonOld;
 import Tamaized.Voidcraft.entity.boss.xia.EntityBossXia2;
 import Tamaized.Voidcraft.entity.boss.xia.finalphase.EntityDragonXia;
 import Tamaized.Voidcraft.entity.boss.xia.finalphase.EntityWitherbrine;
@@ -23,7 +22,7 @@ public class EntityAIXia2Phase3 extends EntityVoidNPCAIBase<EntityBossXia2> {
 
 	private EntityDolXia dol;
 	private EntityZolXia zol;
-	private EntityDragonOld dragon;
+	private EntityDragonXia dragon;
 	private EntityWitherbrine wither;
 
 	public EntityAIXia2Phase3(EntityBossXia2 entityBoss, ArrayList<Class> c) {
@@ -63,7 +62,7 @@ public class EntityAIXia2Phase3 extends EntityVoidNPCAIBase<EntityBossXia2> {
 	protected void update() {
 		if (!world.isRemote) {
 			if (dol == null || zol == null || dragon == null || wither == null) return;
-			if (!(dol instanceof EntityDolXia) || !(zol instanceof EntityZolXia) || !(dragon instanceof EntityDragonOld) || !(wither instanceof EntityWitherbrine)) return;
+			if (!(dol instanceof EntityDolXia) || !(zol instanceof EntityZolXia) || !(dragon instanceof EntityDragonXia) || !(wither instanceof EntityWitherbrine)) return;
 			if (zol.getDistanceToEntity(getEntity()) >= 100) zol.setPositionAndUpdate(getEntity().posX, getEntity().posY, getEntity().posZ);
 			if (dol.getDistanceToEntity(getEntity()) >= 100) dol.setPositionAndUpdate(getEntity().posX, getEntity().posY, getEntity().posZ);
 			if (dragon.getDistanceToEntity(getEntity()) >= 100) dragon.setPositionAndUpdate(getEntity().posX, getEntity().posY, getEntity().posZ);

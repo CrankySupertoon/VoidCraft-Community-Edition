@@ -4,6 +4,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.Iterator;
 
+import Tamaized.TamModized.entity.dragon.EntityDragonOld;
 import Tamaized.TamModized.helper.PacketHelper;
 import Tamaized.TamModized.helper.PacketHelper.PacketWrapper;
 import Tamaized.Voidcraft.VoidCraft;
@@ -13,7 +14,6 @@ import Tamaized.Voidcraft.capabilities.voidicPower.IVoidicPowerCapability;
 import Tamaized.Voidcraft.damageSources.DamageSourceVoidicInfusion;
 import Tamaized.Voidcraft.entity.EntityVoidMob;
 import Tamaized.Voidcraft.entity.EntityVoidNPC;
-import Tamaized.Voidcraft.entity.boss.dragon.EntityDragonOld;
 import Tamaized.Voidcraft.network.ClientPacketHandler;
 import io.netty.buffer.ByteBufInputStream;
 import net.minecraft.entity.EntityLivingBase;

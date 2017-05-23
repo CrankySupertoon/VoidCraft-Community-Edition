@@ -4,11 +4,11 @@ import javax.annotation.Nullable;
 
 import com.google.common.base.Predicate;
 
+import Tamaized.TamModized.entity.dragon.EntityDragonOld;
 import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.entity.EntityVoidBoss;
 import Tamaized.Voidcraft.entity.EntityVoidMob;
 import Tamaized.Voidcraft.entity.EntityVoidNPC;
-import Tamaized.Voidcraft.entity.boss.dragon.EntityDragonOld;
 import Tamaized.Voidcraft.entity.boss.render.bossBar.IVoidBossData;
 import Tamaized.Voidcraft.entity.boss.xia.finalphase.EntityWitherbrine;
 import Tamaized.Voidcraft.sound.VoidSoundEvents;

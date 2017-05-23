@@ -35,7 +35,6 @@ import Tamaized.Voidcraft.capabilities.voidicPower.IVoidicPowerCapability;
 import Tamaized.Voidcraft.capabilities.voidicPower.VoidicPowerCapabilityHandler;
 import Tamaized.Voidcraft.capabilities.voidicPower.VoidicPowerCapabilityStorage;
 import Tamaized.Voidcraft.entity.boss.EntityBossCorruptedPawn;
-import Tamaized.Voidcraft.entity.boss.dragon.EntityDragonOld;
 import Tamaized.Voidcraft.entity.boss.dragon.sub.voidic.EntityVoidicDragon;
 import Tamaized.Voidcraft.entity.boss.herobrine.EntityBossHerobrine;
 import Tamaized.Voidcraft.entity.boss.herobrine.extra.EntityHerobrineCreeper;
@@ -360,7 +359,7 @@ public class VoidCraft extends TamModBase {
 
 		// Register World Gen
 		GameRegistry.registerWorldGenerator(new WorldGeneratorVoid(), 0);
-		new WorldType(modid+"_void") {
+		new WorldType(modid + "_void") {
 			@Override
 			public IChunkGenerator getChunkGenerator(World world, String generatorOptions) {
 				return new ChunkProviderVoid(world, true, world.getSeed());
@@ -387,7 +386,6 @@ public class VoidCraft extends TamModBase {
 		registerEntity(EntityGhostBiped.class, "GhostBiped", this, modid, 64, 1, true);
 		registerEntityWithEgg(EntityHerobrineCreeper.class, "HerobrineCreeper", this, modid, 64, 1, true, 0xFF0000, 0x000000);
 		registerEntity(EntityWitherbrine.class, "Witherbrine", this, modid, 250, 1, true);
-		registerEntity(EntityDragonOld.class, "DragonOld", this, modid, 64, 1, true);
 		registerEntity(EntityDragonXia.class, "DragonXia", this, modid, 250, 1, true);
 		registerEntity(EntityDolXia.class, "DolXia", this, modid, 250, 1, true);
 		registerEntity(EntityZolXia.class, "ZolXia", this, modid, 250, 1, true);

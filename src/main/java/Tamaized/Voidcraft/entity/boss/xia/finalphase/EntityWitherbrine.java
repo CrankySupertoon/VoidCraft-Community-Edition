@@ -7,10 +7,10 @@ import javax.annotation.Nullable;
 import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
 
+import Tamaized.TamModized.entity.dragon.EntityDragonOld;
 import Tamaized.Voidcraft.VoidCraft;
 import Tamaized.Voidcraft.entity.EntityVoidBoss;
 import Tamaized.Voidcraft.entity.EntityVoidNPC;
-import Tamaized.Voidcraft.entity.boss.dragon.EntityDragonOld;
 import Tamaized.Voidcraft.entity.boss.herobrine.extra.EntityHerobrineWitherSkull;
 import Tamaized.Voidcraft.entity.boss.render.bossBar.RenderAlternateBossBars;
 import Tamaized.Voidcraft.entity.boss.render.bossBar.RenderAlternateBossBars.AlternateBossBarWrapper;
