@@ -1,5 +1,6 @@
 package Tamaized.Voidcraft.handlers;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -9,14 +10,13 @@ import java.util.stream.IntStream;
 
 import org.apache.commons.lang3.ArrayUtils;
 
+import Tamaized.TamModized.config.AbstractConfigHandler;
 import Tamaized.Voidcraft.VoidCraft;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-public class ConfigHandler {
-
-	private Configuration config;
+public class ConfigHandler extends AbstractConfigHandler {
 
 	private boolean generate_VoidOre = true;
 	private boolean generate_CosmicOre = true;
@@ -45,28 +45,37 @@ public class ConfigHandler {
 	private int temp_dimensionIdXia = -3;
 	private int temp_dimensionIdDalQuor = -4;
 
-	public ConfigHandler(Configuration c) {
-		config = c;
-		config.load();
-		sync(true);
+	public ConfigHandler(VoidCraft instance, File f, Configuration c) {
+		super(instance, f, c);
 	}
 
-	public Configuration getConfig() {
-		return config;
+	@Override
+	protected void init() {
+		generate_VoidOre = true;
+		generate_CosmicOre = true;
+		dimensionIdVoid = -2;
+		dimensionIdXia = -3;
+		dimensionIdDalQuor = -4;
+		realityWhitelist = new ArrayList<Integer>();
+
+		default_generate_VoidOre = true;
+		default_generate_CosmicOre = true;
+		default_dimensionIdVoid = -2;
+		default_dimensionIdXia = -3;
+		default_dimensionIdDalQuor = -4;
+		default_realityWhitelist = new int[] { 0, -1 };
+		default_renderFirstPersonVadeMecumParticles = true;
+		default_renderThirdPersonVadeMecumParticles = true;
+		default_voidTeleport = true;
+		default_music = true;
+
+		temp_dimensionIdVoid = -2;
+		temp_dimensionIdXia = -3;
+		temp_dimensionIdDalQuor = -4;
 	}
 
-	public void sync(boolean firstLoad) {
-		try {
-			if (VoidCraft.isAetherLoaded) default_realityWhitelist = new int[] { 0, -1, 3 };
-			loadData(firstLoad);
-			cleanupFile();
-			config.save();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-
-	private void loadData(boolean firstLoad) {
+	@Override
+	protected void loadData(boolean firstLoad) {
 		music = config.get(Configuration.CATEGORY_GENERAL, "Enable all custom BG Music", default_music).getBoolean();
 		voidTeleport = config.get(Configuration.CATEGORY_GENERAL, "Teleport below Y level -256", default_voidTeleport).getBoolean();
 		renderThirdPersonVadeMecumParticles = config.get(Configuration.CATEGORY_GENERAL, "Render Vade Mecum Item Particles", default_renderThirdPersonVadeMecumParticles).getBoolean();
@@ -79,6 +88,9 @@ public class ConfigHandler {
 			temp_dimensionIdXia = config.get(Configuration.CATEGORY_GENERAL, "Xia Dimension ID", dimensionIdXia).getInt();
 			temp_dimensionIdDalQuor = config.get(Configuration.CATEGORY_GENERAL, "Dal Quor Dimension ID", dimensionIdDalQuor).getInt();
 		}
+		System.out.println(config);
+		System.out.println(default_realityWhitelist);
+		System.out.println(config.get(Configuration.CATEGORY_GENERAL, "Reality Hole Dimension Whitelist", default_realityWhitelist, "List of Dimension IDs the Reality Hole will attempt to send you to").getIntList());
 		realityWhitelist = IntStream.of(config.get(Configuration.CATEGORY_GENERAL, "Reality Hole Dimension Whitelist", default_realityWhitelist, "List of Dimension IDs the Reality Hole will attempt to send you to").getIntList()).boxed().collect(Collectors.toList());
 		Iterator<Integer> iter = realityWhitelist.iterator();
 		while (iter.hasNext()) {
@@ -89,10 +101,8 @@ public class ConfigHandler {
 		generate_CosmicOre = config.get(Configuration.CATEGORY_GENERAL, "Enable Cosmic Material Gen", default_generate_CosmicOre).getBoolean();
 	}
 
-	private void cleanupFile() throws IOException {
-		VoidCraft.configFile.delete();
-		VoidCraft.configFile.createNewFile();
-		config = new Configuration(VoidCraft.configFile);
+	@Override
+	protected void cleanup() throws IOException {
 		// config.get(Configuration.CATEGORY_GENERAL, "Render First Person Particles", default_renderFirstPersonVadeMecumParticles).set(renderFirstPersonVadeMecumParticles);
 		config.get(Configuration.CATEGORY_GENERAL, "Render Vade Mecum Item Particles", default_renderThirdPersonVadeMecumParticles).set(renderThirdPersonVadeMecumParticles);
 		config.get(Configuration.CATEGORY_GENERAL, "Void Dimension ID", default_dimensionIdVoid).set(temp_dimensionIdVoid);
@@ -103,11 +113,6 @@ public class ConfigHandler {
 		config.get(Configuration.CATEGORY_GENERAL, "Enable Cosmic Material Gen", default_generate_CosmicOre).set(generate_CosmicOre);
 		config.get(Configuration.CATEGORY_GENERAL, "Teleport below Y level -256", default_voidTeleport).set(voidTeleport);
 		config.get(Configuration.CATEGORY_GENERAL, "Enable all custom BG Music", default_music).set(music);
-	}
-
-	@SubscribeEvent
-	public void configChanged(ConfigChangedEvent.OnConfigChangedEvent event) {
-		if (event.getModID().equals(VoidCraft.modid)) sync(false);
 	}
 
 	public boolean getRenderFirstPersonParticles() {

@@ -234,7 +234,7 @@ public class VoidCraft extends TamModBase {
 		logger.info("Starting VoidCraft PreInit");
 
 		configFile = event.getSuggestedConfigurationFile();
-		config = new ConfigHandler(new Configuration(configFile));
+		config = new ConfigHandler(this, configFile, new Configuration(configFile));
 
 		ContributorHandler.start();
 
@@ -327,7 +327,6 @@ public class VoidCraft extends TamModBase {
 		MinecraftForge.EVENT_BUS.register(new XiaFlightHandler());
 		MinecraftForge.EVENT_BUS.register(new CapabilitySyncEvent());
 		// MinecraftForge.EVENT_BUS.register(new CustomElytraHandler());
-		MinecraftForge.EVENT_BUS.register(config);
 		MinecraftForge.EVENT_BUS.register(new ItemEntityEvent());
 		MinecraftForge.EVENT_BUS.register(new DeathEvent());
 		MinecraftForge.EVENT_BUS.register(new PlayerRightClickEvent());
