@@ -94,28 +94,28 @@ public class VoidSoundEvents {
 
 	@SubscribeEvent
 	public static void registerSounds(RegistryEvent.Register<SoundEvent> event) {
-		EntityMobWraithSoundEvents.hurtSound = registerSound(event, "wraith.wraithHurt");
-		EntityMobWraithSoundEvents.deathSound = registerSound(event, "wraith.wraithDeath");
-		EntityMobWraithSoundEvents.ambientSound = registerSound(event, "wraith.wraithLive");
+		EntityMobWraithSoundEvents.hurtSound = registerSound(event, VoidCraft.modid + ".wraith.wraithHurt");
+		EntityMobWraithSoundEvents.deathSound = registerSound(event, VoidCraft.modid + ".wraith.wraithDeath");
+		EntityMobWraithSoundEvents.ambientSound = registerSound(event, VoidCraft.modid + ".wraith.wraithLive");
 
 		EntityMobLichSoundEvents.hurtSound = EntityMobWraithSoundEvents.hurtSound;
-		EntityMobLichSoundEvents.deathSound = registerSound(event, "lich.lichDeath");
-		EntityMobLichSoundEvents.ambientSound = registerSound(event, "lich.lichLive");
+		EntityMobLichSoundEvents.deathSound = registerSound(event, VoidCraft.modid + ".lich.lichDeath");
+		EntityMobLichSoundEvents.ambientSound = registerSound(event, VoidCraft.modid + ".lich.lichLive");
 
 		EntityMobSpectreChainSoundEvents.hurtSound = EntityMobWraithSoundEvents.hurtSound;
 		EntityMobSpectreChainSoundEvents.deathSound = EntityMobWraithSoundEvents.deathSound;
-		EntityMobSpectreChainSoundEvents.ambientSound = registerSound(event, "spectrechain.chainLive");
+		EntityMobSpectreChainSoundEvents.ambientSound = registerSound(event, VoidCraft.modid + ".spectrechain.chainLive");
 
-		MiscSoundEvents.chain = registerSound(event, "random.chain");
+		MiscSoundEvents.chain = registerSound(event, VoidCraft.modid + ".random.chain");
 
-		MusicSoundEvents.fleshmaker = registerSound(event, "music.fleshmaker");
-		MusicSoundEvents.gop1 = registerSound(event, "music.gop1");
-		MusicSoundEvents.gop2 = registerSound(event, "music.gop2");
-		MusicSoundEvents.inferno = registerSound(event, "music.inferno");
-		MusicSoundEvents.darkness = registerSound(event, "music.darkness");
-		MusicSoundEvents.deathwyrm = registerSound(event, "music.deathwyrm");
-		MusicSoundEvents.titan = registerSound(event, "music.titan");
-		MusicSoundEvents.crystalcove = registerSound(event, "music.crystalcove");
+		MusicSoundEvents.fleshmaker = registerSound(event, VoidCraft.modid + ".music.fleshmaker");
+		MusicSoundEvents.gop1 = registerSound(event, VoidCraft.modid + ".music.gop1");
+		MusicSoundEvents.gop2 = registerSound(event, VoidCraft.modid + ".music.gop2");
+		MusicSoundEvents.inferno = registerSound(event, VoidCraft.modid + ".music.inferno");
+		MusicSoundEvents.darkness = registerSound(event, VoidCraft.modid + ".music.darkness");
+		MusicSoundEvents.deathwyrm = registerSound(event, VoidCraft.modid + ".music.deathwyrm");
+		MusicSoundEvents.titan = registerSound(event, VoidCraft.modid + ".music.titan");
+		MusicSoundEvents.crystalcove = registerSound(event, VoidCraft.modid + ".music.crystalcove");
 	}
 
 	private static SoundEvent registerSound(RegistryEvent.Register<SoundEvent> event, String soundName) {

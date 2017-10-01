@@ -1,5 +1,5 @@
 {
-  "lich.lichlive": {
+  "voidcraft.lich.lichlive": {
     "category": "hostile",
     "sounds": [
       {
@@ -8,7 +8,7 @@
       }
     ]
   },
-  "lich.lichdeath": {
+  "voidcraft.lich.lichdeath": {
     "category": "hostile",
     "sounds": [
       {
@@ -17,7 +17,7 @@
       }
     ]
   },
-  "lich.lichactive": {
+  "voidcraft.lich.lichactive": {
     "category": "hostile",
     "sounds": [
       {
@@ -26,7 +26,7 @@
       }
     ]
   },
-  "chain.chainlive": {
+  "voidcraft.chain.chainlive": {
     "category": "hostile",
     "sounds": [
       {
@@ -35,7 +35,7 @@
       }
     ]
   },
-  "wraith.wraithlive": {
+  "voidcraft.wraith.wraithlive": {
     "category": "hostile",
     "sounds": [
       {
@@ -44,7 +44,7 @@
       }
     ]
   },
-  "wraith.wraithhurt": {
+  "voidcraft.wraith.wraithhurt": {
     "category": "hostile",
     "sounds": [
       {
@@ -53,7 +53,7 @@
       }
     ]
   },
-  "wraith.wraithdeath": {
+  "voidcraft.wraith.wraithdeath": {
     "category": "hostile",
     "sounds": [
       {
@@ -62,7 +62,7 @@
       }
     ]
   },
-  "random.chain": {
+  "voidcraft.random.chain": {
     "category": "ambient",
     "sounds": [
       {
@@ -71,7 +71,7 @@
       }
     ]
   },
-  "music.fleshmaker": {
+  "voidcraft.music.fleshmaker": {
     "category": "music",
     "sounds": [
       {
@@ -80,7 +80,7 @@
       }
     ]
   },
-  "music.gop1": {
+  "voidcraft.music.gop1": {
     "category": "music",
     "sounds": [
       {
@@ -89,7 +89,7 @@
       }
     ]
   },
-  "music.gop2": {
+  "voidcraft.music.gop2": {
     "category": "music",
     "sounds": [
       {
@@ -98,7 +98,7 @@
       }
     ]
   },
-  "music.inferno": {
+  "voidcraft.music.inferno": {
     "category": "music",
     "sounds": [
       {
@@ -107,7 +107,7 @@
       }
     ]
   },
-  "music.darkness": {
+  "voidcraft.music.darkness": {
     "category": "music",
     "sounds": [
       {
@@ -116,7 +116,7 @@
       }
     ]
   },
-  "music.deathwyrm": {
+  "voidcraft.music.deathwyrm": {
     "category": "music",
     "sounds": [
       {
@@ -125,7 +125,7 @@
       }
     ]
   },
-  "music.titan": {
+  "voidcraft.music.titan": {
     "category": "music",
     "sounds": [
       {
@@ -134,7 +134,7 @@
       }
     ]
   },
-  "music.crystalcove": {
+  "voidcraft.music.crystalcove": {
     "category": "music",
     "sounds": [
       {
