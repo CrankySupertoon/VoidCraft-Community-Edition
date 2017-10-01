@@ -1,69 +1,77 @@
 {
-  "voidcraft.lich.lichlive": {
+  "lich_ambient": {
     "category": "hostile",
+    "subtitle": "subtitle.voidcraft.lich.ambient",
     "sounds": [
       {
-        "name": "voidcraft:mobs/lich/lichlive",
+        "name": "voidcraft:mobs/lich/lich_ambient",
         "stream": false
       }
     ]
   },
-  "voidcraft.lich.lichdeath": {
+  "lich_death": {
     "category": "hostile",
+    "subtitle": "subtitle.voidcraft.lich.death",
     "sounds": [
       {
-        "name": "voidcraft:mobs/lich/lichdeath",
+        "name": "voidcraft:mobs/lich/lich_death",
         "stream": false
       }
     ]
   },
-  "voidcraft.lich.lichactive": {
+  "lich_active": {
     "category": "hostile",
+    "subtitle": "subtitle.voidcraft.lich.active",
     "sounds": [
       {
-        "name": "voidcraft:mobs/lich/lichactive",
+        "name": "voidcraft:mobs/lich/lich_active",
         "stream": false
       }
     ]
   },
-  "voidcraft.chain.chainlive": {
+  "spectrechain_ambient": {
     "category": "hostile",
+    "subtitle": "subtitle.voidcraft.spectrechain.ambient",
     "sounds": [
       {
-        "name": "voidcraft:mobs/spectrechain/chainlive",
+        "name": "voidcraft:mobs/spectrechain/spectrechain_ambient",
         "stream": false
       }
     ]
   },
-  "voidcraft.wraith.wraithlive": {
+  "wraith_ambient": {
     "category": "hostile",
+    "subtitle": "subtitle.voidcraft.wraith.ambient",
     "sounds": [
       {
-        "name": "voidcraft:mobs/wraith/wraithlive",
+        "name": "voidcraft:mobs/wraith/wraith_ambient",
         "stream": false
       }
     ]
   },
-  "voidcraft.wraith.wraithhurt": {
+  "wraith_hurt": {
     "category": "hostile",
+    "subtitle": "subtitle.voidcraft.wraith.hurt",
     "sounds": [
       {
-        "name": "voidcraft:mobs/wraith/wraithhurt",
+        "name": "voidcraft:mobs/wraith/wraith_hurt",
         "stream": false
       }
     ]
   },
-  "voidcraft.wraith.wraithdeath": {
+  "wraith_death": {
     "category": "hostile",
+    "subtitle": "subtitle.voidcraft.wraith.death",
     "sounds": [
       {
-        "name": "voidcraft:mobs/wraith/wraithdeath",
+        "name": "voidcraft:mobs/wraith/wraith_death",
         "stream": false
       }
     ]
   },
-  "voidcraft.random.chain": {
+  "random_chain": {
     "category": "ambient",
+    "subtitle": "subtitle.voidcraft.chain",
     "sounds": [
       {
         "name": "voidcraft:random/chain",
@@ -71,7 +79,7 @@
       }
     ]
   },
-  "voidcraft.music.fleshmaker": {
+  "music_fleshmaker": {
     "category": "music",
     "sounds": [
       {
@@ -80,7 +88,7 @@
       }
     ]
   },
-  "voidcraft.music.gop1": {
+  "music_gop1": {
     "category": "music",
     "sounds": [
       {
@@ -89,7 +97,7 @@
       }
     ]
   },
-  "voidcraft.music.gop2": {
+  "music_gop2": {
     "category": "music",
     "sounds": [
       {
@@ -98,7 +106,7 @@
       }
     ]
   },
-  "voidcraft.music.inferno": {
+  "music_inferno": {
     "category": "music",
     "sounds": [
       {
@@ -107,7 +115,7 @@
       }
     ]
   },
-  "voidcraft.music.darkness": {
+  "music_darkness": {
     "category": "music",
     "sounds": [
       {
@@ -116,7 +124,7 @@
       }
     ]
   },
-  "voidcraft.music.deathwyrm": {
+  "music_deathwyrm": {
     "category": "music",
     "sounds": [
       {
@@ -125,7 +133,7 @@
       }
     ]
   },
-  "voidcraft.music.titan": {
+  "music_titan": {
     "category": "music",
     "sounds": [
       {
@@ -134,7 +142,7 @@
       }
     ]
   },
-  "voidcraft.music.crystalcove": {
+  "music_crystalcove": {
     "category": "music",
     "sounds": [
       {
