@@ -2,8 +2,8 @@ buildscript {
     repositories {
         jcenter()
         maven {
-            name = "forge"
-            url = "http://files.minecraftforge.net/maven"
+            name = 'forge'
+            url = 'http://files.minecraftforge.net/maven'
         }
     }
     dependencies {
@@ -14,46 +14,41 @@ apply plugin: 'net.minecraftforge.gradle.forge'
 
 repositories {
 	maven {
-		url = "http://dvs1.progwml6.com/files/maven"
+		url = 'http://dvs1.progwml6.com/files/maven'
 	}
 }
 
-version = "${project.minecraftVersion}-${modVersion}${modVersionValue}"
-group= "tamaized.voidcraft"
-archivesBaseName = "VoidCraft"
+version = "${minecraftVersion}-${modVersion}${modVersionValue}"
+group = 'tamaized.voidcraft'
+archivesBaseName = 'VoidCraft'
 
-sourceCompatibility = targetCompatibility = '1.8'
-compileJava {
-    sourceCompatibility = targetCompatibility = '1.8'
-}
+sourceCompatibility = 1.8
 
 minecraft {
-    version = "${project.minecraftVersion}-${project.forgeVersion}"
-    runDir = "run"
-    mappings = "${project.forgeMapping}"
+    version = "${minecraftVersion}-${project.forgeVersion}"
+    runDir = 'run'
+    mappings = "${forgeMapping}"
     makeObfSourceJar = false
 	useDepAts = true
 	replaceIn 'VoidCraft.java'
 	replace '${version}', "${modVersion}${modVersionValue}"
-	replace '${tamversion}', "${project.tammodizedVersion}"
+	replace '${tamversion}', "${tammodizedVersion}"
 }
 
 dependencies {
-	deobfCompile "mezz.jei:${project.jeiVersion}:api"
-	runtime "mezz.jei:${project.jeiVersion}"
+	deobfCompile "mezz.jei:${jeiVersion}:api"
+	runtime "mezz.jei:${jeiVersion}"
 }
 
 processResources {
-    inputs.property "version", project.version
-    inputs.property "mcversion", project.minecraftVersion
+    inputs.property 'version', modVersion + modVersionValue
+    inputs.property 'tamVersion', tammodizedVersion
 
     from(sourceSets.main.resources.srcDirs) {
         include 'mcmod.info'
 		expand([
-			'version'		: project.modVersion+""+project.modVersionValue,
-			'mcversion'		: project.minecraftVersion,
-			'fVersion'		: project.forgeVersion,
-			'tamVersion'	: project.tammodizedVersion
+			'version'		: modVersion + modVersionValue,
+			'tamVersion'	: tammodizedVersion
         ])
     }
         
