@@ -1,20 +1,146 @@
 {
-  "lich.lichlive": {"category": "hostile", "sounds": [{"name": "voidcraft:mobs/lich/lichlive", "stream": false}]},
-  "lich.lichdeath": {"category": "hostile", "sounds": [{"name": "voidcraft:mobs/lich/lichdeath", "stream": false}]},
-  "lich.lichactive": {"category": "hostile", "sounds": [{"name": "voidcraft:mobs/lich/lichactive", "stream": false}]},
-  "chain.chainlive": {"category": "hostile", "sounds": [{"name": "voidcraft:mobs/spectrechain/chainlive", "stream": false}]},
-  "wraith.wraithlive": {"category": "hostile", "sounds": [{"name": "voidcraft:mobs/wraith/wraithlive", "stream": false}]},
-  "wraith.wraithhurt": {"category": "hostile", "sounds": [{"name": "voidcraft:mobs/wraith/wraithhurt", "stream": false}]},
-  "wraith.wraithdeath": {"category": "hostile", "sounds": [{"name": "voidcraft:mobs/wraith/wraithdeath", "stream": false}]},
-  
-  "random.chain": {"category": "ambient", "sounds": [{"name": "voidcraft:random/chain", "stream": false}]},
-  
-  "music.fleshmaker": {"category": "music", "sounds": [{"name": "voidcraft:music/fleshmaker", "stream": true}]},
-  "music.gop1": {"category": "music", "sounds": [{"name": "voidcraft:music/ghosts of perdition", "stream": true}]},
-  "music.gop2": {"category": "music", "sounds": [{"name": "voidcraft:music/ghosts of perdition_2", "stream": true}]},
-  "music.inferno": {"category": "music", "sounds": [{"name": "voidcraft:music/inferno of the damned", "stream": true}]},
-  "music.darkness": {"category": "music", "sounds": [{"name": "voidcraft:music/darkness", "stream": true}]},
-  "music.deathwyrm": {"category": "music", "sounds": [{"name": "voidcraft:music/temple of the deathwyrm", "stream": true}]},
-  "music.titan": {"category": "music", "sounds": [{"name": "voidcraft:music/titan awakes", "stream": true}]},
-  "music.crystalcove": {"category": "music", "sounds": [{"name": "voidcraft:music/crystal cove", "stream": true}]}
+  "lich.lichlive": {
+    "category": "hostile",
+    "sounds": [
+      {
+        "name": "voidcraft:mobs/lich/lichlive",
+        "stream": false
+      }
+    ]
+  },
+  "lich.lichdeath": {
+    "category": "hostile",
+    "sounds": [
+      {
+        "name": "voidcraft:mobs/lich/lichdeath",
+        "stream": false
+      }
+    ]
+  },
+  "lich.lichactive": {
+    "category": "hostile",
+    "sounds": [
+      {
+        "name": "voidcraft:mobs/lich/lichactive",
+        "stream": false
+      }
+    ]
+  },
+  "chain.chainlive": {
+    "category": "hostile",
+    "sounds": [
+      {
+        "name": "voidcraft:mobs/spectrechain/chainlive",
+        "stream": false
+      }
+    ]
+  },
+  "wraith.wraithlive": {
+    "category": "hostile",
+    "sounds": [
+      {
+        "name": "voidcraft:mobs/wraith/wraithlive",
+        "stream": false
+      }
+    ]
+  },
+  "wraith.wraithhurt": {
+    "category": "hostile",
+    "sounds": [
+      {
+        "name": "voidcraft:mobs/wraith/wraithhurt",
+        "stream": false
+      }
+    ]
+  },
+  "wraith.wraithdeath": {
+    "category": "hostile",
+    "sounds": [
+      {
+        "name": "voidcraft:mobs/wraith/wraithdeath",
+        "stream": false
+      }
+    ]
+  },
+  "random.chain": {
+    "category": "ambient",
+    "sounds": [
+      {
+        "name": "voidcraft:random/chain",
+        "stream": false
+      }
+    ]
+  },
+  "music.fleshmaker": {
+    "category": "music",
+    "sounds": [
+      {
+        "name": "voidcraft:music/fleshmaker",
+        "stream": true
+      }
+    ]
+  },
+  "music.gop1": {
+    "category": "music",
+    "sounds": [
+      {
+        "name": "voidcraft:music/ghosts_of_perdition",
+        "stream": true
+      }
+    ]
+  },
+  "music.gop2": {
+    "category": "music",
+    "sounds": [
+      {
+        "name": "voidcraft:music/ghosts_of_perdition_2",
+        "stream": true
+      }
+    ]
+  },
+  "music.inferno": {
+    "category": "music",
+    "sounds": [
+      {
+        "name": "voidcraft:music/inferno_of_the_damned",
+        "stream": true
+      }
+    ]
+  },
+  "music.darkness": {
+    "category": "music",
+    "sounds": [
+      {
+        "name": "voidcraft:music/darkness",
+        "stream": true
+      }
+    ]
+  },
+  "music.deathwyrm": {
+    "category": "music",
+    "sounds": [
+      {
+        "name": "voidcraft:music/temple_of_the_deathwyrm",
+        "stream": true
+      }
+    ]
+  },
+  "music.titan": {
+    "category": "music",
+    "sounds": [
+      {
+        "name": "voidcraft:music/titan_awakes",
+        "stream": true
+      }
+    ]
+  },
+  "music.crystalcove": {
+    "category": "music",
+    "sounds": [
+      {
+        "name": "voidcraft:music/crystal_cove",
+        "stream": true
+      }
+    ]
+  }
 }
