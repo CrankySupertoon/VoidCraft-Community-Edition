@@ -24,14 +24,14 @@ public class EntityAIHerobrineCreeperSwell extends EntityAIBase {
 	 */
 	public boolean shouldExecute() {
 		EntityLivingBase entitylivingbase = swellingCreeper.getAttackTarget();
-		return swellingCreeper.getCreeperState() > 0 || entitylivingbase != null && swellingCreeper.getDistanceSqToEntity(entitylivingbase) < 9.0D;
+		return swellingCreeper.getCreeperState() > 0 || entitylivingbase != null && swellingCreeper.getDistanceSq(entitylivingbase) < 9.0D;
 	}
 
 	/**
 	 * Execute a one shot task or start executing a continuous task
 	 */
 	public void startExecuting() {
-		swellingCreeper.getNavigator().clearPathEntity();
+		swellingCreeper.getNavigator().clearPath();
 		creeperAttackTarget = swellingCreeper.getAttackTarget();
 	}
 
@@ -48,7 +48,7 @@ public class EntityAIHerobrineCreeperSwell extends EntityAIBase {
 	public void updateTask() {
 		if (creeperAttackTarget == null) {
 			swellingCreeper.setCreeperState(-1);
-		} else if (swellingCreeper.getDistanceSqToEntity(creeperAttackTarget) > 49.0D) {
+		} else if (swellingCreeper.getDistanceSq(creeperAttackTarget) > 49.0D) {
 			swellingCreeper.setCreeperState(-1);
 		} else if (!swellingCreeper.getEntitySenses().canSee(creeperAttackTarget)) {
 			swellingCreeper.setCreeperState(-1);

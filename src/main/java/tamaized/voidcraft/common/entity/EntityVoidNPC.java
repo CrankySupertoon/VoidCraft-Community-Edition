@@ -354,7 +354,7 @@ public abstract class EntityVoidNPC extends EntityFlying implements IMob, IEntit
 				EntityLivingBase entitylivingbase = this.parentEntity.getAttackTarget();
 				double d0 = 64.0D;
 
-				if (entitylivingbase.getDistanceSqToEntity(this.parentEntity) < 4096.0D) {
+				if (entitylivingbase.getDistanceSq(this.parentEntity) < 4096.0D) {
 					parentEntity.getLookHelper().setLookPositionWithEntity(parentEntity.getAttackTarget(), 30, 30);
 					//					double d1 = entitylivingbase.posX - this.parentEntity.posX;
 					//					double d2 = entitylivingbase.posZ - this.parentEntity.posZ;

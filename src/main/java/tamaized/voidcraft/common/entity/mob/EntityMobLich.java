@@ -162,7 +162,7 @@ public class EntityMobLich extends EntityVoidMob implements ISpellAttackMob {
 				return false;
 			} else {
 				attackTarget = entitylivingbase;
-				return attackTarget.getDistanceSqToEntity(entity) > minAttackDistance;
+				return attackTarget.getDistanceSq(entity) > minAttackDistance;
 			}
 		}
 
@@ -190,7 +190,7 @@ public class EntityMobLich extends EntityVoidMob implements ISpellAttackMob {
 			}
 
 			if (d0 <= (double) maxAttackDistance && seeTime >= 20) {
-				entity.getNavigator().clearPathEntity();
+				entity.getNavigator().clearPath();
 			} else {
 				entity.getNavigator().tryMoveToEntityLiving(attackTarget, moveSpeed);
 			}

@@ -101,9 +101,9 @@ public class StarForgeAxe extends TamAxe implements IStarForgeTool {
 	}
 
 	@Override
-	public float getStrVsBlock(ItemStack stack, IBlockState state) {
+	public float getDestroySpeed(ItemStack stack, IBlockState state) {
 		IStarForgeCapability cap = stack.getCapability(CapabilityList.STARFORGE, null);
-		return super.getStrVsBlock(stack, state) + (cap == null ? 0.0F : cap.getSpeedMod());
+		return super.getDestroySpeed(stack, state) + (cap == null ? 0.0F : cap.getSpeedMod());
 	}
 
 	@Override
