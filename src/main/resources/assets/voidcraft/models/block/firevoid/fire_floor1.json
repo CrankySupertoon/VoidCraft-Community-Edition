@@ -1,7 +1,0 @@
-{
-    "parent": "block/fire_floor",
-    "textures": {
-        "particle": "voidcraft:blocks/fireVoid_layer_1",
-        "fire": "voidcraft:blocks/fireVoid_layer_1"
-    }
-}

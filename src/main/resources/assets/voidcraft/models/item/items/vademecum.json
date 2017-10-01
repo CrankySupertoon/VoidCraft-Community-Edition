@@ -1,6 +1,0 @@
-{
-    "overrides": [
-        { "predicate": { "open": 0.0 }, "model": "voidcraft:item/items/vademecum_close" },
-        { "predicate": { "open": 1.0 }, "model": "voidcraft:item/items/vademecum_open" }
-    ]
-}

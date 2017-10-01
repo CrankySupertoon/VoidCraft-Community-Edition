@@ -1,8 +1,0 @@
-{
-    "parent": "block/upper_slab",
-    "textures": {
-        "bottom": "voidcraft:blocks/VoidBrick",
-        "top": "voidcraft:blocks/VoidBrick",
-        "side": "voidcraft:blocks/VoidBrick"
-    }
-}

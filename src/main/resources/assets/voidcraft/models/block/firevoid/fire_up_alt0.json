@@ -1,7 +1,0 @@
-{
-    "parent": "block/fire_up_alt",
-    "textures": {
-        "particle": "voidcraft:blocks/fireVoid_layer_0",
-        "fire": "voidcraft:blocks/fireVoid_layer_0"
-    }
-}

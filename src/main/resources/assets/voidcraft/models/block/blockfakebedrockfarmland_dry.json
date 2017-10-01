@@ -1,8 +1,0 @@
-{
-    "parent": "voidcraft:block/blockFakeBedrockFarmland",
-    "textures": {
-        "particle": "blocks/bedrock",
-        "base": "blocks/bedrock",
-        "top": "voidcraft:blocks/bedrockFarmland_dry"
-    }
-}

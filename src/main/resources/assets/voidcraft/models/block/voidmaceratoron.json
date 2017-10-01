@@ -1,9 +1,0 @@
-{
-    "parent": "block/orientable",
-    "textures": {
-        "top": "voidcraft:blocks/machina/voidMacerator/top_on",
-        "front": "voidcraft:blocks/machina/voidMacerator/front_on",
-        "side": "voidcraft:blocks/machina/voidMacerator/side",
-        "bottom": "voidcraft:blocks/machina/voidMacerator/bottom"
-    }
-}

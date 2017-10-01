@@ -1,9 +1,0 @@
-{
-    "variants": {
-        "state=0": { "model": "voidcraft:AIBlock_state_1" },
-        "state=1": { "model": "voidcraft:AIBlock_state_2" },
-        "state=2": { "model": "voidcraft:AIBlock_state_3" },
-        "state=3": { "model": "black_wool" },
-        "state=4": { "model": "black_wool" }
-    }
-}
