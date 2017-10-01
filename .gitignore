@@ -1,6 +1,28 @@
+# eclipse
+bin
+*.launch
+.settings
+.metadata
+.classpath
+.project
+
+# idea
+out
+*.ipr
+*.iws
 *.iml
-.gradle/
-.idea/
-build/
-out/
-run/
+.idea
+
+# gradle
+build
+.gradle
+
+# other
+eclipse
+run
+classes
+
+# my own shit
+nonPublicResources
+jource.bat
+GitJource.jar
