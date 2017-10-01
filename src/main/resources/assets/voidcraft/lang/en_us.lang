@@ -738,3 +738,13 @@ tc.research_text.vc.FociAcid=It came from the ground!
 item.corruptedSword.name=Corrupted Sword
 # -- Foci
 item.voidfociAcid.name=Wand Focus: Acid
+
+# Sounds
+subtitle.voidcraft.lich.ambient=Lich echoes
+subtitle.voidcraft.lich.death=Lich dies
+subtitle.voidcraft.lich.active=Lich talks
+subtitle.voidcraft.spectrechain.ambient=Spectrechain rattles
+subtitle.voidcraft.wraith.ambient=Wraith echoes
+subtitle.voidcraft.wraith.hurt=Wraith hurts
+subtitle.voidcraft.wraith.death=Wraith dies
+subtitle.voidcraft.chain=Chains click
