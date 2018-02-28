@@ -16,9 +16,6 @@ repositories {
     maven {
         url = "http://dvs1.progwml6.com/files/maven"
     }
-    maven {
-        url = "https://jitpack.io"
-    }
 }
 
 version = "1.12-${modVersion}${modVersionValue}"
@@ -44,7 +41,6 @@ minecraft {
 dependencies {
     deobfCompile "mezz.jei:${project.jeiVersion}:api"
     runtime "mezz.jei:${project.jeiVersion}"
-    compileOnly "com.github.Tamaized:TamModized:1.12-SNAPSHOT"
 }
 
 processResources {
