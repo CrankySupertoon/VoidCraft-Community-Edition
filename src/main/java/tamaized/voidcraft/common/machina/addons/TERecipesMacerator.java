@@ -18,7 +18,7 @@ public class TERecipesMacerator extends TamTileEntityRecipeList<TERecipesMacerat
 
 	public ItemStack getInput(ItemStack output) {
 		for (MaceratorRecipe recipe : getList()) {
-			if (ItemStack.areItemStacksEqual(recipe.getOutput(), output))
+			if (ItemStack.areItemsEqual(recipe.getOutput(), output))
 				return recipe.getInput()[0];
 		}
 		return ItemStack.EMPTY;
