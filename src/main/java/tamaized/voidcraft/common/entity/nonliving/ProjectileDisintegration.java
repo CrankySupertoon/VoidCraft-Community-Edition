@@ -96,7 +96,7 @@ public class ProjectileDisintegration extends EntityArrow implements IProjectile
 		double d1 = target.getEntityBoundingBox().minY + (double) (target.height / 2.0F) - posY;
 		double d2 = target.posZ - posZ;
 		double d3 = (double) MathHelper.sqrt(d0 * d0 + d2 * d2);
-		setThrowableHeading(d0, d1/* + d3 * 0.20000000298023224D */, d2, 1.6F, (float) (14 - world.getDifficulty().getDifficultyId() * 4));
+		shoot(d0, d1/* + d3 * 0.20000000298023224D */, d2, 1.6F, (float) (14 - world.getDifficulty().getDifficultyId() * 4));
 	}
 
 	public void setTheVelocity(double x, double y, double z) {

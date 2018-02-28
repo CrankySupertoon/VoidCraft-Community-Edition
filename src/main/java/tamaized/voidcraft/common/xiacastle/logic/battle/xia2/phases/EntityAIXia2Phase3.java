@@ -67,13 +67,13 @@ public class EntityAIXia2Phase3 extends EntityVoidNPCAIBase<EntityBossXia2> {
 				return;
 			if (!(dol instanceof EntityDolXia) || !(zol instanceof EntityZolXia) || !(dragon instanceof EntityDragonXia) || !(wither instanceof EntityWitherbrine))
 				return;
-			if (zol.getDistanceToEntity(getEntity()) >= 100)
+			if (zol.getDistance(getEntity()) >= 100)
 				zol.setPositionAndUpdate(getEntity().posX, getEntity().posY, getEntity().posZ);
-			if (dol.getDistanceToEntity(getEntity()) >= 100)
+			if (dol.getDistance(getEntity()) >= 100)
 				dol.setPositionAndUpdate(getEntity().posX, getEntity().posY, getEntity().posZ);
-			if (dragon.getDistanceToEntity(getEntity()) >= 100)
+			if (dragon.getDistance(getEntity()) >= 100)
 				dragon.setPositionAndUpdate(getEntity().posX, getEntity().posY, getEntity().posZ);
-			if (wither.getDistanceToEntity(getEntity()) >= 100)
+			if (wither.getDistance(getEntity()) >= 100)
 				wither.setPositionAndUpdate(getEntity().posX, getEntity().posY, getEntity().posZ);
 			if (!world.loadedEntityList.contains(dol) && !dol.isFrozen() && !dol.isDead)
 				world.spawnEntity(dol);

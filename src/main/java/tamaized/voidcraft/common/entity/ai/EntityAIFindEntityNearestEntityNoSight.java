@@ -32,7 +32,7 @@ public class EntityAIFindEntityNearestEntityNoSight<T extends EntityLivingBase> 
 			} else {
 				double maxRange = maxTargetRange();
 
-				return !((double) entity.getDistanceToEntity(entityLiving) > maxRange) && EntityAITarget.isSuitableTarget(entityLiving, (EntityLivingBase) entity, false, false);
+				return !((double) entity.getDistance(entityLiving) > maxRange) && EntityAITarget.isSuitableTarget(entityLiving, (EntityLivingBase) entity, false, false);
 			}
 		};
 

@@ -79,7 +79,7 @@ public class CustomElytraHandler {
 							entity.motionY *= 0.9800000190734863D;
 							entity.motionZ *= 0.9900000095367432D;
 							entity.move(MoverType.SELF, entity.motionX, entity.motionY, entity.motionZ);
-							if (entity.isCollidedHorizontally && !entity.world.isRemote) {
+							if (entity.collidedHorizontally && !entity.world.isRemote) {
 								double d10 = Math.sqrt(entity.motionX * entity.motionX + entity.motionZ * entity.motionZ);
 								double d3 = d8 - d10;
 								float f5 = (float) (d3 * 10.0D - 3.0D);

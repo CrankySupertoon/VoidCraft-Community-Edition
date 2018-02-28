@@ -201,7 +201,7 @@ public class EntityBossXia2 extends EntityVoidBoss<Xia2BattleHandler> {
 	@Override
 	protected void updatePhase(int phase) {
 		for (EntityPlayer player : world.playerEntities) {
-			if (player.getDistanceToEntity(this) >= 100) {
+			if (player.getDistance(this) >= 100) {
 				player.sendMessage(new TextComponentTranslation("voidcraft.misc.xia.escape"));
 				player.setPositionAndUpdate(this.posX, this.posY, this.posZ - 2);
 			}
