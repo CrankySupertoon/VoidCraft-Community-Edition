@@ -13,13 +13,16 @@ buildscript {
 apply plugin: 'net.minecraftforge.gradle.forge'
 
 repositories {
-	maven {
-		url = "http://dvs1.progwml6.com/files/maven"
-	}
+    maven {
+        url = "http://dvs1.progwml6.com/files/maven"
+    }
+    maven {
+        url = "https://jitpack.io"
+    }
 }
 
 version = "1.12-${modVersion}${modVersionValue}"
-group= "tamaized.voidcraft"
+group = "tamaized.voidcraft"
 archivesBaseName = "VoidCraft"
 
 sourceCompatibility = targetCompatibility = '1.8'
@@ -32,15 +35,16 @@ minecraft {
     runDir = "run"
     mappings = "${project.forgeMapping}"
     makeObfSourceJar = false
-	useDepAts = true
-	replaceIn 'VoidCraft.java'
-	replace '${version}', "${modVersion}${modVersionValue}"
-	replace '${tamversion}', "${project.tammodizedVersion}"
+    useDepAts = true
+    replaceIn 'VoidCraft.java'
+    replace '${version}', "${modVersion}${modVersionValue}"
+    replace '${tamversion}', "${project.tammodizedVersion}"
 }
 
 dependencies {
-	deobfCompile "mezz.jei:${project.jeiVersion}:api"
-	runtime "mezz.jei:${project.jeiVersion}"
+    deobfCompile "mezz.jei:${project.jeiVersion}:api"
+    runtime "mezz.jei:${project.jeiVersion}"
+    compileOnly "com.github.Tamaized:TamModized:1.12-SNAPSHOT"
 }
 
 processResources {
@@ -49,14 +53,14 @@ processResources {
 
     from(sourceSets.main.resources.srcDirs) {
         include 'mcmod.info'
-		expand([
-			'version'		: project.modVersion+""+project.modVersionValue,
-			'mcversion'		: project.minecraftVersion,
-			'fVersion'		: project.forgeVersion,
-			'tamVersion'	: project.tammodizedVersion
+        expand([
+                'version'   : project.modVersion + "" + project.modVersionValue,
+                'mcversion' : project.minecraftVersion,
+                'fVersion'  : project.forgeVersion,
+                'tamVersion': project.tammodizedVersion
         ])
     }
-        
+
     from(sourceSets.main.resources.srcDirs) {
         exclude 'mcmod.info'
     }
