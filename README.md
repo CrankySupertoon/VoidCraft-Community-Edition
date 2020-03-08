@@ -37,6 +37,7 @@ This project is licensed under the MIT License - see the  [LICENSE](https://gith
 
 # 📃 Credits
 Tama, for making the original VoidCraft
+
 [discordImg]: https://img.shields.io/discord/671902942466408478.svg?logo=discord&logoWidth=18&colorB=7289DA&style=for-the-badge
 [discordLink]: https://discord.gg/F55qYKm
 
