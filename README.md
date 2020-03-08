@@ -1,4 +1,4 @@
-# VoidCraft Community Edition [![Curseforge][curseImg]][curseLink]
+# VoidCraft Community Edition [![Discord][discordImg]][discordLink] [![Curseforge][curseImg]][curseLink]
 VoidCraft Community Edition is an Unoffical Continuation of Dal Quor previously known as VoidCraft which is licensed under the MIT License
 
 ## 🚀 Getting Started
