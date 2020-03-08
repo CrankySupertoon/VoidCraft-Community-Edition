@@ -26,16 +26,16 @@ VoidCraft: Community Editon depends on [TamModized](https://www.curseforge.com/m
 ## 🔑 Mod Integrations
 This mod currently has integrations with [JEI](https://www.curseforge.com/minecraft/mc-mods/jei) and [Void Fog](https://www.curseforge.com/minecraft/mc-mods/void-fog). There is also plans for VoidCraft: Community Edition to have integrations with Thaumcraft and Aether as well as CTM.
 
-# 🗝 Built and managed with
+## 🗝 Built and managed with
 - [Github](http://www.github.com/)  - Git Host
 - [IntellIJ IDEA 2019.3](https://www.jetbrains.com/idea/download/)  - IDE
 - [Minecraft Forge](https://files.minecraftforge.net/)  - Modding Tool
 - [Minecraft](https://www.minecraft.net/)  - Engine
 
-# 🎓 License
+## 🎓 License
 This project is licensed under the MIT License - see the  [LICENSE](https://github.com/CrankySupertoon/VoidCraft-Community-Edition/blob/1.12.2-community/LICENSE)  file for details
 
-# 📃 Credits
+## 📃 Credits
 Tama, for making the original VoidCraft
 
 [discordImg]: https://img.shields.io/discord/671902942466408478.svg?logo=discord&logoWidth=18&colorB=7289DA&style=for-the-badge
